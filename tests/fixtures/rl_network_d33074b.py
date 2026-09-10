@@ -9,8 +9,6 @@ from torch import nn
 from torch.distributions import Categorical
 
 from .controller import ALGORITHM_VERSIONS, CONTEXT_DIM, FEATURE_DIM, FEATURE_DIMS, feature_schema
-from .distributions import (adjusted_logits, validate_distribution, checkpoint_distribution,
-                            sample_probe_diagnostics)
 
 
 def architecture_spec(name="mlp", layers=1, heads=4):
@@ -92,14 +90,11 @@ class CandidateActorCritic(nn.Module):
     from forward inputs. The mean/max pooled context communicates the remaining
     task set; this compact architecture does not claim to reproduce AlphaGo.
     """
-    def __init__(self, hidden=96, feature_dim=FEATURE_DIM, architecture=None, action_distribution=None):
+    def __init__(self, hidden=96, feature_dim=FEATURE_DIM, architecture=None):
         super().__init__()
         self.hidden = hidden
         self.feature_dim = feature_dim
         self.architecture = validate_architecture(architecture)
-        self.action_distribution = validate_distribution(action_distribution)
-        if self.action_distribution["name"] != "flat" and feature_dim != 60:
-            raise ValueError("group distribution requires v3 feature semantics")
         if self.architecture["name"] == "attention" and hidden % self.architecture["heads"]:
             raise ValueError("hidden width must be divisible by attention heads")
         self.encoder = nn.Sequential(nn.Linear(feature_dim, hidden), nn.Tanh(),
@@ -126,7 +121,6 @@ class CandidateActorCritic(nn.Module):
         pooled = self.context_encoder(torch.cat((context, mean, maximum), dim=-1))
         joint = torch.cat((encoded, pooled[:, None, :].expand(-1, encoded.shape[1], -1)), dim=-1)
         logits = self.actor(joint).squeeze(-1).masked_fill(~mask, -1e9)
-        logits = adjusted_logits(logits, features, mask, self.action_distribution)
         return logits, self.critic(pooled).squeeze(-1)
 
 
@@ -147,28 +141,13 @@ def pack_observations(records, device="cpu"):
 
 
 class TorchPolicy:
-    def __init__(self, model, *, device="cpu", deterministic=True, teacher=False,
-                 capture_diagnostics=False):
+    def __init__(self, model, *, device="cpu", deterministic=True, teacher=False):
         self.model = model
         self.device = device
         self.deterministic = deterministic
         self.teacher = teacher
         self.architecture = model.architecture
-        self.action_distribution = model.action_distribution
         self.feature_version = next(v for v, dim in FEATURE_DIMS.items() if dim == model.feature_dim)
-        self.capture_diagnostics = capture_diagnostics and self.feature_version == "v3"
-        self.center_mask = None
-        self.last_probe_diagnostics = None
-
-    def prepare_candidates(self, candidates, regions):
-        if not self.capture_diagnostics:
-            return
-        # Legal geometric metadata for logging only; never a forward input.
-        centers = {channel: regions[channel].enclosing_disk().center
-                   for channel in {c.channel for c in candidates if c.kind == "probe"}}
-        self.center_mask = [c.kind == "probe" and
-            (c.point.x - centers[c.channel][0]) ** 2 +
-            (c.point.y - centers[c.channel][1]) ** 2 <= 1e-12 for c in candidates]
 
     @torch.no_grad()
     def __call__(self, features, context, teacher):
@@ -177,11 +156,6 @@ class TorchPolicy:
         distribution = Categorical(logits=logits)
         action = (torch.tensor([teacher], device=self.device) if self.teacher else
                   logits.argmax(-1) if self.deterministic else distribution.sample())
-        if self.capture_diagnostics:
-            if self.center_mask is None or len(self.center_mask) != len(features):
-                raise ValueError("diagnostic policy requires current legal candidate metadata")
-            self.last_probe_diagnostics = sample_probe_diagnostics(
-                logits[0].cpu().numpy(), features, self.center_mask, int(action.item()))
         return int(action.item()), float(distribution.log_prob(action).item()), float(value.item())
 
 
@@ -196,8 +170,7 @@ def _load_cached(path, modified_ns, device, deterministic):
             and checkpoint.get("feature_schema") != feature_schema(version)):
         raise ValueError("checkpoint feature semantics do not match this implementation")
     model = CandidateActorCritic(checkpoint["hidden"], FEATURE_DIMS[version],
-                                 checkpoint_architecture(checkpoint),
-                                 checkpoint_distribution(checkpoint)).to(device)
+                                 checkpoint_architecture(checkpoint)).to(device)
     model.load_state_dict(checkpoint["model"])
     model.eval()
     return TorchPolicy(model, device=device, deterministic=deterministic)

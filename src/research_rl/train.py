@@ -28,13 +28,15 @@ from simulation import LocalResearchSimulator, random_scenario
 from .controller import ALGORITHM_VERSION, ALGORITHM_VERSIONS, FEATURE_DIMS, DeepRLSearch, feature_schema
 from .network import (CandidateActorCritic, TorchPolicy, pack_observations,
                       architecture_from_args, checkpoint_architecture, validate_architecture)
+from .distributions import (checkpoint_distribution, distribution_from_args,
+                            validate_distribution, merge_probe_diagnostics)
 
 
 _worker_model = None
 
 
 def legal_training_seed(seed):
-    return 100000 <= seed < 200000 or 2000 <= seed <= 5099
+    return 100001 <= seed < 200000 or 2000 <= seed <= 5099
 
 
 def episode(task):
@@ -44,6 +46,7 @@ def episode(task):
     deadline = task[6] if len(task) > 6 else None
     version = task[7] if len(task) > 7 else "v2"
     architecture = validate_architecture(task[8] if len(task) > 8 else None)
+    action_distribution = validate_distribution(task[9] if len(task) > 9 else None)
     if not legal_training_seed(seed):
         raise ValueError("Training scenario seed is outside the declared training ranges")
     if deadline is not None and time.time() >= deadline:
@@ -51,8 +54,9 @@ def episode(task):
     torch.set_num_threads(1)
     if (_worker_model is None or _worker_model.hidden != hidden
             or _worker_model.feature_dim != FEATURE_DIMS[version]
-            or _worker_model.architecture != architecture):
-        _worker_model = CandidateActorCritic(hidden, FEATURE_DIMS[version], architecture)
+            or _worker_model.architecture != architecture
+            or _worker_model.action_distribution != action_distribution):
+        _worker_model = CandidateActorCritic(hidden, FEATURE_DIMS[version], architecture, action_distribution)
     _worker_model.load_state_dict(weights)
     _worker_model.eval()
     # Model construction consumes Torch RNG. Reset after constructing/loading,
@@ -61,12 +65,15 @@ def episode(task):
     np.random.seed(action_seed % 2**32)
     random.seed(action_seed)
     records = []
+    diagnostic_records = []
 
     def record(features, context, action, target, selection, cost):
         records.append(dict(features=np.asarray(features, dtype=np.float32),
                             context=np.asarray(context, dtype=np.float32),
                             action=action, teacher=target, log_prob=selection[1],
                             value=selection[2], reward=-cost / 1000.0))
+        if policy.last_probe_diagnostics is not None:
+            diagnostic_records.append(policy.last_probe_diagnostics)
 
     simulator = LocalResearchSimulator(random_scenario(3, seed), max_real_duration_s=300)
     if version == "v3":
@@ -74,8 +81,9 @@ def episode(task):
         controller_class = JointScanRLSearch
     else:
         controller_class = DeepRLSearch
-    controller = controller_class(simulator.client(), TorchPolicy(
-        _worker_model, deterministic=False, teacher=teacher), recorder=record,
+    policy = TorchPolicy(_worker_model, deterministic=False, teacher=teacher,
+                         capture_diagnostics=version == "v3")
+    controller = controller_class(simulator.client(), policy, recorder=record,
         max_decisions=max_decisions, action_deadline_epoch=deadline, feature_version=version)
     started = time.perf_counter()
     report = controller.run()
@@ -105,6 +113,8 @@ def episode(task):
                    reward_cost_s=-sum(r["reward"] for r in records) * 1000,
                    initial_scan_virtual_time_s=fixed_initial,
                    completion_reason=report.completion_reason)
+    if version == "v3":
+        metrics["sampling_probe_diagnostics"] = merge_probe_diagnostics(diagnostic_records)
     return records, metrics
 
 
@@ -199,6 +209,7 @@ def source_manifest():
 def save_checkpoint(path, model, optimizer, args, state):
     payload = dict(algorithm=ALGORITHM_VERSIONS[args.feature_version], hidden=args.hidden,
                    architecture=model.architecture,
+                   action_distribution=model.action_distribution,
                    feature_version=args.feature_version, feature_schema=feature_schema(args.feature_version),
                    model={k: v.detach().cpu() for k, v in model.state_dict().items()},
                    optimizer=optimizer.state_dict(), args=vars(args), state=state,
@@ -222,15 +233,18 @@ def validate_resume(payload, args):
         raise ValueError("checkpoint feature semantics do not match")
     if checkpoint_architecture(payload) != architecture_from_args(args):
         raise ValueError("checkpoint architecture differs; use --initialize-from for an explicit compatible expansion")
+    if checkpoint_distribution(payload) != distribution_from_args(args):
+        raise ValueError("checkpoint action distribution differs; use an explicit new-trial initialization")
     if payload.get("source_manifest") != source_manifest():
         raise ValueError("checkpoint source manifest differs; use --initialize-from for a separately logged new trial")
 
 
-def initialize_from(model, payload):
+def initialize_from(model, payload, *, allow_distribution_change=False):
     """Explicit fresh-trial transfer; new feature columns initially have zero weight.
 
-    Preserves old logits before further learning if the v1 prefix and all other
-    features/actions remain unchanged. Optimizer/RNG/state are intentionally new.
+    Preserves old logits before further learning if the v1 prefix, other
+    features/actions, and action distribution remain unchanged. Explicit
+    distribution migration changes probabilities. Optimizer/RNG/state are new.
     """
     if payload.get("algorithm") not in ALGORITHM_VERSIONS.values():
         raise ValueError("unsupported transfer algorithm")
@@ -243,6 +257,10 @@ def initialize_from(model, payload):
             and payload.get("feature_schema") != feature_schema(previous_version)):
         raise ValueError("transfer checkpoint has unknown feature semantics")
     weights = dict(payload["model"])
+    if checkpoint_distribution(payload) != model.action_distribution and not allow_distribution_change:
+        # Legacy/paired callers must never silently load grouped weights into
+        # a flat-policy trainer. PPO's explicit new-trial path opts in below.
+        raise ValueError("action distribution change requires an explicit supported new-trial migration")
     previous_arch = checkpoint_architecture(payload)
     target_arch = model.architecture
     if previous_arch["name"] == "attention":
@@ -283,6 +301,8 @@ def main(argv=None):
     parser.add_argument("--architecture", choices=("mlp", "attention"), default="mlp")
     parser.add_argument("--attention-layers", type=int, default=1)
     parser.add_argument("--attention-heads", type=int, default=4)
+    parser.add_argument("--group-alpha", type=int, choices=(0, 1), default=0,
+                        help="0: original flat policy; 1: subtract log task-group size (v3 only)")
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112026)
@@ -323,7 +343,7 @@ def main(argv=None):
     np.random.seed(args.seed % 2**32)
     random.seed(args.seed)
     model = CandidateActorCritic(args.hidden, FEATURE_DIMS[args.feature_version],
-                                 architecture_from_args(args)).to(args.device)
+                                 architecture_from_args(args), distribution_from_args(args)).to(args.device)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
     state = dict(update=0, optimizer_steps=0, episodes=0, next_seed=args.scenario_start, bc_complete=False)
     if args.resume:
@@ -347,12 +367,14 @@ def main(argv=None):
         save_checkpoint(args.output / "random.pt", model, optimizer, args, state.copy())
     if args.initialize_from:
         payload = torch.load(args.initialize_from, map_location=args.device, weights_only=False)
-        initialize_from(model, payload)
+        initialize_from(model, payload, allow_distribution_change=True)
         state["bc_complete"] = True
         state["initialization"] = dict(path=str(args.initialize_from),
             sha256=hashlib.sha256(args.initialize_from.read_bytes()).hexdigest(),
             source_algorithm=payload["algorithm"], source_manifest=payload.get("source_manifest"),
             source_architecture=checkpoint_architecture(payload), target_architecture=model.architecture,
+            source_distribution=checkpoint_distribution(payload), target_distribution=model.action_distribution,
+            preserves_initial_probabilities=checkpoint_distribution(payload) == model.action_distribution,
             source_state=payload.get("state"), source_git_commit=payload.get("git_commit"))
         save_checkpoint(args.output / "initialized.pt", model, optimizer, args, state.copy())
     started = time.monotonic()
@@ -364,10 +386,11 @@ def main(argv=None):
         stop_at = min(stop_at, started + deadline.timestamp() - time.time())
     config = {**vars(args), "algorithm": ALGORITHM_VERSIONS[args.feature_version], "git_commit": git_version(),
               "architecture_spec": model.architecture,
+              "action_distribution": model.action_distribution,
               "feature_schema": feature_schema(args.feature_version),
               "source_manifest": source_manifest(),
               "gamma": 1.0, "reward_scale_s": 1000, "failure_penalty_s": 360000,
-              "training_seed_ranges": [[100000, 199999], [2000, 5099]],
+              "training_seed_ranges": [[100001, 199999], [2000, 5099]],
               "validation_seeds_not_used_by_training": [6000, 6047]}
     (args.output / "config.json").write_text(json.dumps(config, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
     executor = ProcessPoolExecutor(args.workers, mp_context=multiprocessing.get_context("spawn")) if args.workers else None
@@ -384,7 +407,8 @@ def main(argv=None):
             state["next_seed"] = seed + 1
             epoch_deadline = time.time() + max(0.0, stop_at - time.monotonic())
             tasks.append((seed, weights, args.hidden, random.randrange(2**31), teacher,
-                          args.max_decisions, epoch_deadline, args.feature_version, model.architecture))
+                          args.max_decisions, epoch_deadline, args.feature_version, model.architecture,
+                          model.action_distribution))
         # Workers check the shared absolute deadline before every physical
         # action; already queued tasks skip instead of overrunning the cutoff.
         results = list(executor.map(episode, tasks)) if executor else [episode(t) for t in tasks]
@@ -402,6 +426,8 @@ def main(argv=None):
             state["bc_complete"] = bool(records) and time.monotonic() < stop_at
             sha = save_checkpoint(args.output / "bc_only.pt", model, optimizer, args, state.copy())
             entry = dict(stage="bc", update=0, episodes=episodes, losses=losses,
+                         sampling_probe_diagnostics=merge_probe_diagnostics(
+                             [e.get("sampling_probe_diagnostics", {}) for e in episodes]),
                          collect_wall_s=collected - collect_started,
                          optimize_wall_s=time.monotonic() - collected, checkpoint_sha256=sha)
             log.write(json.dumps(entry) + "\n"); log.flush()
@@ -422,6 +448,8 @@ def main(argv=None):
                 break
             state["update"] += 1
             entry = dict(stage="ppo", update=state["update"], total_episodes=state["episodes"],
+                         sampling_probe_diagnostics=merge_probe_diagnostics(
+                             [e.get("sampling_probe_diagnostics", {}) for e in episodes]),
                          mean_virtual_time_s=float(np.mean([e["virtual_time_s"] for e in episodes if not e.get("deadline_skipped")])),
                          success_count=sum(e.get("success", False) for e in episodes), episodes=episodes,
                          losses=losses, collect_wall_s=collected - collect_started,

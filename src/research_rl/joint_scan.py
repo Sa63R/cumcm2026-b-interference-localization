@@ -205,6 +205,9 @@ class JointScanRLSearch(DeepRLSearch):
             features, context = self._features(candidates, remaining)
             self.report.learning["feature_wall_time_s"] += time.perf_counter() - started
             teacher = self._teacher(candidates, remaining)
+            prepare = getattr(self.policy, "prepare_candidates", None)
+            if prepare is not None:
+                prepare(candidates, self.regions)
             started = time.perf_counter()
             selection = self.policy(features, context, teacher)
             self.report.learning["inference_wall_time_s"] += time.perf_counter() - started
