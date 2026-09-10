@@ -30,6 +30,7 @@ from .network import (CandidateActorCritic, TorchPolicy, pack_observations,
                       architecture_from_args, checkpoint_architecture, validate_architecture)
 from .distributions import (checkpoint_distribution, distribution_from_args,
                             validate_distribution, merge_probe_diagnostics)
+from .portable_checkpoint import portable_paths
 
 
 _worker_model = None
@@ -220,7 +221,9 @@ def save_checkpoint(path, model, optimizer, args, state):
     if torch.cuda.is_available():
         payload["cuda_rng"] = torch.cuda.get_rng_state_all()
     temporary = path.with_suffix(path.suffix + ".tmp")
-    torch.save(payload, temporary)
+    # Concrete PosixPath/WindowsPath objects cannot be instantiated on the
+    # other OS. Their provenance text is sufficient; tensors/RNG stay intact.
+    torch.save(portable_paths(payload), temporary)
     temporary.replace(path)
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
