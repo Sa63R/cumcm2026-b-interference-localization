@@ -39,6 +39,8 @@ axis+inferred 的单独证据强于“叠加更多模块即会更好”的假设
 
 这些界没有展开未知源发现、未来连续反馈和定位路径，**不是Q3整体最优值的上下界**。覆盖及清除使用真实历史的保守几何；推断删测只是逻辑确定反馈的局部费用删除。其余启发式收益必须由独立完整局评估，而不能由局部代理分值下降推出。
 
-截至该清单，状态方向暂停新策略扩展，等待父agent统一验证各冻结候选。建议先核验axis+inferred，并保留axis作为可回退参考；mean_point组合只作有限备选，不做无根据参数扫。
+本阶段候选整理后曾暂停新策略扩展，等待父agent统一验证各冻结候选。建议先核验axis+inferred，并保留axis作为可回退参考；mean_point组合只作有限备选，不做无根据参数扫。
 
 后续只做了[冻结训练压力可靠性评估](TRAINING_STRESS_RELIABILITY.md)：独立7类×4场景、四份源码快照，rollout/axis+inferred/几何single/RL002u384全部28/28全清、零失败清除，112条历史及费用账通过。axis+inferred本组平均3047.572s，较rollout3584.967s低14.99%，但这组全R=1000的指定压力分布不能替代正式最后测试或证明普遍占优。没有据此更改策略。
+
+之后父 agent 授权了独立的[动态覆盖站可行域试验](COVERAGE_RELOCATION.md)。新 spec `experiments/state_search_candidate_relocating_cover_v1.json` 仅在 axis+inferred 上改变未来覆盖点及相应路由；每次单站改动保留全圆盘覆盖认证，不将未来站作为实际观测。114001—114016 pilot 全清零失败，平均省 48.768 s、区间 [21.388,78.343]，13 胜 3 负；原候选仍保留。冻结后批准新 64 局确认及根 agent Linux 复核，现不凭 pilot 替换推荐。
