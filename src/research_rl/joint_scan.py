@@ -15,8 +15,10 @@ from .controller import Candidate, DeepRLSearch, FEATURE_DIMS, SCAN_FEATURE_NAME
 
 class JointScanRLSearch(DeepRLSearch):
     def __init__(self, client, policy, *, feature_version="v3", **kwargs):
-        if feature_version != "v3":
+        if feature_version not in {"v3", "v4"}:
             raise ValueError("joint scan controller requires v3 semantics")
+        if feature_version == "v4" and type(self) is JointScanRLSearch:
+            raise ValueError("v4 requires RouteDebtRLSearch; use the public factory")
         super().__init__(client, policy, feature_version=feature_version, **kwargs)
         self.scan_ledger = {point: set() for point in self.points}
         self.negative_scan_ledger = {point: set() for point in self.points}

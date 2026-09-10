@@ -86,6 +86,16 @@ class GatedSetAttention(nn.Module):
         return encoded + self.feedforward_gate * self.feedforward(self.feedforward_norm(encoded))
 
 
+class ZeroFeatureResidual(nn.Module):
+    """Bias-free linear map constructed without consuming random numbers."""
+    def __init__(self, input_dim, hidden):
+        super().__init__()
+        self.weight = nn.Parameter(torch.zeros(hidden, input_dim))
+
+    def forward(self, features):
+        return nn.functional.linear(features, self.weight)
+
+
 class CandidateActorCritic(nn.Module):
     """Permutation-equivariant actor, invariant critic over legal candidates.
 
@@ -101,13 +111,18 @@ class CandidateActorCritic(nn.Module):
         self.architecture = validate_architecture(architecture)
         self.action_distribution = validate_distribution(action_distribution)
         self.action_schema = validate_action_schema(action_schema)
+        if feature_dim == FEATURE_DIMS["v4"] and (
+                self.architecture["name"] != "mlp" or self.action_distribution["name"] != "flat"
+                or self.action_schema["name"] != "base"):
+            raise ValueError("v4 route-debt ablation requires MLP, flat distribution and base actions")
         if self.action_distribution["name"] != "flat" and feature_dim != 60:
             raise ValueError("group distribution requires v3 feature semantics")
         if self.action_schema["name"] != "base" and feature_dim != 60:
             raise ValueError("axis candidate extension requires v3 feature semantics")
         if self.architecture["name"] == "attention" and hidden % self.architecture["heads"]:
             raise ValueError("hidden width must be divisible by attention heads")
-        self.encoder = nn.Sequential(nn.Linear(feature_dim, hidden), nn.Tanh(),
+        input_dim = 60 if feature_dim == FEATURE_DIMS["v4"] else feature_dim
+        self.encoder = nn.Sequential(nn.Linear(input_dim, hidden), nn.Tanh(),
                                      nn.Linear(hidden, hidden), nn.Tanh())
         self.context_encoder = nn.Sequential(
             nn.Linear(CONTEXT_DIM + 2 * hidden, hidden), nn.Tanh())
@@ -121,9 +136,20 @@ class CandidateActorCritic(nn.Module):
             [GatedSetAttention(hidden, self.architecture["heads"])
              for _ in range(self.architecture["layers"])]
             if self.architecture["name"] == "attention" else [])
+        self.route_adapter = None
+        if feature_dim == FEATURE_DIMS["v4"]:
+            # Preserve the old 60-column GEMM shape and accumulation order.
+            # A full 76-column GEMM with zero columns is only algebraically equal.
+            self.route_adapter = ZeroFeatureResidual(feature_dim - input_dim, hidden)
 
     def forward(self, features, context, mask):
-        encoded = self.encoder(features)
+        if self.route_adapter is None:
+            encoded = self.encoder(features)
+        else:
+            # Contiguous old prefix also preserves its input stride and kernel.
+            legacy = self.encoder[0](features[..., :60].contiguous())
+            added = self.route_adapter(features[..., 60:].contiguous())
+            encoded = self.encoder[3](self.encoder[2](self.encoder[1](legacy + added)))
         for relation in self.relations:
             encoded = relation(encoded, mask)
         mean = (encoded * mask[..., None]).sum(1) / mask.sum(1, keepdim=True).clamp_min(1)
@@ -162,7 +188,7 @@ class TorchPolicy:
         self.action_distribution = model.action_distribution
         self.action_schema = model.action_schema
         self.feature_version = next(v for v, dim in FEATURE_DIMS.items() if dim == model.feature_dim)
-        self.capture_diagnostics = capture_diagnostics and self.feature_version == "v3"
+        self.capture_diagnostics = capture_diagnostics and self.feature_version in {"v3", "v4"}
         self.center_mask = None
         self.last_probe_diagnostics = None
 

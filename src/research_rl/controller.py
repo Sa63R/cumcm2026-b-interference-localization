@@ -18,9 +18,9 @@ from strategies.search import SearchResult, _StopSearch
 
 
 ALGORITHM_VERSIONS = {"v1": "q3-candidate-ppo-v1", "v2": "q3-candidate-ppo-v2",
-                      "v3": "q3-joint-scan-ppo-v3"}
+                      "v3": "q3-joint-scan-ppo-v3", "v4": "q3-route-debt-ppo-v4"}
 ALGORITHM_VERSION = ALGORITHM_VERSIONS["v2"]
-FEATURE_DIMS = {"v1": 24, "v2": 44, "v3": 60}
+FEATURE_DIMS = {"v1": 24, "v2": 44, "v3": 60, "v4": 76}
 FEATURE_DIM = FEATURE_DIMS["v2"]
 CONTEXT_DIM = 12
 GEOMETRY_FEATURE_NAMES = (
@@ -35,12 +35,29 @@ SCAN_FEATURE_NAMES = ("single_channel_scan", "channel_id", "channel_detected",
     "same_position", "scan_focus_match", "channel_negative_cover_fraction",
     "pending_cover_0", "pending_cover_1", "pending_cover_2", "pending_cover_3",
     "pending_cover_4", "pending_cover_5", "pending_cover_6")
+ROUTE_FEATURE_NAMES = (tuple(f"unknown_pending_site_{i}" for i in range(7))
+                       + tuple(f"unknown_site_detour_s_{i}" for i in range(7))
+                       + ("nearest_unknown_check_site_distance", "unknown_check_site_fraction"))
 
 
 def feature_schema(version):
     """Semantic identity, separate from source-code provenance."""
     if version not in FEATURE_DIMS:
         raise ValueError("unsupported feature version")
+    if version == "v4":
+        description = feature_schema("v3")
+        description.pop("sha256")
+        description.update(version=version, algorithm=ALGORITHM_VERSIONS[version],
+            feature_dim=FEATURE_DIMS[version],
+            appended_features=GEOMETRY_FEATURE_NAMES + SCAN_FEATURE_NAMES + ROUTE_FEATURE_NAMES,
+            route_debt={"unknown_channels": "1..20 minus actually detected channels",
+                "ledger": "actual accepted measurements; no planned completion",
+                "detour": "(d(current,candidate)+d(candidate,site)-d(current,site))/5/1000",
+                "inactive_site": "zero detour; separate pending fractions distinguish inactivity",
+                "distance_scale_m": 3600, "prefix_dim": 60,
+                "input_projection": "legacy linear plus zero initialized bias-free route residual"})
+        description["sha256"] = hashlib.sha256(json.dumps(description, sort_keys=True).encode()).hexdigest()
+        return description
     description = dict(version=version, algorithm=ALGORITHM_VERSIONS[version],
                        feature_dim=FEATURE_DIMS[version], context_dim=CONTEXT_DIM,
                        base_features=("v3-single-measure-cover-cost-and-seven-point-normalizer" if version == "v3"
@@ -132,8 +149,8 @@ class DeepRLSearch(EfficientSearch):
     def __init__(self, client, policy, *, max_actions=20000,
                  max_decisions=256, max_active_probes=6, recorder=None,
                  action_deadline_epoch=None, feature_version="v2"):
-        if feature_version == "v3" and type(self) is DeepRLSearch:
-            raise ValueError("v3 requires JointScanRLSearch; use the public run_rl_search factory")
+        if feature_version in {"v3", "v4"} and type(self) is DeepRLSearch:
+            raise ValueError("v3/v4 require their joint-scan controller; use the public run_rl_search factory")
         if not callable(policy):
             raise ValueError("policy must be callable")
         for name, value, lower in (("max_actions", max_actions, 2),
@@ -309,7 +326,7 @@ class DeepRLSearch(EfficientSearch):
                     density / 16, nearest_cover / 3600,
                     float(channel in self.near_points),
                     (distance / 5 + (6 * (20 - len(self.cleared)) if candidate.kind == "cover" else 6)) / 1000]
-            if self.feature_version in {"v2", "v3"}:
+            if self.feature_version in {"v2", "v3", "v4"}:
                 if candidate.kind == "cover" and self.feature_version == "v2":
                     geometry = [self._geometric_features(c, point) for c, _ in targets]
                     row += ([sum(column) / len(geometry) for column in zip(*geometry)]

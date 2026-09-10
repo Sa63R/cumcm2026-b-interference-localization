@@ -84,7 +84,7 @@ def episode(task):
     simulator = LocalResearchSimulator(random_scenario(3, seed), max_real_duration_s=300)
     controller_class = controller_for(version, candidate_schema)
     policy = TorchPolicy(_worker_model, deterministic=False, teacher=teacher,
-                         capture_diagnostics=version == "v3")
+                         capture_diagnostics=version in {"v3", "v4"})
     controller = controller_class(simulator.client(), policy, recorder=record,
         max_decisions=max_decisions, action_deadline_epoch=deadline, feature_version=version)
     started = time.perf_counter()
@@ -115,7 +115,7 @@ def episode(task):
                    reward_cost_s=-sum(r["reward"] for r in records) * 1000,
                    initial_scan_virtual_time_s=fixed_initial,
                    completion_reason=report.completion_reason)
-    if version == "v3":
+    if version in {"v3", "v4"}:
         metrics["sampling_probe_diagnostics"] = merge_probe_diagnostics(diagnostic_records)
     return records, metrics
 
@@ -246,6 +246,19 @@ def validate_resume(payload, args):
         raise ValueError("checkpoint source manifest differs; use --initialize-from for a separately logged new trial")
 
 
+def preserves_initial_probabilities(model, payload):
+    """Only established transfers on identical observation/candidate histories.
+
+    Equal distribution/schema names alone do not establish equal controllers.
+    In particular, a feature-width change is not automatically a neutral one.
+    """
+    previous = next((v for v, a in ALGORITHM_VERSIONS.items() if a == payload.get("algorithm")), None)
+    target = next(v for v, dim in FEATURE_DIMS.items() if dim == model.feature_dim)
+    return ((previous == target or (previous, target) == ("v3", "v4"))
+            and checkpoint_distribution(payload) == model.action_distribution
+            and checkpoint_action_schema(payload) == model.action_schema)
+
+
 def initialize_from(model, payload, *, allow_distribution_change=False, allow_action_schema_change=False):
     """Explicit fresh-trial transfer; new feature columns initially have zero weight.
 
@@ -264,6 +277,10 @@ def initialize_from(model, payload, *, allow_distribution_change=False, allow_ac
             and payload.get("feature_schema") != feature_schema(previous_version)):
         raise ValueError("transfer checkpoint has unknown feature semantics")
     weights = dict(payload["model"])
+    if previous_version == "v4" and target_version != "v4":
+        raise ValueError("cannot discard trained route-debt features")
+    if previous_version != "v4" and any(key.startswith("route_adapter.") for key in weights):
+        raise ValueError("route adapter contradicts source feature semantics")
     if checkpoint_action_schema(payload) != model.action_schema and not allow_action_schema_change:
         raise ValueError("action schema change requires an explicit supported new-trial migration")
     if checkpoint_distribution(payload) != model.action_distribution and not allow_distribution_change:
@@ -278,9 +295,10 @@ def initialize_from(model, payload, *, allow_distribution_change=False, allow_ac
                 or previous_arch["layers"] > target_arch["layers"]):
             raise ValueError("cannot silently discard/change trained attention blocks")
     previous = weights["encoder.0.weight"]
-    if previous.shape[1] != FEATURE_DIMS[previous_version]:
+    previous_input_dim = 60 if previous_version == "v4" else FEATURE_DIMS[previous_version]
+    if previous.shape[1] != previous_input_dim:
         raise ValueError("transfer input width contradicts checkpoint feature semantics")
-    if previous.shape[0] != model.hidden or previous.shape[1] > model.feature_dim:
+    if previous.shape[0] != model.hidden or previous.shape[1] > model.encoder[0].in_features:
         raise ValueError("transfer requires equal hidden width and a nonshrinking feature prefix")
     expanded = torch.zeros_like(model.encoder[0].weight)
     expanded[:, :previous.shape[1]] = previous
@@ -295,6 +313,8 @@ def initialize_from(model, payload, *, allow_distribution_change=False, allow_ac
         existed = (not key.startswith("relations.") or
                    (previous_arch["name"] == "attention"
                     and int(key.split(".")[1]) < previous_arch["layers"]))
+        if key.startswith("route_adapter."):
+            existed = previous_version == "v4"
         if key not in weights and existed:
             raise ValueError(f"checkpoint is missing existing parameter {key}")
     expanded_state.update(weights)
@@ -387,8 +407,8 @@ def main(argv=None):
             source_architecture=checkpoint_architecture(payload), target_architecture=model.architecture,
             source_distribution=checkpoint_distribution(payload), target_distribution=model.action_distribution,
             source_action_schema=checkpoint_action_schema(payload), target_action_schema=model.action_schema,
-            preserves_initial_probabilities=(checkpoint_distribution(payload) == model.action_distribution
-                                              and checkpoint_action_schema(payload) == model.action_schema),
+            preserves_initial_probabilities=preserves_initial_probabilities(model, payload),
+            probability_preservation_scope="identical legal observation/candidate histories; no guarantee after learning",
             source_state=payload.get("state"), source_git_commit=payload.get("git_commit"))
         save_checkpoint(args.output / "initialized.pt", model, optimizer, args, state.copy())
     started = time.monotonic()

@@ -37,6 +37,11 @@ def checkpoint_action_schema(payload):
 
 def controller_for(version, schema):
     schema = validate_action_schema(schema)
+    if version == "v4":
+        if schema["name"] != "base":
+            raise ValueError("v4 route-debt ablation requires the unchanged base action set")
+        from .route_debt import RouteDebtRLSearch
+        return RouteDebtRLSearch
     if schema["name"] != "base":
         if version != "v3":
             raise ValueError("axis candidate extension requires v3 feature semantics")
