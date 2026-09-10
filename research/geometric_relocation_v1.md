@@ -41,10 +41,26 @@
 
 当前属于积极开发证据，参数保持不动，再用 116017–116080 确认；原推荐默认尚未改。Windows 与 Linux 不同 case hash 不能跨平台配对，也不能把本次百分比与此前不同批次的改善简单相加。
 
+## 116017–116080 固定参数确认：平均小幅改善，区间跨零
+
+上述同一源码与配置完成 64 新场景，共 128 局全部全清、零失败清除。single 平均 **3251.454217 s**，连续覆盖 **3234.042192 s**，平均省 **17.412025 s（0.535515%）**；配对 bootstrap 95% 区间 **[−8.797727,42.399983] s**，45 胜、19 负，最坏慢 **320.045505 s**。P95 从 3653.478085 增至 3799.815857 s，比值 **1.040054**。平均程序时间 2.989474→3.247660 s。分项为移动省 14.224525 s、检测省 2.968750 s、切换省 0.218750 s。
+
+完整物理费用与反馈审计通过；每个历史 P 的未知频道负反馈、每次原/新路线任务多重集和费用、所有提交站的全盘证书独立重算。421 次位移平均 40.054 m、最大 456.466 m，oracle 每局平均 2677.094 次、最多 3492，无预算耗尽。383 个未来站完成实际扫描，其中 303 个曾改位置；唯一未执行站仅在第 16 个源成功清除后合法取消。不存在因提前把计划站算成已扫描而制造的省时。
+
+19 个负局中 7 个源清除次序不变，12 个发生次序分叉；全盘覆盖保证并不保护信息及时性或后续路线稳定性。最坏 116045 前 11 个源的清除次序一致，最后四个从 `[7,17,19,8]` 变成 `[19,17,8,7]`；7、19 的首次发现累计时刻各晚约 296.696 s，最终移动多 303.046 s、检测多 20 s、切换少 3 s。116022/116033 也出现较大次序分叉，分别慢 222.731/255.284 s。首次发现累计时刻还受此前动作耗时影响，这些描述不能单独认定哪一次移站是全部损失的唯一原因。
+
+结论比 pilot 谨慎：多数局受益，但平均改善的独立 64 场景区间跨零，不能宣称较 single 稳定更优；继续保留公共验证候选，不自动替换推荐默认，不扩大或调节本配置。几何自由度有清楚算法依据，是否值得采用仍由相同场景的完整终局费用决定。
+
+## 构造几何图
+
+同一几何原理图已由根代理统一归档在 state 分支提交 `5e2549ef89140935ab96debc4bfbd23be3ba51c2` 的 `research/figures/movable-cover-principle.png/.svg/.json`，本分支不另保留重复图。该不含源真值的固定几何例子把七站中正东站由 (1150,0) 移到 (1700,0)，完整竞技场最坏最近站距离均为 **988.511420 m**；固定前后点 (1700,±300) 的两段移动由 250.599282 s 降为 120 s。130.599 s 是构造的局部固定两段收益，不是实验平均或 Q3 理论最优值。[共享几何图与精确提交](https://github.com/Sa63R/cumcm2026-b-interference-localization/blob/5e2549ef89140935ab96debc4bfbd23be3ba51c2/research/figures/movable-cover-principle.png)
+
 ```powershell
 python -m pytest tests/test_geometric_relocation.py -q
 python -m experiments.geometric_joint_pilot --phase probe-relocation-pilot --output results/geometric_joint/probe_relocation_pilot_v1 --spec research/v1_geometric_probe_single.json --spec research/v1_geometric_probe_relocation.json
 python -m experiments.summarize_geometric_relocation results/geometric_joint/probe_relocation_pilot_v1
+python -m experiments.geometric_joint_pilot --phase probe-relocation-confirmation --output results/geometric_joint/probe_relocation_confirmation_v1 --spec research/v1_geometric_probe_single.json --spec research/v1_geometric_probe_relocation.json
+python -m experiments.summarize_geometric_relocation results/geometric_joint/probe_relocation_confirmation_v1
 ```
 
 审计脚本只读调用现有 `research/theory_gap_v1/audit_gaps.py` 的版本化 helper 加载器，校验 state 理论审计模块的精确 SHA 后使用其物理账本复算函数；不复制 helper、不读 DP 缓存、不计算新下界、不启动仿真。运行需要相邻 `q3-state-search/research/theory_v1` 或显式 `--theory-dir` 指向相同已提交版本。

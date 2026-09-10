@@ -144,6 +144,8 @@ def summarize(directory,theory_dir):
             path = directory/'cases'/name/f'case-{seed}.json.gz'
             with gzip.open(path,'rt',encoding='utf-8') as stream:
                 record=json.load(stream)
+            assert record['row']['seed']==seed and record['row']['strategy']==name
+            assert record['spec']==next(s for s in manifest['specs'] if s['name']==name)
             base.audit_record(record)
             assert record['row']['successful'] and record['row']['failed_clear_count']==0
             loaded.append(record)
