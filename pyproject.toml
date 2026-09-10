@@ -11,9 +11,11 @@ dependencies = []
 
 [project.optional-dependencies]
 test = ["pytest>=7"]
+report = ["matplotlib>=3.6", "reportlab>=4", "pypdf>=5"]
 
 [project.scripts]
 b-simulator = "simulator_client.__main__:main"
+b-workflow = "workflow.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
