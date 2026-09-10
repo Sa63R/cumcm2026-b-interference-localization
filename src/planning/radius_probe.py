@@ -11,7 +11,7 @@ import time
 from simulator_client.state import Position
 
 
-def choose_radius_probe(region, current, first_bearing, observed, weight=0.5):
+def choose_radius_probe(region, current, first_bearing, observed, weight=0.5, *, extra_points=()):
     if not math.isfinite(weight) or weight < 0:
         raise ValueError("nonnegative finite weight is required for the score bound")
     started = time.perf_counter()
@@ -26,6 +26,14 @@ def choose_radius_probe(region, current, first_bearing, observed, weight=0.5):
         for offset in (-150.0, -50.0, 50.0, 150.0):
             candidates.append(Position(anchor.x + offset * perpendicular[0],
                                        anchor.y + offset * perpendicular[1]))
+    # Preserve every original point. Optional additions only enlarge the
+    # declared finite action set; exact coordinate duplicates add no action.
+    seen = {(p.x, p.y) for p in candidates}
+    for point in extra_points:
+        point = Position.coerce(point)
+        if (point.x, point.y) not in seen:
+            candidates.append(point)
+            seen.add((point.x, point.y))
     vertices = region.vertices
     selected = [vertices[i * len(vertices) // min(4, len(vertices))]
                 for i in range(min(4, len(vertices)))]
@@ -76,7 +84,8 @@ def choose_radius_probe(region, current, first_bearing, observed, weight=0.5):
         # Match v1's min tuple even for the degenerate all-infinite case.
         point = min((item[3] for item in legal), key=lambda p: (p.x, p.y))
         best = (math.inf, point.x, point.y, point)
-    return best[3], {"candidates": len(legal), "hypotheses": len(hypotheses),
+    return best[3], {"candidates": len(legal), "proposed_candidates": len(candidates),
+        "hypotheses": len(hypotheses),
         "score_s": best[0], "position": [best[3].x, best[3].y] if best[3] else None,
         "score_kind": "finite_nominal_observation_surrogate_exact_pruning",
         "evaluated_candidates": evaluated, "pruned_candidates": pruned,
