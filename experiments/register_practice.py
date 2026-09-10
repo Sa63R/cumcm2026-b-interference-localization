@@ -1,4 +1,4 @@
-"""Register GUI-verified official practice totals without changing solver code."""
+"""Register official practice totals from simulator result files or the GUI."""
 
 from __future__ import annotations
 
@@ -16,7 +16,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CSV_FIELDS = ["problem", "case_code", "variant", "source_total", "cleared_count",
               "clearance_ratio", "virtual_time_s", "average_clear_time_s",
               "program_runtime_s", "runtime_source", "search_completed",
-              "summary_path", "summary_sha256"]
+              "summary_path", "summary_sha256", "source_total_source",
+              "official_result_path", "official_result_sha256"]
 
 
 def nonnegative(value, name):
@@ -25,6 +26,50 @@ def nonnegative(value, name):
     if not math.isfinite(value) or value < 0:
         raise ValueError(f"{name} must be a finite nonnegative number")
     return float(value)
+
+
+def timestamp(value, name):
+    if not isinstance(value, str):
+        raise ValueError(f"{name} must be an ISO timestamp with a timezone")
+    try:
+        result = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError(f"Invalid {name}") from exc
+    if result.tzinfo is None or result.utcoffset() is None:
+        raise ValueError(f"{name} must include a timezone")
+    return result.astimezone(timezone.utc)
+
+
+def read_official_result(path, summary):
+    raw = path.read_bytes()
+    result = json.loads(raw.decode("utf-8-sig"))
+    if not isinstance(result, dict):
+        raise ValueError("Official result JSON must be an object")
+    problem = result.get("problem_no")
+    if isinstance(problem, bool) or not isinstance(problem, int) or problem != summary["problem"]:
+        raise ValueError("Official result problem_no does not match the session")
+    values = [result.get(key) for key in ("jammer_count", "omnidirectional_jammer_count",
+                                         "directional_jammer_count")]
+    if any(isinstance(value, bool) or not isinstance(value, int) or value < 0 for value in values):
+        raise ValueError("Official result source counts must be nonnegative integers")
+    total, omni, directional = values
+    if not 10 <= total <= 16 or omni + directional != total:
+        raise ValueError("Official result source counts must sum to a total from 10 to 16")
+    if problem == 3 and (omni != total or directional != 0):
+        raise ValueError("Problem 3 requires only omnidirectional sources")
+    if problem == 4 and (omni == 0 or directional == 0):
+        raise ValueError("Problem 4 requires both omnidirectional and directional sources")
+    code = result.get("case_code")
+    if not isinstance(code, str) or not code.strip() or not code.isprintable():
+        raise ValueError("Official result case code must be nonempty and printable")
+    window_start = timestamp(result.get("window_started_at_utc"), "window_started_at_utc")
+    ended = timestamp(result.get("ended_at_utc"), "ended_at_utc")
+    session_start = timestamp(summary.get("started_at"), "session started_at")
+    if ended < window_start:
+        raise ValueError("Official result ended_at_utc precedes its window start")
+    if not window_start <= session_start <= ended:
+        raise ValueError("Session started_at is outside the official result time window")
+    return result, raw
 
 
 def register(args):
@@ -38,13 +83,25 @@ def register(args):
         raise ValueError("Practice session must have an accepted exit and no pending action")
     if summary.get("problem") not in (3, 4):
         raise ValueError("Summary problem must be 3 or 4")
-    if not args.case_code.strip() or not all(c.isprintable() for c in args.case_code):
+    case_code = getattr(args, "case_code", None)
+    total = getattr(args, "source_total", None)
+    official_path = getattr(args, "official_result_json", None)
+    official_result, official_raw = None, None
+    source_total_source = "official_gui_user_transcribed"
+    if official_path is not None:
+        official_result, official_raw = read_official_result(official_path, summary)
+        if case_code is not None and case_code != official_result["case_code"]:
+            raise ValueError("Explicit case code does not match the official result file")
+        if total is not None and total != official_result["jammer_count"]:
+            raise ValueError("Explicit source total does not match the official result file")
+        case_code, total = official_result["case_code"], official_result["jammer_count"]
+        source_total_source = "official_simulator_result_file"
+    if not isinstance(case_code, str) or not case_code.strip() or not case_code.isprintable():
         raise ValueError("Case code must be a nonempty printable string")
-    if summary.get("case_code") and summary["case_code"] != args.case_code:
+    if summary.get("case_code") and summary["case_code"] != case_code:
         raise ValueError("Case code does not match the session summary")
-    total = args.source_total
     if isinstance(total, bool) or not isinstance(total, int) or not 10 <= total <= 16:
-        raise ValueError("Official GUI source total must be an integer from 10 to 16")
+        raise ValueError("Official source total must be an integer from 10 to 16")
     cleared = state.get("cleared_count")
     if isinstance(cleared, bool) or not isinstance(cleared, int) or not 0 <= cleared <= total:
         raise ValueError("Cleared count must be an integer from 0 to the official source total")
@@ -58,17 +115,20 @@ def register(args):
     directory = args.output_dir
     records = [json.loads(p.read_text(encoding="utf-8"))
                for p in sorted(directory.glob("practice-*.json"))]
-    if any(r["case_code"] == args.case_code for r in records):
+    if any(r["case_code"] == case_code for r in records):
         raise ValueError("This practice case code is already registered")
     if any(r["summary_sha256"] == summary_digest for r in records):
         raise ValueError("This session summary is already registered")
-    key = hashlib.sha256(args.case_code.encode("utf-8")).hexdigest()[:20]
+    official_digest = hashlib.sha256(official_raw).hexdigest() if official_raw is not None else None
+    if official_digest and any(r.get("official_result_sha256") == official_digest for r in records):
+        raise ValueError("This official result file is already registered")
+    key = hashlib.sha256(case_code.encode("utf-8")).hexdigest()[:20]
     archived = Path("evidence") / f"{summary_digest}.json"
     record = {
         "data_origin": "registered_official_practice",
-        "problem": summary["problem"], "case_code": args.case_code,
+        "problem": summary["problem"], "case_code": case_code,
         "variant": summary.get("variant", "unknown"),
-        "source_total": total, "source_total_source": "official_gui_user_transcribed",
+        "source_total": total, "source_total_source": source_total_source,
         "cleared_count": cleared, "clearance_ratio": cleared / total,
         "virtual_time_s": virtual,
         "average_clear_time_s": virtual / cleared if cleared else None,
@@ -77,8 +137,19 @@ def register(args):
         "summary_path": archived.as_posix(), "summary_sha256": summary_digest,
         "registered_at": datetime.now(timezone.utc).isoformat(),
         "gui_verified_by_program": False,
-        "note": "GUI total and optional runtime are user-transcribed; HTTP evidence alone cannot authenticate GUI mode or official origin",
+        "note": ("Source total and case code read from the archived simulator result file; timestamps and type counts were checked against the session. The result window is not program runtime."
+                 if official_result is not None else
+                 "GUI total and optional runtime are user-transcribed; HTTP evidence alone cannot authenticate GUI mode or official origin"),
     }
+    if official_result is not None:
+        result_archive = Path("evidence") / f"{official_digest}.result.json"
+        record.update(official_result_path=result_archive.as_posix(), official_result_sha256=official_digest,
+                      official_result_original_name=official_path.name,
+                      official_result_window_started_at_utc=official_result["window_started_at_utc"],
+                      official_result_ended_at_utc=official_result["ended_at_utc"],
+                      omnidirectional_source_total=official_result["omnidirectional_jammer_count"],
+                      directional_source_total=official_result["directional_jammer_count"],
+                      official_result_session_time_matched=True)
     (directory / "evidence").mkdir(parents=True, exist_ok=True)
     evidence = directory / archived
     if evidence.exists():
@@ -87,6 +158,14 @@ def register(args):
     else:
         with evidence.open("xb") as stream:
             stream.write(raw)
+    if official_result is not None:
+        result_evidence = directory / result_archive
+        if result_evidence.exists():
+            if result_evidence.read_bytes() != official_raw:
+                raise ValueError("Archived official result differs; inspect the evidence directory")
+        else:
+            with result_evidence.open("xb") as stream:
+                stream.write(official_raw)
     destination = directory / f"practice-{key}.json"
     with destination.open("x", encoding="utf-8") as stream:
         json.dump(record, stream, ensure_ascii=False, indent=2, allow_nan=False)
@@ -109,6 +188,7 @@ def register(args):
         if temporary is not None:
             temporary.unlink(missing_ok=True)
     return {"record": str(destination), "table": str(directory / "总表.csv"),
+            "case_code": case_code, "source_total": total, "source_total_source": source_total_source,
             "clearance_ratio": record["clearance_ratio"],
             "average_clear_time_s": record["average_clear_time_s"],
             "program_runtime_s": runtime, "runtime_source": runtime_source}
@@ -117,8 +197,9 @@ def register(args):
 def main(argv=None):
     parser = argparse.ArgumentParser(description="登记真实官方演练并自动计算清除比例与平均定位清除时间")
     parser.add_argument("--summary", type=Path, required=True)
-    parser.add_argument("--source-total", type=int, required=True, help="演练结束后官方 GUI 显示的真实源总数")
-    parser.add_argument("--case-code", required=True)
+    parser.add_argument("--source-total", type=int, help="官方 GUI 真实源总数；提供官方 result JSON 时可省略")
+    parser.add_argument("--case-code", help="真实案例编码；提供官方 result JSON 时可省略")
+    parser.add_argument("--official-result-json", type=Path, help="模拟器结束后自动保存的原始 .result.json")
     parser.add_argument("--runtime", type=float, help="可选：官方 GUI 程序运行秒数；否则保留本地墙钟时间并标注来源")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "results" / "practice_registered")
     args = parser.parse_args(argv)

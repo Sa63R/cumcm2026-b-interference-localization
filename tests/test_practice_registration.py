@@ -7,7 +7,7 @@ import json
 
 import pytest
 
-from experiments.register_practice import register
+from experiments.register_practice import main, register
 
 
 def inputs(tmp_path, **changes):
@@ -91,3 +91,104 @@ def test_case_mismatch_and_duplicate_do_not_overwrite_registry(tmp_path):
         register(args)
     assert (args.output_dir / "总表.csv").read_bytes() == before
     assert len(list(args.output_dir.glob("practice-*.json"))) == 1
+
+
+def official_inputs(tmp_path, *, result_patch=None, summary_patch=None):
+    summary_fields = {"started_at": "2026-09-10T22:20:54+08:00"}
+    summary_fields.update(summary_patch or {})
+    args = inputs(tmp_path, **summary_fields)
+    result = {
+        "version": 2, "problem_no": 3, "practice_run_no": 123456789,
+        "case_code": "PRACTICE-A", "package_sha256": "a" * 64,
+        "window_started_at_utc": "2026-09-10T14:20:48.264Z",
+        "ended_at_utc": "2026-09-10T14:21:05.281Z",
+        "jammer_count": 15, "omnidirectional_jammer_count": 15,
+        "directional_jammer_count": 0,
+    }
+    result.update(result_patch or {})
+    args.official_result_json = tmp_path / "unit-test-only.result.json"
+    args.official_result_json.write_bytes((" \n" + json.dumps(result, indent=2) + "\n").encode("utf-8"))
+    args.case_code, args.source_total, args.runtime = None, None, None
+    return args
+
+
+def test_official_result_cli_infers_metrics_and_archives_original_bytes(tmp_path):
+    args = official_inputs(tmp_path)
+    raw = args.official_result_json.read_bytes()
+    assert main(["--summary", str(args.summary), "--official-result-json", str(args.official_result_json),
+                 "--output-dir", str(args.output_dir)]) == 0
+    record_path = next(args.output_dir.glob("practice-*.json"))
+    record = json.loads(record_path.read_text(encoding="utf-8"))
+    assert record["case_code"] == "PRACTICE-A"
+    assert record["source_total"] == 15
+    assert record["source_total_source"] == "official_simulator_result_file"
+    assert record["clearance_ratio"] == 0.8
+    assert record["official_result_session_time_matched"] is True
+    assert record["official_result_sha256"] == hashlib.sha256(raw).hexdigest()
+    assert (args.output_dir / record["official_result_path"]).read_bytes() == raw
+    assert record["runtime_source"] == "local_program_wall_time"
+    assert record["program_runtime_s"] == 2.5  # Never use the 17.017 s result window.
+    with (args.output_dir / "总表.csv").open(encoding="utf-8-sig", newline="") as stream:
+        row = next(csv.DictReader(stream))
+    assert row["source_total_source"] == "official_simulator_result_file"
+    assert row["official_result_sha256"] == record["official_result_sha256"]
+
+
+def test_explicit_values_must_match_official_result(tmp_path):
+    args = official_inputs(tmp_path)
+    args.source_total = 16
+    with pytest.raises(ValueError, match="Explicit source total"):
+        register(args)
+    assert not args.output_dir.exists()
+    args.source_total, args.case_code = 15, "WRONG"
+    with pytest.raises(ValueError, match="Explicit case code"):
+        register(args)
+    assert not args.output_dir.exists()
+    args.case_code = "PRACTICE-A"
+    assert register(args)["source_total_source"] == "official_simulator_result_file"
+
+
+@pytest.mark.parametrize("result_patch,summary_patch", [
+    ({"problem_no": 4}, {}),
+    ({"omnidirectional_jammer_count": 14}, {}),
+    ({"omnidirectional_jammer_count": 14, "directional_jammer_count": 1}, {}),
+    ({"jammer_count": 9, "omnidirectional_jammer_count": 9}, {}),
+    ({"directional_jammer_count": False}, {}),
+    ({"case_code": "DIFFERENT"}, {}),
+    ({"ended_at_utc": None}, {}),
+    ({"ended_at_utc": "2026-09-10T14:19:00Z"}, {}),
+    ({"window_started_at_utc": "2026-09-10T14:20:48"}, {}),
+    ({}, {"started_at": "2026-09-10T14:19:00Z"}),
+    ({}, {"started_at": "2026-09-10T14:22:00Z"}),
+    ({}, {"started_at": None}),
+    ({}, {"problem": 4}),
+])
+def test_official_result_rejects_wrong_case_counts_or_session_time(tmp_path, result_patch, summary_patch):
+    args = official_inputs(tmp_path, result_patch=result_patch, summary_patch=summary_patch)
+    with pytest.raises(ValueError):
+        register(args)
+    assert not args.output_dir.exists()
+
+
+def test_official_result_keeps_exit_and_duplicate_checks(tmp_path):
+    args = official_inputs(tmp_path, summary_patch={"pending_request": {"path": "/clear"}})
+    with pytest.raises(ValueError, match="no pending action"):
+        register(args)
+    assert not args.output_dir.exists()
+    args = official_inputs(tmp_path)
+    register(args)
+    before = (args.output_dir / "总表.csv").read_bytes()
+    with pytest.raises(ValueError, match="already registered"):
+        register(args)
+    assert (args.output_dir / "总表.csv").read_bytes() == before
+
+
+def test_official_q4_result_requires_matching_mixed_type_counts(tmp_path):
+    args = official_inputs(tmp_path, result_patch={"problem_no": 4}, summary_patch={"problem": 4})
+    with pytest.raises(ValueError, match="both omnidirectional and directional"):
+        register(args)
+    args = official_inputs(tmp_path,
+                           result_patch={"problem_no": 4, "omnidirectional_jammer_count": 8,
+                                         "directional_jammer_count": 7},
+                           summary_patch={"problem": 4})
+    assert register(args)["source_total"] == 15
