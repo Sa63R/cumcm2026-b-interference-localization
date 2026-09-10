@@ -1,0 +1,103 @@
+{
+  "scope": "idealized_prior_expectation_only",
+  "actual_benchmark_lower_bound": false,
+  "per_instance_lower_bound": false,
+  "success_requirement": "almost_sure_all_clear; do not condition on successful runs",
+  "source_count_conditioning": "fixed true occupied channels C, then optionally average at fixed N",
+  "all_numeric_checks_passed": true,
+  "regimes": {
+    "new_point_iid_uniform_continuous_bearing": {
+      "capacity_nats": 5.204006687076795,
+      "required_nats_per_source": 8.99961934066053,
+      "failure_expectation_per_source_at_relaxation_optimum": 0.04608106506151364,
+      "measure_expectation_per_source_at_relaxation_optimum": 1.6930579273476063,
+      "clear_information_nats_per_source": 0.1889345651352079,
+      "extra_cost_per_source_s": 8.603532831922573,
+      "primal_cost_s": 8.603532831922573,
+      "primal_dual_gap_s": 0.0,
+      "simpler_log2_linear_extra_cost_s": 7.9808430883920645,
+      "source_count_examples": [
+        {
+          "source_count": 10,
+          "extra_cost_lower_s": 86.03532831922573,
+          "occupied_nonmovement_lower_s": 136.03532831922573
+        },
+        {
+          "source_count": 13,
+          "extra_cost_lower_s": 111.84592681499345,
+          "occupied_nonmovement_lower_s": 176.84592681499345
+        },
+        {
+          "source_count": 16,
+          "extra_cost_lower_s": 137.65652531076117,
+          "occupied_nonmovement_lower_s": 217.65652531076117
+        }
+      ]
+    },
+    "centidegree_output_arbitrary_noise_same_uniform_location_prior": {
+      "capacity_nats": 10.49132977145065,
+      "required_nats_per_source": 8.99961934066053,
+      "failure_expectation_per_source_at_relaxation_optimum": 0.0018492959595058302,
+      "measure_expectation_per_source_at_relaxation_optimum": 0.856529248822511,
+      "clear_information_nats_per_source": 0.013488532370658456,
+      "extra_cost_per_source_s": 4.288194131991073,
+      "primal_cost_s": 4.288194131991072,
+      "primal_dual_gap_s": 8.881784197001252e-16,
+      "simpler_log2_linear_extra_cost_s": 3.958731800950738,
+      "source_count_examples": [
+        {
+          "source_count": 10,
+          "extra_cost_lower_s": 42.88194131991073,
+          "occupied_nonmovement_lower_s": 92.88194131991074
+        },
+        {
+          "source_count": 13,
+          "extra_cost_lower_s": 55.74652371588395,
+          "occupied_nonmovement_lower_s": 120.74652371588395
+        },
+        {
+          "source_count": 16,
+          "extra_cost_lower_s": 68.61110611185717,
+          "occupied_nonmovement_lower_s": 148.61110611185717
+        }
+      ]
+    }
+  },
+  "zero_failure_restricted_corollary": {
+    "scope": "zero_failed_clear_policy_class_only",
+    "max_first_visible_probability": 0.4886831275720165,
+    "max_first_near_probability": 7.71604938271605e-06,
+    "first_measure_capacity_nats": 3.2306543675301373,
+    "expected_measures_per_source_lower": 2.1085621752671013,
+    "extra_cost_per_source_lower_s": 10.542810876335507
+  },
+  "stopped_feedback_tree_checks": [
+    {
+      "worlds": 2,
+      "full_history_information_nats": 0.6931471805599453,
+      "chain_information_nats": 0.6931471805599453,
+      "expected_trials": 1.5,
+      "expected_successes": 1.0,
+      "expected_failures": 0.5,
+      "clear_information_upper_nats": 0.9547712524422193
+    },
+    {
+      "worlds": 8,
+      "full_history_information_nats": 2.0794415416798357,
+      "chain_information_nats": 2.0794415416798357,
+      "expected_trials": 4.5,
+      "expected_successes": 1.0,
+      "expected_failures": 3.5,
+      "clear_information_upper_nats": 2.3836778957594458
+    },
+    {
+      "worlds": 100,
+      "full_history_information_nats": 4.605170185988092,
+      "chain_information_nats": 4.605170185988091,
+      "expected_trials": 50.50000000000001,
+      "expected_successes": 1.0000000000000007,
+      "expected_failures": 49.50000000000001,
+      "clear_information_upper_nats": 4.912006338261456
+    }
+  ]
+}
