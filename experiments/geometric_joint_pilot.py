@@ -13,7 +13,8 @@ from experiments.research_v1_eval import (PROTOCOL, ROOT, identity, paired_compa
 PHASES = {'pilot': (103001, 103017), 'confirmation': (103017, 103081),
           'route-clear-pilot': (105001, 105017), 'route-clear-confirmation': (105017, 105081),
           'probe-cost-pilot': (107001, 107017), 'probe-cost-confirmation': (107017, 107081),
-          'probe-radius-pilot': (112001, 112017), 'probe-radius-confirmation': (112017, 112081)}
+          'probe-radius-pilot': (112001, 112017), 'probe-radius-confirmation': (112017, 112081),
+          'probe-preempt-pilot': (115001, 115017)}
 DEFAULT_SPECS = ['v1_baseline_efficient.json', 'v1_baseline_rollout.json',
                  'v1_geometric_clear_only.json', 'v1_geometric_joint.json']
 
