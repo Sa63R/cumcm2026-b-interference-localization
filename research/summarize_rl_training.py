@@ -159,6 +159,8 @@ def validation_from_rows(rows, manifest, summary, baseline):
     rows = sorted(rows, key=lambda row: row["seed"])
     if [r["seed"] for r in rows] != VALIDATION_SEEDS:
         raise ValueError("Validation rows have missing/duplicate/unexpected seeds")
+    if not all(r["successful"] and r["failed_clear_count"] == 0 for r in rows):
+        raise ValueError("Failed candidates cannot enter raw-time performance figures; report their penalties separately")
     if any(r["case_sha256"] != b["case_sha256"] for r, b in zip(rows, baseline)):
         raise ValueError("Paired validation case identities differ")
     cost = np.asarray([r["virtual_time_s"] for r in rows])
@@ -181,6 +183,8 @@ def validation_from_rows(rows, manifest, summary, baseline):
 
 
 def read_archive(path, baseline):
+    if any(word in path.name.lower() for word in ("final", "extended")):
+        raise ValueError("Final/extended evaluation archives are excluded from this development audit")
     archive_sha = digest(path.read_bytes())
     source = dict(archive=path.name, bytes=path.stat().st_size, sha256=archive_sha, members=[])
     trials, validation, comparisons, seed_sets = {}, {}, {}, {}
