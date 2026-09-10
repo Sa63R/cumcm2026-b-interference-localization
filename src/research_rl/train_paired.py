@@ -28,6 +28,7 @@ from .train import (git_version, initialize_from, save_checkpoint,
 
 
 TRAINER = "paired-greedy-reinforce-v1"
+PAIRED_FEATURE_VERSIONS = ("v1", "v2", "v3")
 _worker_model = None
 
 
@@ -45,6 +46,8 @@ def penalized_cost(report, evaluation):
 def paired_episode(task):
     global _worker_model
     seed, weights, hidden, action_seed, version, max_decisions, deadline = task
+    if version not in PAIRED_FEATURE_VERSIONS:
+        raise ValueError("paired REINFORCE supports only feature versions v1, v2 and v3")
     if not legal_seed(seed):
         raise ValueError("seed outside declared training ranges")
     if time.time() >= deadline:
@@ -180,7 +183,7 @@ def main(argv=None):
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--initialize-from", type=Path)
     parser.add_argument("--resume", type=Path)
-    parser.add_argument("--feature-version", choices=sorted(FEATURE_DIMS), default="v2")
+    parser.add_argument("--feature-version", choices=PAIRED_FEATURE_VERSIONS, default="v2")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112028)

@@ -16,6 +16,26 @@ from research_rl.train_paired import (TRAINER, legal_seed, main, paired_episode,
                                      penalized_cost, reinforce_loss, update)
 
 
+def test_unsupported_feature_schema_is_rejected_before_deadline_or_simulation(monkeypatch):
+    from research_rl import train_paired
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("unsupported schema must not construct a simulator")
+
+    monkeypatch.setattr(train_paired, "LocalResearchSimulator", forbidden)
+    for version in ("v4", "future"):
+        with pytest.raises(ValueError, match="supports only feature versions"):
+            paired_episode((100025, {}, 16, 12, version, 1, 0))
+
+
+def test_paired_cli_does_not_implicitly_accept_new_ppo_schemas(tmp_path):
+    with pytest.raises(SystemExit) as exc:
+        main(["--output", str(tmp_path / "unused"), "--feature-version", "v4",
+              "--deadline-utc", "2026-09-11T06:00:00+00:00"])
+    assert exc.value.code == 2
+    assert not (tmp_path / "unused").exists()
+
+
 def test_expected_reinforce_gradient_matches_exact_variable_length_tree():
     """Three leaves, two trainable decisions and path lengths 1/2/2."""
     theta = torch.tensor([0.3, -0.7], dtype=torch.float64, requires_grad=True)
