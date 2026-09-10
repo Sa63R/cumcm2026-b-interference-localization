@@ -57,9 +57,37 @@
 
 修正后重跑的 **48 条完整动作历史逐一与原 pilot 相同**，所有虚拟时间和清除计数不变。重跑总程序时间 255.100 s；三组程序时间均值为 joint 0.562、single 2.772、cross 12.564 s。该测量受本机其它负载影响，不把重复测量的墙钟变化解释为策略提速。
 
+![首次探点几何与完整局部费用构造](../results/geometric_joint/probe_cost_construction_v1/construction.png)
+
+构造图和可复算 JSON/SVG 位于 `results/geometric_joint/probe_cost_construction_v1/`，只输入手工观测历史，不读取任何实际场景。图中长楔形使用多边形实际 MEC `x=750.2308007` m，代理中心费用 319.225 s，与上述单位测试的固定 `x=750` m 不完全相同；有限坐标误差场下小坐标差异可改变假设观测，不能把这样的有限均值当作平滑或精确期望。图只展示已固定的候选，并未用额外网格寻找参数最优。
+
 ```powershell
 python -m pytest tests/test_geometric_probe_cost.py -q
 python -m experiments.geometric_joint_pilot --phase probe-cost-pilot --output results/geometric_joint/probe_cost_pilot_v2 --spec research/v1_geometric_joint.json --spec research/v1_geometric_probe_single.json --spec research/v1_geometric_probe_cross.json
 ```
 
 复跑使用新的输出目录。全部原始动作、完整仿真费用、规划候选成本与来源身份保存于对应结果目录。尚未读取最终保留场景，没有调用官方模拟器。
+
+## 64 场景独立确认
+
+修正后的 `d51fdcd` 策略和所有参数不变，用新 train 107017–107080 完成 joint、single、cross 共 192 次仿真，全部全清、正常退出且零失败清除，总程序时间 1077.785 s。完整记录位于 `results/geometric_joint/probe_cost_confirmation_v1/`。
+
+|策略|平均虚拟时间 / s|P95 / s|平均程序时间 / s|
+|---|---:|---:|---:|
+|geometric_joint|3358.610|3765.564|0.656|
+|geometric_probe_single|3297.284|3693.510|3.213|
+|geometric_probe_cross|3292.312|3657.470|12.921|
+
+|比较|平均节省 / s|降幅|bootstrap 95% 区间 / s|胜/负/平|最差回退 / s|
+|---|---:|---:|---|---|---:|
+|joint → single|61.326|1.826%|[39.140,81.830]|56/8/0|273.807|
+|joint → cross|66.297|1.974%|[48.705,84.107]|52/12/0|114.501|
+|single → cross|4.972|0.151%|[-7.766,19.541]|22/22/20|151.127|
+
+single 相对 joint 的移动减少 27.248 s、检测减少 33.359 s、换频减少 0.719 s；cross 对应减少 28.735、36.563、1.000 s。光学和移除费用相同，所有额外共享测量已经计入整局账本。不是把共享成本或测量节省再次减去得到的结果。
+
+这批证据确认了**显式主源费用代理相对原 joint 的平均改进**；跨源信用的额外均值仍未确立。cross 的 P95 和这批最差回退较好，但单局胜场反而少于 single；不能解释为逐局支配，也不能只挑最有利指标宣布跨源必需。其额外程序耗时约 9.708 s/局，需在相同平台公共验证后权衡。
+
+最差 single 回退在 seed 107044，273.807 s；该局 cross 反而比 joint 快 2.855 s。反向例子 seed 107035 中 cross 比 single 慢 151.127 s，说明加入一条邻源信息代理会改变后续信息链，仍可能选错。最差 cross 对 joint 回退为 seed 107068 的 114.501 s。完整失败方向仍保留，不把这些未失败清除的时间回退从统计中删除。
+
+本批没有运行 frozen rollout/efficient，不能把本批 1.8%/2.0% 与其它批次对它们的提升直接相加。两种配置均保留给同平台公共验证；不修改原 joint 默认入口。补充的 `geometric_probe_prior_note.md` 推导了一项潜在建模偏差，仅作后续研究依据，未在本次确认中改变权重。
