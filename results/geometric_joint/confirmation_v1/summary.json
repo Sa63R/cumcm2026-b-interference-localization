@@ -1,0 +1,2538 @@
+{
+  "manifest": {
+    "phase": "confirmation",
+    "seeds": [
+      103017,
+      103018,
+      103019,
+      103020,
+      103021,
+      103022,
+      103023,
+      103024,
+      103025,
+      103026,
+      103027,
+      103028,
+      103029,
+      103030,
+      103031,
+      103032,
+      103033,
+      103034,
+      103035,
+      103036,
+      103037,
+      103038,
+      103039,
+      103040,
+      103041,
+      103042,
+      103043,
+      103044,
+      103045,
+      103046,
+      103047,
+      103048,
+      103049,
+      103050,
+      103051,
+      103052,
+      103053,
+      103054,
+      103055,
+      103056,
+      103057,
+      103058,
+      103059,
+      103060,
+      103061,
+      103062,
+      103063,
+      103064,
+      103065,
+      103066,
+      103067,
+      103068,
+      103069,
+      103070,
+      103071,
+      103072,
+      103073,
+      103074,
+      103075,
+      103076,
+      103077,
+      103078,
+      103079,
+      103080
+    ],
+    "source_access": "Training only; no official simulator.",
+    "specs": [
+      {
+        "name": "efficient_frozen",
+        "entrypoint": "strategies:run_search",
+        "kwargs": {
+          "variant": "efficient"
+        }
+      },
+      {
+        "name": "rollout_frozen",
+        "entrypoint": "strategies:run_search",
+        "kwargs": {
+          "variant": "rollout",
+          "rollout_config": {
+            "particles": 4,
+            "candidates": 5,
+            "seed": 9102026,
+            "min_gain_s": 10,
+            "uncertainty_penalty": 0.5,
+            "max_searches": 24,
+            "max_candidate_evaluations": 480,
+            "max_planning_s": 60
+          }
+        }
+      },
+      {
+        "name": "geometric_clear_only",
+        "entrypoint": "strategies.geometric_joint:run_joint_search",
+        "kwargs": {
+          "joint_config": {
+            "after_clear": true,
+            "active_points": false
+          }
+        }
+      },
+      {
+        "name": "geometric_joint",
+        "entrypoint": "strategies.geometric_joint:run_joint_search",
+        "kwargs": {
+          "joint_config": {
+            "after_clear": true,
+            "active_points": true
+          }
+        }
+      }
+    ],
+    "identities": {
+      "efficient_frozen": {
+        "source_sha256": {
+          "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+          "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+          "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+          "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+          "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+          "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+          "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+          "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+          "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+          "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+          "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+          "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+          "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+          "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+          "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+          "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+          "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+          "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+          "src/strategies/geometric_joint.py": "8d3f6dc07c47df8e3f0657d54c1698e8200515506f486549f47b889e7c08bd3f",
+          "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+          "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+          "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+          "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+          "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+          "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+          "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+          "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+        },
+        "spec_sha256": "63954be9b22d0049e9c1566abed09a54611d6ca06eb6a13104ac33be958eceb7",
+        "checkpoint_sha256": {},
+        "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+      },
+      "rollout_frozen": {
+        "source_sha256": {
+          "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+          "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+          "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+          "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+          "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+          "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+          "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+          "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+          "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+          "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+          "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+          "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+          "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+          "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+          "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+          "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+          "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+          "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+          "src/strategies/geometric_joint.py": "8d3f6dc07c47df8e3f0657d54c1698e8200515506f486549f47b889e7c08bd3f",
+          "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+          "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+          "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+          "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+          "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+          "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+          "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+          "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+        },
+        "spec_sha256": "a67d76e7183e63ad2c4bd508eddd917380f26ca5f4bf7b380afe8fc486ec40c4",
+        "checkpoint_sha256": {},
+        "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+      },
+      "geometric_clear_only": {
+        "source_sha256": {
+          "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+          "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+          "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+          "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+          "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+          "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+          "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+          "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+          "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+          "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+          "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+          "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+          "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+          "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+          "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+          "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+          "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+          "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+          "src/strategies/geometric_joint.py": "8d3f6dc07c47df8e3f0657d54c1698e8200515506f486549f47b889e7c08bd3f",
+          "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+          "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+          "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+          "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+          "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+          "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+          "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+          "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+        },
+        "spec_sha256": "98395da1a3866a50ddfda8c3e132f439931f3041fe3f9362b01adefc2de3583e",
+        "checkpoint_sha256": {},
+        "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+      },
+      "geometric_joint": {
+        "source_sha256": {
+          "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+          "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+          "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+          "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+          "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+          "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+          "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+          "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+          "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+          "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+          "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+          "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+          "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+          "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+          "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+          "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+          "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+          "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+          "src/strategies/geometric_joint.py": "8d3f6dc07c47df8e3f0657d54c1698e8200515506f486549f47b889e7c08bd3f",
+          "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+          "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+          "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+          "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+          "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+          "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+          "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+          "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+        },
+        "spec_sha256": "024189a2ff6b01bf90bdf46e3f6ab4ea7653f4f71ec2c6dda7f7de4e2bf3d8d2",
+        "checkpoint_sha256": {},
+        "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+      }
+    },
+    "driver_sha256": "40cba8ea6cfc9d814c2e6cedf2a270406918b452ad94bf1b72b629bff3076c3b"
+  },
+  "wall_s": 631.8850496000014,
+  "groups": {
+    "efficient_frozen": {
+      "runs": 64,
+      "expected_runs": 64,
+      "complete": true,
+      "successful_runs": 64,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3387.51353134375,
+      "penalized_mean_total_time_s": 3387.51353134375,
+      "raw_p95_total_time_s": 3849.79486895,
+      "raw_max_total_time_s": 4131.816078,
+      "mean_time_per_source_s": 266.3416027867172,
+      "mean_program_runtime_s": 0.062194070312557415,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "mean_components_s": {
+        "movement_s": 2563.02915634375,
+        "switching_s": 111.046875,
+        "detection_s": 648.90625,
+        "optical_s": 38.71875,
+        "removal_s": 25.8125
+      }
+    },
+    "rollout_frozen": {
+      "runs": 64,
+      "expected_runs": 64,
+      "complete": true,
+      "successful_runs": 64,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3334.1146920625,
+      "penalized_mean_total_time_s": 3334.1146920625,
+      "raw_p95_total_time_s": 3672.5890145999997,
+      "raw_max_total_time_s": 4148.096195,
+      "mean_time_per_source_s": 262.386164620177,
+      "mean_program_runtime_s": 8.917586604687017,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "mean_components_s": {
+        "movement_s": 2519.9271920625,
+        "switching_s": 110.90625,
+        "detection_s": 638.75,
+        "optical_s": 38.71875,
+        "removal_s": 25.8125
+      }
+    },
+    "geometric_clear_only": {
+      "runs": 64,
+      "expected_runs": 64,
+      "complete": true,
+      "successful_runs": 64,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3295.2397241875,
+      "penalized_mean_total_time_s": 3295.2397241875,
+      "raw_p95_total_time_s": 3696.3285368999996,
+      "raw_max_total_time_s": 4195.398489,
+      "mean_time_per_source_s": 259.14018412895564,
+      "mean_program_runtime_s": 0.254936153124504,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "mean_components_s": {
+        "movement_s": 2481.5678491875,
+        "switching_s": 111.484375,
+        "detection_s": 637.65625,
+        "optical_s": 38.71875,
+        "removal_s": 25.8125
+      }
+    },
+    "geometric_joint": {
+      "runs": 64,
+      "expected_runs": 64,
+      "complete": true,
+      "successful_runs": 64,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3280.996267359375,
+      "penalized_mean_total_time_s": 3280.996267359375,
+      "raw_p95_total_time_s": 3607.1858122,
+      "raw_max_total_time_s": 4199.510521,
+      "mean_time_per_source_s": 257.9963303300247,
+      "mean_program_runtime_s": 0.5868611515624025,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "mean_components_s": {
+        "movement_s": 2466.574392359375,
+        "switching_s": 113.640625,
+        "detection_s": 636.25,
+        "optical_s": 38.71875,
+        "removal_s": 25.8125
+      }
+    }
+  },
+  "comparisons": {
+    "efficient_frozen": {
+      "rollout_frozen": {
+        "pairs": 64,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": 53.39883928125002,
+        "saving_ci95_s": [
+          14.860339411328193,
+          93.50265169140623
+        ],
+        "mean_reduction_fraction": 0.01576343202386199,
+        "p95_time_ratio": 0.953970052851587,
+        "worst_paired_regression_s": 275.8933619999998,
+        "wins": 36,
+        "losses": 24,
+        "ties": 4,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      },
+      "geometric_clear_only": {
+        "pairs": 64,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": 92.27380715625,
+        "saving_ci95_s": [
+          67.95103060117181,
+          118.93637548164065
+        ],
+        "mean_reduction_fraction": 0.027239391459979445,
+        "p95_time_ratio": 0.9601364910926132,
+        "worst_paired_regression_s": 100.51651600000014,
+        "wins": 48,
+        "losses": 9,
+        "ties": 7,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      },
+      "geometric_joint": {
+        "pairs": 64,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": 106.517263984375,
+        "saving_ci95_s": [
+          78.9030015472656,
+          135.8286034535156
+        ],
+        "mean_reduction_fraction": 0.03144408516712904,
+        "p95_time_ratio": 0.93698130289831,
+        "worst_paired_regression_s": 104.62854800000014,
+        "wins": 50,
+        "losses": 9,
+        "ties": 5,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      }
+    },
+    "rollout_frozen": {
+      "efficient_frozen": {
+        "pairs": 64,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": -53.39883928125002,
+        "saving_ci95_s": [
+          -93.50265169140623,
+          -14.860339411328217
+        ],
+        "mean_reduction_fraction": -0.016015897535971435,
+        "p95_time_ratio": 1.0482509351429024,
+        "worst_paired_regression_s": 508.39791499999956,
+        "wins": 24,
+        "losses": 36,
+        "ties": 4,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      },
+      "geometric_clear_only": {
+        "pairs": 64,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": 38.87496787499998,
+        "saving_ci95_s": [
+          -0.8857016761718628,
+          78.20169060781244
+        ],
+        "mean_reduction_fraction": 0.011659757226573308,
+        "p95_time_ratio": 1.0064639746526567,
+        "worst_paired_regression_s": 512.5999700000002,
+        "wins": 38,
+        "losses": 25,
+        "ties": 1,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      },
+      "geometric_joint": {
+        "pairs": 64,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": 53.11842470312498,
+        "saving_ci95_s": [
+          14.389725325390607,
+          90.75555105468744
+        ],
+        "mean_reduction_fraction": 0.015931792877306727,
+        "p95_time_ratio": 0.9821915269745686,
+        "worst_paired_regression_s": 519.5129710000001,
+        "wins": 41,
+        "losses": 23,
+        "ties": 0,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      }
+    },
+    "geometric_clear_only": {
+      "efficient_frozen": {
+        "pairs": 64,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": -92.27380715625,
+        "saving_ci95_s": [
+          -118.93637548164065,
+          -67.95103060117182
+        ],
+        "mean_reduction_fraction": -0.028002153069152325,
+        "p95_time_ratio": 1.0415185854065634,
+        "worst_paired_regression_s": 483.5260079999998,
+        "wins": 9,
+        "losses": 48,
+        "ties": 7,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      },
+      "rollout_frozen": {
+        "pairs": 64,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": -38.87496787499998,
+        "saving_ci95_s": [
+          -78.20169060781244,
+          0.8857016761718529
+        ],
+        "mean_reduction_fraction": -0.011797311008862943,
+        "p95_time_ratio": 0.9935775399662095,
+        "worst_paired_regression_s": 361.7739630000001,
+        "wins": 25,
+        "losses": 38,
+        "ties": 1,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      },
+      "geometric_joint": {
+        "pairs": 64,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": 14.243456828124998,
+        "saving_ci95_s": [
+          1.709645646875008,
+          29.002794355078112
+        ],
+        "mean_reduction_fraction": 0.004322434183946067,
+        "p95_time_ratio": 0.9758834411470467,
+        "worst_paired_regression_s": 109.39675099999977,
+        "wins": 23,
+        "losses": 32,
+        "ties": 9,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      }
+    }
+  },
+  "joint_diagnostics": [
+    {
+      "seed": 103017,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103017,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103017,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103017,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103018,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103018,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103018,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103018,
+      "strategy": "geometric_joint",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103019,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103019,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103019,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103019,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103020,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103020,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103020,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "after_clear": 4
+      }
+    },
+    {
+      "seed": 103020,
+      "strategy": "geometric_joint",
+      "shared_measurements": 6,
+      "actual_sharing_time_s": 36.0,
+      "by_trigger": {
+        "active_point": 5,
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103021,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103021,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103021,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "after_clear": 4
+      }
+    },
+    {
+      "seed": 103021,
+      "strategy": "geometric_joint",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "active_point": 5
+      }
+    },
+    {
+      "seed": 103022,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103022,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103022,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103022,
+      "strategy": "geometric_joint",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103023,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103023,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103023,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "after_clear": 5
+      }
+    },
+    {
+      "seed": 103023,
+      "strategy": "geometric_joint",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "active_point": 4,
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103024,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103024,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103024,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103024,
+      "strategy": "geometric_joint",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "active_point": 5
+      }
+    },
+    {
+      "seed": 103025,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103025,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103025,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103025,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103026,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103026,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103026,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103026,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103027,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103027,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103027,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103027,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103028,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103028,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103028,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103028,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103029,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103029,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103029,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "after_clear": 5
+      }
+    },
+    {
+      "seed": 103029,
+      "strategy": "geometric_joint",
+      "shared_measurements": 6,
+      "actual_sharing_time_s": 36.0,
+      "by_trigger": {
+        "active_point": 4,
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103030,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103030,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103030,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103030,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103031,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103031,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103031,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103031,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103032,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103032,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103032,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103032,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103033,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103033,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103033,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103033,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103034,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103034,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103034,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103034,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103035,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103035,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103035,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103035,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103036,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103036,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103036,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "after_clear": 5
+      }
+    },
+    {
+      "seed": 103036,
+      "strategy": "geometric_joint",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "active_point": 5
+      }
+    },
+    {
+      "seed": 103037,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103037,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103037,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103037,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103038,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103038,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103038,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "after_clear": 4
+      }
+    },
+    {
+      "seed": 103038,
+      "strategy": "geometric_joint",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "active_point": 5
+      }
+    },
+    {
+      "seed": 103039,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103039,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103039,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103039,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103040,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103040,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103040,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103040,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103041,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103041,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103041,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103041,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103042,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103042,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103042,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103042,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103043,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103043,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103043,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103043,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103044,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103044,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103044,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103044,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103045,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103045,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103045,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "after_clear": 5
+      }
+    },
+    {
+      "seed": 103045,
+      "strategy": "geometric_joint",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 2,
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103046,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103046,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103046,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103046,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103047,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103047,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103047,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103047,
+      "strategy": "geometric_joint",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103048,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103048,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103048,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103048,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103049,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103049,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103049,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103049,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103050,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103050,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103050,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103050,
+      "strategy": "geometric_joint",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 4
+      }
+    },
+    {
+      "seed": 103051,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103051,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103051,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103051,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103052,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103052,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103052,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "after_clear": 4
+      }
+    },
+    {
+      "seed": 103052,
+      "strategy": "geometric_joint",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "active_point": 5
+      }
+    },
+    {
+      "seed": 103053,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103053,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103053,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103053,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103054,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103054,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103054,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103054,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103055,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103055,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103055,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103055,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103056,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103056,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103056,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103056,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103057,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103057,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103057,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103057,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103058,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103058,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103058,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103058,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103059,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103059,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103059,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 6,
+      "actual_sharing_time_s": 36.0,
+      "by_trigger": {
+        "after_clear": 6
+      }
+    },
+    {
+      "seed": 103059,
+      "strategy": "geometric_joint",
+      "shared_measurements": 7,
+      "actual_sharing_time_s": 42.0,
+      "by_trigger": {
+        "active_point": 5,
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103060,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103060,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103060,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "after_clear": 4
+      }
+    },
+    {
+      "seed": 103060,
+      "strategy": "geometric_joint",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 4
+      }
+    },
+    {
+      "seed": 103061,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103061,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103061,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103061,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103062,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103062,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103062,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103062,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103063,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103063,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103063,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103063,
+      "strategy": "geometric_joint",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 4
+      }
+    },
+    {
+      "seed": 103064,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103064,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103064,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103064,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103065,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103065,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103065,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103065,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103066,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103066,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103066,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103066,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103067,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103067,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103067,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103067,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 1,
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103068,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103068,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103068,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103068,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103069,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103069,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103069,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103069,
+      "strategy": "geometric_joint",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103070,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103070,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103070,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103070,
+      "strategy": "geometric_joint",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 103071,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103071,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103071,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103071,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103072,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103072,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103072,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103072,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103073,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103073,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103073,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 17.0,
+      "by_trigger": {
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103073,
+      "strategy": "geometric_joint",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 29.0,
+      "by_trigger": {
+        "active_point": 2,
+        "after_clear": 3
+      }
+    },
+    {
+      "seed": 103074,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103074,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103074,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103074,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103075,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103075,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103075,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103075,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103076,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103076,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103076,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103076,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 103077,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103077,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103077,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103077,
+      "strategy": "geometric_joint",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 103078,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103078,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103078,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "after_clear": 2
+      }
+    },
+    {
+      "seed": 103078,
+      "strategy": "geometric_joint",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 103079,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103079,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103079,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "after_clear": 5
+      }
+    },
+    {
+      "seed": 103079,
+      "strategy": "geometric_joint",
+      "shared_measurements": 5,
+      "actual_sharing_time_s": 30.0,
+      "by_trigger": {
+        "active_point": 5
+      }
+    },
+    {
+      "seed": 103080,
+      "strategy": "efficient_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103080,
+      "strategy": "rollout_frozen",
+      "shared_measurements": null,
+      "actual_sharing_time_s": null,
+      "by_trigger": null
+    },
+    {
+      "seed": 103080,
+      "strategy": "geometric_clear_only",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 103080,
+      "strategy": "geometric_joint",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    }
+  ]
+}
