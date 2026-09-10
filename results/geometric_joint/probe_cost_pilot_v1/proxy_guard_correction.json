@@ -1,0 +1,9 @@
+{
+  "old_source_sha256": "5f69ea8c060935d7da2a67ed6c3d28b8a9b55d3515a1c2bcc72200c53c7831af",
+  "corrected_source_sha256": "6b96e15c9337e3621c969be228f6235d4096740715e9f04b9d450ebbba4bd85f",
+  "change": "secondary_credit after_clear opportunity requires primary_action.result == success; do not simulate sharing after failed optical clear",
+  "reconstruction": "Replace the two-line enabled = (joint_config.after_clear and primary_action.get(result) == success) expression with enabled = joint_config.after_clear; exact bytes SHA256 checked before storing this record.",
+  "pilot_v1_status": "Exploratory pre-correction run retained; full paired rerun is probe_cost_pilot_v2.",
+  "real_execution_safety": "Executing policy was unchanged; correction affects the counterfactual secondary credit only.",
+  "corrected_rerun_result": "All 48 action histories match exactly; virtual-time results and clear counts unchanged."
+}
