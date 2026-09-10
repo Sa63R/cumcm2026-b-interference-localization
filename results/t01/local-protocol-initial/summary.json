@@ -1,0 +1,134 @@
+{
+  "run_kind": "local_protocol_fixture",
+  "official_practice_completed": false,
+  "description": "Two fixed test sources, zero bearing error; protocol validation only",
+  "observed_results": [
+    "direction",
+    "near",
+    "no_signal",
+    "no_target_in_range",
+    "success"
+  ],
+  "responses": [
+    {
+      "accepted": true,
+      "real_timestamp_ms": 1789037863208,
+      "virtual_time_s": 5.0,
+      "measure_result": "direction",
+      "svd_deg": 53.13
+    },
+    {
+      "accepted": true,
+      "real_timestamp_ms": 1789037863209,
+      "virtual_time_s": 11.0,
+      "measure_result": "near"
+    },
+    {
+      "accepted": true,
+      "real_timestamp_ms": 1789037863210,
+      "virtual_time_s": 16.0,
+      "clear_result": "success"
+    },
+    {
+      "accepted": true,
+      "real_timestamp_ms": 1789037863211,
+      "virtual_time_s": 122.0,
+      "measure_result": "near"
+    },
+    {
+      "accepted": true,
+      "real_timestamp_ms": 1789037863213,
+      "virtual_time_s": 127.0,
+      "clear_result": "success"
+    },
+    {
+      "accepted": true,
+      "real_timestamp_ms": 1789037863213,
+      "virtual_time_s": 132.0,
+      "measure_result": "no_signal"
+    },
+    {
+      "accepted": true,
+      "real_timestamp_ms": 1789037863215,
+      "virtual_time_s": 135.0,
+      "clear_result": "no_target_in_range"
+    },
+    {
+      "accepted": true,
+      "real_timestamp_ms": 1789037863215,
+      "virtual_time_s": 221.0,
+      "measure_result": "no_signal"
+    }
+  ],
+  "client_state": {
+    "session": "exited",
+    "position": {
+      "x": 300,
+      "y": 0
+    },
+    "current_channel": 3,
+    "virtual_time_s": 221.0,
+    "max_virtual_duration_s": 360000.0,
+    "real_deadline": 4727.941076247,
+    "accepted_actions": 10,
+    "sources": {
+      "1": {
+        "status": "cleared",
+        "measurement_count": 3,
+        "last_result": "no_signal",
+        "last_bearing_deg": null,
+        "last_measurement_position": {
+          "x": 300,
+          "y": 400
+        },
+        "last_measurement_virtual_time_s": 132.0,
+        "failed_clear_count": 1
+      },
+      "2": {
+        "status": "cleared",
+        "measurement_count": 1,
+        "last_result": "near",
+        "last_bearing_deg": null,
+        "last_measurement_position": {
+          "x": 0,
+          "y": 0
+        },
+        "last_measurement_virtual_time_s": 11.0,
+        "failed_clear_count": 0
+      },
+      "3": {
+        "status": "unknown",
+        "measurement_count": 1,
+        "last_result": "no_signal",
+        "last_bearing_deg": null,
+        "last_measurement_position": {
+          "x": 300,
+          "y": 0
+        },
+        "last_measurement_virtual_time_s": 221.0,
+        "failed_clear_count": 0
+      }
+    },
+    "time_breakdown": {
+      "movement_s": 180.0,
+      "switching_s": 3.0,
+      "detection_s": 25.0,
+      "optical_s": 9.0,
+      "removal_s": 4.0
+    },
+    "cleared_count": 2,
+    "estimated_total_virtual_time_s": 221.0
+  },
+  "fixture_state": {
+    "position": {
+      "x": 300.0,
+      "y": 0.0
+    },
+    "current_channel": 3,
+    "virtual_time_s": 221.0,
+    "clear_count": 2
+  },
+  "http_attempts": 11,
+  "accepted_actions": 10,
+  "journal": "requests.jsonl"
+}
