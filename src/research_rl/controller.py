@@ -17,9 +17,10 @@ from strategies.efficient import EfficientSearch
 from strategies.search import SearchResult, _StopSearch
 
 
-ALGORITHM_VERSIONS = {"v1": "q3-candidate-ppo-v1", "v2": "q3-candidate-ppo-v2"}
+ALGORITHM_VERSIONS = {"v1": "q3-candidate-ppo-v1", "v2": "q3-candidate-ppo-v2",
+                      "v3": "q3-joint-scan-ppo-v3"}
 ALGORITHM_VERSION = ALGORITHM_VERSIONS["v2"]
-FEATURE_DIMS = {"v1": 24, "v2": 44}
+FEATURE_DIMS = {"v1": 24, "v2": 44, "v3": 60}
 FEATURE_DIM = FEATURE_DIMS["v2"]
 CONTEXT_DIM = 12
 GEOMETRY_FEATURE_NAMES = (
@@ -29,6 +30,11 @@ GEOMETRY_FEATURE_NAMES = (
     "posterior_trace_ratio_proxy", "crossing_angle_sin", "inside_outer_polygon",
     "guaranteed_near", "offset_major", "offset_minor", "box_fill_ratio",
     "posterior_area_ratio_proxy")
+SCAN_FEATURE_NAMES = ("single_channel_scan", "channel_id", "channel_detected",
+    "point_pending_fraction", "channel_pending_fraction", "current_point_pending_fraction",
+    "same_position", "scan_focus_match", "channel_negative_cover_fraction",
+    "pending_cover_0", "pending_cover_1", "pending_cover_2", "pending_cover_3",
+    "pending_cover_4", "pending_cover_5", "pending_cover_6")
 
 
 def feature_schema(version):
@@ -37,10 +43,14 @@ def feature_schema(version):
         raise ValueError("unsupported feature version")
     description = dict(version=version, algorithm=ALGORITHM_VERSIONS[version],
                        feature_dim=FEATURE_DIMS[version], context_dim=CONTEXT_DIM,
-                       base_features="3315abf-v1-prefix-unchanged",
-                       appended_features=GEOMETRY_FEATURE_NAMES if version == "v2" else (),
-                       cover_geometry="mean_over_detected_uncleared_sources",
-                       action_semantics="3315abf-candidate-actions-unchanged")
+                       base_features=("v3-single-measure-cover-cost-and-seven-point-normalizer" if version == "v3"
+                                      else "3315abf-v1-prefix-unchanged"),
+                       appended_features=(GEOMETRY_FEATURE_NAMES + SCAN_FEATURE_NAMES if version == "v3"
+                                          else GEOMETRY_FEATURE_NAMES if version == "v2" else ()),
+                       cover_geometry=("selected_channel_geometry" if version == "v3"
+                                       else "mean_over_detected_uncleared_sources"),
+                       action_semantics=("v3-single-channel-cover-no-fixed-origin-scan" if version == "v3"
+                                         else "3315abf-candidate-actions-unchanged"))
     description["sha256"] = hashlib.sha256(json.dumps(description, sort_keys=True).encode()).hexdigest()
     return description
 
@@ -93,6 +103,7 @@ def geometry_features(region, position, shape, first_bearing):
         area_ratio = math.sqrt(max(0.0, min(1.0, noise / denominator)))
     first = math.radians(first_bearing)
     crossing = abs(ex * math.sin(first) - ey * math.cos(first)) if distance > 1e-8 else 0.0
+    area = shape["area"] if "area" in shape else region.area
     return [major / 3600, minor / 3600, (major - minor) / max(major + minor, 1e-9),
             ux * ux - uy * uy, 2 * ux * uy, radial_span / 3600,
             transverse_span / 3600, maximum / 3600,
@@ -100,7 +111,7 @@ def geometry_features(region, position, shape, first_bearing):
             distance / 3600, strip_ratio, trace_ratio, crossing,
             float(region.contains((x, y))), float(maximum <= 5),
             (dx * ux + dy * uy) / 1800, (-dx * uy + dy * ux) / 1800,
-            min(1.0, region.area / max(major * minor, 1e-9)), area_ratio]
+            min(1.0, area / max(major * minor, 1e-9)), area_ratio]
 
 
 @dataclass(frozen=True)
@@ -121,6 +132,8 @@ class DeepRLSearch(EfficientSearch):
     def __init__(self, client, policy, *, max_actions=20000,
                  max_decisions=256, max_active_probes=6, recorder=None,
                  action_deadline_epoch=None, feature_version="v2"):
+        if feature_version == "v3" and type(self) is DeepRLSearch:
+            raise ValueError("v3 requires JointScanRLSearch; use the public run_rl_search factory")
         if not callable(policy):
             raise ValueError("policy must be callable")
         for name, value, lower in (("max_actions", max_actions, 2),
@@ -160,6 +173,7 @@ class DeepRLSearch(EfficientSearch):
         cached = self._shape_cache.get(channel)
         if cached is None or cached[0] is not region.vertices:
             cached = (region.vertices, polygon_shape(region.vertices))
+            cached[1]["area"] = region.area
             self._shape_cache[channel] = cached
         return geometry_features(region, point, cached[1], self.first_bearings[channel])
 
@@ -234,6 +248,8 @@ class DeepRLSearch(EfficientSearch):
         unresolved = self.detected - self.cleared
         targets = [(c, self._target(c)) for c in sorted(unresolved)]
         targets = [(c, p) for c, p in targets if p is not None]
+        areas = {c: self.regions[c].area for c in {a.channel for a in candidates} if c in self.regions}
+        point_data = {}
         context = [current.x / 1800, current.y / 1800,
                    self.client.state.current_channel / 20,
                    len(self.detected) / 20, len(self.cleared) / 16,
@@ -246,15 +262,21 @@ class DeepRLSearch(EfficientSearch):
         for candidate in candidates:
             channel, point = candidate.channel, candidate.point
             region = self.regions.get(channel)
-            others = [p for c, p in targets if c != channel] + [p for p in remaining if p != point]
-            nearest = min((point.distance_to(p) for p in others), default=0.0)
-            distance = current.distance_to(point)
+            if point not in point_data:
+                target_distances = [(c, point.distance_to(p)) for c, p in targets]
+                cover_distances = [point.distance_to(p) for p in remaining if p != point]
+                nearest_cover = min((point.distance_to(p) for p in remaining), default=0)
+                point_data[point] = (current.distance_to(point), target_distances,
+                                     cover_distances, nearest_cover,
+                                     sum(d < 400 for _, d in target_distances))
+            distance, target_distances, cover_distances, nearest_cover, density = point_data[point]
+            nearest = min([d for c, d in target_distances if c != channel] + cover_distances, default=0.0)
             bearing = math.radians(self.first_bearings.get(channel, 0))
             row = [float(candidate.kind == kind) for kind in ("cover", "probe", "clear", "fallback")]
             row += [point.x / 1800, point.y / 1800,
                     (point.x - current.x) / 3600, (point.y - current.y) / 3600,
                     distance / 3600, candidate.radius / 1800,
-                    math.log1p(region.area if region else 0) / 18,
+                    math.log1p(areas.get(channel, 0)) / 18,
                     len(region.observations) / 10 if region else 0,
                     len(region.no_signal_positions) / 10 if region else 0,
                     self.probe_counts.get(channel, 0) / self.max_active_probes,
@@ -262,18 +284,17 @@ class DeepRLSearch(EfficientSearch):
                     float(channel is not None and channel == self.focus),
                     math.sin(bearing), math.cos(bearing), candidate.option / 6,
                     nearest / 3600,
-                    sum(point.distance_to(p) < 400 for _, p in targets) / 16,
-                    min((point.distance_to(p) for p in remaining), default=0) / 3600,
+                    density / 16, nearest_cover / 3600,
                     float(channel in self.near_points),
                     (distance / 5 + (6 * (20 - len(self.cleared)) if candidate.kind == "cover" else 6)) / 1000]
-            if self.feature_version == "v2":
-                if candidate.kind == "cover":
+            if self.feature_version in {"v2", "v3"}:
+                if candidate.kind == "cover" and self.feature_version == "v2":
                     geometry = [self._geometric_features(c, point) for c, _ in targets]
                     row += ([sum(column) / len(geometry) for column in zip(*geometry)]
                             if geometry else [0.0] * len(GEOMETRY_FEATURE_NAMES))
                 else:
                     row += self._geometric_features(channel, point)
-            assert len(row) == FEATURE_DIMS[self.feature_version]
+            assert len(row) == (24 if self.feature_version == "v1" else 44)
             features.append(row)
         return features, context
 

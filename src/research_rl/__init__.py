@@ -27,7 +27,12 @@ def run_rl_search(client, *, problem=3, max_actions=20000, checkpoint=None,
         feature_version = getattr(policy, "feature_version", "v2")
     if getattr(policy, "feature_version", feature_version) != feature_version:
         raise ValueError("policy and requested feature versions differ")
-    return DeepRLSearch(client, policy, max_actions=max_actions,
+    if feature_version == "v3":
+        from .joint_scan import JointScanRLSearch
+        controller = JointScanRLSearch
+    else:
+        controller = DeepRLSearch
+    return controller(client, policy, max_actions=max_actions,
                         max_decisions=max_decisions,
                         max_active_probes=max_active_probes,
                         feature_version=feature_version).run()

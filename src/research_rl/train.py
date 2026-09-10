@@ -47,14 +47,16 @@ def episode(task):
     if deadline is not None and time.time() >= deadline:
         return [], dict(seed=seed, deadline_skipped=True)
     torch.set_num_threads(1)
-    torch.manual_seed(action_seed)
-    np.random.seed(action_seed % 2**32)
-    random.seed(action_seed)
     if (_worker_model is None or _worker_model.hidden != hidden
             or _worker_model.feature_dim != FEATURE_DIMS[version]):
         _worker_model = CandidateActorCritic(hidden, FEATURE_DIMS[version])
     _worker_model.load_state_dict(weights)
     _worker_model.eval()
+    # Model construction consumes Torch RNG. Reset after constructing/loading,
+    # so a first task in a fresh worker matches the same task in a reused worker.
+    torch.manual_seed(action_seed)
+    np.random.seed(action_seed % 2**32)
+    random.seed(action_seed)
     records = []
 
     def record(features, context, action, target, selection, cost):
@@ -64,7 +66,12 @@ def episode(task):
                             value=selection[2], reward=-cost / 1000.0))
 
     simulator = LocalResearchSimulator(random_scenario(3, seed), max_real_duration_s=300)
-    controller = DeepRLSearch(simulator.client(), TorchPolicy(
+    if version == "v3":
+        from .joint_scan import JointScanRLSearch
+        controller_class = JointScanRLSearch
+    else:
+        controller_class = DeepRLSearch
+    controller = controller_class(simulator.client(), TorchPolicy(
         _worker_model, deterministic=False, teacher=teacher), recorder=record,
         max_decisions=max_decisions, action_deadline_epoch=deadline, feature_version=version)
     started = time.perf_counter()
@@ -222,6 +229,10 @@ def initialize_from(model, payload):
     if payload.get("algorithm") not in ALGORITHM_VERSIONS.values():
         raise ValueError("unsupported transfer algorithm")
     previous_version = next(v for v, a in ALGORITHM_VERSIONS.items() if a == payload["algorithm"])
+    target_version = next(v for v, dim in FEATURE_DIMS.items() if dim == model.feature_dim)
+    if (feature_schema(previous_version)["action_semantics"]
+            != feature_schema(target_version)["action_semantics"]):
+        raise ValueError("transfer across different action semantics is prohibited; train a new BC/PPO policy")
     if ((previous_version != "v1" or "feature_schema" in payload)
             and payload.get("feature_schema") != feature_schema(previous_version)):
         raise ValueError("transfer checkpoint has unknown feature semantics")

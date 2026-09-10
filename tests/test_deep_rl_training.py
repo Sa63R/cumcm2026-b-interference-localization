@@ -109,6 +109,40 @@ def test_legacy_v1_checkpoint_loads_24_feature_policy(tmp_path):
     assert np.isfinite(log_prob) and np.isfinite(value)
 
 
+def test_v2_to_joint_scan_transfer_is_explicitly_prohibited():
+    previous = CandidateActorCritic(16, feature_dim=44)
+    joint = CandidateActorCritic(16, feature_dim=60)
+    payload = dict(algorithm=ALGORITHM_VERSIONS["v2"], model=previous.state_dict(),
+                   feature_schema=feature_schema("v2"))
+    with pytest.raises(ValueError, match="action semantics"):
+        initialize_from(joint, payload)
+
+
+def test_joint_scan_episode_rewards_cover_all_virtual_time():
+    model = CandidateActorCritic(16, feature_dim=60)
+    records, metrics = episode((100241, model.state_dict(), 16, 67, True, 256, None, "v3"))
+    assert metrics["success"]
+    assert metrics["initial_scan_virtual_time_s"] == 0
+    assert metrics["reward_cost_s"] == pytest.approx(metrics["virtual_time_s"])
+    assert metrics["records"] > metrics["learning"]["action_counts"].get("clear", 0)
+
+
+def test_fresh_and_reused_worker_sample_identical_trajectory():
+    import research_rl.train as training
+    model = CandidateActorCritic(16)
+    task = (100243, model.state_dict(), 16, 67, False, 256)
+    training._worker_model = None
+    first, first_metrics = training.episode(task)
+    reused, reused_metrics = training.episode(task)
+    assert first_metrics["virtual_time_s"] == reused_metrics["virtual_time_s"]
+    assert len(first) == len(reused)
+    for a, b in zip(first, reused):
+        assert np.array_equal(a["features"], b["features"])
+        assert np.array_equal(a["context"], b["context"])
+        for key in ("action", "teacher", "log_prob", "value", "reward"):
+            assert a[key] == b[key]
+
+
 def test_resume_rejects_semantic_and_source_drift():
     args = Namespace(feature_version="v2", hidden=16)
     valid = dict(algorithm=ALGORITHM_VERSIONS["v2"], hidden=16,
