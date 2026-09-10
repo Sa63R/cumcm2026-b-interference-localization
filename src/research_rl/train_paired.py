@@ -79,7 +79,12 @@ def paired_episode(task):
             np.random.seed(seed ^ 0x4A73)
             random.seed(seed ^ 0x4A73)
         simulator = LocalResearchSimulator(random_scenario(3, seed), max_real_duration_s=300)
-        controller = DeepRLSearch(simulator.client(),
+        if version == "v3":
+            from .joint_scan import JointScanRLSearch
+            controller_class = JointScanRLSearch
+        else:
+            controller_class = DeepRLSearch
+        controller = controller_class(simulator.client(),
             TorchPolicy(_worker_model, deterministic=deterministic),
             recorder=None if deterministic else record, max_decisions=max_decisions,
             action_deadline_epoch=deadline, feature_version=version)
@@ -175,7 +180,7 @@ def main(argv=None):
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--initialize-from", type=Path)
     parser.add_argument("--resume", type=Path)
-    parser.add_argument("--feature-version", choices=["v1", "v2"], default="v2")
+    parser.add_argument("--feature-version", choices=sorted(FEATURE_DIMS), default="v2")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112028)

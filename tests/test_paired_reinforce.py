@@ -96,6 +96,28 @@ def test_failed_early_exit_cannot_obtain_a_cheap_reward():
     assert cost == 360001 and not success
 
 
+def test_v3_primitive_joint_scan_pair_and_probability_alignment(monkeypatch):
+    from research_rl import train_paired
+    model = CandidateActorCritic(16, 60)
+    weights = copy.deepcopy(model.state_dict())
+    monkeypatch.setattr(train_paired, "_worker_model", None)
+    records, metrics = paired_episode((100081, weights, 16, 1729, "v3", 3, time.time()+60))
+    assert len(records) == metrics["sampled"]["decisions"] == 3
+    assert all(record["features"].shape[1] == 60 for record in records)
+    assert metrics["sampled"]["success"] and metrics["baseline"]["success"]
+    assert metrics["sampled"]["fallback_time_s"] > 0
+    assert metrics["baseline"]["fallback_time_s"] > 0
+    assert records[-1]["advantage"] == pytest.approx(
+        (metrics["baseline"]["virtual_time_s"]-metrics["sampled"]["virtual_time_s"])/1000)
+    with torch.no_grad():
+        logits, _ = model(*pack_observations(records))
+        actual = torch.distributions.Categorical(logits=logits).log_prob(
+            torch.tensor([record["action"] for record in records])).tolist()
+    assert actual == pytest.approx([record["log_prob"] for record in records], abs=2e-6)
+    _, other = paired_episode((100081, weights, 16, 1730, "v3", 3, time.time()+60))
+    assert other["baseline"]["cost_s"] == metrics["baseline"]["cost_s"]
+
+
 def test_fresh_and_reused_workers_produce_identical_sampled_trajectories(monkeypatch):
     from research_rl import train_paired
     model = CandidateActorCritic(16, 24)
@@ -115,10 +137,11 @@ def test_training_rejects_nontraining_seeds(seed):
         paired_episode((seed, {}, 16, 0, "v1", 1, time.time() + 60))
 
 
-def test_actual_training_checkpoint_and_resume(tmp_path):
+@pytest.mark.parametrize("version", ["v1", "v3"])
+def test_actual_training_checkpoint_and_resume(tmp_path, version):
     directory = tmp_path / "trial"
     args = ["--output", str(directory), "--device", "cpu", "--hidden", "16",
-            "--feature-version", "v1", "--workers", "0", "--pairs-per-update", "2",
+            "--feature-version", version, "--workers", "0", "--pairs-per-update", "2",
             "--max-decisions", "1", "--updates", "1", "--max-wall-s", "60",
             "--deadline-utc", "2099-01-01T00:00:00+00:00"]
     assert main(args) == 0

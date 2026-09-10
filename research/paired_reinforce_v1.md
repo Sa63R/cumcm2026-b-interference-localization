@@ -18,6 +18,18 @@ PYTHONPATH=src python -m research_rl.train_paired --output results/rl/paired-v2-
 
 评估仍只使用共同协议的验证集选型，最终测试保持封存。PPO、此训练法及无教师热启动的对照均需报告实际经历的采样量和计算预算，不能把算法名当作性能证据。
 
+## v3 全程测量与频道决策的训练扩展
+
+`--feature-version v3` 现将采样策略和独立贪心基准都交给 `JointScanRLSearch`。因此从原点第一次测量开始，覆盖点、频道、定位探测与清除顺序均进入原有 v3 候选决策；不再强制旧版的初始全频道宏扫描。每个基准使用自己的模拟器和观测账本，只有完整成本标量用于本批策略梯度。动作上限后的完整兜底成本仍计入总成本与优势。
+
+此次只扩展控制器工厂和训练 CLI 的合法特征版本，不改变 REINFORCE 公式、奖励、优化器、原有 v1/v2 行为或 v3 合法候选集。当前成对训练仍使用 MLP 和 flat 动作分布；注意力和分组分布是另行记录的消融，不能在载入时默默丢弃其语义。可显式从兼容的 v3 MLP checkpoint 初始化一个新 trial，不能把 v2 权重无声明地当作 v3 动作策略。
+
+```bash
+PYTHONPATH=src python -m research_rl.train_paired --feature-version v3 --initialize-from /path/to/v3-mlp.pt --output results/rl/paired-v3-001 --scenario-start 140001 --seed 9112034 --updates 512 --pairs-per-update 32 --workers 4 --max-wall-s 1800 --deadline-utc 2026-09-11T06:00:00+00:00
+```
+
+独立远端快照中 **15 项 Torch 测试通过**：新增 v3 真实观测采样、采样概率与训练重算一致、截断后的完整兜底计费、基准对采样 RNG 的独立性，以及 v3 的真实参数更新和 checkpoint 恢复。性能收益仍须由新 trial 的共同验证确定。
+
 ## 核实的原始来源
 
 - Kool、van Hoof、Welling，ICLR 2019：[Attention, Learn to Solve Routing Problems!](https://arxiv.org/abs/1803.08475)。借鉴同实例贪心基准降低策略梯度方差的训练思路；论文处理的主要是已知节点组合优化，与本题未知源部分观测有区别。
