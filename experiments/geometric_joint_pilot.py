@@ -10,7 +10,8 @@ import time
 from experiments.research_v1_eval import (PROTOCOL, ROOT, identity, paired_comparison,
                                          random_scenario, read_json, run_case, summarize, write_json)
 
-PHASES = {'pilot': (103001, 103017), 'confirmation': (103017, 103081)}
+PHASES = {'pilot': (103001, 103017), 'confirmation': (103017, 103081),
+          'route-clear-pilot': (105001, 105017), 'route-clear-confirmation': (105017, 105081)}
 DEFAULT_SPECS = ['v1_baseline_efficient.json', 'v1_baseline_rollout.json',
                  'v1_geometric_clear_only.json', 'v1_geometric_joint.json']
 
@@ -61,7 +62,7 @@ def main():
     summary = dict(manifest=manifest, wall_s=time.perf_counter()-started,
                    groups={name: summarize(values, len(seeds)) for name, values in by_method.items()},
                    comparisons={}, joint_diagnostics=diagnostics)
-    for base in ('efficient_frozen', 'rollout_frozen', 'geometric_clear_only'):
+    for base in ('efficient_frozen', 'rollout_frozen', 'geometric_clear_only', 'geometric_joint'):
         if base in by_method:
             summary['comparisons'][base] = {name: paired_comparison(by_method[base], values, protocol)
                 for name, values in by_method.items() if name != base}
