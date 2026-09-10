@@ -72,3 +72,38 @@ python -m pytest tests/test_coverage_relocation.py -q
 python experiments/run_state_search_development.py --configs experiments/state_search_relocation_configs.json --seed 114001 --count 16 --traces --output results/state_search/coverage_relocation_pilot
 python experiments/summarize_coverage_relocation.py results/state_search/coverage_relocation_pilot
 ```
+
+## 冻结后 64 局确认：114017—114080
+
+源码冻结于 Git `8aa620649b609876b612d307b5be71ab588acc08` 后，按原参数运行新 64 局，没有途中修改策略。两组共 128 条完整历史全部全清、零失败清除，费用账、推断约束、每个未知频道真实扫描覆盖和计划站身份审计全部通过。数据在 `results/state_search/coverage_relocation_confirmation/`。
+
+| 指标 | axis + inferred | 加动态覆盖 |
+|---|---:|---:|
+| 平均虚拟时间 s | 3100.199689 | 3073.604983 |
+| 平均移动 s | 2336.871564 | 2317.308108 |
+| 平均测量 s | 590.390625 | 584.687500 |
+| 平均切换 s | 108.562500 | 107.234375 |
+| 本机平均整局计算 s | 0.462301 | 0.921586 |
+| 虚拟时间 P95 s | 3512.387385 | 3483.663822 |
+
+平均省 **26.594706 s（0.85784%）**，配对 bootstrap 95% 区间 `[3.112489,53.165567] s`，44 胜 20 负、无平局；每对耗时比 P95 为 1.041375，最大退化 215.286217 s。中位节省为 20.565826 s。最大的正局 114071 节省 586.733657 s，占总净节省约 34.5%，说明均值仍受少数大幅改变路线的场景影响；主统计保留全部 64 局。该确认支持小幅平均收益，尚不足以主张尾部稳定或逐局不劣，更不能把 pilot 的 1.56% 当作固定提升率。
+
+最差四局揭示两类机制，未据此改参数：
+
+| seed | 退化 s | 移动差 s | 测量差 s | 切换差 s | 观察到的变化 |
+|---|---:|---:|---:|---:|---|
+| 114065 | 215.286217 | 143.286217 | 60 | 12 | 原点后首个清除方向从源 4 改为源 7，全局源序明显改变；coverage 读数 88→101，主动 20→21，原两次共享消失 |
+| 114077 | 196.470031 | 185.470031 | 10 | 1 | 清除顺序完全相同；第一个覆盖站内移约 51 m，早到约 8.57 s，但后续定位与覆盖绕路抵消，coverage 与主动读数各多 1 |
+| 114079 | 151.791903 | 135.791903 | 15 | 1 | 首个变站早到约 5.39 s，但后续源 3 与 11 的清除先后交换；coverage、主动和共享各多 1 |
+| 114036 | 136.821218 | 161.821218 | −20 | −5 | 初始动作从先覆盖变成先定位源 11，清除序整体转向另一组；少测四次仍不能抵消移动损失 |
+
+因此，冻结源中心误差及未来反馈引起的全局次序改变、覆盖位置改变造成的实际定位路径变化，都可能产生明显正负尾部；本试验没有隔离它们的逐项因果贡献。
+
+本组 398 次计划修改涉及 302 个不同未来站，其中 80 站重复修改、最多 4 次。初始 384 个未来站实际访问 371 个；293 个改过的站实际访问，另 9 个改过的站与 4 个未改站由真实 16 频道上限取消。所有计划步后都有实际动作，最多等待 16 次源任务，未见覆盖无限推迟。平均覆盖 oracle 2644 次/局，最多 3286，未触及预算。所有调用及四候选路由时间均计入本机计算成本。
+
+结论：保留为独立正候选交给父 agent 做同平台公共复核，原 `axis + inferred` 继续作为稳定参照。暂不基于这轮最差局增加例外规则或扫参数；公共及未开封测试决定最终选择。
+
+```powershell
+python experiments/run_state_search_development.py --configs experiments/state_search_relocation_configs.json --seed 114017 --count 64 --traces --output results/state_search/coverage_relocation_confirmation
+python experiments/summarize_coverage_relocation.py results/state_search/coverage_relocation_confirmation
+```
