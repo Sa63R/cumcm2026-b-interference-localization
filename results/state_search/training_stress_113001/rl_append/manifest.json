@@ -1,0 +1,83 @@
+{
+  "scope": "training_reliability_only",
+  "cases_sha256": "9771db886b2a322a2276a1cbe3c88145d2b7be8677a8ea83395685bdc072b405",
+  "case_count": 28,
+  "policies": [
+    {
+      "name": "rl_best002_u384",
+      "commit": "b33191da0eb06c866770b26f225358d564f2671f",
+      "spec": {
+        "name": "rl_best002_u384",
+        "entrypoint": "research_rl:run_rl_search",
+        "kwargs": {
+          "checkpoint": "D:\\jwt\\2026\u6570\u6a21\u56fd\u8d5b\\q3-state-search\\results\\state_search\\training_stress_113001\\rl_append\\checkpoint.pt",
+          "device": "cpu",
+          "deterministic": true,
+          "num_threads": 1,
+          "feature_version": "v3"
+        }
+      },
+      "archive": "rl_best002_source.zip",
+      "archive_sha256": "ee4cf8dc5da378762b1cc836348e64a960b0076c64cde491f698dc9383ce44e9",
+      "source_sha256": {
+        "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+        "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+        "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+        "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+        "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+        "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+        "src/research_rl/__init__.py": "dcecc1dc3fe3b888b4a8a22e1fb8b19cc275b07b89ef3a597dada1a3b4b29f40",
+        "src/research_rl/action_sets.py": "acbc7bfb1379aeb0c7077ba61b1abfe9d0d4137966fb909e128b5a4dc2b4b7f7",
+        "src/research_rl/axis_probes.py": "4f586a46b2d90f938681f3f6ed08bc1e20646792a34ffecd6b24f5144994dedf",
+        "src/research_rl/controller.py": "de268676839671365c6d660bcf61ff219f7d3a3e8a5b60d1d4e900493f84bec6",
+        "src/research_rl/distributions.py": "e408ab20b00444669dc804bdfab005b2ffee4adf3b3b25740884f8b6da33b429",
+        "src/research_rl/joint_scan.py": "96ea97551373b331a1ac29d6cda572eb3c1c37de1e257621fcc06ce214871a20",
+        "src/research_rl/network.py": "5f54a9520918bfa8d254458dce26940c49a893db86bc32f9d1db2253ab6b5bb2",
+        "src/research_rl/portable_checkpoint.py": "8feb7f31ae6f5207a6e7c4ea8cde0f4c5c395bb78369c7cb1a18d25581ee9ef1",
+        "src/research_rl/train.py": "d1287d3eb1181e622b5398344423ad6f66cb60c7b1ead9a2359a2d3018b84eff",
+        "src/research_rl/train_paired.py": "81bbb0421caea46df5312f5c0c0ff93dc4aa65266d7d3b11a16b8b0a9b8457fb",
+        "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+        "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+        "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+        "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+        "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+        "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+        "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+        "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+        "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+        "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+        "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+        "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+        "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+        "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+        "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+        "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+        "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+        "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80"
+      },
+      "model_file_sha256": "e602c96224bd6bcfae6e0ad8a217aedf4075809d4901af2a43d5f08df7739c37",
+      "model_tensor_sha256": "d86a4bb891e9badf94a9bf9e30cd59058a59c5dc21d75b37a52fa7be9000aac9",
+      "checkpoint_metadata_defaults": "Old missing architecture/distribution/action-schema metadata uses explicit validated MLP/flat/base defaults; model tensors unmodified."
+    }
+  ],
+  "shared_physical_source_sha256": {
+    "simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+    "simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+    "simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+    "simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+    "simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577"
+  },
+  "runner_sha256": "d77e65d7490eb21afb27996c2d1cdf0ac79bd6906b6f9b75423f2708cd8467bc",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "limits": {
+    "virtual_seconds": 360000,
+    "real_seconds": 1200,
+    "max_actions": 20000
+  },
+  "runtime_comparison": "Concurrent load: runtime is diagnostic, not a hardware-speed comparison.",
+  "appended_to": "D:\\jwt\\2026\u6570\u6a21\u56fd\u8d5b\\q3-state-search\\results\\state_search\\training_stress_113001",
+  "parent_manifest_sha256": "7dac0998888bda37b2f4cefa81132b05ba20b971cb19f14e93956867bec4e304",
+  "checkpoint_origin": "D:\\jwt\\2026\u6570\u6a21\u56fd\u8d5b\\q3-v1-artifacts\\models-provisional\\cold-finetune-ppo-002-u384.pt",
+  "worker_python": "D:\\jwt\\2026\u6570\u6a21\u56fd\u8d5b\\q3-deep-rl\\.venv-win\\Scripts\\python.exe"
+}
