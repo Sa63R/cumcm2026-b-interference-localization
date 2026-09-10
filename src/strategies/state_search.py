@@ -29,6 +29,14 @@ class StateSearchConfig:
     coverage_replacement_gain_s: float = 0.0
     active_probe_search: bool = False
     probe_uncertainty_weight: float = 1.0
+    probe_model: str = "radius_proxy"
+    probe_depth: int = 1
+    probe_supports: int = 6
+    probe_candidates: int = 9
+    probe_inner_candidates: int = 3
+    probe_noise_nodes: int = 1
+    probe_max_expansions: int = 500
+    probe_terminal_mode: str = "expected_support"
 
     @classmethod
     def parse(cls, values):
@@ -54,6 +62,19 @@ class StateSearchConfig:
             if (isinstance(value, bool) or not isinstance(value, (int, float))
                     or not math.isfinite(value) or not 0 <= value <= 1000):
                 raise ValueError(f"{name} must be finite in [0,1000]")
+        if config.probe_model not in {"radius_proxy", "optical_tree"}:
+            raise ValueError("probe_model must be radius_proxy or optical_tree")
+        if config.probe_terminal_mode not in {"expected_support", "full_cover_bound"}:
+            raise ValueError("probe_terminal_mode must be expected_support or full_cover_bound")
+        for name, values in (("probe_depth", (1, 2)), ("probe_noise_nodes", (1, 3)),
+                             ("probe_candidates", (3, 5, 7, 9)), ("probe_inner_candidates", (3, 5, 7, 9))):
+            value = getattr(config, name)
+            if isinstance(value, bool) or value not in values:
+                raise ValueError(f"{name} must be in {values}")
+        for name, low, high in (("probe_supports", 1, 24), ("probe_max_expansions", 0, 100000)):
+            value = getattr(config, name)
+            if isinstance(value, bool) or not isinstance(value, int) or not low <= value <= high:
+                raise ValueError(f"{name} must be an integer in [{low},{high}]")
         return config
 
 
@@ -148,6 +169,19 @@ class StateSearch(EfficientSearch):
         region = self.regions[channel]
         if not region.vertices:
             return None
+        if self.state_config.probe_model == "optical_tree":
+            from planning.probe_tree import ProbeTree
+            config = self.state_config
+            tree = ProbeTree(depth=config.probe_depth, supports=config.probe_supports,
+                             candidates=config.probe_candidates, inner_candidates=config.probe_inner_candidates,
+                             noise_nodes=config.probe_noise_nodes, max_expansions=config.probe_max_expansions,
+                             first_bearing=self.first_bearings[channel],
+                             root_switch_s=float(self.client.state.current_channel != channel),
+                             terminal_mode=config.probe_terminal_mode)
+            point, log = tree.choose(region, self.client.state.position,
+                                     self.observed_positions.get(channel, set()))
+            self.probe_log.append({"channel": channel, "index": index, **log})
+            return point if point is not None else super()._next_probe(channel, index)
         circle = region.enclosing_disk()
         center = Position(*circle.center)
         current = self.client.state.position

@@ -3,6 +3,7 @@
 import argparse
 import gzip
 import hashlib
+import importlib
 import json
 from pathlib import Path
 import statistics
@@ -40,8 +41,14 @@ def execute(args):
             for label, config in [("efficient", None), *configs.items()]:
                 sim = LocalResearchSimulator(case)
                 started = time.perf_counter()
-                report = (run_search(sim.client(), variant="efficient") if config is None else
-                          run_state_search(sim.client(), config=config))
+                if config is None:
+                    report = run_search(sim.client(), variant="efficient")
+                elif "_entrypoint" in config:
+                    module, function = config["_entrypoint"].split(":")
+                    entrypoint = getattr(importlib.import_module(module), function)
+                    report = entrypoint(sim.client(), **config["kwargs"])
+                else:
+                    report = run_state_search(sim.client(), config=config)
                 elapsed = time.perf_counter() - started
                 evaluation = sim.evaluation()
                 log = report.strategy_parameters.get("planning_log", [])
