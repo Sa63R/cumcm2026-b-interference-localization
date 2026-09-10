@@ -44,6 +44,18 @@ def run(args):
         raise ValueError("triangular variant is only available for problem 4")
     if variant == "efficient" and (args.problem != 3 or active_policy != "center"):
         raise ValueError("efficient requires problem 3 and center policy")
+    rollout_config_path = getattr(args, "rollout_config", None)
+    rollout_options = {}
+    if variant == "rollout":
+        if args.problem != 3 or active_policy != "center":
+            raise ValueError("rollout requires problem 3 and center policy")
+        from dataclasses import asdict
+        from strategies.rollout import RolloutConfig
+        values = (json.loads(rollout_config_path.read_text(encoding="utf-8-sig"))
+                  if rollout_config_path else None)
+        rollout_options["rollout_config"] = asdict(RolloutConfig.parse(values))
+    elif rollout_config_path is not None:
+        raise ValueError("--rollout-config requires --variant rollout")
     destination = args.output or Path("results/sessions") / args.mode / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     destination.mkdir(parents=True, exist_ok=False)
     report = {
@@ -66,7 +78,8 @@ def run(args):
                              log_path=destination / "requests.jsonl") as client:
             try:
                 result = run_search(client, problem=args.problem, variant=variant,
-                                    max_actions=args.max_actions, active_policy=active_policy)
+                                    max_actions=args.max_actions, active_policy=active_policy,
+                                    **rollout_options)
                 report["search"] = result.as_dict()
                 # The strategy returns a report even on deadlines, unresolved
                 # targets and protocol errors. A returned object is not success.
@@ -118,8 +131,10 @@ def main(argv=None):
     execute.add_argument("--robot-id", default=os.environ.get("CUMCM_ROBOT_ID"))
     execute.add_argument("--case-code", default="")
     execute.add_argument("--base-url", default="http://127.0.0.1:2026")
-    execute.add_argument("--variant", choices=("baseline", "adaptive", "deferred", "triangular", "efficient"),
-                         help="默认问题3为efficient、问题4为triangular；efficient仅适用于问题3+center")
+    execute.add_argument("--variant", choices=("baseline", "adaptive", "deferred", "triangular", "efficient", "rollout"),
+                         help="默认问题3为efficient、问题4为triangular；rollout为问题3实验性前瞻策略")
+    execute.add_argument("--rollout-config", type=Path,
+                         help="rollout参数JSON对象；仅适用于问题3 --variant rollout")
     execute.add_argument("--active-policy", choices=("center", "minimax"), default="center",
                          help="问题3主动选点策略；问题4始终使用center几何启发式")
     execute.add_argument("--max-actions", type=int, default=20000)

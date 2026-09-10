@@ -311,7 +311,8 @@ class _Search:
 
 
 def run_search(client, *, problem=3, variant="adaptive", max_actions=20000,
-               max_active_probes=6, active_policy="center", efficient_config=None):
+               max_active_probes=6, active_policy="center", efficient_config=None,
+               rollout_config=None):
     """Run one bounded session without reading hidden simulator truth.
 
     ``baseline`` completes all discovery scans before optical localization.
@@ -325,6 +326,8 @@ def run_search(client, *, problem=3, variant="adaptive", max_actions=20000,
     discovery cover. Both avoid repeatedly interrupting the coverage route.
     Q3-only ``efficient`` jointly schedules a shorter guaranteed cover and
     observed sources, and uses omnidirectional negative observations.
+    Q3-only ``rollout`` compares macro-tasks by sampled remaining total time,
+    with the unchanged efficient policy as tail and fallback.
     No formal GUI test is launched or selected by this function.
     """
     if problem in {"q3", "q4"}:
@@ -333,7 +336,7 @@ def run_search(client, *, problem=3, variant="adaptive", max_actions=20000,
         raise ValueError("problem must be 3 or 4")
     if variant == "improved":
         variant = "adaptive"
-    if variant not in {"baseline", "adaptive", "deferred", "triangular", "efficient"}:
+    if variant not in {"baseline", "adaptive", "deferred", "triangular", "efficient", "rollout"}:
         raise ValueError("unknown strategy variant")
     if active_policy not in {"center", "minimax"}:
         raise ValueError("active_policy must be center or minimax")
@@ -342,6 +345,13 @@ def run_search(client, *, problem=3, variant="adaptive", max_actions=20000,
     if (isinstance(max_active_probes, bool) or not isinstance(max_active_probes, int)
             or not 0 <= max_active_probes <= 30):
         raise ValueError("max_active_probes must be an integer between 0 and 30")
+    if variant == "rollout":
+        if problem != 3 or active_policy != "center" or efficient_config is not None:
+            raise ValueError("rollout requires problem=3, active_policy=center, no efficient_config")
+        from .rollout import RolloutSearch
+        return RolloutSearch(client, max_actions, max_active_probes, rollout_config).run()
+    if rollout_config is not None:
+        raise ValueError("rollout_config requires variant=rollout")
     if variant == "efficient":
         if problem != 3 or active_policy != "center":
             raise ValueError("efficient requires problem=3 and active_policy=center")

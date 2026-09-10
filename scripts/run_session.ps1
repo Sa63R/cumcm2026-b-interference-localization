@@ -4,7 +4,8 @@ param(
     [ValidateSet('practice', 'formal')][string]$Mode = 'practice',
     [string]$RobotId = '',
     [string]$CaseCode = '',
-    [ValidateSet('auto', 'baseline', 'adaptive', 'deferred', 'triangular', 'efficient')][string]$Variant = 'auto',
+    [ValidateSet('auto', 'baseline', 'adaptive', 'deferred', 'triangular', 'efficient', 'rollout')][string]$Variant = 'auto',
+    [string]$RolloutConfig = '',
     [ValidateSet('center', 'minimax')][string]$ActivePolicy = 'center',
     [string]$BaseUrl = 'http://127.0.0.1:2026',
     [string]$PythonPath = '',
@@ -25,6 +26,7 @@ try {
     $runArgs = @('-m', 'workflow', 'run', '--problem', "$Problem", '--mode', $Mode,
                  '--robot-id', $RobotId, '--base-url', $BaseUrl, '--active-policy', $ActivePolicy)
     if ($Variant -ne 'auto') { $runArgs += @('--variant', $Variant) }
+    if ($RolloutConfig) { $runArgs += @('--rollout-config', $RolloutConfig) }
     if ($CaseCode) { $runArgs += @('--case-code', $CaseCode) }
     & $pythonExe @runArgs
     $runExit = $LASTEXITCODE
