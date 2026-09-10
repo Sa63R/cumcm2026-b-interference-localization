@@ -50,3 +50,5 @@ PYTHONPATH=src python -m research_rl.train --feature-version v3 --architecture m
 `tests/fixtures/rl_network_d33074b.py` is the exact LF-normalized network source from commit `d33074b`, SHA256 `090b25830dedcf28102a7b61c99202472cdea9e76df909457bdf1346d7d36796`. The regression compares old/new flat logits and values exactly, then compares complete sampled v3 action histories under identical weights and RNG with the new training diagnostics enabled.
 
 The training seed guard and recorded ranges now start at `100001`, matching the frozen protocol. Seed `100000` is rejected; historical training snapshots and completed trials are unchanged.
+
+2026-09-11 remote verification reported by the training coordinator: the `f912dc8` snapshot passed 76 Torch tests in 7.97 s. Matched cold alpha0/alpha1 trials have started with the same diagnostics overhead and a shared 512-update target. No performance conclusion is available from those active trials yet.
