@@ -8,6 +8,8 @@ measurements or certified removals. The neural policy controls their interleavin
 
 from dataclasses import asdict, dataclass, field
 import math
+import hashlib
+import json
 import time
 
 from simulator_client.state import Position
@@ -15,9 +17,90 @@ from strategies.efficient import EfficientSearch
 from strategies.search import SearchResult, _StopSearch
 
 
-ALGORITHM_VERSION = "q3-candidate-ppo-v1"
-FEATURE_DIM = 24
+ALGORITHM_VERSIONS = {"v1": "q3-candidate-ppo-v1", "v2": "q3-candidate-ppo-v2"}
+ALGORITHM_VERSION = ALGORITHM_VERSIONS["v2"]
+FEATURE_DIMS = {"v1": 24, "v2": 44}
+FEATURE_DIM = FEATURE_DIMS["v2"]
 CONTEXT_DIM = 12
+GEOMETRY_FEATURE_NAMES = (
+    "major_span", "minor_span", "elongation", "axis_cos2", "axis_sin2",
+    "radial_span", "transverse_span", "max_vertex_distance", "reception_margin",
+    "guaranteed_reception", "center_distance", "angular_strip_ratio",
+    "posterior_trace_ratio_proxy", "crossing_angle_sin", "inside_outer_polygon",
+    "guaranteed_near", "offset_major", "offset_minor", "box_fill_ratio",
+    "posterior_area_ratio_proxy")
+
+
+def feature_schema(version):
+    """Semantic identity, separate from source-code provenance."""
+    if version not in FEATURE_DIMS:
+        raise ValueError("unsupported feature version")
+    description = dict(version=version, algorithm=ALGORITHM_VERSIONS[version],
+                       feature_dim=FEATURE_DIMS[version], context_dim=CONTEXT_DIM,
+                       base_features="3315abf-v1-prefix-unchanged",
+                       appended_features=GEOMETRY_FEATURE_NAMES if version == "v2" else (),
+                       cover_geometry="mean_over_detected_uncleared_sources",
+                       action_semantics="3315abf-candidate-actions-unchanged")
+    description["sha256"] = hashlib.sha256(json.dumps(description, sort_keys=True).encode()).hexdigest()
+    return description
+
+
+def polygon_shape(vertices):
+    """Cheap support geometry. Vertex scatter selects axes, not a posterior law."""
+    count = len(vertices)
+    cx = sum(p[0] for p in vertices) / count
+    cy = sum(p[1] for p in vertices) / count
+    xx = sum((x - cx) ** 2 for x, y in vertices) / count
+    yy = sum((y - cy) ** 2 for x, y in vertices) / count
+    xy = sum((x - cx) * (y - cy) for x, y in vertices) / count
+    angle = 0.5 * math.atan2(2 * xy, xx - yy)
+    ux, uy = math.cos(angle), math.sin(angle)
+    along = [(x - cx) * ux + (y - cy) * uy for x, y in vertices]
+    across = [-(x - cx) * uy + (y - cy) * ux for x, y in vertices]
+    return dict(center=(cx, cy), axis=(ux, uy), xx=xx, xy=xy, yy=yy,
+                major=max(along) - min(along), minor=max(across) - min(across))
+
+
+def geometry_features(region, position, shape, first_bearing):
+    """Twenty legal geometry features; only maximum-distance tests certify.
+
+    Shrinkage is a rank-one linear Gaussian *proxy* around the vertex centroid.
+    Vertex scatter is not a posterior covariance. Center-coincident probes get
+    no invented zero-noise information gain: use unchanged covariance (ratio 1).
+    """
+    x, y = position.x, position.y
+    cx, cy = shape["center"]
+    ux, uy = shape["axis"]
+    major, minor = shape["major"], shape["minor"]
+    dx, dy = cx - x, cy - y
+    distance = math.hypot(dx, dy)
+    ex, ey = ((dx / distance, dy / distance) if distance > 1e-8 else (ux, uy))
+    nx, ny = -ey, ex
+    radial = [(vx - cx) * ex + (vy - cy) * ey for vx, vy in region.vertices]
+    transverse = [(vx - cx) * nx + (vy - cy) * ny for vx, vy in region.vertices]
+    radial_span, transverse_span = max(radial) - min(radial), max(transverse) - min(transverse)
+    maximum = max(math.hypot(vx - x, vy - y) for vx, vy in region.vertices)
+    strip = 2 * distance * math.tan(math.radians(region.error_deg))
+    strip_ratio = min(1.0, strip / max(transverse_span, 1e-9)) if distance > 1e-8 else 1.0
+    xx, xy, yy = shape["xx"], shape["xy"], shape["yy"]
+    variance = max(0.0, nx * nx * xx + 2 * nx * ny * xy + ny * ny * yy)
+    noise = (distance * math.tan(math.radians(region.error_deg))) ** 2 / 3
+    denominator = variance + noise
+    trace_ratio = area_ratio = 1.0
+    if distance > 1e-8 and denominator > 1e-12 and xx + yy > 1e-12:
+        snx, sny = xx * nx + xy * ny, xy * nx + yy * ny
+        trace_ratio = max(0.0, min(1.0, 1 - (snx * snx + sny * sny) / denominator / (xx + yy)))
+        area_ratio = math.sqrt(max(0.0, min(1.0, noise / denominator)))
+    first = math.radians(first_bearing)
+    crossing = abs(ex * math.sin(first) - ey * math.cos(first)) if distance > 1e-8 else 0.0
+    return [major / 3600, minor / 3600, (major - minor) / max(major + minor, 1e-9),
+            ux * ux - uy * uy, 2 * ux * uy, radial_span / 3600,
+            transverse_span / 3600, maximum / 3600,
+            max(-4.0, (1000 - maximum) / 1000), float(maximum <= 1000),
+            distance / 3600, strip_ratio, trace_ratio, crossing,
+            float(region.contains((x, y))), float(maximum <= 5),
+            (dx * ux + dy * uy) / 1800, (-dx * uy + dy * ux) / 1800,
+            min(1.0, region.area / max(major * minor, 1e-9)), area_ratio]
 
 
 @dataclass(frozen=True)
@@ -37,7 +120,7 @@ class RLResult(SearchResult):
 class DeepRLSearch(EfficientSearch):
     def __init__(self, client, policy, *, max_actions=20000,
                  max_decisions=256, max_active_probes=6, recorder=None,
-                 action_deadline_epoch=None):
+                 action_deadline_epoch=None, feature_version="v2"):
         if not callable(policy):
             raise ValueError("policy must be callable")
         for name, value, lower in (("max_actions", max_actions, 2),
@@ -47,13 +130,16 @@ class DeepRLSearch(EfficientSearch):
                 raise ValueError(f"{name} must be an integer >= {lower}")
         super().__init__(client, max_actions, max_active_probes, None)
         self.variant = "deep_rl"
+        self.feature_version = feature_version
+        self.schema = feature_schema(feature_version)
         self.report = RLResult(**asdict(self.report))
         self.report.variant = self.variant
         self.report.learning = dict(
-            algorithm=ALGORITHM_VERSION, decisions=0, candidate_count_sum=0,
+            algorithm=ALGORITHM_VERSIONS[feature_version], decisions=0, candidate_count_sum=0,
             action_counts={}, fallback_counts={}, fallback_actions=0,
             fallback_virtual_time_s=0.0, inference_wall_time_s=0.0,
-            initial_scan_virtual_time_s=0.0, feature_dim=FEATURE_DIM,
+            initial_scan_virtual_time_s=0.0, feature_dim=FEATURE_DIMS[feature_version],
+            feature_schema=self.schema, feature_wall_time_s=0.0,
             context_dim=CONTEXT_DIM, max_decisions=max_decisions,
             learned_scope=["cover_point", "source_channel", "probe_point", "clear_order"],
             fixed_scope=["initial_origin_scan", "channel_order_inside_cover_scan",
@@ -65,6 +151,17 @@ class DeepRLSearch(EfficientSearch):
         self.probe_counts = {}
         self.focus = None
         self.action_deadline_epoch = action_deadline_epoch
+        self._shape_cache = {}
+
+    def _geometric_features(self, channel, point):
+        region = self.regions.get(channel)
+        if region is None or not region.observations or not region.vertices:
+            return [0.0] * len(GEOMETRY_FEATURE_NAMES)
+        cached = self._shape_cache.get(channel)
+        if cached is None or cached[0] is not region.vertices:
+            cached = (region.vertices, polygon_shape(region.vertices))
+            self._shape_cache[channel] = cached
+        return geometry_features(region, point, cached[1], self.first_bearings[channel])
 
     def _check_budget(self, action, position, channel):
         if self.action_deadline_epoch is not None and time.time() >= self.action_deadline_epoch:
@@ -169,7 +266,14 @@ class DeepRLSearch(EfficientSearch):
                     min((point.distance_to(p) for p in remaining), default=0) / 3600,
                     float(channel in self.near_points),
                     (distance / 5 + (6 * (20 - len(self.cleared)) if candidate.kind == "cover" else 6)) / 1000]
-            assert len(row) == FEATURE_DIM
+            if self.feature_version == "v2":
+                if candidate.kind == "cover":
+                    geometry = [self._geometric_features(c, point) for c, _ in targets]
+                    row += ([sum(column) / len(geometry) for column in zip(*geometry)]
+                            if geometry else [0.0] * len(GEOMETRY_FEATURE_NAMES))
+                else:
+                    row += self._geometric_features(channel, point)
+            assert len(row) == FEATURE_DIMS[self.feature_version]
             features.append(row)
         return features, context
 
@@ -236,7 +340,9 @@ class DeepRLSearch(EfficientSearch):
             if self.report.learning["decisions"] >= self.max_decisions:
                 self._finish_with_baseline(remaining)
                 return
+            feature_started = time.perf_counter()
             features, context = self._features(candidates, remaining)
+            self.report.learning["feature_wall_time_s"] += time.perf_counter() - feature_started
             teacher = self._teacher(candidates, remaining)
             started = time.perf_counter()
             selection = self.policy(features, context, teacher)

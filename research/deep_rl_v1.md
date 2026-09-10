@@ -1,6 +1,6 @@
 # 第三问深度强化学习首版：实现与复现说明
 
-本文件是实验设计及代码说明，不是论文正文。实现版本 `q3-candidate-ppo-v1`。
+本文件是实验设计及代码说明，不是论文正文。初始实现版本为 `q3-candidate-ppo-v1`；当前代码默认 `q3-candidate-ppo-v2`，保留 v1 推理兼容。前面的首版说明描述 v1；v2 的增量、实验和迁移见文末。
 主分支、第四问、官方模拟器均未修改或调用。性能结论必须以实际训练及冻结评测为准。
 
 ## 实际学习什么
@@ -65,7 +65,72 @@ result = run_rl_search(client, problem=3, checkpoint="results/rl/run01/latest.pt
 - Kool、van Hoof、Welling，[Attention, Learn to Solve Routing Problems!](https://arxiv.org/abs/1803.08475) 及[作者实现](https://github.com/wouterkool/attention-learn-to-route)：参考“对可变任务节点产生策略分布、用完整路线成本学习”的思路。本实现采用紧凑集合网络而非复刻其 attention 架构，其已知 TSP 图假设不能直接移植成未知干扰源真值输入。
 - Ni、Eysenbach、Salakhutdinov，ICML 2022，[Recurrent Model-Free RL Can Be a Strong Baseline for Many POMDPs](https://proceedings.mlr.press/v162/ni22a.html)：作为后续循环记忆及部分可观测性研究依据；首版尚未实现循环网络。
 - [PyTorch A2C/PPO/ACKTR 研究实现](https://github.com/ikostrikov/pytorch-a2c-ppo-acktr-gail)：作为实现核对参考；本题自定义的是变长动作集合、法律观测和 undiscounted virtual-time 口径。
+- Zaheer 等，[Deep Sets](https://arxiv.org/abs/1703.06114)：参考共享元素编码与对称集合聚合，当前 actor 的排列等变性及 critic 的排列不变性由结构和测试保证；有限网络容量不等同于逼近完整 POMDP 最优策略。
 
 ## 第一轮应检查的失败机制
 
 随机策略可能在测点间往返；BC 若仅学会最近点，可能遗漏整条覆盖路线的后续成本；PPO 大幅偏离 BC 时可能忘记连续完成同一源，增加切换与折返；过强 BC 约束则可能阻止超过教师。需分别查看回报、动作占比、probe 次数和安全兜底耗时，不能把“全部成功”自动解释为网络学会可靠清除。若 BC-only 胜过 PPO，应保留这个失败结论，并根据采样量、熵、KL、critic误差诊断，不做选择性汇报。
+
+## v2：观测几何表达消融
+
+动机：v1 的半径和面积不足以表达细长方位条带的方向，也没有明确告诉策略哪个候选点保证能收到信号、哪个测点能够产生新的交会方向。v2 **仅扩展观测特征，不改变候选动作集合、策略架构、奖励、教师或几何清除规则**，不调用状态搜索分支的规划器。因而可进行较清楚的特征表达消融，而不能先假定它一定改善总时间。
+
+24 维旧候选特征完整保留为前缀，新增 20 维，总共 44 维；全局仍为 12 维：
+
+- 多边形顶点散布矩阵的主轴/次轴支撑宽度、细长度、主轴双角方向、包围矩形填充率；顶点散布用来描述形状，不宣称它是后验协方差。
+- 相对测点的径向/横向支撑宽度、到顶点质心的距离、沿主轴/次轴的偏移、是否位于保守外包多边形内。
+- 到所有顶点的最大距离及相对 1000 m 的接收裕量。**凸多边形上距离函数的最大值由顶点决定**，因此最大值不超过 1000 m 是真实源必可接收的保守证书；不超过 5 m 则为保守 near 证书。证书只作为输入，清除安全判定仍使用原来的外包圆。
+- 与首次观测方向的交会角、角误差条带相对横向跨度、线性秩一更新得到的迹收缩与面积收缩代理。
+
+对于最后两项，令 `S` 为顶点散布矩阵，`n` 为“候选测点到顶点质心”方向的法向量，`d` 为该距离，`tau² = (d tan(1.005°))² / 3`。计算代理矩阵 `S' = S - S n nᵀ S / (nᵀ S n + tau²)`，输入 `trace(S') / trace(S)` 和 `sqrt(tau² / (nᵀ S n + tau²))`，均裁剪到 `[0,1]`。这只是便宜的局部线性信息代理，**不是实际观测的期望后验、不是真实收缩上界，也不是新下界**。候选点恰等于质心时方向未定义，直接使用收缩比 1，避免虚构零噪声和完美定位。覆盖宏动作对所有已发现未清除源的这些特征取均值；例如接收证书维表示此轮扫描可保证接收到的已发现源比例。
+
+信息来源始终是保守外包多边形、已有方位和候选测点。控制器按每个频道的不可变顶点对象缓存形状，新增 `feature_wall_time_s` 分项用于检查特征成本。
+
+### CPU 成本与正确性检查
+
+2026-09-11，本地 Windows/Python 3.12，训练种子 `100101..100132`，3 次重复，v1/v2 交替执行，相同 teacher 策略以隔离特征计算开销，不含 Torch。每个版本共 96 局：
+
+| 指标 | v1 | v2 |
+|---|---:|---:|
+| 完整清除 | 96/96 | 96/96 |
+| 平均单局现实耗时 | 0.080594 s | 0.095995 s |
+| 平均特征计算耗时 | 0.010029 s | 0.025730 s |
+| 平均虚拟耗时 | 3425.745990 s | 3425.745990 s |
+
+单局增加约 15.4 ms、总控制器开销约 19.1%；由于父任务并发研究会影响共享 CPU，这只是本机单次基准，不是 GPU 训练吞吐的保证。同轨迹虚拟耗时最大差为 0，符合“仅改特征”的预期。新增独立几何测试检查接收证书、凸组合内部点距离界、长窄区域交会角代理、旋转不变性、退化方向保守处理及 v1 前缀/teacher 轨迹完全一致；随机和困难场景继续使用拒绝真值访问的客户端。
+
+可在部署后的 Linux 快速复现上述基准（只用训练种子，不加载权重）：
+
+```bash
+PYTHONPATH=src python - <<'PY'
+import statistics, time
+from simulation import LocalResearchSimulator, random_scenario
+from research_rl import run_rl_search
+rows = {v: [] for v in ("v1", "v2")}
+for repeat in range(3):
+    for seed in range(100101, 100133):
+        for version in (("v1", "v2") if repeat % 2 == 0 else ("v2", "v1")):
+            simulator = LocalResearchSimulator(random_scenario(3, seed))
+            started = time.perf_counter()
+            report = run_rl_search(simulator.client(), policy=lambda f,c,t: t, feature_version=version)
+            rows[version].append((time.perf_counter()-started,
+                report.learning["feature_wall_time_s"], report.virtual_time_s))
+for version, values in rows.items():
+    print(version, [statistics.mean(column) for column in zip(*values)])
+print("max_virtual_difference", max(abs(a[2]-b[2]) for a,b in zip(rows["v1"], rows["v2"])))
+PY
+```
+
+### 检查点兼容与可控迁移
+
+`run_rl_search(checkpoint=...)` 从算法版本自动选择 v1 的 24 维或 v2 的 44 维控制器。旧 `3315abf` 的 v1 checkpoint 可以直接推理；v2 checkpoint 除算法名外还验证特征语义摘要。
+
+`--resume` 现在同时验证算法、hidden、特征语义及逐文件源码摘要；不同代码不能默默接着相同训练编号运行。若需要在新代码或新特征上继续利用旧权重，使用**全新的输出目录**和显式 `--initialize-from`。它重置优化器、RNG 与本轮计数器，保留来源 checkpoint 的哈希、算法、源文件摘要、Git commit 和旧训练计数；新增输入列初始化为零，旧输入列和其他参数拷贝。因此在 v1 前缀保持一致时，迁移后未更新的 logits/价值应与原网络相等，随后才通过 PPO 学习新特征；有专门 Torch 测试验证这一点。迁移自动跳过 BC，并保存 `initialized.pt` 作为消融起点。
+
+```bash
+Q3_SOURCE_COMMIT=<new-snapshot-commit> PYTHONPATH=src python -m research_rl.train --feature-version v2 --initialize-from /path/to/v1-selected.pt --output results/rl/geometry-transfer01 --scenario-start 140001 --device cuda --updates 2000 --episodes-per-update 32 --workers 4 --max-wall-s 1800 --checkpoint-seconds 1200 --deadline-utc 2026-09-11T06:00:00+00:00
+```
+
+从头训练 v2 沿用上文命令，另选目录。要控制“新增训练量”这个混杂因素，可用同一 v1 checkpoint 显式迁移到 `--feature-version v1` 和 `v2`，然后给予同样的新场景/更新预算进行比较。
+
+运行记录修正：`optimizer_steps` 记录真实梯度更新次数（含 BC）；只有实际执行至少一次 optimizer.step 的 PPO 批次才增加 `update`，截止发生于首次梯度步前不会虚报完成一轮训练。非空输出目录在未传 `--resume` 时会拒绝覆盖。当前不实现跨架构或输入列重排迁移；这些必须另行定义新语义版本和转换代码。

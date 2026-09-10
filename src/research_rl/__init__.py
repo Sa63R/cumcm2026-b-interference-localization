@@ -5,7 +5,7 @@ from .controller import DeepRLSearch
 
 def run_rl_search(client, *, problem=3, max_actions=20000, checkpoint=None,
                   device="cpu", deterministic=True, max_decisions=256,
-                  policy=None, max_active_probes=6, num_threads=1):
+                  policy=None, max_active_probes=6, num_threads=1, feature_version=None):
     """Observation-only evaluator entry point; policy files are trusted artifacts.
 
     ``checkpoint`` is loaded once per process/path/mtime by the network module.
@@ -23,9 +23,14 @@ def run_rl_search(client, *, problem=3, max_actions=20000, checkpoint=None,
         torch.set_num_threads(num_threads)
         from .network import load_policy
         policy = load_policy(checkpoint, device=device, deterministic=deterministic)
+    if feature_version is None:
+        feature_version = getattr(policy, "feature_version", "v2")
+    if getattr(policy, "feature_version", feature_version) != feature_version:
+        raise ValueError("policy and requested feature versions differ")
     return DeepRLSearch(client, policy, max_actions=max_actions,
                         max_decisions=max_decisions,
-                        max_active_probes=max_active_probes).run()
+                        max_active_probes=max_active_probes,
+                        feature_version=feature_version).run()
 
 
 __all__ = ["DeepRLSearch", "run_rl_search"]

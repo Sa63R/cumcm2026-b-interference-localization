@@ -8,9 +8,9 @@ import pytest
 
 torch = pytest.importorskip("torch")
 
-from research_rl.controller import CONTEXT_DIM, FEATURE_DIM
+from research_rl.controller import CONTEXT_DIM, FEATURE_DIM, ALGORITHM_VERSIONS, feature_schema
 from research_rl.network import CandidateActorCritic, pack_observations, load_policy
-from research_rl.train import compute_returns, episode, main, update
+from research_rl.train import compute_returns, episode, main, update, initialize_from, validate_resume, source_manifest
 
 
 def test_undiscounted_returns_and_terminal_failure_cost():
@@ -68,6 +68,63 @@ def test_real_ppo_update_changes_parameters():
     losses = update(model, torch.optim.Adam(model.parameters(), lr=3e-4), records, args)
     assert np.isfinite(losses["loss"])
     assert any(not torch.equal(before[k], v) for k, v in model.state_dict().items())
+    assert losses["optimizer_steps"] > 0
+
+
+def test_expired_update_does_not_claim_optimizer_steps():
+    model = CandidateActorCritic(16)
+    records = [dict(features=[[0.0] * FEATURE_DIM], context=[0.0] * CONTEXT_DIM,
+                    action=0, teacher=0, log_prob=0.0, value=0.0, reward=-1.0)]
+    compute_returns(records)
+    args = Namespace(bc_epochs=1, epochs=1, minibatch=32)
+    before = {k: v.clone() for k, v in model.state_dict().items()}
+    losses = update(model, torch.optim.Adam(model.parameters()), records, args, stop_at=0.0)
+    assert losses["optimizer_steps"] == 0
+    assert all(torch.equal(before[k], v) for k, v in model.state_dict().items())
+
+
+def test_explicit_v1_to_v2_transfer_preserves_logits_and_values():
+    torch.manual_seed(19)
+    previous = CandidateActorCritic(16, feature_dim=24)
+    expanded = CandidateActorCritic(16, feature_dim=FEATURE_DIM)
+    initialize_from(expanded, dict(algorithm=ALGORITHM_VERSIONS["v1"], model=previous.state_dict()))
+    features = torch.randn(2, 7, FEATURE_DIM)
+    context = torch.randn(2, CONTEXT_DIM)
+    mask = torch.ones((2, 7), dtype=torch.bool)
+    expected = previous(features[..., :24], context, mask)
+    actual = expanded(features, context, mask)
+    for first, second in zip(expected, actual):
+        assert torch.allclose(first, second, atol=1e-6)
+
+
+def test_legacy_v1_checkpoint_loads_24_feature_policy(tmp_path):
+    previous = CandidateActorCritic(16, feature_dim=24)
+    path = tmp_path / "legacy.pt"
+    torch.save(dict(algorithm=ALGORITHM_VERSIONS["v1"], hidden=16,
+                    model=previous.state_dict()), path)
+    policy = load_policy(path)
+    assert policy.feature_version == "v1"
+    action, log_prob, value = policy([[0.0] * 24, [0.1] * 24], [0.0] * CONTEXT_DIM, 0)
+    assert action in (0, 1)
+    assert np.isfinite(log_prob) and np.isfinite(value)
+
+
+def test_resume_rejects_semantic_and_source_drift():
+    args = Namespace(feature_version="v2", hidden=16)
+    valid = dict(algorithm=ALGORITHM_VERSIONS["v2"], hidden=16,
+                 feature_schema=feature_schema("v2"), source_manifest=source_manifest())
+    validate_resume(valid, args)
+    with pytest.raises(ValueError, match="semantics"):
+        validate_resume(dict(valid, feature_schema={}), args)
+    with pytest.raises(ValueError, match="source manifest"):
+        validate_resume(dict(valid, source_manifest={}), args)
+
+
+def test_nonempty_output_without_resume_is_rejected_before_overwrite(tmp_path):
+    (tmp_path / "random.pt").write_text("preserve this", encoding="utf-8")
+    with pytest.raises(SystemExit):
+        main(["--output", str(tmp_path), "--device", "cpu"])
+    assert (tmp_path / "random.pt").read_text() == "preserve this"
 
 
 def test_tiny_training_saves_distinct_ablation_files_and_resumes(tmp_path):

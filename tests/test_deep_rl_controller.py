@@ -6,7 +6,10 @@ import random
 import pytest
 
 from research_rl import run_rl_search
-from research_rl.controller import CONTEXT_DIM, FEATURE_DIM, DeepRLSearch
+from research_rl.controller import (CONTEXT_DIM, FEATURE_DIM, FEATURE_DIMS,
+    DeepRLSearch, geometry_features, polygon_shape, GEOMETRY_FEATURE_NAMES)
+from localization.omni import OmniCandidateRegion
+from simulator_client.state import Position
 from simulation import LocalResearchSimulator, Scenario, Source, difficult_scenarios, random_scenario
 from tests.test_strategy import ObservationOnlyClient
 
@@ -81,3 +84,76 @@ def test_invalid_policy_index_is_rejected_and_session_exits():
     with pytest.raises(ValueError, match="invalid candidate"):
         run_rl_search(simulator.client(), policy=lambda f, c, t: len(f))
     assert simulator.observation_history()[-1]["action"] == "/exit"
+
+
+def rectangle_region(half_length=500, half_width=10, rotation=0):
+    region = OmniCandidateRegion()
+    theta = math.radians(rotation)
+    c, s = math.cos(theta), math.sin(theta)
+    region.vertices = tuple((x * c - y * s, x * s + y * c)
+        for x, y in [(-half_length, -half_width), (half_length, -half_width),
+                     (half_length, half_width), (-half_length, half_width)])
+    return region
+
+
+def test_geometry_reception_certificate_equals_maximum_vertex_distance():
+    region = rectangle_region()
+    shape = polygon_shape(region.vertices)
+    for position in (Position(0, 0), Position(0, 900), Position(-1000, 0)):
+        values = dict(zip(GEOMETRY_FEATURE_NAMES, geometry_features(region, position, shape, 0)))
+        maximum = max(math.hypot(x - position.x, y - position.y) for x, y in region.vertices)
+        assert values["max_vertex_distance"] * 3600 == pytest.approx(maximum)
+        assert values["guaranteed_reception"] == float(maximum <= 1000)
+        # Independently sample convex combinations: the vertex certificate
+        # must bound distances everywhere inside the conservative polygon.
+        for a in (0, 0.3, 0.7, 1):
+            for b in (0, 0.4, 1):
+                distance = math.hypot(-500 + a * 1000 - position.x,
+                                      -10 + b * 20 - position.y)
+                assert distance <= maximum + 1e-9
+
+
+def test_cross_bearing_proxy_recognizes_long_thin_uncertainty():
+    region = rectangle_region()
+    shape = polygon_shape(region.vertices)
+    along = dict(zip(GEOMETRY_FEATURE_NAMES, geometry_features(region, Position(-1000, 0), shape, 0)))
+    across = dict(zip(GEOMETRY_FEATURE_NAMES, geometry_features(region, Position(0, 500), shape, 0)))
+    assert shape["major"] == pytest.approx(1000)
+    assert shape["minor"] == pytest.approx(20)
+    assert across["posterior_trace_ratio_proxy"] < along["posterior_trace_ratio_proxy"]
+    assert along["crossing_angle_sin"] == pytest.approx(0)
+    assert across["crossing_angle_sin"] == pytest.approx(1)
+    center = dict(zip(GEOMETRY_FEATURE_NAMES, geometry_features(region, Position(0, 0), shape, 0)))
+    assert center["posterior_trace_ratio_proxy"] == 1
+    assert center["posterior_area_ratio_proxy"] == 1
+
+
+def test_shape_and_information_scalars_are_rotation_invariant():
+    original = rectangle_region()
+    rotated = rectangle_region(rotation=37)
+    theta = math.radians(37)
+    q = Position(-300, 700)
+    rotated_q = Position(q.x * math.cos(theta) - q.y * math.sin(theta),
+                         q.x * math.sin(theta) + q.y * math.cos(theta))
+    before = dict(zip(GEOMETRY_FEATURE_NAMES, geometry_features(original, q, polygon_shape(original.vertices), 0)))
+    after = dict(zip(GEOMETRY_FEATURE_NAMES, geometry_features(rotated, rotated_q, polygon_shape(rotated.vertices), 37)))
+    for key in GEOMETRY_FEATURE_NAMES:
+        if key not in {"axis_cos2", "axis_sin2"}:
+            assert before[key] == pytest.approx(after[key], abs=1e-7)
+
+
+def test_v1_feature_prefix_and_teacher_actions_remain_compatible():
+    observations = {}
+    reports = []
+    for version in ("v1", "v2"):
+        rows = []
+        def policy(features, context, teacher):
+            assert len(features[0]) == FEATURE_DIMS[version]
+            rows.append(([row[:24] for row in features], context, teacher))
+            return teacher
+        simulator = LocalResearchSimulator(random_scenario(3, 100019))
+        reports.append(run_rl_search(ObservationOnlyClient(simulator.client()),
+                                      policy=policy, feature_version=version))
+        observations[version] = rows
+    assert observations["v1"] == observations["v2"]
+    assert reports[0].virtual_time_s == reports[1].virtual_time_s

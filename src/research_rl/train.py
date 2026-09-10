@@ -25,7 +25,7 @@ import torch
 from torch.distributions import Categorical
 
 from simulation import LocalResearchSimulator, random_scenario
-from .controller import ALGORITHM_VERSION, DeepRLSearch
+from .controller import ALGORITHM_VERSION, ALGORITHM_VERSIONS, FEATURE_DIMS, DeepRLSearch, feature_schema
 from .network import CandidateActorCritic, TorchPolicy, pack_observations
 
 
@@ -41,6 +41,7 @@ def episode(task):
     global _worker_model
     seed, weights, hidden, action_seed, teacher, max_decisions = task[:6]
     deadline = task[6] if len(task) > 6 else None
+    version = task[7] if len(task) > 7 else "v2"
     if not legal_training_seed(seed):
         raise ValueError("Training scenario seed is outside the declared training ranges")
     if deadline is not None and time.time() >= deadline:
@@ -49,8 +50,9 @@ def episode(task):
     torch.manual_seed(action_seed)
     np.random.seed(action_seed % 2**32)
     random.seed(action_seed)
-    if _worker_model is None or _worker_model.hidden != hidden:
-        _worker_model = CandidateActorCritic(hidden)
+    if (_worker_model is None or _worker_model.hidden != hidden
+            or _worker_model.feature_dim != FEATURE_DIMS[version]):
+        _worker_model = CandidateActorCritic(hidden, FEATURE_DIMS[version])
     _worker_model.load_state_dict(weights)
     _worker_model.eval()
     records = []
@@ -64,7 +66,7 @@ def episode(task):
     simulator = LocalResearchSimulator(random_scenario(3, seed), max_real_duration_s=300)
     controller = DeepRLSearch(simulator.client(), TorchPolicy(
         _worker_model, deterministic=False, teacher=teacher), recorder=record,
-        max_decisions=max_decisions, action_deadline_epoch=deadline)
+        max_decisions=max_decisions, action_deadline_epoch=deadline, feature_version=version)
     started = time.perf_counter()
     report = controller.run()
     # The evaluator may inspect success only after exit; it is not in features.
@@ -114,6 +116,10 @@ def update(model, optimizer, records, args, *, bc=False, stop_at=None):
         raise RuntimeError("No policy transitions collected")
     device = next(model.parameters()).device
     metrics = []
+    def summarize(**extra):
+        means = ({key: float(np.mean([r[key] for r in metrics])) for key in metrics[0]}
+                 if metrics else {})
+        return dict(means, optimizer_steps=len(metrics), **extra)
     advantages = np.asarray([r.get("advantage", 0.0) for r in records], dtype=np.float32)
     if not bc:
         advantages = (advantages - advantages.mean()) / max(advantages.std(), 1e-6)
@@ -121,8 +127,7 @@ def update(model, optimizer, records, args, *, bc=False, stop_at=None):
         ordering = np.random.permutation(len(records))
         for offset in range(0, len(ordering), args.minibatch):
             if stop_at is not None and time.monotonic() >= stop_at:
-                return ({key: float(np.mean([r[key] for r in metrics])) for key in metrics[0]}
-                        if metrics else {"deadline_before_optimizer_step": True})
+                return summarize(deadline_before_optimizer_step=not bool(metrics), deadline_reached=True)
             indices = ordering[offset:offset + args.minibatch]
             batch = [records[i] for i in indices]
             logits, values = model(*pack_observations(batch, device))
@@ -155,8 +160,8 @@ def update(model, optimizer, records, args, *, bc=False, stop_at=None):
                                 entropy=float(distribution.entropy().mean().detach()),
                                 grad_norm=float(gradient), approx_kl=approx_kl))
             if not bc and args.target_kl > 0 and approx_kl > args.target_kl:
-                return {key: float(np.mean([r[key] for r in metrics])) for key in metrics[0]}
-    return {key: float(np.mean([r[key] for r in metrics])) for key in metrics[0]}
+                return summarize(kl_stopped=True)
+    return summarize()
 
 
 def git_version():
@@ -182,7 +187,8 @@ def source_manifest():
 
 
 def save_checkpoint(path, model, optimizer, args, state):
-    payload = dict(algorithm=ALGORITHM_VERSION, hidden=args.hidden,
+    payload = dict(algorithm=ALGORITHM_VERSIONS[args.feature_version], hidden=args.hidden,
+                   feature_version=args.feature_version, feature_schema=feature_schema(args.feature_version),
                    model={k: v.detach().cpu() for k, v in model.state_dict().items()},
                    optimizer=optimizer.state_dict(), args=vars(args), state=state,
                    git_commit=git_version(), saved_utc=datetime.now(timezone.utc).isoformat(),
@@ -197,10 +203,44 @@ def save_checkpoint(path, model, optimizer, args, state):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def validate_resume(payload, args):
+    if (payload.get("algorithm") != ALGORITHM_VERSIONS[args.feature_version]
+            or payload.get("hidden") != args.hidden):
+        raise ValueError("checkpoint architecture/version does not match; use --initialize-from for explicit migration")
+    if payload.get("feature_schema") != feature_schema(args.feature_version):
+        raise ValueError("checkpoint feature semantics do not match")
+    if payload.get("source_manifest") != source_manifest():
+        raise ValueError("checkpoint source manifest differs; use --initialize-from for a separately logged new trial")
+
+
+def initialize_from(model, payload):
+    """Explicit fresh-trial transfer; new feature columns initially have zero weight.
+
+    Preserves old logits before further learning if the v1 prefix and all other
+    features/actions remain unchanged. Optimizer/RNG/state are intentionally new.
+    """
+    if payload.get("algorithm") not in ALGORITHM_VERSIONS.values():
+        raise ValueError("unsupported transfer algorithm")
+    previous_version = next(v for v, a in ALGORITHM_VERSIONS.items() if a == payload["algorithm"])
+    if ((previous_version != "v1" or "feature_schema" in payload)
+            and payload.get("feature_schema") != feature_schema(previous_version)):
+        raise ValueError("transfer checkpoint has unknown feature semantics")
+    weights = dict(payload["model"])
+    previous = weights["encoder.0.weight"]
+    if previous.shape[0] != model.hidden or previous.shape[1] > model.feature_dim:
+        raise ValueError("transfer requires equal hidden width and a nonshrinking feature prefix")
+    expanded = torch.zeros_like(model.encoder[0].weight)
+    expanded[:, :previous.shape[1]] = previous
+    weights["encoder.0.weight"] = expanded
+    model.load_state_dict(weights)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--resume", type=Path)
+    parser.add_argument("--initialize-from", type=Path, help="Explicit new-trial weight transfer; fresh optimizer/counters")
+    parser.add_argument("--feature-version", choices=sorted(FEATURE_DIMS), default="v2")
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112026)
@@ -232,18 +272,23 @@ def main(argv=None):
         parser.error("scenario-start must be in training-only ranges")
     if not 0 <= args.gae_lambda <= 1 or args.max_wall_s <= 0:
         parser.error("lambda must be in [0,1], wall time positive")
-    args.output.mkdir(parents=True, exist_ok=True)
+    if args.resume and args.initialize_from:
+        parser.error("--resume and --initialize-from are mutually exclusive")
+    if args.output.exists() and any(args.output.iterdir()) and not args.resume:
+        parser.error("output directory is nonempty; choose a new trial directory or use --resume")
     torch.set_num_threads(args.num_threads)
     torch.manual_seed(args.seed)
     np.random.seed(args.seed % 2**32)
     random.seed(args.seed)
-    model = CandidateActorCritic(args.hidden).to(args.device)
+    model = CandidateActorCritic(args.hidden, FEATURE_DIMS[args.feature_version]).to(args.device)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
-    state = dict(update=0, episodes=0, next_seed=args.scenario_start, bc_complete=False)
+    state = dict(update=0, optimizer_steps=0, episodes=0, next_seed=args.scenario_start, bc_complete=False)
     if args.resume:
         payload = torch.load(args.resume, map_location=args.device, weights_only=False)
-        if payload["algorithm"] != ALGORITHM_VERSION or payload["hidden"] != args.hidden:
-            parser.error("checkpoint architecture/version does not match")
+        try:
+            validate_resume(payload, args)
+        except ValueError as error:
+            parser.error(str(error))
         model.load_state_dict(payload["model"])
         optimizer.load_state_dict(payload["optimizer"])
         for group in optimizer.param_groups:
@@ -254,6 +299,18 @@ def main(argv=None):
         random.setstate(payload["python_rng"])
         if args.device.startswith("cuda") and "cuda_rng" in payload:
             torch.cuda.set_rng_state_all([s.cpu() for s in payload["cuda_rng"]])
+    args.output.mkdir(parents=True, exist_ok=True)
+    if not args.resume:
+        save_checkpoint(args.output / "random.pt", model, optimizer, args, state.copy())
+    if args.initialize_from:
+        payload = torch.load(args.initialize_from, map_location=args.device, weights_only=False)
+        initialize_from(model, payload)
+        state["bc_complete"] = True
+        state["initialization"] = dict(path=str(args.initialize_from),
+            sha256=hashlib.sha256(args.initialize_from.read_bytes()).hexdigest(),
+            source_algorithm=payload["algorithm"], source_manifest=payload.get("source_manifest"),
+            source_state=payload.get("state"), source_git_commit=payload.get("git_commit"))
+        save_checkpoint(args.output / "initialized.pt", model, optimizer, args, state.copy())
     started = time.monotonic()
     stop_at = started + args.max_wall_s
     if args.deadline_utc:
@@ -261,9 +318,8 @@ def main(argv=None):
         if deadline.tzinfo is None:
             parser.error("deadline-utc must have an explicit timezone")
         stop_at = min(stop_at, started + deadline.timestamp() - time.time())
-    if not args.resume:
-        save_checkpoint(args.output / "random.pt", model, optimizer, args, state.copy())
-    config = {**vars(args), "algorithm": ALGORITHM_VERSION, "git_commit": git_version(),
+    config = {**vars(args), "algorithm": ALGORITHM_VERSIONS[args.feature_version], "git_commit": git_version(),
+              "feature_schema": feature_schema(args.feature_version),
               "source_manifest": source_manifest(),
               "gamma": 1.0, "reward_scale_s": 1000, "failure_penalty_s": 360000,
               "training_seed_ranges": [[100000, 199999], [2000, 5099]],
@@ -283,7 +339,7 @@ def main(argv=None):
             state["next_seed"] = seed + 1
             epoch_deadline = time.time() + max(0.0, stop_at - time.monotonic())
             tasks.append((seed, weights, args.hidden, random.randrange(2**31), teacher,
-                          args.max_decisions, epoch_deadline))
+                          args.max_decisions, epoch_deadline, args.feature_version))
         # Workers check the shared absolute deadline before every physical
         # action; already queued tasks skip instead of overrunning the cutoff.
         results = list(executor.map(episode, tasks)) if executor else [episode(t) for t in tasks]
@@ -297,6 +353,7 @@ def main(argv=None):
             records, episodes = collect(args.bc_episodes, True)
             collected = time.monotonic()
             losses = update(model, optimizer, records, args, bc=True, stop_at=stop_at) if records else {}
+            state["optimizer_steps"] += losses.get("optimizer_steps", 0)
             state["bc_complete"] = bool(records) and time.monotonic() < stop_at
             sha = save_checkpoint(args.output / "bc_only.pt", model, optimizer, args, state.copy())
             entry = dict(stage="bc", update=0, episodes=episodes, losses=losses,
@@ -313,6 +370,11 @@ def main(argv=None):
                 log.flush()
                 break
             losses = update(model, optimizer, records, args, stop_at=stop_at)
+            state["optimizer_steps"] += losses.get("optimizer_steps", 0)
+            if losses.get("optimizer_steps", 0) == 0:
+                log.write(json.dumps(dict(stage="deadline", episodes=episodes, losses=losses)) + "\n")
+                log.flush()
+                break
             state["update"] += 1
             entry = dict(stage="ppo", update=state["update"], total_episodes=state["episodes"],
                          mean_virtual_time_s=float(np.mean([e["virtual_time_s"] for e in episodes if not e.get("deadline_skipped")])),

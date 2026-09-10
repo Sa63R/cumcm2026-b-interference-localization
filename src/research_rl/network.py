@@ -8,7 +8,7 @@ import torch
 from torch import nn
 from torch.distributions import Categorical
 
-from .controller import ALGORITHM_VERSION, CONTEXT_DIM, FEATURE_DIM
+from .controller import ALGORITHM_VERSIONS, CONTEXT_DIM, FEATURE_DIM, FEATURE_DIMS, feature_schema
 
 
 class CandidateActorCritic(nn.Module):
@@ -18,10 +18,11 @@ class CandidateActorCritic(nn.Module):
     from forward inputs. The mean/max pooled context communicates the remaining
     task set; this compact architecture does not claim to reproduce AlphaGo.
     """
-    def __init__(self, hidden=96):
+    def __init__(self, hidden=96, feature_dim=FEATURE_DIM):
         super().__init__()
         self.hidden = hidden
-        self.encoder = nn.Sequential(nn.Linear(FEATURE_DIM, hidden), nn.Tanh(),
+        self.feature_dim = feature_dim
+        self.encoder = nn.Sequential(nn.Linear(feature_dim, hidden), nn.Tanh(),
                                      nn.Linear(hidden, hidden), nn.Tanh())
         self.context_encoder = nn.Sequential(
             nn.Linear(CONTEXT_DIM + 2 * hidden, hidden), nn.Tanh())
@@ -42,7 +43,8 @@ class CandidateActorCritic(nn.Module):
 
 def pack_observations(records, device="cpu"):
     maximum = max(len(r["features"]) for r in records)
-    features = np.zeros((len(records), maximum, FEATURE_DIM), dtype=np.float32)
+    feature_dim = len(records[0]["features"][0])
+    features = np.zeros((len(records), maximum, feature_dim), dtype=np.float32)
     mask = np.zeros((len(records), maximum), dtype=np.bool_)
     for row, record in enumerate(records):
         count = len(record["features"])
@@ -59,6 +61,7 @@ class TorchPolicy:
         self.device = device
         self.deterministic = deterministic
         self.teacher = teacher
+        self.feature_version = next(v for v, dim in FEATURE_DIMS.items() if dim == model.feature_dim)
 
     @torch.no_grad()
     def __call__(self, features, context, teacher):
@@ -73,9 +76,14 @@ class TorchPolicy:
 @lru_cache(maxsize=8)
 def _load_cached(path, modified_ns, device, deterministic):
     checkpoint = torch.load(path, map_location=device, weights_only=False)
-    if checkpoint.get("algorithm") != ALGORITHM_VERSION:
+    versions = {algorithm: version for version, algorithm in ALGORITHM_VERSIONS.items()}
+    version = versions.get(checkpoint.get("algorithm"))
+    if version is None:
         raise ValueError("Unsupported checkpoint algorithm version")
-    model = CandidateActorCritic(checkpoint["hidden"]).to(device)
+    if ((version != "v1" or "feature_schema" in checkpoint)
+            and checkpoint.get("feature_schema") != feature_schema(version)):
+        raise ValueError("checkpoint feature semantics do not match this implementation")
+    model = CandidateActorCritic(checkpoint["hidden"], FEATURE_DIMS[version]).to(device)
     model.load_state_dict(checkpoint["model"])
     model.eval()
     return TorchPolicy(model, device=device, deterministic=deterministic)
