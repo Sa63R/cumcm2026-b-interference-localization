@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "name": "q3-independent-research-v1",
+  "created_at": "2026-09-11T00:43:00+08:00",
+  "experiment_freeze_target": "2026-09-11T14:00:00+08:00",
+  "hard_deadline": "2026-09-11T16:00:00+08:00",
+  "baseline_commit": "6c28dbed7f306bf297ad3b97f370e9ada33217b9",
+  "problem": 3,
+  "primary_reference": "rollout_frozen",
+  "secondary_reference": "efficient_frozen",
+  "rollout_config": {
+    "particles": 4, "candidates": 5, "seed": 9102026,
+    "min_gain_s": 10, "uncertainty_penalty": 0.5,
+    "max_searches": 24, "max_candidate_evaluations": 480,
+    "max_planning_s": 60
+  },
+  "partitions": {
+    "train": {"seed_start": 100001, "seed_stop_exclusive": 200000},
+    "validation": {"seed_start": 6000, "seed_stop_exclusive": 6048},
+    "validation_extended": {"seed_start": 6048, "seed_stop_exclusive": 6096},
+    "final_random": {"seed_start": 800000, "seed_stop_exclusive": 800256},
+    "final_stress": {"seed_start": 810000, "seed_stop_exclusive": 810028},
+    "future_reserved": {"seed_start": 900000, "seed_stop_exclusive": 901000}
+  },
+  "research_distribution": "Existing random_scenario(3, seed): uniform N in 10..16, exclusive sampled channels, uniform area in radius-1800 disk, uniform reception radius in 1000..1500; this is an assumption, not the official generator law.",
+  "final_stress_families": ["minimum_radius", "boundary", "cluster", "positive_error", "negative_error", "alternating_error", "narrow_strip"],
+  "limits": {"max_actions": 10000, "real_seconds_per_case": 1200, "virtual_seconds_per_case": 360000},
+  "acceptance": {
+    "all_final_cases_successful": true,
+    "no_failed_clears": true,
+    "minimum_mean_total_time_reduction_fraction": 0.05,
+    "paired_saving_bootstrap_ci95_lower_seconds_strictly_above": 0,
+    "maximum_p95_total_time_ratio": 1.05,
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260911,
+    "confidence_scope": "Per predeclared branch contrast, not a simultaneous guarantee for a post-hoc selected winner. Report both branches."
+  },
+  "failure_policy": "Retain every attempted case. Failed runs receive 360000 seconds for penalty summaries, never treat their truncated raw time as a speed win. Performance acceptance requires complete success over the frozen final suite. Missing cases invalidate completion.",
+  "final_access_policy": "Do not run final or future-reserved seeds during development or training. Freeze selected code/config/checkpoints before opening final evaluation. Further tuning after viewing final results requires a new independent test partition.",
+  "official_policy": "Practice only. No formal tests without explicit user instruction. Official practice cases differ and are not causal paired comparisons."
+}
