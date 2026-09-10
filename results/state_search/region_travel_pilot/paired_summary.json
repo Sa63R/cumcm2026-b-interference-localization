@@ -1,0 +1,125 @@
+{
+  "origin": "synthetic_research_training_only",
+  "platform": "Windows",
+  "overall": {
+    "axis_v1": {
+      "n": 16,
+      "mean_s": 3225.739049,
+      "mean_wall_s": 0.45058454374975554,
+      "p95_s": 3622.37388075,
+      "successes": 16,
+      "failed_clears": 0,
+      "time_breakdown": {
+        "movement_s": 2444.614049,
+        "switching_s": 111.75,
+        "detection_s": 605.625,
+        "optical_s": 38.25,
+        "removal_s": 25.5
+      }
+    },
+    "mean_point": {
+      "n": 16,
+      "mean_s": 3187.7751668125,
+      "mean_wall_s": 0.4459654749998663,
+      "p95_s": 3677.753705,
+      "successes": 16,
+      "failed_clears": 0,
+      "time_breakdown": {
+        "movement_s": 2413.7126668125,
+        "switching_s": 110.625,
+        "detection_s": 599.6875,
+        "optical_s": 38.25,
+        "removal_s": 25.5
+      }
+    },
+    "expected_distance": {
+      "n": 16,
+      "mean_s": 3186.447578125,
+      "mean_wall_s": 0.4275035187497451,
+      "p95_s": 3611.439096,
+      "successes": 16,
+      "failed_clears": 0,
+      "time_breakdown": {
+        "movement_s": 2416.572578125,
+        "switching_s": 110.1875,
+        "detection_s": 595.9375,
+        "optical_s": 38.25,
+        "removal_s": 25.5
+      }
+    }
+  },
+  "pairs": {
+    "axis_v1--mean_point": {
+      "n": 16,
+      "mean_saved_s": 37.96388218749996,
+      "relative_mean_saved": 0.011769049390175878,
+      "paired_bootstrap_95ci_saved_s": [
+        -24.415321375000076,
+        105.59917043749999
+      ],
+      "wins": 7,
+      "losses": 4,
+      "ties": 5,
+      "max_regression_s": 181.7794369999997,
+      "p95_ratio": 1.0435974010666937
+    },
+    "axis_v1--expected_distance": {
+      "n": 16,
+      "mean_saved_s": 39.29147087499996,
+      "relative_mean_saved": 0.01218061048279171,
+      "paired_bootstrap_95ci_saved_s": [
+        -18.192902937500094,
+        103.63982193749996
+      ],
+      "wins": 9,
+      "losses": 4,
+      "ties": 3,
+      "max_regression_s": 163.51924400000007,
+      "p95_ratio": 1.0468001655522992
+    },
+    "mean_point--expected_distance": {
+      "n": 16,
+      "mean_saved_s": 1.327588687499997,
+      "relative_mean_saved": 0.0004164624598752587,
+      "paired_bootstrap_95ci_saved_s": [
+        -45.68784518750002,
+        45.66987006250005
+      ],
+      "wins": 5,
+      "losses": 4,
+      "ties": 7,
+      "max_regression_s": 196.66453899999988,
+      "p95_ratio": 1.0578654680728403
+    }
+  },
+  "region_diagnostics": {
+    "mean_point": {
+      "source_task_observations": 1324,
+      "statuses": {
+        "finite_area_radius_proxy": 1248,
+        "certified_endpoint": 76
+      },
+      "mean_uncertain_nodes": 12,
+      "mean_uncertain_mean_shift_from_mec_m": 106.37568744262447,
+      "mean_uncertain_variance_m2": 53420.312447027325,
+      "plans": 299,
+      "exact_plans": 294,
+      "mean_model_gap_s": 1.3910087637662782,
+      "mean_planning_s_per_case": 0.027887325002211583
+    },
+    "expected_distance": {
+      "source_task_observations": 1190,
+      "statuses": {
+        "finite_area_radius_proxy": 1130,
+        "certified_endpoint": 60
+      },
+      "mean_uncertain_nodes": 12,
+      "mean_uncertain_mean_shift_from_mec_m": 107.9727227664529,
+      "mean_uncertain_variance_m2": 56007.459992461445,
+      "plans": 299,
+      "exact_plans": 299,
+      "mean_model_gap_s": 0.0,
+      "mean_planning_s_per_case": 0.022603868751502887
+    }
+  }
+}

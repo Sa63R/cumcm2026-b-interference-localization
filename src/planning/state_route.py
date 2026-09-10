@@ -43,12 +43,16 @@ class StateRouteResult:
 
 
 def solve_state_route(tasks, start=(0.0, 0.0), *, speed_mps=5.0,
-                      scan_source_s=6.0, max_expansions=5000):
+                      scan_source_s=6.0, max_expansions=5000,
+                      travel_times_s=None, initial_times_s=None):
     """Optimize the declared finite task model, with at most 22 tasks.
 
     Numerical comparisons use conservative 1e-9 s tolerances. The certificate
     concerns the floating-point instance, not exact real Euclidean distances.
     Service costs and positions must remain frozen throughout this call.
+    Optional nonnegative symmetric travel times define a separate finite
+    matrix objective. They need not satisfy a triangle inequality: an MST
+    still lower-bounds every Hamiltonian continuation on the same matrix.
     """
     began = time.perf_counter()
     tasks = tuple(tasks)
@@ -66,14 +70,27 @@ def solve_state_route(tasks, start=(0.0, 0.0), *, speed_mps=5.0,
             raise ValueError("is_source must be boolean")
         if not math.isfinite(task.service_s) or task.service_s < 0:
             raise ValueError("service costs must be finite and nonnegative")
+    if (travel_times_s is None) != (initial_times_s is None):
+        raise ValueError("travel and initial times must be supplied together")
+    if travel_times_s is not None:
+        if len(travel_times_s)!=n or len(initial_times_s)!=n or any(len(row)!=n for row in travel_times_s):
+            raise ValueError("travel matrix dimensions must match tasks")
+        values=list(initial_times_s)+[v for row in travel_times_s for v in row]
+        if any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<0 for v in values):
+            raise ValueError("travel times must be finite and nonnegative")
+        if any(travel_times_s[i][i]!=0 for i in range(n)):
+            raise ValueError("travel matrix diagonal must be zero")
+        if any(travel_times_s[i][j]!=travel_times_s[j][i] for i in range(n) for j in range(i)):
+            raise ValueError("travel matrix must be symmetric")
     if not n:
         return StateRouteResult((), 0.0, 0.0, 0, 0, 0, 0, True,
                                 time.perf_counter() - began)
     points = [Position.coerce(task.position) for task in tasks]
     start = Position.coerce(start)
-    distances = [[a.distance_to(b) / speed_mps for b in points]
-                 for a in points]
-    initial = [start.distance_to(p) / speed_mps for p in points]
+    distances = ([[a.distance_to(b) / speed_mps for b in points] for a in points]
+                 if travel_times_s is None else [list(row) for row in travel_times_s])
+    initial = ([start.distance_to(p) / speed_mps for p in points]
+               if initial_times_s is None else list(initial_times_s))
     all_mask = (1 << n) - 1
     source_mask = sum(1 << i for i, task in enumerate(tasks) if task.is_source)
     services = [task.service_s for task in tasks]
