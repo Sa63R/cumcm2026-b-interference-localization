@@ -1,0 +1,49 @@
+"""Explicit candidate-set identity, independent of tensor feature dimension."""
+
+
+def action_schema(name="base"):
+    if name == "base":
+        return {"version": 1, "name": "base"}
+    if name == "axis_quantiles":
+        return {"version": 1, "name": "axis_quantiles", "extends": "v3-base-probes",
+                "point_rule": "diameter-axis-q25-q375-q625-q75-width-over8",
+                "max_extra_per_source": 14, "option_id": 6,
+                "minimum_reception_margin_m": 1e-7}
+    raise ValueError("unknown probe candidate family")
+
+
+def validate_action_schema(spec):
+    if spec is None:
+        return action_schema()
+    if not isinstance(spec, dict) or spec != action_schema(spec.get("name")):
+        raise ValueError("unknown action schema metadata/version")
+    return dict(spec)
+
+
+def action_schema_from_args(args):
+    return action_schema(getattr(args, "probe_candidates", "base"))
+
+
+def checkpoint_action_schema(payload):
+    spec = payload.get("action_schema")
+    args = payload.get("args", {})
+    if spec is None and args.get("probe_candidates", "base") != "base":
+        raise ValueError("extended checkpoint is missing action schema metadata")
+    result = validate_action_schema(spec)
+    if "probe_candidates" in args and result != action_schema(args["probe_candidates"]):
+        raise ValueError("action schema contradicts checkpoint arguments")
+    return result
+
+
+def controller_for(version, schema):
+    schema = validate_action_schema(schema)
+    if schema["name"] != "base":
+        if version != "v3":
+            raise ValueError("axis candidate extension requires v3 feature semantics")
+        from .axis_probes import AxisProbeRLSearch
+        return AxisProbeRLSearch
+    if version == "v3":
+        from .joint_scan import JointScanRLSearch
+        return JointScanRLSearch
+    from .controller import DeepRLSearch
+    return DeepRLSearch

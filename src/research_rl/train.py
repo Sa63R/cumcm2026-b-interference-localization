@@ -30,6 +30,8 @@ from .network import (CandidateActorCritic, TorchPolicy, pack_observations,
                       architecture_from_args, checkpoint_architecture, validate_architecture)
 from .distributions import (checkpoint_distribution, distribution_from_args,
                             validate_distribution, merge_probe_diagnostics)
+from .action_sets import (action_schema_from_args, checkpoint_action_schema,
+                          validate_action_schema, controller_for)
 from .portable_checkpoint import portable_paths
 
 
@@ -48,6 +50,7 @@ def episode(task):
     version = task[7] if len(task) > 7 else "v2"
     architecture = validate_architecture(task[8] if len(task) > 8 else None)
     action_distribution = validate_distribution(task[9] if len(task) > 9 else None)
+    candidate_schema = validate_action_schema(task[10] if len(task) > 10 else None)
     if not legal_training_seed(seed):
         raise ValueError("Training scenario seed is outside the declared training ranges")
     if deadline is not None and time.time() >= deadline:
@@ -56,8 +59,10 @@ def episode(task):
     if (_worker_model is None or _worker_model.hidden != hidden
             or _worker_model.feature_dim != FEATURE_DIMS[version]
             or _worker_model.architecture != architecture
-            or _worker_model.action_distribution != action_distribution):
-        _worker_model = CandidateActorCritic(hidden, FEATURE_DIMS[version], architecture, action_distribution)
+            or _worker_model.action_distribution != action_distribution
+            or _worker_model.action_schema != candidate_schema):
+        _worker_model = CandidateActorCritic(hidden, FEATURE_DIMS[version], architecture,
+                                             action_distribution, candidate_schema)
     _worker_model.load_state_dict(weights)
     _worker_model.eval()
     # Model construction consumes Torch RNG. Reset after constructing/loading,
@@ -77,11 +82,7 @@ def episode(task):
             diagnostic_records.append(policy.last_probe_diagnostics)
 
     simulator = LocalResearchSimulator(random_scenario(3, seed), max_real_duration_s=300)
-    if version == "v3":
-        from .joint_scan import JointScanRLSearch
-        controller_class = JointScanRLSearch
-    else:
-        controller_class = DeepRLSearch
+    controller_class = controller_for(version, candidate_schema)
     policy = TorchPolicy(_worker_model, deterministic=False, teacher=teacher,
                          capture_diagnostics=version == "v3")
     controller = controller_class(simulator.client(), policy, recorder=record,
@@ -211,6 +212,7 @@ def save_checkpoint(path, model, optimizer, args, state):
     payload = dict(algorithm=ALGORITHM_VERSIONS[args.feature_version], hidden=args.hidden,
                    architecture=model.architecture,
                    action_distribution=model.action_distribution,
+                   action_schema=model.action_schema,
                    feature_version=args.feature_version, feature_schema=feature_schema(args.feature_version),
                    model={k: v.detach().cpu() for k, v in model.state_dict().items()},
                    optimizer=optimizer.state_dict(), args=vars(args), state=state,
@@ -238,11 +240,13 @@ def validate_resume(payload, args):
         raise ValueError("checkpoint architecture differs; use --initialize-from for an explicit compatible expansion")
     if checkpoint_distribution(payload) != distribution_from_args(args):
         raise ValueError("checkpoint action distribution differs; use an explicit new-trial initialization")
+    if checkpoint_action_schema(payload) != action_schema_from_args(args):
+        raise ValueError("checkpoint action schema differs; use an explicit new-trial initialization")
     if payload.get("source_manifest") != source_manifest():
         raise ValueError("checkpoint source manifest differs; use --initialize-from for a separately logged new trial")
 
 
-def initialize_from(model, payload, *, allow_distribution_change=False):
+def initialize_from(model, payload, *, allow_distribution_change=False, allow_action_schema_change=False):
     """Explicit fresh-trial transfer; new feature columns initially have zero weight.
 
     Preserves old logits before further learning if the v1 prefix, other
@@ -260,6 +264,8 @@ def initialize_from(model, payload, *, allow_distribution_change=False):
             and payload.get("feature_schema") != feature_schema(previous_version)):
         raise ValueError("transfer checkpoint has unknown feature semantics")
     weights = dict(payload["model"])
+    if checkpoint_action_schema(payload) != model.action_schema and not allow_action_schema_change:
+        raise ValueError("action schema change requires an explicit supported new-trial migration")
     if checkpoint_distribution(payload) != model.action_distribution and not allow_distribution_change:
         # Legacy/paired callers must never silently load grouped weights into
         # a flat-policy trainer. PPO's explicit new-trial path opts in below.
@@ -306,6 +312,8 @@ def main(argv=None):
     parser.add_argument("--attention-heads", type=int, default=4)
     parser.add_argument("--group-alpha", type=int, choices=(0, 1), default=0,
                         help="0: original flat policy; 1: subtract log task-group size (v3 only)")
+    parser.add_argument("--probe-candidates", choices=("base", "axis_quantiles"), default="base",
+                        help="Explicit action-set extension; axis_quantiles requires v3 and a new trial")
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112026)
@@ -346,7 +354,8 @@ def main(argv=None):
     np.random.seed(args.seed % 2**32)
     random.seed(args.seed)
     model = CandidateActorCritic(args.hidden, FEATURE_DIMS[args.feature_version],
-                                 architecture_from_args(args), distribution_from_args(args)).to(args.device)
+                                 architecture_from_args(args), distribution_from_args(args),
+                                 action_schema_from_args(args)).to(args.device)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
     state = dict(update=0, optimizer_steps=0, episodes=0, next_seed=args.scenario_start, bc_complete=False)
     if args.resume:
@@ -370,14 +379,16 @@ def main(argv=None):
         save_checkpoint(args.output / "random.pt", model, optimizer, args, state.copy())
     if args.initialize_from:
         payload = torch.load(args.initialize_from, map_location=args.device, weights_only=False)
-        initialize_from(model, payload, allow_distribution_change=True)
+        initialize_from(model, payload, allow_distribution_change=True, allow_action_schema_change=True)
         state["bc_complete"] = True
         state["initialization"] = dict(path=str(args.initialize_from),
             sha256=hashlib.sha256(args.initialize_from.read_bytes()).hexdigest(),
             source_algorithm=payload["algorithm"], source_manifest=payload.get("source_manifest"),
             source_architecture=checkpoint_architecture(payload), target_architecture=model.architecture,
             source_distribution=checkpoint_distribution(payload), target_distribution=model.action_distribution,
-            preserves_initial_probabilities=checkpoint_distribution(payload) == model.action_distribution,
+            source_action_schema=checkpoint_action_schema(payload), target_action_schema=model.action_schema,
+            preserves_initial_probabilities=(checkpoint_distribution(payload) == model.action_distribution
+                                              and checkpoint_action_schema(payload) == model.action_schema),
             source_state=payload.get("state"), source_git_commit=payload.get("git_commit"))
         save_checkpoint(args.output / "initialized.pt", model, optimizer, args, state.copy())
     started = time.monotonic()
@@ -390,6 +401,7 @@ def main(argv=None):
     config = {**vars(args), "algorithm": ALGORITHM_VERSIONS[args.feature_version], "git_commit": git_version(),
               "architecture_spec": model.architecture,
               "action_distribution": model.action_distribution,
+              "action_schema": model.action_schema,
               "feature_schema": feature_schema(args.feature_version),
               "source_manifest": source_manifest(),
               "gamma": 1.0, "reward_scale_s": 1000, "failure_penalty_s": 360000,
@@ -411,7 +423,7 @@ def main(argv=None):
             epoch_deadline = time.time() + max(0.0, stop_at - time.monotonic())
             tasks.append((seed, weights, args.hidden, random.randrange(2**31), teacher,
                           args.max_decisions, epoch_deadline, args.feature_version, model.architecture,
-                          model.action_distribution))
+                          model.action_distribution, model.action_schema))
         # Workers check the shared absolute deadline before every physical
         # action; already queued tasks skip instead of overrunning the cutoff.
         results = list(executor.map(episode, tasks)) if executor else [episode(t) for t in tasks]

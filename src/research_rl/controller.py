@@ -155,6 +155,7 @@ class DeepRLSearch(EfficientSearch):
             feature_schema=self.schema, feature_wall_time_s=0.0,
             network_architecture=getattr(policy, "architecture", {"name": "external_callable"}),
             action_distribution=getattr(policy, "action_distribution", {"name": "external_callable"}),
+            action_schema=getattr(policy, "action_schema", {"version": 1, "name": "base"}),
             context_dim=CONTEXT_DIM, max_decisions=max_decisions,
             learned_scope=["cover_point", "source_channel", "probe_point", "clear_order"],
             fixed_scope=["initial_origin_scan", "channel_order_inside_cover_scan",

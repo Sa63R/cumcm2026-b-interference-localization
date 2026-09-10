@@ -5,7 +5,8 @@ from .controller import DeepRLSearch
 
 def run_rl_search(client, *, problem=3, max_actions=20000, checkpoint=None,
                   device="cpu", deterministic=True, max_decisions=256,
-                  policy=None, max_active_probes=6, num_threads=1, feature_version=None):
+                  policy=None, max_active_probes=6, num_threads=1, feature_version=None,
+                  probe_candidates=None):
     """Observation-only evaluator entry point; policy files are trusted artifacts.
 
     ``checkpoint`` is loaded once per process/path/mtime by the network module.
@@ -27,11 +28,12 @@ def run_rl_search(client, *, problem=3, max_actions=20000, checkpoint=None,
         feature_version = getattr(policy, "feature_version", "v2")
     if getattr(policy, "feature_version", feature_version) != feature_version:
         raise ValueError("policy and requested feature versions differ")
-    if feature_version == "v3":
-        from .joint_scan import JointScanRLSearch
-        controller = JointScanRLSearch
-    else:
-        controller = DeepRLSearch
+    from .action_sets import action_schema, validate_action_schema, controller_for
+    policy_schema = validate_action_schema(getattr(policy, "action_schema", None))
+    selected_schema = action_schema(probe_candidates) if probe_candidates is not None else policy_schema
+    if hasattr(policy, "action_schema") and policy_schema != selected_schema:
+        raise ValueError("policy and requested action schema differ")
+    controller = controller_for(feature_version, selected_schema)
     return controller(client, policy, max_actions=max_actions,
                         max_decisions=max_decisions,
                         max_active_probes=max_active_probes,

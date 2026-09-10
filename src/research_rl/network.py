@@ -11,6 +11,7 @@ from torch.distributions import Categorical
 from .controller import ALGORITHM_VERSIONS, CONTEXT_DIM, FEATURE_DIM, FEATURE_DIMS, feature_schema
 from .distributions import (adjusted_logits, validate_distribution, checkpoint_distribution,
                             sample_probe_diagnostics)
+from .action_sets import validate_action_schema, checkpoint_action_schema
 
 
 def architecture_spec(name="mlp", layers=1, heads=4):
@@ -92,14 +93,18 @@ class CandidateActorCritic(nn.Module):
     from forward inputs. The mean/max pooled context communicates the remaining
     task set; this compact architecture does not claim to reproduce AlphaGo.
     """
-    def __init__(self, hidden=96, feature_dim=FEATURE_DIM, architecture=None, action_distribution=None):
+    def __init__(self, hidden=96, feature_dim=FEATURE_DIM, architecture=None, action_distribution=None,
+                 action_schema=None):
         super().__init__()
         self.hidden = hidden
         self.feature_dim = feature_dim
         self.architecture = validate_architecture(architecture)
         self.action_distribution = validate_distribution(action_distribution)
+        self.action_schema = validate_action_schema(action_schema)
         if self.action_distribution["name"] != "flat" and feature_dim != 60:
             raise ValueError("group distribution requires v3 feature semantics")
+        if self.action_schema["name"] != "base" and feature_dim != 60:
+            raise ValueError("axis candidate extension requires v3 feature semantics")
         if self.architecture["name"] == "attention" and hidden % self.architecture["heads"]:
             raise ValueError("hidden width must be divisible by attention heads")
         self.encoder = nn.Sequential(nn.Linear(feature_dim, hidden), nn.Tanh(),
@@ -155,6 +160,7 @@ class TorchPolicy:
         self.teacher = teacher
         self.architecture = model.architecture
         self.action_distribution = model.action_distribution
+        self.action_schema = model.action_schema
         self.feature_version = next(v for v, dim in FEATURE_DIMS.items() if dim == model.feature_dim)
         self.capture_diagnostics = capture_diagnostics and self.feature_version == "v3"
         self.center_mask = None
@@ -197,7 +203,8 @@ def _load_cached(path, modified_ns, device, deterministic):
         raise ValueError("checkpoint feature semantics do not match this implementation")
     model = CandidateActorCritic(checkpoint["hidden"], FEATURE_DIMS[version],
                                  checkpoint_architecture(checkpoint),
-                                 checkpoint_distribution(checkpoint)).to(device)
+                                 checkpoint_distribution(checkpoint),
+                                 checkpoint_action_schema(checkpoint)).to(device)
     model.load_state_dict(checkpoint["model"])
     model.eval()
     return TorchPolicy(model, device=device, deterministic=deterministic)
