@@ -132,10 +132,14 @@ class CandidateActorCritic(nn.Module):
         nn.init.zeros_(self.actor[-1].bias)
         # Create the new branches AFTER the entire legacy network, preserving
         # the legacy initialization stream and original state_dict key names.
-        self.relations = nn.ModuleList(
-            [GatedSetAttention(hidden, self.architecture["heads"])
-             for _ in range(self.architecture["layers"])]
-            if self.architecture["name"] == "attention" else [])
+        self.relations = nn.ModuleList()
+        if self.architecture["name"] == "attention":
+            # Training constructs parameters on CPU before .to(device). Keep
+            # the branch's original random weights but do not shift the outer
+            # stream used by matched MLP/attention minibatch permutations.
+            with torch.random.fork_rng(devices=[]):
+                self.relations.extend(GatedSetAttention(hidden, self.architecture["heads"])
+                                      for _ in range(self.architecture["layers"]))
         self.route_adapter = None
         if feature_dim == FEATURE_DIMS["v4"]:
             # Preserve the old 60-column GEMM shape and accumulation order.
