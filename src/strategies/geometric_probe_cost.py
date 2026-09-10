@@ -41,6 +41,29 @@ def observation_worlds(region, limit=9):
     return tuple(result)
 
 
+def radius_width_weights(region, worlds):
+    """Unnormalized area-hypothesis masses after integrating a uniform R prior.
+
+    Keep precisely the existing worlds and their equal-mass area quadrature.
+    This only adds the compatible radius interval's relative width. It does
+    not add the quantized bearing likelihood, refine the outer polygon, or
+    integrate future errors/R inside each world; it is not an exact posterior.
+    The 1e-7 negative-response margin matches observation_worlds exactly.
+    """
+    values = []
+    for source, _radius, _phase in worlds:
+        positive = [math.dist(source, obs.position) for obs in region.observations]
+        if (not positive or math.hypot(*source) > 1800.+1e-8
+                or any(distance <= 5. for distance in positive)):
+            values.append(0.)
+            continue
+        low = max(1000., max(positive))
+        high = min([1500.] + [math.dist(source, point)-1e-7
+                   for point in getattr(region, 'no_signal_positions', ())])
+        values.append(max(0., high-low)/500.)
+    return tuple(values)
+
+
 class _HypothesisClient:
     """Cost-only generative client for an explicit caller-supplied hypothesis."""
     def __init__(self, region, world, start, tuned_channel, deadline):
@@ -212,18 +235,25 @@ class ProbeCostResult(JointObservationResult):
 
 
 class GeometricProbeCostSearch(GeometricJointSearch):
-    def __init__(self, client, max_actions, max_active_probes, joint_config, mode, max_planning_s):
+    def __init__(self, client, max_actions, max_active_probes, joint_config, mode, max_planning_s,
+                 hypothesis_weighting='equal'):
         if mode not in ('disabled', 'single', 'cross'):
             raise ValueError('probe_mode must be disabled, single, or cross')
+        if hypothesis_weighting not in ('equal', 'radius_width'):
+            raise ValueError('hypothesis_weighting must be equal or radius_width')
+        if hypothesis_weighting != 'equal' and mode != 'single':
+            raise ValueError('radius_width weighting is an isolated single-mode ablation')
         if (isinstance(max_planning_s, bool) or not isinstance(max_planning_s, (int, float))
                 or not math.isfinite(max_planning_s) or not 0 <= max_planning_s <= 600):
             raise ValueError('max_planning_s must be finite in 0..600')
         super().__init__(client, max_actions, max_active_probes, joint_config)
         self.mode, self.max_planning_s = mode, max_planning_s
+        self.hypothesis_weighting = hypothesis_weighting
         self.variant = 'geometric_probe_'+mode
         self.report = ProbeCostResult(**asdict(self.report))
         self.report.variant = self.variant
         self.report.strategy_parameters.update(probe_mode=mode, max_planning_s=max_planning_s)
+        self.report.strategy_parameters['hypothesis_weighting'] = hypothesis_weighting
         self.report.first_probe_planning = dict(planning_s=0., changed=0, decisions=[], fallbacks=[])
         self._probe_considered = set()
 
@@ -260,8 +290,17 @@ class GeometricProbeCostSearch(GeometricJointSearch):
         if not worlds or len(candidates) < 2:
             stats['fallbacks'].append('no_worlds_or_candidates')
             return baseline
+        weights = radius_width_weights(region, worlds) if self.hypothesis_weighting == 'radius_width' else None
+        weight_sum = math.fsum(weights) if weights is not None else None
+        if weights is not None and weight_sum <= 0.:
+            stats['fallbacks'].append('zero_radius_mass')
+            stats['planning_s'] += time.perf_counter()-started
+            return baseline
         decision = dict(channel=channel, current=[self.client.state.position.x, self.client.state.position.y],
                         baseline=[baseline.x, baseline.y], worlds=len(worlds), candidates=[], status='baseline')
+        if weights is not None:
+            decision.update(hypothesis_weighting='radius_width', radius_weights=list(weights),
+                            effective_world_count=weight_sum**2/math.fsum(w*w for w in weights))
         stats['decisions'].append(decision)
         try:
             values = []
@@ -274,7 +313,9 @@ class GeometricProbeCostSearch(GeometricJointSearch):
                     stats['fallbacks'].append('incomplete_primary_proxy')
                     decision['status'] = 'incomplete_primary_proxy'
                     return baseline
-                cost = statistics.fmean(sample['cost_s'] for sample in samples)
+                cost = (statistics.fmean(sample['cost_s'] for sample in samples)
+                        if weights is None else math.fsum(sample['cost_s']*w
+                            for sample, w in zip(samples, weights))/weight_sum)
                 # Same quadrature index/error phase across candidate positions;
                 # this is one representative trace, not hidden actual truth.
                 representative = samples[len(samples)//2]['actions']
@@ -329,7 +370,8 @@ class GeometricProbeCostSearch(GeometricJointSearch):
 
 
 def run_probe_cost_search(client, *, problem=3, max_actions=20000, max_active_probes=6,
-                          joint_config=None, probe_mode='single', max_planning_s=120.):
+                          joint_config=None, probe_mode='single', max_planning_s=120.,
+                          hypothesis_weighting='equal'):
     if problem not in (3, 'q3'):
         raise ValueError('Explicit first-probe planning is Q3-only')
     if type(max_actions) is not int or max_actions < 2:
@@ -337,4 +379,4 @@ def run_probe_cost_search(client, *, problem=3, max_actions=20000, max_active_pr
     if type(max_active_probes) is not int or not 0 <= max_active_probes <= 30:
         raise ValueError('max_active_probes must be an integer in 0..30')
     return GeometricProbeCostSearch(client, max_actions, max_active_probes, joint_config,
-                                    probe_mode, max_planning_s).run()
+                                    probe_mode, max_planning_s, hypothesis_weighting).run()

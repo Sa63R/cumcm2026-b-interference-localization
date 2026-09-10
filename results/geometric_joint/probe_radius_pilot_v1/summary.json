@@ -1,0 +1,466 @@
+{
+  "manifest": {
+    "phase": "probe-radius-pilot",
+    "seeds": [
+      112001,
+      112002,
+      112003,
+      112004,
+      112005,
+      112006,
+      112007,
+      112008,
+      112009,
+      112010,
+      112011,
+      112012,
+      112013,
+      112014,
+      112015,
+      112016
+    ],
+    "source_access": "Training only; no official simulator.",
+    "specs": [
+      {
+        "name": "geometric_probe_single",
+        "entrypoint": "strategies.geometric_probe_cost:run_probe_cost_search",
+        "kwargs": {
+          "probe_mode": "single"
+        }
+      },
+      {
+        "name": "geometric_probe_radius_width",
+        "entrypoint": "strategies.geometric_probe_cost:run_probe_cost_search",
+        "kwargs": {
+          "probe_mode": "single",
+          "hypothesis_weighting": "radius_width"
+        }
+      }
+    ],
+    "identities": {
+      "geometric_probe_single": {
+        "source_sha256": {
+          "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+          "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+          "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+          "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+          "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+          "src/planning/disk_waypoint.py": "7115775985a312bf079c2b8dd574c9518195c9e64cdfeb6bcedade92bfe3b263",
+          "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+          "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+          "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+          "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+          "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+          "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+          "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+          "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+          "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+          "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+          "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+          "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+          "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+          "src/strategies/geometric_centroid.py": "78a4e1b245a3d45d4bfa7a1df61f7837740996726e52fc77dd5eebe0da22d957",
+          "src/strategies/geometric_joint.py": "8d3f6dc07c47df8e3f0657d54c1698e8200515506f486549f47b889e7c08bd3f",
+          "src/strategies/geometric_probe_cost.py": "c072a602ca7a03ee91db1a036aae2c0a18cf5a108c50821abb707db40e14b319",
+          "src/strategies/geometric_route_clear.py": "97ed668cb81145f717a6cccdce5083774d50e926b1e1ee396473efe16974439e",
+          "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+          "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+          "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+          "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+          "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+          "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+          "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+          "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+        },
+        "spec_sha256": "ee90d0dfdb40a71a8a73faef31fa8cc6dac46c00496a9fd935054999685dd9c2",
+        "checkpoint_sha256": {},
+        "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+      },
+      "geometric_probe_radius_width": {
+        "source_sha256": {
+          "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+          "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+          "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+          "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+          "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+          "src/planning/disk_waypoint.py": "7115775985a312bf079c2b8dd574c9518195c9e64cdfeb6bcedade92bfe3b263",
+          "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+          "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+          "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+          "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+          "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+          "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+          "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+          "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+          "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+          "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+          "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+          "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+          "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+          "src/strategies/geometric_centroid.py": "78a4e1b245a3d45d4bfa7a1df61f7837740996726e52fc77dd5eebe0da22d957",
+          "src/strategies/geometric_joint.py": "8d3f6dc07c47df8e3f0657d54c1698e8200515506f486549f47b889e7c08bd3f",
+          "src/strategies/geometric_probe_cost.py": "c072a602ca7a03ee91db1a036aae2c0a18cf5a108c50821abb707db40e14b319",
+          "src/strategies/geometric_route_clear.py": "97ed668cb81145f717a6cccdce5083774d50e926b1e1ee396473efe16974439e",
+          "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+          "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+          "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+          "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+          "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+          "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+          "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+          "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+        },
+        "spec_sha256": "5df2010c90c6db315e30d0ba2543766e0c00ec98726afd0855292498b2aa0a3f",
+        "checkpoint_sha256": {},
+        "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+      }
+    },
+    "driver_sha256": "749eccbe741f473fd9c7e3018ca36fef33a9b3e9e5d41d459c1c61ac4303dc25"
+  },
+  "wall_s": 97.42307460000302,
+  "groups": {
+    "geometric_probe_single": {
+      "runs": 16,
+      "expected_runs": 16,
+      "complete": true,
+      "successful_runs": 16,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3233.543432125,
+      "penalized_mean_total_time_s": 3233.543432125,
+      "raw_p95_total_time_s": 3714.2329445,
+      "raw_max_total_time_s": 3790.88108,
+      "mean_time_per_source_s": 267.6449117660038,
+      "mean_program_runtime_s": 2.9808224625003277,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "mean_components_s": {
+        "movement_s": 2441.918432125,
+        "switching_s": 114.4375,
+        "detection_s": 615.9375,
+        "optical_s": 36.75,
+        "removal_s": 24.5
+      }
+    },
+    "geometric_probe_radius_width": {
+      "runs": 16,
+      "expected_runs": 16,
+      "complete": true,
+      "successful_runs": 16,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3237.0736100625,
+      "penalized_mean_total_time_s": 3237.0736100625,
+      "raw_p95_total_time_s": 3714.6556745,
+      "raw_max_total_time_s": 3790.88108,
+      "mean_time_per_source_s": 267.89209453429385,
+      "mean_program_runtime_s": 3.073907031248382,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "mean_components_s": {
+        "movement_s": 2442.6361100625,
+        "switching_s": 114.4375,
+        "detection_s": 618.75,
+        "optical_s": 36.75,
+        "removal_s": 24.5
+      }
+    }
+  },
+  "comparisons": {
+    "geometric_probe_single": {
+      "geometric_probe_radius_width": {
+        "pairs": 16,
+        "all_pairs_successful_no_candidate_failed_clear": true,
+        "mean_seconds_saved": -3.5301779374999853,
+        "saving_ci95_s": [
+          -11.84597718750004,
+          2.5349869062500785
+        ],
+        "mean_reduction_fraction": -0.001091736669570631,
+        "p95_time_ratio": 1.0001138135400542,
+        "worst_paired_regression_s": 55.59730800000034,
+        "wins": 3,
+        "losses": 4,
+        "ties": 9,
+        "performance_target_met_on_supplied_cases": false,
+        "scope": "This comparison alone does not establish completeness of the full final test suite."
+      }
+    }
+  },
+  "joint_diagnostics": [
+    {
+      "seed": 112001,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 112001,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 112002,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 3,
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 112002,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 3,
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 112003,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 112003,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 112004,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 112004,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 112005,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 4
+      }
+    },
+    {
+      "seed": 112005,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 4
+      }
+    },
+    {
+      "seed": 112006,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 112006,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 2,
+      "actual_sharing_time_s": 12.0,
+      "by_trigger": {
+        "active_point": 2
+      }
+    },
+    {
+      "seed": 112007,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 112007,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 112008,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 112008,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 112009,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 112009,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 112010,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 112010,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 112011,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 4
+      }
+    },
+    {
+      "seed": 112011,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 4
+      }
+    },
+    {
+      "seed": 112012,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 112012,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 112013,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 112013,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 1,
+      "actual_sharing_time_s": 6.0,
+      "by_trigger": {
+        "active_point": 1
+      }
+    },
+    {
+      "seed": 112014,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 112014,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 3,
+      "actual_sharing_time_s": 18.0,
+      "by_trigger": {
+        "active_point": 3
+      }
+    },
+    {
+      "seed": 112015,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 3,
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 112015,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 4,
+      "actual_sharing_time_s": 24.0,
+      "by_trigger": {
+        "active_point": 3,
+        "after_clear": 1
+      }
+    },
+    {
+      "seed": 112016,
+      "strategy": "geometric_probe_single",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    },
+    {
+      "seed": 112016,
+      "strategy": "geometric_probe_radius_width",
+      "shared_measurements": 0,
+      "actual_sharing_time_s": 0.0,
+      "by_trigger": {}
+    }
+  ]
+}
