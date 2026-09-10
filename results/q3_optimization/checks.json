@@ -1,0 +1,55 @@
+{
+  "data_origin": "synthetic_research_and_local_tests",
+  "date": "2026-09-10",
+  "solver_revision": "730d68335f814a625bc4977ab558d120426658d6",
+  "pytest": {
+    "command": ".venv-win/Scripts/python.exe -m pytest -q",
+    "working_directory": "repository root; PYTHONPATH=src",
+    "passed": 288,
+    "failed": 0,
+    "elapsed_s": 37.43,
+    "scope": "Current local workspace, including pre-existing practice-registration tests"
+  },
+  "experiments": {
+    "development_runs": 444,
+    "refinement_runs": 333,
+    "holdout_runs": 214,
+    "smoke_runs": 2,
+    "all_runs_completed_and_all_cleared": true,
+    "source_hashes_unchanged_within_each_run_set": true,
+    "development_seed_interval": [2000, 2029],
+    "holdout_random_seed_interval": [3000, 3099],
+    "hard_cases_reused_not_independent_holdout": 7,
+    "frozen_config": "experiments/q3_holdout_configs.json"
+  },
+  "independent_holdout_trace_audit": {
+    "trajectory_files_checked": 214,
+    "paired_scenarios": 107,
+    "source_files_hashed": 22,
+    "hashes_match_manifest_and_current_solver": true,
+    "frozen_parameters_identical_in_all_107_new_policy_runs": true,
+    "scenarios_reconstructed_equal_post_exit_ground_truth": true,
+    "successful_clear_actions_checked_against_ground_truth": 2834,
+    "maximum_successful_clear_distance_m": 19.894165,
+    "failed_clear_attempts": 0,
+    "accepted_exits": 214,
+    "per_action_cost_and_microsecond_cumulative_accounting_match": true,
+    "random_faster_equal_slower": [100, 0, 0],
+    "hard_faster_equal_slower": [6, 0, 1],
+    "anomalies": 0
+  },
+  "lower_bounds": {
+    "case_count": 107,
+    "successful_runs_satisfying_lower_bound": 214,
+    "small_graph_dp_checked_against_all_permutations": 7,
+    "condition": "Initially unknown scenes and a policy guaranteeing all-clear under the public 10..16 source bound. The empty-channel action term does not apply to an oracle already told all source positions and channels.",
+    "precision": "Continuous physical lower-bound model with small numerical margin; not an arbitrary-length microsecond interval proof.",
+    "mean_random_common_lower_bound_s": 1919.8684778306,
+    "mean_time_over_mean_bound_old": 2.627276117137781,
+    "mean_time_over_mean_bound_new": 1.8086931089747247,
+    "not_a_global_approximation_ratio": true
+  },
+  "official_simulator_called_this_optimization": false,
+  "new_policy_official_practice_verified": false,
+  "paper_modified_or_rebuilt_this_optimization": false
+}

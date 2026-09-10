@@ -1,0 +1,103 @@
+{
+  "analysis_kind": "offline_synthetic_q3_common_oracle_lower_bounds",
+  "data_origin": "synthetic_research",
+  "simulator_requests_sent": false,
+  "comparison_stage": "development",
+  "created_utc": "2026-09-10T13:59:23.958361+00:00",
+  "input_sha256": {
+    "manifest.json": "b7b1ff29832046804075a407e4656160c0bf7a1db8d561f9b2cda1e5c7452bc2",
+    "runs.csv": "75e9930e6f2a84b43bd983a44d355ccd7bd595bf17d4ec283990edab150b84f8"
+  },
+  "analysis_source_sha256_start": {
+    "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+    "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+    "experiments/session_lower_bounds.py": "b966b1ab78f726866d0c760356b47441661c58e6d219fe2b7e8f3ad3ecf53859",
+    "experiments/q3_benchmark_bounds.py": "6388ae01e7bb614f07d31a2265aed71452df8b3fd158e0ecac079c446791052f"
+  },
+  "analysis_source_sha256_end": {
+    "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+    "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+    "experiments/session_lower_bounds.py": "b966b1ab78f726866d0c760356b47441661c58e6d219fe2b7e8f3ad3ecf53859",
+    "experiments/q3_benchmark_bounds.py": "6388ae01e7bb614f07d31a2265aed71452df8b3fd158e0ecac079c446791052f"
+  },
+  "case_generator_verified_against_manifest": true,
+  "dp_exhaustive_oracle_checks": 7,
+  "numerical_margin": 1e-06,
+  "case_count": 1,
+  "run_count": 2,
+  "successful_run_bound_checks": 2,
+  "formula": "L_lower/5 + 5*N + (20-N)*30 for N<16; empty-channel term is zero for N=16; subtract 1e-6 s",
+  "edge_relaxation": "first=max(0,|s|-20-1e-6); edge=max(0,|s_i-s_j|-40-1e-6); exact subset DP with a fixed origin and free endpoint",
+  "bound_condition": "Complete clearance plus an online guarantee against any additional permitted source; the empty-channel necessity term is not a bound for merely lucky partial discovery.",
+  "notes": [
+    "True source centres are reconstructed only after the completed comparison, never supplied to any strategy.",
+    "Pairwise minimum distances between clearance disks can be mutually incompatible at a shared visit; this relaxation need not be attained.",
+    "This is an offline oracle lower benchmark, not an attainable shortest completion time or an online action plan.",
+    "No return to the origin is required. Success costs and empty-channel actions are disjoint; movement is counted once.",
+    "Random cases and the shared seven deterministic hard cases are summarized separately.",
+    "Mean time divided by mean lower bound and nonnegative gaps are descriptive finite-sample statistics, never global approximation ratios.",
+    "Failed or incomplete rows retain their values but cannot support full-clear efficiency comparisons; successful-only summaries are explicitly labelled.",
+    "The physical relaxation uses continuous time with a small numerical margin; recorded simulator microsecond rounding is checked against every successful run."
+  ],
+  "cases": [
+    {
+      "case_id": "q3-random-2000",
+      "seed": 2000,
+      "source_total": 11,
+      "case_kind": "random",
+      "lower_route_length_m": 8113.275045769517,
+      "movement_lower_bound_s": 1622.6550091539034,
+      "successful_clear_action_lower_s": 55.0,
+      "empty_channel_action_lower_s": 270.0,
+      "empty_channel_count": 9,
+      "empty_channel_bound_applied": true,
+      "common_lower_bound_s": 1947.6550081539033,
+      "lower_graph_order_channels": [
+        10,
+        6,
+        15,
+        13,
+        20,
+        2,
+        3,
+        4,
+        17,
+        19,
+        7
+      ],
+      "scenario_sha256": "e7e4a70f5ba9373048a21cf926f803e59e144b27ceaf59f86dd2e2d37c1c6b18"
+    }
+  ],
+  "groups": [
+    {
+      "case_kind": "random",
+      "strategy": "baseline_current",
+      "runs": 1,
+      "successful_runs": 1,
+      "failed_runs": 0,
+      "mean_virtual_time_s": 4205.319472,
+      "mean_lower_bound_s": 1947.6550081539033,
+      "mean_time_over_mean_lower_bound": 2.159170620255811,
+      "mean_nonnegative_gap_s": 2257.6644638460966,
+      "all_rows_valid_for_bound_comparison": true,
+      "successful_mean_time_over_mean_lower_bound": 2.159170620255811,
+      "successful_mean_nonnegative_gap_s": 2257.6644638460966,
+      "interpretation": "Descriptive ratio to a common offline lower benchmark on these cases only; not a global approximation ratio. Failed/incomplete rows do not satisfy the full-clear benchmark condition."
+    },
+    {
+      "case_kind": "random",
+      "strategy": "efficient_default",
+      "runs": 1,
+      "successful_runs": 1,
+      "failed_runs": 0,
+      "mean_virtual_time_s": 3424.493598,
+      "mean_lower_bound_s": 1947.6550081539033,
+      "mean_time_over_mean_lower_bound": 1.7582649820749965,
+      "mean_nonnegative_gap_s": 1476.8385898460967,
+      "all_rows_valid_for_bound_comparison": true,
+      "successful_mean_time_over_mean_lower_bound": 1.7582649820749965,
+      "successful_mean_nonnegative_gap_s": 1476.8385898460967,
+      "interpretation": "Descriptive ratio to a common offline lower benchmark on these cases only; not a global approximation ratio. Failed/incomplete rows do not satisfy the full-clear benchmark condition."
+    }
+  ]
+}
