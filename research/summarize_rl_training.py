@@ -20,7 +20,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-DEFAULT_ARCHIVES = ("milestone-0200.tar.gz", "milestone-0300.tar.gz", "cold-001-complete.tar.gz", "milestone-0410.tar.gz")
+DEFAULT_ARCHIVES = ("milestone-0200.tar.gz", "milestone-0300.tar.gz", "cold-001-complete.tar.gz",
+                    "milestone-0410.tar.gz", "milestone-0510.tar.gz")
 VALIDATION_SEEDS = list(range(6000, 6048))
 
 
@@ -247,11 +248,59 @@ def checkpoint_update(strategy, trial):
     return int(match.group(1)) if match else None
 
 
+def audit_selected_designs(report):
+    """Verify claimed inheritance and matched budgets from archived configs."""
+    trials = report["trials"]
+    chain = ("joint-cold-mlp-001", "cold-finetune-ppo-001", "cold-finetune-ppo-002")
+    designs = {}
+    if all(name in trials for name in chain):
+        cumulative = 0
+        links = []
+        for index, name in enumerate(chain):
+            run = trials[name]
+            source = run["config"].get("initialize_from")
+            if index == 0:
+                if source is not None:
+                    raise ValueError("Selected cold chain is not initialized from random")
+            else:
+                predecessor = trials[chain[index-1]]
+                expected_file = f"ppo_{predecessor['summary']['completed_updates']:06d}.pt"
+                if (not source or PurePosixPath(source).parent.name != chain[index-1]
+                        or PurePosixPath(source).name != expected_file):
+                    raise ValueError("Selected model chain does not match recorded initialization")
+            if run["summary"]["actual_bc_episodes"] != 0:
+                raise ValueError("Selected no-BC model chain contains BC")
+            cumulative += run["summary"]["policy_episodes_used"]
+            links.append(dict(trial=name, cumulative_policy_episodes=cumulative))
+        designs["selected_ppo_chain"] = links
+    group = ("joint-cold-group-alpha0-002", "joint-cold-group-alpha1-002")
+    if all(name in trials for name in group):
+        left, right = (trials[name] for name in group)
+        keys = ("git_commit", "feature_version", "architecture", "hidden", "seed", "scenario_start",
+                "updates", "episodes_per_update", "bc_episodes", "initialize_from", "epochs",
+                "minibatch", "lr", "gae_lambda", "clip", "value_coef", "entropy_coef",
+                "aux_bc_coef", "target_kl", "max_decisions", "workers", "num_threads", "max_wall_s")
+        if any(left["config"].get(k) != right["config"].get(k) for k in keys):
+            raise ValueError("Group comparison has an undeclared matched-config difference")
+        if [left["config"].get("group_alpha"), right["config"].get("group_alpha")] != [0, 1]:
+            raise ValueError("Expected an alpha0/alpha1 ablation")
+        for key in ("policy_episodes_used", "completed_updates", "actual_policy_seed_ranges", "actual_bc_episodes"):
+            if left["summary"][key] != right["summary"][key]:
+                raise ValueError("Group endpoint is not matched in observed training data")
+        designs["matched_group_endpoint"] = dict(trials=list(group), config_keys_checked=list(keys),
+            completed_updates=left["summary"]["completed_updates"],
+            sampled_episodes_each=left["summary"]["policy_episodes_used"],
+            scope="same source/config and completed scenario sequence; intermediate wallclock checkpoints not matched")
+    return designs
+
+
 def figures(report, output):
     plt.rcParams.update({"font.size": 10, "axes.spines.top": False, "axes.spines.right": False,
                          "svg.hashsalt": "q3-rl-training-audit-v1"})
     trials, validation = report["trials"], report["validation"]
-    cold = [name for name in trials if "cold" in name and not trials[name]["config"].get("initialize_from")]
+    # Separate the later, explicitly matched distribution experiment below.
+    cold = [name for name in trials if name.startswith("joint-cold-mlp-")
+            and not trials[name]["config"].get("initialize_from")]
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.7), layout="constrained")
     colors = ["#087e8b", "#b44c30", "#5b4db2", "#666666"]
     for index, name in enumerate(cold):
@@ -325,6 +374,43 @@ def figures(report, output):
     for ax in axes: ax.grid(axis="x", alpha=.15)
     save_figure(fig, output / "endpoints_and_cost")
 
+    chain_names = ("joint-cold-mlp-001", "cold-finetune-ppo-001", "cold-finetune-ppo-002")
+    group_names = ("joint-cold-group-alpha0-002", "joint-cold-group-alpha1-002")
+    if not all(name in trials for name in chain_names + group_names):
+        return
+    fig, axes = plt.subplots(1, 2, figsize=(12.8, 4.7), layout="constrained")
+    offset = 0
+    for index, name in enumerate(chain_names):
+        run = trials[name]
+        count = run["config"]["episodes_per_update"]
+        points = sorted((offset + checkpoint_update(s, name)*count, r["mean_virtual_time_s"])
+                        for s, r in validation.items() if checkpoint_update(s, name) is not None)
+        if points:
+            axes[0].plot(*zip(*points), "o--", color=colors[index],
+                         label=("Cold start", "Fine-tune 1", "Fine-tune 2")[index])
+            for x, y in points:
+                axes[0].annotate(f"{y:.1f}", (x, y), xytext=(0, 8), textcoords="offset points", ha="center", fontsize=8)
+        offset += run["summary"]["policy_episodes_used"]
+    axes[0].set(title="A  Selected PPO chain: fixed 48-case validation",
+                xlabel="Cumulative sampled episodes in this model's ancestry", ylabel="Greedy mean virtual time (s)")
+    for index, name in enumerate(group_names):
+        points = sorted((checkpoint_update(s, name), r["mean_virtual_time_s"])
+                        for s, r in validation.items() if checkpoint_update(s, name) is not None)
+        axes[1].plot(*zip(*points), "o--", color=colors[index], label=f"alpha {index}; seed 9112033")
+        for x, y in points:
+            axes[1].annotate(f"{y:.1f}", (x, y), xytext=(-5 if index else 5, 9),
+                             textcoords="offset points", ha="center", fontsize=8)
+    axes[1].set(title="B  Group correction: matched endpoint at u512",
+                xlabel="PPO update (32 sampled episodes each)", ylabel="Greedy mean virtual time (s)")
+    axes[1].text(.02, .03, "Early checkpoints: u184 vs u190 (unequal budget).\nFinal alpha 1 - alpha 0 benefit is not established.",
+                 transform=axes[1].transAxes, fontsize=8)
+    for ax in axes:
+        ax.axhline(report["baseline_mean_s"], linestyle=":", color="#555555", label="Frozen rollout")
+        ax.grid(axis="y", alpha=.18)
+        ax.margins(x=.08, y=.22)
+        ax.legend(fontsize=8, loc="upper right")
+    save_figure(fig, output / "chain_and_group")
+
 
 def table(headers, rows):
     return "| " + " | ".join(headers) + " |\n| " + " | ".join("---" for _ in headers) + " |\n" + "\n".join("| " + " | ".join(str(x) for x in row) + " |" for row in rows) + "\n"
@@ -339,7 +425,8 @@ def write_report(report, output):
         version = c.get("feature_version", c.get("algorithm", "unknown").rsplit("-",1)[-1])
         trainer = "REINFORCE" if "reinforce" in c.get("trainer", "") else "PPO"
         init = PurePosixPath(c["initialize_from"]).parent.name + "/" + PurePosixPath(c["initialize_from"]).name if c.get("initialize_from") else "random"
-        rows.append([name, version+" / "+architecture+" / "+trainer,
+        distribution = c.get("group_alpha", 0)
+        rows.append([name, version+" / "+architecture+" / "+trainer+f" / alpha{distribution}",
             f"{s['completed_updates']}/{c['updates']}", s["actual_bc_episodes"], s["policy_episodes_used"], s["paired_baseline_episodes_used"],
             f"{s['last_logged_elapsed_s']/60:.2f}", s["stop_evidence"]])
         configs.append([name, c["seed"], init, str(s["actual_policy_seed_ranges"]),
@@ -358,7 +445,7 @@ def write_report(report, output):
 
 实际BC局数由日志阶段计算，不按config中的默认参数推测。继承检查点的试验不会重新进行BC；下面的策略采样局数只计当前试验参与更新的采样，**不包含继承模型的历史训练成本**。采样可以重复已经训练过的场景，局数不等同于全新世界数量。REINFORCE额外执行同场景greedy baseline，单列该列，不能按与PPO相同局数声称使用了相同仿真预算。
 
-""" + table(["试验", "控制/网络/训练", "完成/计划更新", "BC局", "策略采样局", "额外baseline局", "末更新时长/min", "终止证据"], rows)
+""" + table(["试验", "控制/网络/训练/分布", "完成/计划更新", "BC局", "策略采样局", "额外baseline局", "末更新时长/min", "终止证据"], rows)
     text += "\n" + table(["试验", "训练随机种子", "初始化来源", "实际策略采样场景段（闭区间）", "源码", "CPU workers", "hidden"], configs)
     text += """
 末更新时长来自 `elapsed_wall_s`，包括该训练进程当时的等待和保存等开销，不代表GPU独占时间；并发试验不能直接用它推算GPU工作小时。达到更新数只是已完成预设预算，不代表收敛或达到最优。deadline末尾采样可能没有进入更新，这些任务单列在audit中。早期日志没有optimizer_steps字段，不能补造优化器更新次数。
@@ -373,6 +460,10 @@ def write_report(report, output):
 
 误差条是同48场景相对冻结rollout的配对均值差，bootstrap 10000次、随机种子913、百分位95%区间；它衡量场景样本波动，**不是不同训练随机种子的不确定性**。因为这些验证结果用于反复开发、选择检查点，不能把该区间当成独立最终测试的保证。
 
+![最佳模型继承链与分组概率对照](chain_and_group.png)
+
+左图将cold001及两次PPO微调按真实继承关系连接到累计采样量，终点共40960局（16384+12288+12288），没有BC。图中只列测过的固定验证端点，所用场景段、初始化和学习率见表；这是开发中选出的模型链，不是预先保证单调改善的算法曲线。右图单独保留同种子、同训练场景序列、同512×32采样量的alpha0/1对照；两个早期检查点分别是u184/u190，不能将它们当作同训练量对照。
+
 ## 全部已归档RL验证端点
 
 """ + table(["检查点", "平均虚拟秒", "比rollout节省秒 [95% CI]", "胜/负/平", "全清成功", "失败清除"], validations)
@@ -384,7 +475,9 @@ def write_report(report, output):
 3. v1/v2同起点同更新数的特征对照，以及MLP/attention同起点同更新数的网络对照，比普通跨试验比较更有解释力。但各只有一组训练随机种子，仍不能证明额外几何特征或注意力在所有预算、初始化下无用。
 4. 训练总虚拟时间下降可以来自减少远距离来回扫描，不能仅凭全动作熵或teacher交叉熵判断源内探测是否充分探索。历史快照没有每源条件熵日志，新的分组概率版本才记录它；没有对旧日志虚构这种指标。
 5. 全清成功来自当前合法动作和保守兜底系统整体。现有记录不支持把全部成功率、全部时间收益归功于神经网络，更没有达到理论下界或不可再优化的证明。未使用官方正式测试，也未查看封存最终测试种子。
-6. 从cold001/u512出发，后续PPO384端点3178.339秒，paired REINFORCE374端点3224.109秒。但后者多运行11968条baseline轨迹，且时间截止使两者未完成相同更新数；这组结果不能被写成“在完全相同算力/仿真预算下PPO优于REINFORCE”。这里也没有合并尚在运行的分组alpha0/1或继续微调试验。
+6. 从cold001/u512出发，后续PPO384端点3178.339秒，paired REINFORCE374端点3224.109秒。但后者多运行11968条baseline轨迹，且时间截止使两者未完成相同更新数；这组结果不能被写成“在完全相同算力/仿真预算下PPO优于REINFORCE”。
+7. 05:10新增的第二次PPO微调u384为3162.245秒，比冻结rollout均值3373.253秒节省211.008秒（6.255%）；同48局41胜7负、全部清除、零失败清除，最坏局仍慢199.794秒。这条继承链累计40960条参与更新的策略轨迹，不能只报告最后一轮12288局。相对上一轮再快16.094秒，不据此断言该增量已经显著。
+8. alpha0/alpha1同预算u512分别3294.830/3257.778秒；alpha1相对alpha0节省37.052秒，原归档配对95%区间[-12.447,86.859]秒、24胜24负，额外收益尚未确立。这一区间来自归档比较文件，表中各策略对rollout的区间由本脚本独立bootstrap；两者对象和随机种子不同，不能混写。axis新候选尚在独立试验中，没有将它的未完成结果加入此表。
 
 ## 复现
 
@@ -394,6 +487,12 @@ def write_report(report, output):
 
 脚本仅需numpy和matplotlib，不需要Torch。`--archives`可显式指定新的完整归档名；不会自动扫描新增最终测试文件。图和表由同一次归档解析生成，精简日志每个更新都有记录，没有只保留表现好的训练批。
 """
+    if "matched_group_endpoint" not in report["audited_designs"] or "selected_ppo_chain" not in report["audited_designs"]:
+        start, end = text.index("![最佳模型继承链"), text.index("## 全部已归档RL验证端点")
+        text = text[:start] + text[end:]
+    if not set(DEFAULT_ARCHIVES).issubset({entry["archive"] for entry in report["inputs"]}):
+        start, end = text.index("## 当前证据的边界"), text.index("## 复现")
+        text = (text[:start] + "## 当前证据的边界\n\n本次显式输入只是历史归档的子集，故不复述需要完整05:10归档才能支持的数值结论。以上表格只列实际读取并通过场景身份及成功条件核验的数据；配对区间不能代表训练种子不确定性，也不能作为全局最优或最终测试保证。\n\n" + text[end:])
     (output / "README.md").write_text(text, encoding="utf-8", newline="\n")
 
 
@@ -429,6 +528,7 @@ def main(argv=None):
             overlap = seed_sets[first] & seed_sets[second]
             if overlap:
                 report["cross_trial_seed_overlap"][first+" vs "+second] = dict(count=len(overlap), ranges=compact_ranges(overlap))
+    report["audited_designs"] = audit_selected_designs(report)
     args.output.mkdir(parents=True, exist_ok=True)
     figures(report, args.output)
     write_report(report, args.output)
