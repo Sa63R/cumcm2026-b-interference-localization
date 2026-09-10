@@ -26,7 +26,8 @@ from torch.distributions import Categorical
 
 from simulation import LocalResearchSimulator, random_scenario
 from .controller import ALGORITHM_VERSION, ALGORITHM_VERSIONS, FEATURE_DIMS, DeepRLSearch, feature_schema
-from .network import CandidateActorCritic, TorchPolicy, pack_observations
+from .network import (CandidateActorCritic, TorchPolicy, pack_observations,
+                      architecture_from_args, checkpoint_architecture, validate_architecture)
 
 
 _worker_model = None
@@ -42,14 +43,16 @@ def episode(task):
     seed, weights, hidden, action_seed, teacher, max_decisions = task[:6]
     deadline = task[6] if len(task) > 6 else None
     version = task[7] if len(task) > 7 else "v2"
+    architecture = validate_architecture(task[8] if len(task) > 8 else None)
     if not legal_training_seed(seed):
         raise ValueError("Training scenario seed is outside the declared training ranges")
     if deadline is not None and time.time() >= deadline:
         return [], dict(seed=seed, deadline_skipped=True)
     torch.set_num_threads(1)
     if (_worker_model is None or _worker_model.hidden != hidden
-            or _worker_model.feature_dim != FEATURE_DIMS[version]):
-        _worker_model = CandidateActorCritic(hidden, FEATURE_DIMS[version])
+            or _worker_model.feature_dim != FEATURE_DIMS[version]
+            or _worker_model.architecture != architecture):
+        _worker_model = CandidateActorCritic(hidden, FEATURE_DIMS[version], architecture)
     _worker_model.load_state_dict(weights)
     _worker_model.eval()
     # Model construction consumes Torch RNG. Reset after constructing/loading,
@@ -195,6 +198,7 @@ def source_manifest():
 
 def save_checkpoint(path, model, optimizer, args, state):
     payload = dict(algorithm=ALGORITHM_VERSIONS[args.feature_version], hidden=args.hidden,
+                   architecture=model.architecture,
                    feature_version=args.feature_version, feature_schema=feature_schema(args.feature_version),
                    model={k: v.detach().cpu() for k, v in model.state_dict().items()},
                    optimizer=optimizer.state_dict(), args=vars(args), state=state,
@@ -216,6 +220,8 @@ def validate_resume(payload, args):
         raise ValueError("checkpoint architecture/version does not match; use --initialize-from for explicit migration")
     if payload.get("feature_schema") != feature_schema(args.feature_version):
         raise ValueError("checkpoint feature semantics do not match")
+    if checkpoint_architecture(payload) != architecture_from_args(args):
+        raise ValueError("checkpoint architecture differs; use --initialize-from for an explicit compatible expansion")
     if payload.get("source_manifest") != source_manifest():
         raise ValueError("checkpoint source manifest differs; use --initialize-from for a separately logged new trial")
 
@@ -237,13 +243,35 @@ def initialize_from(model, payload):
             and payload.get("feature_schema") != feature_schema(previous_version)):
         raise ValueError("transfer checkpoint has unknown feature semantics")
     weights = dict(payload["model"])
+    previous_arch = checkpoint_architecture(payload)
+    target_arch = model.architecture
+    if previous_arch["name"] == "attention":
+        if (target_arch["name"] != "attention"
+                or previous_arch["heads"] != target_arch["heads"]
+                or previous_arch["layers"] > target_arch["layers"]):
+            raise ValueError("cannot silently discard/change trained attention blocks")
     previous = weights["encoder.0.weight"]
+    if previous.shape[1] != FEATURE_DIMS[previous_version]:
+        raise ValueError("transfer input width contradicts checkpoint feature semantics")
     if previous.shape[0] != model.hidden or previous.shape[1] > model.feature_dim:
         raise ValueError("transfer requires equal hidden width and a nonshrinking feature prefix")
     expanded = torch.zeros_like(model.encoder[0].weight)
     expanded[:, :previous.shape[1]] = previous
     weights["encoder.0.weight"] = expanded
-    model.load_state_dict(weights)
+    # Only the old complete network is copied; genuinely new gated branches
+    # retain initialization and zero gates. Existing attention gates are copied.
+    expanded_state = model.state_dict()
+    unexpected = set(weights) - set(expanded_state)
+    if unexpected:
+        raise ValueError(f"unexpected checkpoint parameters: {sorted(unexpected)}")
+    for key in expanded_state:
+        existed = (not key.startswith("relations.") or
+                   (previous_arch["name"] == "attention"
+                    and int(key.split(".")[1]) < previous_arch["layers"]))
+        if key not in weights and existed:
+            raise ValueError(f"checkpoint is missing existing parameter {key}")
+    expanded_state.update(weights)
+    model.load_state_dict(expanded_state)
 
 
 def main(argv=None):
@@ -252,6 +280,9 @@ def main(argv=None):
     parser.add_argument("--resume", type=Path)
     parser.add_argument("--initialize-from", type=Path, help="Explicit new-trial weight transfer; fresh optimizer/counters")
     parser.add_argument("--feature-version", choices=sorted(FEATURE_DIMS), default="v2")
+    parser.add_argument("--architecture", choices=("mlp", "attention"), default="mlp")
+    parser.add_argument("--attention-layers", type=int, default=1)
+    parser.add_argument("--attention-heads", type=int, default=4)
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112026)
@@ -291,7 +322,8 @@ def main(argv=None):
     torch.manual_seed(args.seed)
     np.random.seed(args.seed % 2**32)
     random.seed(args.seed)
-    model = CandidateActorCritic(args.hidden, FEATURE_DIMS[args.feature_version]).to(args.device)
+    model = CandidateActorCritic(args.hidden, FEATURE_DIMS[args.feature_version],
+                                 architecture_from_args(args)).to(args.device)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
     state = dict(update=0, optimizer_steps=0, episodes=0, next_seed=args.scenario_start, bc_complete=False)
     if args.resume:
@@ -320,6 +352,7 @@ def main(argv=None):
         state["initialization"] = dict(path=str(args.initialize_from),
             sha256=hashlib.sha256(args.initialize_from.read_bytes()).hexdigest(),
             source_algorithm=payload["algorithm"], source_manifest=payload.get("source_manifest"),
+            source_architecture=checkpoint_architecture(payload), target_architecture=model.architecture,
             source_state=payload.get("state"), source_git_commit=payload.get("git_commit"))
         save_checkpoint(args.output / "initialized.pt", model, optimizer, args, state.copy())
     started = time.monotonic()
@@ -330,6 +363,7 @@ def main(argv=None):
             parser.error("deadline-utc must have an explicit timezone")
         stop_at = min(stop_at, started + deadline.timestamp() - time.time())
     config = {**vars(args), "algorithm": ALGORITHM_VERSIONS[args.feature_version], "git_commit": git_version(),
+              "architecture_spec": model.architecture,
               "feature_schema": feature_schema(args.feature_version),
               "source_manifest": source_manifest(),
               "gamma": 1.0, "reward_scale_s": 1000, "failure_penalty_s": 360000,
@@ -350,7 +384,7 @@ def main(argv=None):
             state["next_seed"] = seed + 1
             epoch_deadline = time.time() + max(0.0, stop_at - time.monotonic())
             tasks.append((seed, weights, args.hidden, random.randrange(2**31), teacher,
-                          args.max_decisions, epoch_deadline, args.feature_version))
+                          args.max_decisions, epoch_deadline, args.feature_version, model.architecture))
         # Workers check the shared absolute deadline before every physical
         # action; already queued tasks skip instead of overrunning the cutoff.
         results = list(executor.map(episode, tasks)) if executor else [episode(t) for t in tasks]

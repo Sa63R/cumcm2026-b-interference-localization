@@ -133,7 +133,7 @@ Q3_SOURCE_COMMIT=<new-snapshot-commit> PYTHONPATH=src python -m research_rl.trai
 
 从头训练 v2 沿用上文命令，另选目录。要控制“新增训练量”这个混杂因素，可用同一 v1 checkpoint 显式迁移到 `--feature-version v1` 和 `v2`，然后给予同样的新场景/更新预算进行比较。
 
-运行记录修正：`optimizer_steps` 记录真实梯度更新次数（含 BC）；只有实际执行至少一次 optimizer.step 的 PPO 批次才增加 `update`，截止发生于首次梯度步前不会虚报完成一轮训练。非空输出目录在未传 `--resume` 时会拒绝覆盖。当前不实现跨架构或输入列重排迁移；这些必须另行定义新语义版本和转换代码。
+运行记录修正：`optimizer_steps` 记录真实梯度更新次数（含 BC）；只有实际执行至少一次 optimizer.step 的 PPO 批次才增加 `update`，截止发生于首次梯度步前不会虚报完成一轮训练。非空输出目录在未传 `--resume` 时会拒绝覆盖。输入列重排仍不支持；下面的注意力实验新增了显式、版本化且可保持初始输出的架构扩展。
 
 ## v3 原型：未知频道与可中断扫描
 
@@ -207,3 +207,32 @@ Q3_SOURCE_COMMIT=<snapshot-commit> PYTHONPATH=src python -m research_rl.train --
 PYTHONPATH=src python research/benchmark_joint_cache.py --reference-commit fe6cf25 --count 32 --repeats 2 --profile-count 8
 # 无 .git 的远端可改用 --reference-root /path/to/frozen-fe6cf25-snapshot
 ```
+
+## v3 动作不变的注意力架构消融
+
+### 动机与可检验假设
+
+当前网络先独立编码各个候选，再用所有候选的逐维 mean/max 汇总供 actor/critic 使用。这种有限维、有限深的实现，可能难以直接表示“这个候选与哪个同频道候选配合”或“不同频道候选集中在哪个方向”等关系；这是**表示瓶颈假设**，尚不是既有结果不够好的已证实原因。[Deep Sets 原论文](https://arxiv.org/abs/1703.06114)讨论集合函数的表达，不应被误读为所有池化架构必然不能表示这些关系。初始 140 个扫描候选只有 7 个不同坐标，频道任务数会改变这些坐标在 mean 中的权重；注意力本身也有 token 数量敏感性，所以不能把它说成自动消除了重复测点。
+
+受 [Kool 等人的原始图编码器](https://github.com/wouterkool/attention-learn-to-route/blob/master/nets/graph_encoder.py)启发，在原候选 encoder 后加入 1 层（可选 2 层）内容自注意力，让一个候选在打分之前能按学习到的权重读取其他候选的表示。仍使用 v3 原来的 60 维候选输入、全局输入和完整合法候选序列；没有增加真值、场景种子、teacher 标签、规划搜索结果或新的几何特征。该试验只改变架构，不改变动作空间或回报。
+
+每层为 LayerNorm → 4 头 masked self-attention → 标量门控残差，加 LayerNorm → 两层 Tanh 前馈网络（内部宽度 2h）→ 标量门控残差。没有按候选序号的位置嵌入，也没有新增成对距离偏置；候选的顺序置换应只置换 actor 输出，critic 保持不变。padding 只作为无效 token，不参与注意力键或最终池化；每个真实输入必须至少有一个合法动作。最终仍接原 mean/max、context encoder、actor 和 critic。
+
+两个残差门控都初始化为零，借鉴 [ReZero 原论文](https://arxiv.org/abs/2003.04887)的恒等初始化思想，但本实现保留 LayerNorm，不声称逐行复现其架构。它允许将同一 v3 MLP checkpoint 显式迁移后，未训练时 logits 和 value 逐值相同。首次反向传播先更新门控，门控非零后内部注意力权重获得梯度；测试明确检查这两个阶段，防止“名义加了注意力但永远没有学习”。也支持从头 BC 的独立冷启动对照。
+
+### 版本、训练与代价
+
+checkpoint 新增独立 `architecture` 字段，MLP 为 `{version: 1, name: "mlp"}`；注意力记录层数、头数、零门控、无位置编码、零 dropout。控制器算法仍是 `q3-joint-scan-ppo-v3`，特征语义不变。旧 checkpoint 缺少 architecture 时按 MLP 读取，带注意力参数却缺少或矛盾的元数据会拒绝。旧 paired 训练的 Namespace 没有新参数时仍默认 MLP；其训练法没有在这里顺带更改。
+
+`--resume` 必须匹配架构、动作/特征语义和源码摘要。`--initialize-from` 是新 trial，可以进行 MLP→注意力、相同头数的 1→2 层扩展；已训练层完整复制，新增层保持零门控，不允许无声明地丢层、更改头数或跨 v2/v3 动作语义转移。来源和目标架构都写入初始化记录。对应的 `initialized.pt` 是相同初始策略的对照，不应与后续 PPO 增益混淆。
+
+隐藏宽度 96、140 个候选时，每个注意力块的主要矩阵计算约为 `8Nh² + 2N²h = 14.09×10^6` 次乘加，新增参数 74786 个。实际 CPU 时间取决于 Torch 内核、线程和候选数，不能用这个运算量推算整局提速；注意力**可能因采样开销变大而降低相同墙钟预算的效果**。提供独立 CPU 合成输入基准，交替测试 MLP/单层/双层、16/32/80/140/220 个候选，分离预打包 forward 和打包加 forward 的耗时，不接触任何场景或测试种子。对最终训练决策还应看完整局吞吐，以及同起点同新增场景数、同墙钟两种口径的验证表现。
+
+```bash
+PYTHONPATH=src python -m pytest tests/test_deep_rl_attention.py tests/test_deep_rl_training.py tests/test_paired_reinforce.py -q
+PYTHONPATH=src python research/benchmark_attention.py --output results/rl/attention_cpu_benchmark.json --iterations 100 --repeats 3 --num-threads 1
+# 与 MLP 对照使用相同 source checkpoint、新场景范围、更新/采样预算，各用新目录
+PYTHONPATH=src python -m research_rl.train --feature-version v3 --architecture attention --attention-layers 1 --attention-heads 4 --initialize-from /path/to/v3-mlp.pt --output results/rl/joint_attention01 --scenario-start 160001 --device cuda --hidden 96 --updates 1000 --episodes-per-update 32 --workers 4 --max-wall-s 1800 --checkpoint-seconds 1200 --deadline-utc 2026-09-11T06:00:00+00:00
+```
+
+本机没有 Torch；此次本地控制器/缓存回归为 79 项通过、3 个 Torch 模块跳过，并通过 Python 编译检查。新增 Torch 测试覆盖掩码、排列等变、旧模型加载、严格迁移、门控梯度、真实环境采样/PPO 参数更新和恢复；其执行结果、远端 CPU 耗时及训练效益必须由训练主机验证后另行记录，不能将“测试已编写”当作“训练已优于旧方法”。
