@@ -5,6 +5,7 @@ import pytest
 
 from localization.omni import OmniCandidateRegion
 from simulation import LocalResearchSimulator, Scenario, Source, random_scenario
+from strategies import run_search
 from strategies.geometric_joint import polygon_quadrature, run_joint_search, shared_observation_value
 from tests.test_strategy import ObservationOnlyClient
 
@@ -77,3 +78,14 @@ def test_action_budget_still_reserves_exit_without_false_completeness():
     assert report.accepted_actions == 25
     assert sim.observation_history()[-1]['action'] == '/exit'
     assert not report.completion_certified_under_model
+
+
+def test_disabled_sharing_preserves_frozen_efficient_actions_exactly():
+    case = random_scenario(3, 103001)
+    baseline, disabled = LocalResearchSimulator(case), LocalResearchSimulator(case)
+    before = run_search(ObservationOnlyClient(baseline.client()), variant='efficient')
+    after = run_joint_search(ObservationOnlyClient(disabled.client()),
+                             joint_config={'after_clear': False, 'active_points': False})
+    assert before.action_history == after.action_history
+    assert before.virtual_time_s == after.virtual_time_s
+    assert after.joint_observations['shared_measurements'] == 0
