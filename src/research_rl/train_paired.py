@@ -50,14 +50,16 @@ def paired_episode(task):
     if time.time() >= deadline:
         return [], {"seed": seed, "deadline_skipped": True}
     torch.set_num_threads(1)
-    torch.manual_seed(action_seed)
-    np.random.seed(action_seed % 2**32)
-    random.seed(action_seed)
     if (_worker_model is None or _worker_model.hidden != hidden
             or _worker_model.feature_dim != FEATURE_DIMS[version]):
         _worker_model = CandidateActorCritic(hidden, FEATURE_DIMS[version])
     _worker_model.load_state_dict(weights)
     _worker_model.eval()
+    # Construction consumes Torch RNG even though those initial weights are
+    # replaced. Re-seed afterwards so fresh/resumed and reused workers agree.
+    torch.manual_seed(action_seed)
+    np.random.seed(action_seed % 2**32)
+    random.seed(action_seed)
     records = []
 
     def record(features, context, action, teacher, selection, cost):

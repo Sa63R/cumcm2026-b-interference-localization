@@ -96,6 +96,18 @@ def test_failed_early_exit_cannot_obtain_a_cheap_reward():
     assert cost == 360001 and not success
 
 
+def test_fresh_and_reused_workers_produce_identical_sampled_trajectories(monkeypatch):
+    from research_rl import train_paired
+    model = CandidateActorCritic(16, 24)
+    task = (100029, model.state_dict(), 16, 731, "v1", 8, time.time() + 60)
+    monkeypatch.setattr(train_paired, "_worker_model", None)
+    first, first_metrics = paired_episode(task)
+    second, second_metrics = paired_episode(task)
+    assert [r["action"] for r in first] == [r["action"] for r in second]
+    assert [r["log_prob"] for r in first] == [r["log_prob"] for r in second]
+    assert first_metrics["sampled"]["cost_s"] == second_metrics["sampled"]["cost_s"]
+
+
 @pytest.mark.parametrize("seed", [6000, 6095, 800000, 810000, 900000, 100000])
 def test_training_rejects_nontraining_seeds(seed):
     assert not legal_seed(seed)
