@@ -5,3 +5,8 @@ experiments/*.py -text
 results/q3_optimization/** -text
 results/q3_rollout/** -text
 experiments/q3_rollout*.json -text
+results/study/** -text
+results/validation/** -text
+# Preserve historical terminal output, including progress CRs and final blanks.
+results/study/console.txt -whitespace
+results/validation/pytest.txt -whitespace

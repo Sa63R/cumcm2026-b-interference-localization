@@ -54,6 +54,8 @@ Windows独立环境 `.venv-win` 已建立，旧Linux `.venv` 保留。先在模�
 
 以下 `results/study` 的749次运行和论文对应优化前版本，保留作历史研究，不代表新版求解器。论文和支撑包本轮未重新生成。
 
+Git保存代码、依赖、正文模板和完整研究证据，包括历史749次压缩轨迹。自动生成的 `论文/B题论文.md`、PDF、`论文/figures/` 和 `交付/` 保留在本地并忽略；新克隆仓库需用下方离线命令生成这些文件。官方明文会话、演练登记和本地环境继续仅在本地保存。旧实验的版本与时间范围见 [历史研究说明](results/study/README.md)。
+
 核心求解器依赖Python标准库；完整报告环境在Python3.12上验证，依赖见 `requirements-test.txt` 和 `requirements-report.txt`。从项目根目录运行：
 
 ```powershell
