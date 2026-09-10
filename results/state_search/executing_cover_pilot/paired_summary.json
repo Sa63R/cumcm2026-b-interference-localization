@@ -1,0 +1,2356 @@
+{
+  "origin": "synthetic_research_training_only",
+  "platform": "Windows",
+  "overall": {
+    "axis_inferred": {
+      "n": 16,
+      "mean_s": 3088.6024879375,
+      "p95_s": 3560.1803415,
+      "mean_wall_s": 0.48477289999937057,
+      "successes": 16,
+      "failed_clears": 0,
+      "breakdown": {
+        "movement_s": 2316.4774879375,
+        "switching_s": 110.5625,
+        "detection_s": 599.375,
+        "optical_s": 37.3125,
+        "removal_s": 24.875
+      }
+    },
+    "relocating_cover": {
+      "n": 16,
+      "mean_s": 3066.957827375,
+      "p95_s": 3565.7620604999997,
+      "mean_wall_s": 0.9124684749990593,
+      "successes": 16,
+      "failed_clears": 0,
+      "breakdown": {
+        "movement_s": 2302.582827375,
+        "switching_s": 109.375,
+        "detection_s": 592.8125,
+        "optical_s": 37.3125,
+        "removal_s": 24.875
+      }
+    },
+    "executing_cover": {
+      "n": 16,
+      "mean_s": 3080.24477475,
+      "p95_s": 3655.4209622500002,
+      "mean_wall_s": 0.5694240687498677,
+      "successes": 16,
+      "failed_clears": 0,
+      "breakdown": {
+        "movement_s": 2314.49477475,
+        "switching_s": 109.5,
+        "detection_s": 594.0625,
+        "optical_s": 37.3125,
+        "removal_s": 24.875
+      }
+    }
+  },
+  "pairs": {
+    "axis_inferred--relocating_cover": {
+      "n": 16,
+      "mean_saved_s": 21.644660562499894,
+      "relative_mean_saved": 0.007007913982790876,
+      "paired_bootstrap_95ci_saved_s": [
+        6.440274562499951,
+        37.40292912499996
+      ],
+      "wins": 12,
+      "losses": 4,
+      "ties": 0,
+      "max_regression_s": 28.17642799999976,
+      "p95_ratio": 1.0059555976499956
+    },
+    "axis_inferred--executing_cover": {
+      "n": 16,
+      "mean_saved_s": 8.357713187499911,
+      "relative_mean_saved": 0.0027059853834026423,
+      "paired_bootstrap_95ci_saved_s": [
+        -21.653153250000088,
+        31.17411524999997
+      ],
+      "wins": 12,
+      "losses": 4,
+      "ties": 0,
+      "max_regression_s": 172.88340300000027,
+      "p95_ratio": 1.0210721646160248
+    },
+    "relocating_cover--executing_cover": {
+      "n": 16,
+      "mean_saved_s": -13.286947374999983,
+      "relative_mean_saved": -0.0043322889073998914,
+      "paired_bootstrap_95ci_saved_s": [
+        -39.349967874999976,
+        8.649279500000034
+      ],
+      "wins": 7,
+      "losses": 9,
+      "ties": 0,
+      "max_regression_s": 154.7619420000001,
+      "p95_ratio": 1.027555302559036
+    }
+  },
+  "all_full_history_and_immediate_execution_audits_passed": true,
+  "relocation_diagnostics": {
+    "relocating_cover": {
+      "mean_oracle_calls": 2540.625,
+      "max_oracle_calls": 3187,
+      "planned_changes": 97,
+      "max_changes_per_site": 3,
+      "replanned_sites": 78,
+      "replanned_sites_actually_visited": 78
+    },
+    "executing_cover": {
+      "mean_oracle_calls": 552.75,
+      "max_oracle_calls": 736,
+      "planned_changes": 70,
+      "max_changes_per_site": 1,
+      "replanned_sites": 70,
+      "replanned_sites_actually_visited": 70
+    }
+  },
+  "station_audits": [
+    {
+      "policy": "relocating_cover",
+      "seed": 117001,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1126.729522811084,
+            -14.178587767123616
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 1,
+          "position": [
+            -549.5192289352422,
+            -951.795224251912
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            596.0637838832113,
+            -1050.8328927841405
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 14
+        },
+        {
+          "id": 3,
+          "position": [
+            1125.671007334967,
+            13.65551680827048
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 4,
+          "position": [
+            554.3120039679757,
+            999.2641610039319
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 5,
+          "position": [
+            -574.6347899357486,
+            968.0129254156996
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 21,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117002,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1150.0,
+            1.4083438190194562e-13
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 12
+        },
+        {
+          "id": 1,
+          "position": [
+            -551.008800905624,
+            -981.6863049954143
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 2,
+          "position": [
+            572.4449231527485,
+            -966.5561402644199
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 3,
+          "position": [
+            1125.1145895509203,
+            13.38165417534253
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 4,
+          "position": [
+            549.5192289352418,
+            951.7952242519121
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 5,
+          "position": [
+            -551.3461375685339,
+            986.6989182601485
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 19,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117003,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1099.0384578704834,
+            1.3459339295709308e-13
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 1,
+          "position": [
+            -571.867039638182,
+            -963.7653586997376
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 2,
+          "position": [
+            551.0063896338125,
+            -981.6547886905427
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 3,
+          "position": [
+            1123.3327148518472,
+            -12.497912395325985
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 4,
+          "position": [
+            574.6615281252513,
+            968.0319302515653
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 5,
+          "position": [
+            -615.8703755874815,
+            1049.1511481401499
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 20,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117004,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1099.0384578704834,
+            1.3459339295709308e-13
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 1,
+          "position": [
+            -575.0000000000005,
+            -995.9292143521043
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 2,
+          "position": [
+            549.8607913879785,
+            -952.008661179082
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 3,
+          "position": [
+            1126.03600025177,
+            -13.835621705500701
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 4,
+          "position": [
+            575.0000000000001,
+            995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 5,
+          "position": [
+            -579.6160037168004,
+            971.3575205221891
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 18,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117005,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1100.8543527357308,
+            0.9635262169858567
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 1,
+          "position": [
+            -575.0000000000005,
+            -995.9292143521043
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 2,
+          "position": [
+            578.1171940749223,
+            -970.347065345994
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 3,
+          "position": [
+            1275.8432643981916,
+            -40.095351358425035
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 4,
+          "position": [
+            575.0000000000001,
+            995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 5,
+          "position": [
+            -570.2349733792471,
+            965.4559539947342
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 19,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117006,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1123.412727811276,
+            12.536737445032001
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 1,
+          "position": [
+            -575.0000000000005,
+            -995.9292143521043
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 2,
+          "position": [
+            575.0000000000001,
+            -995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 3,
+          "position": [
+            1101.2998905223158,
+            1.1989847056338363
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 14
+        },
+        {
+          "id": 4,
+          "position": [
+            575.0000000000001,
+            995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 5,
+          "position": [
+            -549.5192289352415,
+            951.7952242519123
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 20,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117007,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1099.0384578704834,
+            1.3459339295709308e-13
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 0
+        },
+        {
+          "id": 1,
+          "position": [
+            -572.3289086268242,
+            -967.6560034904452
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            550.7362631153856,
+            -977.3461583449485
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 3,
+          "position": [
+            1125.683825337113,
+            -13.661555743858862
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 4,
+          "position": [
+            574.6569307679642,
+            968.0287277153642
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 5,
+          "position": [
+            -642.5862139120528,
+            1079.7878145468344
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 13
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 20,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117008,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1099.0384578704834,
+            1.3459339295709308e-13
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 1,
+          "position": [
+            -575.0000000000005,
+            -968.2579709411028
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 2,
+          "position": [
+            551.0063896338125,
+            -981.6547886905427
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 3,
+          "position": [
+            1125.6707906723022,
+            -13.656203396079988
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 4,
+          "position": [
+            613.6794646481388,
+            1148.6982135626763
+          ],
+          "planned_changes": 3,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 5,
+          "position": [
+            -574.9999999999998,
+            995.9292143521045
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 0
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 16,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117009,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1150.0,
+            1.4083438190194562e-13
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 1,
+          "position": [
+            -551.0108391041667,
+            -981.7070855116455
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 2,
+          "position": [
+            574.6347899357489,
+            -968.0129254156994
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 3,
+          "position": [
+            1124.3959178158202,
+            11.56862181956078
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 4,
+          "position": [
+            549.5192289352418,
+            951.7952242519121
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 5,
+          "position": [
+            -551.7715080047387,
+            979.256358426716
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 16,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117010,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1125.6411795695612,
+            -13.641863274843065
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 1,
+          "position": [
+            -552.8677134393947,
+            -980.0206592702878
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 2,
+          "position": [
+            549.5192289352418,
+            -951.7952242519121
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 3,
+          "position": [
+            1150.0,
+            0.0
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 4,
+          "position": [
+            551.009479209716,
+            981.6874470598358
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 5,
+          "position": [
+            -572.5560348331059,
+            966.6303669851253
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 18,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117011,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1124.994076540184,
+            -13.322086004918251
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 1,
+          "position": [
+            -549.5192289352422,
+            -951.795224251912
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            575.0000000000001,
+            -995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 3,
+          "position": [
+            1125.6345589473196,
+            13.637393390037055
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 4,
+          "position": [
+            551.0088802865586,
+            981.6861830957308
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 5,
+          "position": [
+            -571.8639113934003,
+            963.7311909523854
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 17,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117012,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1121.41709250347,
+            14.217357946465755
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 1,
+          "position": [
+            -574.6347899357493,
+            -968.0129254156993
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 2,
+          "position": [
+            551.0059720049678,
+            -981.6417580172655
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 3,
+          "position": [
+            1125.671007334967,
+            -13.655516808270479
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 12
+        },
+        {
+          "id": 4,
+          "position": [
+            575.0000000000001,
+            995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 13
+        },
+        {
+          "id": 5,
+          "position": [
+            -549.5192289352415,
+            951.7952242519123
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 21,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117013,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1150.0,
+            1.4083438190194562e-13
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 1,
+          "position": [
+            -551.0094792097163,
+            -981.6874470598357
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 2,
+          "position": [
+            573.3486548475557,
+            -967.1576095222832
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 3,
+          "position": [
+            1125.6411795695612,
+            13.641863274843205
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 4,
+          "position": [
+            552.0009015244349,
+            979.4159683879197
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 5,
+          "position": [
+            -549.5192289352415,
+            951.7952242519123
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 16,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117014,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1234.0984838971274,
+            57.36820618508425
+          ],
+          "planned_changes": 3,
+          "visited": true,
+          "source_tasks_before_visit": 13
+        },
+        {
+          "id": 1,
+          "position": [
+            -578.6509524541844,
+            -970.7062532316088
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            575.0000000000001,
+            -995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 3,
+          "position": [
+            1101.254275829708,
+            1.1749461794392688
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 4,
+          "position": [
+            570.4606851376627,
+            965.2436476569341
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 5,
+          "position": [
+            -499.6251930130908,
+            945.3031507798066
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 20,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117015,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1123.5542055887936,
+            -11.964515650685051
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 1,
+          "position": [
+            -549.5192289352422,
+            -951.795224251912
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            575.0000000000001,
+            -995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 3,
+          "position": [
+            1099.0902393261433,
+            0.027649923660444387
+          ],
+          "planned_changes": 2,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 4,
+          "position": [
+            575.0000000000001,
+            968.2579709411029
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 5,
+          "position": [
+            -574.9999999999998,
+            995.9292143521045
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 17,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "relocating_cover",
+      "seed": 117016,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1123.164469450961,
+            12.41387222701276
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 1,
+          "position": [
+            -575.0000000000005,
+            -995.9292143521043
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 2,
+          "position": [
+            549.5192289352418,
+            -951.7952242519121
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 0
+        },
+        {
+          "id": 3,
+          "position": [
+            1145.8392124986603,
+            -4.473932234171018
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 4,
+          "position": [
+            555.0204882561721,
+            955.256744318777
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 5,
+          "position": [
+            -551.0281578283614,
+            981.9932776511065
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 17,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117001,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1128.1585795151777,
+            -14.881351565673576
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 1,
+          "position": [
+            -549.9099959552168,
+            -952.0392004230381
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            598.2811828820197,
+            -1060.5472336567807
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 14
+        },
+        {
+          "id": 3,
+          "position": [
+            1162.6864274135814,
+            31.01084369264219
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 4,
+          "position": [
+            575.0000000000001,
+            995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 5,
+          "position": [
+            -572.8525680759658,
+            966.8265854024763
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 21,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117002,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1150.0,
+            1.4083438190194562e-13
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 1,
+          "position": [
+            -551.5492665888447,
+            -989.5451161321874
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 2,
+          "position": [
+            576.0996803678514,
+            -968.9918295867168
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 3,
+          "position": [
+            1153.5918615700746,
+            26.917481365036075
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 4,
+          "position": [
+            551.3663520301156,
+            986.9919122722613
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 5,
+          "position": [
+            -550.0855096737171,
+            965.3962767085814
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 19,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117003,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1103.5934441048266,
+            -2.4076647930900434
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 1,
+          "position": [
+            -579.7610823542921,
+            -971.4554091661099
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 2,
+          "position": [
+            551.370894282846,
+            -987.0535367890126
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 3,
+          "position": [
+            1134.477255229195,
+            -17.953706736178223
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 4,
+          "position": [
+            575.0000000000001,
+            995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 5,
+          "position": [
+            -644.1592694435024,
+            1072.8184932020304
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 20,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117004,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1114.9430005972986,
+            8.276672029624248
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 1,
+          "position": [
+            -581.0872179864789,
+            -972.3534601851912
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 2,
+          "position": [
+            575.0000000000001,
+            -995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 3,
+          "position": [
+            1099.0930967561023,
+            0.029290634234177566
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 4,
+          "position": [
+            576.7310978889841,
+            969.414937308111
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 5,
+          "position": [
+            -574.9999999999998,
+            995.9292143521045
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 18,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117005,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1150.0,
+            1.4083438190194562e-13
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 1,
+          "position": [
+            -551.5518542174727,
+            -989.5689271173634
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 2,
+          "position": [
+            557.4670255750882,
+            -956.8124025593046
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 3,
+          "position": [
+            1273.0051410458993,
+            -25.63793043338063
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 4,
+          "position": [
+            550.5802201041571,
+            974.7041214214944
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 5,
+          "position": [
+            -550.5264136727513,
+            973.7527523676309
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 19,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117006,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1119.1322990523934,
+            10.396650546627694
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 1,
+          "position": [
+            -578.507554721581,
+            -970.6093149091969
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 2,
+          "position": [
+            551.1458841079855,
+            -983.776170560536
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 3,
+          "position": [
+            1135.4018399066244,
+            -18.398577105798708
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 4,
+          "position": [
+            572.4651843447396,
+            966.5697598254587
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 5,
+          "position": [
+            -574.9999999999998,
+            995.9292143521045
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 13
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 20,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117007,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1099.0384578704834,
+            1.3459339295709308e-13
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 0
+        },
+        {
+          "id": 1,
+          "position": [
+            -572.2102969071286,
+            -966.4005113738925
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            551.0555934193295,
+            -982.4106788894429
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 3,
+          "position": [
+            1136.151590006777,
+            -18.758064581510137
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 4,
+          "position": [
+            575.2836119947569,
+            968.446026692118
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 5,
+          "position": [
+            -574.9999999999998,
+            995.9292143521045
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 13
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 20,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117008,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1123.1921905443921,
+            12.427817706140637
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 1,
+          "position": [
+            -581.3821576238571,
+            -972.5540637738327
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 2,
+          "position": [
+            551.0878593053038,
+            -982.9042154637095
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 3,
+          "position": [
+            1137.6905111081733,
+            -19.49523606507861
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 4,
+          "position": [
+            668.3615064078214,
+            1100.8827159245438
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 5,
+          "position": [
+            -549.5192289352415,
+            951.7952242519123
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 0
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 16,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117009,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1143.3891414975988,
+            -22.19353780251219
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 1,
+          "position": [
+            -550.7525867336874,
+            -977.6155578148781
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 2,
+          "position": [
+            549.9630227256399,
+            -962.7800759658578
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 3,
+          "position": [
+            1150.0,
+            0.0
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 4,
+          "position": [
+            671.2555941701984,
+            1041.3096677933727
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 5,
+          "position": [
+            -574.9999999999998,
+            995.9292143521045
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 16,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117010,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1150.0,
+            1.4083438190194562e-13
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 1,
+          "position": [
+            -549.9225724501342,
+            -961.90487908791
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 2,
+          "position": [
+            551.0835457087427,
+            -982.8362989213996
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 3,
+          "position": [
+            1150.0,
+            0.0
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 4,
+          "position": [
+            575.0000000000001,
+            995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 5,
+          "position": [
+            -574.9999999999998,
+            995.9292143521045
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 18,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117011,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1132.8533118642015,
+            -17.16944735795894
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 1,
+          "position": [
+            -561.3070186316925,
+            -959.2742964654525
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            575.0000000000001,
+            -995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 3,
+          "position": [
+            1150.0,
+            0.0
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 4,
+          "position": [
+            552.2144724323836,
+            998.1770326700547
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 5,
+          "position": [
+            -586.0516101451384,
+            975.74324863564
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 17,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117012,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1129.0660236404285,
+            15.326015573901342
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 6
+        },
+        {
+          "id": 1,
+          "position": [
+            -575.6206391177376,
+            -968.6711786125899
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 2,
+          "position": [
+            551.9914497747225,
+            -995.38414514073
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        },
+        {
+          "id": 3,
+          "position": [
+            1150.0,
+            0.0
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 12
+        },
+        {
+          "id": 4,
+          "position": [
+            575.0000000000001,
+            995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 13
+        },
+        {
+          "id": 5,
+          "position": [
+            -551.4518534078672,
+            953.0055149628548
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 21,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117013,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1150.0,
+            1.4083438190194562e-13
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 1,
+          "position": [
+            -575.0000000000005,
+            -995.9292143521043
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        },
+        {
+          "id": 2,
+          "position": [
+            575.0000000000001,
+            -995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 3,
+          "position": [
+            1139.2746303197227,
+            20.249638678780272
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 4,
+          "position": [
+            550.0541308207992,
+            964.7455408485288
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 5,
+          "position": [
+            -550.2454552220347,
+            968.5911425481276
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 16,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117014,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1150.0,
+            1.4083438190194562e-13
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 12
+        },
+        {
+          "id": 1,
+          "position": [
+            -549.7704208333373,
+            -958.3860779297773
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            575.0000000000001,
+            -995.9292143521044
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 3,
+          "position": [
+            1100.9437745625416,
+            1.0107006722360037
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 4,
+          "position": [
+            570.5084942886293,
+            965.2750307519816
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        },
+        {
+          "id": 5,
+          "position": [
+            -552.7550850948494,
+            1004.5583337287013
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 9
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 20,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117015,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1139.5573500456687,
+            9.900125475462692
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 10
+        },
+        {
+          "id": 1,
+          "position": [
+            -562.4274185349856,
+            -959.9976416440361
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 1
+        },
+        {
+          "id": 2,
+          "position": [
+            551.5142658572248,
+            -989.0672797426193
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 3,
+          "position": [
+            1140.246472172469,
+            -20.710635942600796
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 3
+        },
+        {
+          "id": 4,
+          "position": [
+            573.5345622954925,
+            967.2799257950347
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 5
+        },
+        {
+          "id": 5,
+          "position": [
+            -551.4755853419068,
+            988.5259450271494
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 7
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 17,
+      "actual_future_visits": 6
+    },
+    {
+      "policy": "executing_cover",
+      "seed": 117016,
+      "sites": [
+        {
+          "id": 0,
+          "position": [
+            -1150.0,
+            1.4083438190194562e-13
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 1,
+          "position": [
+            -575.0000000000005,
+            -995.9292143521043
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 11
+        },
+        {
+          "id": 2,
+          "position": [
+            549.5192289352418,
+            -951.7952242519121
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 0
+        },
+        {
+          "id": 3,
+          "position": [
+            1133.718754638175,
+            -17.587531889254
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 2
+        },
+        {
+          "id": 4,
+          "position": [
+            580.1186816602734,
+            971.6972062037099
+          ],
+          "planned_changes": 1,
+          "visited": true,
+          "source_tasks_before_visit": 4
+        },
+        {
+          "id": 5,
+          "position": [
+            -574.9999999999998,
+            995.9292143521045
+          ],
+          "planned_changes": 0,
+          "visited": true,
+          "source_tasks_before_visit": 8
+        }
+      ],
+      "tasks_without_actual_action": 0,
+      "canceled_by_observed_16_cap": 0,
+      "plan_count": 17,
+      "actual_future_visits": 6
+    }
+  ]
+}
