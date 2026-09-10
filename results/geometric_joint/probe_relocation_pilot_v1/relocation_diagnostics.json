@@ -1,0 +1,4260 @@
+{
+  "phase": "probe-relocation-pilot",
+  "cases": 16,
+  "physical_records_audited": 32,
+  "helper_sha256": {
+    "audit_eval_bounds.py": "2b9b565df6babc627af36043bdec8206b1aa51ae9097634ba31aad8cfdf068c2",
+    "certify_bounds.py": "00b8041daa00edbc9ddffb8faef2071204f9f8ae80453d9c06990d064317a484",
+    "audit_cited_six_disk.py": "795b0cf67dcb0f31816b9f683e4420aa21dec61139af535f6afcf84e64a5a63b",
+    "six_disk_certificate.py": "5a4b59df1e68d2df34b350aa16527b460ffd2762aa265074607185615412f0df"
+  },
+  "source_helper_directory": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\theory_v1",
+  "all_full_clear_zero_failed_and_physical_coverage_audits_passed": true,
+  "relocation_count": 108,
+  "mean_relocation_distance_m": 46.09839348690078,
+  "max_relocation_distance_m": 444.0542483170724,
+  "mean_oracle_calls": 2806.875,
+  "max_oracle_calls": 3439,
+  "oracle_budget_exhaustions": 0,
+  "mean_planning_s": 0.4839128312428329,
+  "actual_future_visits": 96,
+  "replanned_then_actually_visited": 75,
+  "future_sites_canceled_only_after_16_clears": 0,
+  "max_changes_to_one_future_site": 4,
+  "losses_with_same_clear_order": 3,
+  "caveat": "Frozen plan improvements overlap; full cover need not imply timely discovery. Timing differences are descriptive, not counterfactual causal effects.",
+  "details": [
+    {
+      "seed": 116001,
+      "saved_s": 71.9477539999998,
+      "component_delta_s": {
+        "movement_s": -49.947753999999804,
+        "detection_s": -20.0,
+        "switching_s": -2.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        13,
+        20,
+        17,
+        4,
+        9,
+        15,
+        18,
+        7,
+        10,
+        12,
+        6,
+        8,
+        3
+      ],
+      "new_clear_order": [
+        13,
+        20,
+        17,
+        4,
+        9,
+        15,
+        18,
+        7,
+        10,
+        12,
+        6,
+        8,
+        3
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 17,
+          "before": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 712.723682,
+            "action_index": 38
+          },
+          "after": {
+            "position": [
+              -549.5192289352422,
+              -951.795224251912
+            ],
+            "time_s": 702.531406,
+            "action_index": 38
+          }
+        },
+        {
+          "channel": 20,
+          "before": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 730.723682,
+            "action_index": 41
+          },
+          "after": {
+            "position": [
+              -549.5192289352422,
+              -951.795224251912
+            ],
+            "time_s": 720.531406,
+            "action_index": 41
+          }
+        },
+        {
+          "channel": 10,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 1606.124471,
+            "action_index": 79
+          },
+          "after": {
+            "position": [
+              -635.497787314011,
+              1008.1591261821056
+            ],
+            "time_s": 1566.684038,
+            "action_index": 75
+          }
+        }
+      ],
+      "active_measurement_delta": -4,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 5
+          },
+          {
+            "id": 1,
+            "position": [
+              -549.5192289352422,
+              -951.795224251912
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 2,
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 13
+          },
+          {
+            "id": 3,
+            "position": [
+              1125.74725629357,
+              13.694010194980365
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 12
+          },
+          {
+            "id": 4,
+            "position": [
+              551.0360002517701,
+              982.0935926466037
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 9
+          },
+          {
+            "id": 5,
+            "position": [
+              -635.497787314011,
+              1008.1591261821056
+            ],
+            "planned_changes": 4,
+            "visited": true,
+            "source_plans_before_visit": 7
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 1,
+            "distance_m": 50.96154212951656,
+            "frozen_proxy_gain_s": 18.300514826183644,
+            "coverage_radius_m": 999.9998663094619
+          },
+          {
+            "site_id": 5,
+            "distance_m": 32.15847037012367,
+            "frozen_proxy_gain_s": 9.883952879897379,
+            "coverage_radius_m": 999.9998663094619
+          },
+          {
+            "site_id": 5,
+            "distance_m": 20.66306887317898,
+            "frozen_proxy_gain_s": 6.194363047010711,
+            "coverage_radius_m": 999.9998663094619
+          },
+          {
+            "site_id": 4,
+            "distance_m": 27.67124341100139,
+            "frozen_proxy_gain_s": 8.689214340867238,
+            "coverage_radius_m": 999.9998663094619
+          },
+          {
+            "site_id": 5,
+            "distance_m": 65.10141656431423,
+            "frozen_proxy_gain_s": 5.3105018303389215,
+            "coverage_radius_m": 999.9999878054613
+          },
+          {
+            "site_id": 5,
+            "distance_m": 32.51775948926482,
+            "frozen_proxy_gain_s": 1.1645798565781433,
+            "coverage_radius_m": 999.9999899620423
+          },
+          {
+            "site_id": 3,
+            "distance_m": 27.851777187641126,
+            "frozen_proxy_gain_s": 7.761992610232255,
+            "coverage_radius_m": 999.9999899620423
+          }
+        ],
+        "oracle_calls": 2859,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.683805399989069,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116002,
+      "saved_s": -9.48603699999967,
+      "component_delta_s": {
+        "movement_s": -5.513963000000331,
+        "detection_s": 15.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        15,
+        9,
+        17,
+        16,
+        6,
+        2,
+        4,
+        1,
+        13,
+        3,
+        19,
+        11,
+        7,
+        18,
+        5
+      ],
+      "new_clear_order": [
+        15,
+        9,
+        17,
+        16,
+        6,
+        2,
+        4,
+        1,
+        13,
+        3,
+        19,
+        11,
+        7,
+        18,
+        5
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 5,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 384.0,
+            "action_index": 25
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 373.807692,
+            "action_index": 25
+          }
+        },
+        {
+          "channel": 9,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 408.0,
+            "action_index": 29
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 397.807692,
+            "action_index": 29
+          }
+        },
+        {
+          "channel": 15,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 444.0,
+            "action_index": 35
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 433.807692,
+            "action_index": 35
+          }
+        },
+        {
+          "channel": 16,
+          "before": {
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "time_s": 1391.182054,
+            "action_index": 78
+          },
+          "after": {
+            "position": [
+              549.5977340740153,
+              -953.9513632070094
+            ],
+            "time_s": 1437.010427,
+            "action_index": 81
+          }
+        }
+      ],
+      "active_measurement_delta": 3,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 0
+          },
+          {
+            "id": 1,
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 2
+          },
+          {
+            "id": 2,
+            "position": [
+              549.5977340740153,
+              -953.9513632070094
+            ],
+            "planned_changes": 3,
+            "visited": true,
+            "source_plans_before_visit": 3
+          },
+          {
+            "id": 3,
+            "position": [
+              1122.9995071196124,
+              -12.223659842873753
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 5
+          },
+          {
+            "id": 4,
+            "position": [
+              572.0118462908164,
+              966.7004914960771
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 13
+          },
+          {
+            "id": 5,
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 14
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 0,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 15.115316680654132,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 2,
+            "distance_m": 27.918677733228623,
+            "frozen_proxy_gain_s": 6.833014469536238,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 2,
+            "distance_m": 26.634208933565425,
+            "frozen_proxy_gain_s": 4.366754099937907,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 2,
+            "distance_m": 5.735753234759836,
+            "frozen_proxy_gain_s": 1.1704293447301097,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 3,
+            "distance_m": 27.671243411001406,
+            "frozen_proxy_gain_s": 8.549418577653114,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 3,
+            "distance_m": 3.437835305567157,
+            "frozen_proxy_gain_s": 1.2288071328994192,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 4,
+            "distance_m": 27.917948808556133,
+            "frozen_proxy_gain_s": 7.786871529216569,
+            "coverage_radius_m": 999.9999775074622
+          },
+          {
+            "site_id": 4,
+            "distance_m": 2.934662319615047,
+            "frozen_proxy_gain_s": 1.019272774011597,
+            "coverage_radius_m": 999.9999125968116
+          }
+        ],
+        "oracle_calls": 3251,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.7189036999989185,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116003,
+      "saved_s": 5.759489999999914,
+      "component_delta_s": {
+        "movement_s": -10.759489999999914,
+        "detection_s": 5.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        6,
+        15,
+        11,
+        1,
+        8,
+        17,
+        16,
+        14,
+        4,
+        12
+      ],
+      "new_clear_order": [
+        6,
+        15,
+        11,
+        1,
+        8,
+        17,
+        16,
+        14,
+        4,
+        12
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 1,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 513.796436,
+            "action_index": 24
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 517.153739,
+            "action_index": 24
+          }
+        },
+        {
+          "channel": 11,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 567.796436,
+            "action_index": 33
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 571.153739,
+            "action_index": 33
+          }
+        },
+        {
+          "channel": 15,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 591.796436,
+            "action_index": 37
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 595.153739,
+            "action_index": 37
+          }
+        },
+        {
+          "channel": 8,
+          "before": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 1319.039462,
+            "action_index": 59
+          },
+          "after": {
+            "position": [
+              -572.4341584670218,
+              -970.4772757189389
+            ],
+            "time_s": 1305.504263,
+            "action_index": 58
+          }
+        },
+        {
+          "channel": 14,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 2232.949012,
+            "action_index": 100
+          },
+          "after": {
+            "position": [
+              1125.720120147418,
+              -13.6801000713364
+            ],
+            "time_s": 2226.025351,
+            "action_index": 101
+          }
+        }
+      ],
+      "active_measurement_delta": 1,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 1,
+            "position": [
+              -572.4341584670218,
+              -970.4772757189389
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 2,
+            "position": [
+              548.142209070087,
+              -974.951598407654
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 3,
+            "position": [
+              1125.720120147418,
+              -13.6801000713364
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 4,
+            "position": [
+              574.6194333480487,
+              968.002438309181
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 8
+          },
+          {
+            "id": 5,
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 9
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 0,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 13.824321279395008,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 1,
+            "distance_m": 23.205645380913236,
+            "frozen_proxy_gain_s": 3.0265106453966837,
+            "coverage_radius_m": 999.999950011831
+          },
+          {
+            "site_id": 2,
+            "distance_m": 27.918677733228623,
+            "frozen_proxy_gain_s": 5.249538143296377,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 1,
+            "distance_m": 20.699354633340256,
+            "frozen_proxy_gain_s": 1.5522101184055828,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 3,
+            "distance_m": 27.86857914601317,
+            "frozen_proxy_gain_s": 4.839474273072028,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 2,
+            "distance_m": 7.2894643335594616,
+            "frozen_proxy_gain_s": 2.053172669543528,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 4,
+            "distance_m": 27.92936897117759,
+            "frozen_proxy_gain_s": 8.417808321747543,
+            "coverage_radius_m": 999.9999462782908
+          }
+        ],
+        "oracle_calls": 2234,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.34664439999323804,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116004,
+      "saved_s": 1.7153400000001966,
+      "component_delta_s": {
+        "movement_s": 13.284659999999803,
+        "detection_s": -15.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        1,
+        5,
+        14,
+        7,
+        12,
+        3,
+        2,
+        6,
+        9,
+        19
+      ],
+      "new_clear_order": [
+        1,
+        5,
+        14,
+        7,
+        12,
+        3,
+        2,
+        6,
+        9,
+        19
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 5,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 415.345464,
+            "action_index": 28
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 405.795928,
+            "action_index": 28
+          }
+        },
+        {
+          "channel": 7,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 427.345464,
+            "action_index": 30
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 417.795928,
+            "action_index": 30
+          }
+        },
+        {
+          "channel": 14,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 463.345464,
+            "action_index": 36
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 453.795928,
+            "action_index": 36
+          }
+        },
+        {
+          "channel": 3,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 1546.661826,
+            "action_index": 73
+          },
+          "after": {
+            "position": [
+              551.0063896338125,
+              981.6547886905427
+            ],
+            "time_s": 1519.643875,
+            "action_index": 69
+          }
+        },
+        {
+          "channel": 2,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 2013.198617,
+            "action_index": 88
+          },
+          "after": {
+            "position": [
+              1125.6843346027251,
+              13.66262029682312
+            ],
+            "time_s": 1992.738242,
+            "action_index": 84
+          }
+        },
+        {
+          "channel": 19,
+          "before": {
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "time_s": 2451.017881,
+            "action_index": 116
+          },
+          "after": {
+            "position": [
+              574.6615281252513,
+              -968.0319302515653
+            ],
+            "time_s": 2452.720136,
+            "action_index": 113
+          }
+        }
+      ],
+      "active_measurement_delta": -3,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 1,
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 9
+          },
+          {
+            "id": 2,
+            "position": [
+              574.6615281252513,
+              -968.0319302515653
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 3,
+            "position": [
+              1125.6843346027251,
+              13.66262029682312
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 6
+          },
+          {
+            "id": 4,
+            "position": [
+              551.0063896338125,
+              981.6547886905427
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 5
+          },
+          {
+            "id": 5,
+            "position": [
+              -583.7701046928322,
+              974.1803169020535
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 5
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 0,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 18.139849261851623,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 5,
+            "distance_m": 23.45057092303035,
+            "frozen_proxy_gain_s": 2.5220149833503456,
+            "coverage_radius_m": 999.9998663094613
+          },
+          {
+            "site_id": 4,
+            "distance_m": 27.918677733228623,
+            "frozen_proxy_gain_s": 4.839879280563537,
+            "coverage_radius_m": 999.9998663094613
+          },
+          {
+            "site_id": 3,
+            "distance_m": 27.89119533271017,
+            "frozen_proxy_gain_s": 4.846618291292657,
+            "coverage_radius_m": 999.9998663094613
+          },
+          {
+            "site_id": 2,
+            "distance_m": 27.89933732897946,
+            "frozen_proxy_gain_s": 7.673182583705739,
+            "coverage_radius_m": 999.9998663094613
+          }
+        ],
+        "oracle_calls": 2088,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.3780211999837775,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116005,
+      "saved_s": 306.0452140000002,
+      "component_delta_s": {
+        "movement_s": -269.0452140000002,
+        "detection_s": -40.0,
+        "switching_s": 3.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": false,
+      "old_clear_order": [
+        4,
+        14,
+        6,
+        19,
+        1,
+        8,
+        17,
+        13,
+        3,
+        9,
+        20,
+        2
+      ],
+      "new_clear_order": [
+        4,
+        14,
+        9,
+        3,
+        17,
+        13,
+        8,
+        1,
+        19,
+        6,
+        20,
+        2
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 6,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 427.597708,
+            "action_index": 29
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 418.028521,
+            "action_index": 29
+          }
+        },
+        {
+          "channel": 14,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 475.597708,
+            "action_index": 37
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 466.028521,
+            "action_index": 37
+          }
+        },
+        {
+          "channel": 19,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 1338.083265,
+            "action_index": 68
+          },
+          "after": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 2314.656235,
+            "action_index": 121
+          }
+        },
+        {
+          "channel": 8,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 1792.01377,
+            "action_index": 81
+          },
+          "after": {
+            "position": [
+              1079.9586124549053,
+              10.41524493391869
+            ],
+            "time_s": 1862.821127,
+            "action_index": 97
+          }
+        },
+        {
+          "channel": 13,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 2232.073277,
+            "action_index": 104
+          },
+          "after": {
+            "position": [
+              631.5326486417481,
+              -1105.1202626633226
+            ],
+            "time_s": 1429.918452,
+            "action_index": 78
+          }
+        },
+        {
+          "channel": 17,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 2250.073277,
+            "action_index": 107
+          },
+          "after": {
+            "position": [
+              631.5326486417481,
+              -1105.1202626633226
+            ],
+            "time_s": 1447.918452,
+            "action_index": 81
+          }
+        },
+        {
+          "channel": 9,
+          "before": {
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "time_s": 2825.139636,
+            "action_index": 124
+          },
+          "after": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 967.232806,
+            "action_index": 54
+          }
+        }
+      ],
+      "active_measurement_delta": -11,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 1,
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 2
+          },
+          {
+            "id": 2,
+            "position": [
+              631.5326486417481,
+              -1105.1202626633226
+            ],
+            "planned_changes": 3,
+            "visited": true,
+            "source_plans_before_visit": 3
+          },
+          {
+            "id": 3,
+            "position": [
+              1079.9586124549053,
+              10.41524493391869
+            ],
+            "planned_changes": 3,
+            "visited": true,
+            "source_plans_before_visit": 6
+          },
+          {
+            "id": 4,
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 8
+          },
+          {
+            "id": 5,
+            "position": [
+              -577.1028547321963,
+              969.6651193189878
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 9
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 0,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 15.101479660879477,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 5,
+            "distance_m": 26.348143880230143,
+            "frozen_proxy_gain_s": 4.354214377614426,
+            "coverage_radius_m": 999.9998663094613
+          },
+          {
+            "site_id": 2,
+            "distance_m": 41.71861867103245,
+            "frozen_proxy_gain_s": 12.421755871739606,
+            "coverage_radius_m": 999.9999423437769
+          },
+          {
+            "site_id": 2,
+            "distance_m": 9.843692889257214,
+            "frozen_proxy_gain_s": 1.5873251386576612,
+            "coverage_radius_m": 999.9998663094613
+          },
+          {
+            "site_id": 3,
+            "distance_m": 27.671243411001406,
+            "frozen_proxy_gain_s": 5.85771927141991,
+            "coverage_radius_m": 999.9998663094613
+          },
+          {
+            "site_id": 2,
+            "distance_m": 172.2553098780797,
+            "frozen_proxy_gain_s": 15.036942883116126,
+            "coverage_radius_m": 999.9998663094613
+          },
+          {
+            "site_id": 3,
+            "distance_m": 57.15841236451598,
+            "frozen_proxy_gain_s": 4.5983778679435545,
+            "coverage_radius_m": 999.9998663094613
+          },
+          {
+            "site_id": 3,
+            "distance_m": 14.264444321081822,
+            "frozen_proxy_gain_s": 1.4479027159632096,
+            "coverage_radius_m": 999.9998663094613
+          }
+        ],
+        "oracle_calls": 2792,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.4627468000035151,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116006,
+      "saved_s": 81.92758400000002,
+      "component_delta_s": {
+        "movement_s": -96.92758400000002,
+        "detection_s": 15.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": false,
+      "old_clear_order": [
+        18,
+        14,
+        15,
+        11,
+        3,
+        16,
+        6,
+        13,
+        10,
+        8,
+        4,
+        17,
+        12,
+        2
+      ],
+      "new_clear_order": [
+        14,
+        15,
+        11,
+        18,
+        3,
+        16,
+        6,
+        13,
+        10,
+        8,
+        4,
+        17,
+        12,
+        2
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 2,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 533.137082,
+            "action_index": 28
+          },
+          "after": {
+            "position": [
+              -1102.6994483293895,
+              -1.9374964126462009
+            ],
+            "time_s": 391.573173,
+            "action_index": 26
+          }
+        },
+        {
+          "channel": 3,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 539.137082,
+            "action_index": 29
+          },
+          "after": {
+            "position": [
+              -1102.6994483293895,
+              -1.9374964126462009
+            ],
+            "time_s": 397.573173,
+            "action_index": 27
+          }
+        },
+        {
+          "channel": 11,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 587.137082,
+            "action_index": 37
+          },
+          "after": {
+            "position": [
+              -1102.6994483293895,
+              -1.9374964126462009
+            ],
+            "time_s": 445.573173,
+            "action_index": 35
+          }
+        },
+        {
+          "channel": 15,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 605.137082,
+            "action_index": 40
+          },
+          "after": {
+            "position": [
+              -1102.6994483293895,
+              -1.9374964126462009
+            ],
+            "time_s": 463.573173,
+            "action_index": 38
+          }
+        },
+        {
+          "channel": 6,
+          "before": {
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "time_s": 1553.580585,
+            "action_index": 74
+          },
+          "after": {
+            "position": [
+              548.5630549842061,
+              -977.0314191641575
+            ],
+            "time_s": 1450.442619,
+            "action_index": 75
+          }
+        },
+        {
+          "channel": 13,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 2092.40548,
+            "action_index": 96
+          },
+          "after": {
+            "position": [
+              1125.6653460768011,
+              -13.652710558814512
+            ],
+            "time_s": 1993.744609,
+            "action_index": 97
+          }
+        },
+        {
+          "channel": 4,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 2619.761892,
+            "action_index": 107
+          },
+          "after": {
+            "position": [
+              574.6258504256875,
+              968.0068360014828
+            ],
+            "time_s": 2527.734163,
+            "action_index": 109
+          }
+        }
+      ],
+      "active_measurement_delta": 1,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1102.6994483293895,
+              -1.9374964126462009
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 1,
+            "position": [
+              -570.4999037267972,
+              -965.2690059280889
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 5
+          },
+          {
+            "id": 2,
+            "position": [
+              548.5630549842061,
+              -977.0314191641575
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 6
+          },
+          {
+            "id": 3,
+            "position": [
+              1125.6653460768011,
+              -13.652710558814512
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 4,
+            "position": [
+              574.6258504256875,
+              968.0068360014828
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 9
+          },
+          {
+            "id": 5,
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 12
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 0,
+            "distance_m": 47.34021631438867,
+            "frozen_proxy_gain_s": 55.30623426318198,
+            "coverage_radius_m": 999.9999548362346
+          },
+          {
+            "site_id": 1,
+            "distance_m": 30.9886954722551,
+            "frozen_proxy_gain_s": 6.1657627403915285,
+            "coverage_radius_m": 999.9999679279719
+          },
+          {
+            "site_id": 2,
+            "distance_m": 27.882670918871398,
+            "frozen_proxy_gain_s": 5.5380037407567215,
+            "coverage_radius_m": 999.9999548362346
+          },
+          {
+            "site_id": 3,
+            "distance_m": 27.902901052840775,
+            "frozen_proxy_gain_s": 6.940693960928456,
+            "coverage_radius_m": 999.9999548362346
+          },
+          {
+            "site_id": 2,
+            "distance_m": 5.286461490744048,
+            "frozen_proxy_gain_s": 1.5620827245968485,
+            "coverage_radius_m": 999.9999548362346
+          },
+          {
+            "site_id": 4,
+            "distance_m": 27.924884971279965,
+            "frozen_proxy_gain_s": 9.918077415488824,
+            "coverage_radius_m": 999.9999548362346
+          }
+        ],
+        "oracle_calls": 2959,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.4763077000170597,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116007,
+      "saved_s": 63.00604999999996,
+      "component_delta_s": {
+        "movement_s": -67.00604999999996,
+        "detection_s": 5.0,
+        "switching_s": -1.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        10,
+        18,
+        14,
+        5,
+        6,
+        1,
+        13,
+        4,
+        15,
+        2,
+        9,
+        17,
+        11
+      ],
+      "new_clear_order": [
+        10,
+        18,
+        14,
+        5,
+        6,
+        1,
+        13,
+        4,
+        15,
+        2,
+        9,
+        17,
+        11
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 5,
+          "before": {
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "time_s": 451.742739,
+            "action_index": 28
+          },
+          "after": {
+            "position": [
+              549.5192289352418,
+              -951.7952242519121
+            ],
+            "time_s": 444.158808,
+            "action_index": 28
+          }
+        },
+        {
+          "channel": 18,
+          "before": {
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "time_s": 523.742739,
+            "action_index": 40
+          },
+          "after": {
+            "position": [
+              549.5192289352418,
+              -951.7952242519121
+            ],
+            "time_s": 516.158808,
+            "action_index": 40
+          }
+        },
+        {
+          "channel": 4,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 1593.141434,
+            "action_index": 75
+          },
+          "after": {
+            "position": [
+              -1121.0131785097183,
+              -14.04531073787811
+            ],
+            "time_s": 1518.792752,
+            "action_index": 74
+          }
+        },
+        {
+          "channel": 15,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 1629.141434,
+            "action_index": 81
+          },
+          "after": {
+            "position": [
+              -1121.0131785097183,
+              -14.04531073787811
+            ],
+            "time_s": 1554.792752,
+            "action_index": 80
+          }
+        },
+        {
+          "channel": 9,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 2043.439794,
+            "action_index": 95
+          },
+          "after": {
+            "position": [
+              -574.6649967427962,
+              968.0332219766433
+            ],
+            "time_s": 1990.025449,
+            "action_index": 96
+          }
+        },
+        {
+          "channel": 17,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 2067.439794,
+            "action_index": 99
+          },
+          "after": {
+            "position": [
+              -574.6649967427962,
+              968.0332219766433
+            ],
+            "time_s": 2014.025449,
+            "action_index": 100
+          }
+        },
+        {
+          "channel": 11,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 2522.094994,
+            "action_index": 112
+          },
+          "after": {
+            "position": [
+              551.0052151649555,
+              981.6403386962531
+            ],
+            "time_s": 2460.322861,
+            "action_index": 112
+          }
+        }
+      ],
+      "active_measurement_delta": 0,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1121.0131785097183,
+              -14.04531073787811
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 1,
+            "position": [
+              -551.2136798872211,
+              -984.7769138366575
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 2,
+            "position": [
+              549.5192289352418,
+              -951.7952242519121
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 3,
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 13
+          },
+          {
+            "id": 4,
+            "position": [
+              551.0052151649555,
+              981.6403386962531
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 12
+          },
+          {
+            "id": 5,
+            "position": [
+              -574.6649967427962,
+              968.0332219766433
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 9
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 2,
+            "distance_m": 50.96154212951656,
+            "frozen_proxy_gain_s": 17.973885777006444,
+            "coverage_radius_m": 999.9998663094619
+          },
+          {
+            "site_id": 1,
+            "distance_m": 26.27095033101095,
+            "frozen_proxy_gain_s": 6.525400864728681,
+            "coverage_radius_m": 999.9998663094617
+          },
+          {
+            "site_id": 0,
+            "distance_m": 27.918677733228634,
+            "frozen_proxy_gain_s": 5.541053914410668,
+            "coverage_radius_m": 999.9998663094617
+          },
+          {
+            "site_id": 5,
+            "distance_m": 27.898003831710387,
+            "frozen_proxy_gain_s": 7.109574837502805,
+            "coverage_radius_m": 999.9998663094617
+          },
+          {
+            "site_id": 0,
+            "distance_m": 4.645553106502722,
+            "frozen_proxy_gain_s": 1.3101779803359932,
+            "coverage_radius_m": 999.9998663094617
+          },
+          {
+            "site_id": 4,
+            "distance_m": 27.927077662878805,
+            "frozen_proxy_gain_s": 5.5258226985328065,
+            "coverage_radius_m": 999.9999644862014
+          }
+        ],
+        "oracle_calls": 2529,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.41120390000287443,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116008,
+      "saved_s": -1.3992880000000696,
+      "component_delta_s": {
+        "movement_s": 2.3992880000000696,
+        "detection_s": 0.0,
+        "switching_s": -1.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        7,
+        14,
+        15,
+        2,
+        4,
+        10,
+        1,
+        12,
+        20,
+        6,
+        9,
+        3,
+        8
+      ],
+      "new_clear_order": [
+        7,
+        14,
+        15,
+        2,
+        4,
+        10,
+        1,
+        12,
+        20,
+        6,
+        9,
+        3,
+        8
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 7,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 396.0,
+            "action_index": 27
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 385.807692,
+            "action_index": 27
+          }
+        },
+        {
+          "channel": 8,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 402.0,
+            "action_index": 28
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 391.807692,
+            "action_index": 28
+          }
+        },
+        {
+          "channel": 6,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 2054.947571,
+            "action_index": 106
+          },
+          "after": {
+            "position": [
+              573.4346401597923,
+              967.213376630357
+            ],
+            "time_s": 2046.594259,
+            "action_index": 106
+          }
+        },
+        {
+          "channel": 9,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 2066.947571,
+            "action_index": 108
+          },
+          "after": {
+            "position": [
+              573.4346401597923,
+              967.213376630357
+            ],
+            "time_s": 2058.594259,
+            "action_index": 108
+          }
+        }
+      ],
+      "active_measurement_delta": 0,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 0
+          },
+          {
+            "id": 1,
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 3
+          },
+          {
+            "id": 2,
+            "position": [
+              549.60925254581,
+              -954.2706155056602
+            ],
+            "planned_changes": 3,
+            "visited": true,
+            "source_plans_before_visit": 5
+          },
+          {
+            "id": 3,
+            "position": [
+              1121.6789449754601,
+              -12.84660709228175
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 4,
+            "position": [
+              573.4346401597923,
+              967.213376630357
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 9
+          },
+          {
+            "id": 5,
+            "position": [
+              -696.6916185036987,
+              1155.8921603823992
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 12
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 0,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 17.974542298517463,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 2,
+            "distance_m": 27.918677733228623,
+            "frozen_proxy_gain_s": 8.041725263594799,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 2,
+            "distance_m": 25.993920788892257,
+            "frozen_proxy_gain_s": 3.474070889564018,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 2,
+            "distance_m": 7.293751098578575,
+            "frozen_proxy_gain_s": 1.8957335485995372,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 3,
+            "distance_m": 27.671243411001406,
+            "frozen_proxy_gain_s": 9.410169239144125,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 4,
+            "distance_m": 28.758471577798936,
+            "frozen_proxy_gain_s": 8.47849234741659,
+            "coverage_radius_m": 999.9999136250734
+          },
+          {
+            "site_id": 3,
+            "distance_m": 4.467894424220486,
+            "frozen_proxy_gain_s": 1.1302595422506556,
+            "coverage_radius_m": 999.9999847580146
+          },
+          {
+            "site_id": 5,
+            "distance_m": 200.9900348692461,
+            "frozen_proxy_gain_s": 9.762908228057313,
+            "coverage_radius_m": 999.9999847580146
+          }
+        ],
+        "oracle_calls": 3019,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.48634719999245135,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116009,
+      "saved_s": 55.290606000000025,
+      "component_delta_s": {
+        "movement_s": -65.29060600000003,
+        "detection_s": 10.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        19,
+        6,
+        9,
+        15,
+        5,
+        11,
+        12,
+        16,
+        13,
+        2,
+        1,
+        4,
+        7,
+        8,
+        20
+      ],
+      "new_clear_order": [
+        19,
+        6,
+        9,
+        15,
+        5,
+        11,
+        12,
+        16,
+        13,
+        2,
+        1,
+        4,
+        7,
+        8,
+        20
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 20,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 517.205495,
+            "action_index": 42
+          },
+          "after": {
+            "position": [
+              1099.0384578704834,
+              0.0
+            ],
+            "time_s": 509.861465,
+            "action_index": 42
+          }
+        },
+        {
+          "channel": 15,
+          "before": {
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "time_s": 909.338193,
+            "action_index": 58
+          },
+          "after": {
+            "position": [
+              572.0987696418576,
+              -966.5754391907942
+            ],
+            "time_s": 884.495971,
+            "action_index": 58
+          }
+        },
+        {
+          "channel": 11,
+          "before": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 1313.958675,
+            "action_index": 74
+          },
+          "after": {
+            "position": [
+              -550.9050485377588,
+              -980.071629397429
+            ],
+            "time_s": 1306.410461,
+            "action_index": 75
+          }
+        },
+        {
+          "channel": 16,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 1939.798703,
+            "action_index": 98
+          },
+          "after": {
+            "position": [
+              -1122.8998499961006,
+              -12.282185603287441
+            ],
+            "time_s": 1918.920436,
+            "action_index": 99
+          }
+        },
+        {
+          "channel": 1,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 2325.738344,
+            "action_index": 104
+          },
+          "after": {
+            "position": [
+              -574.659799808122,
+              968.0297654883962
+            ],
+            "time_s": 2302.181185,
+            "action_index": 105
+          }
+        },
+        {
+          "channel": 2,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 2331.738344,
+            "action_index": 105
+          },
+          "after": {
+            "position": [
+              -574.659799808122,
+              968.0297654883962
+            ],
+            "time_s": 2308.181185,
+            "action_index": 106
+          }
+        },
+        {
+          "channel": 7,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 2349.738344,
+            "action_index": 108
+          },
+          "after": {
+            "position": [
+              -574.659799808122,
+              968.0297654883962
+            ],
+            "time_s": 2326.181185,
+            "action_index": 109
+          }
+        },
+        {
+          "channel": 13,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 2367.738344,
+            "action_index": 111
+          },
+          "after": {
+            "position": [
+              -574.659799808122,
+              968.0297654883962
+            ],
+            "time_s": 2344.181185,
+            "action_index": 112
+          }
+        },
+        {
+          "channel": 8,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 3148.059548,
+            "action_index": 130
+          },
+          "after": {
+            "position": [
+              682.8268498840002,
+              1116.1229634076535
+            ],
+            "time_s": 3123.335739,
+            "action_index": 132
+          }
+        }
+      ],
+      "active_measurement_delta": 2,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1122.8998499961006,
+              -12.282185603287441
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 1,
+            "position": [
+              -550.9050485377588,
+              -980.071629397429
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 2,
+            "position": [
+              572.0987696418576,
+              -966.5754391907942
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 3
+          },
+          {
+            "id": 3,
+            "position": [
+              1099.0384578704834,
+              0.0
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 4,
+            "position": [
+              682.8268498840002,
+              1116.1229634076535
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 13
+          },
+          {
+            "id": 5,
+            "position": [
+              -574.659799808122,
+              968.0297654883962
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 8
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 3,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 18.23648936931295,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 2,
+            "distance_m": 27.2160744620775,
+            "frozen_proxy_gain_s": 5.239533568312936,
+            "coverage_radius_m": 999.9998782171032
+          },
+          {
+            "site_id": 1,
+            "distance_m": 28.844924797310952,
+            "frozen_proxy_gain_s": 8.812486500793284,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 2,
+            "distance_m": 4.189400095752457,
+            "frozen_proxy_gain_s": 1.294122914496029,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 0,
+            "distance_m": 29.7534907771753,
+            "frozen_proxy_gain_s": 6.456953349546211,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 5,
+            "distance_m": 27.901522952506216,
+            "frozen_proxy_gain_s": 7.404637464845791,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 4,
+            "distance_m": 34.08853055542841,
+            "frozen_proxy_gain_s": 3.722881345594317,
+            "coverage_radius_m": 999.999841369315
+          },
+          {
+            "site_id": 4,
+            "distance_m": 127.75759640338545,
+            "frozen_proxy_gain_s": 6.765054432920067,
+            "coverage_radius_m": 999.999841369315
+          }
+        ],
+        "oracle_calls": 2925,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.4917779999959748,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116010,
+      "saved_s": 133.79657599999973,
+      "component_delta_s": {
+        "movement_s": -130.79657599999973,
+        "detection_s": -5.0,
+        "switching_s": 2.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": false,
+      "old_clear_order": [
+        16,
+        2,
+        5,
+        14,
+        11,
+        4,
+        3,
+        1,
+        9,
+        19,
+        17,
+        15,
+        7,
+        18
+      ],
+      "new_clear_order": [
+        16,
+        2,
+        5,
+        14,
+        11,
+        4,
+        3,
+        19,
+        1,
+        9,
+        17,
+        15,
+        7,
+        18
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 2,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 855.102561,
+            "action_index": 44
+          },
+          "after": {
+            "position": [
+              574.6178668583425,
+              968.0016850300882
+            ],
+            "time_s": 857.690419,
+            "action_index": 44
+          }
+        },
+        {
+          "channel": 4,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 1489.865279,
+            "action_index": 74
+          },
+          "after": {
+            "position": [
+              1098.4906445800889,
+              -2.29766922044365
+            ],
+            "time_s": 1454.429544,
+            "action_index": 72
+          }
+        },
+        {
+          "channel": 7,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 3127.932259,
+            "action_index": 125
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 2981.585796,
+            "action_index": 123
+          }
+        },
+        {
+          "channel": 15,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 3157.932259,
+            "action_index": 130
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 3011.585796,
+            "action_index": 128
+          }
+        }
+      ],
+      "active_measurement_delta": -2,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 11
+          },
+          {
+            "id": 1,
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 2,
+            "position": [
+              574.055062578037,
+              -967.6261322642583
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 3,
+            "position": [
+              1098.4906445800889,
+              -2.29766922044365
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 5
+          },
+          {
+            "id": 4,
+            "position": [
+              574.6178668583425,
+              968.0016850300882
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 5,
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 0
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 0,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 18.34833865909104,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 3,
+            "distance_m": 46.48558994518793,
+            "frozen_proxy_gain_s": 15.935713631025465,
+            "coverage_radius_m": 999.9999124864017
+          },
+          {
+            "site_id": 4,
+            "distance_m": 27.930143568732827,
+            "frozen_proxy_gain_s": 2.998171506723338,
+            "coverage_radius_m": 999.9999124864017
+          },
+          {
+            "site_id": 2,
+            "distance_m": 28.31885171405753,
+            "frozen_proxy_gain_s": 10.560083888944519,
+            "coverage_radius_m": 999.9999886390333
+          },
+          {
+            "site_id": 3,
+            "distance_m": 6.922333513624999,
+            "frozen_proxy_gain_s": 1.872999093499402,
+            "coverage_radius_m": 999.9999886390333
+          }
+        ],
+        "oracle_calls": 2643,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.42618659997242503,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116011,
+      "saved_s": 18.82565799999975,
+      "component_delta_s": {
+        "movement_s": 9.174342000000252,
+        "detection_s": -25.0,
+        "switching_s": -3.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": false,
+      "old_clear_order": [
+        20,
+        19,
+        16,
+        18,
+        17,
+        8,
+        7,
+        14,
+        1,
+        12,
+        4
+      ],
+      "new_clear_order": [
+        20,
+        4,
+        12,
+        1,
+        7,
+        14,
+        8,
+        17,
+        18,
+        16,
+        19
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 1,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 504.805629,
+            "action_index": 25
+          },
+          "after": {
+            "position": [
+              -775.8652026166636,
+              1177.0458641496273
+            ],
+            "time_s": 450.71309,
+            "action_index": 25
+          }
+        },
+        {
+          "channel": 4,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 522.805629,
+            "action_index": 28
+          },
+          "after": {
+            "position": [
+              -775.8652026166636,
+              1177.0458641496273
+            ],
+            "time_s": 468.71309,
+            "action_index": 28
+          }
+        },
+        {
+          "channel": 12,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 570.805629,
+            "action_index": 36
+          },
+          "after": {
+            "position": [
+              -775.8652026166636,
+              1177.0458641496273
+            ],
+            "time_s": 516.71309,
+            "action_index": 36
+          }
+        },
+        {
+          "channel": 19,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 612.805629,
+            "action_index": 43
+          },
+          "after": {
+            "position": [
+              -775.8652026166636,
+              1177.0458641496273
+            ],
+            "time_s": 558.71309,
+            "action_index": 43
+          }
+        },
+        {
+          "channel": 16,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 1097.87091,
+            "action_index": 64
+          },
+          "after": {
+            "position": [
+              574.7761185513044,
+              977.2193469206525
+            ],
+            "time_s": 2672.674452,
+            "action_index": 128
+          }
+        },
+        {
+          "channel": 18,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 1109.87091,
+            "action_index": 66
+          },
+          "after": {
+            "position": [
+              574.7761185513044,
+              977.2193469206525
+            ],
+            "time_s": 2678.674452,
+            "action_index": 129
+          }
+        },
+        {
+          "channel": 7,
+          "before": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 2280.38266,
+            "action_index": 113
+          },
+          "after": {
+            "position": [
+              -1013.4552186435113,
+              -61.919569948269924
+            ],
+            "time_s": 1138.063289,
+            "action_index": 58
+          }
+        }
+      ],
+      "active_measurement_delta": 0,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1013.4552186435113,
+              -61.919569948269924
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 1,
+            "position": [
+              -560.6621775430931,
+              -961.9428235858664
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 6
+          },
+          {
+            "id": 2,
+            "position": [
+              551.4063604072862,
+              -975.8012330651939
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 3,
+            "position": [
+              1125.6935541313032,
+              -13.668047073942017
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 4,
+            "position": [
+              574.7761185513044,
+              977.2193469206525
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 8
+          },
+          {
+            "id": 5,
+            "position": [
+              -775.8652026166636,
+              1177.0458641496273
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 1
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 5,
+            "distance_m": 50.96154212951656,
+            "frozen_proxy_gain_s": 15.03623367996829,
+            "coverage_radius_m": 999.9998663094618
+          },
+          {
+            "site_id": 5,
+            "distance_m": 319.3279671061104,
+            "frozen_proxy_gain_s": 41.92729714365964,
+            "coverage_radius_m": 991.2882709836513
+          },
+          {
+            "site_id": 0,
+            "distance_m": 149.928351082342,
+            "frozen_proxy_gain_s": 15.11419902661919,
+            "coverage_radius_m": 999.9999659559775
+          },
+          {
+            "site_id": 1,
+            "distance_m": 25.01156149072238,
+            "frozen_proxy_gain_s": 6.476510697960521,
+            "coverage_radius_m": 999.9999659559775
+          },
+          {
+            "site_id": 1,
+            "distance_m": 21.137512664362973,
+            "frozen_proxy_gain_s": 5.3274858324402885,
+            "coverage_radius_m": 999.9999659559775
+          },
+          {
+            "site_id": 2,
+            "distance_m": 27.820465708609575,
+            "frozen_proxy_gain_s": 5.449256400319882,
+            "coverage_radius_m": 999.9999659559775
+          },
+          {
+            "site_id": 2,
+            "distance_m": 6.039153402065693,
+            "frozen_proxy_gain_s": 1.399877458483843,
+            "coverage_radius_m": 999.9999659559775
+          },
+          {
+            "site_id": 3,
+            "distance_m": 27.885817570646562,
+            "frozen_proxy_gain_s": 6.940739387809458,
+            "coverage_radius_m": 999.999984679187
+          },
+          {
+            "site_id": 4,
+            "distance_m": 18.711206861279035,
+            "frozen_proxy_gain_s": 1.7764350448901496,
+            "coverage_radius_m": 999.9999659559775
+          }
+        ],
+        "oracle_calls": 2820,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.4814542999956757,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116012,
+      "saved_s": 144.40886199999977,
+      "component_delta_s": {
+        "movement_s": -146.40886199999977,
+        "detection_s": 0.0,
+        "switching_s": 2.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        1,
+        6,
+        12,
+        7,
+        4,
+        15,
+        16,
+        5,
+        11,
+        18,
+        19,
+        13,
+        3
+      ],
+      "new_clear_order": [
+        1,
+        6,
+        12,
+        7,
+        4,
+        15,
+        16,
+        5,
+        11,
+        18,
+        19,
+        13,
+        3
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 7,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 514.78733,
+            "action_index": 28
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 504.673729,
+            "action_index": 28
+          }
+        },
+        {
+          "channel": 12,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 544.78733,
+            "action_index": 33
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 534.673729,
+            "action_index": 33
+          }
+        },
+        {
+          "channel": 13,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 550.78733,
+            "action_index": 34
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 540.673729,
+            "action_index": 34
+          }
+        },
+        {
+          "channel": 19,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 586.78733,
+            "action_index": 40
+          },
+          "after": {
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "time_s": 576.673729,
+            "action_index": 40
+          }
+        },
+        {
+          "channel": 4,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 1757.897715,
+            "action_index": 85
+          },
+          "after": {
+            "position": [
+              1125.6703516342836,
+              -13.656478486806433
+            ],
+            "time_s": 1705.203587,
+            "action_index": 84
+          }
+        },
+        {
+          "channel": 11,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 2514.381164,
+            "action_index": 111
+          },
+          "after": {
+            "position": [
+              574.6615281252513,
+              968.0319302515653
+            ],
+            "time_s": 2456.822076,
+            "action_index": 109
+          }
+        },
+        {
+          "channel": 18,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 2538.381164,
+            "action_index": 115
+          },
+          "after": {
+            "position": [
+              574.6615281252513,
+              968.0319302515653
+            ],
+            "time_s": 2480.822076,
+            "action_index": 113
+          }
+        }
+      ],
+      "active_measurement_delta": -1,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 2
+          },
+          {
+            "id": 1,
+            "position": [
+              -575.0311288612719,
+              -968.277475541385
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 2,
+            "position": [
+              551.0063896338125,
+              -981.6547886905427
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 3,
+            "position": [
+              1125.6703516342836,
+              -13.656478486806433
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 4,
+            "position": [
+              574.6615281252513,
+              968.0319302515653
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 5,
+            "position": [
+              -695.6624478198705,
+              1111.5528609718194
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 10
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 0,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 14.828846813219116,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 1,
+            "distance_m": 27.651756332324407,
+            "frozen_proxy_gain_s": 4.809379640663792,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 2,
+            "distance_m": 27.918677733228623,
+            "frozen_proxy_gain_s": 4.854571162527009,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 3,
+            "distance_m": 27.900379822862842,
+            "frozen_proxy_gain_s": 9.558830048819345,
+            "coverage_radius_m": 999.9999360843368
+          },
+          {
+            "site_id": 4,
+            "distance_m": 27.89933732897946,
+            "frozen_proxy_gain_s": 9.20534475000045,
+            "coverage_radius_m": 999.9998663094614
+          },
+          {
+            "site_id": 5,
+            "distance_m": 167.11748553494857,
+            "frozen_proxy_gain_s": 18.263956966261503,
+            "coverage_radius_m": 998.79613512298
+          }
+        ],
+        "oracle_calls": 2752,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.4548823999866727,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116013,
+      "saved_s": -6.48261199999979,
+      "component_delta_s": {
+        "movement_s": -0.51738800000021,
+        "detection_s": 5.0,
+        "switching_s": 2.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        14,
+        6,
+        11,
+        19,
+        2,
+        17,
+        20,
+        4,
+        9,
+        8
+      ],
+      "new_clear_order": [
+        14,
+        6,
+        11,
+        19,
+        2,
+        17,
+        20,
+        4,
+        9,
+        8
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 6,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 390.0,
+            "action_index": 26
+          },
+          "after": {
+            "position": [
+              1099.0384578704834,
+              0.0
+            ],
+            "time_s": 379.807692,
+            "action_index": 26
+          }
+        },
+        {
+          "channel": 14,
+          "before": {
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "time_s": 438.0,
+            "action_index": 34
+          },
+          "after": {
+            "position": [
+              1099.0384578704834,
+              0.0
+            ],
+            "time_s": 427.807692,
+            "action_index": 34
+          }
+        },
+        {
+          "channel": 19,
+          "before": {
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "time_s": 1606.635365,
+            "action_index": 83
+          },
+          "after": {
+            "position": [
+              -547.9405352134215,
+              950.8116798217761
+            ],
+            "time_s": 1607.280406,
+            "action_index": 83
+          }
+        },
+        {
+          "channel": 2,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 2030.338747,
+            "action_index": 89
+          },
+          "after": {
+            "position": [
+              -1126.03600025177,
+              13.835621705500841
+            ],
+            "time_s": 2036.081311,
+            "action_index": 89
+          }
+        },
+        {
+          "channel": 4,
+          "before": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 2517.002253,
+            "action_index": 112
+          },
+          "after": {
+            "position": [
+              -636.6955107679671,
+              -1131.5587181026758
+            ],
+            "time_s": 2468.880758,
+            "action_index": 110
+          }
+        },
+        {
+          "channel": 20,
+          "before": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 2583.002253,
+            "action_index": 123
+          },
+          "after": {
+            "position": [
+              -636.6955107679671,
+              -1131.5587181026758
+            ],
+            "time_s": 2540.880758,
+            "action_index": 122
+          }
+        }
+      ],
+      "active_measurement_delta": -1,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1126.03600025177,
+              13.835621705500841
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 1,
+            "position": [
+              -636.6955107679671,
+              -1131.5587181026758
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 5
+          },
+          {
+            "id": 2,
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 8
+          },
+          {
+            "id": 3,
+            "position": [
+              1099.0384578704834,
+              0.0
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 0
+          },
+          {
+            "id": 4,
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 2
+          },
+          {
+            "id": 5,
+            "position": [
+              -547.9405352134215,
+              950.8116798217761
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 3
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 3,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 15.115316680654132,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 5,
+            "distance_m": 46.4925364492458,
+            "frozen_proxy_gain_s": 8.999047747727218,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 0,
+            "distance_m": 27.671243411001406,
+            "frozen_proxy_gain_s": 9.420698664369638,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 5,
+            "distance_m": 6.356000553979793,
+            "frozen_proxy_gain_s": 1.1825800370439765,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 1,
+            "distance_m": 27.934595111672017,
+            "frozen_proxy_gain_s": 7.144399100756914,
+            "coverage_radius_m": 999.9999443656902
+          },
+          {
+            "site_id": 1,
+            "distance_m": 174.94777833624707,
+            "frozen_proxy_gain_s": 28.050925333097553,
+            "coverage_radius_m": 999.9998663094615
+          }
+        ],
+        "oracle_calls": 2485,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.3943910000016331,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116014,
+      "saved_s": 48.3371930000003,
+      "component_delta_s": {
+        "movement_s": -52.3371930000003,
+        "detection_s": 5.0,
+        "switching_s": -1.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": false,
+      "old_clear_order": [
+        3,
+        13,
+        9,
+        7,
+        20,
+        2,
+        6,
+        16,
+        12,
+        10,
+        15,
+        8,
+        19,
+        5,
+        17,
+        18
+      ],
+      "new_clear_order": [
+        3,
+        9,
+        13,
+        7,
+        20,
+        2,
+        6,
+        16,
+        12,
+        10,
+        15,
+        8,
+        19,
+        5,
+        17,
+        18
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 9,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 508.473004,
+            "action_index": 30
+          },
+          "after": {
+            "position": [
+              575.8060562435182,
+              968.7963354223152
+            ],
+            "time_s": 512.685882,
+            "action_index": 30
+          }
+        },
+        {
+          "channel": 13,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 532.473004,
+            "action_index": 34
+          },
+          "after": {
+            "position": [
+              575.8060562435182,
+              968.7963354223152
+            ],
+            "time_s": 536.685882,
+            "action_index": 34
+          }
+        },
+        {
+          "channel": 18,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 562.473004,
+            "action_index": 39
+          },
+          "after": {
+            "position": [
+              575.8060562435182,
+              968.7963354223152
+            ],
+            "time_s": 566.685882,
+            "action_index": 39
+          }
+        },
+        {
+          "channel": 10,
+          "before": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 1912.136203,
+            "action_index": 93
+          },
+          "after": {
+            "position": [
+              -575.0000000000005,
+              -968.2579709411028
+            ],
+            "time_s": 1874.588625,
+            "action_index": 93
+          }
+        },
+        {
+          "channel": 16,
+          "before": {
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "time_s": 1942.136203,
+            "action_index": 98
+          },
+          "after": {
+            "position": [
+              -575.0000000000005,
+              -968.2579709411028
+            ],
+            "time_s": 1904.588625,
+            "action_index": 98
+          }
+        }
+      ],
+      "active_measurement_delta": 0,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1099.0504525619697,
+              -0.0063113537417884835
+            ],
+            "planned_changes": 3,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 1,
+            "position": [
+              -575.0000000000005,
+              -968.2579709411028
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 2,
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 10
+          },
+          {
+            "id": 3,
+            "position": [
+              1252.1844446254672,
+              65.71962627479934
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 14
+          },
+          {
+            "id": 4,
+            "position": [
+              575.8060562435182,
+              968.7963354223152
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 5,
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 3
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 3,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 15.00696878067265,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 4,
+            "distance_m": 27.144849339908145,
+            "frozen_proxy_gain_s": 1.1513705360166568,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 0,
+            "distance_m": 29.45066911657758,
+            "frozen_proxy_gain_s": 8.890246615194656,
+            "coverage_radius_m": 999.9999713674669
+          },
+          {
+            "site_id": 0,
+            "distance_m": 25.03906960222899,
+            "frozen_proxy_gain_s": 7.345646242061548,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 0,
+            "distance_m": 4.448302412559894,
+            "frozen_proxy_gain_s": 1.2816236442151876,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 1,
+            "distance_m": 27.671243411001456,
+            "frozen_proxy_gain_s": 7.2909819405522285,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 3,
+            "distance_m": 166.65162026472163,
+            "frozen_proxy_gain_s": 2.0602481900134535,
+            "coverage_radius_m": 999.9999861858777
+          }
+        ],
+        "oracle_calls": 3439,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.5693425999852479,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116015,
+      "saved_s": 58.19081499999993,
+      "component_delta_s": {
+        "movement_s": -70.19081499999993,
+        "detection_s": 10.0,
+        "switching_s": 2.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": true,
+      "old_clear_order": [
+        6,
+        1,
+        16,
+        18,
+        20,
+        14,
+        19,
+        15,
+        17,
+        4,
+        13,
+        5,
+        7,
+        3
+      ],
+      "new_clear_order": [
+        6,
+        1,
+        16,
+        18,
+        20,
+        14,
+        19,
+        15,
+        17,
+        4,
+        13,
+        5,
+        7,
+        3
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 1,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 407.415055,
+            "action_index": 22
+          },
+          "after": {
+            "position": [
+              572.1361661473732,
+              966.3512569777386
+            ],
+            "time_s": 401.4718,
+            "action_index": 22
+          }
+        },
+        {
+          "channel": 3,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 419.415055,
+            "action_index": 24
+          },
+          "after": {
+            "position": [
+              572.1361661473732,
+              966.3512569777386
+            ],
+            "time_s": 413.4718,
+            "action_index": 24
+          }
+        },
+        {
+          "channel": 20,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 1273.601025,
+            "action_index": 63
+          },
+          "after": {
+            "position": [
+              -1102.0140784031064,
+              1.5760143839770127
+            ],
+            "time_s": 1384.668176,
+            "action_index": 81
+          }
+        },
+        {
+          "channel": 18,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 1363.601025,
+            "action_index": 78
+          },
+          "after": {
+            "position": [
+              -1102.0140784031064,
+              1.5760143839770127
+            ],
+            "time_s": 1372.668176,
+            "action_index": 79
+          }
+        },
+        {
+          "channel": 19,
+          "before": {
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "time_s": 1369.601025,
+            "action_index": 79
+          },
+          "after": {
+            "position": [
+              -1102.0140784031064,
+              1.5760143839770127
+            ],
+            "time_s": 1378.668176,
+            "action_index": 80
+          }
+        }
+      ],
+      "active_measurement_delta": 1,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1102.0140784031064,
+              1.5760143839770127
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 3
+          },
+          {
+            "id": 1,
+            "position": [
+              -575.0000000000005,
+              -995.9292143521043
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 7
+          },
+          {
+            "id": 2,
+            "position": [
+              574.9595760299181,
+              -968.2309709666436
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 12
+          },
+          {
+            "id": 3,
+            "position": [
+              1099.0384578704834,
+              0.0
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 13
+          },
+          {
+            "id": 4,
+            "position": [
+              572.1361661473732,
+              966.3512569777386
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 5,
+            "position": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 2
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 3,
+            "distance_m": 50.9615421295166,
+            "frozen_proxy_gain_s": 14.872589134796954,
+            "coverage_radius_m": 999.9998663094615
+          },
+          {
+            "site_id": 4,
+            "distance_m": 29.716276798671373,
+            "frozen_proxy_gain_s": 10.88748926231051,
+            "coverage_radius_m": 999.9999371966479
+          },
+          {
+            "site_id": 2,
+            "distance_m": 27.69827288365797,
+            "frozen_proxy_gain_s": 7.720616560886583,
+            "coverage_radius_m": 999.9999371966479
+          },
+          {
+            "site_id": 0,
+            "distance_m": 35.1310226337759,
+            "frozen_proxy_gain_s": 11.53510244621566,
+            "coverage_radius_m": 999.9999371966479
+          },
+          {
+            "site_id": 0,
+            "distance_m": 17.41329745384205,
+            "frozen_proxy_gain_s": 5.601017891029187,
+            "coverage_radius_m": 999.9999371966479
+          }
+        ],
+        "oracle_calls": 3083,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.486926699988544,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    },
+    {
+      "seed": 116016,
+      "saved_s": -8.799085999999988,
+      "component_delta_s": {
+        "movement_s": 7.799085999999988,
+        "detection_s": 0.0,
+        "switching_s": 1.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "same_clear_order": false,
+      "old_clear_order": [
+        4,
+        20,
+        3,
+        1,
+        12,
+        19,
+        6,
+        7,
+        9,
+        15,
+        18,
+        14,
+        10,
+        17,
+        16,
+        8
+      ],
+      "new_clear_order": [
+        4,
+        20,
+        3,
+        1,
+        12,
+        6,
+        19,
+        7,
+        9,
+        15,
+        18,
+        14,
+        10,
+        17,
+        16,
+        8
+      ],
+      "changed_first_detection": [
+        {
+          "channel": 17,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 494.131367,
+            "action_index": 40
+          },
+          "after": {
+            "position": [
+              549.5192289352418,
+              951.7952242519121
+            ],
+            "time_s": 485.938058,
+            "action_index": 40
+          }
+        },
+        {
+          "channel": 20,
+          "before": {
+            "position": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "time_s": 512.131367,
+            "action_index": 43
+          },
+          "after": {
+            "position": [
+              549.5192289352418,
+              951.7952242519121
+            ],
+            "time_s": 503.938058,
+            "action_index": 43
+          }
+        },
+        {
+          "channel": 7,
+          "before": {
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "time_s": 1477.529704,
+            "action_index": 75
+          },
+          "after": {
+            "position": [
+              868.0730920604531,
+              -1262.7345956657746
+            ],
+            "time_s": 1391.043924,
+            "action_index": 75
+          }
+        },
+        {
+          "channel": 19,
+          "before": {
+            "position": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "time_s": 1549.529704,
+            "action_index": 87
+          },
+          "after": {
+            "position": [
+              868.0730920604531,
+              -1262.7345956657746
+            ],
+            "time_s": 1463.043924,
+            "action_index": 87
+          }
+        }
+      ],
+      "active_measurement_delta": -1,
+      "physical_cost_audit": true,
+      "coverage_audit": {
+        "sites": [
+          {
+            "id": 0,
+            "position": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 9
+          },
+          {
+            "id": 1,
+            "position": [
+              -551.0360002517705,
+              -982.0935926466036
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 8
+          },
+          {
+            "id": 2,
+            "position": [
+              868.0730920604531,
+              -1262.7345956657746
+            ],
+            "planned_changes": 3,
+            "visited": true,
+            "source_plans_before_visit": 4
+          },
+          {
+            "id": 3,
+            "position": [
+              1150.0,
+              0.0
+            ],
+            "planned_changes": 0,
+            "visited": true,
+            "source_plans_before_visit": 2
+          },
+          {
+            "id": 4,
+            "position": [
+              549.5192289352418,
+              951.7952242519121
+            ],
+            "planned_changes": 1,
+            "visited": true,
+            "source_plans_before_visit": 1
+          },
+          {
+            "id": 5,
+            "position": [
+              -585.8539796394057,
+              1186.278923129549
+            ],
+            "planned_changes": 2,
+            "visited": true,
+            "source_plans_before_visit": 13
+          }
+        ],
+        "relocations": [
+          {
+            "site_id": 4,
+            "distance_m": 50.96154212951656,
+            "frozen_proxy_gain_s": 18.35841845017103,
+            "coverage_radius_m": 999.9998663094617
+          },
+          {
+            "site_id": 5,
+            "distance_m": 25.421873986974568,
+            "frozen_proxy_gain_s": 7.923009608448638,
+            "coverage_radius_m": 999.9998663094617
+          },
+          {
+            "site_id": 2,
+            "distance_m": 39.117419653585884,
+            "frozen_proxy_gain_s": 13.714879782017533,
+            "coverage_radius_m": 999.9998663094617
+          },
+          {
+            "site_id": 2,
+            "distance_m": 13.17563186218664,
+            "frozen_proxy_gain_s": 4.484771160419996,
+            "coverage_radius_m": 999.9998892305183
+          },
+          {
+            "site_id": 1,
+            "distance_m": 27.67124341100139,
+            "frozen_proxy_gain_s": 7.196414115934886,
+            "coverage_radius_m": 999.9998892305183
+          },
+          {
+            "site_id": 2,
+            "distance_m": 444.0542483170724,
+            "frozen_proxy_gain_s": 9.16575307008793,
+            "coverage_radius_m": 999.9999697937685
+          },
+          {
+            "site_id": 5,
+            "distance_m": 202.6131488470261,
+            "frozen_proxy_gain_s": 19.46810574455253,
+            "coverage_radius_m": 999.9999894879097
+          }
+        ],
+        "oracle_calls": 3032,
+        "oracle_budget_exhaustions": 0,
+        "planning_s": 0.4736633999782498,
+        "future_sites_canceled_only_after_16_clears": 0,
+        "all_actual_channel_coverage_and_task_multiset_checks_passed": true
+      }
+    }
+  ]
+}
