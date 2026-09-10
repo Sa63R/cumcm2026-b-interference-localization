@@ -84,6 +84,31 @@ def improve_open_route(points, start=(0.0, 0.0)):
     return tuple(route)
 
 
+def omni_coverage_points(ring_radius=1200.0):
+    """A tunable, certified seven-point cover for Question 3 only.
+
+    Return the origin, then six ring points counterclockwise from due east.
+    For a ring radius a, the worst distance to this cover in the 1800 m
+    source disk is max(a/sqrt(3), sqrt(1800**2+a**2-sqrt(3)*1800*a)).
+    The exact feasible interval for a 1000 m reception radius is approximately
+    [1122.955832458, 1732.050807569]. We accept [1123, 1732] m, leaving
+    at least 0.019 m of distance margin throughout this interval.
+
+    This canonical open route has length 6*a when started at the origin.
+    The certificate is omnidirectional only; it does not cover Q4 emitters.
+    Legacy coverage_points() deliberately keeps its existing 1500 m radius.
+    """
+    if (isinstance(ring_radius, bool) or not isinstance(ring_radius, (int, float))
+            or not math.isfinite(ring_radius) or not 1123.0 <= ring_radius <= 1732.0):
+        raise ValueError("ring_radius must be a finite number in [1123, 1732] metres")
+    radius = float(ring_radius)
+    return (Position(0.0, 0.0),) + tuple(
+        Position(radius * math.cos(i * math.pi / 3),
+                 radius * math.sin(i * math.pi / 3))
+        for i in range(6)
+    )
+
+
 def coverage_points(problem=3, *, variant="adaptive"):
     """Return a cover valid for the 1800 m source disk and R >= 1000 m.
 

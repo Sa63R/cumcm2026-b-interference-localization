@@ -38,10 +38,12 @@ def run(args):
         raise ValueError("Provide --robot-id or CUMCM_ROBOT_ID; do not provide your password")
     if args.max_actions < 2:
         raise ValueError("--max-actions must be at least 2")
-    variant = args.variant or ("triangular" if args.problem == 4 else "adaptive")
+    variant = args.variant or ("triangular" if args.problem == 4 else "efficient")
     active_policy = getattr(args, "active_policy", "center")
     if variant == "triangular" and args.problem != 4:
         raise ValueError("triangular variant is only available for problem 4")
+    if variant == "efficient" and (args.problem != 3 or active_policy != "center"):
+        raise ValueError("efficient requires problem 3 and center policy")
     destination = args.output or Path("results/sessions") / args.mode / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     destination.mkdir(parents=True, exist_ok=False)
     report = {
@@ -116,8 +118,8 @@ def main(argv=None):
     execute.add_argument("--robot-id", default=os.environ.get("CUMCM_ROBOT_ID"))
     execute.add_argument("--case-code", default="")
     execute.add_argument("--base-url", default="http://127.0.0.1:2026")
-    execute.add_argument("--variant", choices=("baseline", "adaptive", "deferred", "triangular"),
-                         help="默认问题3为adaptive、问题4为triangular；triangular仅适用于问题4")
+    execute.add_argument("--variant", choices=("baseline", "adaptive", "deferred", "triangular", "efficient"),
+                         help="默认问题3为efficient、问题4为triangular；efficient仅适用于问题3+center")
     execute.add_argument("--active-policy", choices=("center", "minimax"), default="center",
                          help="问题3主动选点策略；问题4始终使用center几何启发式")
     execute.add_argument("--max-actions", type=int, default=20000)

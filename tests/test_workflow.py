@@ -97,7 +97,9 @@ def test_action_budget_is_not_cli_success(tmp_path):
 
 
 @pytest.mark.parametrize("problem,explicit_variant,expected_variant,policy", [
-    (3, None, "adaptive", "center"),
+    (3, None, "efficient", "center"),
+    (3, "adaptive", "adaptive", "center"),
+    (3, "efficient", "efficient", "center"),
     (4, None, "triangular", "center"),
     (3, "deferred", "deferred", "minimax"),
     (4, "adaptive", "adaptive", "center"),

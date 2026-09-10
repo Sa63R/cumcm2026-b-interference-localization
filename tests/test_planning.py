@@ -2,11 +2,16 @@
 
 import math
 import random
+import itertools
+from collections import Counter
 
 import pytest
 
 from geometry import convex_hull
 from planning import clearance_grid, coverage_points, improve_open_route, nearest_order
+from planning.coverage import omni_coverage_points
+from planning.routing import exact_open_route
+from simulator_client.state import Position
 
 
 def test_omnidirectional_seven_points_cover_the_entire_disk():
@@ -158,3 +163,115 @@ def test_invalid_plan_parameters_are_rejected():
         coverage_points(3, variant="unknown")
     with pytest.raises(ValueError):
         clearance_grid([(0, 0)], bearing_deg=math.inf)
+
+
+def _open_route_length(points, start=(0.0, 0.0)):
+    coordinates = [Position.coerce(start)] + [Position.coerce(p) for p in points]
+    return sum(a.distance_to(b) for a, b in zip(coordinates, coordinates[1:]))
+
+
+@pytest.mark.parametrize("radius", [1123, 1150, 1200, 1500, 900 * math.sqrt(3), 1732])
+def test_tunable_omni_cover_attains_the_proved_worst_distance(radius):
+    points = omni_coverage_points(radius)
+    assert len(points) == len(set(points)) == 7
+    assert points[0] == Position(0, 0)
+    assert all(math.hypot(p.x, p.y) == pytest.approx(radius) for p in points[1:])
+    rho = max(radius / math.sqrt(3),
+              math.sqrt(1800**2 + radius**2 - math.sqrt(3) * 1800 * radius))
+    assert rho < 1000 - .019
+    # Independent extrema: at each sector bisector, inspect the outer arena
+    # and the interior origin/ring Voronoi junction. One attains the bound.
+    extreme_distances = []
+    for degrees in range(30, 360, 60):
+        for distance_from_origin in (1800, radius / math.sqrt(3)):
+            position = Position(distance_from_origin * math.cos(math.radians(degrees)),
+                                distance_from_origin * math.sin(math.radians(degrees)))
+            extreme_distances.append(min(position.distance_to(p) for p in points))
+    assert max(extreme_distances) == pytest.approx(rho, abs=1e-8)
+    # Actual generated positions, not only the analytic formula, are checked
+    # over the polar domain and exact angular sector boundaries.
+    for r in [1800 * k / 25 for k in range(26)] + [radius / math.sqrt(3)]:
+        for degrees in range(0, 360, 3):
+            source = Position(r * math.cos(math.radians(degrees)), r * math.sin(math.radians(degrees)))
+            assert min(source.distance_to(p) for p in points) <= rho + 1e-8
+    assert _open_route_length(points) == pytest.approx(6 * radius)
+
+
+def test_tunable_omni_default_and_engineering_tradeoff():
+    assert omni_coverage_points() == omni_coverage_points(1200)
+    expected = {1150: 988.5114204360128, 1200: 968.9015717043836}
+    for radius, worst in expected.items():
+        points = omni_coverage_points(radius)
+        source = Position(1800 * math.cos(math.pi / 6), 1800 * math.sin(math.pi / 6))
+        assert min(source.distance_to(p) for p in points) == pytest.approx(worst)
+        assert (9000 - _open_route_length(points)) / 5 == pytest.approx(420 if radius == 1150 else 360)
+    # This new entry point deliberately does not change legacy Q3 defaults.
+    assert set(coverage_points(3)) == set(omni_coverage_points(1500))
+
+
+@pytest.mark.parametrize("radius", [1122.999999, 1732.000001, 0, -1, 1800,
+                                    True, False, "1200", None, math.nan, math.inf, -math.inf])
+def test_tunable_omni_rejects_unsafe_or_invalid_radius(radius):
+    with pytest.raises(ValueError):
+        omni_coverage_points(radius)
+
+
+def test_outer_boundary_check_alone_would_miss_an_internal_coverage_hole():
+    radius = 1800
+    outer_distance = math.sqrt(1800**2 + radius**2 - math.sqrt(3) * 1800 * radius)
+    assert outer_distance < 1000
+    assert radius / math.sqrt(3) > 1000
+    with pytest.raises(ValueError):
+        omni_coverage_points(radius)
+
+
+def test_exact_open_route_matches_independent_permutations():
+    rng = random.Random(918203)
+    for count in range(7):
+        for _ in range(5):
+            points = [Position(rng.uniform(-1800, 1800), rng.uniform(-1800, 1800))
+                      for _ in range(count)]
+            start = Position(rng.uniform(-1800, 1800), rng.uniform(-1800, 1800))
+            before = list(points)
+            route = exact_open_route(points, start)
+            optimum = min((_open_route_length(order, start) for order in itertools.permutations(points)),
+                          default=0.0)
+            assert _open_route_length(route, start) == pytest.approx(optimum, abs=1e-8)
+            assert Counter(route) == Counter(points)
+            assert points == before
+            assert route == exact_open_route(reversed(points), start)
+
+
+def test_exact_open_route_has_free_endpoint_and_fixed_arbitrary_start():
+    points = [(0, 0), (100, 0), (200, 0)]
+    start = (250, 0)
+    route = exact_open_route(points, start)
+    assert route == (Position(200, 0), Position(100, 0), Position(0, 0))
+    assert _open_route_length(route, start) == 250
+    assert exact_open_route([], start) == ()
+    assert exact_open_route([(10, 20)], start) == (Position(10, 20),)
+
+
+def test_exact_open_route_handles_duplicates_and_ties_deterministically():
+    points = [(0, 0), (1, 0), (-1, 0), (0, 0)]
+    reference = exact_open_route(points)
+    for permutation in itertools.permutations(points):
+        assert exact_open_route(permutation) == reference
+    assert Counter(reference) == Counter(Position(*p) for p in points)
+    assert _open_route_length(reference) == 3
+
+
+def test_exact_open_route_six_ring_points_reaches_the_geometric_lower_bound():
+    ring = omni_coverage_points(1200)[1:]
+    route = exact_open_route(ring, (0, 0))
+    assert set(route) == set(ring)
+    assert _open_route_length(route) == pytest.approx(7200)
+
+
+def test_exact_open_route_validates_size_and_coordinates():
+    with pytest.raises(ValueError):
+        exact_open_route([(i, 0) for i in range(7)])
+    for points, start in [([(math.nan, 0)], (0, 0)), ([], (math.inf, 0)),
+                          ([(True, 0)], (0, 0)), ([(0,)], (0, 0))]:
+        with pytest.raises(ValueError):
+            exact_open_route(points, start)

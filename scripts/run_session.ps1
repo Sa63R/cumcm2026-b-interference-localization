@@ -4,7 +4,7 @@ param(
     [ValidateSet('practice', 'formal')][string]$Mode = 'practice',
     [string]$RobotId = '',
     [string]$CaseCode = '',
-    [ValidateSet('auto', 'baseline', 'adaptive', 'deferred', 'triangular')][string]$Variant = 'auto',
+    [ValidateSet('auto', 'baseline', 'adaptive', 'deferred', 'triangular', 'efficient')][string]$Variant = 'auto',
     [ValidateSet('center', 'minimax')][string]$ActivePolicy = 'center',
     [string]$BaseUrl = 'http://127.0.0.1:2026',
     [string]$PythonPath = '',

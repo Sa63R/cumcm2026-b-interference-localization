@@ -37,6 +37,7 @@ class SearchResult:
     coverage_points: list = field(default_factory=list)
     action_history: list = field(default_factory=list)
     source_estimates: dict = field(default_factory=dict)
+    strategy_parameters: dict = field(default_factory=dict)
     error: str | None = None
     exit_error: str | None = None
 
@@ -230,6 +231,20 @@ class _Search:
             self._resolve(channel)
             unresolved.remove(channel)
 
+    def _execute_plan(self):
+        for point in self.points:
+            channels = [c for c in range(1, 21) if c not in self.cleared]
+            if self.variant != "baseline" and self.client.state.current_channel in channels:
+                channels.remove(self.client.state.current_channel)
+                channels.insert(0, self.client.state.current_channel)
+            for channel in channels:
+                self._perform("measure", point, channel, "coverage")
+            self.report.coverage_points_visited += 1
+            if self.variant == "adaptive":
+                self._resolve_queue()
+        self.report.coverage_complete = True
+        self._resolve_queue()
+
     def run(self):
         started = time.perf_counter()
         try:
@@ -241,18 +256,7 @@ class _Search:
                     raise _StopSearch("request_rejected")
             if self.client.state.session != "active":
                 raise _StopSearch("session_unavailable")
-            for point in self.points:
-                channels = [c for c in range(1, 21) if c not in self.cleared]
-                if self.variant != "baseline" and self.client.state.current_channel in channels:
-                    channels.remove(self.client.state.current_channel)
-                    channels.insert(0, self.client.state.current_channel)
-                for channel in channels:
-                    self._perform("measure", point, channel, "coverage")
-                self.report.coverage_points_visited += 1
-                if self.variant == "adaptive":
-                    self._resolve_queue()
-            self.report.coverage_complete = True
-            self._resolve_queue()
+            self._execute_plan()
             known_channels = self.detected | self.cleared
             if not MIN_SOURCES <= len(known_channels) <= MAX_SOURCES:
                 # This uses only the public 10..16 bound, never a hidden count.
@@ -295,6 +299,8 @@ class _Search:
             self.report.unresolved_channels = sorted(self.detected - self.cleared)
             self.report.time_breakdown = asdict(self.client.state.time_breakdown)
             for channel, region in self.regions.items():
+                if not region.observations:
+                    continue  # Stored negative-only priors are not located sources.
                 estimate = {"vertices": [list(p) for p in region.vertices],
                             "area_m2": region.area}
                 if region.vertices:
@@ -305,7 +311,7 @@ class _Search:
 
 
 def run_search(client, *, problem=3, variant="adaptive", max_actions=20000,
-               max_active_probes=6, active_policy="center"):
+               max_active_probes=6, active_policy="center", efficient_config=None):
     """Run one bounded session without reading hidden simulator truth.
 
     ``baseline`` completes all discovery scans before optical localization.
@@ -317,6 +323,8 @@ def run_search(client, *, problem=3, variant="adaptive", max_actions=20000,
     ``deferred`` retains active localization but waits until all scans finish.
     Q4-only ``triangular`` combines deferred localization and a 990 m triangle
     discovery cover. Both avoid repeatedly interrupting the coverage route.
+    Q3-only ``efficient`` jointly schedules a shorter guaranteed cover and
+    observed sources, and uses omnidirectional negative observations.
     No formal GUI test is launched or selected by this function.
     """
     if problem in {"q3", "q4"}:
@@ -325,8 +333,8 @@ def run_search(client, *, problem=3, variant="adaptive", max_actions=20000,
         raise ValueError("problem must be 3 or 4")
     if variant == "improved":
         variant = "adaptive"
-    if variant not in {"baseline", "adaptive", "deferred", "triangular"}:
-        raise ValueError("variant must be baseline, adaptive, deferred, or triangular")
+    if variant not in {"baseline", "adaptive", "deferred", "triangular", "efficient"}:
+        raise ValueError("unknown strategy variant")
     if active_policy not in {"center", "minimax"}:
         raise ValueError("active_policy must be center or minimax")
     if isinstance(max_actions, bool) or not isinstance(max_actions, int) or max_actions < 2:
@@ -334,5 +342,13 @@ def run_search(client, *, problem=3, variant="adaptive", max_actions=20000,
     if (isinstance(max_active_probes, bool) or not isinstance(max_active_probes, int)
             or not 0 <= max_active_probes <= 30):
         raise ValueError("max_active_probes must be an integer between 0 and 30")
+    if variant == "efficient":
+        if problem != 3 or active_policy != "center":
+            raise ValueError("efficient requires problem=3 and active_policy=center")
+        from .efficient import EfficientSearch
+        return EfficientSearch(client, max_actions, max_active_probes,
+                               efficient_config).run()
+    if efficient_config is not None:
+        raise ValueError("efficient_config requires variant=efficient")
     return _Search(client, problem, variant, max_actions, max_active_probes,
                    active_policy).run()
