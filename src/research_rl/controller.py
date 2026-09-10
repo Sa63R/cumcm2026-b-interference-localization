@@ -165,6 +165,16 @@ class DeepRLSearch(EfficientSearch):
         self.focus = None
         self.action_deadline_epoch = action_deadline_epoch
         self._shape_cache = {}
+        self._area_cache = {}
+        self._geometry_cache = {}
+
+    def _region_area(self, channel):
+        region = self.regions[channel]
+        cached = self._area_cache.get(channel)
+        if cached is None or cached[0] is not region.vertices:
+            cached = (region.vertices, region.area)
+            self._area_cache[channel] = cached
+        return cached[1]
 
     def _geometric_features(self, channel, point):
         region = self.regions.get(channel)
@@ -173,9 +183,18 @@ class DeepRLSearch(EfficientSearch):
         cached = self._shape_cache.get(channel)
         if cached is None or cached[0] is not region.vertices:
             cached = (region.vertices, polygon_shape(region.vertices))
-            cached[1]["area"] = region.area
+            cached[1]["area"] = self._region_area(channel)
             self._shape_cache[channel] = cached
-        return geometry_features(region, point, cached[1], self.first_bearings[channel])
+        bearing = self.first_bearings[channel]
+        features = self._geometry_cache.get(channel)
+        if (features is None or features[0] is not region.vertices
+                or features[1] != bearing or features[2] != region.error_deg):
+            features = (region.vertices, bearing, region.error_deg, {})
+            self._geometry_cache[channel] = features
+        by_point = features[3]
+        if point not in by_point:
+            by_point[point] = tuple(geometry_features(region, point, cached[1], bearing))
+        return by_point[point]
 
     def _check_budget(self, action, position, channel):
         if self.action_deadline_epoch is not None and time.time() >= self.action_deadline_epoch:
@@ -248,7 +267,7 @@ class DeepRLSearch(EfficientSearch):
         unresolved = self.detected - self.cleared
         targets = [(c, self._target(c)) for c in sorted(unresolved)]
         targets = [(c, p) for c, p in targets if p is not None]
-        areas = {c: self.regions[c].area for c in {a.channel for a in candidates} if c in self.regions}
+        areas = {c: self._region_area(c) for c in {a.channel for a in candidates} if c in self.regions}
         point_data = {}
         context = [current.x / 1800, current.y / 1800,
                    self.client.state.current_channel / 20,

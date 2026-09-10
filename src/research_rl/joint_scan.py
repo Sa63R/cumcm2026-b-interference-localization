@@ -22,6 +22,7 @@ class JointScanRLSearch(DeepRLSearch):
         self.negative_scan_ledger = {point: set() for point in self.points}
         self._pending_cache = {point: set(range(1, 21)) - self.cleared for point in self.points}
         self.scan_focus = None
+        self._candidate_cache = {}
         self.report.learning.update(
             learned_scope=["initial_point", "cover_point", "unknown_channel",
                            "scan_interruption", "source_channel", "probe_point", "clear_order"],
@@ -66,6 +67,22 @@ class JointScanRLSearch(DeepRLSearch):
         for channel in sorted(self.detected - self.cleared - self.blocked):
             choices.extend(self._source_candidates(channel))
         return choices
+
+    def _source_candidates(self, channel):
+        # In a point/channel scan the robot often stays still for many actions.
+        # A different channel's new observation cannot change this source's
+        # legal candidates. Include every source/state dependency explicitly.
+        region = self.regions.get(channel)
+        vertices = region.vertices if region is not None else None
+        signature = (self.client.state.position, self.near_points.get(channel),
+                     self.probe_counts.get(channel, 0), self.max_active_probes,
+                     self.first_bearings.get(channel),
+                     frozenset(self.observed_positions.get(channel, ())))
+        cached = self._candidate_cache.get(channel)
+        if cached is None or cached[0] is not vertices or cached[1] != signature:
+            cached = (vertices, signature, tuple(super()._source_candidates(channel)))
+            self._candidate_cache[channel] = cached
+        return cached[2]
 
     def _teacher_scan(self, candidates, point):
         pending = self._pending(point)
