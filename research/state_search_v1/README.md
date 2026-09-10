@@ -2,6 +2,8 @@
 
 本目录是实验记录与算法说明，不是论文正文。研究分支从 `6c28dbe` 分出；主分支及第四问策略保持不变。所有实验使用本地合成研究引擎，没有启动官方演练或正式测试。
 
+后续阶段的当前候选和已停止路线见 [候选清单](CANDIDATES.md)；下文保留最初首版的原始结果及证明范围。最新局部改进为 [确定无信号删测](INFERRED_SILENCE.md)，其与区域均值点的组合记录在 [薄组合检查](INFERRED_REGION_COMBINATION.md)。
+
 ## 首候选接口
 
 `strategies.state_search:run_state_search(client, *, problem=3, max_actions=10000, config=None, max_active_probes=6)` 返回 `SearchResult`。
