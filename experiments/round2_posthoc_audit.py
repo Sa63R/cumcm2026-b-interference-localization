@@ -154,6 +154,14 @@ def build(batches, seed_caches=()):
             extension_hashes[str(extension_path)] = sha(extension_path)
             extension_spec.loader.exec_module(extension)
             observation_extensions["derived_silence"] = extension
+        if manifest["trial"] == "current_probe" and "current_probe" not in observation_extensions:
+            extension_path = ROOT / "experiments/current_probe_prefix_audit.py"
+            extension_spec = importlib.util.spec_from_file_location("_round2_current_probe_auditor", extension_path)
+            extension = importlib.util.module_from_spec(extension_spec)
+            sys.modules[extension_spec.name] = extension
+            extension_hashes[str(extension_path)] = sha(extension_path)
+            extension_spec.loader.exec_module(extension)
+            observation_extensions["current_probe"] = extension
         label = f"{manifest['trial']}/{manifest['stage']}"
         summary_rows = {(row["strategy"], row["seed"]): row for row in summary["rows"]}
         if len(summary_rows) != len(summary["records_sha256"]):
@@ -202,9 +210,20 @@ def build(batches, seed_caches=()):
                 # This auditor reads only summary/history and checks the
                 # maximum vertex distance from the actual clear point. It
                 # therefore accepts valid lens points outside the MEC subdisk.
-                extension = observation_extensions.get(manifest["trial"])
+                extension = observation_extensions.get("derived_silence") if manifest["trial"] == "derived_silence" else None
                 observation_result = (extension.observation_audit(record, cover_cache, observations)
                                       if extension else observations.observation_audit(record, cover_cache))
+                if manifest["trial"] == "current_probe":
+                    probe_audit = observation_extensions["current_probe"].audit_current_probe(
+                        record, observation_result, legacy=observations)
+                    for dependency, dependency_hash in probe_audit["dependency_sha256"].items():
+                        if dependency in extension_hashes and extension_hashes[dependency] != dependency_hash:
+                            raise ValueError("Current-probe proof dependency changed across records")
+                        extension_hashes[dependency] = dependency_hash
+                    # The extension returns the original observations object;
+                    # remove the duplicate before nesting to avoid a cycle.
+                    probe_audit.pop("observations", None)
+                    observation_result["current_probe_prefix_audit"] = probe_audit
             except Exception as error:
                 errors.append(f"causal_certificate: {type(error).__name__}: {error}")
             lower = physical_result["physical_clairvoyant_lower_s"] if physical_result else None
@@ -303,8 +322,10 @@ def markdown(result):
                   f"原始JSON中的审计脚本SHA-256：`{result['script_sha256']}`。",
                   f"本次Markdown渲染脚本SHA-256：`{sha(__file__)}`。",
                   "若二者不同，表示仅用更新后的显示模板重新渲染已有JSON；没有重算实验或下界，也没有修改原JSON的审计哈希。", ""])
-    if result.get("observation_extension_sha256"):
+    if any("round2_derived_silence_audit.py" in path for path in result.get("observation_extension_sha256", {})) and any(row["batch"].startswith("derived_silence/") for row in result["rows"]):
         lines.extend(["", "本次还加载了单独记录哈希的冗余测量证书审核器：以精确有理数复核相对距离不等式、此前同频道真实无信号反馈、扫描过程中的16源上限及实际覆盖计数；删除新增推断后，原审核器仍须独立通过清除与终止证书。物理下界及其缓存依赖没有改变。", ""])
+    if any(row["batch"].startswith("current_probe/") for row in result["rows"]):
+        lines.extend(["", "本次逐条重建当前位置探测的实际观测前缀，核验目标频道去重、接收证书、原候选集合及评分、所选位置和下一实际动作收费。独立实现及纯几何依赖哈希另行记录；原清除、终止及物理下界审核保持有效。", ""])
     errors = [row for row in result["rows"] if row["errors"]]
     if errors:
         lines += ["审核错误：", ""] + [f"- {row['batch']}/{row['strategy']}/{row['seed']}: {row['errors']}" for row in errors]
