@@ -23,7 +23,7 @@ import numpy as np
 
 DEFAULT_ARCHIVES = ("milestone-0200.tar.gz", "milestone-0300.tar.gz", "cold-001-complete.tar.gz",
                     "milestone-0410.tar.gz", "milestone-0510.tar.gz",
-                    "milestone-0550.tar.gz", "milestone-0605.tar.gz")
+                    "milestone-0550.tar.gz", "milestone-0605.tar.gz", "milestone-0715.tar.gz")
 VALIDATION_SEEDS = list(range(6000, 6048))
 
 
@@ -343,6 +343,31 @@ def audit_selected_designs(report):
             training_vs_own_initialization=deltas,
             final_axis_vs_base=paired_endpoint(validation[probes[0]+"-ppo_000512"],validation[probes[1]+"-ppo_000512"]),
             scope="Shared inherited weights and matched final sample count; action-set change already affects initialized policy. Early wallclock checkpoints have different updates.")
+    routes = ("cold-route-v3-001", "cold-route-v4-001")
+    if all(name in trials for name in routes):
+        left,right = (trials[name] for name in routes)
+        keys=("git_commit","architecture","hidden","seed","scenario_start","updates","episodes_per_update",
+              "bc_episodes","initialize_from","epochs","minibatch","lr","gae_lambda","clip","value_coef",
+              "entropy_coef","group_alpha","probe_candidates","aux_bc_coef","target_kl","max_decisions",
+              "workers","num_threads","max_wall_s")
+        if any(left["config"].get(k)!=right["config"].get(k) for k in keys):
+            raise ValueError("Route representation comparison has an undeclared config difference")
+        if [left["config"]["feature_version"],right["config"]["feature_version"]] != ["v3","v4"]:
+            raise ValueError("Expected a v3/v4 representation comparison")
+        for key in ("policy_episodes_used","completed_updates","actual_policy_seed_ranges","actual_bc_episodes"):
+            if left["summary"][key]!=right["summary"][key]:
+                raise ValueError("Route representation training endpoint budgets differ")
+        validation=report["validation"]
+        parent=validation["cold-finetune-ppo-002-ppo_000384"]
+        if any(validation[name+"-initialized"]["case_virtual_times_s"]!=parent["case_virtual_times_s"] for name in routes):
+            raise ValueError("Route initialized costs do not match the parent model")
+        deltas={strategy:paired_endpoint(parent,record) for name in routes for strategy,record in validation.items()
+                if checkpoint_update(strategy,name) is not None and checkpoint_update(strategy,name)>0}
+        designs["matched_route_endpoint"]=dict(trials=list(routes),config_keys_checked=list(keys),
+            sampled_episodes_each=left["summary"]["policy_episodes_used"],completed_updates_each=left["summary"]["completed_updates"],
+            both_initializations_match_parent_virtual_times=True,training_vs_parent=deltas,
+            final_v4_vs_v3=paired_endpoint(validation[routes[0]+"-ppo_000512"],validation[routes[1]+"-ppo_000512"]),
+            scope="Same initial episode costs, actions/schema and completed samples; only v4 observation representation changes. Early wallclock checkpoints have unequal update counts.")
     return designs
 
 
@@ -559,7 +584,8 @@ def write_report(report, output):
 6. 从cold001/u512出发，后续PPO384端点3178.339秒，paired REINFORCE374端点3224.109秒。但后者多运行11968条baseline轨迹，且时间截止使两者未完成相同更新数；这组结果不能被写成“在完全相同算力/仿真预算下PPO优于REINFORCE”。
 7. 05:10新增的第二次PPO微调u384为3162.245秒，比冻结rollout均值3373.253秒节省211.008秒（6.255%）；同48局41胜7负、全部清除、零失败清除，最坏局仍慢199.794秒。这条继承链累计40960条参与更新的策略轨迹，不能只报告最后一轮12288局。相对上一轮再快16.094秒，不据此断言该增量已经显著。
 8. alpha0/alpha1同预算u512分别3294.830/3257.778秒；alpha1相对alpha0节省37.052秒，原归档配对95%区间[-12.447,86.859]秒、24胜24负，额外收益尚未确立。这一区间来自归档比较文件，表中各策略对rollout的区间由本脚本独立bootstrap；两者对象和随机种子不同，不能混写。
-9. 06:05完成的base/axis训练每组512×32=16384条，使用同best002权重和seed9112036。base初始化逐局重现best002；axis初始化3134.115秒属于零训练动作集迁移效应。base/axis末端分别3174.712/3149.841秒，两个末端及其余四个中间端点相对各自初始化的增量区间跨0；axis u157例外，节省-56.903秒、区间[-110.221,-5.418]全负，显示该开发集上的早期退化。没有任何已测训练端点确立额外收益，不能误写成所有区间均跨0。base u512最坏局相对rollout多764.699秒，不能只看其均值。中间墙钟检查点的更新数不同，不构成同预算对照。本次输入范围没有包含v4或强起点attention训练结果。
+9. 06:05完成的base/axis训练每组512×32=16384条，使用同best002权重和seed9112036。base初始化逐局重现best002；axis初始化3134.115秒属于零训练动作集迁移效应。base/axis末端分别3174.712/3149.841秒，两个末端及其余四个中间端点相对各自初始化的增量区间跨0；axis u157例外，节省-56.903秒、区间[-110.221,-5.418]全负，显示该开发集上的早期退化。没有任何已测训练端点确立额外收益，不能误写成所有区间均跨0。base u512最坏局相对rollout多764.699秒，不能只看其均值。中间墙钟检查点的更新数不同，不构成同预算对照。
+10. 07:15完成的v3/v4覆盖负债表示对照每组512×32=16384条，两个initialized逐局总时均等于best002，末端3176.419/3160.230秒。v4相对共同parent仅快2.015秒，95%区间[-40.678,44.600]跨0，尚无新特征额外收益的证据。源代码、动作集合、随机种子9112037、新场景180001..196384及完整采样量已核对；中间墙钟端点仍不是相同更新数。强起点attention仍不在本次归档范围。
 
 ## 复现
 
@@ -574,7 +600,7 @@ def write_report(report, output):
         text = text[:start] + text[end:]
     if not set(DEFAULT_ARCHIVES).issubset({entry["archive"] for entry in report["inputs"]}):
         start, end = text.index("## 当前证据的边界"), text.index("## 复现")
-        text = (text[:start] + "## 当前证据的边界\n\n本次显式输入只是历史归档的子集，故不复述需要完整06:05归档才能支持的数值结论。以上表格只列实际读取并通过场景身份及成功条件核验的数据；配对区间不能代表训练种子不确定性，也不能作为全局最优或最终测试保证。\n\n" + text[end:])
+        text = (text[:start] + "## 当前证据的边界\n\n本次显式输入只是历史归档的子集，故不复述需要完整07:15归档才能支持的数值结论。以上表格只列实际读取并通过场景身份及成功条件核验的数据；配对区间不能代表训练种子不确定性，也不能作为全局最优或最终测试保证。\n\n" + text[end:])
     if "matched_probe_endpoint" in report["audited_designs"]:
         design=report["audited_designs"]["matched_probe_endpoint"]
         probe_rows=[]
@@ -591,6 +617,20 @@ def write_report(report, output):
             "下表改用各方法自己的initialized作参照，正值才表示后续训练更快；这些增量区间使用原协议bootstrap seed20260911、10000次Python random.choices，与下方各端点对rollout的历史审计seed913区分。\n\n"
             +table(["训练端点","平均虚拟秒","比自己初始化节省秒","95% CI"],probe_rows)+"\n")
         text=text.replace("## 全部已归档RL验证端点",probe_text+"## 全部已归档RL验证端点")
+    if "matched_route_endpoint" in report["audited_designs"]:
+        design=report["audited_designs"]["matched_route_endpoint"]
+        route_rows=[]
+        for name,delta in design["training_vs_parent"].items():
+            low,high=delta["saving_ci95_s"]
+            route_rows.append([name,f"{report['validation'][name]['mean_virtual_time_s']:.3f}",
+                f"{delta['mean_seconds_saved']:.3f}",f"[{low:.3f}, {high:.3f}]"])
+        pair=design["final_v4_vs_v3"];low,high=pair["saving_ci95_s"]
+        route_text=("## v3/v4覆盖负债表示：共同初始化与额外训练\n\n"
+            "两组initialized在48局逐例总时都与parent best002相同。下表正值表示比共同parent更快；采用原协议seed20260911/10000次配对bootstrap。\n\n"
+            +table(["训练端点","平均虚拟秒","比共同parent节省秒","95% CI"],route_rows)
+            +f"\n相同512更新末端，v4相对v3节省{pair['mean_seconds_saved']:.3f}秒，区间[{low:.3f}, {high:.3f}]。"
+            "逐局均成功不等价于改进已经成立。\n\n")
+        text=text.replace("## 全部已归档RL验证端点",route_text+"## 全部已归档RL验证端点")
     (output / "README.md").write_text(text, encoding="utf-8", newline="\n")
 
 
