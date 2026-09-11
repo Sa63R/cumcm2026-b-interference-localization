@@ -1,0 +1,73 @@
+CUMULATIVE TIME: nested values overlap and MUST NOT be summed as a partition.
+Fri Sep 11 20:40:22 2026    results\round2\observation_tree\model_smoke\profile.stats
+
+         407102365 function calls (367288258 primitive calls) in 112.717 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1443 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    255/1    0.013    0.000  124.025  124.025 {built-in method builtins.exec}
+        1    0.001    0.001  124.025  124.025 observation_tree_model_smoke.py:1(<module>)
+        1    0.000    0.000  123.991  123.991 observation_tree_model_smoke.py:25(main)
+        1    0.001    0.001  123.692  123.692 observation_tree_state_search.py:297(run_observation_tree_state_search)
+     34/1    0.002    0.000  123.691  123.691 search.py:248(run)
+        1    0.000    0.000  123.691  123.691 efficient.py:175(_execute_plan)
+       21    0.006    0.000  121.363    5.779 observation_tree_state_search.py:132(_next_task)
+        5    0.000    0.000  118.058   23.612 conditional_mc.py:30(choose_then_evaluate)
+       33    0.036    0.001  118.057    3.577 observation_tree_state_search.py:253(<lambda>)
+       33    0.003    0.000  118.021    3.576 observation_tree_state_search.py:178(evaluate_tail)
+      601    0.019    0.000  117.497    0.196 observation_continuation.py:177(step)
+       33    0.000    0.000  113.585    3.442 observation_continuation.py:236(finish)
+       33    0.071    0.002  113.578    3.442 observation_continuation.py:229(_execute_plan)
+       17    0.000    0.000   88.592    5.211 conditional_mc.py:34(<genexpr>)
+      408    0.003    0.000   47.631    0.117 state_search.py:125(_resolve)
+      408    0.002    0.000   47.081    0.115 efficient.py:94(_resolve)
+      408    0.010    0.000   47.079    0.115 search.py:179(_resolve)
+    15094    0.254    0.000   45.157    0.003 omni.py:73(observe)
+      502    0.023    0.000   45.038    0.090 refined_state_search.py:15(_next_probe)
+     1004    0.242    0.000   44.970    0.045 radius_probe.py:14(choose_radius_probe)
+    15094    0.689    0.000   43.885    0.003 __init__.py:73(observe)
+30775021/2068   18.608    0.000   43.405    0.021 copy.py:118(deepcopy)
+174671/8794    1.617    0.000   43.360    0.005 copy.py:217(_deepcopy_dict)
+102197/39458    0.227    0.000   42.863    0.001 copy.py:247(_reconstruct)
+      607    0.063    0.000   42.420    0.070 observation_continuation.py:66(capture_v1)
+
+
+
+EXCLUSIVE TIME: function bodies exclude called functions.
+Fri Sep 11 20:40:22 2026    results\round2\observation_tree\model_smoke\profile.stats
+
+         407102365 function calls (367288258 primitive calls) in 112.717 seconds
+
+   Ordered by: internal time
+   List reduced from 1443 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+30775021/2068   18.608    0.000   43.405    0.021 copy.py:118(deepcopy)
+9567349/1234097   11.601    0.000   35.003    0.000 copy.py:200(_deepcopy_tuple)
+  2008869    7.865    0.000   34.445    0.000 __init__.py:73(clip_polygon)
+ 61786393    6.237    0.000    6.237    0.000 {method 'get' of 'dict' objects}
+  8975560    6.066    0.000   15.559    0.000 __init__.py:17(point)
+  7338726    5.215    0.000   14.389    0.000 {built-in method builtins.min}
+ 11150024    4.331    0.000   10.616    0.000 {built-in method builtins.all}
+    71864    3.786    0.000   25.637    0.000 disk_cover.py:15(disk_cover_radius)
+ 26926680    3.472    0.000    4.689    0.000 __init__.py:24(<genexpr>)
+  2008869    3.239    0.000    6.848    0.000 __init__.py:63(_deduplicate)
+ 41403928    2.925    0.000    2.925    0.000 {built-in method builtins.id}
+  2085738    2.369    0.000    9.300    0.000 __init__.py:229(<genexpr>)
+  2173137    2.285    0.000    5.108    0.000 __init__.py:46(__post_init__)
+ 21300302    2.267    0.000    2.267    0.000 {method 'append' of 'list' objects}
+ 16878854    2.176    0.000    2.176    0.000 __init__.py:56(residual)
+  6168459    2.027    0.000   16.071    0.000 disk_cover.py:61(<genexpr>)
+ 10448296    1.911    0.000   16.448    0.000 __init__.py:75(<genexpr>)
+ 27343016    1.878    0.000    1.878    0.000 {built-in method math.isfinite}
+  8961333    1.874    0.000    2.811    0.000 __init__.py:29(distance)
+174671/8794    1.617    0.000   43.360    0.005 copy.py:217(_deepcopy_dict)
+  1220307    1.577    0.000    2.610    0.000 state.py:14(__post_init__)
+ 12008983    1.288    0.000    1.288    0.000 {built-in method math.hypot}
+16338579/16336940    1.245    0.000    1.245    0.000 {built-in method builtins.len}
+ 20674932    1.172    0.000    1.172    0.000 copy.py:172(_deepcopy_atomic)
+  8692548    1.167    0.000    1.595    0.000 __init__.py:47(<genexpr>)
+
+
