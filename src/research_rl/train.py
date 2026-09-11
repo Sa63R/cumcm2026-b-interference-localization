@@ -38,7 +38,7 @@ from .portable_checkpoint import portable_paths
 
 
 _worker_model = None
-TRAINING_SEED_RANGES = ((2000, 5099), (100001, 199999), (1000001, 1999999))
+TRAINING_SEED_RANGES = ((2000, 5099), (100001, 199999), (1000001, 1999999), (3000001, 3999999))
 
 
 def legal_training_seed(seed):
@@ -521,7 +521,7 @@ def main(argv=None):
               "feature_schema": feature_schema(args.feature_version),
               "source_manifest": source_manifest(),
               "gamma": 1.0, "reward_scale_s": 1000, "failure_penalty_s": 360000,
-              "training_seed_ranges": [[100001, 199999], [2000, 5099], [1000001, 1999999]],
+              "training_seed_ranges": [list(bounds) for bounds in TRAINING_SEED_RANGES],
               "validation_seeds_not_used_by_training": [6000, 6047]}
     (args.output / "config.json").write_text(json.dumps(config, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
     executor = ProcessPoolExecutor(args.workers, mp_context=multiprocessing.get_context("spawn")) if args.workers else None
