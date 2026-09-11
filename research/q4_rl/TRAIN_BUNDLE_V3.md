@@ -1,0 +1,8 @@
+# Two separate controlled questions
+
+Before launch, fix `train_bundle_v3.json`: four jobs, eight workers and one learner each, sharing one total 50-CPU supervisor allowance; 1800 wall seconds per job, no GPU. Synthetic training only, fresh start 8007000. Both initialized jobs use exactly the same completed 64-episode BC model, SHA256 `cb5df8dd338cc740222fc0edd5259ea63a64ddd7cb12398d245e781eb7843757`, fresh Adam at 0.0003, and action RNG seed 424343. All preserve full undiscounted billed/failure/fallback costs and the unchanged 512-decision safety controller.
+
+1. Architecture: MLP versus induced attention, both from scratch, 64 identical curriculum BC episodes then PPO, identical feature/action/return definitions and entropy coefficient 0.005. Both use linear episode journals. Compare matched final checkpoints and actual CPU, not only training loss.
+2. Training algorithm: initialized PPO versus initialized self-critical whole-trajectory REINFORCE, neither repeating BC, both entropy coefficient zero. SCST runs stochastic and current greedy trajectories on each seed; eight pairs per batch versus sixteen sampled PPO episodes. The extra greedy computation counts. This is an equal wall/worker allowance, not equal numbers of distinct scenes or optimizer updates. Report those quantities explicitly.
+
+Use the last complete checkpoint and every failure; do not select the most favorable checkpoint. These jobs are exploratory development experiments. Their endpoints still require matched development evaluation and independent confirmation before any promotion. The earlier R8 remains the recommended baseline. No claim of advantage, convergence or optimality follows from launching these jobs.
