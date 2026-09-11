@@ -1,0 +1,144 @@
+{
+  "schema": "q4-per-source-reference-figures-v1",
+  "inputs": {
+    "random": {
+      "path": "D:\\jwt\\2026数模国赛\\q4-per-source-reference\\results\\q4_per_source_reference\\confirmation\\summary.json",
+      "sha256": "c3625de701039711bc1de6cf8b3977c5bd3c7e44aaaaeb0f6da32378fb8d7761"
+    },
+    "stress": {
+      "path": "D:\\jwt\\2026数模国赛\\q4-per-source-reference\\results\\q4_per_source_reference\\stress\\summary.json",
+      "sha256": "1c2143eb516ec318f29ea7d1abf5838be86ea8b5f46d74d25106ed11d0a9ca72"
+    }
+  },
+  "script_sha256": "c2a849c98477d8addc5c52d2de9c1a6f93515444d2cb7e24fd884b7c7cbbe549",
+  "title": "Q4 可靠参考策略",
+  "font": "Microsoft YaHei",
+  "target_s": 460.0,
+  "target_scope": "Overall equal-run mean(T/N) only; no per-N threshold on figure 1",
+  "percentile": "Linear interpolation at 0.95*(sample_count-1); descriptive P95, not a CI",
+  "validation_scope": "Complete summary rows and arithmetic only; not a replacement for physical or qualification audits",
+  "datasets": {
+    "random": {
+      "kind": "random",
+      "method": "compact_joint_continuation",
+      "runs": 140,
+      "by_source_count": [
+        {
+          "source_count": 10,
+          "runs": 20,
+          "mean_s": 670.57958573,
+          "p95_s": 715.95977169
+        },
+        {
+          "source_count": 11,
+          "runs": 20,
+          "mean_s": 598.9185786636364,
+          "p95_s": 665.8312564636364
+        },
+        {
+          "source_count": 12,
+          "runs": 20,
+          "mean_s": 535.2542493916667,
+          "p95_s": 610.55527715
+        },
+        {
+          "source_count": 13,
+          "runs": 20,
+          "mean_s": 510.54616689615386,
+          "p95_s": 580.6093330961538
+        },
+        {
+          "source_count": 14,
+          "runs": 20,
+          "mean_s": 467.86340840357144,
+          "p95_s": 529.5702751714285
+        },
+        {
+          "source_count": 15,
+          "runs": 20,
+          "mean_s": 443.0982841233333,
+          "p95_s": 496.0192000833333
+        },
+        {
+          "source_count": 16,
+          "runs": 20,
+          "mean_s": 352.58970065625,
+          "p95_s": 440.47512352812504
+        }
+      ],
+      "mean_time_per_source_s": 511.2642819806588,
+      "p95_time_per_source_s": 678.08867945,
+      "mean_components_per_source_s": {
+        "movement_s": 385.501110152487,
+        "detection_s": 101.88347545311831,
+        "switching_s": 18.703062830027115,
+        "optical_s": 3.176633545026402,
+        "removal_s": 2.0
+      }
+    },
+    "stress": {
+      "kind": "stress",
+      "method": "compact_joint_continuation",
+      "runs": 98,
+      "by_source_count": [
+        {
+          "source_count": 10,
+          "runs": 14,
+          "mean_s": 659.1330365214286,
+          "p95_s": 778.5122511499999
+        },
+        {
+          "source_count": 11,
+          "runs": 14,
+          "mean_s": 618.6599422532468,
+          "p95_s": 736.1581595545454
+        },
+        {
+          "source_count": 12,
+          "runs": 14,
+          "mean_s": 557.2906650059524,
+          "p95_s": 682.3729827916667
+        },
+        {
+          "source_count": 13,
+          "runs": 14,
+          "mean_s": 497.9873143681319,
+          "p95_s": 549.8473189961538
+        },
+        {
+          "source_count": 14,
+          "runs": 14,
+          "mean_s": 487.5549316989796,
+          "p95_s": 586.0743899285715
+        },
+        {
+          "source_count": 15,
+          "runs": 14,
+          "mean_s": 453.25383764761904,
+          "p95_s": 580.4064728366666
+        },
+        {
+          "source_count": 16,
+          "runs": 14,
+          "mean_s": 364.5891960669643,
+          "p95_s": 620.2267459218749
+        }
+      ],
+      "mean_time_per_source_s": 519.7812747946175,
+      "p95_time_per_source_s": 705.879602365,
+      "mean_components_per_source_s": {
+        "movement_s": 382.28297050536935,
+        "detection_s": 111.32901070018417,
+        "switching_s": 20.043834609268284,
+        "optical_s": 4.125458979795715,
+        "removal_s": 2.0
+      }
+    }
+  },
+  "output_sha256": {
+    "per_source_by_count.png": "27d523512acd4e3768390363c8966f15843fcdc717746c6e008064a6a794a41a",
+    "per_source_by_count.pdf": "bf8d58e1c764d049e0f0d3b12b55e1fced03f97e2163ce70a13e0baa302b85d2",
+    "per_source_components.png": "7fc340f72203e3ddaa64695ddedf1d1339b61cb10e8cb32bd61fe8936faecf94",
+    "per_source_components.pdf": "a94d15d9104d7876c96ff53f1f38c4abc76de39f9312c861f1704d9efba94714"
+  }
+}
