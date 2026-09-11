@@ -14,6 +14,23 @@
   "baseline_spec": "experiments/state_search_candidate_relocating_cover_v1.json",
   "archive_branch": "research/q3-round2",
   "created_experiments": {
+    "observation_tree": {
+      "branch": "research/q3-r2-observation-tree",
+      "directory": "q3-r2-observation-tree",
+      "candidate_specs": {
+        "root_mc": "experiments/state_search_candidate_root_mc_r2.json",
+        "observation_tree": "experiments/state_search_candidate_observation_tree_r2.json"
+      },
+      "pilot_seeds": [212101, 212116],
+      "confirmation_seeds": [212201, 212264],
+      "final_seeds": [214001, 214256],
+      "stress_seeds": [215001, 215028],
+      "scope": "Three arms: protected v1, finite predictive root MC with complete v1 tail, and depth-two conditional task decisions with the same model/candidates/compute caps. Not full POMCPOW. No held-out cases opened before source freeze and implementation checks.",
+      "model_gate": "Likelihood and clone tests plus actual observation-only smoke must pass; complete depth-two calculation must contain at least two distinct full observations for a common first task and an internal alternative comparison. Fallback is not evidence that the tree was tested.",
+      "model_gate_receipt": "research/round2/diagnoses/OBSERVATION_TREE_MODEL_GATE.json",
+      "mechanism_reporting": "Compare observation_tree against both baseline and root_mc. Report used train/eval support separately from larger conditioning pool ESS. Fixed K=2 equal-weight predictive representatives; do not reuse visit counts as predictive probabilities.",
+      "validation_separation": "All 210xxx/211xxx final cases already opened for certified_tail are excluded from this experiment's independent evaluations. Existing 200114 is implementation smoke only. SQLite remains validation-only."
+    },
     "certified_tail": {
       "branch": "research/q3-r2-certified-tail",
       "directory": "q3-r2-certified-tail",

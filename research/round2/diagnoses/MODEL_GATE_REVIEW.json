@@ -1,0 +1,732 @@
+{
+  "version": "observation-tree-model-gate-independent-review-v1",
+  "created_at_utc": "2026-09-11T12:24:18.120534+00:00",
+  "candidate_commit": "a876e595d14fdf067852ddf54078aa99292de9ca",
+  "current_source_sha256": {
+    "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+    "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+    "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+    "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+    "src/planning/binned_probe_tree.py": "9ca8bd363ca76e88bb0c19ff540c8e16448762494a1cff6c4a758340c6f5acc1",
+    "src/planning/conditional_mc.py": "8517f47595f543ece62f3e6b843d31587a0e387845af724212f089e6fb3217ff",
+    "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+    "src/planning/coverage_relocation.py": "0206daefa72878b1e7276386abc417c2e62b4fa427e890fca9279f07aff70648",
+    "src/planning/disk_cover.py": "8731a6b7b8d396de04e2d6155fa130626b218e085672e6c432eff11311d4e09d",
+    "src/planning/probe_candidates.py": "2b79f97f5dd25025c18cc0e78a740135b4fcfb8ab19df6a35305b80ec8516f71",
+    "src/planning/probe_tree.py": "11f5d9da1758f121712a372e63370fd1c4a724ecc34a0e69f51d703b9c78475e",
+    "src/planning/radius_probe.py": "e76e927f27e48d13311b8b19c0ff54e8f6e3f7a50788b105e948da8edcb812d4",
+    "src/planning/region_travel.py": "6fb090ce623e8d35e71937b6caf6722fa533bd576940162ea44fa5b1b8b5d667",
+    "src/planning/ring_layout.py": "335e070f3c7028b89f854b4967bb583829d70c5d708928d529b3d6325932502f",
+    "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+    "src/planning/shared_observation.py": "eb669cf127fb2f884921eeac226ccc9c516e9b662f238b83612be2e3565fd1d9",
+    "src/planning/silence_certificate.py": "ebb0ca8630e81cbb556a51b5b932b9c769ae621f4fc540e0436c8e8141cf688a",
+    "src/planning/state_route.py": "ea39eff80cf81378cc8dbd242c2519947aa13e89eebf370cf28ed1c419200261",
+    "src/planning/unknown_mass.py": "1aab85d8e515b5426e7102754d14b0bf5a9db533acf3683cd64bcd1226383161",
+    "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+    "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+    "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+    "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+    "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+    "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+    "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+    "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+    "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+    "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+    "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+    "src/strategies/binned_state_search.py": "ab613456a0428fb5f9d027492894a851ba6ddfd8f2e41edc8518ee3548e644f6",
+    "src/strategies/discovery_state_search.py": "dffd046f62fb661b87f2a6ec321044c30f47e12db7d7fae3fc8f60ac5cd07055",
+    "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+    "src/strategies/executing_cover_state_search.py": "4f8afbb95e7c51edcd5fec78248e9d47b6449010b3ed0eea06ee62f4d70877bf",
+    "src/strategies/inferred_region_state_search.py": "f511ed8d49f8cc97130d60eba15a6eeb835844a3456a6ecabe737cce4a9b6d50",
+    "src/strategies/inferred_state_search.py": "ddb41c926abee1e66ff4e83b0db02df4916c14b6b313868b613b2e731119d0e8",
+    "src/strategies/layout_state_search.py": "8ac73709135fef73be66f13260eca0c7ec46d832ce05300eed8dc9015d86a813",
+    "src/strategies/observation_continuation.py": "d413c473fd572c9036af4987e508ec3b4041398caf959bdaa09003ace700d7d0",
+    "src/strategies/observation_tree_state_search.py": "ee1ebf94b59c152da52a6958a4ada2a9510eb5a04ac805803b09b5c049362f0c",
+    "src/strategies/pruned_state_search.py": "f5ec628008e8f2aab6bdf933210e5ef1668c0c5cdecd77338e4c93add0a3c73b",
+    "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+    "src/strategies/q3_observation_likelihood.py": "c5e5fd67b09520d744fbb0b365e791d7d14c28336c72a4e04007c8fb7ea9619d",
+    "src/strategies/recourse_state_search.py": "9807e48819722bf009e983bde05428e9d23b94908655e9c3a21d5ca7797e2041",
+    "src/strategies/refined_state_search.py": "d2dd58f6d6ee325692737626ec1d26aa93bf6ae02dd752f7b53c41aa66cda683",
+    "src/strategies/region_state_search.py": "c44c721fd58c028418a8a1f615ea7e80aaab212f6caebb169355deaabb190096",
+    "src/strategies/relocating_state_search.py": "1454a7286d0180d97ad6c3e2f218160ad628d152735005f1320335bdfdac8d6d",
+    "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+    "src/strategies/search.py": "68733b0298516dff6aaacd7d1780f24195400c25b241ab730e185e4b1ecb82b6",
+    "src/strategies/sharing_state_search.py": "36d2e6cd1a5725f52af81e755becdc49627118f97d7bda7aa8e7d47e5cd72ae8",
+    "src/strategies/state_search.py": "dc4221a690a2f077a0e669320dc384186d21e6cccecf64f49e6891c37d216f4d",
+    "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+    "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+    "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80"
+  },
+  "all_current_sources_match_commit": true,
+  "source_file_count": 53,
+  "gate_passed": true,
+  "gate_scope": "Read-only source-bound implementation/mechanism gate on the already-opened case 200114; permits frozen pilot, not performance acceptance",
+  "old_baseline": {
+    "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\feedback\\pilot\\records\\baseline-200114.json.gz",
+    "sha256": "478dce09450a19fe05f5973b4c97fca2a2f2b7e4b6073e63f76831f6cf9be5f6",
+    "summary_sha256": "0b7dc9a815484dfceaa4e3e0b9dbe5cc3d6cc6a20395bcd614eb06e5ae7c638a",
+    "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+    "canonical_history_sha256": "8e46e098f35b8236b12ed183ee4015a0763d6ebd389bf03ed9a7ebc92406ef02"
+  },
+  "lower_bound_source": {
+    "path": "D:\\jwt\\2026数模国赛\\q3-round2\\research\\round2\\pilot_audit.json",
+    "sha256": "8173fa2cc3dfdfbd14aca86f59ed432367ac1b5dffe8888812a716b4cf648ee8",
+    "scope": "Original clairvoyant physical relaxation; not an attainable online optimum"
+  },
+  "arms": {
+    "depth2-90s": {
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\observation_tree\\model_smoke\\depth2-90s.json.gz",
+      "input_sha256": "06f376212e4dfb43d40438ce3848b33905891f58e6994493cf10b58422aba36f",
+      "arguments": {
+        "depth": 2,
+        "seconds": 90.0,
+        "disabled": false,
+        "output": "results\\round2\\observation_tree\\model_smoke\\depth2-90s.json.gz"
+      },
+      "source_unchanged": true,
+      "source_bound_to_current_commit": true,
+      "harness_sha256": "ca89a498f330a2fd12c2527ed3b580a46954e3315435188f0df5bc692bb832ae",
+      "complete": true,
+      "failed_clears": 0,
+      "virtual_time_s": 3361.326128,
+      "lower_s": 1921.8195892031908,
+      "time_over_lower": 1.7490331282311706,
+      "elapsed_seconds": 54.35463429999072,
+      "physical_action_count_including_enter_exit": 128,
+      "physical_measure_clear_count": 126,
+      "physical_ledger_rechecked": true,
+      "same_full_physical_history_as_old_baseline": true,
+      "canonical_history_sha256": "8e46e098f35b8236b12ed183ee4015a0763d6ebd389bf03ed9a7ebc92406ef02",
+      "tree_config": {
+        "depth": 2,
+        "candidates": 3,
+        "predictive_worlds": 16,
+        "representatives": 2,
+        "conditional_worlds": 16,
+        "root_evaluation_worlds": 8,
+        "training_worlds": 2,
+        "evaluation_worlds": 2,
+        "max_searches": 1,
+        "max_tail_evaluations": 48,
+        "max_generated_actions": 40000,
+        "decision_seconds": 90.0,
+        "total_seconds": 270.0,
+        "minimum_gain_seconds": 10.0,
+        "standard_error_penalty": 0.5,
+        "seed": 2026091121
+      },
+      "traces": [
+        {
+          "tail_evaluations": 48,
+          "generated_actions": 4721,
+          "conditional_nodes": 6,
+          "second_layer_comparisons": 6,
+          "second_layer_changes": 2,
+          "mechanism_active": true,
+          "planning_runtime_s": 53.273338500002865,
+          "branches": [
+            {
+              "candidate_index": 0,
+              "distinct_effective_observations": 2,
+              "distinct_conditional_actions": 1,
+              "nodes": [
+                {
+                  "observation_sha256": "bec932124d5a4f8096a2685687186cdde6e70b02ef7be261f739f44446dc9e6f",
+                  "status": "conditional_action_evaluated",
+                  "first_cost_s": 182.140105,
+                  "value_s": 2609.1025505,
+                  "observation_count": 2,
+                  "actual_training_draws": 2,
+                  "actual_evaluation_draws": 2,
+                  "training_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "evaluation_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 198.8308689777096
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 201.84745409495
+                    }
+                  ]
+                },
+                {
+                  "observation_sha256": "0a188a85d4706ec619bfefde00810e99ff19c3e207cfc8546f069708c7938fde",
+                  "status": "conditional_action_evaluated",
+                  "first_cost_s": 173.661968,
+                  "value_s": 2772.801961,
+                  "observation_count": 3,
+                  "actual_training_draws": 2,
+                  "actual_evaluation_draws": 2,
+                  "training_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "evaluation_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 201.17329998595326
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 198.37770203303572
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "candidate_index": 1,
+              "distinct_effective_observations": 2,
+              "distinct_conditional_actions": 2,
+              "nodes": [
+                {
+                  "observation_sha256": "2fd98c4cd4692564d8b20562274f78ebb14d30bb3b51fc04c9c54e1a43f30ae3",
+                  "status": "conditional_action_evaluated",
+                  "first_cost_s": 338.807692,
+                  "value_s": 2805.4851385,
+                  "observation_count": 20,
+                  "actual_training_draws": 2,
+                  "actual_evaluation_draws": 2,
+                  "training_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "evaluation_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 193.5336047968283
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 197.64706096163525
+                    }
+                  ]
+                },
+                {
+                  "observation_sha256": "eeed764a988b8d6fab2aa728169708f899c12d6a811b198c966aafabc0ec89d5",
+                  "status": "conditional_action_evaluated",
+                  "first_cost_s": 338.807692,
+                  "value_s": 2458.7860815000004,
+                  "observation_count": 20,
+                  "actual_training_draws": 2,
+                  "actual_evaluation_draws": 2,
+                  "training_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "evaluation_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 200.1828440113142
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 199.1348714520018
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "candidate_index": 2,
+              "distinct_effective_observations": 2,
+              "distinct_conditional_actions": 2,
+              "nodes": [
+                {
+                  "observation_sha256": "e73926a377bc3d98ead85ae5d4f74580dc2ed011f2dafb4afd2de2790f1ab398",
+                  "status": "conditional_action_evaluated",
+                  "first_cost_s": 349.0,
+                  "value_s": 2360.8159269999996,
+                  "observation_count": 20,
+                  "actual_training_draws": 2,
+                  "actual_evaluation_draws": 2,
+                  "training_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "evaluation_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 208.99273598821685
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 209.1145591102357
+                    }
+                  ]
+                },
+                {
+                  "observation_sha256": "36d400d560b4f216d934a5ff80d48890e179b049d893bf004f7fd19481a01469",
+                  "status": "conditional_action_evaluated",
+                  "first_cost_s": 349.0,
+                  "value_s": 2822.080513,
+                  "observation_count": 20,
+                  "actual_training_draws": 2,
+                  "actual_evaluation_draws": 2,
+                  "training_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "evaluation_used_support": {
+                    "draws": 2,
+                    "equal_draw_weight_ess": 2,
+                    "distinct_active_position_worlds": 2,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 203.34006853706424
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 207.1979285802458
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    "depth1-90s": {
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\observation_tree\\model_smoke\\depth1-90s.json.gz",
+      "input_sha256": "e08fa3c4fa25a5c9477bb35f79b83c23c236cb2b70d08d932b96e9afb83a11d5",
+      "arguments": {
+        "depth": 1,
+        "seconds": 90.0,
+        "disabled": false,
+        "output": "results\\round2\\observation_tree\\model_smoke\\depth1-90s.json.gz"
+      },
+      "source_unchanged": true,
+      "source_bound_to_current_commit": true,
+      "harness_sha256": "ca89a498f330a2fd12c2527ed3b580a46954e3315435188f0df5bc692bb832ae",
+      "complete": true,
+      "failed_clears": 0,
+      "virtual_time_s": 3361.326128,
+      "lower_s": 1921.8195892031908,
+      "time_over_lower": 1.7490331282311706,
+      "elapsed_seconds": 53.62438450001355,
+      "physical_action_count_including_enter_exit": 128,
+      "physical_measure_clear_count": 126,
+      "physical_ledger_rechecked": true,
+      "same_full_physical_history_as_old_baseline": true,
+      "canonical_history_sha256": "8e46e098f35b8236b12ed183ee4015a0763d6ebd389bf03ed9a7ebc92406ef02",
+      "tree_config": {
+        "depth": 1,
+        "candidates": 3,
+        "predictive_worlds": 16,
+        "representatives": 2,
+        "conditional_worlds": 16,
+        "root_evaluation_worlds": 8,
+        "training_worlds": 2,
+        "evaluation_worlds": 2,
+        "max_searches": 1,
+        "max_tail_evaluations": 48,
+        "max_generated_actions": 40000,
+        "decision_seconds": 90.0,
+        "total_seconds": 270.0,
+        "minimum_gain_seconds": 10.0,
+        "standard_error_penalty": 0.5,
+        "seed": 2026091121
+      },
+      "traces": [
+        {
+          "tail_evaluations": 48,
+          "generated_actions": 4686,
+          "conditional_nodes": 6,
+          "second_layer_comparisons": 0,
+          "second_layer_changes": 0,
+          "mechanism_active": false,
+          "planning_runtime_s": 52.49014259999967,
+          "branches": [
+            {
+              "candidate_index": 0,
+              "distinct_effective_observations": 0,
+              "distinct_conditional_actions": 0,
+              "nodes": [
+                {
+                  "observation_sha256": "bec932124d5a4f8096a2685687186cdde6e70b02ef7be261f739f44446dc9e6f",
+                  "status": "fixed_v1_tail",
+                  "first_cost_s": 182.140105,
+                  "value_s": 2683.44776375,
+                  "observation_count": 2,
+                  "actual_training_draws": 0,
+                  "actual_evaluation_draws": 8,
+                  "evaluation_used_support": {
+                    "draws": 8,
+                    "equal_draw_weight_ess": 8,
+                    "distinct_active_position_worlds": 8,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 198.8308689777096
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 201.84745409495
+                    }
+                  ]
+                },
+                {
+                  "observation_sha256": "0a188a85d4706ec619bfefde00810e99ff19c3e207cfc8546f069708c7938fde",
+                  "status": "fixed_v1_tail",
+                  "first_cost_s": 173.661968,
+                  "value_s": 2841.2973056250003,
+                  "observation_count": 3,
+                  "actual_training_draws": 0,
+                  "actual_evaluation_draws": 8,
+                  "evaluation_used_support": {
+                    "draws": 8,
+                    "equal_draw_weight_ess": 8,
+                    "distinct_active_position_worlds": 8,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 201.17329998595326
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 198.37770203303572
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "candidate_index": 1,
+              "distinct_effective_observations": 0,
+              "distinct_conditional_actions": 0,
+              "nodes": [
+                {
+                  "observation_sha256": "2fd98c4cd4692564d8b20562274f78ebb14d30bb3b51fc04c9c54e1a43f30ae3",
+                  "status": "fixed_v1_tail",
+                  "first_cost_s": 338.807692,
+                  "value_s": 2689.869698375,
+                  "observation_count": 20,
+                  "actual_training_draws": 0,
+                  "actual_evaluation_draws": 8,
+                  "evaluation_used_support": {
+                    "draws": 8,
+                    "equal_draw_weight_ess": 8,
+                    "distinct_active_position_worlds": 8,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 193.5336047968283
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 197.64706096163525
+                    }
+                  ]
+                },
+                {
+                  "observation_sha256": "eeed764a988b8d6fab2aa728169708f899c12d6a811b198c966aafabc0ec89d5",
+                  "status": "fixed_v1_tail",
+                  "first_cost_s": 338.807692,
+                  "value_s": 2814.812188875,
+                  "observation_count": 20,
+                  "actual_training_draws": 0,
+                  "actual_evaluation_draws": 8,
+                  "evaluation_used_support": {
+                    "draws": 8,
+                    "equal_draw_weight_ess": 8,
+                    "distinct_active_position_worlds": 8,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 200.1828440113142
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 199.1348714520018
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "candidate_index": 2,
+              "distinct_effective_observations": 0,
+              "distinct_conditional_actions": 0,
+              "nodes": [
+                {
+                  "observation_sha256": "e73926a377bc3d98ead85ae5d4f74580dc2ed011f2dafb4afd2de2790f1ab398",
+                  "status": "fixed_v1_tail",
+                  "first_cost_s": 349.0,
+                  "value_s": 2571.09049825,
+                  "observation_count": 20,
+                  "actual_training_draws": 0,
+                  "actual_evaluation_draws": 8,
+                  "evaluation_used_support": {
+                    "draws": 8,
+                    "equal_draw_weight_ess": 8,
+                    "distinct_active_position_worlds": 8,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 208.99273598821685
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 209.1145591102357
+                    }
+                  ]
+                },
+                {
+                  "observation_sha256": "36d400d560b4f216d934a5ff80d48890e179b049d893bf004f7fd19481a01469",
+                  "status": "fixed_v1_tail",
+                  "first_cost_s": 349.0,
+                  "value_s": 2857.07583025,
+                  "observation_count": 20,
+                  "actual_training_draws": 0,
+                  "actual_evaluation_draws": 8,
+                  "evaluation_used_support": {
+                    "draws": 8,
+                    "equal_draw_weight_ess": 8,
+                    "distinct_active_position_worlds": 8,
+                    "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                  },
+                  "conditional_pools": [
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 203.34006853706424
+                    },
+                    {
+                      "world_support": 8,
+                      "draw_ess": 8.0,
+                      "minimum_position_pool_ess": 207.1979285802458
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    "disabled-90s": {
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\observation_tree\\model_smoke\\disabled-90s.json.gz",
+      "input_sha256": "93f828cef43bb3d5ec397276f7193ab6667a9c518d05642335406de482193648",
+      "arguments": {
+        "depth": 1,
+        "seconds": 90.0,
+        "disabled": true,
+        "output": "results\\round2\\observation_tree\\model_smoke\\disabled-90s.json.gz"
+      },
+      "source_unchanged": true,
+      "source_bound_to_current_commit": true,
+      "harness_sha256": "ca89a498f330a2fd12c2527ed3b580a46954e3315435188f0df5bc692bb832ae",
+      "complete": true,
+      "failed_clears": 0,
+      "virtual_time_s": 3361.326128,
+      "lower_s": 1921.8195892031908,
+      "time_over_lower": 1.7490331282311706,
+      "elapsed_seconds": 1.0625460000010207,
+      "physical_action_count_including_enter_exit": 128,
+      "physical_measure_clear_count": 126,
+      "physical_ledger_rechecked": true,
+      "same_full_physical_history_as_old_baseline": true,
+      "canonical_history_sha256": "8e46e098f35b8236b12ed183ee4015a0763d6ebd389bf03ed9a7ebc92406ef02",
+      "tree_config": {
+        "depth": 1,
+        "candidates": 3,
+        "predictive_worlds": 16,
+        "representatives": 2,
+        "conditional_worlds": 16,
+        "root_evaluation_worlds": 8,
+        "training_worlds": 2,
+        "evaluation_worlds": 2,
+        "max_searches": 1,
+        "max_tail_evaluations": 48,
+        "max_generated_actions": 40000,
+        "decision_seconds": 90.0,
+        "total_seconds": 270.0,
+        "minimum_gain_seconds": 10.0,
+        "standard_error_penalty": 0.5,
+        "seed": 2026091121
+      },
+      "traces": [],
+      "errors": [],
+      "passed": true
+    }
+  },
+  "errors": [],
+  "new_cases": 0,
+  "new_simulations": 0,
+  "sqlite_read": false,
+  "official_calls": 0,
+  "limitations": [
+    "Only one already-opened case and one real planning boundary; multi-boundary 3-search/270s behavior is not validated by this smoke.",
+    "All three arms retained the same real baseline actions and time, so this demonstrates mechanism execution, not effectiveness.",
+    "The full hypothetical trajectories/worlds are not archived; node likelihoods and independent draws cannot be recomputed from this smoke alone. Source review and separate component tests support those interfaces.",
+    "48 complete-tail count is independently reconstructed from logged cost-array dimensions; generated-action count is reported by instrumentation rather than reconstructable from absent hypothetical microtrajectories.",
+    "Finite conditional importance pools, two predictive representatives and two used child evaluation worlds retain model/Monte Carlo error; ESS is not an accuracy or independence guarantee.",
+    "90s decision budget is a pre-freeze implementation adjustment; it is not evidence that equal-tail comparisons meet the earlier proposed 60s ceiling."
+  ],
+  "passed": true,
+  "candidate_source_sha256": {
+    "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+    "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+    "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+    "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+    "src/planning/binned_probe_tree.py": "9ca8bd363ca76e88bb0c19ff540c8e16448762494a1cff6c4a758340c6f5acc1",
+    "src/planning/conditional_mc.py": "8517f47595f543ece62f3e6b843d31587a0e387845af724212f089e6fb3217ff",
+    "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+    "src/planning/coverage_relocation.py": "0206daefa72878b1e7276386abc417c2e62b4fa427e890fca9279f07aff70648",
+    "src/planning/disk_cover.py": "8731a6b7b8d396de04e2d6155fa130626b218e085672e6c432eff11311d4e09d",
+    "src/planning/probe_candidates.py": "2b79f97f5dd25025c18cc0e78a740135b4fcfb8ab19df6a35305b80ec8516f71",
+    "src/planning/probe_tree.py": "11f5d9da1758f121712a372e63370fd1c4a724ecc34a0e69f51d703b9c78475e",
+    "src/planning/radius_probe.py": "e76e927f27e48d13311b8b19c0ff54e8f6e3f7a50788b105e948da8edcb812d4",
+    "src/planning/region_travel.py": "6fb090ce623e8d35e71937b6caf6722fa533bd576940162ea44fa5b1b8b5d667",
+    "src/planning/ring_layout.py": "335e070f3c7028b89f854b4967bb583829d70c5d708928d529b3d6325932502f",
+    "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+    "src/planning/shared_observation.py": "eb669cf127fb2f884921eeac226ccc9c516e9b662f238b83612be2e3565fd1d9",
+    "src/planning/silence_certificate.py": "ebb0ca8630e81cbb556a51b5b932b9c769ae621f4fc540e0436c8e8141cf688a",
+    "src/planning/state_route.py": "ea39eff80cf81378cc8dbd242c2519947aa13e89eebf370cf28ed1c419200261",
+    "src/planning/unknown_mass.py": "1aab85d8e515b5426e7102754d14b0bf5a9db533acf3683cd64bcd1226383161",
+    "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+    "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+    "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+    "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+    "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+    "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+    "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+    "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+    "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+    "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+    "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+    "src/strategies/binned_state_search.py": "ab613456a0428fb5f9d027492894a851ba6ddfd8f2e41edc8518ee3548e644f6",
+    "src/strategies/discovery_state_search.py": "dffd046f62fb661b87f2a6ec321044c30f47e12db7d7fae3fc8f60ac5cd07055",
+    "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+    "src/strategies/executing_cover_state_search.py": "4f8afbb95e7c51edcd5fec78248e9d47b6449010b3ed0eea06ee62f4d70877bf",
+    "src/strategies/inferred_region_state_search.py": "f511ed8d49f8cc97130d60eba15a6eeb835844a3456a6ecabe737cce4a9b6d50",
+    "src/strategies/inferred_state_search.py": "ddb41c926abee1e66ff4e83b0db02df4916c14b6b313868b613b2e731119d0e8",
+    "src/strategies/layout_state_search.py": "8ac73709135fef73be66f13260eca0c7ec46d832ce05300eed8dc9015d86a813",
+    "src/strategies/observation_continuation.py": "d413c473fd572c9036af4987e508ec3b4041398caf959bdaa09003ace700d7d0",
+    "src/strategies/observation_tree_state_search.py": "ee1ebf94b59c152da52a6958a4ada2a9510eb5a04ac805803b09b5c049362f0c",
+    "src/strategies/pruned_state_search.py": "f5ec628008e8f2aab6bdf933210e5ef1668c0c5cdecd77338e4c93add0a3c73b",
+    "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+    "src/strategies/q3_observation_likelihood.py": "c5e5fd67b09520d744fbb0b365e791d7d14c28336c72a4e04007c8fb7ea9619d",
+    "src/strategies/recourse_state_search.py": "9807e48819722bf009e983bde05428e9d23b94908655e9c3a21d5ca7797e2041",
+    "src/strategies/refined_state_search.py": "d2dd58f6d6ee325692737626ec1d26aa93bf6ae02dd752f7b53c41aa66cda683",
+    "src/strategies/region_state_search.py": "c44c721fd58c028418a8a1f615ea7e80aaab212f6caebb169355deaabb190096",
+    "src/strategies/relocating_state_search.py": "1454a7286d0180d97ad6c3e2f218160ad628d152735005f1320335bdfdac8d6d",
+    "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+    "src/strategies/search.py": "68733b0298516dff6aaacd7d1780f24195400c25b241ab730e185e4b1ecb82b6",
+    "src/strategies/sharing_state_search.py": "36d2e6cd1a5725f52af81e755becdc49627118f97d7bda7aa8e7d47e5cd72ae8",
+    "src/strategies/state_search.py": "dc4221a690a2f077a0e669320dc384186d21e6cccecf64f49e6891c37d216f4d",
+    "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+    "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+    "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80"
+  },
+  "evidence_sha256": {
+    "results/round2/observation_tree/model_smoke/depth2-90s.json.gz": "06f376212e4dfb43d40438ce3848b33905891f58e6994493cf10b58422aba36f",
+    "results/round2/observation_tree/model_smoke/depth1-90s.json.gz": "e08fa3c4fa25a5c9477bb35f79b83c23c236cb2b70d08d932b96e9afb83a11d5",
+    "results/round2/observation_tree/model_smoke/disabled-90s.json.gz": "93f828cef43bb3d5ec397276f7193ab6667a9c518d05642335406de482193648",
+    "results/round2/feedback/pilot/records/baseline-200114.json.gz": "478dce09450a19fe05f5973b4c97fca2a2f2b7e4b6073e63f76831f6cf9be5f6",
+    "research/round2/pilot_audit.json": "8173fa2cc3dfdfbd14aca86f59ed432367ac1b5dffe8888812a716b4cf648ee8"
+  },
+  "final_gate_owner": "Root combines this independent truthful review with completed implementation-test receipt and final frozen protocol.",
+  "implementation_test_receipt_seen": {
+    "path": "results/round2/observation_tree/model_smoke/implementation-tests.xml",
+    "sha256": "50cd389b19e135635f8ef921bdf8ced86c763b265f18fe1ddc0dee3fb74b782a",
+    "suites": [
+      {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "61",
+        "time": "14.432",
+        "timestamp": "2026-09-11T20:21:38.702910+08:00",
+        "hostname": "WIN-GCEUB7BFMTD"
+      }
+    ]
+  }
+}

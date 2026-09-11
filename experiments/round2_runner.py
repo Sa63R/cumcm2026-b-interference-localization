@@ -49,6 +49,27 @@ def hashes(repo):
             for p in sorted((repo / "src").rglob("*.py"))}
 
 
+def check_model_gate(trial, recipes):
+    """Reject missing or stale implementation evidence before opening new cases."""
+    gate_path = trial.get("model_gate_receipt")
+    if not gate_path:
+        return None
+    gate = read(ROOT / gate_path)
+    if gate.get("passed") is not True:
+        raise ValueError("Implementation/model gate did not pass")
+    for path, expected in gate["evidence_sha256"].items():
+        if hashlib.sha256((ROOT / path).read_bytes()).hexdigest() != expected:
+            raise ValueError(f"Implementation evidence changed: {path}")
+    for label, verified in gate["policies"].items():
+        recipe = recipes[label]
+        repo = Path(recipe["repository"]).resolve()
+        if (hashes(repo) != verified["source_sha256"] or
+                digest(read(repo / recipe["spec"])) != verified["spec_sha256"]):
+            raise ValueError(f"Model gate does not cover current policy: {label}")
+    return {"receipt": gate_path,
+            "receipt_sha256": hashlib.sha256((ROOT / gate_path).read_bytes()).hexdigest()}
+
+
 def prepare(args):
     protocol = read(PROTOCOL)
     trial = protocol["created_experiments"][args.trial]
@@ -60,12 +81,15 @@ def prepare(args):
         confirmed = read(ROOT / "results/round2" / args.trial / "confirmation/summary.json")
         if not confirmed["comparisons"][args.trial]["pareto_confirmation_gate"]:
             raise ValueError("Independent confirmation did not pass; do not open final cases")
-        start, stop = protocol["reserved_final_seeds" if args.stage == "final" else "reserved_stress_seeds"]
+        start, stop = trial.get(args.stage+"_seeds", protocol["reserved_final_seeds" if args.stage == "final" else "reserved_stress_seeds"])
     else:
         start, stop = trial[args.stage+"_seeds"]
     recipes = {"baseline": {"repository": str(ROOT.parent / "q3-state-search"),
-                             "spec": protocol["baseline_spec"]},
-               args.trial: {"repository": str(ROOT.parent / trial["directory"]), "spec": args.spec}}
+                             "spec": protocol["baseline_spec"]}}
+    candidate_specs = trial.get("candidate_specs", {args.trial: args.spec})
+    recipes.update({label: {"repository": str(ROOT.parent / trial["directory"]), "spec": spec}
+                    for label, spec in candidate_specs.items()})
+    model_gate = check_model_gate(trial, recipes)
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     policies, critical = {}, None
@@ -108,6 +132,8 @@ def prepare(args):
                 "python": sys.version, "platform": platform.platform(),
                 "source_scope": "Local Q3 simulations only; actual world inaccessible to policies",
                 "runtime_scope": "Concurrent independent processes; diagnostic elapsed wall time"}
+    if model_gate:
+        manifest["model_gate"] = model_gate
     write(output / "manifest.json", manifest)
     (output / "runner.py").write_bytes(Path(__file__).read_bytes())
     print(json.dumps({"frozen": str(output), "cases_per_policy": len(manifest["seeds"]),
@@ -120,7 +146,7 @@ def make_case(seed, stage):
         return random_scenario(3, seed)
     # Public-law stress families; a new seed block, independent of old hard
     # cases and any practice data. This function is frozen with the runner.
-    offset = seed-211001
+    offset = seed-211001 if 211001 <= seed <= 211028 else seed-215001
     if not 0 <= offset < 28:
         raise ValueError("Unexpected reserved stress identity")
     families = ("minimum_radius", "boundary", "cluster", "positive_error",
@@ -281,6 +307,18 @@ def summarize(output):
             "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"}
     result = {"stage": manifest["stage"], "averages": averages, "comparisons": comparisons,
               "records_sha256": file_hashes, "rows": rows}
+    if "root_mc" in by_policy and "observation_tree" in by_policy:
+        mc = {r["seed"]: r for r in by_policy["root_mc"]}
+        differences = [mc[r["seed"]]["penalized_time_s"]-r["penalized_time_s"]
+                       for r in by_policy["observation_tree"]]
+        rng = random.Random(52173)
+        samples = [statistics.mean(rng.choices(differences, k=len(differences))) for _ in range(10000)]
+        result["observation_tree_vs_root_mc"] = {"pairs": len(differences),
+            "mean_saved_s": statistics.mean(differences),
+            "ci95_saved_s": [percentile(samples, .025), percentile(samples, .975)],
+            "wins": sum(s>1e-6 for s in differences), "losses": sum(s < -1e-6 for s in differences),
+            "ties": sum(abs(s)<=1e-6 for s in differences),
+            "scope": "Same model/actions/v1 tail/compute ceilings; different estimate precision at the same cost. Check actual mechanism coverage separately."}
     write(output / "summary.json", result)
     print(json.dumps({"averages": averages, "comparisons": comparisons}), flush=True)
 
