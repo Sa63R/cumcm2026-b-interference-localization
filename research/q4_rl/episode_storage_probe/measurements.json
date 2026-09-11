@@ -1,0 +1,278 @@
+{
+  "schema": "q4-lossless-episode-codec-probe-v1",
+  "scope": "Compression-only probe on four fixed existing synthetic TRAIN episodes; no training, scenario execution, network or policy-performance comparison.",
+  "selection": "First episode of batch0 (BC) and batch16 (first PPO after256 BC), in both G1/G3 h64 jobs; fixed before inspecting compression results.",
+  "source_readback_workspace_relative": "q4-rl-negative-memory/results/q4_rl/server-memory-v4-training-001",
+  "source_OBJECT_READBACK_sha256": "2c5e8e8adeaa828a2f80b4c802f7221a3e64995fc47bc7f877dfa3341eed55fc",
+  "script_sha256": "3f7d6d6458b778a3fd8e5d196aea1445dd999ed25c448b6bc5c2128b835cc0de",
+  "python_version": "3.12.14",
+  "timing_scope": "One fresh single-core process per sample/codec, one compression and one decompression; timers exclude initial reading/source decompression/JSON encoding. Descriptive single-pass timings, not stable performance estimates.",
+  "memory_scope": "Operating-system process lifetime peak working set and snapshots. Includes Python plus input and restored JSON buffers; not isolated codec allocation or server worker RSS. No dense JSON deserialization in this probe.",
+  "gzip_header_note": "gzip.compress baseline has a53-byte smaller header than the existing writer's filename-bearing gzip; ratios use existing on-disk gzip size, not original JSON size.",
+  "results": [
+    {
+      "job": "g1_h64",
+      "phase": "BC",
+      "seed": 8012000,
+      "codec": "gzip6",
+      "source_relative_to_readback": "g1_h64/training/batch-000000-attempt-000000-episode-0000.json.gz",
+      "source_sha256": "7f930ac58c54213a8ad72028f4068cf3bd1550732ec10b114f6f0d0bf55ed136",
+      "existing_gzip_bytes": 2277304,
+      "original_json_bytes": 33028157,
+      "original_json_sha256": "aed1c322b70bb549edf7ccbc8db99646015321ff3e12d8d09efb8d574667d263",
+      "output_bytes": 2277251,
+      "output_sha256": "2fdb5716328c87025c732fc556be70d6ee63b10e6fbb289e458a2aaba40f6698",
+      "size_ratio_to_existing_gzip": 0.9999767268665053,
+      "size_ratio_to_original_json": 0.06894877603978933,
+      "compress_cpu_s": 0.34375,
+      "compress_wall_s": 0.3575940000009723,
+      "decompress_cpu_s": 0.03125,
+      "decompress_wall_s": 0.03738530000555329,
+      "cpu_affinity_count": 1,
+      "json_bytes_strictly_equal_after_roundtrip": true,
+      "baseline_memory": {
+        "rss_bytes": 56274944,
+        "lifetime_peak_rss_bytes": 93884416
+      },
+      "after_compression_memory": {
+        "rss_bytes": 58593280,
+        "lifetime_peak_rss_bytes": 93884416
+      },
+      "after_roundtrip_memory": {
+        "rss_bytes": 91607040,
+        "lifetime_peak_rss_bytes": 126967808
+      }
+    },
+    {
+      "job": "g1_h64",
+      "phase": "BC",
+      "seed": 8012000,
+      "codec": "xz3",
+      "source_relative_to_readback": "g1_h64/training/batch-000000-attempt-000000-episode-0000.json.gz",
+      "source_sha256": "7f930ac58c54213a8ad72028f4068cf3bd1550732ec10b114f6f0d0bf55ed136",
+      "existing_gzip_bytes": 2277304,
+      "original_json_bytes": 33028157,
+      "original_json_sha256": "aed1c322b70bb549edf7ccbc8db99646015321ff3e12d8d09efb8d574667d263",
+      "output_bytes": 206536,
+      "output_sha256": "62111d143493641c8acb6fd1aae69c848f5874108ee641871b497927be01c3cc",
+      "size_ratio_to_existing_gzip": 0.09069320565018987,
+      "size_ratio_to_original_json": 0.006253331059314027,
+      "compress_cpu_s": 0.25,
+      "compress_wall_s": 0.29435199999716133,
+      "decompress_cpu_s": 0.015625,
+      "decompress_wall_s": 0.021894300007261336,
+      "cpu_affinity_count": 1,
+      "json_bytes_strictly_equal_after_roundtrip": true,
+      "baseline_memory": {
+        "rss_bytes": 56320000,
+        "lifetime_peak_rss_bytes": 93929472
+      },
+      "after_compression_memory": {
+        "rss_bytes": 56565760,
+        "lifetime_peak_rss_bytes": 93929472
+      },
+      "after_roundtrip_memory": {
+        "rss_bytes": 89628672,
+        "lifetime_peak_rss_bytes": 126861312
+      }
+    },
+    {
+      "job": "g3_h64",
+      "phase": "BC",
+      "seed": 8012000,
+      "codec": "gzip6",
+      "source_relative_to_readback": "g3_h64/training/batch-000000-attempt-000000-episode-0000.json.gz",
+      "source_sha256": "8a7cf49a85a0e9c8b86c35d64b26dddc60b87caeef24ca98a2ddd8fa8c772936",
+      "existing_gzip_bytes": 2864822,
+      "original_json_bytes": 41177012,
+      "original_json_sha256": "ec35e798e0f3306ebf06715784296c0bc5f1be022e0424c3c16b4b7c844af62f",
+      "output_bytes": 2864769,
+      "output_sha256": "850b8159240f26b307cf72714f5011b9a240ef03ffa8b020a30b6cc18a3cb9ba",
+      "size_ratio_to_existing_gzip": 0.999981499723194,
+      "size_ratio_to_original_json": 0.06957204665554655,
+      "compress_cpu_s": 0.40625,
+      "compress_wall_s": 0.46509250000235625,
+      "decompress_cpu_s": 0.0625,
+      "decompress_wall_s": 0.0596893000183627,
+      "cpu_affinity_count": 1,
+      "json_bytes_strictly_equal_after_roundtrip": true,
+      "baseline_memory": {
+        "rss_bytes": 64790528,
+        "lifetime_peak_rss_bytes": 111362048
+      },
+      "after_compression_memory": {
+        "rss_bytes": 67371008,
+        "lifetime_peak_rss_bytes": 111362048
+      },
+      "after_roundtrip_memory": {
+        "rss_bytes": 108855296,
+        "lifetime_peak_rss_bytes": 152576000
+      }
+    },
+    {
+      "job": "g3_h64",
+      "phase": "BC",
+      "seed": 8012000,
+      "codec": "xz3",
+      "source_relative_to_readback": "g3_h64/training/batch-000000-attempt-000000-episode-0000.json.gz",
+      "source_sha256": "8a7cf49a85a0e9c8b86c35d64b26dddc60b87caeef24ca98a2ddd8fa8c772936",
+      "existing_gzip_bytes": 2864822,
+      "original_json_bytes": 41177012,
+      "original_json_sha256": "ec35e798e0f3306ebf06715784296c0bc5f1be022e0424c3c16b4b7c844af62f",
+      "output_bytes": 249356,
+      "output_sha256": "19f7aa5c99ba4d6dd1b90ade95e5e4e6ad6614dfc2894d27bd13daebb401c0b2",
+      "size_ratio_to_existing_gzip": 0.08704066081592504,
+      "size_ratio_to_original_json": 0.006055708947506924,
+      "compress_cpu_s": 0.296875,
+      "compress_wall_s": 0.3810570999921765,
+      "decompress_cpu_s": 0.03125,
+      "decompress_wall_s": 0.04919720001635142,
+      "cpu_affinity_count": 1,
+      "json_bytes_strictly_equal_after_roundtrip": true,
+      "baseline_memory": {
+        "rss_bytes": 64610304,
+        "lifetime_peak_rss_bytes": 111173632
+      },
+      "after_compression_memory": {
+        "rss_bytes": 64491520,
+        "lifetime_peak_rss_bytes": 111173632
+      },
+      "after_roundtrip_memory": {
+        "rss_bytes": 106086400,
+        "lifetime_peak_rss_bytes": 151142400
+      }
+    },
+    {
+      "job": "g1_h64",
+      "phase": "PPO",
+      "seed": 8012256,
+      "codec": "gzip6",
+      "source_relative_to_readback": "g1_h64/training/batch-000016-attempt-000016-episode-0000.json.gz",
+      "source_sha256": "3e47daf641e9b45151e0aecac32d1ba6d6ac979b43e3030115da920a2f62f5db",
+      "existing_gzip_bytes": 2578922,
+      "original_json_bytes": 21761245,
+      "original_json_sha256": "7c910e2d472c472f9bf3e39df75962a6f0aa1b84abff4f80a07345d277f60811",
+      "output_bytes": 2578869,
+      "output_sha256": "69b6a35d7b83daaba55935b0c31394ff1cfd2d3985367d3d9a7278daa72253cf",
+      "size_ratio_to_existing_gzip": 0.9999794487774349,
+      "size_ratio_to_original_json": 0.11850741995690045,
+      "compress_cpu_s": 0.296875,
+      "compress_wall_s": 0.3983608999988064,
+      "decompress_cpu_s": 0.03125,
+      "decompress_wall_s": 0.031171899987384677,
+      "cpu_affinity_count": 1,
+      "json_bytes_strictly_equal_after_roundtrip": true,
+      "baseline_memory": {
+        "rss_bytes": 45379584,
+        "lifetime_peak_rss_bytes": 71983104
+      },
+      "after_compression_memory": {
+        "rss_bytes": 47673344,
+        "lifetime_peak_rss_bytes": 71983104
+      },
+      "after_roundtrip_memory": {
+        "rss_bytes": 69738496,
+        "lifetime_peak_rss_bytes": 93765632
+      }
+    },
+    {
+      "job": "g1_h64",
+      "phase": "PPO",
+      "seed": 8012256,
+      "codec": "xz3",
+      "source_relative_to_readback": "g1_h64/training/batch-000016-attempt-000016-episode-0000.json.gz",
+      "source_sha256": "3e47daf641e9b45151e0aecac32d1ba6d6ac979b43e3030115da920a2f62f5db",
+      "existing_gzip_bytes": 2578922,
+      "original_json_bytes": 21761245,
+      "original_json_sha256": "7c910e2d472c472f9bf3e39df75962a6f0aa1b84abff4f80a07345d277f60811",
+      "output_bytes": 275828,
+      "output_sha256": "d41688082a80efc9034bb0458c8fe2561547dcd3be8e4c40dfd53d3aee845cdf",
+      "size_ratio_to_existing_gzip": 0.10695476637137533,
+      "size_ratio_to_original_json": 0.012675193905495756,
+      "compress_cpu_s": 0.34375,
+      "compress_wall_s": 0.46673119999468327,
+      "decompress_cpu_s": 0.03125,
+      "decompress_wall_s": 0.020043800002895296,
+      "cpu_affinity_count": 1,
+      "json_bytes_strictly_equal_after_roundtrip": true,
+      "baseline_memory": {
+        "rss_bytes": 45400064,
+        "lifetime_peak_rss_bytes": 71962624
+      },
+      "after_compression_memory": {
+        "rss_bytes": 45363200,
+        "lifetime_peak_rss_bytes": 78209024
+      },
+      "after_roundtrip_memory": {
+        "rss_bytes": 67129344,
+        "lifetime_peak_rss_bytes": 93179904
+      }
+    },
+    {
+      "job": "g3_h64",
+      "phase": "PPO",
+      "seed": 8012256,
+      "codec": "gzip6",
+      "source_relative_to_readback": "g3_h64/training/batch-000016-attempt-000016-episode-0000.json.gz",
+      "source_sha256": "effb8a94d94d675092e6e885a09aa604a34c976f24103d585dcfacd21a27a2fd",
+      "existing_gzip_bytes": 2584897,
+      "original_json_bytes": 21331797,
+      "original_json_sha256": "a6fcde6adb03e68e00e9678960bb1e42d04bf3f2b820a7cc7b63005814bf1008",
+      "output_bytes": 2584844,
+      "output_sha256": "a9683f19088816c5738c705d325c34041eac57aaf7137d626e1145f81005531d",
+      "size_ratio_to_existing_gzip": 0.99997949628167,
+      "size_ratio_to_original_json": 0.12117328887013129,
+      "compress_cpu_s": 0.3125,
+      "compress_wall_s": 0.3904792999965139,
+      "decompress_cpu_s": 0.03125,
+      "decompress_wall_s": 0.03097890000208281,
+      "cpu_affinity_count": 1,
+      "json_bytes_strictly_equal_after_roundtrip": true,
+      "baseline_memory": {
+        "rss_bytes": 44576768,
+        "lifetime_peak_rss_bytes": 71065600
+      },
+      "after_compression_memory": {
+        "rss_bytes": 47214592,
+        "lifetime_peak_rss_bytes": 71065600
+      },
+      "after_roundtrip_memory": {
+        "rss_bytes": 68521984,
+        "lifetime_peak_rss_bytes": 92434432
+      }
+    },
+    {
+      "job": "g3_h64",
+      "phase": "PPO",
+      "seed": 8012256,
+      "codec": "xz3",
+      "source_relative_to_readback": "g3_h64/training/batch-000016-attempt-000016-episode-0000.json.gz",
+      "source_sha256": "effb8a94d94d675092e6e885a09aa604a34c976f24103d585dcfacd21a27a2fd",
+      "existing_gzip_bytes": 2584897,
+      "original_json_bytes": 21331797,
+      "original_json_sha256": "a6fcde6adb03e68e00e9678960bb1e42d04bf3f2b820a7cc7b63005814bf1008",
+      "output_bytes": 311968,
+      "output_sha256": "2dd108d8791468d5293804111c00444e73c5a6c1976d5f29a9e58584311ce627",
+      "size_ratio_to_existing_gzip": 0.12068875471633879,
+      "size_ratio_to_original_json": 0.01462455319633878,
+      "compress_cpu_s": 0.453125,
+      "compress_wall_s": 0.4479767000011634,
+      "decompress_cpu_s": 0.0,
+      "decompress_wall_s": 0.019872999982908368,
+      "cpu_affinity_count": 1,
+      "json_bytes_strictly_equal_after_roundtrip": true,
+      "baseline_memory": {
+        "rss_bytes": 44969984,
+        "lifetime_peak_rss_bytes": 71114752
+      },
+      "after_compression_memory": {
+        "rss_bytes": 44986368,
+        "lifetime_peak_rss_bytes": 77897728
+      },
+      "after_roundtrip_memory": {
+        "rss_bytes": 66306048,
+        "lifetime_peak_rss_bytes": 91844608
+      }
+    }
+  ]
+}
