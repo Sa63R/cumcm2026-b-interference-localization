@@ -1,0 +1,197 @@
+{
+  "r8": {
+    "entrypoint": "strategies.q4_clear_before_probe:run_q4_clear_before_probe",
+    "kwargs": {
+      "max_expansions": 200,
+      "config": "center_once"
+    }
+  },
+  "micro_rule512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    }
+  },
+  "legacy_ppo128": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 128
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/legacy_ppo128.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/legacy_ppo128.pt"
+      }
+    }
+  },
+  "macro_v2_ppo512": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/macro_v2_ppo512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/macro_v2_ppo512.pt"
+      }
+    }
+  },
+  "micro_v2_ppo512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/micro_v2_ppo512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/micro_v2_ppo512.pt"
+      }
+    }
+  },
+  "micro_v2_bc512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/micro_v2_bc512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/micro_v2_bc512.pt"
+      }
+    }
+  },
+  "mlp_v3_bc512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/mlp_v3_bc512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/mlp_v3_bc512.pt"
+      }
+    }
+  },
+  "mlp_v3_ppo512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/mlp_v3_ppo512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/mlp_v3_ppo512.pt"
+      }
+    }
+  },
+  "attention_v3_bc512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/attention_v3_bc512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/attention_v3_bc512.pt"
+      }
+    }
+  },
+  "attention_v3_ppo512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/attention_v3_ppo512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/attention_v3_ppo512.pt"
+      }
+    }
+  },
+  "ppo_initialized512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/ppo_initialized512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/ppo_initialized512.pt"
+      }
+    }
+  },
+  "scst_initialized512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-bundle-v3/scst_initialized512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.scst_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-bundle-v3/scst_initialized512.pt"
+      }
+    }
+  }
+}
