@@ -39,11 +39,17 @@ def main():
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--minimum-per-count", default=2, type=int)
     parser.add_argument("--maximum-runs", default=60, type=int)
+    parser.add_argument("--fixed-runs", type=int,
+                        help="Run exactly this many cases without a source-count stopping rule")
     args = parser.parse_args()
     if not os.environ.get("CUMCM_ROBOT_ID"):
         raise ValueError("CUMCM_ROBOT_ID is required; do not put identity in source files")
     if not 1 <= args.minimum_per_count <= 10 or not 1 <= args.maximum_runs <= 100:
         raise ValueError("Invalid sampling budget")
+    if args.fixed_runs is not None:
+        if not 1 <= args.fixed_runs <= 100:
+            raise ValueError("Fixed run count must be in [1,100]")
+        args.maximum_runs = args.fixed_runs
     root = args.strategy_root.resolve(strict=True)
     entry = root / "experiments/run_q4_joint_continuation_practice.py"
     entry_hash = hashlib.sha256(entry.read_bytes()).hexdigest()
@@ -52,15 +58,18 @@ def main():
     protocol = {"created_at_utc": datetime.now(timezone.utc).isoformat(),
         "problem": 4, "mode": "practice", "strategy": "compact_joint_continuation",
         "config": "after_active_miss_optical", "practice_entry_sha256": entry_hash,
-        "minimum_per_source_count": args.minimum_per_count,
+        "minimum_per_source_count": None if args.fixed_runs else args.minimum_per_count,
         "maximum_runs": args.maximum_runs,
-        "stopping_rule": "Stop after every source count 10..16 has the required completed runs, or at budget/error/STOP.",
+        "fixed_runs": args.fixed_runs,
+        "stopping_rule": ("Run the requested fixed count regardless of source count; stop early only on error/STOP."
+                          if args.fixed_runs else
+                          "Stop after every source count 10..16 has the required completed runs, or at budget/error/STOP."),
         "selection_rule": "Keep every sampled case; inspect source count only after the official run ends.",
         "lower_bound_kind": "historical_conditional_all_clear_containing_region_bound",
         "primary_ratio": "sum(actual_time_s)/sum(lower_bound_s)"}
     write(output / "protocol.json", protocol)
     rows = []
-    reason = "maximum_runs"
+    reason = "fixed_runs_completed" if args.fixed_runs else "maximum_runs"
     for index in range(1, args.maximum_runs + 1):
         if (output / "STOP").exists():
             reason = "stop_requested"
@@ -96,13 +105,13 @@ def main():
                                        "status": "running"})
         print(json.dumps({"completed_runs": len(rows), "latest": row,
                           "counts": {g["source_count"]:g["runs"] for g in groups}}), flush=True)
-        if all(g["runs"] >= args.minimum_per_count for g in groups):
+        if args.fixed_runs is None and all(g["runs"] >= args.minimum_per_count for g in groups):
             reason = "source_counts_covered"
             break
     write(output / "summary.json", {"protocol": protocol, "rows": rows, "groups": aggregate(rows),
                                    "status": reason})
     print(json.dumps({"status": reason, "completed_runs": len(rows), "groups": aggregate(rows)}), flush=True)
-    return 0 if reason == "source_counts_covered" else 1
+    return 0 if reason in {"source_counts_covered", "fixed_runs_completed"} else 1
 
 
 if __name__ == "__main__":
