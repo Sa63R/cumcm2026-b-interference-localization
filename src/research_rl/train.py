@@ -32,7 +32,7 @@ from .network import (CandidateActorCritic, TorchPolicy, pack_observations,
                       architecture_from_args, checkpoint_architecture, validate_architecture)
 from .distributions import (checkpoint_distribution, distribution_from_args,
                             validate_distribution, merge_probe_diagnostics)
-from .action_sets import (action_schema_from_args, checkpoint_action_schema,
+from .action_sets import (ACTION_SCHEMA_NAMES, action_schema_from_args, checkpoint_action_schema,
                           validate_action_schema, controller_for)
 from .portable_checkpoint import portable_paths
 
@@ -389,8 +389,8 @@ def main(argv=None):
     parser.add_argument("--attention-heads", type=int, default=4)
     parser.add_argument("--group-alpha", type=int, choices=(0, 1), default=0,
                         help="0: original flat policy; 1: subtract log task-group size (v3 only)")
-    parser.add_argument("--probe-candidates", choices=("base", "axis_quantiles"), default="base",
-                        help="Explicit action-set extension; axis_quantiles requires v3 and a new trial")
+    parser.add_argument("--probe-candidates", choices=ACTION_SCHEMA_NAMES, default="base",
+                        help="Explicit action-set identity; extensions require v3 and a new trial")
     parser.add_argument("--device", choices=("cpu",), default="cpu")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112026)

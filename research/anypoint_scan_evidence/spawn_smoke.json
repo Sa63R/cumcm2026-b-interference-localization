@@ -1,0 +1,48 @@
+{
+  "purpose": "Spawn-worker/real PPO integration smoke only; random MLP16 initialization; not an effectiveness experiment",
+  "device": "cpu",
+  "workers": 1,
+  "num_threads": 1,
+  "feature_version": "v3",
+  "action_schema": "anypoint_targets",
+  "hidden": 16,
+  "seed": 9112026,
+  "max_decisions": 64,
+  "gae_lambda": 0.95,
+  "entropy_coef": 0.005,
+  "learning_rate": 0.0001,
+  "updates": 1,
+  "optimizer_steps": 1,
+  "attempted_episodes": 2,
+  "next_seed": 110443,
+  "source_log_sha256": "a7cf10a24dd72929e2be5ac1f26f6ec2721278391ff0f49ec544f7bebc88adf0",
+  "lower_bound": "pure physical oracle disk-graph DP: L/5+5N",
+  "rows": [
+    {
+      "seed": 110441,
+      "success": true,
+      "virtual_time_s": 16342.129449,
+      "reward_cost_s": 16342.129449000002,
+      "failed_clear_count": 0,
+      "physical_lower_bound_s": 1500.1187332085713,
+      "time_over_physical_lower_bound": 10.893890654939144,
+      "anypoint_measurements": 17,
+      "fallback_counts": {
+        "decision_limit": 1
+      }
+    },
+    {
+      "seed": 110442,
+      "success": true,
+      "virtual_time_s": 18610.088638,
+      "reward_cost_s": 18610.088638,
+      "failed_clear_count": 0,
+      "physical_lower_bound_s": 1891.008892280719,
+      "time_over_physical_lower_bound": 9.841354376475003,
+      "anypoint_measurements": 17,
+      "fallback_counts": {
+        "decision_limit": 1
+      }
+    }
+  ]
+}

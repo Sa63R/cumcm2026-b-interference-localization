@@ -13,7 +13,7 @@ from torch.distributions import Categorical
 from .controller import ALGORITHM_VERSIONS, CONTEXT_DIM, FEATURE_DIM, FEATURE_DIMS, feature_schema
 from .distributions import (adjusted_logits, validate_distribution, checkpoint_distribution,
                             sample_probe_diagnostics)
-from .action_sets import validate_action_schema, checkpoint_action_schema
+from .action_sets import ANYPOINT_SCHEMAS, validate_action_schema, checkpoint_action_schema
 
 
 def architecture_spec(name="mlp", layers=1, heads=4):
@@ -120,7 +120,10 @@ class CandidateActorCritic(nn.Module):
         if self.action_distribution["name"] != "flat" and feature_dim != 60:
             raise ValueError("group distribution requires v3 feature semantics")
         if self.action_schema["name"] != "base" and feature_dim != 60:
-            raise ValueError("axis candidate extension requires v3 feature semantics")
+            raise ValueError("candidate extension requires v3 feature semantics")
+        if self.action_schema["name"] in ANYPOINT_SCHEMAS and (
+                self.architecture["name"] != "mlp" or self.action_distribution["name"] != "flat"):
+            raise ValueError("anypoint scan ablation requires MLP and flat distribution")
         if self.architecture["name"] == "attention" and hidden % self.architecture["heads"]:
             raise ValueError("hidden width must be divisible by attention heads")
         input_dim = 60 if feature_dim == FEATURE_DIMS["v4"] else feature_dim
