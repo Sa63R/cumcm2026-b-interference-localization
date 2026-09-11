@@ -39,6 +39,13 @@ def main(phase):
         reports[name], manifests[name] = read_set(name, evidence)
     if manifests[names[0]]['specs'] != manifests[names[1]]['specs']:
         raise ValueError('Compared sets use different specifications')
+    if phase == 'development':
+        declared = json.loads((RESEARCH / 'development-specs.json').read_bytes())
+        expected_seeds = {'development': list(range(615001, 615025)),
+                          'development-stress': list(range(615031, 615045))}
+        for name in names:
+            if manifests[name]['specs'] != declared or manifests[name]['seeds'] != expected_seeds[name]:
+                raise ValueError('Development differs from predeclared seeds or complete specifications')
     candidates = [label for label in manifests[names[0]]['specs'] if label.startswith('compact_clear_')]
     if phase == 'development' and set(candidates) != {'compact_clear_incoming', 'compact_clear_anchored'}:
         raise ValueError('Need both predeclared development candidates')
