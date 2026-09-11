@@ -46,6 +46,8 @@ def build(args):
     tracked = git(ROOT, "ls-files", "-z").decode().split("\0")
     required = ["scripts/autonomy_runtime.py", "scripts/autonomy_job.py", "scripts/build_autonomy_package.py",
                 "tests/test_autonomy_runtime.py", "tests/test_deep_rl_prefix_rollouts.py",
+                "tests/test_deep_rl_certified_cover.py",
+                "tests/test_deep_rl_joint_scan.py", "tests/test_deep_rl_controller.py",
                 "tests/test_deep_rl_rollout_improvement.py",
                 "scripts/sync_cpu_results.py", "research/autonomy/protocol.json", "research/v1_protocol.json",
                 "experiments/__init__.py", "experiments/research_v1_eval.py", "experiments/run_q3_comparison.py",

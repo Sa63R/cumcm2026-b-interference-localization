@@ -1,12 +1,21 @@
 """Explicit candidate-set identity, independent of tensor feature dimension."""
 
 ANYPOINT_SCHEMAS = ("anypoint_current", "anypoint_targets")
-ACTION_SCHEMA_NAMES = ("base", "axis_quantiles", "range_probes", *ANYPOINT_SCHEMAS)
+ACTION_SCHEMA_NAMES = ("base", "axis_quantiles", "range_probes", "certified_cover", *ANYPOINT_SCHEMAS)
 
 
 def action_schema(name="base"):
     if name == "base":
         return {"version": 1, "name": "base"}
+    if name == "certified_cover":
+        return {"version": 1, "name": name, "filters": "v3-base-unknown-cover-at-MAX_SOURCES-only",
+                "certificates": ["public-MAX_SOURCES-distinct-accepted-known-channels"],
+                "known_channel_cover": "preserved-even-with-safe-clear-available",
+                "retained_order": "original-subsequence-all-source-actions-preserved",
+                "coverage_ledger": "actual-measurements-and-clears-only-unchanged",
+                "fallback": "unchanged-base-safety-completion",
+                "feature_width": 60, "network": "mlp-flat-only",
+                "initial_probabilities": "not-preserved-candidate-pooling-and-normalization-change"}
     if name == "axis_quantiles":
         return {"version": 1, "name": "axis_quantiles", "extends": "v3-base-probes",
                 "point_rule": "diameter-axis-q25-q375-q625-q75-width-over8",
@@ -77,6 +86,9 @@ def controller_for(version, schema):
         if schema["name"] == "range_probes":
             from .range_probes import RangeProbeRLSearch
             return RangeProbeRLSearch
+        if schema["name"] == "certified_cover":
+            from .certified_cover import CertifiedCoverRLSearch
+            return CertifiedCoverRLSearch
         from .axis_probes import AxisProbeRLSearch
         return AxisProbeRLSearch
     if version == "v3":

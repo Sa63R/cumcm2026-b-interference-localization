@@ -1,6 +1,6 @@
 """Fetch verified, selected S3 snapshots; never treats a stored PID as live.
 
-Credentials stay in the external JSON file. Only the fixed cost-choice-v2 task
+Credentials stay in the external JSON file. Only the fixed certified-candidates task
 prefix is read, regardless of a legacy prefix in that credential file.
 Default downloads are summaries/comparisons/environment. Models, cases, and
 training evidence are opt-in; training logs cannot be selected. Select optional
@@ -19,7 +19,7 @@ from urllib.parse import urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PREFIX = "lianghao/bwc/shumo/q3-cost2-20260912-r1"
+PREFIX = "lianghao/bwc/shumo/q3-cert-20260912-r1"
 HASH = re.compile(r"[0-9a-f]{64}")
 LIMITS = {"pointer": 65536, "manifest": 16 << 20, "metadata": 16 << 20,
           "case": 64 << 20, "evidence": 64 << 20, "model": 2 << 30}

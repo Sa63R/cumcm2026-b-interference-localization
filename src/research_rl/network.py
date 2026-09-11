@@ -124,6 +124,9 @@ class CandidateActorCritic(nn.Module):
         if self.action_schema["name"] in ANYPOINT_SCHEMAS and (
                 self.architecture["name"] != "mlp" or self.action_distribution["name"] != "flat"):
             raise ValueError("anypoint scan ablation requires MLP and flat distribution")
+        if self.action_schema["name"] == "certified_cover" and (
+                self.architecture["name"] != "mlp" or self.action_distribution["name"] != "flat"):
+            raise ValueError("certified cover ablation requires MLP and flat distribution")
         if self.architecture["name"] == "attention" and hidden % self.architecture["heads"]:
             raise ValueError("hidden width must be divisible by attention heads")
         input_dim = 60 if feature_dim == FEATURE_DIMS["v4"] else feature_dim
