@@ -1,0 +1,1246 @@
+{
+  "scope": "Six fixed public layouts; no source scene, observed history, policy execution or parameter fitting",
+  "protocol_sha256": "8adfd60e58a2ba1ff2097894171733530e3f2ceacaac041618fa25032e7f234b",
+  "script_sha256": "fec293bf8515f51d199dbbcafb64029402906eacaa4e8e54c809da751a82d13f",
+  "source_sha256": {
+    "src/planning/q4_directional_cover.py": "e863b3f0fb83e1deba8d1a24c4b929b8fe1caca9927f8b99e514b1deea6da5c1",
+    "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42"
+  },
+  "certificate_budget": {
+    "max_depth": 16,
+    "max_cells": 200000,
+    "range_margin_m": 1e-05,
+    "orientation_margin_m": 1e-07
+  },
+  "results": [
+    {
+      "k": 8,
+      "station_count": 25,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1900.0,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        23,
+        22,
+        21,
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        24
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          706.399674405361,
+          706.399674405361
+        ],
+        [
+          6.11711076174103e-14,
+          999.0
+        ],
+        [
+          -706.3996744053609,
+          706.399674405361
+        ],
+        [
+          -999.0,
+          1.223422152348206e-13
+        ],
+        [
+          -706.3996744053611,
+          -706.3996744053609
+        ],
+        [
+          -1.8351332285223086e-13,
+          -999.0
+        ],
+        [
+          706.3996744053608,
+          -706.3996744053611
+        ],
+        [
+          1343.50288425444,
+          -1343.5028842544407
+        ],
+        [
+          727.098521493671,
+          -1755.3711117714447
+        ],
+        [
+          -3.4902433775699563e-13,
+          -1900.0
+        ],
+        [
+          -727.0985214936717,
+          -1755.3711117714445
+        ],
+        [
+          -1343.5028842544407,
+          -1343.5028842544402
+        ],
+        [
+          -1755.371111771445,
+          -727.0985214936703
+        ],
+        [
+          -1900.0,
+          2.326828918379971e-13
+        ],
+        [
+          -1755.3711117714447,
+          727.0985214936708
+        ],
+        [
+          -1343.5028842544402,
+          1343.5028842544405
+        ],
+        [
+          -727.0985214936704,
+          1755.3711117714447
+        ],
+        [
+          1.1634144591899854e-13,
+          1900.0
+        ],
+        [
+          727.0985214936707,
+          1755.3711117714447
+        ],
+        [
+          1343.5028842544405,
+          1343.5028842544405
+        ],
+        [
+          1755.3711117714447,
+          727.0985214936705
+        ],
+        [
+          1900.0,
+          0.0
+        ],
+        [
+          1755.3711117714445,
+          -727.0985214936718
+        ]
+      ],
+      "route_length_m": 18372.358839977456,
+      "route_closed_form_m": 18372.358839977456,
+      "pure_movement_s": 3674.471767995491,
+      "boundary_radial_outward": {
+        "angular_step_deg": 22.5,
+        "halfwidth_deg": 18.671718064007887,
+        "heading_halfwidth_deg": 18.671718064007887,
+        "range_halfwidth_deg": 31.21118049826685,
+        "receiving_arc_over_step": 1.6597082723562566,
+        "minimum_receiving_outer_stations": 1,
+        "angle_fraction_at_least_two": 0.6597082723562566,
+        "heading_two_station_threshold_m": 1948.3059605263093,
+        "range_at_one_step_m": 728.4668816238657,
+        "min_source_station_distance_m": 100.0
+      },
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": true,
+        "status": "certified",
+        "reason": null,
+        "station_count": 25,
+        "station_sha256": "a0c0f12c32533217ba69c24483ad4d9de6b74dcc23fb97f9158537beea5cb6ea",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 2437,
+        "deepest_level": 12,
+        "outside_leaves": 176,
+        "covered_leaves": 1652,
+        "counterexample": null,
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": {
+        "passed": true,
+        "station_count": 25,
+        "leaf_count": 1828,
+        "station_sha256": "a0c0f12c32533217ba69c24483ad4d9de6b74dcc23fb97f9158537beea5cb6ea"
+      },
+      "independent_witness_check": null,
+      "certificate_runtime_s": 0.04452980001224205,
+      "proof_file": "geometry-proofs/inner8-outer16-r999-1900.json.gz",
+      "proof_gzip_sha256": "b97ed3a12028fd84bcc911fe6d89dff912745853bb5e3dffb4704352b42524a5",
+      "proof_raw_sha256": "3e99864f1be50cf046a189d40a14bb1d4428a7f90517eaa5947319af5dab0ae9",
+      "radial_midspoke_necessary_outer_limit_m": 1922.9556529787756
+    },
+    {
+      "k": 8,
+      "station_count": 25,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1920.0,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        23,
+        22,
+        21,
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        24
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          706.399674405361,
+          706.399674405361
+        ],
+        [
+          6.11711076174103e-14,
+          999.0
+        ],
+        [
+          -706.3996744053609,
+          706.399674405361
+        ],
+        [
+          -999.0,
+          1.223422152348206e-13
+        ],
+        [
+          -706.3996744053611,
+          -706.3996744053609
+        ],
+        [
+          -1.8351332285223086e-13,
+          -999.0
+        ],
+        [
+          706.3996744053608,
+          -706.3996744053611
+        ],
+        [
+          1357.6450198781708,
+          -1357.6450198781715
+        ],
+        [
+          734.7521901409729,
+          -1773.8487024216704
+        ],
+        [
+          -3.526982781544377e-13,
+          -1920.0
+        ],
+        [
+          -734.7521901409734,
+          -1773.8487024216702
+        ],
+        [
+          -1357.6450198781715,
+          -1357.645019878171
+        ],
+        [
+          -1773.8487024216709,
+          -734.7521901409722
+        ],
+        [
+          -1920.0,
+          2.3513218543629184e-13
+        ],
+        [
+          -1773.8487024216706,
+          734.7521901409726
+        ],
+        [
+          -1357.645019878171,
+          1357.6450198781713
+        ],
+        [
+          -734.7521901409723,
+          1773.8487024216706
+        ],
+        [
+          1.1756609271814592e-13,
+          1920.0
+        ],
+        [
+          734.7521901409725,
+          1773.8487024216706
+        ],
+        [
+          1357.6450198781713,
+          1357.6450198781713
+        ],
+        [
+          1773.8487024216706,
+          734.7521901409724
+        ],
+        [
+          1920.0,
+          0.0
+        ],
+        [
+          1773.8487024216702,
+          -734.7521901409735
+        ]
+      ],
+      "route_length_m": 18509.413033187135,
+      "route_closed_form_m": 18509.413033187135,
+      "pure_movement_s": 3701.8826066374268,
+      "boundary_radial_outward": {
+        "angular_step_deg": 22.5,
+        "halfwidth_deg": 20.364134806317807,
+        "heading_halfwidth_deg": 20.364134806317807,
+        "range_halfwidth_deg": 30.973278786464178,
+        "receiving_arc_over_step": 1.8101453161171386,
+        "minimum_receiving_outer_stations": 1,
+        "angle_fraction_at_least_two": 0.8101453161171386,
+        "heading_two_station_threshold_m": 1948.3059605263093,
+        "range_at_one_step_m": 735.2174312963383,
+        "min_source_station_distance_m": 120.0
+      },
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 25,
+        "station_sha256": "bce18781d2171a33af214d29082f1ecb712f66c918232f807ff829015f2b2a71",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 134,
+        "deepest_level": 8,
+        "outside_leaves": 27,
+        "covered_leaves": 71,
+        "counterexample": {
+          "source": [
+            -239.0625,
+            -900.0
+          ],
+          "normal": [
+            -0.3826834323603171,
+            -0.9238795325132637
+          ],
+          "local_stations": [
+            [
+              -706.3996744053611,
+              -706.3996744053609
+            ],
+            [
+              -1.8351332285223086e-13,
+              -999.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              706.3996744053608,
+              -706.3996744053611
+            ]
+          ],
+          "max_projection_m": -0.02118432982513241
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_witness_check": {
+        "passed": true,
+        "source_radius_m": 931.2093636268108,
+        "local_stations": 4,
+        "max_local_projection_m": -0.02118432982513241,
+        "min_unreachable_margin_m": 4.6491047306471955
+      },
+      "certificate_runtime_s": 0.0021906000038143247,
+      "proof_file": "geometry-proofs/inner8-outer16-r999-1920.json.gz",
+      "proof_gzip_sha256": "b0910565736e3967988e6b0ee7d168a48d4c86146c2c55283ae2cd738765e6a0",
+      "proof_raw_sha256": "b5796bc465d9a104ce9702cd632a768894db06ed8931de6a6cfdbe70c8799c60",
+      "radial_midspoke_necessary_outer_limit_m": 1922.9556529787756
+    },
+    {
+      "k": 9,
+      "station_count": 28,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1900.0,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        26,
+        25,
+        24,
+        23,
+        22,
+        21,
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        27
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          765.2783986758591,
+          642.1448220768527
+        ],
+        [
+          173.4745294892635,
+          983.8229452591958
+        ],
+        [
+          -499.4999999999998,
+          865.1593783806543
+        ],
+        [
+          -938.7529281651224,
+          341.6781231823432
+        ],
+        [
+          -938.7529281651225,
+          -341.678123182343
+        ],
+        [
+          -499.50000000000045,
+          -865.1593783806541
+        ],
+        [
+          173.47452948926303,
+          -983.8229452591959
+        ],
+        [
+          765.2783986758589,
+          -642.1448220768531
+        ],
+        [
+          1455.4844419260578,
+          -1221.2964584044253
+        ],
+        [
+          949.9999999999987,
+          -1645.448267190434
+        ],
+        [
+          329.93153756716697,
+          -1871.1347307231954
+        ],
+        [
+          -329.93153756716765,
+          -1871.1347307231952
+        ],
+        [
+          -950.0000000000008,
+          -1645.4482671904332
+        ],
+        [
+          -1455.484441926059,
+          -1221.296458404424
+        ],
+        [
+          -1785.415979493226,
+          -649.8382723187705
+        ],
+        [
+          -1900.0,
+          2.326828918379971e-13
+        ],
+        [
+          -1785.415979493226,
+          649.8382723187709
+        ],
+        [
+          -1455.484441926058,
+          1221.296458404425
+        ],
+        [
+          -949.9999999999995,
+          1645.4482671904336
+        ],
+        [
+          -329.9315375671676,
+          1871.1347307231952
+        ],
+        [
+          329.93153756716777,
+          1871.1347307231952
+        ],
+        [
+          950.0000000000002,
+          1645.4482671904334
+        ],
+        [
+          1455.4844419260583,
+          1221.2964584044246
+        ],
+        [
+          1785.415979493226,
+          649.8382723187706
+        ],
+        [
+          1900.0,
+          0.0
+        ],
+        [
+          1785.415979493226,
+          -649.8382723187704
+        ]
+      ],
+      "route_length_m": 18584.52224820119,
+      "route_closed_form_m": 18584.52224820119,
+      "pure_movement_s": 3716.9044496402375,
+      "boundary_radial_outward": {
+        "angular_step_deg": 20.0,
+        "halfwidth_deg": 18.671718064007887,
+        "heading_halfwidth_deg": 18.671718064007887,
+        "range_halfwidth_deg": 31.21118049826685,
+        "receiving_arc_over_step": 1.8671718064007887,
+        "minimum_receiving_outer_stations": 1,
+        "angle_fraction_at_least_two": 0.8671718064007887,
+        "heading_two_station_threshold_m": 1915.5199904566418,
+        "range_at_one_step_m": 650.0019029390502,
+        "min_source_station_distance_m": 100.0
+      },
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": true,
+        "status": "certified",
+        "reason": null,
+        "station_count": 28,
+        "station_sha256": "3d1adac8788b73fa4c87671cf51da4815fde7587eb4d980e2af3b11a5d44eb2c",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 1397,
+        "deepest_level": 12,
+        "outside_leaves": 156,
+        "covered_leaves": 892,
+        "counterexample": null,
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": {
+        "passed": true,
+        "station_count": 28,
+        "leaf_count": 1048,
+        "station_sha256": "3d1adac8788b73fa4c87671cf51da4815fde7587eb4d980e2af3b11a5d44eb2c"
+      },
+      "independent_witness_check": null,
+      "certificate_runtime_s": 0.027013700018869713,
+      "proof_file": "geometry-proofs/inner9-outer18-r999-1900.json.gz",
+      "proof_gzip_sha256": "9b6e92ddb893aab34b1e6b82bb5b76cc329c882bc0bdf989e723bfae17b811d1",
+      "proof_raw_sha256": "8a7ce918d757facde5060aa46de6a1ff2cc8b2415c63e74ce7c4627a261a34d9",
+      "radial_midspoke_necessary_outer_limit_m": 1938.7529281651225
+    },
+    {
+      "k": 9,
+      "station_count": 28,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1920.0,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        26,
+        25,
+        24,
+        23,
+        22,
+        21,
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        27
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          765.2783986758591,
+          642.1448220768527
+        ],
+        [
+          173.4745294892635,
+          983.8229452591958
+        ],
+        [
+          -499.4999999999998,
+          865.1593783806543
+        ],
+        [
+          -938.7529281651224,
+          341.6781231823432
+        ],
+        [
+          -938.7529281651225,
+          -341.678123182343
+        ],
+        [
+          -499.50000000000045,
+          -865.1593783806541
+        ],
+        [
+          173.47452948926303,
+          -983.8229452591959
+        ],
+        [
+          765.2783986758589,
+          -642.1448220768531
+        ],
+        [
+          1470.8053307884375,
+          -1234.152210598156
+        ],
+        [
+          959.9999999999987,
+          -1662.768775266123
+        ],
+        [
+          333.40450112050553,
+          -1890.8308857834395
+        ],
+        [
+          -333.4045011205062,
+          -1890.8308857834395
+        ],
+        [
+          -960.0000000000009,
+          -1662.7687752661218
+        ],
+        [
+          -1470.8053307884384,
+          -1234.1522105981546
+        ],
+        [
+          -1804.2098319089441,
+          -656.6786751852839
+        ],
+        [
+          -1920.0,
+          2.3513218543629184e-13
+        ],
+        [
+          -1804.209831908944,
+          656.6786751852842
+        ],
+        [
+          -1470.8053307884375,
+          1234.1522105981558
+        ],
+        [
+          -959.9999999999995,
+          1662.7687752661222
+        ],
+        [
+          -333.4045011205062,
+          1890.8308857834395
+        ],
+        [
+          333.4045011205064,
+          1890.8308857834395
+        ],
+        [
+          960.0000000000002,
+          1662.768775266122
+        ],
+        [
+          1470.8053307884377,
+          1234.1522105981553
+        ],
+        [
+          1804.2098319089441,
+          656.678675185284
+        ],
+        [
+          1920.0,
+          0.0
+        ],
+        [
+          1804.2098319089441,
+          -656.6786751852837
+        ]
+      ],
+      "route_length_m": 18722.6030090147,
+      "route_closed_form_m": 18722.6030090147,
+      "pure_movement_s": 3744.52060180294,
+      "boundary_radial_outward": {
+        "angular_step_deg": 20.0,
+        "halfwidth_deg": 20.364134806317807,
+        "heading_halfwidth_deg": 20.364134806317807,
+        "range_halfwidth_deg": 30.973278786464178,
+        "receiving_arc_over_step": 2.036413480631781,
+        "minimum_receiving_outer_stations": 2,
+        "angle_fraction_at_least_two": 1.0,
+        "heading_two_station_threshold_m": 1915.5199904566418,
+        "range_at_one_step_m": 656.6921692298464,
+        "min_source_station_distance_m": 120.0
+      },
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": true,
+        "status": "certified",
+        "reason": null,
+        "station_count": 28,
+        "station_sha256": "66aa1a0271804cbd9aedb0d2db83c54e51c1dbf2cf0bda1c0e841c9d66a0db50",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 2277,
+        "deepest_level": 12,
+        "outside_leaves": 132,
+        "covered_leaves": 1576,
+        "counterexample": null,
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": {
+        "passed": true,
+        "station_count": 28,
+        "leaf_count": 1708,
+        "station_sha256": "66aa1a0271804cbd9aedb0d2db83c54e51c1dbf2cf0bda1c0e841c9d66a0db50"
+      },
+      "independent_witness_check": null,
+      "certificate_runtime_s": 0.042472400004044175,
+      "proof_file": "geometry-proofs/inner9-outer18-r999-1920.json.gz",
+      "proof_gzip_sha256": "ddf940b9b525df532fb8db23d088265e61e0f40738ff731daff443b1d8e71e03",
+      "proof_raw_sha256": "889debfb59d15044a190ebd6c1967a9dda7d9302eb80b66d50fa3dcc56bc3833",
+      "radial_midspoke_necessary_outer_limit_m": 1938.7529281651225
+    },
+    {
+      "k": 10,
+      "station_count": 31,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1900.0,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        29,
+        28,
+        27,
+        26,
+        25,
+        24,
+        23,
+        22,
+        21,
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        30
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          808.2079773805725,
+          587.1974670401806
+        ],
+        [
+          308.7079773805725,
+          950.1054597788584
+        ],
+        [
+          -308.7079773805724,
+          950.1054597788585
+        ],
+        [
+          -808.2079773805724,
+          587.1974670401808
+        ],
+        [
+          -999.0,
+          1.223422152348206e-13
+        ],
+        [
+          -808.2079773805725,
+          -587.1974670401805
+        ],
+        [
+          -308.70797738057263,
+          -950.1054597788584
+        ],
+        [
+          308.7079773805723,
+          -950.1054597788585
+        ],
+        [
+          808.2079773805724,
+          -587.1974670401809
+        ],
+        [
+          1537.1322893124,
+          -1116.7919793556994
+        ],
+        [
+          1116.7919793556985,
+          -1537.1322893124004
+        ],
+        [
+          587.1322893123997,
+          -1807.007380960792
+        ],
+        [
+          -3.4902433775699563e-13,
+          -1900.0
+        ],
+        [
+          -587.1322893124004,
+          -1807.0073809607918
+        ],
+        [
+          -1116.7919793556991,
+          -1537.1322893124
+        ],
+        [
+          -1537.1322893124002,
+          -1116.7919793556987
+        ],
+        [
+          -1807.007380960792,
+          -587.132289312399
+        ],
+        [
+          -1900.0,
+          2.326828918379971e-13
+        ],
+        [
+          -1807.0073809607918,
+          587.1322893124003
+        ],
+        [
+          -1537.1322893124,
+          1116.7919793556991
+        ],
+        [
+          -1116.7919793556987,
+          1537.1322893124002
+        ],
+        [
+          -587.1322893124,
+          1807.007380960792
+        ],
+        [
+          1.1634144591899854e-13,
+          1900.0
+        ],
+        [
+          587.1322893124002,
+          1807.0073809607918
+        ],
+        [
+          1116.791979355699,
+          1537.1322893124002
+        ],
+        [
+          1537.1322893124002,
+          1116.791979355699
+        ],
+        [
+          1807.0073809607918,
+          587.1322893124001
+        ],
+        [
+          1900.0,
+          0.0
+        ],
+        [
+          1807.0073809607918,
+          -587.1322893124005
+        ]
+      ],
+      "route_length_m": 18751.311968754973,
+      "route_closed_form_m": 18751.31196875497,
+      "pure_movement_s": 3750.2623937509948,
+      "boundary_radial_outward": {
+        "angular_step_deg": 18.0,
+        "halfwidth_deg": 18.671718064007887,
+        "heading_halfwidth_deg": 18.671718064007887,
+        "range_halfwidth_deg": 31.21118049826685,
+        "receiving_arc_over_step": 2.0746353404453206,
+        "minimum_receiving_outer_stations": 2,
+        "angle_fraction_at_least_two": 1.0,
+        "heading_two_station_threshold_m": 1892.632003628881,
+        "range_at_one_step_m": 587.1741041132093,
+        "min_source_station_distance_m": 100.0
+      },
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": true,
+        "status": "certified",
+        "reason": null,
+        "station_count": 31,
+        "station_sha256": "5ad0f55c81beff56b5bf5d2cac0af953d9c8922bd2c3188753e1e244fe90da52",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 1173,
+        "deepest_level": 12,
+        "outside_leaves": 136,
+        "covered_leaves": 744,
+        "counterexample": null,
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": {
+        "passed": true,
+        "station_count": 31,
+        "leaf_count": 880,
+        "station_sha256": "5ad0f55c81beff56b5bf5d2cac0af953d9c8922bd2c3188753e1e244fe90da52"
+      },
+      "independent_witness_check": null,
+      "certificate_runtime_s": 0.022183099994435906,
+      "proof_file": "geometry-proofs/inner10-outer20-r999-1900.json.gz",
+      "proof_gzip_sha256": "ab1a09ca8bdbf7993077ec5d8767d0cc406b390f57c9641360dc57d87a5405f4",
+      "proof_raw_sha256": "821b47c6fc44104dc3dc7ffd7f6fec44c9371b78b67371ec8e9632bf3b0e97f3",
+      "radial_midspoke_necessary_outer_limit_m": 1950.1054597788584
+    },
+    {
+      "k": 10,
+      "station_count": 31,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1920.0,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        29,
+        28,
+        27,
+        26,
+        25,
+        24,
+        23,
+        22,
+        21,
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        30
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          808.2079773805725,
+          587.1974670401806
+        ],
+        [
+          308.7079773805725,
+          950.1054597788584
+        ],
+        [
+          -308.7079773805724,
+          950.1054597788585
+        ],
+        [
+          -808.2079773805724,
+          587.1974670401808
+        ],
+        [
+          -999.0,
+          1.223422152348206e-13
+        ],
+        [
+          -808.2079773805725,
+          -587.1974670401805
+        ],
+        [
+          -308.70797738057263,
+          -950.1054597788584
+        ],
+        [
+          308.7079773805723,
+          -950.1054597788585
+        ],
+        [
+          808.2079773805724,
+          -587.1974670401809
+        ],
+        [
+          1553.312629199899,
+          -1128.5476844015488
+        ],
+        [
+          1128.547684401548,
+          -1553.3126291998992
+        ],
+        [
+          593.3126291998987,
+          -1826.028511286695
+        ],
+        [
+          -3.526982781544377e-13,
+          -1920.0
+        ],
+        [
+          -593.3126291998993,
+          -1826.0285112866948
+        ],
+        [
+          -1128.5476844015486,
+          -1553.312629199899
+        ],
+        [
+          -1553.3126291998992,
+          -1128.5476844015482
+        ],
+        [
+          -1826.0285112866952,
+          -593.3126291998981
+        ],
+        [
+          -1920.0,
+          2.3513218543629184e-13
+        ],
+        [
+          -1826.0285112866948,
+          593.3126291998992
+        ],
+        [
+          -1553.312629199899,
+          1128.5476844015486
+        ],
+        [
+          -1128.5476844015482,
+          1553.3126291998992
+        ],
+        [
+          -593.3126291998989,
+          1826.028511286695
+        ],
+        [
+          1.1756609271814592e-13,
+          1920.0
+        ],
+        [
+          593.3126291998991,
+          1826.0285112866948
+        ],
+        [
+          1128.5476844015484,
+          1553.3126291998992
+        ],
+        [
+          1553.3126291998992,
+          1128.5476844015484
+        ],
+        [
+          1826.0285112866948,
+          593.312629199899
+        ],
+        [
+          1920.0,
+          0.0
+        ],
+        [
+          1826.0285112866948,
+          -593.3126291998996
+        ]
+      ],
+      "route_length_m": 18890.20216218555,
+      "route_closed_form_m": 18890.202162185546,
+      "pure_movement_s": 3778.0404324371098,
+      "boundary_radial_outward": {
+        "angular_step_deg": 18.0,
+        "halfwidth_deg": 20.364134806317807,
+        "heading_halfwidth_deg": 20.364134806317807,
+        "range_halfwidth_deg": 30.973278786464178,
+        "receiving_arc_over_step": 2.262681645146423,
+        "minimum_receiving_outer_stations": 2,
+        "angle_fraction_at_least_two": 1.0,
+        "heading_two_station_threshold_m": 1892.632003628881,
+        "range_at_one_step_m": 593.8832876650922,
+        "min_source_station_distance_m": 120.0
+      },
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": true,
+        "status": "certified",
+        "reason": null,
+        "station_count": 31,
+        "station_sha256": "f93b1df5d1f783d51470ab39ec5d15e638dc2d0bc9d010662ef4c189e5eab8e1",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 1557,
+        "deepest_level": 12,
+        "outside_leaves": 136,
+        "covered_leaves": 1032,
+        "counterexample": null,
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": {
+        "passed": true,
+        "station_count": 31,
+        "leaf_count": 1168,
+        "station_sha256": "f93b1df5d1f783d51470ab39ec5d15e638dc2d0bc9d010662ef4c189e5eab8e1"
+      },
+      "independent_witness_check": null,
+      "certificate_runtime_s": 0.030481399997370318,
+      "proof_file": "geometry-proofs/inner10-outer20-r999-1920.json.gz",
+      "proof_gzip_sha256": "ab6b53de7b9fec2c832c6d24fc2ef01b0353dd53355d8650acbfb4aff767cbe5",
+      "proof_raw_sha256": "4935db814ac8b579eaba07396574cfa6e3c71ec1e90f8b0027f9e089892080c2",
+      "radial_midspoke_necessary_outer_limit_m": 1950.1054597788584
+    }
+  ],
+  "summary": {
+    "attempted": 6,
+    "passed": 5,
+    "counterexamples": 1,
+    "inconclusive": 0
+  },
+  "scope_limits": [
+    "Route is fixed two-ring order, not asserted shortest",
+    "Complete coverage is one receiver for every source and every orientation; not two receivers for every source",
+    "Boundary two-receiver fractions are exact angular measures under precisely radial outward orientation",
+    "No task-time, expected-cost, clearing, or bearing-error performance claim follows"
+  ]
+}
