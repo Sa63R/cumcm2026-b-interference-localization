@@ -1,0 +1,93 @@
+{
+  "registered_utc": "2026-09-11T20:37:28.342033+00:00",
+  "scope": "Q3 from-scratch round3; B and round2 CR frozen",
+  "phase1": {
+    "configs": [
+      "B",
+      "CR",
+      "G1",
+      "G12"
+    ],
+    "cases": 60,
+    "source": "development_input.json",
+    "reference_reuse": true,
+    "screening_worlds": 4,
+    "confirmation_only_worlds": 8,
+    "adoption": "confirmation mean + confirmation SE < -3 seconds",
+    "no_prior_change": true,
+    "no_attempts": true
+  },
+  "phase2": {
+    "sequence": [
+      "selected phase1 controller",
+      "add directional candidates and event triggers",
+      "add compatible witnesses as separate increment"
+    ],
+    "max_candidates": 6,
+    "witness_count_ceiling": 4,
+    "initial_witness_mode": "record only; veto threshold decided on development and frozen before new tests"
+  },
+  "budgets": {
+    "planning_calls": 12,
+    "episode_planning_wall_s": 60,
+    "decision_wall_s": 6,
+    "execution_reserve_s": 30,
+    "ordinary_cooldown_actions": 8,
+    "cpu_target_hours": 4,
+    "cpu_hard_ceiling_hours": 6,
+    "max_cpu_processes": 2,
+    "gpu": false
+  },
+  "new_tests": {
+    "nominal": {
+      "seed_start": 1003000,
+      "cases": 128
+    },
+    "pressure": {
+      "seed_start": 1006000,
+      "cases": 96,
+      "common_base_maps": 24,
+      "variants_per_map": 4,
+      "variants": "14/16 sources x 0/60 degree rotation"
+    },
+    "comparators": [
+      "B",
+      "CR"
+    ],
+    "shrink_rule": "Before any new test run, halve BOTH sizes to64/48 if measured projected total CPU exceeds6h or cumulative development CPU exceeds2.6h; never drop individual cases"
+  },
+  "validation": {
+    "no_fitting": true,
+    "new_original_groups": 12,
+    "radius_variants": 2,
+    "salt": "fresh-q3-v3:",
+    "exclude_all_round1_round2_groups": true
+  },
+  "acceptance": {
+    "correctness": "all clear, certified exit, no real truth access, budgets",
+    "nominal_mean_gain_vs_B_percent_min": 3,
+    "nominal_mean_regression_vs_CR_percent_max": 0.5,
+    "nominal_paired_delta_vs_B_upper95_s_max": 0,
+    "nominal_p95_regression_vs_CR_percent_max": 2,
+    "pressure_mean_vs_B": "no regression",
+    "pressure_mean_vs_CR": "improve",
+    "pressure_max_positive_regret_vs_B": "no worse than old CR",
+    "pressure_tail10_regret_vs_B": "no worse than old CR",
+    "conflicts": "report separately, no weighted winner score"
+  },
+  "regret": {
+    "r": "(Tnew-TB)/TB",
+    "primary_tail10": "mean of largest ceil(0.1*n) max(r,0), including zero padding",
+    "additional": "top ceil(0.1*positive_count) positive regrets, and all individual maxima",
+    "bootstrap_unit": "original shared base map; average variants within group for mean differences"
+  },
+  "report": [
+    "all five development groups separately",
+    "nominal/pressure/validation separately",
+    "T/N",
+    "physical and strengthened plus robust validation lower bounds",
+    "all regressions",
+    "full baseline/best branch action logs"
+  ],
+  "official_calls": 0
+}
