@@ -67,14 +67,25 @@ def witness(label, events, seed):
     raise ValueError("No witness found inside bounded label; cannot reconstruct this episode")
 
 
-def export(database, count):
+def export(database, count, *, selection_salt="fresh-q3-v1:", excluded_evidence=(),
+           case_prefix="validation"):
+    """Reconstruct a deterministic validation selection without fitting.
+
+    Defaults preserve the first-round case ordering, seeds, and case IDs.
+    Alternative rounds may change only the hash salt, evidence exclusions,
+    and public case prefix; witness construction remains identical.
+    """
+    excluded_evidence = frozenset(excluded_evidence)
     connection = sqlite3.connect(database.resolve().as_uri() + "?mode=ro", uri=True)
     connection.row_factory = sqlite3.Row
     connection.execute("BEGIN")
     episodes = connection.execute("SELECT * FROM episodes WHERE problem=3 AND complete=1 AND cleared_count=source_total AND trajectory_complete=1").fetchall()
-    episodes = sorted(episodes, key=lambda e: hashlib.sha256(("fresh-q3-v1:" + e["case_code"]).encode()).hexdigest())
+    eligible_before_exclusion = len(episodes)
+    episodes = [e for e in episodes if e["evidence_sha256"] not in excluded_evidence]
+    episodes = sorted(episodes, key=lambda e: hashlib.sha256((selection_salt + e["case_code"]).encode("utf-8")).hexdigest())
     selected = episodes[:count]
     cases, radii, baselines, evidence, anchors, failures = [], {}, {}, [], {}, []
+    groups = []
     for index, e in enumerate(selected):
         labels = connection.execute("SELECT label_json FROM source_estimates WHERE episode_id=? ORDER BY channel", (e["id"],)).fetchall()
         steps = connection.execute("SELECT * FROM steps WHERE episode_id=? AND accepted=1 ORDER BY step_index", (e["id"],)).fetchall()
@@ -100,7 +111,7 @@ def export(database, count):
                               response=json.loads(s["response_json"]))
                          for s in steps if s["action"] == "measure" and s["channel"] not in known]
             for fraction, suffix in ((0.25, "radius-low"), (0.75, "radius-high")):
-                case_id = f"validation-{index:03d}-{suffix}"
+                case_id = f"{case_prefix}-{index:03d}-{suffix}"
                 cases.append(dict(case_id=case_id, problem=3, seed=923000 + index,
                     error_mode="uniform", description="Bounded observation-label reconstruction; evaluator only",
                     sources=[dict(channel=c, x=p[0], y=p[1], reception_radius_m=lo + fraction * (hi - lo),
@@ -110,6 +121,10 @@ def export(database, count):
                                           source_total=e["source_total"])
                 anchors[case_id] = historic
             evidence.append(e["evidence_sha256"])
+            groups.append(dict(group_id=f"{case_prefix}-{index:03d}", case_code=e["case_code"],
+                               evidence_sha256=e["evidence_sha256"],
+                               case_ids=[f"{case_prefix}-{index:03d}-{suffix}"
+                                         for suffix in ("radius-low", "radius-high")]))
         except ValueError as exc:
             failures.append(dict(index=index, reason=str(exc)))
     connection.rollback()
@@ -117,7 +132,13 @@ def export(database, count):
     return dict(cases=cases, metadata=dict(
         kind="bounded-label validation reconstruction, not official replay or ground truth",
         eligible_episodes=len(episodes), selected_episodes=len(selected), reconstructed_episodes=len(evidence),
-        selected_by="first SHA256(fresh-q3-v1:case_code), all DB split labels validation-only",
+        selected_by=f"first SHA256({selection_salt}case_code), all DB split labels validation-only",
+        selection_salt=selection_salt, selection_encoding="utf-8",
+        eligible_before_exclusion=eligible_before_exclusion,
+        excluded_eligible_episodes=eligible_before_exclusion - len(episodes),
+        excluded_evidence_sha256=sorted(excluded_evidence),
+        selected_evidence_sha256=[e["evidence_sha256"] for e in selected],
+        requested_groups=count, original_groups=groups, radius_fractions=[0.25, 0.75],
         evidence_sha256=evidence, failures=failures, uncertainty_radii=radii,
         historical_baselines=baselines, anchors=anchors,
         warning="New observation locations use the public-rule research error model. No exact counterfactual official scores are available."))
