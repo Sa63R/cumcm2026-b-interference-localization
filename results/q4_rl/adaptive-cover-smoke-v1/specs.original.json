@@ -1,0 +1,18 @@
+{
+  "r8": {
+    "entrypoint": "strategies.q4_clear_before_probe:run_q4_clear_before_probe",
+    "kwargs": {"config": "center_once", "max_expansions": 200}
+  },
+  "heuristic": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {"record_transitions": false}
+  },
+  "adaptive_ledger": {
+    "entrypoint": "q4_rl.adaptive_controller:run_q4_adaptive_rl",
+    "kwargs": {"record_transitions": false, "replacement_actions": false}
+  },
+  "adaptive_actions": {
+    "entrypoint": "q4_rl.adaptive_controller:run_q4_adaptive_rl",
+    "kwargs": {"record_transitions": false, "replacement_actions": true}
+  }
+}
