@@ -8,11 +8,17 @@ import math
 
 from localization import CandidateRegion
 from experiments.audit_q4_clear_before_probe import require, point, close, terminal
-from experiments.audit_q4_joint_visibility import audit_joint_visibility_certificate
+from experiments.audit_q4_joint_visibility import (
+    audit_joint_visibility_certificate, convex_polygon, inside, rational)
 
 
 def points(values):
     return [point(p) for p in values]
+
+
+def boundary_exclusions(original, output):
+    outer = convex_polygon(points(output))
+    return [j for j, p in enumerate(points(original)) if not inside(rational(p), outer)]
 
 
 def wire_prefix(record):
@@ -222,11 +228,18 @@ def audit_joint_visibility_prefix(record):
                         'Fallback helper used a reduced auxiliary region')
                 counters['fallback_epochs'] += 1
             else:
-                require(e['skip_reason'] is None and points(e['initial_aux_vertices']) == points(evidence['output_vertices']),
-                        'Initial auxiliary region differs from audited output')
-                aux = canonical.copy()
-                aux.vertices, aux._circle = tuple(points(e['initial_aux_vertices'])), None
-                counters['refined_epochs'] += evidence['status'] == 'outer_refined'
+                excluded = boundary_exclusions(canonical.vertices, evidence['output_vertices'])
+                require(evidence['old_vertices_excluded'] == excluded,
+                        'Reported boundary reduction differs from exact old-vertex inclusion')
+                if not excluded:
+                    require(e['skip_reason'] == 'no_boundary_reduction' and e['initial_aux_vertices'] is None,
+                            'No-boundary-reduction helper must preserve canonical policy')
+                else:
+                    require(e['skip_reason'] is None and points(e['initial_aux_vertices']) == points(evidence['output_vertices']),
+                            'Initial auxiliary region differs from audited output')
+                    aux = canonical.copy()
+                    aux.vertices, aux._circle = tuple(points(e['initial_aux_vertices'])), None
+                    counters['refined_epochs'] += 1
         updates = []
         state = {n: aux.copy() if aux is not None else None}
         for j in range(n, end):

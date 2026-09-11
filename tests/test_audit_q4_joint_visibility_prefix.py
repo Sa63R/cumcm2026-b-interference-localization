@@ -10,7 +10,7 @@ import socket
 import pytest
 
 from experiments.audit_q4_joint_visibility_prefix import (verify_grid, wire_prefix,
-    audit_joint_visibility_prefix, summarize_joint_visibility_audits)
+    audit_joint_visibility_prefix, summarize_joint_visibility_audits, boundary_exclusions)
 from planning.coverage import clearance_grid
 from simulator_client import SimulatorClient
 
@@ -84,26 +84,30 @@ def example(monkeypatch, config='probe', outcome='r8_success'):
     policy = Q4JointVisibility(client, 20000, 0 if config == 'probe_optical' or outcome == 'terminal_ready' else 6,
                               config=config, max_expansions=0)
     base.prime(policy, client)
-    negatives = [(-30., 0.), (0., -30.)] if outcome in {'aux_ready', 'terminal_ready'} else [(1400., 1400.)]
+    negatives = ([(-30., 0.), (0., -30.)] if outcome in {'aux_ready', 'terminal_ready'}
+        else [(1400., 1400.)] if outcome == 'r8_success' and config == 'probe' else [(-10., -10.)])
     for negative in negatives:
         client.measure_replies = [('no_signal', None)]
         policy._perform('measure', Position.coerce(negative), 1, 'coverage')
     if outcome == 'near':
-        client.clear_replies = ['no_target_in_range', 'success']
+        client.clear_replies = ['success']
         client.measure_replies = [('near', None)]
     elif outcome == 'direction':
-        client.clear_replies = ['no_target_in_range', 'success']
-        client.measure_replies = [('direction', 45.)]
+        client.clear_replies = ['success']
+        client.measure_replies = [('direction', 225.)]
     elif outcome == 'service':
         # Real inherited 60s slice at a distant negative observer cannot pay
         # the selected centre's incoming leg; no request is sent.
+        client.measure_replies = [('no_signal', None)]
+        policy._perform('measure', Position(1400, 1400), 2, 'coverage')
+        service_start = len(policy.report.action_history)
         policy.service_deadline = client.state.virtual_time_s+60.
     try:
         policy._resolve(1)
     except base._ServiceSliceExpired:
         assert outcome == 'service'
         n = len(policy.report.action_history)
-        policy.early_service_log.append(dict(channel=1, after_actual_action_count=3,
+        policy.early_service_log.append(dict(channel=1, after_actual_action_count=service_start,
             end_actual_action_count=n, interrupted=True, budget_s=60.))
     result = fixture_module('test_audit_q4_clear_before_probe').wrap(policy)
     result['spec']['kwargs'].update(config=config, max_active_probes=policy.max_active_probes)
@@ -115,7 +119,7 @@ def test_real_inherited_controller_prefixes(monkeypatch, outcome):
     record = example(monkeypatch, outcome=outcome)
     saved = copy.deepcopy(record)
     audited = audit_joint_visibility_prefix(record)
-    assert audited['epochs'] == audited['probe_decisions'] == 1
+    assert audited['epochs'] == 1 and audited['probe_decisions'] == (outcome != 'r8_success')
     assert audited['executed_probes'] == (outcome in {'near', 'direction'})
     assert record == saved
     assert summarize_joint_visibility_audits([audited, audited])['epochs'] == 2
@@ -156,6 +160,38 @@ def test_zero_remaining_probes_still_certifies_real_aux_terminal_clear(monkeypat
     with pytest.raises(ValueError, match='original canonical'): audit_joint_visibility_prefix(bad)
     terminal_log.clear()
     with pytest.raises(ValueError, match='Unlogged'): audit_joint_visibility_prefix(record)
+
+
+def test_unchanged_helper_preserves_r8_without_auxiliary_decisions(monkeypatch):
+    record = example(monkeypatch)
+    p = record['summary']['strategy_parameters']
+    event = p['joint_visibility_resolver_log'][0]
+    assert event['skip_reason'] == 'no_boundary_reduction' and event['initial_aux_vertices'] is None
+    assert not p['joint_visibility_probe_log'] and not p['joint_visibility_grid_log']
+    assert not event['aux_updates']
+    assert audit_joint_visibility_prefix(record)['refined_epochs'] == 0
+    assert record['summary']['action_history'][-1]['phase'] == 'speculative_clear_before_probe'
+    event['skip_reason'] = None
+    event['initial_aux_vertices'] = copy.deepcopy(event['helper_evidence']['output_vertices'])
+    with pytest.raises(ValueError, match='No-boundary-reduction'): audit_joint_visibility_prefix(record)
+
+
+def test_deleted_interior_cells_do_not_prove_convex_boundary_reduction():
+    from planning.joint_visibility_region import joint_visibility_outer
+    from experiments.audit_q4_joint_visibility import audit_joint_visibility_certificate
+    original = ((990., -1.), (1015., -1.), (1015., 1.), (990., 1.))
+    outer, evidence = joint_visibility_outer(original, [(0., -100.), (0., 100.)], [(1005., 0.)])
+    assert evidence['status'] == 'outer_refined' and evidence['deleted_intersecting_cells'] > 0
+    assert audit_joint_visibility_certificate(evidence)['passed']
+    assert boundary_exclusions(original, outer) == []
+
+
+def test_boundary_reduction_field_cannot_hide_or_invent_actual_exclusion(monkeypatch):
+    for outcome, fake in [('r8_success', [0]), ('near', [])]:
+        record = example(monkeypatch, outcome=outcome)
+        e = record['summary']['strategy_parameters']['joint_visibility_resolver_log'][0]['helper_evidence']
+        e['old_vertices_excluded'] = fake
+        with pytest.raises(ValueError, match='exact old-vertex'): audit_joint_visibility_prefix(record)
 
 
 @pytest.mark.parametrize('change', ['future_negative', 'fake_positive', 'canonical', 'initial_aux',
