@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "scope": "Read-only audit of six correlated forced training branches from two existing worlds; not an independent performance test or evidence of learning gains.",
+  "source_commit": "6de66bd5a2883b2163757776d5b0765cec996e99",
+  "frozen_parent_tensor_sha256": "4f7a6fea2688b4adb2f3de6d6a7a61e25b9da71af8e01fc6bb25a22c7cb78b64",
+  "inputs": {
+    "directory": "handoff/autonomy-status-20260911T172353.385137Z-a0969d238d98",
+    "manifest_sha256": "a0969d238d98a9115788c1800c6da9b5ad73d30c6258c9308488390872e10bf3",
+    "evidence_sha256": {
+      "cost-r1/trial-1/evidence/group-3100001.json.gz": "56a5b31a02a8f8aeb6bb40c47fddffa60124060525554a7a30960ad98ee98577",
+      "cost-r1/trial-1/evidence/group-3100002.json.gz": "c1be63e64c68ca3c9a812ec4c52ba506f07b28a68bae33847d89ec78212d5a40"
+    }
+  },
+  "lower_bound": "L/5+5N; exact clearance-disk graph subset DP relaxation; no additional discovery term",
+  "branch_order": "Original frozen greedy action, then the two recorded forced alternatives",
+  "worlds": [
+    {
+      "seed": 3100001,
+      "branch_time_s": [3022.733532, 3403.550687, 3731.178826],
+      "lower_bound_s": 1948.8804040955372,
+      "physical_action_count": 392,
+      "successful_branches": 3,
+      "failed_clear_count": 0,
+      "prefix_verified": true,
+      "alternatives_forced_exactly_once": true
+    },
+    {
+      "seed": 3100002,
+      "branch_time_s": [3384.958608, 3479.183861, 3651.126256],
+      "lower_bound_s": 1902.494144882866,
+      "physical_action_count": 424,
+      "successful_branches": 3,
+      "failed_clear_count": 0,
+      "prefix_verified": true,
+      "alternatives_forced_exactly_once": true
+    }
+  ],
+  "aggregate": {
+    "worlds": 2,
+    "correlated_branches": 6,
+    "total_time_s": 20672.73177,
+    "total_lower_bound_s_counted_per_branch": 11554.12364693521,
+    "ratio_of_sums": 1.7892081131989224,
+    "physical_action_count": 816,
+    "successful_branches": 6,
+    "failed_clear_count": 0
+  },
+  "checks": {
+    "pointer_manifest_hash_verified": true,
+    "evidence_manifest_fetch_index_hashes_and_sizes_verified": true,
+    "frozen_parent_tensor_reference_verified": true,
+    "public_prefix_and_decision_signatures_verified": true,
+    "only_response_wall_timestamp_ignored": true,
+    "one_forced_action_then_frozen_policy_continuation_verified": true,
+    "full_physical_action_ledger_verified": true,
+    "remaining_cost_equals_final_time_minus_prefix_time": true,
+    "fallback_costs_included_without_double_counting": true,
+    "all_branches_safely_cleared_and_exited": true,
+    "new_simulator_runs": 0,
+    "validation_database_used": false
+  },
+  "recording_note": "Compact transcription of the completed audit; saving this file did not rerun any check or simulation."
+}
