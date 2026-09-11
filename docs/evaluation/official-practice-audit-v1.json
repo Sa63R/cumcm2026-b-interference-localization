@@ -1,0 +1,84 @@
+{
+  "benchmark_id": "official-practice-audit-v1",
+  "created_at_utc": "2026-09-11T18:30:37.650619+00:00",
+  "source_kind": "registered_official_practice_observation_logs",
+  "source_database": "results/practice_batches/rl-dataset-20260911/practice_training.sqlite3",
+  "source_database_sha256": "e734b4c237e6f8e3f11c237b73515db93b82556fb9eeb46b218c87e5df4dee76",
+  "database": "results/practice_batches/official-practice-audit-v1/official-practice-audit-v1.sqlite3",
+  "database_sha256": "00f94d0fade4ee7ff068822d570faf6532bbc12d96a2bc6399704a388016bbd4",
+  "schema_sha256": "6278a0fa661d033bf3cf3c4110acc304794730d43658cc11c6effcd84a4cc7b8",
+  "membership_sha256": "e61108f62870305449b6c44b28b34566db4167721ce90914ba859582b1d1beb3",
+  "membership_hash_basis": "JSON UTF-8 of (problem,case_code,evidence_sha256) ordered by problem,case_code; values retained only inside local database",
+  "counts": {
+    "episodes": 872,
+    "by_problem": {
+      "3": 436,
+      "4": 436
+    },
+    "complete_trajectories": 872,
+    "excluded": 0
+  },
+  "selection": "all source episodes; no performance-based filtering; legacy split ignored",
+  "capability": "logged_trajectory_audit_only",
+  "policy_usage": "evaluation_only_no_training_or_tuning",
+  "performance_evaluation_ready": false,
+  "exact_counterfactual_world_count": 0,
+  "historical_exposure": "Previously used for integrity/structure/support audits; never-seen status is not certified. Historical training exclusion cannot be proven retrospectively.",
+  "fixed_baselines": {
+    "q3": {
+      "git_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+      "spec": {
+        "name": "state_search_derived_silence_combined_v1",
+        "entrypoint": "strategies.derived_silence_state_search:run_derived_silence_state_search",
+        "kwargs": {
+          "config": {
+            "ring_radius": 1150.0,
+            "max_expansions": 100,
+            "max_total_expansions": 60000,
+            "scan_source_s": 0.0,
+            "skip_certified_scans": true,
+            "stop_discovery_at_16": true,
+            "opportunistic_measurements": true,
+            "opportunistic_min_radius": 60.0,
+            "replace_coverage": false,
+            "coverage_replacement_gain_s": 0.0,
+            "active_probe_search": true,
+            "probe_uncertainty_weight": 0.5
+          },
+          "enabled": true,
+          "relative_silence": true,
+          "stop_scan_at_16": true
+        }
+      },
+      "status": "identity_registered_not_evaluated_on_this_dataset"
+    },
+    "q4": {
+      "git_commit": "84773a198720d3e2575798871f800ed04470ceaf",
+      "selection_commit": "6d7ab88c133531946d7af832ee804008046b3508",
+      "spec": {
+        "name": "R8_compact_clear_before_probe",
+        "entrypoint": "strategies.q4_clear_before_probe:run_q4_clear_before_probe",
+        "kwargs": {
+          "config": "center_once",
+          "max_expansions": 200
+        }
+      },
+      "status": "identity_registered_not_evaluated_on_this_dataset"
+    }
+  },
+  "performance_metric": {
+    "primary": "sum_actual_time_s / sum_common_lower_bound_s",
+    "secondary": "mean(per_case_actual_time_s / per_case_common_lower_bound_s)",
+    "time_kind": "billed_virtual_time_seconds",
+    "baseline_version_policy": "fixed anchor retained; newer champions additional named rows"
+  },
+  "missing_for_exact_evaluation": [
+    "true_source_positions",
+    "per_source_reception_radii",
+    "q4_per_source_type_and_orientation",
+    "unqueried_position_measurement_error_field_or_equivalent_resettable_official_environment"
+  ],
+  "candidate_mean_time_s": null,
+  "candidate_time_over_lower_bound": null,
+  "verification": "scripts/verify_official_practice_benchmark.py --manifest docs/evaluation/official-practice-audit-v1.json --database results/practice_batches/official-practice-audit-v1/official-practice-audit-v1.sqlite3"
+}
