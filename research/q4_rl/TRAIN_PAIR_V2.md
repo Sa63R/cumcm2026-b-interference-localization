@@ -1,0 +1,9 @@
+# Full-horizon macro / G1 micro pilot
+
+Prospectively fixed before launch: `train_pair_v2.json` runs two independent CPU trainers from scratch, each with 64 synthetic heuristic-BC episodes followed by PPO, 512 policy decisions, 8 rollout workers, one learner thread, and 1800 seconds wall budget. They share one 50-core supervisor cap (maximum 60); no GPU. The same deterministic training curriculum starts at fresh seed 8001000 and ends before the separately used micro smoke seed 8005000. No validation database, development cases, hidden geometry or lower bound enters fitting or policy inputs.
+
+The intervention combines micro action expansion and its 13/50 public geometry representation. It is not an isolated neural architecture ablation. Preserve random, warmstart, and every complete checkpoint; evaluate the last complete PPO checkpoint, not the best-looking development checkpoint. Both receive the same wall/worker allowance; report actual episodes and CPU because throughput and trajectory length differ. Equal wall budget does not imply equal numbers of training cases.
+
+Use paired R8, macro heuristic, micro heuristic, warmstart and PPO evaluation on matched development scenarios with the existing physical constraints, failure accounting and `q4-common-source-edge-v1` bound. Compare 512 policies trained at 512 decisions; the old 128-trained checkpoint's 512-step extrapolation has already failed to improve R8 and is not promoted. A larger fresh development panel is planned, and independent confirmation/final splits remain reserved.
+
+Outputs and checkpoints are inside `runs/train-pair-v2/<job>/training`, so the existing object-store synchronizer covers them. The pair launcher inherits its supervisor's process group and resource limits. A failure stops both jobs with checkpoint grace; administrative partial batches remain recorded and are not selectively learned. The current recommended R8 and all existing core branches stay frozen.

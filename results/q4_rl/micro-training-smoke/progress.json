@@ -1,0 +1,57 @@
+{
+  "batch": 1,
+  "phase": "ppo",
+  "episodes": 1,
+  "next_seed": 8005001,
+  "wall_time_s": 2.9581442999915453,
+  "raw_attempt": "batch-000000-attempt-000000.json.gz",
+  "controller_entrypoint": "q4_rl.micro_controller:run_q4_micro",
+  "full_clear": 1,
+  "full_clear_rate": 1.0,
+  "batch_episodes": 1,
+  "mean_actual_time_s": 22861.472938,
+  "p95_actual_time_s": 22861.472938,
+  "mean_penalized_time_s": 22861.472938,
+  "p95_penalized_time_s": 22861.472938,
+  "mean_common_lower_bound_s": 2008.0344011550417,
+  "ratio_of_mean_penalized_time_to_mean_bound": 11.385000637862504,
+  "all_clear_actual_time_over_mean_bound": 11.385000637862504,
+  "mean_of_penalized_ratios": 11.385000637862504,
+  "failed_clear_count": 218,
+  "mean_penalized_time_bootstrap95_s": [
+    22861.472938,
+    22861.472938
+  ],
+  "uncertainty_scope": "descriptive resampling only; synthetic curriculum batch is not an independent efficacy estimate",
+  "case_ratios": [
+    {
+      "seed": 8005000,
+      "actual_time_over_lower_bound": 11.385000637862504,
+      "penalized_time_over_lower_bound": 11.385000637862504
+    }
+  ],
+  "sum_episode_wall_time_s": 1.8789307000115514,
+  "mean_episode_wall_time_s": 1.8789307000115514,
+  "sum_episode_worker_cpu_s": 1.859375,
+  "mean_episode_worker_cpu_s": 1.859375,
+  "sum_episode_policy_wall_s": 0.8419932999968296,
+  "mean_episode_policy_wall_s": 0.8419932999968296,
+  "sum_episode_policy_cpu_s": 0.828125,
+  "mean_episode_policy_cpu_s": 0.828125,
+  "sum_episode_posthoc_bound_wall_s": 1.0163255999941612,
+  "mean_episode_posthoc_bound_wall_s": 1.0163255999941612,
+  "sum_episode_posthoc_bound_cpu_s": 1.015625,
+  "mean_episode_posthoc_bound_cpu_s": 1.015625,
+  "update": {
+    "updates": 2,
+    "records": 32,
+    "policy_loss": 2.4713575839996338e-05,
+    "value_loss": 16.477946281433105,
+    "entropy": 6.047333240509033,
+    "gradient_norm": 1.0081040263175964,
+    "approximate_kl": -2.086162567138672e-05,
+    "wall_time_s": 0.18600500001048204,
+    "cpu_time_s": 0.1875
+  },
+  "scope": "Synthetic micro training diagnostics only; independent evaluation required before promotion"
+}

@@ -93,11 +93,16 @@ def pack_observations(records, *, global_dim=10, candidate_dim=16):
         g, c = row["global_features"], row["candidate_features"]
         if len(g) != global_dim or not c or any(len(v) != candidate_dim for v in c):
             raise ValueError("invalid observation feature dimensions")
-        if not all(math.isfinite(float(v)) for v in g) or not all(
-                math.isfinite(float(v)) for candidate in c for v in candidate):
+        # Validate the exact float32 tensors consumed by the model in native
+        # kernels. Python scalar iteration was most of the packing cost.
+        global_tensor = torch.tensor(g, dtype=torch.float32)
+        candidate_tensor = torch.tensor(c, dtype=torch.float32)
+        if global_tensor.shape != (global_dim,) or candidate_tensor.shape != (len(c), candidate_dim):
+            raise ValueError("invalid observation feature dimensions")
+        if not bool(torch.isfinite(global_tensor).all()) or not bool(torch.isfinite(candidate_tensor).all()):
             raise ValueError("non-finite public features")
-        context[i] = torch.tensor(g, dtype=torch.float32)
-        candidates[i, :len(c)] = torch.tensor(c, dtype=torch.float32)
+        context[i] = global_tensor
+        candidates[i, :len(c)] = candidate_tensor
         mask[i, :len(c)] = True
     return context, candidates, mask
 

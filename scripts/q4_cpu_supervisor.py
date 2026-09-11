@@ -391,6 +391,10 @@ def main():
                 "deadline_utc": args.deadline, "termination_requested": terminate_at is not None,
                 "sync": dict(sync_status)}
             save_json(run / "supervisor.json", status)
+            # Preserve the resource trajectory as well as the latest snapshot.
+            # This uses only our own job's metadata and is synced with results.
+            with (run / "resources.jsonl").open("a", encoding="utf-8") as stream:
+                stream.write(json.dumps(status, separators=(",", ":")) + "\n")
             if child.poll() is not None:
                 return
             if (now >= deadline or requested_stop) and terminate_at is None:
