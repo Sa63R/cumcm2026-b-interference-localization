@@ -16,7 +16,8 @@ PHASES = {'pilot': (103001, 103017), 'confirmation': (103017, 103081),
           'probe-radius-pilot': (112001, 112017), 'probe-radius-confirmation': (112017, 112081),
           'probe-preempt-pilot': (115001, 115017),
           'probe-relocation-pilot': (116001, 116017),
-          'probe-relocation-confirmation': (116017, 116081)}
+          'probe-relocation-confirmation': (116017, 116081),
+          'probe-swap-pilot': (118001, 118017)}
 DEFAULT_SPECS = ['v1_baseline_efficient.json', 'v1_baseline_rollout.json',
                  'v1_geometric_clear_only.json', 'v1_geometric_joint.json']
 
