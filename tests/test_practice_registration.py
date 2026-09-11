@@ -183,12 +183,40 @@ def test_official_result_keeps_exit_and_duplicate_checks(tmp_path):
     assert (args.output_dir / "总表.csv").read_bytes() == before
 
 
-def test_official_q4_result_requires_matching_mixed_type_counts(tmp_path):
+def test_official_q4_result_rejects_no_directional_sources(tmp_path):
     args = official_inputs(tmp_path, result_patch={"problem_no": 4}, summary_patch={"problem": 4})
-    with pytest.raises(ValueError, match="both omnidirectional and directional"):
+    with pytest.raises(ValueError, match="at least one directional"):
         register(args)
+    assert not args.output_dir.exists()
+
+
+@pytest.mark.parametrize("total,omni,directional", [(14, 0, 14), (15, 8, 7), (10, 0, 10), (16, 0, 16)])
+def test_official_q4_accepts_mixed_and_all_directional_counts(tmp_path, total, omni, directional):
+    # The ended R6YB-84GC-MB79-EHP6 practice had 14 sources, all directional.
     args = official_inputs(tmp_path,
-                           result_patch={"problem_no": 4, "omnidirectional_jammer_count": 8,
-                                         "directional_jammer_count": 7},
+                           result_patch={"problem_no": 4, "jammer_count": total,
+                                         "omnidirectional_jammer_count": omni,
+                                         "directional_jammer_count": directional},
+                           summary_patch={"problem": 4, "completed": True,
+                                          "state": {"session": "exited", "cleared_count": total,
+                                                    "virtual_time_s": 1200}})
+    original = args.official_result_json.read_bytes()
+    result = register(args)
+    assert result["source_total"] == total and result["clearance_ratio"] == 1.0
+    record = json.loads(next(args.output_dir.glob("practice-*.json")).read_text(encoding="utf-8"))
+    assert record["omnidirectional_source_total"] == omni
+    assert record["directional_source_total"] == directional
+    assert record["search_completed"] is True
+    assert record["official_result_sha256"] == hashlib.sha256(original).hexdigest()
+    assert (args.output_dir / record["official_result_path"]).read_bytes() == original
+
+
+@pytest.mark.parametrize("omni,directional", [(-1, 16), (0, 14), (0, True), (0, 15.0)])
+def test_official_q4_still_rejects_invalid_type_counts(tmp_path, omni, directional):
+    args = official_inputs(tmp_path,
+                           result_patch={"problem_no": 4, "omnidirectional_jammer_count": omni,
+                                         "directional_jammer_count": directional},
                            summary_patch={"problem": 4})
-    assert register(args)["source_total"] == 15
+    with pytest.raises(ValueError, match="source counts"):
+        register(args)
+    assert not args.output_dir.exists()
