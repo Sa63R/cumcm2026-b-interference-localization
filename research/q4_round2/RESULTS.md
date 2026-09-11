@@ -67,3 +67,6 @@ $py = '..\cumcm2026-b-interference-localization\.venv-win\Scripts\python.exe'
 **后续shadow已完成开发筛选。** 38个新场景、190份全清轨迹及38组子序列审计通过，但shadow组合比本最佳版随机平均慢3.667秒、压力慢3秒，未进入独立验证；详见[失败记录](../q4_shadow_archive/RESULTS.md)、[条件性证明](../q4_shadow_archive/DOMINANCE.md)及[恢复bundle](archives/shadow-rejected.bundle)。当前策略与原资格不变。
 
 **研究尚未结束。** 目前尚不满足连续三轮无可信改善的停止条件。下一步评估观测分支规划，并检查覆盖和源处理联合路线的剩余空间。额度安排按用户最新指示为约剩1%时由用户手动重置，先前保留5%的限制已取消。资源耗尽只表示执行受限，不能据此声称已达最优。
+
+
+**动态覆盖与源任务联合重排也未通过开发筛选。** 新38场景、152份全清轨迹全部独立审计通过，但清除后重排/联合2-opt相对当前combo随机均时分别增加28.056/104.850秒，T/LB由3.191133升至3.204967/3.242832；压力增加37.407/80.717秒，T/LB由4.180221升至4.201730/4.226633。两候选未开启预留独立集，原策略与资格不变。详见[结果](../q4_joint_archive/RESULTS.md)、[完整负例与机制分析](../q4_joint_archive/DEVELOPMENT_ANALYSIS.md)、[方法](../q4_joint_archive/DYNAMIC_ROUTING.md)及[恢复包和身份说明](archives/joint-rejected.json)。[bundle](archives/joint-rejected.bundle)保存代码、源快照与全部原始轨迹；逐行原始数据链接在恢复工作树后可用。动态实验分支将在恢复包及核心归档提交推送、哈希和干净状态复核通过后移除，不删除原核心分支或其余工作树。

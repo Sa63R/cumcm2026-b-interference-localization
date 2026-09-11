@@ -1,0 +1,50 @@
+{
+  "archived_branch": "experiment/q4-r5-joint",
+  "archived_head": "f1d9082c8f241501da0052d51964f26212dc48fd",
+  "prerequisite": "f2f7e8cc927bf29d5f7c15df0139df8f108437ad",
+  "bundle_sha256": "a56ed592508368bae122749a96aa522da7ff58328bade08e8d279d5aae8c1ec6",
+  "bundle_bytes": 3902430,
+  "bundle_verified": true,
+  "records": 152,
+  "distinct_development_scenarios": 38,
+  "all_152_independent_audits_passed": true,
+  "independent_validation_opened": false,
+  "rejected_reason": "Both fixed dynamic configurations have worse mean completion time than compact_combo on random and stress development; neither passes the frozen selection rule. Ratio-of-P95 gate passes and is not the rejection reason.",
+  "protected_branches_present": [
+    "main",
+    "research/q3-deep-rl",
+    "research/q3-deep-rl-cpu-v2",
+    "research/q3-geometric",
+    "research/q3-r2-certified-tail",
+    "research/q3-round2",
+    "research/q3-state-modes-v2",
+    "research/q3-state-search",
+    "research/q4-cover-search",
+    "research/q4-state-search"
+  ],
+  "protected_branch_heads_at_archive": {
+    "main": "c3067a5642ed5b7b398ad52903326e4f092c3f22",
+    "research/q3-deep-rl": "24097861e48df1dfe35f8ec3774e589c004a3f63",
+    "research/q3-deep-rl-cpu-v2": "4e2ba11b9cebdaf8adb92ec76f0ddfb36ed43851",
+    "research/q3-geometric": "0695811521852923135ad6cfe96e04568e9cb18e",
+    "research/q3-r2-certified-tail": "eb0b5a822a61f9077bbc403f87549b148349b5bd",
+    "research/q3-round2": "e51ddbd4ca956f81fe98f862f48915d7116dac9c",
+    "research/q3-state-modes-v2": "6c26472e2bc5fd9f1048192fc06ea8dc2b507e84",
+    "research/q3-state-search": "8c624d08c61c0e411f93345d63a932b01ead4868",
+    "research/q4-cover-search": "1e58ce9fe3f72c8043d8ac35cce8a90e102d81af",
+    "research/q4-state-search": "7dec92247009e058f4e708a3334aedfeed56b65d"
+  },
+  "readable_evidence_sha256": {
+    "RESULTS.md": "f186b9ecb612e3b2de436c016c4a169cb86dfdce9f18a556d9556d5d49bd8480",
+    "DEVELOPMENT_ANALYSIS.md": "6348fb9384e1112162d089fe3cf0a2d6c81e55a664ff555e9eed92313052ccdb",
+    "DYNAMIC_ROUTING.md": "b0a9bfe8f39e960f4ca280e2b190a77ae66a3bb0b6a06766b65ec5290e947eb8",
+    "PROTOCOL.md": "47997a6b11a4e1fb9f8ed68259202ecd0b29b4621e14c2957a681daa7d1487b7",
+    "development-decision.json": "db0efd8b45a88d53164c7eb737b7411f60f72ebfeb15292744b775106dd89256"
+  },
+  "restore_note": "Requires prerequisite commit already in this repository. Raw per-case links in readable reports resolve after restoring the bundle to its own worktree.",
+  "restore_commands": [
+    "git bundle verify research/q4_round2/archives/joint-rejected.bundle",
+    "git fetch research/q4_round2/archives/joint-rejected.bundle refs/heads/experiment/q4-r5-joint:refs/heads/restored/q4-r5-joint",
+    "git worktree add ../q4-r5-joint-restored restored/q4-r5-joint"
+  ]
+}
