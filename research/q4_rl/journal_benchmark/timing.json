@@ -1,0 +1,463 @@
+{
+  "scope": "I/O microbenchmark only, one prespecified complete synthetic TRAIN episode. No policy/training/validation execution or checkpoint changes.",
+  "source": {
+    "file": "q4-rl-micro-attention/results/q4_rl/server-bundle-v3-training-001/scst_initialized/training/raw/batch-000000-attempt-000000-leg-0000.json.gz",
+    "sha256": "ec0b45cf4edb289b513bb276f2c3031e1e882bf7ab17f269139c1d81073e5280",
+    "compressed_bytes": 3782363,
+    "index": "q4-rl-micro-attention/results/q4_rl/server-bundle-v3-training-001/scst_initialized/training/raw/batch-000000-attempt-000000.jsonl",
+    "index_sha256": "40ea7e9520d9316b15f391b2e4cd299b2d9c076f892a2f8fc3ac62eb92ee4e94",
+    "index_entry": {
+      "file": "batch-000000-attempt-000000-leg-0000.json.gz",
+      "sha256": "ec0b45cf4edb289b513bb276f2c3031e1e882bf7ab17f269139c1d81073e5280",
+      "bytes": 3782363,
+      "seed": 8007000,
+      "leg": "sample",
+      "administrative_skip": null
+    },
+    "committed_batch_verified": true,
+    "selection": "lexicographically first raw episode; complete and index verified"
+  },
+  "current_function_sha256": "bb657933f575c97416c8e08b09861eab1388df08f74fbe22f3d02eff3eaf1dbd",
+  "method": "Five sequential subprocesses, each pinned to one permitted CPU; one warmup plus three measured complete writes per scheme. Atomic temporary.replace retained; no fsync, same as production. Input parsing and full decode/equality verification excluded from write timing.",
+  "memory_scope": "Windows process-lifetime peak working set, including input parsing, warmup and prior verification; not incremental per-write allocation. Separate subprocess per scheme limits cross-scheme contamination.",
+  "json_semantics": "Same json.dumps ensure_ascii=False, allow_nan=False and default separators; every decoded field preserved, and all 20 decompressed byte strings have identical SHA256.",
+  "measured_repetitions": 3,
+  "current_is_already_native_dumps_level6": true,
+  "results": [
+    {
+      "scheme": "current_function",
+      "cpu_affinity_count": 1,
+      "trials": [
+        {
+          "warmup": true,
+          "wall_s": 1.2192372999852523,
+          "cpu_s": 1.171875,
+          "output_bytes": 3782345,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 221646848,
+            "lifetime_peak_working_set_bytes": 261922816
+          },
+          "after_write_memory": {
+            "rss_bytes": 221790208,
+            "lifetime_peak_working_set_bytes": 307527680
+          },
+          "file": "handoff/journal-benchmark-8007000/current_function-0.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 1.2432599999883678,
+          "cpu_s": 1.203125,
+          "output_bytes": 3782345,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 230404096,
+            "lifetime_peak_working_set_bytes": 502116352
+          },
+          "after_write_memory": {
+            "rss_bytes": 230412288,
+            "lifetime_peak_working_set_bytes": 502116352
+          },
+          "file": "handoff/journal-benchmark-8007000/current_function-1.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 1.2425743000057992,
+          "cpu_s": 1.125,
+          "output_bytes": 3782345,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 233525248,
+            "lifetime_peak_working_set_bytes": 502116352
+          },
+          "after_write_memory": {
+            "rss_bytes": 233254912,
+            "lifetime_peak_working_set_bytes": 502116352
+          },
+          "file": "handoff/journal-benchmark-8007000/current_function-2.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 1.2886965999787208,
+          "cpu_s": 1.25,
+          "output_bytes": 3782345,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 234598400,
+            "lifetime_peak_working_set_bytes": 502124544
+          },
+          "after_write_memory": {
+            "rss_bytes": 234401792,
+            "lifetime_peak_working_set_bytes": 502124544
+          },
+          "file": "handoff/journal-benchmark-8007000/current_function-3.json.gz"
+        }
+      ],
+      "mean_wall_s": 1.2581769666576292,
+      "mean_cpu_s": 1.1927083333333333,
+      "min_cpu_s": 1.125,
+      "max_cpu_s": 1.25,
+      "mean_output_bytes": 3782345,
+      "peak_working_set_bytes": 502124544,
+      "function_sha256": "bb657933f575c97416c8e08b09861eab1388df08f74fbe22f3d02eff3eaf1dbd",
+      "cpu_speedup_vs_current": 1.0,
+      "relative_output_size": 1.0
+    },
+    {
+      "scheme": "level1",
+      "cpu_affinity_count": 1,
+      "trials": [
+        {
+          "warmup": true,
+          "wall_s": 0.8589128000021446,
+          "cpu_s": 0.78125,
+          "output_bytes": 4926864,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 221585408,
+            "lifetime_peak_working_set_bytes": 261840896
+          },
+          "after_write_memory": {
+            "rss_bytes": 221618176,
+            "lifetime_peak_working_set_bytes": 306233344
+          },
+          "file": "handoff/journal-benchmark-8007000/level1-0.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 0.8490991000144277,
+          "cpu_s": 0.78125,
+          "output_bytes": 4926864,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 229363712,
+            "lifetime_peak_working_set_bytes": 502128640
+          },
+          "after_write_memory": {
+            "rss_bytes": 229249024,
+            "lifetime_peak_working_set_bytes": 502128640
+          },
+          "file": "handoff/journal-benchmark-8007000/level1-1.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 0.9632747000141535,
+          "cpu_s": 0.890625,
+          "output_bytes": 4926864,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 232513536,
+            "lifetime_peak_working_set_bytes": 502157312
+          },
+          "after_write_memory": {
+            "rss_bytes": 232181760,
+            "lifetime_peak_working_set_bytes": 502157312
+          },
+          "file": "handoff/journal-benchmark-8007000/level1-2.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 0.8619164999981876,
+          "cpu_s": 0.84375,
+          "output_bytes": 4926864,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 233562112,
+            "lifetime_peak_working_set_bytes": 502157312
+          },
+          "after_write_memory": {
+            "rss_bytes": 233443328,
+            "lifetime_peak_working_set_bytes": 502157312
+          },
+          "file": "handoff/journal-benchmark-8007000/level1-3.json.gz"
+        }
+      ],
+      "mean_wall_s": 0.891430100008923,
+      "mean_cpu_s": 0.8385416666666666,
+      "min_cpu_s": 0.78125,
+      "max_cpu_s": 0.890625,
+      "mean_output_bytes": 4926864,
+      "peak_working_set_bytes": 502157312,
+      "function_sha256": "bb657933f575c97416c8e08b09861eab1388df08f74fbe22f3d02eff3eaf1dbd",
+      "cpu_speedup_vs_current": 1.4223602484472049,
+      "relative_output_size": 1.3025950832089617
+    },
+    {
+      "scheme": "level3",
+      "cpu_affinity_count": 1,
+      "trials": [
+        {
+          "warmup": true,
+          "wall_s": 0.9471463999943808,
+          "cpu_s": 0.828125,
+          "output_bytes": 4508282,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 221495296,
+            "lifetime_peak_working_set_bytes": 261914624
+          },
+          "after_write_memory": {
+            "rss_bytes": 221720576,
+            "lifetime_peak_working_set_bytes": 306098176
+          },
+          "file": "handoff/journal-benchmark-8007000/level3-0.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 0.9089680000033695,
+          "cpu_s": 0.875,
+          "output_bytes": 4508282,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 229167104,
+            "lifetime_peak_working_set_bytes": 501923840
+          },
+          "after_write_memory": {
+            "rss_bytes": 229130240,
+            "lifetime_peak_working_set_bytes": 501923840
+          },
+          "file": "handoff/journal-benchmark-8007000/level3-1.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 0.9220657999976538,
+          "cpu_s": 0.875,
+          "output_bytes": 4508282,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 232312832,
+            "lifetime_peak_working_set_bytes": 501948416
+          },
+          "after_write_memory": {
+            "rss_bytes": 231985152,
+            "lifetime_peak_working_set_bytes": 501948416
+          },
+          "file": "handoff/journal-benchmark-8007000/level3-2.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 1.0361850000044797,
+          "cpu_s": 0.890625,
+          "output_bytes": 4508282,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 233353216,
+            "lifetime_peak_working_set_bytes": 501948416
+          },
+          "after_write_memory": {
+            "rss_bytes": 233324544,
+            "lifetime_peak_working_set_bytes": 501948416
+          },
+          "file": "handoff/journal-benchmark-8007000/level3-3.json.gz"
+        }
+      ],
+      "mean_wall_s": 0.9557396000018343,
+      "mean_cpu_s": 0.8802083333333334,
+      "min_cpu_s": 0.875,
+      "max_cpu_s": 0.890625,
+      "mean_output_bytes": 4508282,
+      "peak_working_set_bytes": 501948416,
+      "function_sha256": "bb657933f575c97416c8e08b09861eab1388df08f74fbe22f3d02eff3eaf1dbd",
+      "cpu_speedup_vs_current": 1.3550295857988164,
+      "relative_output_size": 1.1919277591018271
+    },
+    {
+      "scheme": "level6_equivalence",
+      "cpu_affinity_count": 1,
+      "trials": [
+        {
+          "warmup": true,
+          "wall_s": 1.2776144999952521,
+          "cpu_s": 1.234375,
+          "output_bytes": 3782347,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 221528064,
+            "lifetime_peak_working_set_bytes": 261931008
+          },
+          "after_write_memory": {
+            "rss_bytes": 221560832,
+            "lifetime_peak_working_set_bytes": 306180096
+          },
+          "file": "handoff/journal-benchmark-8007000/level6_equivalence-0.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 1.2103181999991648,
+          "cpu_s": 1.15625,
+          "output_bytes": 3782347,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 230346752,
+            "lifetime_peak_working_set_bytes": 502054912
+          },
+          "after_write_memory": {
+            "rss_bytes": 230367232,
+            "lifetime_peak_working_set_bytes": 502054912
+          },
+          "file": "handoff/journal-benchmark-8007000/level6_equivalence-1.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 1.2210854000004474,
+          "cpu_s": 1.1875,
+          "output_bytes": 3782347,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 233496576,
+            "lifetime_peak_working_set_bytes": 502083584
+          },
+          "after_write_memory": {
+            "rss_bytes": 233299968,
+            "lifetime_peak_working_set_bytes": 502083584
+          },
+          "file": "handoff/journal-benchmark-8007000/level6_equivalence-2.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 1.2079544000152964,
+          "cpu_s": 1.1875,
+          "output_bytes": 3782347,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 234541056,
+            "lifetime_peak_working_set_bytes": 502083584
+          },
+          "after_write_memory": {
+            "rss_bytes": 234561536,
+            "lifetime_peak_working_set_bytes": 502083584
+          },
+          "file": "handoff/journal-benchmark-8007000/level6_equivalence-3.json.gz"
+        }
+      ],
+      "mean_wall_s": 1.2131193333383028,
+      "mean_cpu_s": 1.1770833333333333,
+      "min_cpu_s": 1.15625,
+      "max_cpu_s": 1.1875,
+      "mean_output_bytes": 3782347,
+      "peak_working_set_bytes": 502083584,
+      "function_sha256": "bb657933f575c97416c8e08b09861eab1388df08f74fbe22f3d02eff3eaf1dbd",
+      "cpu_speedup_vs_current": 1.0132743362831858,
+      "relative_output_size": 1.0000005287724942
+    },
+    {
+      "scheme": "level9",
+      "cpu_affinity_count": 1,
+      "trials": [
+        {
+          "warmup": true,
+          "wall_s": 2.747685200010892,
+          "cpu_s": 2.546875,
+          "output_bytes": 3626460,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 221593600,
+            "lifetime_peak_working_set_bytes": 262012928
+          },
+          "after_write_memory": {
+            "rss_bytes": 221847552,
+            "lifetime_peak_working_set_bytes": 306835456
+          },
+          "file": "handoff/journal-benchmark-8007000/level9-0.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 2.7533965000184253,
+          "cpu_s": 2.59375,
+          "output_bytes": 3626460,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 229240832,
+            "lifetime_peak_working_set_bytes": 501993472
+          },
+          "after_write_memory": {
+            "rss_bytes": 229134336,
+            "lifetime_peak_working_set_bytes": 501993472
+          },
+          "file": "handoff/journal-benchmark-8007000/level9-1.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 2.7410979000269435,
+          "cpu_s": 2.59375,
+          "output_bytes": 3626460,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 232398848,
+            "lifetime_peak_working_set_bytes": 502038528
+          },
+          "after_write_memory": {
+            "rss_bytes": 232071168,
+            "lifetime_peak_working_set_bytes": 502038528
+          },
+          "file": "handoff/journal-benchmark-8007000/level9-2.json.gz"
+        },
+        {
+          "warmup": false,
+          "wall_s": 2.84448379999958,
+          "cpu_s": 2.421875,
+          "output_bytes": 3626460,
+          "uncompressed_bytes": 42324863,
+          "decoded_json_sha256": "28ff2deb6cb4e9783d2183fd46adde75db707e7400b2dfebc9ff637d75c1f523",
+          "full_structure_equal": true,
+          "before_memory": {
+            "rss_bytes": 233439232,
+            "lifetime_peak_working_set_bytes": 502038528
+          },
+          "after_write_memory": {
+            "rss_bytes": 233328640,
+            "lifetime_peak_working_set_bytes": 502038528
+          },
+          "file": "handoff/journal-benchmark-8007000/level9-3.json.gz"
+        }
+      ],
+      "mean_wall_s": 2.779659400014983,
+      "mean_cpu_s": 2.5364583333333335,
+      "min_cpu_s": 2.421875,
+      "max_cpu_s": 2.59375,
+      "mean_output_bytes": 3626460,
+      "peak_working_set_bytes": 502038528,
+      "function_sha256": "bb657933f575c97416c8e08b09861eab1388df08f74fbe22f3d02eff3eaf1dbd",
+      "cpu_speedup_vs_current": 0.4702258726899383,
+      "relative_output_size": 0.9587861498620565
+    }
+  ]
+}
