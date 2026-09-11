@@ -24,10 +24,11 @@ import torch
 
 from .micro_network import (MicroCandidateActorCritic, TorchPolicy, configure_cpu,
     feature_schema, model_from_metadata, validate_checkpoint, CHECKPOINT_VERSION,
-    CONTROLLER_ENTRYPOINT, OBJECTIVE, ARCHITECTURE, GLOBAL_DIM, CANDIDATE_DIM)
+    CONTROLLER_ENTRYPOINT, OBJECTIVE, architecture_name, make_model)
 from .train import (TRAIN_START, TRAIN_END, DEFAULT_DEADLINE, TrainingStop,
     training_case_spec, attach_returns, ppo_update, imitation_update,
     summarize_training_metrics, parse_deadline, _configuration, _write_json, _write_batch)
+from .training_journal import EpisodeJournal
 
 
 _stop_requested = False
@@ -116,8 +117,7 @@ def rollout(task):
 
 def save_checkpoint(path, model, optimizer, state, config):
     metadata = model.metadata()
-    if (metadata.get("architecture") != ARCHITECTURE or metadata.get("global_dim") != GLOBAL_DIM
-            or metadata.get("candidate_dim") != CANDIDATE_DIM
+    if (config.get("architecture", "mlp") != architecture_name(metadata)
             or any(p.device.type != "cpu" for p in model.parameters())):
         raise ValueError("cannot save a macro model as a micro checkpoint")
     path = Path(path)
@@ -155,6 +155,7 @@ def _arguments(argv):
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--cpu-budget", type=int, default=2)
     parser.add_argument("--hidden", type=int, default=64)
+    parser.add_argument("--architecture", choices=("mlp", "induced"), default="mlp")
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--minibatch-size", type=int, default=128)
@@ -183,6 +184,14 @@ def _arguments(argv):
     return parser, args
 
 
+def configuration(args):
+    result = {**_configuration(args), "controller_entrypoint": CONTROLLER_ENTRYPOINT}
+    # Preserve the complete legacy MLP configuration shape for existing resume.
+    if args.architecture != "mlp":
+        result["architecture"] = args.architecture
+    return result
+
+
 def main(argv=None):
     global _stop_requested
     _stop_requested = False
@@ -191,7 +200,7 @@ def main(argv=None):
     deadline = min(parse_deadline(args.deadline), time.time()+args.max_wall_seconds)
     if deadline <= time.time():
         parser.error("training deadline has passed; a new explicit deadline is required")
-    config = {**_configuration(args), "controller_entrypoint": CONTROLLER_ENTRYPOINT}
+    config = configuration(args)
     if args.resume:
         if args.resume.resolve() != (args.output/"latest.pt").resolve():
             parser.error("resume must use this output directory's latest transaction checkpoint")
@@ -203,7 +212,7 @@ def main(argv=None):
             parser.error("new training output must be empty; use --resume")
         torch.manual_seed(args.random_seed)
         random.seed(args.random_seed)
-        model = MicroCandidateActorCritic(hidden=args.hidden)
+        model = make_model(args.architecture, hidden=args.hidden)
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
         state = dict(next_seed=args.scenario_start, episodes=0, attempted_episodes=0,
             warmstart_completed=0, ppo_batches=0, batches=0, wall_time_s=0.,
@@ -243,6 +252,7 @@ def main(argv=None):
             raw_path = args.output/raw_name
             if raw_path.exists():
                 raise FileExistsError("refusing to overwrite a recorded micro attempt")
+            journal = EpisodeJournal(raw_path, _write_batch)
             tasks = [dict(seed=seed, action_seed=action_seed, mode=pending["mode"],
                 model=model.state_dict(), network=model.metadata(), max_decisions=args.max_decisions,
                 deadline_epoch=deadline) for seed, action_seed in zip(pending["seeds"], pending["action_seeds"])]
@@ -250,9 +260,9 @@ def main(argv=None):
             rows = executor.map(rollout, tasks) if executor else map(rollout, tasks)
             for row in rows:
                 batch.append(row)
-                # Persist every returned episode before requesting the next one.
-                # A partial attempt is retained and the full reservation replays.
-                _write_batch(raw_path, batch)
+                # Preserve every returned episode once. Rewriting only the small
+                # hash index avoids repeatedly serializing previous trajectories.
+                journal.append(row)
             if _stop_requested or any(row.get("administrative_skip") for row in batch):
                 state["stop_reason"] = "deadline_in_reserved_batch"
                 break
