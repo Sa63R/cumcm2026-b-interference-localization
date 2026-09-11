@@ -12,6 +12,7 @@ import json
 import math
 from pathlib import Path, PurePosixPath
 import re
+import random
 import tarfile
 
 import matplotlib
@@ -21,7 +22,8 @@ import numpy as np
 
 
 DEFAULT_ARCHIVES = ("milestone-0200.tar.gz", "milestone-0300.tar.gz", "cold-001-complete.tar.gz",
-                    "milestone-0410.tar.gz", "milestone-0510.tar.gz")
+                    "milestone-0410.tar.gz", "milestone-0510.tar.gz",
+                    "milestone-0550.tar.gz", "milestone-0605.tar.gz")
 VALIDATION_SEEDS = list(range(6000, 6048))
 
 
@@ -174,6 +176,7 @@ def validation_from_rows(rows, manifest, summary, baseline):
         successful_runs=sum(bool(r["successful"]) for r in rows),
         failed_clear_count=sum(r["failed_clear_count"] for r in rows),
         mean_virtual_time_s=float(cost.mean()), p95_virtual_time_s=float(np.quantile(cost, .95)),
+        case_virtual_times_s=cost.tolist(),  # Fixed seed order for initialization/training contrasts.
         saved_vs_rollout_s=float(saved.mean()),
         saved_vs_rollout_ci95_s=np.quantile(bootstrap, [.025, .975]).tolist(),
         wins=int((saved > 1e-6).sum()), losses=int((saved < -1e-6).sum()),
@@ -219,7 +222,7 @@ def read_archive(path, baseline):
             if name.endswith("/manifest.json") and "/validation-" in name:
                 directory = str(PurePosixPath(name).parent)
                 manifest = read_json(name)
-                if manifest.get("strategy", "").startswith("state"):
+                if manifest.get("strategy", "").startswith(("state", "geo")):
                     continue
                 rows = read_json(directory + "/rows.json")
                 summary = read_json(directory + "/summary.json")
@@ -244,8 +247,24 @@ def save_figure(fig, path):
 def checkpoint_update(strategy, trial):
     if not strategy.startswith(trial + "-"):
         return None
+    if strategy == trial + "-initialized":
+        return 0
     match = re.search(r"(?:-u|-ppo_|-reinforce_)(\d+)$", strategy)
     return int(match.group(1)) if match else None
+
+
+def paired_endpoint(source, target):
+    """Same already checked 48-case identity/order; positive means target faster."""
+    savings = np.asarray(source["case_virtual_times_s"]) - np.asarray(target["case_virtual_times_s"])
+    # Match the frozen shared report's Python random.choices stream, not the
+    # older audit-only numpy bootstrap used for each endpoint versus rollout.
+    rng = random.Random(20260911)
+    values = savings.tolist()
+    means = [sum(rng.choices(values,k=len(values)))/len(values) for _ in range(10000)]
+    return dict(mean_seconds_saved=float(savings.mean()),
+        saving_ci95_s=np.quantile(means, [.025,.975]).tolist(),
+        bootstrap=dict(seed=20260911,resamples=10000,rng="Python random.choices",method="paired_percentile"),
+        wins=int((savings>1e-6).sum()), losses=int((savings < -1e-6).sum()))
 
 
 def audit_selected_designs(report):
@@ -291,6 +310,39 @@ def audit_selected_designs(report):
             completed_updates=left["summary"]["completed_updates"],
             sampled_episodes_each=left["summary"]["policy_episodes_used"],
             scope="same source/config and completed scenario sequence; intermediate wallclock checkpoints not matched")
+    probes = ("cold-probes-base-001", "cold-probes-axis_quantiles-001")
+    if all(name in trials for name in probes):
+        left,right = (trials[name] for name in probes)
+        keys = ("git_commit", "feature_version", "architecture", "hidden", "seed", "scenario_start",
+                "updates", "episodes_per_update", "bc_episodes", "initialize_from", "epochs",
+                "minibatch", "lr", "gae_lambda", "clip", "value_coef", "entropy_coef", "group_alpha",
+                "aux_bc_coef", "target_kl", "max_decisions", "workers", "num_threads", "max_wall_s")
+        if any(left["config"].get(key)!=right["config"].get(key) for key in keys):
+            raise ValueError("Base/axis comparison has an undeclared matched-config difference")
+        if [left["config"]["probe_candidates"],right["config"]["probe_candidates"]] != ["base","axis_quantiles"]:
+            raise ValueError("Expected an explicit base/axis action-schema comparison")
+        for key in ("policy_episodes_used","completed_updates","actual_policy_seed_ranges","actual_bc_episodes"):
+            if left["summary"][key]!=right["summary"][key]:
+                raise ValueError("Base/axis completed training budgets do not match")
+        validation = report["validation"]
+        initial = {name:validation[name+"-initialized"] for name in probes}
+        old = validation["cold-finetune-ppo-002-ppo_000384"]
+        if initial[probes[0]]["case_virtual_times_s"] != old["case_virtual_times_s"]:
+            raise ValueError("Base initialization does not preserve the recorded best002 episode costs")
+        deltas = {}
+        for name in probes:
+            for strategy, record in validation.items():
+                update = checkpoint_update(strategy,name)
+                if update is not None and update>0:
+                    deltas[strategy]=paired_endpoint(initial[name],record)
+        designs["matched_probe_endpoint"] = dict(trials=list(probes),config_keys_checked=list(keys),
+            sampled_episodes_each=left["summary"]["policy_episodes_used"],
+            completed_updates_each=left["summary"]["completed_updates"],
+            base_initialization_matches_best002=True,
+            axis_zero_training_change=paired_endpoint(initial[probes[0]],initial[probes[1]]),
+            training_vs_own_initialization=deltas,
+            final_axis_vs_base=paired_endpoint(validation[probes[0]+"-ppo_000512"],validation[probes[1]+"-ppo_000512"]),
+            scope="Shared inherited weights and matched final sample count; action-set change already affects initialized policy. Early wallclock checkpoints have different updates.")
     return designs
 
 
@@ -370,7 +422,7 @@ def figures(report, output):
     axes[1].set(yticks=range(len(names)), yticklabels=[n.replace("joint-", "").replace("-matched-001", "").replace("-001", "") for n in names],
                 xlabel="Minutes through last logged policy update", title="B  Process elapsed time (not exclusive GPU time)")
     axes[1].invert_yaxis()
-    axes[1].legend(fontsize=8, loc="lower right")
+    axes[1].legend(fontsize=8, loc="upper center", bbox_to_anchor=(.5,-.08), ncol=3)
     for ax in axes: ax.grid(axis="x", alpha=.15)
     save_figure(fig, output / "endpoints_and_cost")
 
@@ -411,6 +463,34 @@ def figures(report, output):
         ax.legend(fontsize=8, loc="upper right")
     save_figure(fig, output / "chain_and_group")
 
+    if "matched_probe_endpoint" in report["audited_designs"]:
+        names = ("cold-probes-base-001", "cold-probes-axis_quantiles-001")
+        fig,axes = plt.subplots(1,2,figsize=(12.8,4.9),layout="constrained")
+        contrast_rows=[]
+        for index,name in enumerate(names):
+            points=sorted((checkpoint_update(s,name),r["mean_virtual_time_s"])
+                          for s,r in validation.items() if checkpoint_update(s,name) is not None)
+            axes[0].plot(*zip(*points),"o--",color=colors[index],label=("Base","Axis candidates")[index])
+            axes[0].annotate(f"{points[0][1]:.1f}",(0,points[0][1]),xytext=(5,7),
+                             textcoords="offset points",fontsize=8,color=colors[index])
+            for strategy,delta in report["audited_designs"]["matched_probe_endpoint"]["training_vs_own_initialization"].items():
+                if strategy.startswith(name+"-"):
+                    contrast_rows.append((strategy.replace(name,("base","axis")[index]).replace("-ppo_000"," u"),delta,colors[index]))
+        axes[0].set(title="A  Base / axis: fixed 48-case validation",xlabel="Additional PPO updates after initialization",
+                    ylabel="Greedy mean virtual time (s)")
+        axes[0].text(.02,.96,"u0 differs only through the candidate set.\nEarly checkpoints have unequal sample counts.",
+                     transform=axes[0].transAxes,va="top",fontsize=8)
+        axes[0].legend(fontsize=8,loc="lower right")
+        axes[0].margins(y=.30)
+        for i,(name,delta,color) in enumerate(contrast_rows):
+            mean=delta["mean_seconds_saved"]; low,high=delta["saving_ci95_s"]
+            axes[1].errorbar(mean,i,xerr=[[mean-low],[high-mean]],fmt="o",color=color,capsize=3)
+        axes[1].set(title="B  Training benefit relative to own u0",xlabel="Paired seconds saved (95% CI)",
+                    yticks=range(len(contrast_rows)),yticklabels=[row[0] for row in contrast_rows])
+        axes[1].invert_yaxis(); axes[1].axvline(0,color="#555555",linestyle=":")
+        for ax in axes: ax.grid(alpha=.15)
+        save_figure(fig,output/"probe_initialization_and_learning")
+
 
 def table(headers, rows):
     return "| " + " | ".join(headers) + " |\n| " + " | ".join("---" for _ in headers) + " |\n" + "\n".join("| " + " | ".join(str(x) for x in row) + " |" for row in rows) + "\n"
@@ -436,7 +516,8 @@ def write_report(report, output):
         low, high = row["saved_vs_rollout_ci95_s"]
         validations.append([name, f"{row['mean_virtual_time_s']:.3f}",
             f"{row['saved_vs_rollout_s']:.2f} [{low:.2f}, {high:.2f}]",
-            f"{row['wins']}/{row['losses']}/{row['ties']}", f"{row['successful_runs']}/48", row["failed_clear_count"]])
+            f"{row['wins']}/{row['losses']}/{row['ties']}", f"{row['successful_runs']}/48", row["failed_clear_count"],
+            f"{row['worst_regression_s']:.3f}"])
     text = """# Q3 RL 训练试验与固定验证记录
 
 这份记录只读取指定归档中的真实日志和已经完成的验证结果，不运行仿真、不加载模型、不写论文正文。训练曲线与固定验证严格分开。全部输入、成员文件和分析脚本的SHA256见 `audit.json`；原始大日志保留在归档中，仓库只保存 `training_curves.json.gz` 中的精简每更新标量。此表覆盖已提供完整训练日志的试验；只有验证产物而缺少训练日志的旧试验只列验证端点，不补造训练成本。
@@ -466,7 +547,7 @@ def write_report(report, output):
 
 ## 全部已归档RL验证端点
 
-""" + table(["检查点", "平均虚拟秒", "比rollout节省秒 [95% CI]", "胜/负/平", "全清成功", "失败清除"], validations)
+""" + table(["检查点", "平均虚拟秒", "比rollout节省秒 [95% CI]", "胜/负/平", "全清成功", "失败清除", "最坏配对退化秒"], validations)
     text += """
 ## 当前证据的边界
 
@@ -477,7 +558,8 @@ def write_report(report, output):
 5. 全清成功来自当前合法动作和保守兜底系统整体。现有记录不支持把全部成功率、全部时间收益归功于神经网络，更没有达到理论下界或不可再优化的证明。未使用官方正式测试，也未查看封存最终测试种子。
 6. 从cold001/u512出发，后续PPO384端点3178.339秒，paired REINFORCE374端点3224.109秒。但后者多运行11968条baseline轨迹，且时间截止使两者未完成相同更新数；这组结果不能被写成“在完全相同算力/仿真预算下PPO优于REINFORCE”。
 7. 05:10新增的第二次PPO微调u384为3162.245秒，比冻结rollout均值3373.253秒节省211.008秒（6.255%）；同48局41胜7负、全部清除、零失败清除，最坏局仍慢199.794秒。这条继承链累计40960条参与更新的策略轨迹，不能只报告最后一轮12288局。相对上一轮再快16.094秒，不据此断言该增量已经显著。
-8. alpha0/alpha1同预算u512分别3294.830/3257.778秒；alpha1相对alpha0节省37.052秒，原归档配对95%区间[-12.447,86.859]秒、24胜24负，额外收益尚未确立。这一区间来自归档比较文件，表中各策略对rollout的区间由本脚本独立bootstrap；两者对象和随机种子不同，不能混写。axis新候选尚在独立试验中，没有将它的未完成结果加入此表。
+8. alpha0/alpha1同预算u512分别3294.830/3257.778秒；alpha1相对alpha0节省37.052秒，原归档配对95%区间[-12.447,86.859]秒、24胜24负，额外收益尚未确立。这一区间来自归档比较文件，表中各策略对rollout的区间由本脚本独立bootstrap；两者对象和随机种子不同，不能混写。
+9. 06:05完成的base/axis训练每组512×32=16384条，使用同best002权重和seed9112036。base初始化逐局重现best002；axis初始化3134.115秒属于零训练动作集迁移效应。base/axis末端分别3174.712/3149.841秒，两个末端及其余四个中间端点相对各自初始化的增量区间跨0；axis u157例外，节省-56.903秒、区间[-110.221,-5.418]全负，显示该开发集上的早期退化。没有任何已测训练端点确立额外收益，不能误写成所有区间均跨0。base u512最坏局相对rollout多764.699秒，不能只看其均值。中间墙钟检查点的更新数不同，不构成同预算对照。本次输入范围没有包含v4或强起点attention训练结果。
 
 ## 复现
 
@@ -492,7 +574,23 @@ def write_report(report, output):
         text = text[:start] + text[end:]
     if not set(DEFAULT_ARCHIVES).issubset({entry["archive"] for entry in report["inputs"]}):
         start, end = text.index("## 当前证据的边界"), text.index("## 复现")
-        text = (text[:start] + "## 当前证据的边界\n\n本次显式输入只是历史归档的子集，故不复述需要完整05:10归档才能支持的数值结论。以上表格只列实际读取并通过场景身份及成功条件核验的数据；配对区间不能代表训练种子不确定性，也不能作为全局最优或最终测试保证。\n\n" + text[end:])
+        text = (text[:start] + "## 当前证据的边界\n\n本次显式输入只是历史归档的子集，故不复述需要完整06:05归档才能支持的数值结论。以上表格只列实际读取并通过场景身份及成功条件核验的数据；配对区间不能代表训练种子不确定性，也不能作为全局最优或最终测试保证。\n\n" + text[end:])
+    if "matched_probe_endpoint" in report["audited_designs"]:
+        design=report["audited_designs"]["matched_probe_endpoint"]
+        probe_rows=[]
+        for name,delta in design["training_vs_own_initialization"].items():
+            low,high=delta["saving_ci95_s"]
+            probe_rows.append([name,f"{report['validation'][name]['mean_virtual_time_s']:.3f}",
+                f"{delta['mean_seconds_saved']:.3f}",f"[{low:.3f}, {high:.3f}]"])
+        zero=design["axis_zero_training_change"]
+        low,high=zero["saving_ci95_s"]
+        probe_text=("## 动作集初始化与后续学习分开核算\n\n"
+            "![初始化与追加PPO训练](probe_initialization_and_learning.png)\n\n"
+            f"相同权重下，axis初始化相对base节省{zero['mean_seconds_saved']:.3f}秒，"
+            f"本脚本配对95%区间[{low:.3f}, {high:.3f}]秒。这是零训练动作集合改变的效果，不计作PPO学习增量。"
+            "下表改用各方法自己的initialized作参照，正值才表示后续训练更快；这些增量区间使用原协议bootstrap seed20260911、10000次Python random.choices，与下方各端点对rollout的历史审计seed913区分。\n\n"
+            +table(["训练端点","平均虚拟秒","比自己初始化节省秒","95% CI"],probe_rows)+"\n")
+        text=text.replace("## 全部已归档RL验证端点",probe_text+"## 全部已归档RL验证端点")
     (output / "README.md").write_text(text, encoding="utf-8", newline="\n")
 
 
