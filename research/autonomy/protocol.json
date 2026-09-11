@@ -1,5 +1,5 @@
 {
-  "name": "q3-rl-autonomy-20260911",
+  "name": "q3-rl-cost-to-go-20260912",
   "scope": "Q3 only; CPU-only policy research; no official simulator interaction",
   "start_commit": "35b2dd3758a0e2575718e22bd657aeac61a5804d",
   "initial_checkpoint_sha256": "3d21ba7931143f281d2e7554261b001867c65fec9c2bd7465a79f91e95b7cef4",
@@ -24,6 +24,18 @@
     "Recurrent policy trained on actual observation sequences with correct episode resets"
   ],
   "experiment_rules": "Implement and audit mechanisms before large runs. Compare zero-additional-training candidate behavior and matched-budget continued base PPO. Retain all training seeds and endpoint outcomes. New mechanisms must be separately versioned and frozen. An added candidate set may change initial probabilities; do not claim lossless migration unless verified.",
+  "cost_to_go_extension": {
+    "method": "Sampled full-continuation cost-ranking policy iteration",
+    "rollin_and_continuation": "Freeze current v3/base/flat actor for each batch, use greedy roll-in and continuation; one independently sampled public decision prefix per new generated world",
+    "actions": "Original greedy action plus up to two other uniformly sampled legal actions without replacement",
+    "target": "Actual remaining complete virtual cost after the common prefix, including forced action and full safety fallback; penalize unsuccessful or unsafe completion explicitly",
+    "update": "Cost-gap-weighted pairwise logistic actor/shared-encoder update, with full-candidate KL to the batch-frozen actor; no critic regression",
+    "inference": "Original observation-only candidate actor; no ground-truth access, scenario replay or online lookahead",
+    "budget_units": "One group can require a baseline and two full replay trajectories. Report groups, completed/attempted trajectories, simulator actions and wall time separately; do not equate a group with one PPO episode",
+    "comparison": "Use identical held-out case hashes and total CPU/wall allowance; the interrupted base-r1 first block is not an exactly matched effective training-time control",
+    "generalization": "Fresh disjoint generated training worlds. Fixed development pairing guides selection only; confirmation/final/stress remain sealed until policy identity is frozen",
+    "scope": "Finite sampled actions and approximate observation representation under the current continuation policy; no global-optimality guarantee"
+  },
   "cpu": {"default_total_slots": 50, "absolute_total_cap": 60, "learner_threads_initial": 16, "sampler_workers_initial": 48, "resource_scope": "Entire inherited process affinity, including sampling, optimization, evaluation and result synchronization; concurrency settings are not additive permission to exceed the cap", "nice_increment": 10},
   "limits": {"max_actions": 10000, "real_seconds_per_case": 300, "virtual_seconds_per_case": 360000},
   "checkpoint_seconds": 600,

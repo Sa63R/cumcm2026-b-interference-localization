@@ -1,6 +1,6 @@
 """Fetch verified, selected S3 snapshots; never treats a stored PID as live.
 
-Credentials stay in the external JSON file. Only the fixed autonomy task
+Credentials stay in the external JSON file. Only the fixed cost-to-go task
 prefix is read, regardless of a legacy prefix in that credential file.
 Default downloads are summaries/comparisons/environment, not logs or models.
 """
@@ -17,7 +17,7 @@ from urllib.parse import urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PREFIX = "lianghao/bwc/shumo/q3-autonomy-20260911-r1"
+PREFIX = "lianghao/bwc/shumo/q3-cost-20260912-r1"
 HASH = re.compile(r"[0-9a-f]{64}")
 LIMITS = {"pointer": 65536, "manifest": 16 << 20, "metadata": 16 << 20,
           "case": 64 << 20, "model": 2 << 30}

@@ -6,6 +6,45 @@ from pathlib import Path
 import platform
 import time
 
+try:
+    import resource
+except ImportError:  # Windows: no POSIX per-process rlimits.
+    resource = None
+
+
+def ensure_nofile_limit(minimum=16384):
+    """Raise only this process's soft limit; future children inherit it.
+
+    The hard limit and all system-wide configuration remain unchanged. An
+    insufficient hard limit or unsupported host is recorded, never presented
+    as successful installation of the requested descriptor budget.
+    """
+    if type(minimum) is not int or minimum < 1:
+        raise ValueError("Descriptor minimum must be a positive integer")
+    metadata = dict(supported=resource is not None, requested_minimum=minimum,
+                    before=None, after=None, hard=None, minimum_satisfied=False,
+                    scope="Current process and inherited children only")
+    if resource is None or not hasattr(resource, "RLIMIT_NOFILE"):
+        return dict(metadata, supported=False, status="unsupported")
+    before, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+    unlimited = resource.RLIM_INFINITY
+    target = before if before == unlimited else max(before, minimum)
+    if hard != unlimited and target != unlimited:
+        target = min(target, hard)
+    if target != before:
+        try:
+            resource.setrlimit(resource.RLIMIT_NOFILE, (target, hard))
+        except (OSError, ValueError) as error:
+            raise RuntimeError("Could not raise this task's descriptor soft limit") from error
+    after, after_hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+    if after != target or after_hard != hard:
+        raise RuntimeError("Descriptor limit verification failed")
+    satisfied = after == unlimited or after >= minimum
+    shown = lambda value: "unlimited" if value == unlimited else value
+    return dict(metadata, before=shown(before), after=shown(after), hard=shown(hard),
+                minimum_satisfied=satisfied,
+                status="limited_by_hard" if not satisfied else "raised" if target != before else "unchanged")
+
 
 def _text(path):
     try:
@@ -57,6 +96,7 @@ def constrain(root, slots=50, nice_increment=10):
     cap = min(slots, len(allowed), int(quota) if quota is not None else len(allowed))
     if cap < 1:
         raise RuntimeError("No CPU slots available")
+    nofile_limit = ensure_nofile_limit()
     selected = _core_order(allowed)[:cap]
     os.sched_setaffinity(0, set(selected))
     if os.sched_getaffinity(0) != set(selected):
@@ -73,6 +113,7 @@ def constrain(root, slots=50, nice_increment=10):
         XDG_CACHE_HOME=str(runtime/"cache"), TORCH_HOME=str(runtime/"torch"),
         PYTHONPYCACHEPREFIX=str(runtime/"pycache"), PYTHONHASHSEED="0", PYTHONUNBUFFERED="1")
     return dict(cpu_slots=cap, requested_slots=slots, visible_quota_slots=quota,
+                nofile_limit=nofile_limit,
                 affinity_cpus=selected, nice=os.getpriority(os.PRIO_PROCESS, 0),
                 scope="Current process and all descendants, including learner, workers, evaluators and sync",
                 platform=platform.system(), python=platform.python_version(), captured_unix=time.time())

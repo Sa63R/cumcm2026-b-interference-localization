@@ -161,13 +161,15 @@ ALGORITHM_ARGS = {
     "--bc-episodes", "--bc-epochs", "--episodes-per-update", "--lr", "--gae-lambda",
     "--entropy-coef", "--aux-bc-coef", "--epochs", "--minibatch", "--clip", "--value-coef",
     "--target-kl", "--max-grad-norm", "--max-decisions", "--memory-hidden", "--episodes-per-minibatch",
+    "--groups-per-update", "--alternatives", "--gap-scale-s", "--max-pair-weight", "--kl-coef",
 }
 
 
 def validate_plan(plan):
     if not re.fullmatch(r"[a-z0-9][a-z0-9_-]*", plan["name"]):
         raise ValueError("Invalid job name")
-    if plan["trainer"] not in {"research_rl.train", "research_rl.train_recurrent"}:
+    if plan["trainer"] not in {"research_rl.train", "research_rl.train_recurrent",
+                                "research_rl.train_rollout_improvement"}:
         raise ValueError("Unsupported trainer")
     expected = ("research_rl.recurrent:run_recurrent_search" if plan["trainer"].endswith("train_recurrent")
                 else "research_rl:run_rl_search")

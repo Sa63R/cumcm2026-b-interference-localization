@@ -107,10 +107,16 @@ def test_whole_process_affinity_is_clamped_and_accelerators_hidden(monkeypatch, 
     monkeypatch.setattr(runtime.os, "getpriority", lambda kind, pid: 0, raising=False)
     monkeypatch.setattr(runtime.os, "nice", lambda increment: nice_changes.append(increment), raising=False)
     monkeypatch.setattr(runtime.os, "environ", {"CUDA_VISIBLE_DEVICES": "0"})
+    limit_calls = []
+    def nofile():
+        limit_calls.append(True)
+        return {"before": 1024, "after": 16384, "hard": 1048576, "status": "raised"}
+    monkeypatch.setattr(runtime, "ensure_nofile_limit", nofile)
     result = runtime.constrain(tmp_path, slots=50)
     assert result["cpu_slots"] == 2 and changes == [{0, 2}]
     assert nice_changes == [10]
     assert result["affinity_cpus"] == [0, 2]
+    assert limit_calls == [True] and result["nofile_limit"]["after"] == 16384
     for key in ("CUDA_VISIBLE_DEVICES", "HIP_VISIBLE_DEVICES", "ROCR_VISIBLE_DEVICES"):
         assert runtime.os.environ[key] == ""
     for key in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS", "GOMAXPROCS"):
@@ -126,6 +132,92 @@ def test_cpu_cap_rejected_before_affinity_mutation(slots, tmp_path, monkeypatch)
     monkeypatch.setattr(runtime.os, "sched_setaffinity", forbidden, raising=False)
     with pytest.raises(ValueError, match="1..60"):
         runtime.constrain(tmp_path, slots=slots)
+
+
+@pytest.mark.parametrize("before,hard,expected,status", [
+    (1024, 1048576, 16384, "raised"),
+    (65536, 1048576, 65536, "unchanged"),
+    (1024, 8192, 8192, "limited_by_hard"),
+    (16384, 16384, 16384, "unchanged"),
+    (1024, -1, 16384, "raised"),
+    (-1, -1, -1, "unchanged"),
+])
+def test_nofile_raises_soft_only_with_hard_cap_and_never_lowers(monkeypatch, before, hard, expected, status):
+    limits, changes = [before, hard], []
+    def getlimit(kind):
+        assert kind == 7
+        return tuple(limits)
+    def setlimit(kind, values):
+        assert kind == 7 and values[1] == hard  # Never change hard/system policy.
+        changes.append(values)
+        limits[:] = values
+    fake = SimpleNamespace(RLIMIT_NOFILE=7, RLIM_INFINITY=-1,
+                           getrlimit=getlimit, setrlimit=setlimit)
+    monkeypatch.setattr(runtime, "resource", fake)
+    result = runtime.ensure_nofile_limit()
+    assert result["supported"] and result["status"] == status
+    assert result["before"] == ("unlimited" if before == -1 else before)
+    assert result["after"] == ("unlimited" if expected == -1 else expected)
+    assert result["hard"] == ("unlimited" if hard == -1 else hard)
+    assert result["minimum_satisfied"] == (expected == -1 or expected >= 16384)
+    assert changes == ([] if expected == before else [(expected, hard)])
+
+
+def test_nofile_unsupported_host_is_explicit_not_success(monkeypatch):
+    monkeypatch.setattr(runtime, "resource", None)
+    result = runtime.ensure_nofile_limit()
+    assert result["supported"] is False and result["status"] == "unsupported"
+    assert result["minimum_satisfied"] is False
+    assert result["before"] is result["after"] is result["hard"] is None
+
+
+def test_nofile_verifies_the_applied_limit(monkeypatch):
+    fake = SimpleNamespace(RLIMIT_NOFILE=7, RLIM_INFINITY=-1,
+        getrlimit=lambda kind: (1024, 1048576), setrlimit=lambda kind, values: None)
+    monkeypatch.setattr(runtime, "resource", fake)
+    with pytest.raises(RuntimeError, match="verification failed"):
+        runtime.ensure_nofile_limit()
+
+
+def test_nofile_denied_change_is_not_reported_successful(monkeypatch):
+    def denied(*args):
+        raise PermissionError("test denial")
+    fake = SimpleNamespace(RLIMIT_NOFILE=7, RLIM_INFINITY=-1,
+        getrlimit=lambda kind: (1024, 1048576), setrlimit=denied)
+    monkeypatch.setattr(runtime, "resource", fake)
+    with pytest.raises(RuntimeError, match="Could not raise"):
+        runtime.ensure_nofile_limit()
+
+
+@pytest.mark.skipif(sys.platform != "linux", reason="Real RLIMIT_NOFILE and /dev/null descriptor check requires Linux")
+def test_nofile_real_child_opens_beyond_old_limit_without_changing_parent():
+    import resource
+    parent_limits = resource.getrlimit(resource.RLIMIT_NOFILE)
+    if parent_limits[1] != resource.RLIM_INFINITY and parent_limits[1] < 512:
+        pytest.skip("Host hard limit is too small for the isolated integration check")
+    code = """
+import json, os, resource, sys
+sys.path.insert(0, sys.argv[1])
+from autonomy_runtime import ensure_nofile_limit
+_, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+resource.setrlimit(resource.RLIMIT_NOFILE, (64, hard))
+result = ensure_nofile_limit()
+opened = []
+try:
+    for _ in range(192):
+        opened.append(os.open('/dev/null', os.O_RDONLY))
+    print(json.dumps(dict(limit=result, opened=len(opened))))
+finally:
+    for fd in opened:
+        os.close(fd)
+"""
+    completed = subprocess.run([sys.executable, "-c", code, str(ROOT / "scripts")],
+                               check=True, text=True, capture_output=True, timeout=15)
+    result = json.loads(completed.stdout)
+    assert result["limit"]["before"] == 64 and result["limit"]["supported"]
+    assert result["opened"] == 192 > 64
+    assert result["limit"]["after"] >= 512
+    assert resource.getrlimit(resource.RLIMIT_NOFILE) == parent_limits
 
 
 def test_block_resume_keeps_original_deadline_even_after_downtime():
