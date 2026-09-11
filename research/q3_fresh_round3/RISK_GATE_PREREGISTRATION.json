@@ -1,0 +1,30 @@
+{
+  "registered_utc": "2026-09-11T21:14:57.081147+00:00",
+  "candidate": "G3V",
+  "base": "G3",
+  "witness_limit_s": 120,
+  "witness_count_ceiling": 4,
+  "rule": "After nominal confirmation accepts, reject if maximum positive delta over separately constructed compatible witnesses exceeds120 seconds; incomplete risk checks fall back to B.",
+  "reason": "One fixed engineering threshold of two virtual minutes (600m travel equivalent), not a tuned optimum. Test a concrete bounded veto increment while reporting nominal gain and regret tails separately.",
+  "evidence_before_registration": [
+    "60 G12 offline replays with38 risk decisions",
+    "3 G3 pilot offline risk+actual replays"
+  ],
+  "evidence_summary": {
+    "G12_risk_above120": 5,
+    "G12_actual_harmful_among_these": 1,
+    "G12_actual_helpful_among_these": 4,
+    "G3_pilot_risk_above120": 3,
+    "G3_pilot_actual_helpful_among_these": 3,
+    "warning": "Risk loss is not an estimate of actual loss. Veto may sacrifice real gains; no safety/performance guarantee."
+  },
+  "no_threshold_sweep": true,
+  "no_new_test_results_seen": true,
+  "development_cases": 60,
+  "execution": "Run G3 and the fixed G3V increment on the same complete development set, at most two CPU processes; no source edits to running jobs.",
+  "inputs": {
+    "stage1_replay_linux": "975c2a3619de3295e2ec5d562959223c0c2f13fe23b9dd7dec3b6e6875c176d7",
+    "stage1_actual_linux": "86f36e9f791d8eb5f4313da65acc98e79627806f3f8f3a7f39c1549d8bcf85f3",
+    "pilot_g3_risk_actual": "b407d08038db6032b875262e9ab6b0eece7984a202ef2f69de5b29dcec6b6a24"
+  }
+}
