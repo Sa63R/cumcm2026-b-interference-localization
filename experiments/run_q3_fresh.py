@@ -23,6 +23,7 @@ from strategies.q3_fresh import run_fresh
 
 
 CONFIGS = {"v0": ("v0", {}), "v1": ("v1", {}),
+           "v1_selective": ("v1", {"selective": True}),
            "v1_fixed_cover": ("v1", {"dynamic": False}),
            "v1_center_clear": ("v1", {"nearest": False})}
 
@@ -184,9 +185,10 @@ def main():
     files = ["src/strategies/q3_fresh.py", "experiments/run_q3_fresh.py", "src/simulation/engine.py",
              "src/geometry/__init__.py", "src/localization/__init__.py"]
     hashes = {f: hashlib.sha256((ROOT / f).read_bytes()).hexdigest() for f in files}
+    public_metadata = {k: v for k, v in metadata.items() if k != "anchors"}
     manifest = dict(kind="offline_synthetic_research" if not args.cases else "offline_practice_reconstruction",
                     cases=len(cases), configs=args.configs, status="running", source_sha256=hashes,
-                    validation_labels_used_for_fitting=False, metadata=metadata)
+                    validation_labels_used_for_fitting=False, metadata=public_metadata)
     rows = []
     for i, case in enumerate(cases):
         batch, traces = run_case(case, args.configs, metadata.get("anchors", {}).get(case.case_id, ()))

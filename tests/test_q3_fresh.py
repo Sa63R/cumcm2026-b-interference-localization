@@ -16,6 +16,8 @@ def test_continuous_cover_and_missing_sector():
         assert not covered(COVER[:k] + COVER[k + 1:])
     # Two points do not cover a disk merely because sampled endpoints do.
     assert not covered(((1000, 0), (-1000, 0)))
+    for anchor in COVER:
+        assert covered((anchor,), anchor, True)
 
 
 def test_per_channel_evidence_and_sixteen_limit():
@@ -81,3 +83,9 @@ def test_identical_error_at_same_point_and_clear_keeps_channel():
     client.clear((source.x, source.y), source.channel)
     assert client.state.current_channel == old_channel
     client.exit()
+
+
+def test_selective_scans_preserve_completion():
+    engine = LocalResearchSimulator(random_scenario(3, 910003))
+    result = run_fresh(engine.client(), "v1", selective=True)
+    assert result["completion_certified"] and engine.evaluation()["all_cleared"]

@@ -21,7 +21,7 @@ MARGIN = 1e-5
 
 
 @lru_cache(maxsize=16384)
-def covered(negatives, anchor=None):
+def covered(negatives, anchor=None, cell=False):
     """Prove disk/polygon coverage using clipped nearest-site Voronoi cells.
 
     The arena and optional anchor disk are OUTER polygons. The maximum of
@@ -34,7 +34,16 @@ def covered(negatives, anchor=None):
         return False
     domain = disk_polygon((0, 0), 1800, 64, outer=True)
     if anchor is not None:
-        for hp in disk_halfplanes(anchor, 1000, 64, outer=True):
+        constraints = disk_halfplanes(anchor, 1000, 64, outer=True)
+        if cell:
+            # Assign each arena location to its nearest fixed cover point.
+            # These seven closed cells cover the arena and each is inside its
+            # anchor's reception disk; covering a full disk is unnecessary.
+            constraints = tuple(HalfPlane(b[0]-anchor[0], b[1]-anchor[1],
+                (b[0]-anchor[0])*(b[0]+anchor[0])/2 +
+                (b[1]-anchor[1])*(b[1]+anchor[1])/2)
+                for b in COVER if distance(anchor, b) > 1e-9)
+        for hp in constraints:
             domain = clip_polygon(domain, hp)
     for i, a in enumerate(negatives):
         cell = domain
@@ -124,11 +133,13 @@ class Channel:
 
 
 class FreshQ3:
-    def __init__(self, client, version="v0", *, dynamic=True, nearest=True):
+    def __init__(self, client, version="v0", *, dynamic=True, nearest=True,
+                 selective=False):
         if version not in {"v0", "v1"}:
             raise ValueError("version must be v0 or v1")
         self.client, self.version = client, version
         self.dynamic, self.nearest = dynamic, nearest
+        self.selective = selective
         self.channels = {c: Channel() for c in range(1, 21)}
         self.history = []
         self.route_decisions = []
@@ -200,6 +211,14 @@ class FreshQ3:
             # Scheduling threshold only; it never constitutes an absence proof.
             todo = [i for i in todo if not self.channels[i].negatives or
                     min(distance(p, n) for n in self.channels[i].negatives) >= 350]
+            if self.selective:
+                # A paid opportunistic scan should discharge at least one
+                # remaining cell obligation if silent. This is a scheduling
+                # choice, not evidence: update absence only after the response.
+                todo = [i for i in todo if any(
+                    not covered(tuple(self.channels[i].negatives), a, True) and
+                    covered(tuple(self.channels[i].negatives) + (p,), a, True)
+                    for a in COVER)]
         for i in todo:
             if self.channels[i].status == "unknown":
                 self.measure(p, i, phase)
@@ -215,6 +234,17 @@ class FreshQ3:
             if c.region.observations and min(distance(p, o.position) for o in c.region.observations) < 25:
                 continue
             if distance(p, circle.center) <= 1500 + circle.radius:
+                if self.selective and self.version == "v1":
+                    d = distance(p, circle.center)
+                    if d > 5:
+                        bearing = math.degrees(math.atan2(circle.center[1]-p[1], circle.center[0]-p[0])) % 360
+                        predicted = c.region.copy().observe(p, bearing)
+                        if predicted.vertices:
+                            r = predicted.enclosing_disk().radius
+                            # 30 m is the travel equivalent of switch+measure.
+                            # This nominal-centre forecast is only a heuristic.
+                            if r > 20 - MARGIN and circle.radius - r < 30:
+                                continue
                 self.measure(p, i, phase)
 
     def locate_clear(self, channel):
@@ -271,7 +301,7 @@ class FreshQ3:
                 negatives = tuple(self.channels[i].negatives)
                 if p in negatives:
                     continue
-                if not self.dynamic or not covered(negatives, p):
+                if not self.dynamic or not covered(negatives, p, self.selective):
                     needed = True
                     break
             if needed:
