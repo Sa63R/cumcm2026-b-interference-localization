@@ -10,13 +10,13 @@
 
 ## 最小修改与 RNG
 
-原实现已把 relation 层放在完整旧 MLP 构造之后，保留旧 MLP 参数；但 relation 的随机权重初始化仍额外消费全局 Torch RNG，导致同 seed 下后续首轮 minibatch 排列不同。
+原实现已把 relation 层放在完整旧 MLP 构造之后，保留旧 MLP 参数；relation 的随机权重初始化仍额外消费父进程全局 Torch RNG。**更正此前因果推断：这不意味着实际首轮 minibatch 排列不同。**复核旧 `d33074b` 和当前 `train.update` 都使用 `np.random.permutation`；采样任务的 action_seed 来自 Python `random.randrange`，worker 在构造/载入模型之后再执行 `torch.manual_seed(action_seed)`，网络 dropout 为 0。因此旧 relation 的这些额外 Torch 抽数本身不会改变本训练路径的 NumPy 排列或 Python 任务种子。此前“旧 warm 对照因构造而不共用首轮 shuffle”的说法撤回。
 
-现仅用 `torch.random.fork_rng(devices=[])` 包住 relation 构造：层内随机参数仍取原有序列、零门控不变，退出后恢复外部 CPU RNG。MLP 路径完全不进入该上下文。训练器先在 CPU 构造网络再 `.to(device)`，因此此修复覆盖当前 CPU 采样/GPU 优化入口；不声称覆盖外部调用者自行改变默认设备、在 GPU 上直接构造参数的其他用法。
+现仅用 `torch.random.fork_rng(devices=[])` 包住 relation 构造：层内随机参数仍取原有序列、零门控不变，退出后恢复外部 CPU RNG。这是通用构造状态中立性增强，不是已证实修复了旧 PPO 的首批动作或优化排列。MLP 路径完全不进入该上下文。训练器先在 CPU 构造网络再 `.to(device)`；不声称覆盖外部调用者自行改变默认设备、在 GPU 上直接构造参数的其他用法。当前网络源码注释中把父进程 Torch stream 与 minibatch 排列直接关联的文字也应按此勘误理解；此次不改变正在运行的源码快照。
 
 架构元数据、参数名和前向公式都没有改变。已有 attention 权重可直接加载推理；恢复训练依旧遵守原有源码清单核对规则，同一部署快照内恢复会在网络构造后恢复保存的 RNG/优化器。不能把新源码与旧训练快照直接混用并宣称逐位续训。
 
-新增 5 项测试检查：一层/两层关系权重与旧初始化方法逐值相同；初始化后 CPU RNG 与 MLP 一致；真实 CLI 保存的 `initialized.pt` RNG 一致；首轮排列一致；非零门控旧 attention 的加载预测一致；同 action_seed 的完整随机动作/回报轨迹一致。原有注意力测试继续检验 padding、排列等变、零门控的首步梯度、后续分支参数更新和真实 PPO 恢复。全部 deep_rl、paired、portable 相关测试共 192 项通过（46.26 s）。
+原新增 5 项测试检查一层/两层关系权重、父进程 CPU RNG、CLI 保存的 RNG、通用 `torch.randperm` 序列、旧 attention 加载及同 action_seed 完整轨迹；其中 `torch.randperm` 检查不是实际 PPO shuffle 测试。勘误后另补一项：重建旧式 relation 构造，直接调用真实 `update()` 并记录 NumPy 排列，同时比较 Python action_seed 序列，确认旧式/新式/MLP 的这些实际随机序列本就一致，即使旧式父进程 Torch 状态不同。原有注意力测试继续检验 padding、排列等变、门控梯度、后续参数更新和 PPO 恢复。勘误前完整套件 192 项通过；勘误后注意力相关 24 项通过（12.71 s）。
 
 ## 真实 best002 迁移核验
 
@@ -31,7 +31,7 @@ PYTHONPATH=src:. python research/audit_attention_initialization.py \
 
 ## 冻结的训练安排
 
-根代理使用同当前 v3 对照的 best002 起点、seed `9112037`、新场景从 `180001` 开始、512×32 条采样、学习率 `1e-4`、entropy `0.005`，无 BC。只改 attention 架构；最多 3600 s，并记录实际更新数和墙钟时间。现有 ea1a35d v3 对照的 MLP 构造/采样/更新路径未改变，RNG 修复使其首轮排列可比较。若新训练截止未达到同样更新数，须对齐相同更新数端点，不能把不同预算包装为严格架构消融。
+根代理使用同当前 v3 对照的 best002 起点、seed `9112037`、新场景从 `180001` 开始、512×32 条采样、学习率 `1e-4`、entropy `0.005`，无 BC。只改 attention 架构；最多 3600 s，并记录实际更新数和墙钟时间。现有 ea1a35d v3 对照的 MLP 构造/采样/更新路径未改变；实际 NumPy/Python 随机流的一致性不以新增 fork_rng 为前提。若新训练截止未达到同样更新数，须对齐相同更新数端点，不能把不同预算包装为严格架构消融。
 
 ```bash
 PYTHONPATH=src:. Q3_SOURCE_COMMIT=<new-commit> python -m research_rl.train \
