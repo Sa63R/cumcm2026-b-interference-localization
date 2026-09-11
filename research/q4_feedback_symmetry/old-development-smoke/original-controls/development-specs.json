@@ -1,0 +1,38 @@
+{
+  "compact_baseline": {
+    "entrypoint": "strategies.q4_cover_search:run_q4_cover_search",
+    "kwargs": {
+      "profile": "compact_22",
+      "schedule": "joint",
+      "max_expansions": 200
+    }
+  },
+  "compact_joint_probe": {
+    "entrypoint": "strategies.q4_joint_visibility:run_q4_joint_visibility",
+    "kwargs": {
+      "config": "probe",
+      "max_expansions": 200
+    }
+  },
+  "compact_joint_continuation": {
+    "entrypoint": "strategies.q4_joint_continuation:run_q4_joint_continuation",
+    "kwargs": {
+      "config": "after_active_miss_optical",
+      "max_expansions": 200
+    }
+  },
+  "compact_feedback_mean": {
+    "entrypoint": "strategies.q4_feedback_symmetry:run_q4_feedback_symmetry",
+    "kwargs": {
+      "config": "bearing_mean",
+      "max_expansions": 200
+    }
+  },
+  "compact_feedback_centers": {
+    "entrypoint": "strategies.q4_feedback_symmetry:run_q4_feedback_symmetry",
+    "kwargs": {
+      "config": "early_centers",
+      "max_expansions": 200
+    }
+  }
+}

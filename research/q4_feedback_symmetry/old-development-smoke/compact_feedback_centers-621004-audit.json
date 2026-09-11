@@ -1,0 +1,1076 @@
+{
+  "seed": 621004,
+  "stage": "pilot",
+  "strategy": "compact_feedback_centers",
+  "passed": true,
+  "row": {
+    "case_id": "q4-random-621004",
+    "seed": 621004,
+    "stage": "pilot",
+    "problem": 4,
+    "strategy": "compact_feedback_centers",
+    "case_sha256": "8fee80a33750230f76fd274f98d1109ce86f4f92d7035eb4a4136fcfed1443e0",
+    "successful": true,
+    "all_cleared": true,
+    "completion_certified": true,
+    "accepted_exit": true,
+    "source_total": 15,
+    "cleared_total": 15,
+    "virtual_time_s": 5917.092807,
+    "penalized_time_s": 5917.092807,
+    "program_runtime_s": 0.08086899999761954,
+    "measurement_count": 188,
+    "failed_clear_count": 0,
+    "action_count": 205,
+    "movement_s": 4733.092807,
+    "switching_s": 169.0,
+    "detection_s": 940.0,
+    "optical_s": 45.0,
+    "removal_s": 30.0,
+    "errors": [],
+    "common_lower_bound_s": 2078.562773851466,
+    "time_over_lower_bound": 2.8467231692194424,
+    "penalized_time_over_lower_bound": 2.8467231692194424
+  },
+  "record_sha256": "24fdecd379ab6d713e786e785dd8ca4f84887bfded327212d28db176f6c7cd67",
+  "generic": {
+    "case_id": "q4-random-621004",
+    "strategy": "compact_feedback_centers",
+    "successful": true,
+    "virtual_time_s": 5917.092807,
+    "common_lower_bound_s": 2078.562773851466,
+    "time_over_lower_bound": 2.8467231692194424,
+    "physical": {
+      "source_total": 15,
+      "cleared_total": 15,
+      "measurement_count": 188,
+      "failed_clear_count": 0,
+      "all_cleared": true,
+      "virtual_time_s": 5917.092807,
+      "time_breakdown_s": {
+        "movement_s": 4733.092807,
+        "switching_s": 169.0,
+        "detection_s": 940.0,
+        "optical_s": 45.0,
+        "removal_s": 30.0
+      }
+    },
+    "geometric_certificate": {
+      "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+      "passed": true,
+      "status": "certified",
+      "reason": null,
+      "station_count": 22,
+      "stations": [
+        [
+          -1851.290353890597,
+          2.2671768061844906e-13
+        ],
+        [
+          -1667.9549743034802,
+          -803.2447809383194
+        ],
+        [
+          -1667.95497430348,
+          803.2447809383199
+        ],
+        [
+          -1154.2606559302333,
+          -1447.397081861049
+        ],
+        [
+          -1154.260655930233,
+          1447.3970818610492
+        ],
+        [
+          -873.9398018653466,
+          -420.86722694403124
+        ],
+        [
+          -873.9398018653465,
+          420.8672269440315
+        ],
+        [
+          -411.9508585720518,
+          -1804.8746395609091
+        ],
+        [
+          -411.95085857205135,
+          1804.8746395609091
+        ],
+        [
+          -215.84530593762514,
+          -945.6800748163689
+        ],
+        [
+          -215.84530593762491,
+          945.6800748163689
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          411.9508585720495,
+          -1804.8746395609096
+        ],
+        [
+          411.9508585720516,
+          1804.8746395609091
+        ],
+        [
+          604.7851078029714,
+          -758.376537993989
+        ],
+        [
+          604.7851078029715,
+          758.3765379939889
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          1154.2606559302328,
+          -1447.3970818610492
+        ],
+        [
+          1154.2606559302333,
+          1447.397081861049
+        ],
+        [
+          1667.9549743034802,
+          803.2447809383196
+        ],
+        [
+          1667.9549743034806,
+          -803.2447809383185
+        ],
+        [
+          1851.290353890597,
+          0.0
+        ]
+      ],
+      "station_sha256": "cdfb754c6ba3a86b6cabf43a83cc6d96ea3709ee93844d306542ba0355b3c291",
+      "arena_radius": 1800.0,
+      "reception_radius": 1000.0,
+      "range_margin_m": 1e-05,
+      "orientation_margin_m": 1e-07,
+      "max_depth": 16,
+      "max_cells": 200000,
+      "visited_cells": 5989,
+      "deepest_level": 11,
+      "outside_leaves": 1532,
+      "covered_leaves": 2960,
+      "counterexample": null,
+      "unresolved_cell": null,
+      "runtime_s": 0.07919699998456053,
+      "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic",
+      "leaf_witness_sha256": "bcb7ae7c4f0a1edb53734e0fae9b53e093ad1921d3ac90f84d199f111a98c329"
+    },
+    "observations": {
+      "detected": 15,
+      "cleared": 15,
+      "terminal_certified": true,
+      "source_cap_actual_clears": false,
+      "triangle_station_count": 22,
+      "triangle_count": null,
+      "absence": [
+        {
+          "channel": 3,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 9,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 13,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 15,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 18,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        }
+      ],
+      "clear_attempts": [
+        {
+          "action_index": 74,
+          "channel": 10,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 19.79694925663574
+        },
+        {
+          "action_index": 87,
+          "channel": 7,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 16.425198617033605
+        },
+        {
+          "action_index": 88,
+          "channel": 1,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 16.433118614853665
+        },
+        {
+          "action_index": 89,
+          "channel": 16,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 18.35182280709635
+        },
+        {
+          "action_index": 90,
+          "channel": 8,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.896747147033583
+        },
+        {
+          "action_index": 106,
+          "channel": 19,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.863113781285964
+        },
+        {
+          "action_index": 107,
+          "channel": 5,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 15.034249809120237
+        },
+        {
+          "action_index": 108,
+          "channel": 20,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.234480156100418
+        },
+        {
+          "action_index": 117,
+          "channel": 14,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 15.748854220477345
+        },
+        {
+          "action_index": 142,
+          "channel": 6,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.667296857482906
+        },
+        {
+          "action_index": 154,
+          "channel": 4,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 15.947811428483531
+        },
+        {
+          "action_index": 155,
+          "channel": 17,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 16.421609162278372
+        },
+        {
+          "action_index": 170,
+          "channel": 12,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 19.351699370351703
+        },
+        {
+          "action_index": 177,
+          "channel": 11,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 14.85369931973119
+        },
+        {
+          "action_index": 193,
+          "channel": 2,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 18.252990540456945
+        }
+      ],
+      "successful_clear_without_prefix_certificate": 0,
+      "legal_failed_optical_attempts": 0,
+      "hull_events": [],
+      "pair_events": [],
+      "certified_scans_skipped": [
+        {
+          "channel": 19,
+          "after_actual_action_count": 40,
+          "position": [
+            604.7851078029714,
+            -758.376537993989
+          ],
+          "radius_upper_m": 17.863113781285964
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 40,
+          "position": [
+            604.7851078029714,
+            -758.376537993989
+          ],
+          "radius_upper_m": 17.234480156100418
+        },
+        {
+          "channel": 5,
+          "after_actual_action_count": 58,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "radius_upper_m": 15.034249809120237
+        },
+        {
+          "channel": 19,
+          "after_actual_action_count": 58,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "radius_upper_m": 17.863113781285964
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 58,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "radius_upper_m": 17.234480156100418
+        },
+        {
+          "channel": 5,
+          "after_actual_action_count": 74,
+          "position": [
+            -873.9398018653466,
+            -420.86722694403124
+          ],
+          "radius_upper_m": 15.034249809120237
+        },
+        {
+          "channel": 8,
+          "after_actual_action_count": 74,
+          "position": [
+            -873.9398018653466,
+            -420.86722694403124
+          ],
+          "radius_upper_m": 17.896747147033583
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 74,
+          "position": [
+            -873.9398018653466,
+            -420.86722694403124
+          ],
+          "radius_upper_m": 18.35182280709635
+        },
+        {
+          "channel": 19,
+          "after_actual_action_count": 74,
+          "position": [
+            -873.9398018653466,
+            -420.86722694403124
+          ],
+          "radius_upper_m": 17.863113781285964
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 74,
+          "position": [
+            -873.9398018653466,
+            -420.86722694403124
+          ],
+          "radius_upper_m": 17.234480156100418
+        },
+        {
+          "channel": 5,
+          "after_actual_action_count": 90,
+          "position": [
+            -873.9398018653465,
+            420.8672269440315
+          ],
+          "radius_upper_m": 15.034249809120237
+        },
+        {
+          "channel": 19,
+          "after_actual_action_count": 90,
+          "position": [
+            -873.9398018653465,
+            420.8672269440315
+          ],
+          "radius_upper_m": 17.863113781285964
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 90,
+          "position": [
+            -873.9398018653465,
+            420.8672269440315
+          ],
+          "radius_upper_m": 17.234480156100418
+        },
+        {
+          "channel": 4,
+          "after_actual_action_count": 98,
+          "position": [
+            -215.84530593762491,
+            945.6800748163689
+          ],
+          "radius_upper_m": 15.947811428483531
+        },
+        {
+          "channel": 5,
+          "after_actual_action_count": 98,
+          "position": [
+            -215.84530593762491,
+            945.6800748163689
+          ],
+          "radius_upper_m": 15.034249809120237
+        },
+        {
+          "channel": 19,
+          "after_actual_action_count": 98,
+          "position": [
+            -215.84530593762491,
+            945.6800748163689
+          ],
+          "radius_upper_m": 17.863113781285964
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 98,
+          "position": [
+            -215.84530593762491,
+            945.6800748163689
+          ],
+          "radius_upper_m": 17.234480156100418
+        },
+        {
+          "channel": 4,
+          "after_actual_action_count": 108,
+          "position": [
+            604.7851078029715,
+            758.3765379939889
+          ],
+          "radius_upper_m": 15.947811428483531
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 117,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 4,
+          "after_actual_action_count": 117,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "radius_upper_m": 15.947811428483531
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 123,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 4,
+          "after_actual_action_count": 123,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 15.947811428483531
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 129,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 4,
+          "after_actual_action_count": 129,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 15.947811428483531
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 135,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 4,
+          "after_actual_action_count": 135,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "radius_upper_m": 15.947811428483531
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 142,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 4,
+          "after_actual_action_count": 142,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "radius_upper_m": 15.947811428483531
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 147,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 4,
+          "after_actual_action_count": 147,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "radius_upper_m": 15.947811428483531
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 155,
+          "position": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 162,
+          "position": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 170,
+          "position": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 177,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 182,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "radius_upper_m": 18.252990540456945
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 187,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "radius_upper_m": 18.252990540456945
+        }
+      ],
+      "inferred_coverage_credits": 0
+    },
+    "passed": true,
+    "errors": [],
+    "range_prefix": {
+      "passed": true,
+      "range_skips_verified": 32,
+      "events": [
+        {
+          "channel": 2,
+          "after_actual_action_count": 60,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "distance_lower_bound_m": 1682.2402730088577,
+          "independent_region_distance_m": 1682.2402731088869
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 70,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "distance_lower_bound_m": 1913.5551126643443,
+          "independent_region_distance_m": 1913.5551127643591
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 76,
+          "position": [
+            -873.9398018653466,
+            -420.86722694403124
+          ],
+          "distance_lower_bound_m": 2139.6053021825915,
+          "independent_region_distance_m": 2139.6053022826204
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 84,
+          "position": [
+            -873.9398018653466,
+            -420.86722694403124
+          ],
+          "distance_lower_bound_m": 2046.3764449321645,
+          "independent_region_distance_m": 2046.3764450321792
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 91,
+          "position": [
+            -873.9398018653465,
+            420.8672269440315
+          ],
+          "distance_lower_bound_m": 2181.380033505273,
+          "independent_region_distance_m": 2181.380033605302
+        },
+        {
+          "channel": 11,
+          "after_actual_action_count": 95,
+          "position": [
+            -873.9398018653465,
+            420.8672269440315
+          ],
+          "distance_lower_bound_m": 1516.7530758879489,
+          "independent_region_distance_m": 1516.753075987978
+        },
+        {
+          "channel": 12,
+          "after_actual_action_count": 95,
+          "position": [
+            -873.9398018653465,
+            420.8672269440315
+          ],
+          "distance_lower_bound_m": 1516.7530758879484,
+          "independent_region_distance_m": 1516.7530759879776
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 96,
+          "position": [
+            -873.9398018653465,
+            420.8672269440315
+          ],
+          "distance_lower_bound_m": 1774.8898542064903,
+          "independent_region_distance_m": 1774.8898543065047
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 98,
+          "position": [
+            -215.84530593762491,
+            945.6800748163689
+          ],
+          "distance_lower_bound_m": 2054.8990526334064,
+          "independent_region_distance_m": 2054.8990527334354
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 98,
+          "position": [
+            -215.84530593762491,
+            945.6800748163689
+          ],
+          "distance_lower_bound_m": 1798.7579419390922,
+          "independent_region_distance_m": 1798.7579420391214
+        },
+        {
+          "channel": 11,
+          "after_actual_action_count": 101,
+          "position": [
+            -215.84530593762491,
+            945.6800748163689
+          ],
+          "distance_lower_bound_m": 1891.3601495327089,
+          "independent_region_distance_m": 1891.360149632738
+        },
+        {
+          "channel": 12,
+          "after_actual_action_count": 101,
+          "position": [
+            -215.84530593762491,
+            945.6800748163689
+          ],
+          "distance_lower_bound_m": 1891.3601495327082,
+          "independent_region_distance_m": 1891.3601496327374
+        },
+        {
+          "channel": 11,
+          "after_actual_action_count": 113,
+          "position": [
+            604.7851078029715,
+            758.3765379939889
+          ],
+          "distance_lower_bound_m": 1891.3601495327089,
+          "independent_region_distance_m": 1891.360149632738
+        },
+        {
+          "channel": 12,
+          "after_actual_action_count": 113,
+          "position": [
+            604.7851078029715,
+            758.3765379939889
+          ],
+          "distance_lower_bound_m": 1891.3601495327082,
+          "independent_region_distance_m": 1891.3601496327374
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 116,
+          "position": [
+            604.7851078029715,
+            758.3765379939889
+          ],
+          "distance_lower_bound_m": 2506.483273745623,
+          "independent_region_distance_m": 2506.483273845652
+        },
+        {
+          "channel": 11,
+          "after_actual_action_count": 121,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "distance_lower_bound_m": 2757.536694951757,
+          "independent_region_distance_m": 2757.536695051786
+        },
+        {
+          "channel": 12,
+          "after_actual_action_count": 121,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "distance_lower_bound_m": 2757.536694951756,
+          "independent_region_distance_m": 2757.536695051785
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 122,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "distance_lower_bound_m": 3364.6240571863427,
+          "independent_region_distance_m": 3364.6240572863717
+        },
+        {
+          "channel": 11,
+          "after_actual_action_count": 127,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2821.2903537905686,
+          "independent_region_distance_m": 2821.2903538905975
+        },
+        {
+          "channel": 12,
+          "after_actual_action_count": 127,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2821.2903537905677,
+          "independent_region_distance_m": 2821.2903538905966
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 129,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 3119.0054045353018,
+          "independent_region_distance_m": 3119.0054046353307
+        },
+        {
+          "channel": 11,
+          "after_actual_action_count": 133,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2757.5366949517565,
+          "independent_region_distance_m": 2757.5366950517855
+        },
+        {
+          "channel": 12,
+          "after_actual_action_count": 133,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2757.5366949517556,
+          "independent_region_distance_m": 2757.5366950517846
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 134,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2718.341090196809,
+          "independent_region_distance_m": 2718.341090296838
+        },
+        {
+          "channel": 11,
+          "after_actual_action_count": 139,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "distance_lower_bound_m": 2570.4944361734724,
+          "independent_region_distance_m": 2570.4944362735014
+        },
+        {
+          "channel": 12,
+          "after_actual_action_count": 139,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "distance_lower_bound_m": 2570.4944361734715,
+          "independent_region_distance_m": 2570.4944362735005
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 141,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "distance_lower_bound_m": 2181.4602774283508,
+          "independent_region_distance_m": 2181.4602775283797
+        },
+        {
+          "channel": 11,
+          "after_actual_action_count": 145,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "distance_lower_bound_m": 2273.18293139452,
+          "independent_region_distance_m": 2273.182931494549
+        },
+        {
+          "channel": 12,
+          "after_actual_action_count": 145,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "distance_lower_bound_m": 2273.18293139452,
+          "independent_region_distance_m": 2273.182931494549
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 146,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "distance_lower_bound_m": 1531.4413980913462,
+          "independent_region_distance_m": 1531.4413981913754
+        },
+        {
+          "channel": 11,
+          "after_actual_action_count": 150,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "distance_lower_bound_m": 1889.1774158084377,
+          "independent_region_distance_m": 1889.1774159084669
+        },
+        {
+          "channel": 12,
+          "after_actual_action_count": 150,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "distance_lower_bound_m": 1889.1774158084377,
+          "independent_region_distance_m": 1889.1774159084669
+        }
+      ],
+      "inferred_observation_count": 0,
+      "inferred_absence_credits": 0,
+      "arithmetic_scope": "Positive-only convex geometry with conservative float margins; no interval claim"
+    },
+    "scheduling_prefix": {
+      "passed": true,
+      "early_services": 0,
+      "early_service_cost_s": 0,
+      "discovery_stops": 0,
+      "budget_interrupted_services": 0,
+      "boundary": "Checks observed service interval and gates; the omitted next action is not recorded, so exact budget-expiry choice is not independently reconstructed"
+    }
+  },
+  "feedback": {
+    "passed": true,
+    "events": 1,
+    "changed_routes": 1,
+    "initial_measurements": 20,
+    "selected_id": 3,
+    "status": "selected",
+    "source_contract": {
+      "experiments/audit_q4_clear_before_probe.py": "68c7ef07dca4cc9f7a60351332911c25054c5e0392220830637bfd89518e62c4",
+      "experiments/audit_q4_joint_continuation.py": "5a04f00ee3796312b0ef0862fedf1bfefe1f9d57101e43eacbf11c7708db99e8",
+      "experiments/audit_q4_scheduling.py": "836d82d30280d24b612ca96367ca7e9b33b0b1b76f441bbfbcf2d674606ff5be",
+      "src/planning/cover_symmetry.py": "9b9e79210e0f7280a0b6db95a979d9e513e9bc48e94717d6692d3432b20be491",
+      "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+      "src/planning/q4_directional_cover.py": "e863b3f0fb83e1deba8d1a24c4b929b8fe1caca9927f8b99e514b1deea6da5c1",
+      "src/strategies/q4_clear_before_probe.py": "641e8b0e4e6cce7b6445e88117d08ac23bd073487dfb46b87e903330f678ac69",
+      "src/strategies/q4_cover_search.py": "2bab5ee2f935967670bb7c1107b99a7bba20208372e15aab328a67b15d651404",
+      "src/strategies/q4_feedback_symmetry.py": "48a5b0cf7d82a7891882fe43137e014306fc4ed9ae646b2a3e299c01d5919510",
+      "src/strategies/q4_joint_continuation.py": "277480e9c22b0bd983a2971ad04fc97f8ff9e3232ed8198445b9d04dc95e024e",
+      "src/strategies/q4_joint_visibility.py": "eb922aae8052b48c9d54cd4b269a088498a3feeddbae254344b6ed73e31ff0e6",
+      "src/strategies/q4_r2_scheduling.py": "48d0f20ed0a073d26f177078f54dd1b40a532038aa74bb0de098c81f84509a44",
+      "src/strategies/q4_range_pruning.py": "c8bd010f186ccd991ffa3cb6727ff1d2cc038c2955bc29f27bb9ab851c37a1d2",
+      "src/strategies/q4_range_scheduling.py": "ad238a4e9c75537223d83ba4b180dc2d316ed71b487497f0f0e5a9bc2d72d76d",
+      "src/strategies/q4_state_search.py": "8d105d02f3cb97ef99a1ccef98b63e5510da3c9c5000f77ee6401fbb39b9de59",
+      "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5"
+    },
+    "inherited_r8": {
+      "passed": true,
+      "events": 0,
+      "attempts": 0,
+      "successes": 0,
+      "failures": 0,
+      "skipped_budget": 0,
+      "failed_then_measured": 0,
+      "terminal_interruptions": 0,
+      "decision_wall_s": 0.0,
+      "boundary": "Actual prefixes and costs; remaining real time is a logged wall-clock snapshot, not a guaranteed future allowance"
+    },
+    "inherited_r12": {
+      "passed": true,
+      "epochs": 15,
+      "refined_epochs": 0,
+      "fallback_epochs": 0,
+      "probe_decisions": 0,
+      "executed_probes": 0,
+      "auxiliary_clear_attempts": 0,
+      "auxiliary_clear_successes": 0,
+      "optical_epochs": 0,
+      "optical_attempts": 0,
+      "terminal_clear_events": 0,
+      "canonical_fallbacks": 0,
+      "decision_wall_s": 9.160002809949219e-05,
+      "continuation_events": 0,
+      "continuation_calls": 0,
+      "continuation_applied": 0,
+      "continuation_wall_s": 0,
+      "boundary": "Actual-prefix and full optical strip coverage; generic physical, coverage/scheduling and inherited R8 audits remain separate requirements"
+    },
+    "inherited_scheduling": {
+      "passed": true,
+      "early_services": 0,
+      "early_service_cost_s": 0,
+      "discovery_stops": 0,
+      "budget_interrupted_services": 0,
+      "boundary": "Checks observed service interval and gates; the omitted next action is not recorded, so exact budget-expiry choice is not independently reconstructed"
+    },
+    "boundary": "Same certified coordinate set, actual first-scan feedback and locked chain; finite proxy only, no optimality or inferred coverage. Historical wall-clock guard is not independently recoverable."
+  }
+}

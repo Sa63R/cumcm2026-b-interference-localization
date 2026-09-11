@@ -21,6 +21,27 @@ BASE_SPEC = {"entrypoint": "strategies.q4_cover_search:run_q4_cover_search",
              "kwargs": {"profile": "compact_22", "schedule": "joint", "max_expansions": 200}}
 
 
+def release_specs(selection):
+    """Keep legacy full releases, or validate an explicitly selected subset.
+
+    The original selection remains the manifest's hash-bound document. This
+    compatibility layer does not overwrite its development specification set.
+    Experiment-specific evaluators may impose stricter label/count rules.
+    """
+    original = selection["specs"]
+    if "selected_specs" not in selection:
+        return original
+    selected = selection["selected_specs"]
+    if (selection.get("passed") is not True or not isinstance(original, dict)
+            or not isinstance(selected, dict)
+            or not isinstance(selection.get("selected"), str)
+            or selection["selected"] not in selected or BASE not in selected
+            or not set(selected) < set(original)
+            or any(spec != original[label] for label, spec in selected.items())):
+        raise ValueError("Selected release must be a passed, unchanged strict subset")
+    return selected
+
+
 def hashes():
     result = source_hashes()
     paths = [ROOT / "experiments" / n for n in ("run_q4_round2.py", "q4_comparison_bounds.py")]
@@ -153,7 +174,7 @@ def main():
     seeds = list(range(args.start, args.start+args.count))
     if args.stage != "pilot":
         selection = json.loads(args.selection.read_bytes())
-        if (selection["source_sha256"] != frozen or selection["specs"] != specs
+        if (selection["source_sha256"] != frozen or release_specs(selection) != specs
                 or selection["reserved_seeds"][args.stage] != seeds):
             raise ValueError("Independent validation source/spec/reserved seed mismatch")
     directory = args.output.resolve()
