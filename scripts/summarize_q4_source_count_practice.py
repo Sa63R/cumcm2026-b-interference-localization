@@ -109,14 +109,19 @@ def markdown(snapshot):
              f"状态：`{snapshot['status']}`；完成 {len(snapshot['rows'])} 局。", "",
              "每源秒数 = 从原点出发至全部清除的模拟器计费用时 / 干扰源总数，包含移动、探测与清除；不是单次测量操作时间。",
              "理论下界沿用历史条件性全清下界；比值为组内总用时 / 总下界。最小与最大是本次样本观察范围，标准差使用 n−1。所有抽取场景均保留，数量只在演练结束后读取。", "",
-             "|源数|局数（旧+新）|总秒均值|总秒最好～最坏|总秒标准差|每源秒均值|每源秒最好～最坏|每源秒标准差|下界秒/源均值|用时/下界|",
-             "|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
+             "|源数|局数（旧+新）|平均整局秒|平均秒/源|每源最好～最坏|平均下界秒/源|用时/下界|",
+             "|---:|---:|---:|---:|---:|---:|---:|"]
     for g in snapshot["groups"]:
         count = f"{g['runs']}（{g['baseline_runs']}+{g['new_runs']}）"
         cells = [str(g["source_count"]), count, fmt(g.get("mean_actual_time_s")),
-                 fmt(g.get("min_actual_time_s")) + "～" + fmt(g.get("max_actual_time_s")), fmt(g.get("sample_std_actual_time_s")),
                  fmt(g.get("mean_time_per_source_s")), fmt(g.get("min_time_per_source_s")) + "～" + fmt(g.get("max_time_per_source_s")),
-                 fmt(g.get("sample_std_time_per_source_s")), fmt(g.get("mean_lower_bound_per_source_s")), fmt(g.get("sum_time_over_sum_lower_bound"))]
+                 fmt(g.get("mean_lower_bound_per_source_s")), fmt(g.get("sum_time_over_sum_lower_bound"))]
+        lines.append("|" + "|".join(cells) + "|")
+    lines += ["", "## 整局范围和标准差", "", "|源数|整局最好～最坏秒|整局标准差秒|每源标准差秒|",
+              "|---:|---:|---:|---:|"]
+    for g in snapshot["groups"]:
+        cells = [str(g["source_count"]), fmt(g.get("min_actual_time_s")) + "～" + fmt(g.get("max_actual_time_s")),
+                 fmt(g.get("sample_std_actual_time_s")), fmt(g.get("sample_std_time_per_source_s"))]
         lines.append("|" + "|".join(cells) + "|")
     lines += ["", "## 逐局记录", "", "|批次|局号|源数|总秒|下界秒|秒/源|下界秒/源|用时/下界|测量数|",
               "|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
@@ -173,7 +178,10 @@ def main():
             "primary_ratio": "sum(actual_time_s)/sum(lower_bound_s)",
             "per_source_time_definition": "Full billed virtual time divided by official terminal source count.",
             "retention_rule": "All completed cases in both batch snapshots are included; unreported case directories are listed separately."},
-        "status": current.get("status", "unknown"),
+        "status": ("source_counts_covered" if current.get("status") in {"stop_requested", "source_counts_covered"}
+                   and all(g["runs"] >= args.minimum_per_count for g in groups) and not pending
+                   and not (new_batch / "failure.json").exists() else current.get("status", "unknown")),
+        "source_batch_status": current.get("status", "unknown"),
         "updated_at_utc": datetime.now(timezone.utc).isoformat(),
         "groups_meet_minimum": all(g["runs"] >= args.minimum_per_count for g in groups),
         "unreported_new_case_directories": pending,
