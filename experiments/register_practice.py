@@ -28,19 +28,7 @@ def nonnegative(value, name):
     return float(value)
 
 
-def timestamp(value, name):
-    if not isinstance(value, str):
-        raise ValueError(f"{name} must be an ISO timestamp with a timezone")
-    try:
-        result = datetime.fromisoformat(value.replace("Z", "+00:00"))
-    except ValueError as exc:
-        raise ValueError(f"Invalid {name}") from exc
-    if result.tzinfo is None or result.utcoffset() is None:
-        raise ValueError(f"{name} must include a timezone")
-    return result.astimezone(timezone.utc)
-
-
-def read_official_result(path, summary):
+def read_official_result(path, summary, *, raw_journal=None):
     raw = path.read_bytes()
     result = json.loads(raw.decode("utf-8-sig"))
     if not isinstance(result, dict):
@@ -64,14 +52,9 @@ def read_official_result(path, summary):
     code = result.get("case_code")
     if not isinstance(code, str) or not code.strip() or not code.isprintable():
         raise ValueError("Official result case code must be nonempty and printable")
-    window_start = timestamp(result.get("window_started_at_utc"), "window_started_at_utc")
-    ended = timestamp(result.get("ended_at_utc"), "ended_at_utc")
-    session_start = timestamp(summary.get("started_at"), "session started_at")
-    if ended < window_start:
-        raise ValueError("Official result ended_at_utc precedes its window start")
-    if not window_start <= session_start <= ended:
-        raise ValueError("Session started_at is outside the official result time window")
-    return result, raw
+    from practice_control.evidence_time import match_session_time
+    time_evidence = match_session_time(summary, result, raw_journal=raw_journal)
+    return result, raw, time_evidence
 
 
 def register(args):
@@ -88,10 +71,15 @@ def register(args):
     case_code = getattr(args, "case_code", None)
     total = getattr(args, "source_total", None)
     official_path = getattr(args, "official_result_json", None)
-    official_result, official_raw = None, None
+    official_result, official_raw, time_evidence = None, None, None
+    raw_journal = None
     source_total_source = "official_gui_user_transcribed"
     if official_path is not None:
-        official_result, official_raw = read_official_result(official_path, summary)
+        journal_path = args.summary.parent / "requests.jsonl"
+        if journal_path.is_file():
+            raw_journal = journal_path.read_bytes()
+        official_result, official_raw, time_evidence = read_official_result(
+            official_path, summary, raw_journal=raw_journal)
         if case_code is not None and case_code != official_result["case_code"]:
             raise ValueError("Explicit case code does not match the official result file")
         if total is not None and total != official_result["jammer_count"]:
@@ -151,7 +139,11 @@ def register(args):
                       official_result_ended_at_utc=official_result["ended_at_utc"],
                       omnidirectional_source_total=official_result["omnidirectional_jammer_count"],
                       directional_source_total=official_result["directional_jammer_count"],
-                      official_result_session_time_matched=True)
+                      official_result_session_time_matched=True,
+                      session_time_evidence=time_evidence)
+        if time_evidence["basis"] == "simulator_http_enter":
+            journal_archive = Path("evidence") / f"{hashlib.sha256(raw_journal).hexdigest()}.requests.jsonl"
+            record["session_time_journal_path"] = journal_archive.as_posix()
     (directory / "evidence").mkdir(parents=True, exist_ok=True)
     evidence = directory / archived
     if evidence.exists():
@@ -168,6 +160,14 @@ def register(args):
         else:
             with result_evidence.open("xb") as stream:
                 stream.write(official_raw)
+        if time_evidence["basis"] == "simulator_http_enter":
+            journal_evidence = directory / journal_archive
+            if journal_evidence.exists():
+                if journal_evidence.read_bytes() != raw_journal:
+                    raise ValueError("Archived request journal differs; preserve evidence")
+            else:
+                with journal_evidence.open("xb") as stream:
+                    stream.write(raw_journal)
     destination = directory / f"practice-{key}.json"
     with destination.open("x", encoding="utf-8") as stream:
         json.dump(record, stream, ensure_ascii=False, indent=2, allow_nan=False)

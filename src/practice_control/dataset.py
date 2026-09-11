@@ -127,10 +127,18 @@ def _registered_evidence(episode, raw_summary):
     raw_official = (record_path.parent / official_ref).read_bytes()
     if _hash(raw_official) != record.get("official_result_sha256"):
         raise ValueError("Archived practice result hash mismatch")
+    time_evidence = record.get("session_time_evidence", {})
+    if time_evidence.get("basis") == "simulator_http_enter":
+        journal_ref = Path(record.get("session_time_journal_path", ""))
+        if (journal_ref.is_absolute() or len(journal_ref.parts) != 2
+                or journal_ref.parts[0] != "evidence" or not journal_ref.name.endswith(".requests.jsonl")):
+            raise ValueError("Expected archived request journal for simulator-clock time evidence")
+        if _hash((record_path.parent / journal_ref).read_bytes()) != time_evidence.get("journal_sha256"):
+            raise ValueError("Archived time-evidence request journal hash mismatch")
     return registration, record, raw_official, raw_record
 
 
-def _validate_episode(summary, created, before, after, registration, record, official):
+def _validate_episode(summary, created, before, after, registration, record, official, *, raw_journal=None):
     case, problem = summary.get("case_code"), summary.get("problem")
     if (summary.get("declared_mode") != "practice" or type(problem) is not int or problem not in (3, 4)
             or not isinstance(case, str) or not _CASE.fullmatch(case)
@@ -165,14 +173,12 @@ def _validate_episode(summary, created, before, after, registration, record, off
     cleared = _integer(summary["state"].get("cleared_count"), "cleared count", 0, total)
     if cleared != record.get("cleared_count"):
         raise ValueError("Registered clearance count disagrees")
-    try:
-        start = datetime.fromisoformat(summary["started_at"].replace("Z", "+00:00"))
-        window = datetime.fromisoformat(official["window_started_at_utc"].replace("Z", "+00:00"))
-        end = datetime.fromisoformat(official["ended_at_utc"].replace("Z", "+00:00"))
-        if any(value.utcoffset() is None for value in (start, window, end)) or not window <= start <= end:
-            raise ValueError("Result evidence is outside the practice time window")
-    except (KeyError, TypeError) as exc:
-        raise ValueError("Missing practice evidence timestamps") from exc
+    from .evidence_time import match_session_time
+    time_evidence = match_session_time(summary, official, raw_journal=raw_journal)
+    recorded_time_evidence = record.get("session_time_evidence")
+    if (recorded_time_evidence is not None or time_evidence["basis"] != "local_summary"):
+        if recorded_time_evidence != time_evidence:
+            raise ValueError("Registered session time evidence does not match the original journal")
     _number(summary["state"].get("virtual_time_s"), "virtual time")
     _number(summary.get("program_wall_time_s"), "program wall time")
     return case, problem, total, cleared
@@ -422,7 +428,7 @@ def import_episode(db_path, episode_dir):
     official = _load(raw_official)
     case, problem, total, cleared = _validate_episode(
         summary, documents["created.json"], documents["before.json"], documents["after.json"],
-        registration, record, official)
+        registration, record, official, raw_journal=raw["requests.jsonl"])
     steps, observations, request_numbers = _journal(records, summary)
     labels = _source_labels(steps)
     flags = []
