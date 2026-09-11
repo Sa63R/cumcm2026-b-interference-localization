@@ -116,6 +116,7 @@ def audit_steps(steps, summary):
     """
     current, tuned, elapsed, active = (0., 0.), 1, 0, False
     totals = dict.fromkeys(COMPONENTS, 0)
+    client_totals = dict.fromkeys(COMPONENTS, 0.)
     cleared, history = set(), []
     accepted = measurements = failures = 0
     for index, step in enumerate(steps):
@@ -128,6 +129,7 @@ def audit_steps(steps, summary):
                 "Accepted marker mismatch")
         close(step["virtual_time_before_s"], elapsed / 1e6, "Before time")
         parts = dict.fromkeys(COMPONENTS, 0)
+        continuous_movement = 0.
         if step["accepted"]:
             accepted += 1
             if kind == "enter":
@@ -143,7 +145,8 @@ def audit_steps(steps, summary):
                     require(type(channel) is int and 1 <= channel <= 20, "Invalid channel")
                     require(channel == step["channel"] and point == position((step["x_m"], step["y_m"])),
                             "Stored action columns mismatch")
-                    parts["movement_s"] = round(math.dist(current, point) / 5 * 1e6)
+                    continuous_movement = math.dist(current, point) / 5
+                    parts["movement_s"] = round(continuous_movement * 1e6)
                     current = point
                     item = {"action": kind, "position": list(point), "channel": channel}
                     if kind == "measure":
@@ -182,7 +185,12 @@ def audit_steps(steps, summary):
         recorded = load_json(step["cost_components_json"])
         require(set(recorded).issubset(COMPONENTS), "Unknown cost component")
         for key in COMPONENTS:
-            close(recorded.get(key, 0), parts[key] / 1e6, key)
+            # The client stores continuous distance estimates; the official
+            # response clock rounds each movement to a microsecond. Audit both
+            # models independently instead of conflating their accumulated sums.
+            client_part = continuous_movement if key == "movement_s" else parts[key] / 1e6
+            client_totals[key] += client_part
+            close(recorded.get(key, 0), client_part, key)
         require(bool(step["clear_success"]) == (step["accepted"] and kind == "clear"
                 and response.get("clear_result") == "success"), "Clear-success marker mismatch")
     require(bool(steps) and steps[0]["action"] == "enter" and steps[0]["accepted"] == 1
@@ -193,10 +201,12 @@ def audit_steps(steps, summary):
     require(summary["state"]["cleared_count"] == len(cleared), "Summary cleared count mismatch")
     close(summary["state"]["virtual_time_s"], elapsed / 1e6, "Summary total")
     for key in COMPONENTS:
-        close(summary["state"]["time_breakdown"].get(key, 0), totals[key] / 1e6, "Summary " + key)
+        close(summary["state"]["time_breakdown"].get(key, 0), client_totals[key], "Summary " + key)
     return {"passed": True, "virtual_time_s": elapsed / 1e6, "accepted_steps": accepted,
             "measurements": measurements, "failed_clear_count": failures, "cleared_count": len(cleared),
             "time_breakdown_s": {key: value / 1e6 for key, value in totals.items()},
+            "client_estimated_time_breakdown_s": client_totals,
+            "client_rounding_residual_s": sum(client_totals.values()) - elapsed / 1e6,
             "action_history": history}
 
 
@@ -328,10 +338,10 @@ def audit_snapshot(snapshot, freeze, output, candidates_path=None, expected_hold
 def self_test():
     """Artificial seven-action trajectory; no collection DB, scene or network."""
     steps, elapsed = [], 0.
-    def add(action, channel=None, point=None, result=None, bearing=None, **parts):
+    def add(action, channel=None, point=None, result=None, bearing=None, wire_delta=None, **parts):
         nonlocal elapsed
         before = elapsed
-        elapsed += sum(parts.values())
+        elapsed += sum(parts.values()) if wire_delta is None else wire_delta
         payload, response = {}, {"accepted": True, "virtual_time_s": elapsed}
         if point is not None:
             payload = {"position": dict(zip(("x", "y"), point)), "channel": channel}
@@ -374,10 +384,26 @@ def self_test():
         raise AssertionError("Missing optical cost was not rejected")
     duplicate = dict(steps[3], response_json=json.dumps({"measure_result": "direction", "svd_deg": 91.}))
     assert measurement_support([steps[3], duplicate], candidates[:1])[0]["status"] == "unsupported"
-    return {"passed": True, "source": "artificial seven-action example only",
+    # An explicit quantization fixture catches accumulation larger than 2 us.
+    # Its client estimates remain exact without relaxing official-clock checks.
+    steps, elapsed, previous, continuous = [], 0., (0., 0.), 0.
+    add("enter")
+    for i in range(1, 31):
+        q = (i * 5.0000004, 0.)
+        movement = math.dist(previous, q) / 5
+        continuous += movement
+        add("measure", 1, q, "no_signal", movement_s=movement, detection_s=5.,
+            wire_delta=round(movement * 1e6)/1e6 + 5.)
+        previous = q
+    add("exit")
+    summary = {"pending_request": None, "state": {"session": "exited", "cleared_count": 0,
+        "virtual_time_s": 180., "time_breakdown": dict(zip(COMPONENTS, (continuous, 0., 150., 0., 0.)))}}
+    assert audit_steps(steps, summary)["client_rounding_residual_s"] > 2e-6
+    return {"passed": True, "source": "artificial action examples only",
             "checks": ["exact total", "clear does not retune", "failed optical fully charged",
                 "cost corruption rejected", "recorded point supported", "nearby point unsupported",
-                "post-clear silence excluded", "conflicting repeated feedback excluded", "no counterfactual runtime"]}
+                "post-clear silence excluded", "conflicting repeated feedback excluded", "no counterfactual runtime",
+                "continuous client estimates and per-action rounded clock independently verified"]}
 
 
 def main(argv=None):
