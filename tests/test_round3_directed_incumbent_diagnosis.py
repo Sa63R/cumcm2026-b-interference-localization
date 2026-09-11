@@ -2,6 +2,7 @@
 
 from copy import deepcopy
 import json
+import hashlib
 from types import SimpleNamespace
 
 import pytest
@@ -9,6 +10,7 @@ import pytest
 import planning.state_route as parent_helper
 from experiments.round3_directed_incumbent_diagnosis import (
     aggregate, physical_costs, price, reconstruct_parent, verify_decision,
+    verify_parent_files,
 )
 
 
@@ -140,3 +142,19 @@ def test_original_parent_route_reconstruction_uses_only_frozen_public_tasks():
     log["parent_planning"]["cost_s"] = 11.
     with pytest.raises(ValueError,match="selected parent cost"):
         reconstruct_parent(log,relocation,parent_helper,{"max_expansions":100,"max_total_expansions":60000})
+
+
+def test_original_shared_parent_may_omit_unused_candidate_modules_but_no_source_can_change(tmp_path):
+    required = ["src/planning/state_route.py", "src/simulator_client/state.py", "src/simulator_client/rules.py"]
+    hashes = {}
+    for name in required:
+        path = tmp_path/name
+        path.parent.mkdir(parents=True,exist_ok=True)
+        path.write_text("# artificial dependency fixture\n")
+        hashes[name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    hashes["src/planning/directed_state_route.py"] = "unused archived module"
+    identity = {"source_sha256":hashes}
+    assert set(verify_parent_files(tmp_path,identity)) == set(required)
+    (tmp_path/required[0]).write_text("# changed\n")
+    with pytest.raises(ValueError,match="parent source mismatch"):
+        verify_parent_files(tmp_path,identity)

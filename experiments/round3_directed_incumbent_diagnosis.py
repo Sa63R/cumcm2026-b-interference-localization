@@ -167,13 +167,29 @@ def reconstruct_parent(log, relocation, helper, config):
     return tuple(best_order)
 
 
+def verify_parent_files(source_root, identity):
+    # The original 760 parent has the same pure solver, but intentionally
+    # lacks the three modules newly added by old_directed. Verify the complete
+    # supplied SHARED tree, requiring every actual file to match the archive;
+    # do not require unused candidate modules to exist in this helper tree.
+    required = {"src/planning/state_route.py", "src/simulator_client/state.py",
+                "src/simulator_client/rules.py"}
+    actual = {p.relative_to(source_root).as_posix(): p for p in (source_root/"src").rglob("*.py")}
+    require(required <= set(actual), "missing pure parent solver dependency")
+    verified = {}
+    for relative, path in actual.items():
+        expected = identity["source_sha256"].get(relative)
+        require(expected is not None and sha(path) == expected, "parent source mismatch: " + relative)
+        verified[relative] = expected
+    return verified
+
+
 def load_parent_helper(source_root, identity):
-    # Require the full source snapshot to match the named old control first.
-    for relative, expected in identity["source_sha256"].items():
-        require(sha(source_root / relative) == expected, "parent source mismatch: " + relative)
+    verified = verify_parent_files(source_root, identity)
     sys.path.insert(0, str(source_root / "src"))
     module = importlib.import_module("planning.state_route")
     require(Path(module.__file__).resolve() == (source_root / "src/planning/state_route.py").resolve(), "unexpected imported parent solver")
+    module._diagnostic_source_sha256 = verified
     # The only callable used is this pure finite task solver; no policy class.
     return module
 
@@ -279,7 +295,9 @@ def build(batch, audit_path, source_root):
         "sqlite_read": False, "new_cases": 0, "policy_calls": 0, "simulator_calls": 0,
         "script_sha256": sha(__file__), "verification_dependency_sha256": sha(ROOT/"experiments/round3_posthoc_audit.py"),
         "input_sha256": evidence, "source_commits": {k:v["commit"] for k,v in manifest["policies"].items()},
-        "parent_solver_source_sha256": manifest["policies"]["old_directed"]["source_sha256"],
+        "parent_solver_source_sha256": helper._diagnostic_source_sha256,
+        "diagnostic_changes": [{"previous_script_sha256": "e6522500a12390d00dc23d8823486ba82cb4b3356d9b9bd5b1980eeb13bc62da",
+            "kind": "shared_parent_dependency_scope", "reason": "The requested original 760 helper tree lacks unused directed candidate modules. All actual shared source files and required solver dependencies are still hash-matched to the archived old control. No policy or result changed."}],
         "mechanism_checks_passed": True, "physical_audits_passed": audit["all_audits_passed"],
         "mechanism": {arm:aggregate(values) for arm,values in rows.items()}, "performance": performance,
         "candidate_vs_old": {"mean_saved_s": -statistics.mean(deltas), "wins": sum(x < -1e-6 for x in deltas),

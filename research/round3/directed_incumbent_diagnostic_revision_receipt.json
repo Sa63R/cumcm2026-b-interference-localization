@@ -1,0 +1,39 @@
+{
+  "scope": "Diagnostic dependency-loader repair and completed 32-case mechanism audit; no policy, runner, simulator or raw results changed.",
+  "created_at_utc": "2026-09-11T19:20:42.922080+00:00",
+  "prior_receipt": "research/round3/posthoc_validation_receipt.json",
+  "prior_receipt_preserved_sha256": "a2c18936ebad6fd598a4e8d67a9e675263013e914546da6d8f2edea96183ed01",
+  "prior_receipt_git_commit": "c0b064de",
+  "original_script_sha256": "e6522500a12390d00dc23d8823486ba82cb4b3356d9b9bd5b1980eeb13bc62da",
+  "original_test_sha256": "a172c8306f090bf75a0d13a0b40d3d4fa200f3bebe46a9fda5f7a6419c5989cb",
+  "original_tests": 17,
+  "repair": "The requested original760 helper lacks three unused candidate modules. Require all actual shared source files to match archived old_directed hashes and require the pure parent solver/state/rules; all51 shared files matched. No data or incumbent contract relaxation.",
+  "initial_invocation": {
+    "exit_code": 1,
+    "reason": "dependency path FileNotFound before record parsing; no output generated"
+  },
+  "new_tests": {
+    "command": "python -m pytest tests/test_round3_directed_incumbent_diagnosis.py -q",
+    "passed": 18,
+    "exit_code": 0,
+    "pytest_elapsed_s": 0.17
+  },
+  "diagnosis": {
+    "command": "python experiments/round3_directed_incumbent_diagnosis.py --batch results/round3/directed_incumbent/pilot --audit results/round3/directed_incumbent/pilot/audit.json --parent-source-root ../q3-r2-derived-silence --output research/round3/diagnoses/DIRECTED_INCUMBENT_PILOT",
+    "exit_code": 0,
+    "new_models_checked": 580,
+    "old_models_checked": 570,
+    "new_incumbent_violations": 0,
+    "old_missed_incumbents": 20,
+    "same_public_prefix_same_matrix_pairs": 373,
+    "physical_audit_records": 160
+  },
+  "markdown_postrender_note": "Interpretation appended from the produced JSON and its SHA-bound summary; generated JSON left unchanged.",
+  "file_sha256": {
+    "experiments/round3_directed_incumbent_diagnosis.py": "d78402af50b51a5cdab77f6a257a024ee406524df0974e52a47bf27fca8f7061",
+    "tests/test_round3_directed_incumbent_diagnosis.py": "06ed068d47840a9fe1cafda76667baf5550981fae54c42440657e92e552b5456",
+    "research/round3/posthoc_validation_receipt.json": "a2c18936ebad6fd598a4e8d67a9e675263013e914546da6d8f2edea96183ed01",
+    "research/round3/diagnoses/DIRECTED_INCUMBENT_PILOT.json": "4bf2b3c9d685d2f941da109f4fa8891e0f2a9977a149d84482cab44db3e73feb",
+    "research/round3/diagnoses/DIRECTED_INCUMBENT_PILOT.md": "85afb0538850986afedb2f66c261f57cc5a6b406d4726a368923cad38b51913b"
+  }
+}

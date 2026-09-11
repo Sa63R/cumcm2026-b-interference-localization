@@ -1,0 +1,38 @@
+{
+  "role": "Best evidence-supported usable Q3 state-search version at round3 close",
+  "repository": "q3-r2-derived-silence",
+  "branch": "research/q3-r2-derived-silence",
+  "commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+  "spec_path": "experiments/state_search_candidate_derived_silence_combined_v1.json",
+  "spec": {
+    "name": "state_search_derived_silence_combined_v1",
+    "entrypoint": "strategies.derived_silence_state_search:run_derived_silence_state_search",
+    "kwargs": {
+      "config": {
+        "ring_radius": 1150.0,
+        "max_expansions": 100,
+        "max_total_expansions": 60000,
+        "scan_source_s": 0.0,
+        "skip_certified_scans": true,
+        "stop_discovery_at_16": true,
+        "opportunistic_measurements": true,
+        "opportunistic_min_radius": 60.0,
+        "replace_coverage": false,
+        "coverage_replacement_gain_s": 0.0,
+        "active_probe_search": true,
+        "probe_uncertainty_weight": 0.5
+      },
+      "enabled": true,
+      "relative_silence": true,
+      "stop_scan_at_16": true
+    }
+  },
+  "new_trial_promoted": false,
+  "evidence": [
+    "research/round2/DERIVED_SILENCE_VALIDATION.md",
+    "research/round3/EVIDENCE_INDEX.json"
+  ],
+  "entry_check": "results/round3/reference/derived_entry_dry_run.json",
+  "official_status": "Entry dry-run only for this enhanced version; current official practice compatibility remains unverified.",
+  "stop_scope": "No further reliable improvement found in the tested main log-backed directions; not budget exhaustion or theoretical optimality."
+}
