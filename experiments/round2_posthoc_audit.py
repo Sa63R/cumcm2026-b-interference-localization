@@ -255,17 +255,22 @@ def markdown(result):
         values = [group[key] for key in ("mean_time_s", "mean_physical_lower_s", "mean_case_time_over_lower", "sum_time_over_sum_lower")]
         cells = [f"{value:.6f}" if value is not None else "不适用" for value in values]
         lines.append(f"| {name} | {group['successful']}/{group['runs']} | {group['audit_passed']} | " + " | ".join(cells) + " |")
-    lines.extend(["", "## 每局复用同一下界", "", "下表的基准用时取feedback批；clear_lens批的重复基准仍在JSON中单独审核和保留。每个候选格依次为T（秒）/T÷LB。", "",
-                  "| 场景seed | N | L/米 | LB/秒 | 基准 T / 比值 | feedback T / 比值 | clear_lens T / 比值 |",
-                  "| --- | ---: | ---: | ---: | ---: | ---: | ---: |"])
+    columns = sorted({(row["batch"], row["strategy"]) for row in result["rows"]},
+                     key=lambda item: (item[0], item[1] != "baseline", item[1]))
+    lines.extend(["", "## 每局复用同一下界", "",
+                  "仅列出本次实际审核的批次和策略；不同批次的重复基准分别保留。同一场景复用同一个下界。每个结果格依次为T（秒）/T÷LB，未运行的组合明确标记。", "",
+                  "| 场景seed | N | L/米 | LB/秒 | " + " | ".join(f"{batch}/{policy} T / 比值" for batch, policy in columns) + " |",
+                  "| --- | ---: | ---: | ---: | " + " | ".join("---:" for _ in columns) + " |"])
     for seed, bound in sorted(result["bounds_by_seed"].items(), key=lambda item: int(item[0])):
         candidates = []
-        for policy in ("baseline", "feedback", "clear_lens"):
-            choices = [row for row in result["rows"] if row["seed"] == int(seed) and row["strategy"] == policy]
-            choices.sort(key=lambda row: row["batch"].startswith("feedback/"), reverse=True)
+        for batch, policy in columns:
+            choices = [row for row in result["rows"] if row["seed"] == int(seed)
+                       and row["strategy"] == policy and row["batch"] == batch]
+            if len(choices) > 1:
+                raise ValueError("Duplicate case/batch/policy while rendering")
             row = choices[0] if choices else None
             candidates.append(f"{row['virtual_time_s']:.6f} / {row['time_over_physical_lower']:.6f}"
-                              if row and row["ratio_eligible"] else "不适用")
+                              if row and row["ratio_eligible"] else "未通过审核或不可比" if row else "未运行")
         lines.append(f"| {seed} | {bound['source_total']} | {bound['source_route_lower_m']:.6f} | {bound['physical_clairvoyant_lower_s']:.6f} | " + " | ".join(candidates) + " |")
     lines.extend(["", "## 独立审核内容与限制", "",
                   "- 校验已存在的归档runner、源代码zip及逐文件哈希、冻结spec、manifest、完整案例×策略集合、summary与各原始记录一致性；缺失旧runner单独披露。",
@@ -273,7 +278,11 @@ def markdown(result):
                   "- 复用observation_audit：逐步只用当时观测重建区域，核验推断静默的1500米距离证书、真实测量覆盖、最终无遗漏证书与16源上限终止。",
                   "- 清除证书直接检查实际清除点到所有候选顶点的最大距离，并结合既往near的5米圆。lens的清除点可以位于最小包围圆内部安全圆之外，只要直接顶点距离证书成立。",
                   "- 图DP通过1至7节点的全部排列对照；两种比值汇总通过人工算例检查。",
-                  "- 本次仅是pilot证据，不能作为独立确认或最优性证明。全部记录保留，失败或审计不通过的记录不能伪装成有效完整清除T/LB。", ""])
+                  "- 本次批次及阶段以表内名称为准；pilot与开发诊断不能作为独立确认或最优性证明。全部记录保留，失败或审计不通过的记录不能伪装成有效完整清除T/LB。", "",
+                  "## 渲染来源", "",
+                  f"原始JSON中的审计脚本SHA-256：`{result['script_sha256']}`。",
+                  f"本次Markdown渲染脚本SHA-256：`{sha(__file__)}`。",
+                  "若二者不同，表示仅用更新后的显示模板重新渲染已有JSON；没有重算实验或下界，也没有修改原JSON的审计哈希。", ""])
     errors = [row for row in result["rows"] if row["errors"]]
     if errors:
         lines += ["审核错误：", ""] + [f"- {row['batch']}/{row['strategy']}/{row['seed']}: {row['errors']}" for row in errors]
