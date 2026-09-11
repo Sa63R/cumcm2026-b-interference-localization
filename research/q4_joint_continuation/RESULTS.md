@@ -55,3 +55,5 @@ python -B experiments/run_q4_joint_continuation_practice.py --preflight-only
 ```
 
 [结果图](figures/independent-comparison.png)及PDF已生成并目视核验。演练入口51项禁联网离线测试通过，并对真实20份独立证据执行preflight成功。实际演练状态与调用方式另见RUN_PRACTICE.md；不触发正式测试。此文为研究日志，不是论文正文。
+
+2026-09-12 03:30已完成一局官方演练：10/10全清，T6644.712802秒，历史条件LB1902.646119223秒，T/LB3.492353483，实际前缀与登记核验通过。该局未触发辅助区刷新，不能以此代替新机制覆盖测试或同场景PPO比较；完整实际观测去标识后发布，原身份材料只留本地。
