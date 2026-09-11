@@ -1,0 +1,97 @@
+{
+  "r8": {
+    "entrypoint": "strategies.q4_clear_before_probe:run_q4_clear_before_probe",
+    "kwargs": {
+      "max_expansions": 200,
+      "config": "center_once"
+    }
+  },
+  "macro_rule512": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    }
+  },
+  "macro_bc512": {
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "runs/train-pair-v2/macro512/training/warmstart.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "runs/train-pair-v2/macro512/training/warmstart.pt"
+      }
+    },
+    "entrypoint": "q4_rl.controller:run_q4_rl"
+  },
+  "macro_ppo512": {
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "runs/train-pair-v2/macro512/training/checkpoint-000055.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "runs/train-pair-v2/macro512/training/checkpoint-000055.pt"
+      }
+    },
+    "entrypoint": "q4_rl.controller:run_q4_rl"
+  },
+  "micro_rule512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    }
+  },
+  "micro_bc512": {
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "runs/train-pair-v2/micro512/training/warmstart.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "runs/train-pair-v2/micro512/training/warmstart.pt"
+      }
+    },
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro"
+  },
+  "micro_ppo512": {
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "runs/train-pair-v2/micro512/training/checkpoint-000007.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "runs/train-pair-v2/micro512/training/checkpoint-000007.pt"
+      }
+    },
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro"
+  }
+}
