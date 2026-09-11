@@ -205,7 +205,7 @@ def test_rollout_deadline_rejects_before_any_scene_creation(monkeypatch):
 
 
 @pytest.mark.parametrize("flag,value", [("--learning-rate", "nan"), ("--entropy-coefficient", "inf"),
-                                       ("--scenario-start", "8100000"), ("--cpu-budget", "1")])
+                                       ("--scenario-start", "8100000"), ("--cpu-budget", "0")])
 def test_invalid_resource_or_training_partition_is_rejected(tmp_path, flag, value):
     with pytest.raises(SystemExit):
         train.main(arguments(tmp_path)+[flag, value])

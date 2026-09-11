@@ -49,3 +49,30 @@ def test_nonempty_output_cannot_be_reused(tmp_path):
     (output/"latest.pt").write_bytes(b"existing")
     with pytest.raises(ValueError, match="fresh output"):
         validate_config(config("one"), tmp_path)
+
+
+def threaded_config(module, threads, *, workers=8, budget=12):
+    return {"run": "wave", "jobs": [dict(name="one", module=module, argv=[
+        "--output", "runs/wave/one/training", "--workers", str(workers),
+        "--cpu-budget", str(budget), "--learner-threads", str(threads)])]}
+
+
+@pytest.mark.parametrize("module", ["q4_rl.micro_train", "q4_rl.memory_train"])
+def test_threaded_learners_must_fit_concurrent_budget(tmp_path, module):
+    assert validate_config(threaded_config(module, 4), tmp_path)[1]
+    with pytest.raises(ValueError, match="allowance"):
+        validate_config(threaded_config(module, 4, budget=11), tmp_path)
+    assert validate_config(threaded_config(module, 1, workers=1, budget=1), tmp_path)[1]
+    assert validate_config(threaded_config(module, 4, workers=1, budget=4), tmp_path)[1]
+
+
+@pytest.mark.parametrize("module", ["q4_rl.train", "q4_rl.scst_train"])
+def test_other_trainers_cannot_accept_thread_option(tmp_path, module):
+    with pytest.raises(ValueError, match="forbidden"):
+        validate_config(threaded_config(module, 1), tmp_path)
+
+
+@pytest.mark.parametrize("threads", ["2.0", "true", "3", "0", "-1"])
+def test_thread_count_requires_declared_integer_choice(tmp_path, threads):
+    with pytest.raises(ValueError):
+        validate_config(threaded_config("q4_rl.micro_train", threads), tmp_path)

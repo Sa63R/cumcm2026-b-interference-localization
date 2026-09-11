@@ -29,6 +29,7 @@ from .train import (TRAIN_START, TRAIN_END, DEFAULT_DEADLINE, TrainingStop,
     training_case_spec, attach_returns, ppo_update, imitation_update,
     summarize_training_metrics, parse_deadline, _configuration, _write_json, _write_batch)
 from .training_journal import EpisodeJournal
+from .learner_threads import learner_update_threads, minimum_cpu_budget, validate_learner_threads
 
 
 _stop_requested = False
@@ -116,6 +117,7 @@ def rollout(task):
 
 
 def save_checkpoint(path, model, optimizer, state, config):
+    validate_learner_threads(config.get("learner_threads", 1))
     metadata = model.metadata()
     if (config.get("architecture", "mlp") != architecture_name(metadata)
             or any(p.device.type != "cpu" for p in model.parameters())):
@@ -136,6 +138,7 @@ def restore_checkpoint(path, *, learning_rate=None):
     configure_cpu()
     saved = torch.load(Path(path), map_location="cpu", weights_only=True)
     validate_checkpoint(saved)
+    validate_learner_threads(saved["config"].get("learner_threads", 1))
     model = model_from_metadata(saved["network"])
     model.load_state_dict(saved["model"])
     rate = saved["config"]["learning_rate"]
@@ -153,6 +156,7 @@ def _arguments(argv):
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--resume", type=Path)
     parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--learner-threads", type=int, choices=(1, 2, 4), default=1)
     parser.add_argument("--cpu-budget", type=int, default=2)
     parser.add_argument("--hidden", type=int, default=64)
     parser.add_argument("--architecture", choices=("mlp",), default="mlp")
@@ -173,8 +177,9 @@ def _arguments(argv):
     args = parser.parse_args(argv)
     args.scenario_start = TRAIN_START if args.scenario_start is None else args.scenario_start
     args.scenario_end = TRAIN_END if args.scenario_end is None else args.scenario_end
-    if not (args.workers == args.cpu_budget == 1 or 1 <= args.workers < args.cpu_budget <= 60):
-        parser.error("workers + 1 learner must fit CPU budget (maximum 60)")
+    if (args.workers < 1 or not 1 <= args.cpu_budget <= 60
+            or minimum_cpu_budget(args.workers, args.learner_threads) > args.cpu_budget):
+        parser.error("workers + learner threads must fit CPU budget (maximum 60; workers=1 runs serially)")
     if not TRAIN_START <= args.scenario_start <= args.scenario_end <= TRAIN_END:
         parser.error("training seeds must remain inside 8000000..8099999")
     if (not all(math.isfinite(x) for x in (args.learning_rate, args.max_wall_seconds,
@@ -188,6 +193,8 @@ def _arguments(argv):
 
 def configuration(args):
     result = {**_configuration(args), "controller_entrypoint": CONTROLLER_ENTRYPOINT}
+    if args.learner_threads != 1:
+        result["learner_threads"] = args.learner_threads
     return result
 
 
@@ -268,16 +275,20 @@ def main(argv=None):
             records = [record for row in batch for record in row["records"]]
             update_started, update_cpu_started = time.perf_counter(), time.process_time()
             if pending["mode"] == "imitation":
-                update = imitation_update(model, optimizer, records, epochs=args.epochs,
-                    minibatch_size=args.minibatch_size, stop_check=lambda: _stop_requested or time.time() >= deadline)
+                with learner_update_threads(args.learner_threads):
+                    update = imitation_update(model, optimizer, records, epochs=args.epochs,
+                        minibatch_size=args.minibatch_size, stop_check=lambda: _stop_requested or time.time() >= deadline)
                 state["warmstart_completed"] += len(batch)
             else:
-                update = ppo_update(model, optimizer, records, epochs=args.epochs,
-                    minibatch_size=args.minibatch_size, entropy_coefficient=args.entropy_coefficient,
-                    stop_check=lambda: _stop_requested or time.time() >= deadline)
+                with learner_update_threads(args.learner_threads):
+                    update = ppo_update(model, optimizer, records, epochs=args.epochs,
+                        minibatch_size=args.minibatch_size, entropy_coefficient=args.entropy_coefficient,
+                        stop_check=lambda: _stop_requested or time.time() >= deadline)
                 state["ppo_batches"] += 1
             update.update(wall_time_s=time.perf_counter()-update_started,
                           cpu_time_s=time.process_time()-update_cpu_started)
+            if args.learner_threads != 1:
+                update["learner_threads"] = args.learner_threads
             state["episodes"] += len(batch)
             state["batches"] += 1
             state["pending_batch"] = None

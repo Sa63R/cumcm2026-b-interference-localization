@@ -12,13 +12,15 @@ import re
 
 from scripts.q4_training_pair import (_identifier, _inside, INTEGER_FLAGS,
     FLOAT_FLAGS, ALLOWED_FLAGS, require_outer_supervisor, run_pair)
+from q4_rl.learner_threads import minimum_cpu_budget
 
 
 INITIALIZATION_FLAGS = {"--initialize-micro-warmstart", "--initialize-sha256"}
+THREADED_MODULES = {"q4_rl.micro_train", "q4_rl.memory_train"}
 MODULE_FLAGS = {
     "q4_rl.train": ALLOWED_FLAGS,
-    "q4_rl.micro_train": ALLOWED_FLAGS | INITIALIZATION_FLAGS | {"--architecture"},
-    "q4_rl.memory_train": ALLOWED_FLAGS,
+    "q4_rl.micro_train": ALLOWED_FLAGS | INITIALIZATION_FLAGS | {"--architecture", "--learner-threads"},
+    "q4_rl.memory_train": ALLOWED_FLAGS | {"--learner-threads"},
     "q4_rl.scst_train": {"--output", "--workers", "--cpu-budget", "--batch-pairs",
         "--minibatch-size", "--learning-rate", "--max-decisions", "--entropy-coefficient",
         "--random-seed", "--scenario-start", "--scenario-end", "--max-batches",
@@ -47,10 +49,12 @@ def validate_config(config, root):
         for flag, value in zip(argv[::2], argv[1::2]):
             if flag not in MODULE_FLAGS[module] or flag in flags:
                 raise ValueError("unknown, duplicate or forbidden trainer option")
-            if flag in INTEGER_FLAGS | {"--batch-pairs"}:
+            if flag in INTEGER_FLAGS | {"--batch-pairs", "--learner-threads"}:
                 if not re.fullmatch(r"[0-9]+", value) or (
                         int(value) == 0 and flag not in {"--warmstart-episodes", "--random-seed"}):
                     raise ValueError("invalid integer option")
+                if flag == "--learner-threads" and int(value) not in (1, 2, 4):
+                    raise ValueError("learner threads must be one of 1, 2, 4")
             elif flag in FLOAT_FLAGS:
                 number = float(value)
                 if not math.isfinite(number) or number < 0 or (number == 0 and flag != "--entropy-coefficient"):
@@ -76,7 +80,10 @@ def validate_config(config, root):
         if bool(flags.get("--initialize-micro-warmstart")) != bool(flags.get("--initialize-sha256")):
             raise ValueError("initialization path and SHA must be specified together")
         budget = int(flags["--cpu-budget"])
-        if not 1 <= int(flags["--workers"]) < budget <= 50:
+        workers = int(flags["--workers"])
+        required = (minimum_cpu_budget(workers, int(flags.get("--learner-threads", "1")))
+                    if module in THREADED_MODULES else workers+1)
+        if not 1 <= budget <= 50 or required > budget:
             raise ValueError("workers plus learner must fit the CPU allowance")
         total_budget += budget
         flags["--output"] = output.relative_to(root).as_posix()
