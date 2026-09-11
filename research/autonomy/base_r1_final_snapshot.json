@@ -1,0 +1,79 @@
+{
+  "scope": "Completed base-r1 continued-PPO development run, not independent final validation",
+  "snapshot_directory": "handoff/autonomy-status-20260911T161234.945342Z-3480d657e519",
+  "verified_manifest_sha256": "3480d657e5193bbbfd8dc7bf3456ebdbc8d3ce789c83faa338f96c0166898c57",
+  "verified_final_sync": true,
+  "checkpoint_sha256": "ee0a282b1b9a5c6bbaf612aab6e5863de03389e8c9def2bc06c80c4eeecc2ecd",
+  "checkpoint_state": {
+    "update": 255,
+    "optimizer_steps": 134993,
+    "episodes": 32640,
+    "attempted_episodes": 32768,
+    "next_seed": 3132769,
+    "bc_complete": true,
+    "stop_reason": "global_deadline",
+    "elapsed_training_s": 3254.4014165587723
+  },
+  "evaluation": {
+    "runs": 64,
+    "expected_runs": 64,
+    "complete": true,
+    "successful_runs": 64,
+    "failed_clear_count": 0,
+    "raw_mean_total_time_s": 3145.35354884375,
+    "penalized_mean_total_time_s": 3145.35354884375,
+    "raw_p95_total_time_s": 3610.063252199999,
+    "raw_max_total_time_s": 3855.108556,
+    "mean_time_per_source_s": 243.51224800575153,
+    "mean_program_runtime_s": 0.3813758190954104,
+    "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+    "checkpoint_sha256": "ee0a282b1b9a5c6bbaf612aab6e5863de03389e8c9def2bc06c80c4eeecc2ecd",
+    "split": "development",
+    "physical_mean_lower_s": 1702.2884780352904,
+    "ratio_of_sums": 1.8477206357373603,
+    "audit_passed_records": 64,
+    "source_scope": "Local synthetic worlds, exact paired case hashes; not official simulator results"
+  },
+  "comparisons": {
+    "state_search": {
+      "pairs": 64,
+      "safe_full_clear_pairs": true,
+      "mean_seconds_saved": -69.70474468750001,
+      "paired_mean_savings_ci95_s": [
+        -113.94891358515625,
+        -24.705201685156236
+      ],
+      "mean_reduction_fraction": -0.022663427824823446,
+      "p95_time_ratio": 1.0052702284308974,
+      "max_time_ratio": 1.0219527721778205,
+      "wins": 23,
+      "losses": 41,
+      "maximum_paired_regression_s": 515.0244889999999,
+      "reference_time_over_physical_lower": 1.8067729670038266,
+      "candidate_time_over_physical_lower": 1.8477206357373603,
+      "strict_upgrade_on_supplied_cases": false,
+      "scope": "Development comparison; selection evidence, not independent confirmation"
+    },
+    "initial": {
+      "pairs": 64,
+      "safe_full_clear_pairs": true,
+      "mean_seconds_saved": -47.829408171875016,
+      "paired_mean_savings_ci95_s": [
+        -98.96015305703126,
+        2.1388106976561474
+      ],
+      "mean_reduction_fraction": -0.015441173659909158,
+      "p95_time_ratio": 1.0456286330842444,
+      "max_time_ratio": 1.054220389257229,
+      "wins": 28,
+      "losses": 36,
+      "maximum_paired_regression_s": 627.7791310000002,
+      "reference_time_over_physical_lower": 1.8196235130762948,
+      "candidate_time_over_physical_lower": 1.8477206357373603,
+      "strict_upgrade_on_supplied_cases": false,
+      "scope": "Development comparison; selection evidence, not independent confirmation"
+    }
+  },
+  "decision": "No upgrade: retain the prior best model; average and observed tails did not improve",
+  "budget_caveat": "Block 1 had a preserved deadline despite deployment interruption; this is not an exact effective-training-time match to a clean hour"
+}
