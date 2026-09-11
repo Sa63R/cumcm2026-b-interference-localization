@@ -9,6 +9,12 @@ def action_schema(name="base"):
                 "point_rule": "diameter-axis-q25-q375-q625-q75-width-over8",
                 "max_extra_per_source": 14, "option_id": 6,
                 "minimum_reception_margin_m": 1e-7}
+    if name == "range_probes":
+        return {"version": 1, "name": "range_probes", "extends": "v3-base-probes",
+                "point_rule": "current-to-enclosing-center-midpoint-first-bearing-perpendicular",
+                "offsets_m": [-150.0, -50.0, 50.0, 150.0],
+                "max_extra_per_source": 4, "option_id": 7,
+                "minimum_reception_margin_m": 1e-7}
     raise ValueError("unknown probe candidate family")
 
 
@@ -44,7 +50,10 @@ def controller_for(version, schema):
         return RouteDebtRLSearch
     if schema["name"] != "base":
         if version != "v3":
-            raise ValueError("axis candidate extension requires v3 feature semantics")
+            raise ValueError("candidate extension requires v3 feature semantics")
+        if schema["name"] == "range_probes":
+            from .range_probes import RangeProbeRLSearch
+            return RangeProbeRLSearch
         from .axis_probes import AxisProbeRLSearch
         return AxisProbeRLSearch
     if version == "v3":

@@ -389,8 +389,8 @@ def main(argv=None):
     parser.add_argument("--attention-heads", type=int, default=4)
     parser.add_argument("--group-alpha", type=int, choices=(0, 1), default=0,
                         help="0: original flat policy; 1: subtract log task-group size (v3 only)")
-    parser.add_argument("--probe-candidates", choices=("base", "axis_quantiles"), default="base",
-                        help="Explicit action-set extension; axis_quantiles requires v3 and a new trial")
+    parser.add_argument("--probe-candidates", choices=("base", "axis_quantiles", "range_probes"), default="base",
+                        help="Explicit action-set extension; nonbase candidates require v3 and a new trial")
     parser.add_argument("--device", choices=("cpu",), default="cpu")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112026)
