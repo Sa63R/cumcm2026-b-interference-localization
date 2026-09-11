@@ -1,0 +1,71 @@
+{
+  "task": "q4-rl-gae-v5-20260912",
+  "git_commit": "df36f0ce43a8b1e23d6ebf1cb1b0bba6f16ef01d",
+  "source_archive": "q4-gae-v5-source-20260912-r2.tar.gz",
+  "source_archive_sha256": "ab3a7d6e312306700e9a79b9b14092ce53f084c6e5a8e3fb39847e8c6802c464",
+  "source_manifest_sha256": "72def29c976d1c076de5c221140ce3bd1df6572dce209a25d90a0a87cbe454f0",
+  "prestage_sha256": "8a664d66563460c8b3007b7618a3aff4792c7a21a531e670f92fea0663bde00b",
+  "config_sha256": "022316a9f4797c3af5aad4e86f9eefd130dfc3a2307ec09d5b15f92013405154",
+  "models": [
+    {
+      "path": "models/initialization/g1_h128_bc256.pt",
+      "candidate_dim": 50,
+      "loader": "q4_rl.micro_initialization:load_micro_warmstart",
+      "sha256": "a3170afc53ae48d5b03618872400a424ce27d9c1110f7f2b342fdea13837688d",
+      "bytes": 1318771
+    },
+    {
+      "path": "models/initialization/g3_h128_bc256.pt",
+      "candidate_dim": 58,
+      "loader": "q4_rl.memory_initialization:load_memory_warmstart",
+      "sha256": "61d4ac338cdfc0b62fcbb0cf9c4f2baaf9f832c8d203ac8d33a0f9b308f5ce49",
+      "bytes": 1331571
+    }
+  ],
+  "superseded_prelaunch_source": {
+    "filename": "q4-gae-v5-source-20260912-r1.tar.gz",
+    "sha256": "fbd4c56f3723078b4cb441b9401c679447eee1ac3bf79f549298398ca47d5262",
+    "git_commit": "4e7584cbc9318a386498cdd76e34e72709de8351",
+    "uploaded": false,
+    "launched": false
+  },
+  "test_modules": [
+    "tests/test_q4_rl_gae.py",
+    "tests/test_q4_rl_memory_initialization.py",
+    "tests/test_q4_rl_micro_training.py",
+    "tests/test_q4_rl_memory_training.py",
+    "tests/test_q4_rl_learner_threads.py",
+    "tests/test_q4_training_bundle.py",
+    "tests/test_q4_rl_micro_initialization.py",
+    "tests/test_q4_rl_micro_attention.py",
+    "tests/test_q4_rl_training_journal.py"
+  ],
+  "launch_command": [
+    "taskset",
+    "--cpu-list",
+    "0-49",
+    "{CPU_PYTHON}",
+    "scripts/q4_cpu_supervisor.py",
+    "--root",
+    "{TASK_ROOT}",
+    "--run",
+    "train-gae-v5",
+    "--cpu-budget",
+    "50",
+    "--deadline",
+    "2026-09-11T22:00:00+00:00",
+    "--sync-seconds",
+    "120",
+    "--minimum-free-gib",
+    "20",
+    "--",
+    "{CPU_PYTHON}",
+    "-m",
+    "scripts.q4_training_bundle",
+    "--config",
+    "research/q4_rl/train_gae_v5.json"
+  ],
+  "training_started": false,
+  "evaluation_started": false,
+  "launch_requires_root_review": true
+}

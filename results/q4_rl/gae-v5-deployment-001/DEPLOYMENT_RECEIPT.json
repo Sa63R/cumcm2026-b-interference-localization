@@ -1,0 +1,122 @@
+{
+  "task": "q4-rl-gae-v5-20260912",
+  "git_commit": "df36f0ce43a8b1e23d6ebf1cb1b0bba6f16ef01d",
+  "source_archive": "q4-gae-v5-source-20260912-r2.tar.gz",
+  "source_archive_sha256": "ab3a7d6e312306700e9a79b9b14092ce53f084c6e5a8e3fb39847e8c6802c464",
+  "source_config_sha256": "022316a9f4797c3af5aad4e86f9eefd130dfc3a2307ec09d5b15f92013405154",
+  "source_manifest_sha256": "72def29c976d1c076de5c221140ce3bd1df6572dce209a25d90a0a87cbe454f0",
+  "prestage_receipt_sha256": "1611a5c88d402d7a3274de14d5f23d9d6a33f29e7e860580801c2dbb25f18345",
+  "pytest_sha256": "f1716dd09f6e9093880178f1f3879a09b033f7a66947567bff0654647835f159",
+  "verified_object_readbacks": [
+    {
+      "downloaded": true,
+      "name": "launch/train-gae-v5/PRESTAGE.json",
+      "sha256": "1611a5c88d402d7a3274de14d5f23d9d6a33f29e7e860580801c2dbb25f18345"
+    },
+    {
+      "downloaded": true,
+      "name": "launch/train-gae-v5/pytest.log",
+      "sha256": "f1716dd09f6e9093880178f1f3879a09b033f7a66947567bff0654647835f159"
+    },
+    {
+      "downloaded": true,
+      "name": "launch/train-gae-v5/prestage-r2.log",
+      "sha256": "314f5bdb1f0df777a68fa16246ab9b5ce27c74d36de7282e7acf0c2fed4d1b97"
+    }
+  ],
+  "tests": {
+    "passed": 142,
+    "returncode": 0,
+    "wall_s": 13.005835440009832,
+    "affinity_cpus": 1,
+    "log_sha256": "f1716dd09f6e9093880178f1f3879a09b033f7a66947567bff0654647835f159"
+  },
+  "models": [
+    {
+      "path": "models/initialization/g1_h128_bc256.pt",
+      "sha256": "a3170afc53ae48d5b03618872400a424ce27d9c1110f7f2b342fdea13837688d",
+      "network": {
+        "architecture": "q4-micro-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 50,
+        "hidden": 128
+      },
+      "warmstart_completed": 256,
+      "ppo_batches": 0,
+      "strict_loader_passed": true
+    },
+    {
+      "path": "models/initialization/g3_h128_bc256.pt",
+      "sha256": "61d4ac338cdfc0b62fcbb0cf9c4f2baaf9f832c8d203ac8d33a0f9b308f5ce49",
+      "network": {
+        "architecture": "q4-g3-negative-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 58,
+        "hidden": 128
+      },
+      "warmstart_completed": 256,
+      "ppo_batches": 0,
+      "strict_loader_passed": true
+    }
+  ],
+  "max_batches_per_job": 32,
+  "max_wall_seconds_per_job": 3600,
+  "compute_budget": 36,
+  "combined_with_declared_C_evaluation": 47,
+  "common_cpu_pool": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "minimum_free_gib": 20,
+  "free_bytes_after": 33524547584,
+  "training_started": false,
+  "next_action": "Explicit root review and launch authorization required"
+}
