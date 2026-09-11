@@ -167,13 +167,18 @@
         "required_base_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
         "reason": "Gate failed: mean and tail cost worsened; 87/87 planned tails executed safely, 86 already certifiable at parent probe. No implementation failure or hidden incomplete-plan success. Further parameter scanning not justified.",
         "diagnosis": "research/round3/diagnoses/FEEDBACK_ENVELOPE_PILOT.md",
-        "delete_scope": "Only the newly created research/q3-r3-feedback-envelope branch/worktree after archive push; all start-of-round protected refs retained."
+        "delete_scope": "Only the newly created research/q3-r3-feedback-envelope branch/worktree after archive push; all start-of-round protected refs retained.",
+        "cleanup": {
+          "new_local_branch_removed": true,
+          "new_remote_branch_removed": true,
+          "new_worktree_removed": true
+        }
       }
     },
     "directed_localization": {
       "candidate_label": "candidate",
       "hypothesis": "Direction-dependent first-probe-and-nominal-tail transition costs may improve macro task order. Fixed exits per decision, min-directed-edge envelope MST; retain parent legal relocated station layout.",
-      "status": "pilot_rejected_pending_incumbent_diagnosis",
+      "status": "pilot_rejected_retained_for_incumbent_ablation",
       "source_commit": "0d16cc38e66a036e7b6628e1aec1cf4ff04e7c06",
       "recipes_sha256": "56247081ee5aa97bb5e10d547a886be43076ec6e9c6b4b3b581735eb8ae289ce",
       "pilot_seeds": [
@@ -216,9 +221,43 @@
         "confirmation_opened": false,
         "final_opened": false,
         "interpretation": "Fails preregistered mean/tail criteria and costs substantially more CPU. Checking bounded-search incumbent omission before concluding this implementation direction."
-      }
+      },
+      "diagnosis": "research/round3/diagnoses/DIRECTED_LOCALIZATION_PILOT.md"
+    },
+    "directed_incumbent": {
+      "status": "developing_single_incumbent_fix",
+      "candidate_label": "candidate",
+      "hypothesis": "18 of 540 completed finite models omitted a cheaper existing parent route. Seed that feasible route as incumbent without changing cost model, probe family or search budgets. Both model error and search error were observed; require new paired episodes.",
+      "parent_trial": "directed_localization",
+      "old_directed_commit": "0d16cc38e66a036e7b6628e1aec1cf4ff04e7c06",
+      "ablation": "Include old_directed on exactly the same new cases as candidate/baseline/original/RL; primary gate remains whole-episode candidate versus derived baseline.",
+      "pilot_seeds": [
+        926091230101,
+        926091230132
+      ],
+      "confirmation_seeds": [
+        926091230201,
+        926091230296
+      ],
+      "final_seeds": [
+        926091231001,
+        926091231256
+      ],
+      "stress_seeds": [
+        926091232001,
+        926091232028
+      ]
     }
   },
   "logging_scope": "Keep full raw machine records, immutable source/config/model identities and concise decisions; extensive prose optional, do not delay experiments.",
-  "evaluation_python": "../q3-deep-rl/.venv-win/Scripts/python.exe"
+  "evaluation_python": "../q3-deep-rl/.venv-win/Scripts/python.exe",
+  "protected_version_observations": [
+    {
+      "branch": "research/q3-rl-cost-to-go",
+      "starting_commit": "e50ba07762c141691b0f8773a889acf2319b8221",
+      "observation": "This preexisting branch name became absent during concurrent workspace activity; this round issued no deletion/reset for it. Preserve its known start version without recreating an externally removed working branch.",
+      "preservation_tag": "archive/q3-round3-start/rl-cost-to-go",
+      "tag_pushed": true
+    }
+  ]
 }
