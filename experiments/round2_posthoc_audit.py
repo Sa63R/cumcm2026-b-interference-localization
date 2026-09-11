@@ -106,6 +106,9 @@ def verify_batch(batch):
             for name, expected_hash in identity["source_sha256"].items():
                 if hashlib.sha256(source.read(name)).hexdigest() != expected_hash:
                     raise ValueError("Frozen source file hash mismatch")
+            for name, expected_hash in identity.get("evaluation_helper_sha256", {}).items():
+                if hashlib.sha256(source.read(name)).hexdigest() != expected_hash:
+                    raise ValueError("Frozen evaluation interface hash mismatch")
     return manifest, summary, runner_status, runner_path
 
 

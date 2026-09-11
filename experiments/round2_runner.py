@@ -56,7 +56,13 @@ def prepare(args):
         pilot = read(ROOT / "results/round2" / args.trial / "pilot/summary.json")
         if not pilot["comparisons"][args.trial]["pilot_expansion_gate"]:
             raise ValueError("Pilot gate did not pass; confirmation is not authorized by the protocol")
-    start, stop = trial[args.stage+"_seeds"]
+    if args.stage in ("final", "stress"):
+        confirmed = read(ROOT / "results/round2" / args.trial / "confirmation/summary.json")
+        if not confirmed["comparisons"][args.trial]["pareto_confirmation_gate"]:
+            raise ValueError("Independent confirmation did not pass; do not open final cases")
+        start, stop = protocol["reserved_final_seeds" if args.stage == "final" else "reserved_stress_seeds"]
+    else:
+        start, stop = trial[args.stage+"_seeds"]
     recipes = {"baseline": {"repository": str(ROOT.parent / "q3-state-search"),
                              "spec": protocol["baseline_spec"]},
                args.trial: {"repository": str(ROOT.parent / trial["directory"]), "spec": args.spec}}
@@ -78,11 +84,23 @@ def prepare(args):
         policies[label] = {"source_root": str(repo), "spec": spec, "spec_sha256": digest(spec),
                            "source_sha256": source_hashes,
                            "commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip()}
+        evaluation_helper = "experiments/training_stress_reliability.py"
+        policies[label]["evaluation_helper_sha256"] = {evaluation_helper: hashlib.sha256((repo/evaluation_helper).read_bytes()).hexdigest()}
         with zipfile.ZipFile(output / f"{label}-source.zip", "w", compression=zipfile.ZIP_DEFLATED) as archive:
             for path in source_hashes:
                 archive.write(repo / path, path)
             archive.write(spec_path, recipe["spec"])
+            archive.write(repo/evaluation_helper, evaluation_helper)
         policies[label]["source_archive_sha256"] = hashlib.sha256((output / f"{label}-source.zip").read_bytes()).hexdigest()
+    previous_stage = "pilot" if args.stage == "confirmation" else "confirmation" if args.stage in ("final", "stress") else None
+    if previous_stage:
+        previous = read(ROOT / "results/round2" / args.trial / previous_stage / "manifest.json")
+        for label, policy in policies.items():
+            earlier = previous["policies"][label]
+            if (policy["source_sha256"] != earlier["source_sha256"]
+                    or policy["spec_sha256"] != earlier["spec_sha256"]
+                    or policy["evaluation_helper_sha256"] != earlier.get("evaluation_helper_sha256")):
+                raise ValueError("Candidate changed after its previous evaluation; register a new experiment")
     manifest = {"trial": args.trial, "stage": args.stage, "seeds": list(range(start, stop+1)),
                 "policies": policies, "protocol_sha256": digest(protocol),
                 "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
@@ -96,12 +114,52 @@ def prepare(args):
                       "policies": {k: p["commit"] for k,p in policies.items()}}))
 
 
+def make_case(seed, stage):
+    from simulation import Scenario, Source, random_scenario
+    if stage != "stress":
+        return random_scenario(3, seed)
+    # Public-law stress families; a new seed block, independent of old hard
+    # cases and any practice data. This function is frozen with the runner.
+    offset = seed-211001
+    if not 0 <= offset < 28:
+        raise ValueError("Unexpected reserved stress identity")
+    families = ("minimum_radius", "boundary", "cluster", "positive_error",
+                "negative_error", "alternating_error", "narrow_strip")
+    family, replicate = families[offset//4], offset % 4
+    count = (10, 12, 14, 16)[replicate]
+    import math
+    rng = random.Random(seed)
+    phase = rng.uniform(0, 2*math.pi)
+    sources = []
+    for index, channel in enumerate(rng.sample(range(1, 21), count)):
+        theta, radial = rng.uniform(0, 2*math.pi), 1800*math.sqrt(rng.random())
+        x, y = radial*math.cos(theta), radial*math.sin(theta)
+        if family == "boundary":
+            angle = phase+2*math.pi*index/count
+            x, y = 1800*math.cos(angle), 1800*math.sin(angle)
+        elif family == "cluster":
+            radius = (750., 1100., 1450., 1650.)[replicate]
+            x, y = radius*math.cos(phase)+.25*math.cos(theta), radius*math.sin(phase)+.25*math.sin(theta)
+        elif family == "narrow_strip":
+            along, across = 1000+24*index, (-1)**index*.2
+            x, y = along*math.cos(phase)-across*math.sin(phase), along*math.sin(phase)+across*math.cos(phase)
+        sources.append(Source(channel, x, y, 1000.))
+    mode = {"positive_error": "positive_extreme", "negative_error": "negative_extreme",
+            "alternating_error": "alternating_extreme", "cluster": "alternating_extreme",
+            "narrow_strip": "alternating_extreme"}.get(family, "uniform")
+    return Scenario(f"q3-round2-stress-{family}-{seed}", 3, seed, tuple(sources), mode,
+                    "Frozen independent final stress geometry; not an official distribution")
+
+
 def worker(args):
     manifest = read(args.output / "manifest.json")
     policy = manifest["policies"][args.policy]
     repo = Path(policy["source_root"])
     if args.seed not in manifest["seeds"] or hashes(repo) != policy["source_sha256"]:
         raise ValueError("Frozen worker identity mismatch")
+    for path, value in policy.get("evaluation_helper_sha256", {}).items():
+        if hashlib.sha256((repo/path).read_bytes()).hexdigest() != value:
+            raise ValueError("Evaluation interface changed after freeze")
     sys.path[:0] = [str(repo / "src"), str(repo)]
     from simulation import LocalResearchSimulator, random_scenario
     import simulation.engine
@@ -109,7 +167,7 @@ def worker(args):
     if Path(simulation.engine.__file__).resolve() != (repo / "src/simulation/engine.py").resolve():
         raise ValueError("Cross-worktree module import")
     limits = manifest["limits"]
-    simulator = LocalResearchSimulator(random_scenario(3, args.seed),
+    simulator = LocalResearchSimulator(make_case(args.seed, manifest["stage"]),
         max_real_duration_s=limits["real_s"], max_virtual_duration_s=limits["virtual_s"])
     client = ObservationOnlyClient(simulator.client())
     report, errors, diagnostic, started = None, [], None, time.perf_counter()
@@ -264,7 +322,7 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
     prepare_parser = sub.add_parser("prepare")
     prepare_parser.add_argument("--trial", required=True)
-    prepare_parser.add_argument("--stage", choices=("pilot", "coverage_dev", "confirmation"), default="pilot")
+    prepare_parser.add_argument("--stage", choices=("pilot", "coverage_dev", "confirmation", "final", "stress"), default="pilot")
     prepare_parser.add_argument("--spec", required=True)
     for command in (prepare_parser, sub.add_parser("run"), sub.add_parser("worker"), sub.add_parser("summarize")):
         command.add_argument("--output", type=Path, required=True)
