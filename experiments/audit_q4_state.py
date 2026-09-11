@@ -113,8 +113,8 @@ def wire_audit(record):
     require(digest(truth) == row['case_sha256'], 'Truth SHA mismatch')
     sources = {s['channel']: s for s in truth['sources']}
     require(10 <= len(sources) <= 16 and len(sources) == len(truth['sources']), 'Q4 requires 10..16 distinct sources')
-    require(any(s['orientation_deg'] is None for s in sources.values()) and
-            any(s['orientation_deg'] is not None for s in sources.values()), 'Q4 requires both source types')
+    require(any(s['orientation_deg'] is not None for s in sources.values()),
+            'Q4 requires at least one directional source; all-directional scenes are allowed')
     for channel, s in sources.items():
         require(type(channel) is int and 1 <= channel <= 20, 'Illegal source channel')
         p = coordinates((s['x'], s['y']))
@@ -197,7 +197,13 @@ def wire_audit(record):
             'time_breakdown_s': {k: v / 1_000_000 for k, v in parts.items()}}
 
 
-def observation_audit(record):
+def observation_audit(record, *, certified_stations=None):
+    """Audit real prefixes; custom stations require a separate geometric proof.
+
+    The legacy default reconstructs its own triangular cover. New cover audit
+    callers may supply stations only after independently certifying the entire
+    source disk for every transmitting half-plane.
+    """
     """This function does not access evaluation truth or hidden source types."""
     row, summary = record['row'], record.get('summary')
     actual = [a for a in record['history'] if a['action'] in ('/measure', '/clear')]
@@ -391,11 +397,16 @@ def observation_audit(record):
     require(not hull_events, 'Unprocessed hull events')
     require(not pair_events and not required_seconds, 'Unprocessed pair decisions')
     require(not skipped_events, 'Unprocessed skipped-scan decisions')
-    stations, triangle_count = triangular_certificate_stations()
+    if certified_stations is None:
+        stations, triangle_count = triangular_certificate_stations()
+        coverage_method = '990m_triangle_vertices_actually_negative'
+    else:
+        stations, triangle_count = certified_stations, None
+        coverage_method = 'independently_certified_cover_actually_negative'
     station_keys = {_station_key(p) for p in stations}
     cap = len(cleared) == 16
     absence = [{'channel': c, 'certified': cap or station_keys <= negatives[c],
-                'method': '16_actual_successful_clears' if cap else '990m_triangle_vertices_actually_negative',
+                'method': '16_actual_successful_clears' if cap else coverage_method,
                 'missing_station_count': 0 if cap else len(station_keys - negatives[c]),
                 'actual_distinct_negative_stations': len(negatives[c])}
                for c in sorted(set(range(1, 21)) - cleared)]

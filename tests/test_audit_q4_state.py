@@ -16,6 +16,15 @@ from localization import CandidateRegion
 from planning.directional_probe_pair import choose_directional_probe_pair
 
 
+def test_wire_accepts_publicly_allowed_all_directional_q4():
+    from experiments.audit_q4_state import wire_audit
+    builder=RecordBuilder(count=14)
+    for source in builder.sources:
+        source['orientation_deg']=0.0
+    builder.clear_sources()
+    assert wire_audit(builder.record())['cleared_total']==14
+
+
 class RecordBuilder:
     """Explicit fixture physics, deliberately independent of local simulator."""
     def __init__(self, count=16, seed=42):
