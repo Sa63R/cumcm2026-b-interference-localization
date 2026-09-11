@@ -33,7 +33,7 @@ class MockBridge(PracticeBridge):
         self.replies = iter(replies)
         self.calls = []
 
-    def _evaluate(self, expression, *, mutation=False):
+    def _evaluate(self, expression, *, mutation=False, timeout=None):
         self.calls.append((expression, mutation))
         reply = next(self.replies)
         if isinstance(reply, Exception):
@@ -111,10 +111,12 @@ def test_unexpected_mutation_response_requires_reconciliation(reply):
 
 
 def test_timeout_does_not_repeat_mutation():
-    client = MockBridge([{"active": False}, MutationOutcomeUnknown("lost response")])
+    client = MockBridge([{"active": False}, MutationOutcomeUnknown("lost response"), None])
     with pytest.raises(MutationOutcomeUnknown):
         client.start_practice(3)
-    assert len(client.calls) == 2
+    assert len(client.calls) == 3
+    assert sum(mutation for _, mutation in client.calls) == 1
+    assert client.calls[-1][1] is False
 
 
 @pytest.mark.parametrize("existing", [None, state(), state(mode="formal", phase="ended", cleanup_complete=True),

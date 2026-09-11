@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 import time
 from typing import Any
+from uuid import uuid4
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
 
@@ -83,6 +84,11 @@ function errorCode(value) {
 _IMPORT_JS = "const {Call} = await import('/wails/runtime.js');"
 _CURRENT_JS = "(async () => {" + _IMPORT_JS + _PROJECT_JS + "return project(await Call.ByID(3522211836, 1000));})()"
 _SHOW_JS = "(async () => {const {Window} = await import('/wails/runtime.js'); await Window.Show(); return true;})()"
+_START_RECEIPT_SLOT = "__codexPracticeStartReceiptV1"
+_RECEIPT_ATTEMPTS = 3
+_RECEIPT_INTERVAL_S = 5.0
+_RECEIPT_WINDOW_S = 15.0
+_RECEIPT_READ_TIMEOUT_S = 2.0
 
 
 def _valid_port(value: int) -> int:
@@ -194,12 +200,13 @@ class PracticeBridge:
             except Exception:
                 pass
 
-    def _discover_target(self) -> str:
+    def _discover_target(self, *, timeout: float | None = None) -> str:
         url = f"http://127.0.0.1:{self.debug_port}/json/list"
         try:
             # Explicitly disable environment proxies, including localhost
             # proxies, so metadata cannot leave this machine.
-            with build_opener(ProxyHandler({}), _NoRedirect()).open(Request(url), timeout=self.timeout) as response:
+            with build_opener(ProxyHandler({}), _NoRedirect()).open(
+                    Request(url), timeout=self.timeout if timeout is None else timeout) as response:
                 if response.geturl() != url:
                     raise BridgeError("The local debug endpoint redirected unexpectedly")
                 raw = response.read(1_048_577)
@@ -232,7 +239,22 @@ class PracticeBridge:
             raise BridgeError("Invalid simulator target address") from exc
         return target["webSocketDebuggerUrl"]
 
-    def _evaluate(self, expression: str, *, mutation: bool = False) -> Any:
+    def _evaluate(self, expression: str, *, mutation: bool = False, timeout: float | None = None) -> Any:
+        # Receipt reads have a separate small budget shared by discovery,
+        # connection establishment and response waiting. Normal calls retain
+        # their existing timeout behavior.
+        if timeout is not None and (type(timeout) not in (int, float) or not 0 < timeout <= self.timeout):
+            raise ValueError("A bounded evaluation timeout must be positive and at most the bridge timeout")
+        operation_deadline = time.monotonic() + timeout if timeout is not None else None
+
+        def remaining_timeout():
+            if operation_deadline is None:
+                return self.timeout
+            remaining = operation_deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError("Bounded bridge evaluation timed out")
+            return remaining
+
         try:
             from websocket import create_connection
         except ImportError as exc:
@@ -240,8 +262,10 @@ class PracticeBridge:
         sent = False
         try:
             if self._connection is None:
+                target = (self._discover_target() if operation_deadline is None
+                          else self._discover_target(timeout=remaining_timeout()))
                 self._connection = create_connection(
-                    self._discover_target(), timeout=self.timeout, suppress_origin=True,
+                    target, timeout=remaining_timeout(), suppress_origin=True,
                     http_no_proxy=["127.0.0.1", "localhost"],
                     redirect_limit=0,
                 )
@@ -261,14 +285,17 @@ class PracticeBridge:
                 "params": {"expression": guarded_expression, "awaitPromise": True, "returnByValue": True},
             }
             sent = True  # A partial send is also an uncertain mutation.
+            connection.settimeout(remaining_timeout())
             connection.send(json.dumps(request, ensure_ascii=True))
-            deadline = time.monotonic() + self.timeout
+            deadline = operation_deadline if operation_deadline is not None else time.monotonic() + self.timeout
             while True:
                 remaining = deadline - time.monotonic()
                 if remaining <= 0:
                     raise TimeoutError("CDP response timed out")
                 connection.settimeout(remaining)
                 response = json.loads(connection.recv())
+                if operation_deadline is not None and time.monotonic() > operation_deadline:
+                    raise TimeoutError("Bounded bridge evaluation timed out")
                 if response.get("id") != request_id:
                     continue
                 if response.get("error") or response.get("result", {}).get("exceptionDetails"):
@@ -301,25 +328,102 @@ class PracticeBridge:
         if self._evaluate(_SHOW_JS) is not True:
             raise BridgeError("The simulator window did not confirm it was shown")
 
+    def _reconcile_start_receipt(self, nonce: str) -> dict[str, Any]:
+        """Inspect only this operation's cached reply; never repeat a binding.
+
+        At most three reads, five seconds apart, fit a fifteen-second scheduling
+        budget. Each read has at most two seconds of network budget. Standard
+        socket cleanup may add time; no further start request is issued.
+        """
+        expression = "(() => {" + _PROJECT_JS + """
+const nonce = %s;
+const receipt = window[%s];
+if (!receipt || receipt.nonce !== nonce) return {nonce, status: 'missing_or_mismatch'};
+if (receipt.status !== 'completed') return {nonce, status: receipt.status === 'pending' ? 'pending' : 'evaluation_error'};
+const reply = receipt.reply;
+if (reply?.guard_error === 'not_idle')
+  return {nonce, status: 'completed', reply: {guard_error: 'not_idle'}};
+return {nonce, status: 'completed', reply: {
+  ok: typeof reply?.ok === 'boolean' ? reply.ok : null,
+  run: project(reply?.run),
+  error_code: typeof reply?.error_code === 'string' ? reply.error_code.slice(0, 120) : null
+}};
+})()""" % (json.dumps(nonce), json.dumps(_START_RECEIPT_SLOT))
+        self._disconnect()  # Lost mutation replies are reconciled on a fresh socket.
+        deadline = time.monotonic() + _RECEIPT_WINDOW_S
+        for attempt in range(_RECEIPT_ATTEMPTS):
+            if attempt:
+                remaining = deadline - time.monotonic()
+                if remaining <= _RECEIPT_INTERVAL_S:
+                    break
+                time.sleep(_RECEIPT_INTERVAL_S)
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                break
+            try:
+                receipt = self._evaluate(expression, timeout=min(_RECEIPT_READ_TIMEOUT_S, self.timeout, remaining))
+            except Exception as error:
+                raise MutationOutcomeUnknown("Cannot verify this practice-start receipt; the start must not be repeated") from error
+            if not isinstance(receipt, dict) or receipt.get("nonce") != nonce:
+                raise MutationOutcomeUnknown("Practice-start receipt identity was not confirmed")
+            if receipt.get("status") == "pending" and set(receipt) == {"nonce", "status"}:
+                continue
+            if receipt.get("status") != "completed" or set(receipt) != {"nonce", "status", "reply"}:
+                raise MutationOutcomeUnknown("Practice-start receipt is missing, failed or incomplete")
+            reply = receipt["reply"]
+            if reply == {"guard_error": "not_idle"}:
+                return reply
+            if (not isinstance(reply, dict) or set(reply) != {"ok", "run", "error_code"}
+                    or type(reply.get("ok")) is not bool
+                    or not isinstance(reply.get("error_code"), str) or not reply["error_code"]
+                    or len(reply["error_code"]) > 120):
+                raise MutationOutcomeUnknown("Completed practice-start receipt lacks a valid reply")
+            return reply
+        raise MutationOutcomeUnknown("Practice-start receipt remained pending after bounded read-only checks")
+
     def start_practice(self, problem_no: int) -> dict[str, Any]:
         """Start Q3 or Q4 practice only, refusing to replace an existing run."""
         if type(problem_no) is not int or problem_no not in (3, 4):
             raise ValueError("problem_no must be integer 3 or 4")
         _require_idle(self.current_test())
+        nonce = uuid4().hex
         # Repeat the check inside the same fixed browser expression, reducing
         # the gap between observing idle state and requesting a practice run.
         expression = "(async () => {" + _IMPORT_JS + _PROJECT_JS + """
+const nonce = %s;
+const slot = %s;
+const prior = window[slot];
+if (prior && prior.status !== 'completed') return {guard_error: 'unresolved_start_receipt'};
+const receipt = {nonce, status: 'pending'};
+window[slot] = receipt;
+function complete(reply) {
+  if (window[slot] === receipt) {
+    receipt.reply = reply;
+    receipt.status = 'completed';
+  }
+  return reply;
+}
+try {
 const before = project(await Call.ByID(3522211836, 1000));
 if (before === null || before.active !== false || before.mode === 'formal' ||
     ![undefined, null, '', 'practice'].includes(before.mode) || before.phase || before.case_code)
-  return {guard_error: 'not_idle'};
+  return complete({guard_error: 'not_idle'});
 const reply = await Call.ByID(31672008, %d, 1000);
-return {ok: typeof reply?.ok === 'boolean' ? reply.ok : null, run: project(reply?.run), error_code: errorCode(reply?.error)};
-})()""" % problem_no
-        reply = self._evaluate(expression, mutation=True)
+return complete({ok: typeof reply?.ok === 'boolean' ? reply.ok : null, run: project(reply?.run), error_code: errorCode(reply?.error)});
+} catch (_) {
+  if (window[slot] === receipt) receipt.status = 'evaluation_error';
+  throw new Error('Practice start evaluation failed');
+}
+})()""" % (json.dumps(nonce), json.dumps(_START_RECEIPT_SLOT), problem_no)
+        try:
+            reply = self._evaluate(expression, mutation=True)
+        except MutationOutcomeUnknown:
+            reply = self._reconcile_start_receipt(nonce)
         if not isinstance(reply, dict):
             raise MutationOutcomeUnknown("Unexpected practice-start response; read current state")
         if reply.get("guard_error"):
+            if reply["guard_error"] == "unresolved_start_receipt":
+                raise MutationOutcomeUnknown("A previous practice-start receipt remains unresolved; no new start was sent")
             raise UnsafeSimulatorState("The simulator state changed before practice could start")
         if type(reply.get("ok")) is not bool:
             raise MutationOutcomeUnknown("Unexpected practice-start response; read current state")
