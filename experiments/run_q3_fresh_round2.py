@@ -285,6 +285,8 @@ def source_hashes():
     names = ["src/strategies/q3_fresh.py", "src/strategies/q3_fresh_stepper.py",
              "src/strategies/q3_movable_tail.py", "src/strategies/q3_fresh_rollout.py",
              "src/strategies/q3_fresh_belief.py", "src/simulation/engine.py",
+             "src/strategies/q3_belief.py", "src/simulation/q3_branch.py",
+             "src/simulator_client/client.py", "src/simulator_client/state.py", "src/simulator_client/rules.py",
              "src/simulation/cases.py", "src/geometry/__init__.py", "src/localization/__init__.py",
              "experiments/run_q3_fresh_round2.py", "experiments/run_q3_fresh.py",
              "experiments/session_lower_bounds.py", "experiments/q3_confirmation_bound.py"]
