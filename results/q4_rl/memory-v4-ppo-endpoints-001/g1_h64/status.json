@@ -1,0 +1,144 @@
+{
+  "next_seed": 8012864,
+  "episodes": 864,
+  "attempted_episodes": 864,
+  "warmstart_completed": 256,
+  "ppo_batches": 38,
+  "batches": 54,
+  "wall_time_s": 3597.2184704244137,
+  "pending_batch": null,
+  "next_attempt": 54,
+  "stop_reason": "wall_or_training_deadline",
+  "last_progress": {
+    "batch": 54,
+    "phase": "ppo",
+    "episodes": 864,
+    "next_seed": 8012864,
+    "wall_time_s": 3596.809830332175,
+    "raw_attempt": "batch-000053-attempt-000053.json.gz",
+    "controller_entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "full_clear": 16,
+    "full_clear_rate": 1.0,
+    "batch_episodes": 16,
+    "mean_actual_time_s": 13091.4351619375,
+    "p95_actual_time_s": 18624.1612695,
+    "mean_penalized_time_s": 13091.4351619375,
+    "p95_penalized_time_s": 18624.1612695,
+    "mean_common_lower_bound_s": 1798.1121464892606,
+    "ratio_of_mean_penalized_time_to_mean_bound": 7.280655540589046,
+    "all_clear_actual_time_over_mean_bound": 7.280655540589046,
+    "mean_of_penalized_ratios": 10.311440999553739,
+    "failed_clear_count": 1788,
+    "mean_penalized_time_bootstrap95_s": [
+      11488.967911579688,
+      15121.7067250125
+    ],
+    "uncertainty_scope": "descriptive resampling only; synthetic curriculum batch is not an independent efficacy estimate",
+    "case_ratios": [
+      {
+        "seed": 8012848,
+        "actual_time_over_lower_bound": 5.41830890408211,
+        "penalized_time_over_lower_bound": 5.41830890408211
+      },
+      {
+        "seed": 8012849,
+        "actual_time_over_lower_bound": 5.561895977082237,
+        "penalized_time_over_lower_bound": 5.561895977082237
+      },
+      {
+        "seed": 8012850,
+        "actual_time_over_lower_bound": 5.4410019904875675,
+        "penalized_time_over_lower_bound": 5.4410019904875675
+      },
+      {
+        "seed": 8012851,
+        "actual_time_over_lower_bound": 15.47405757017571,
+        "penalized_time_over_lower_bound": 15.47405757017571
+      },
+      {
+        "seed": 8012852,
+        "actual_time_over_lower_bound": 3.7378117143975067,
+        "penalized_time_over_lower_bound": 3.7378117143975067
+      },
+      {
+        "seed": 8012853,
+        "actual_time_over_lower_bound": 7.474808585993976,
+        "penalized_time_over_lower_bound": 7.474808585993976
+      },
+      {
+        "seed": 8012854,
+        "actual_time_over_lower_bound": 5.057647901350527,
+        "penalized_time_over_lower_bound": 5.057647901350527
+      },
+      {
+        "seed": 8012855,
+        "actual_time_over_lower_bound": 12.183236762881931,
+        "penalized_time_over_lower_bound": 12.183236762881931
+      },
+      {
+        "seed": 8012856,
+        "actual_time_over_lower_bound": 7.164582894355483,
+        "penalized_time_over_lower_bound": 7.164582894355483
+      },
+      {
+        "seed": 8012857,
+        "actual_time_over_lower_bound": 6.900410378825216,
+        "penalized_time_over_lower_bound": 6.900410378825216
+      },
+      {
+        "seed": 8012858,
+        "actual_time_over_lower_bound": 8.745074160657884,
+        "penalized_time_over_lower_bound": 8.745074160657884
+      },
+      {
+        "seed": 8012859,
+        "actual_time_over_lower_bound": 13.188946236565812,
+        "penalized_time_over_lower_bound": 13.188946236565812
+      },
+      {
+        "seed": 8012860,
+        "actual_time_over_lower_bound": 6.711974523868649,
+        "penalized_time_over_lower_bound": 6.711974523868649
+      },
+      {
+        "seed": 8012861,
+        "actual_time_over_lower_bound": 7.25271298658937,
+        "penalized_time_over_lower_bound": 7.25271298658937
+      },
+      {
+        "seed": 8012862,
+        "actual_time_over_lower_bound": 7.08050002863759,
+        "penalized_time_over_lower_bound": 7.08050002863759
+      },
+      {
+        "seed": 8012863,
+        "actual_time_over_lower_bound": 47.59008537690824,
+        "penalized_time_over_lower_bound": 47.59008537690824
+      }
+    ],
+    "sum_episode_wall_time_s": 74.57396064698696,
+    "mean_episode_wall_time_s": 4.660872540436685,
+    "sum_episode_worker_cpu_s": 73.42552579900001,
+    "mean_episode_worker_cpu_s": 4.589095362437501,
+    "sum_episode_policy_wall_s": 69.9872759077698,
+    "mean_episode_policy_wall_s": 4.3742047442356125,
+    "sum_episode_policy_cpu_s": 68.86182256000006,
+    "mean_episode_policy_cpu_s": 4.303863910000004,
+    "sum_episode_posthoc_bound_wall_s": 4.549514355137944,
+    "mean_episode_posthoc_bound_wall_s": 0.2843446471961215,
+    "sum_episode_posthoc_bound_cpu_s": 4.529748887999915,
+    "mean_episode_posthoc_bound_cpu_s": 0.2831093054999947,
+    "update": {
+      "updates": 180,
+      "records": 7594,
+      "policy_loss": 0.0008936445177015331,
+      "value_loss": 0.996231867869695,
+      "entropy": 1.7982256273428598,
+      "gradient_norm": 2.84739714662234,
+      "approximate_kl": 0.006558705223465545,
+      "wall_time_s": 36.95518918707967,
+      "cpu_time_s": 36.73818318600024
+    },
+    "scope": "Synthetic micro training diagnostics only; independent evaluation required before promotion"
+  }
+}

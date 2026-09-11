@@ -1,0 +1,65 @@
+{
+  "task": "q4-rl-memory-v4-20260912",
+  "models": [
+    {
+      "alias": "g1_h64_ppo512",
+      "path": "models/eval-memory-v4/g1_h64_ppo512.pt",
+      "sha256": "18e06c8c659a1fcbb9608f88f2160892e325db84a324df8dc0413eb763bf83a6",
+      "bytes": 380971,
+      "loader": "q4_rl.micro_network:load_policy",
+      "expected_global_dim": 13,
+      "expected_candidate_dim": 50,
+      "expected_hidden": 64,
+      "is_BC256": false,
+      "expected_episodes": 864,
+      "expected_batches": 54,
+      "expected_ppo_batches": 38,
+      "source_checkpoint": "checkpoint-000054.pt"
+    },
+    {
+      "alias": "g3_h64_ppo512",
+      "path": "models/eval-memory-v4/g3_h64_ppo512.pt",
+      "sha256": "ffe55c86799b317cc306867795ca8a1a3c08d91905080a51953c56b8a6d05c0e",
+      "bytes": 387563,
+      "loader": "q4_rl.memory_network:load_policy",
+      "expected_global_dim": 13,
+      "expected_candidate_dim": 58,
+      "expected_hidden": 64,
+      "is_BC256": false,
+      "expected_episodes": 768,
+      "expected_batches": 48,
+      "expected_ppo_batches": 32,
+      "source_checkpoint": "checkpoint-000048.pt"
+    },
+    {
+      "alias": "g1_h128_ppo512",
+      "path": "models/eval-memory-v4/g1_h128_ppo512.pt",
+      "sha256": "952ea2c9aa943c98f1394e600155ae337d5b7f882061dc69aad634019ae91082",
+      "bytes": 1319467,
+      "loader": "q4_rl.micro_network:load_policy",
+      "expected_global_dim": 13,
+      "expected_candidate_dim": 50,
+      "expected_hidden": 128,
+      "is_BC256": false,
+      "expected_episodes": 640,
+      "expected_batches": 40,
+      "expected_ppo_batches": 24,
+      "source_checkpoint": "checkpoint-000040.pt"
+    },
+    {
+      "alias": "g3_h128_ppo512",
+      "path": "models/eval-memory-v4/g3_h128_ppo512.pt",
+      "sha256": "1c264e455d4760ba802f78d8ed4f658941f4eeda4752d26b03865c88f28e6d7e",
+      "bytes": 1332203,
+      "loader": "q4_rl.memory_network:load_policy",
+      "expected_global_dim": 13,
+      "expected_candidate_dim": 58,
+      "expected_hidden": 128,
+      "is_BC256": false,
+      "expected_episodes": 608,
+      "expected_batches": 38,
+      "expected_ppo_batches": 22,
+      "source_checkpoint": "checkpoint-000038.pt"
+    }
+  ]
+}
