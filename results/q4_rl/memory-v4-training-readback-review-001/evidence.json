@@ -1,0 +1,2434 @@
+{
+  "schema": "q4-memory-v4-training-metadata-readback-audit-v1",
+  "passed": true,
+  "scope": "Metadata and endpoint integrity only; no raw episode decompression, new rollout, training, or efficacy inference.",
+  "readback": {
+    "path": "results/q4_rl/server-memory-v4-training-001/OBJECT_READBACK.json",
+    "sha256": "2c5e8e8adeaa828a2f80b4c802f7221a3e64995fc47bc7f877dfa3341eed55fc",
+    "objects": 3508,
+    "bytes": 10598718525,
+    "all_local_files_exist_and_sizes_match": true,
+    "raw_episode_sha_method": "Every EpisodeJournal expected SHA joined by exact name to prior complete OBJECT_READBACK SHA; raw episode files not rehashed in this audit."
+  },
+  "frozen_bindings": [
+    {
+      "path": "results/q4_rl/memory-v4-ppo-endpoints-001/ENDPOINTS.json",
+      "sha256": "f25b8199ae7b8dbfdb3181666eeb4496384ae22f84b7dbceff91ac4527495e87",
+      "matches_committed_HEAD": true
+    },
+    {
+      "path": "research/q4_rl/train_memory_v4.json",
+      "sha256": "f10d426d3cbb8f794cd9934995ff9493dbae10487269e5c16de7a761945c1b8f",
+      "matches_committed_HEAD": true
+    }
+  ],
+  "training_pair": {
+    "returncode": 0,
+    "stop_reason": null,
+    "stop_signal": null,
+    "elapsed_s": 3603.475966224447,
+    "supervisor_cleanup_required": false
+  },
+  "supervisor": {
+    "child_returncode": 0,
+    "elapsed_s": 3605.3557019233704,
+    "cpu_quota_cores": 50.0,
+    "requested_cpu_budget": 50,
+    "active_affinity_cores": 42,
+    "gpu_enabled": false,
+    "termination_requested": false,
+    "supervisor_failed": false,
+    "sync": {
+      "attempts": 27,
+      "successes": 15,
+      "last_error_type": "TimeoutExpired",
+      "last_returncode": null,
+      "last_success_utc": "2026-09-11T18:38:40.696254+00:00"
+    },
+    "finished_utc": "2026-09-11T18:52:07.097222+00:00",
+    "final_sync_attempts": [
+      {
+        "ok": true,
+        "returncode": 0,
+        "error_type": null
+      }
+    ]
+  },
+  "declared_compute_budget": {
+    "jobs": 4,
+    "workers_per_job": 8,
+    "cpu_budget_per_job": 9,
+    "total": 36
+  },
+  "missing_objects": [],
+  "size_mismatches": [],
+  "unlisted_files": [],
+  "orphan_raw_episodes": [],
+  "retained_uncommitted_indexes": [
+    {
+      "job": "g3_h64",
+      "index": "g3_h64/training/batch-000048-attempt-000048.json.gz",
+      "seeds": [
+        8012768,
+        8012769,
+        8012770,
+        8012771,
+        8012772,
+        8012773,
+        8012774,
+        8012775,
+        8012776,
+        8012777,
+        8012778,
+        8012779,
+        8012780,
+        8012781,
+        8012782,
+        8012783
+      ],
+      "classification": "reserved uncommitted administrative attempt; excluded from all learning totals"
+    },
+    {
+      "job": "g1_h128",
+      "index": "g1_h128/training/batch-000040-attempt-000040.json.gz",
+      "seeds": [
+        8012640,
+        8012641,
+        8012642,
+        8012643,
+        8012644,
+        8012645,
+        8012646,
+        8012647,
+        8012648,
+        8012649,
+        8012650,
+        8012651,
+        8012652,
+        8012653,
+        8012654,
+        8012655
+      ],
+      "classification": "reserved uncommitted administrative attempt; excluded from all learning totals"
+    },
+    {
+      "job": "g3_h128",
+      "index": "g3_h128/training/batch-000038-attempt-000038.json.gz",
+      "seeds": [
+        8012608,
+        8012609,
+        8012610,
+        8012611,
+        8012612,
+        8012613,
+        8012614,
+        8012615,
+        8012616,
+        8012617,
+        8012618,
+        8012619,
+        8012620,
+        8012621,
+        8012622,
+        8012623
+      ],
+      "classification": "reserved uncommitted administrative attempt; excluded from all learning totals"
+    }
+  ],
+  "totals": {
+    "committed_batches": 180,
+    "committed_episodes": 2880,
+    "all_journal_indexes": 183,
+    "all_raw_episodes": 2928,
+    "retained_unlearned_episodes": 48
+  },
+  "jobs": [
+    {
+      "job": "g1_h64",
+      "committed_batches": 54,
+      "committed_episodes": 864,
+      "committed_seed_interval_inclusive": [
+        8012000,
+        8012863
+      ],
+      "pending_unlearned_seeds": [],
+      "index_count": 54,
+      "journal_indexes": [
+        {
+          "path": "g1_h64/training/batch-000000-attempt-000000.json.gz",
+          "index_sha256": "b81a115ddf96fc78d3cefa333e32523bed9d630ccb508b4fd8081af347003004",
+          "episodes": 16,
+          "seed_first": 8012000,
+          "seed_last": 8012015,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000001-attempt-000001.json.gz",
+          "index_sha256": "0df85066a37a664239d3f39147f36a27066d758ce11f1e6a7b4eff5c6fb4b753",
+          "episodes": 16,
+          "seed_first": 8012016,
+          "seed_last": 8012031,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000002-attempt-000002.json.gz",
+          "index_sha256": "26d18053b9f7db233a767ec4d35f7d75ede0f1e7c7361857643a155569eddcb8",
+          "episodes": 16,
+          "seed_first": 8012032,
+          "seed_last": 8012047,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000003-attempt-000003.json.gz",
+          "index_sha256": "11b7b313c77567bea2cb79cd659a5980fef8da178a052b8a8e8b622a6024d70f",
+          "episodes": 16,
+          "seed_first": 8012048,
+          "seed_last": 8012063,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000004-attempt-000004.json.gz",
+          "index_sha256": "1d4d85bbc65edf0b929cdcedb21cf5345d90b12f4c4191867571ec0b6ba04aa4",
+          "episodes": 16,
+          "seed_first": 8012064,
+          "seed_last": 8012079,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000005-attempt-000005.json.gz",
+          "index_sha256": "b470f43b81e2628b1031a5133cc38dab9d64356f5e0c66881e43a11fbcd85a4c",
+          "episodes": 16,
+          "seed_first": 8012080,
+          "seed_last": 8012095,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000006-attempt-000006.json.gz",
+          "index_sha256": "2869d066e8b81144c5a5a8e595d5733d1fe46b308c14d142949e7d7c56c1fa80",
+          "episodes": 16,
+          "seed_first": 8012096,
+          "seed_last": 8012111,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000007-attempt-000007.json.gz",
+          "index_sha256": "d4cbb14c062657e4792efe64cfc6dcbe965da7510edd913678305b8fd3b4833c",
+          "episodes": 16,
+          "seed_first": 8012112,
+          "seed_last": 8012127,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000008-attempt-000008.json.gz",
+          "index_sha256": "beed43be28978d6b4a4f6a7d254baaa1c5d409076300e650f08145a62979f11b",
+          "episodes": 16,
+          "seed_first": 8012128,
+          "seed_last": 8012143,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000009-attempt-000009.json.gz",
+          "index_sha256": "84faeaf380583e9ac182978c645747d065044bfe4dab057515405cea05769d11",
+          "episodes": 16,
+          "seed_first": 8012144,
+          "seed_last": 8012159,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000010-attempt-000010.json.gz",
+          "index_sha256": "42e20d629d8bac2bee91d719e4187d72aa014836475f655b0e0e45116aeacdb1",
+          "episodes": 16,
+          "seed_first": 8012160,
+          "seed_last": 8012175,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000011-attempt-000011.json.gz",
+          "index_sha256": "d7b2157e99ec5781ebc77a9ca91b92a106c99a8c1bfc44a7295e18b6d78d090b",
+          "episodes": 16,
+          "seed_first": 8012176,
+          "seed_last": 8012191,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000012-attempt-000012.json.gz",
+          "index_sha256": "c99f9902d5c192f2e595cf3c74205d14f64c11d064e5cc64d948e789f6918bc9",
+          "episodes": 16,
+          "seed_first": 8012192,
+          "seed_last": 8012207,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000013-attempt-000013.json.gz",
+          "index_sha256": "1200bfc445407e36cae431950ff556dbd5956f7872040e2e0abda8e0039a35b3",
+          "episodes": 16,
+          "seed_first": 8012208,
+          "seed_last": 8012223,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000014-attempt-000014.json.gz",
+          "index_sha256": "5ab6731a2c1779073e708ba0a9d1b5ca33df8b60edda9181058a93a2a1ca563b",
+          "episodes": 16,
+          "seed_first": 8012224,
+          "seed_last": 8012239,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000015-attempt-000015.json.gz",
+          "index_sha256": "73bf1d8998729a5797dadd0f299530e02ae8021023d397bb03c454555116683b",
+          "episodes": 16,
+          "seed_first": 8012240,
+          "seed_last": 8012255,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000016-attempt-000016.json.gz",
+          "index_sha256": "077198b461e0d40991fa11fff9cce2fd43e8d8389681a3c17f85298e3640a680",
+          "episodes": 16,
+          "seed_first": 8012256,
+          "seed_last": 8012271,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000017-attempt-000017.json.gz",
+          "index_sha256": "5573adce52f0783cae321853bafee395c6e2ae2e38ea6b11f42b19426dda287d",
+          "episodes": 16,
+          "seed_first": 8012272,
+          "seed_last": 8012287,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000018-attempt-000018.json.gz",
+          "index_sha256": "441691fa6db39bab18dabdb21046d1651a161d0ad20b607622230cb49d2e6cf8",
+          "episodes": 16,
+          "seed_first": 8012288,
+          "seed_last": 8012303,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000019-attempt-000019.json.gz",
+          "index_sha256": "aa22f0b98e6c7e210df5fc10f883d8ca08bbf167d485247f0e714158c4fdc0dd",
+          "episodes": 16,
+          "seed_first": 8012304,
+          "seed_last": 8012319,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000020-attempt-000020.json.gz",
+          "index_sha256": "85037c4c6e28a30cc3ad1d14713abe198425b4546656ef6fc17da52aa7cfc7f3",
+          "episodes": 16,
+          "seed_first": 8012320,
+          "seed_last": 8012335,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000021-attempt-000021.json.gz",
+          "index_sha256": "87ad5860bd07fe35c46c1a09968285e6d03cc3f18b9c3da6cd252f6628994bd2",
+          "episodes": 16,
+          "seed_first": 8012336,
+          "seed_last": 8012351,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000022-attempt-000022.json.gz",
+          "index_sha256": "583038b95f5033978f4ea3d285645e0cd020e430955421c75d45b73aca729d0a",
+          "episodes": 16,
+          "seed_first": 8012352,
+          "seed_last": 8012367,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000023-attempt-000023.json.gz",
+          "index_sha256": "b573c25fb1cc141f29efe470cf8548f2015c1bf2c98984e13ae887e939079841",
+          "episodes": 16,
+          "seed_first": 8012368,
+          "seed_last": 8012383,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000024-attempt-000024.json.gz",
+          "index_sha256": "17e3c0a7d3918e07ac7b28625aea3b878b4a0608c0ecb2b33aa433cd7accf155",
+          "episodes": 16,
+          "seed_first": 8012384,
+          "seed_last": 8012399,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000025-attempt-000025.json.gz",
+          "index_sha256": "eb03489468772ebd551297b8101a7c799ab4e0e9e5cce04d60fc541a6a011df7",
+          "episodes": 16,
+          "seed_first": 8012400,
+          "seed_last": 8012415,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000026-attempt-000026.json.gz",
+          "index_sha256": "465ece3383ed10bbcf8c45a1f97f07d843252acd75bf0265a83f226514e68c2b",
+          "episodes": 16,
+          "seed_first": 8012416,
+          "seed_last": 8012431,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000027-attempt-000027.json.gz",
+          "index_sha256": "3da8935241e82c50bed24a14a5971719802bbcafd694935ec321c85b5744e621",
+          "episodes": 16,
+          "seed_first": 8012432,
+          "seed_last": 8012447,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000028-attempt-000028.json.gz",
+          "index_sha256": "f4ffb0fef25a86a6c3e92bffd7102a985af5d9a57345647b7bc5193c148d5eac",
+          "episodes": 16,
+          "seed_first": 8012448,
+          "seed_last": 8012463,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000029-attempt-000029.json.gz",
+          "index_sha256": "262aa8992b7310d1026d758baa427f23ad0b84d362d7d0c9d6e5f76ae1967347",
+          "episodes": 16,
+          "seed_first": 8012464,
+          "seed_last": 8012479,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000030-attempt-000030.json.gz",
+          "index_sha256": "1ef65b2ea3dfdfab1782c195ddb9cde8810461a986adc08e9d6a906d1d87fc98",
+          "episodes": 16,
+          "seed_first": 8012480,
+          "seed_last": 8012495,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000031-attempt-000031.json.gz",
+          "index_sha256": "f8f7028fdb057a7da29ad87387b81f98baa5d3bf5ea0b17f4091b2c5d3d60572",
+          "episodes": 16,
+          "seed_first": 8012496,
+          "seed_last": 8012511,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000032-attempt-000032.json.gz",
+          "index_sha256": "272526c6b4fcb7f4b73ebfff435a5991b4d4dfed30e408d6fc0cec8708960341",
+          "episodes": 16,
+          "seed_first": 8012512,
+          "seed_last": 8012527,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000033-attempt-000033.json.gz",
+          "index_sha256": "8fe3ce2b08fc43c4c0e70e2a573ab6043998b27e3a7eced4a24d3587ae171b5a",
+          "episodes": 16,
+          "seed_first": 8012528,
+          "seed_last": 8012543,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000034-attempt-000034.json.gz",
+          "index_sha256": "af565adacb145a7e4996dc8c85404d36ec9900418bd210e5a70fe20bfa710885",
+          "episodes": 16,
+          "seed_first": 8012544,
+          "seed_last": 8012559,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000035-attempt-000035.json.gz",
+          "index_sha256": "e82c3daf65f3add0816e351b15797c3bab744b61791852d0c41178d353f99357",
+          "episodes": 16,
+          "seed_first": 8012560,
+          "seed_last": 8012575,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000036-attempt-000036.json.gz",
+          "index_sha256": "546457e5ab8adff649169b820a72b1cfd1e62bf10d2797c614aa0ba55b3525be",
+          "episodes": 16,
+          "seed_first": 8012576,
+          "seed_last": 8012591,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000037-attempt-000037.json.gz",
+          "index_sha256": "d19eab73cc822355f5991c5b83fb97aa944655cd239faf8748e4c4d453dc8219",
+          "episodes": 16,
+          "seed_first": 8012592,
+          "seed_last": 8012607,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000038-attempt-000038.json.gz",
+          "index_sha256": "e1623ea962ca43f78d8d5ff48c76164dd7b498b8574e9894aeeea01b183431ff",
+          "episodes": 16,
+          "seed_first": 8012608,
+          "seed_last": 8012623,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000039-attempt-000039.json.gz",
+          "index_sha256": "0a3af66fd023769a9cca010438d7a38979c4c2efcecf4f27169d47a209e247ba",
+          "episodes": 16,
+          "seed_first": 8012624,
+          "seed_last": 8012639,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000040-attempt-000040.json.gz",
+          "index_sha256": "4e1d52461f4cd1b4306649c3f2ba4c162070496112e7a687b56df5cb928c574e",
+          "episodes": 16,
+          "seed_first": 8012640,
+          "seed_last": 8012655,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000041-attempt-000041.json.gz",
+          "index_sha256": "a6d74da1347dca1b9f815a532c1115e106547360164b907bcc3b2e772e1353a0",
+          "episodes": 16,
+          "seed_first": 8012656,
+          "seed_last": 8012671,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000042-attempt-000042.json.gz",
+          "index_sha256": "acf40cb814f3b7623085578dd6b4d0eb3097410220f300b2cdb8d15c0e7188be",
+          "episodes": 16,
+          "seed_first": 8012672,
+          "seed_last": 8012687,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000043-attempt-000043.json.gz",
+          "index_sha256": "27330a6040d4d77d870b06bfc19a74460a8155b3e7ce326246f439e79837f089",
+          "episodes": 16,
+          "seed_first": 8012688,
+          "seed_last": 8012703,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000044-attempt-000044.json.gz",
+          "index_sha256": "f4b7d39682d50bb3d0affafbaa167bc21021785854eae16139b6766d4030a148",
+          "episodes": 16,
+          "seed_first": 8012704,
+          "seed_last": 8012719,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000045-attempt-000045.json.gz",
+          "index_sha256": "de78f4634eb4b20af95ac768a027cd5ccd0ce5b876e5c45bd7153495519c1a94",
+          "episodes": 16,
+          "seed_first": 8012720,
+          "seed_last": 8012735,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000046-attempt-000046.json.gz",
+          "index_sha256": "310622b9cb8383874d27f34fcd862d342964bc2d70aaa6fe2f7f2524792f2d84",
+          "episodes": 16,
+          "seed_first": 8012736,
+          "seed_last": 8012751,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000047-attempt-000047.json.gz",
+          "index_sha256": "f8fa5a5386ec7b38cad2d3a5ebb05195eaf83d8f1610b86f32cc7c03a5d97758",
+          "episodes": 16,
+          "seed_first": 8012752,
+          "seed_last": 8012767,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000048-attempt-000048.json.gz",
+          "index_sha256": "6d98996c8b667ece0e84d6a0fa12f80bf28b4ddd7b425180d3d5c52b3844ecf3",
+          "episodes": 16,
+          "seed_first": 8012768,
+          "seed_last": 8012783,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000049-attempt-000049.json.gz",
+          "index_sha256": "ea1ecc6dcac3a36277ac75b28bca5f97bbb9f027dd08974618af23244c7752c2",
+          "episodes": 16,
+          "seed_first": 8012784,
+          "seed_last": 8012799,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000050-attempt-000050.json.gz",
+          "index_sha256": "36bb0958cc07d833e747be41c760eb2a8593abc248a1f43c744c996fe0887e17",
+          "episodes": 16,
+          "seed_first": 8012800,
+          "seed_last": 8012815,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000051-attempt-000051.json.gz",
+          "index_sha256": "e0bd9cb38bcf4bd2b1994ffb879edd78d422d3b4cf934d71ee29fdcb57cdffe7",
+          "episodes": 16,
+          "seed_first": 8012816,
+          "seed_last": 8012831,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000052-attempt-000052.json.gz",
+          "index_sha256": "ae73de6266ee4c4bfd3180a81664a02018e21c56945b93cd80fb5a2300112a3f",
+          "episodes": 16,
+          "seed_first": 8012832,
+          "seed_last": 8012847,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h64/training/batch-000053-attempt-000053.json.gz",
+          "index_sha256": "080abb65d3aace3fa896abddbebcf7fac5f5b5129abd25c9d9dbb582a6254286",
+          "episodes": 16,
+          "seed_first": 8012848,
+          "seed_last": 8012863,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        }
+      ],
+      "phase_totals": {
+        "imitation": {
+          "batches": 16,
+          "episodes": 256,
+          "records": 89138,
+          "optimizer_steps": 2109,
+          "update_wall_s": 421.2411506846547,
+          "update_cpu_s": 418.92491650899984,
+          "sum_episode_wall_time_s": 629.8831263463944,
+          "sum_episode_worker_cpu_s": 625.6208920879999,
+          "sum_episode_policy_wall_s": 554.6358581110835,
+          "sum_episode_policy_cpu_s": 550.8352087869999,
+          "sum_episode_posthoc_bound_wall_s": 74.20233220979571,
+          "sum_episode_posthoc_bound_cpu_s": 73.822150955
+        },
+        "ppo": {
+          "batches": 38,
+          "episodes": 608,
+          "records": 269111,
+          "optimizer_steps": 6363,
+          "update_wall_s": 1305.587255520746,
+          "update_cpu_s": 1298.653555529003,
+          "sum_episode_wall_time_s": 2551.966980876401,
+          "sum_episode_worker_cpu_s": 2524.978293839001,
+          "sum_episode_policy_wall_s": 2367.292256595567,
+          "sum_episode_policy_cpu_s": 2341.3668413240002,
+          "sum_episode_posthoc_bound_wall_s": 183.325796501711,
+          "sum_episode_posthoc_bound_cpu_s": 182.31111970300014
+        }
+      },
+      "epochs_per_committed_batch": 3,
+      "optimizer_steps_from_checkpoint": [
+        8472
+      ],
+      "endpoint_latest_model_and_optimizer_exactly_equal": true,
+      "checkpoints": {
+        "endpoint": {
+          "path": "g1_h64/training/checkpoint-000054.pt",
+          "sha256": "18e06c8c659a1fcbb9608f88f2160892e325db84a324df8dc0413eb763bf83a6",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-micro-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 50,
+            "hidden": 64
+          },
+          "feature_schema_version": "q4-micro-g1-v1"
+        },
+        "latest": {
+          "path": "g1_h64/training/latest.pt",
+          "sha256": "3092f65a01d4dac1d8bd12daa9a984370e980fbd29764801917c0137ce6eff7e",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-micro-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 50,
+            "hidden": 64
+          },
+          "feature_schema_version": "q4-micro-g1-v1"
+        },
+        "warmstart": {
+          "path": "g1_h64/training/warmstart.pt",
+          "sha256": "77cfacfe3ff4d419b947f9eca277f80d0cebf63002d09aea0723f93f12890023",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-micro-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 50,
+            "hidden": 64
+          },
+          "feature_schema_version": "q4-micro-g1-v1"
+        }
+      },
+      "final_stop_reason": "wall_or_training_deadline",
+      "final_wall_time_s": 3597.2184704244137,
+      "structured_log_matches_progress": true
+    },
+    {
+      "job": "g3_h64",
+      "committed_batches": 48,
+      "committed_episodes": 768,
+      "committed_seed_interval_inclusive": [
+        8012000,
+        8012767
+      ],
+      "pending_unlearned_seeds": [
+        8012768,
+        8012769,
+        8012770,
+        8012771,
+        8012772,
+        8012773,
+        8012774,
+        8012775,
+        8012776,
+        8012777,
+        8012778,
+        8012779,
+        8012780,
+        8012781,
+        8012782,
+        8012783
+      ],
+      "index_count": 49,
+      "journal_indexes": [
+        {
+          "path": "g3_h64/training/batch-000000-attempt-000000.json.gz",
+          "index_sha256": "f729fa4892942fedce17f1c6c6fbd5d36cf6b9aabb1c42d916b6d43467c3ad81",
+          "episodes": 16,
+          "seed_first": 8012000,
+          "seed_last": 8012015,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000001-attempt-000001.json.gz",
+          "index_sha256": "092bd93a7876222ab58baeee72116352dc662c81c2010bfabd898d18e21f4175",
+          "episodes": 16,
+          "seed_first": 8012016,
+          "seed_last": 8012031,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000002-attempt-000002.json.gz",
+          "index_sha256": "f0b320d1d10f103e4cfd5d3259730ba330a756eae2bb6607b99119a5f187a017",
+          "episodes": 16,
+          "seed_first": 8012032,
+          "seed_last": 8012047,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000003-attempt-000003.json.gz",
+          "index_sha256": "bad26259a9c10c21f7f95df9d0df583f9f931c466c8551d9ffd3eaf4ed7cf60c",
+          "episodes": 16,
+          "seed_first": 8012048,
+          "seed_last": 8012063,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000004-attempt-000004.json.gz",
+          "index_sha256": "1641b37ae7c6c7aab669a29f2d5a7c91a75e5b0fade0f07a8dfdec13f79c7027",
+          "episodes": 16,
+          "seed_first": 8012064,
+          "seed_last": 8012079,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000005-attempt-000005.json.gz",
+          "index_sha256": "ba70d16618a7a979b779b409ce5405d7b29b60f78221fec20145abcb7920e075",
+          "episodes": 16,
+          "seed_first": 8012080,
+          "seed_last": 8012095,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000006-attempt-000006.json.gz",
+          "index_sha256": "3b62fc0946f3716a0bc1e435e87bef8714be24192074f9c4f4be5968c68f75b3",
+          "episodes": 16,
+          "seed_first": 8012096,
+          "seed_last": 8012111,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000007-attempt-000007.json.gz",
+          "index_sha256": "af784fe214b21e9a4ac0f0320362f37ae9d7b68d406da72555b8fa607657b516",
+          "episodes": 16,
+          "seed_first": 8012112,
+          "seed_last": 8012127,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000008-attempt-000008.json.gz",
+          "index_sha256": "1368c8f4a454974d4e634c1af1f27c74e54fe83ae716c6daa091207b4514c05b",
+          "episodes": 16,
+          "seed_first": 8012128,
+          "seed_last": 8012143,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000009-attempt-000009.json.gz",
+          "index_sha256": "9db968778ab20accecc08807d69af49afd8a3b125667133c634d327e9e45ddc5",
+          "episodes": 16,
+          "seed_first": 8012144,
+          "seed_last": 8012159,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000010-attempt-000010.json.gz",
+          "index_sha256": "50cc18bf0b38ff917f01ddc1c92942f9499058dd8bac7ef98094115d66f38919",
+          "episodes": 16,
+          "seed_first": 8012160,
+          "seed_last": 8012175,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000011-attempt-000011.json.gz",
+          "index_sha256": "c0eae795479c82001ad3de1afde25da1448c05dea810e3fc6da2c80a75785965",
+          "episodes": 16,
+          "seed_first": 8012176,
+          "seed_last": 8012191,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000012-attempt-000012.json.gz",
+          "index_sha256": "9bb707c00628eded813d436e99e311fc1d9acf3a4dffde4336f22ef2dc63372e",
+          "episodes": 16,
+          "seed_first": 8012192,
+          "seed_last": 8012207,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000013-attempt-000013.json.gz",
+          "index_sha256": "ae65bfc92dcb114ecc15a930953d3511a21612756e1f20bc334cc150c7b9334a",
+          "episodes": 16,
+          "seed_first": 8012208,
+          "seed_last": 8012223,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000014-attempt-000014.json.gz",
+          "index_sha256": "c19786c0dab06a7ad127e06fa0a1892a1805ced1cbc7d34b8f5795205839412c",
+          "episodes": 16,
+          "seed_first": 8012224,
+          "seed_last": 8012239,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000015-attempt-000015.json.gz",
+          "index_sha256": "054e391e041939c78a6f2e0d09af385086da22c304570d576f15d09e7e58bf9f",
+          "episodes": 16,
+          "seed_first": 8012240,
+          "seed_last": 8012255,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000016-attempt-000016.json.gz",
+          "index_sha256": "06e81b6d76eaefc7593ba025ad858cff4e459ccaba0655cb52a415950c3f403e",
+          "episodes": 16,
+          "seed_first": 8012256,
+          "seed_last": 8012271,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000017-attempt-000017.json.gz",
+          "index_sha256": "ec3281af63c828fd5430f92a732530ca5b677107f5ca25e6ce01541807868308",
+          "episodes": 16,
+          "seed_first": 8012272,
+          "seed_last": 8012287,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000018-attempt-000018.json.gz",
+          "index_sha256": "b2b317ffc3b164a250f0dde0341037e8f980713f91d5a15d918bfda32e807801",
+          "episodes": 16,
+          "seed_first": 8012288,
+          "seed_last": 8012303,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000019-attempt-000019.json.gz",
+          "index_sha256": "2da83d750beb8bf82aff47bab014f728f5b09c427b91cb88169f3b2985839116",
+          "episodes": 16,
+          "seed_first": 8012304,
+          "seed_last": 8012319,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000020-attempt-000020.json.gz",
+          "index_sha256": "27337f59cf18c0f06c7f8330c2504c05c8b7d542e50c442b4d59f82b096e6de4",
+          "episodes": 16,
+          "seed_first": 8012320,
+          "seed_last": 8012335,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000021-attempt-000021.json.gz",
+          "index_sha256": "e0b8b8183313d2b157d467f8a49bc2ba395a241458c057ea61d7aacf63abc0c4",
+          "episodes": 16,
+          "seed_first": 8012336,
+          "seed_last": 8012351,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000022-attempt-000022.json.gz",
+          "index_sha256": "e8d2dd81c2406caa7798c924720f8527c2782b6b5a412f06994899e6b89d425d",
+          "episodes": 16,
+          "seed_first": 8012352,
+          "seed_last": 8012367,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000023-attempt-000023.json.gz",
+          "index_sha256": "0346079dbee0ab032993b1cea93cad2278f6efb5692482047ca161565730b67b",
+          "episodes": 16,
+          "seed_first": 8012368,
+          "seed_last": 8012383,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000024-attempt-000024.json.gz",
+          "index_sha256": "cd28a3268b02e5627e4f5a1d847d03431f9f3157f523d7a97a0b1a82f0f78402",
+          "episodes": 16,
+          "seed_first": 8012384,
+          "seed_last": 8012399,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000025-attempt-000025.json.gz",
+          "index_sha256": "4eb9be72d690fb38cbb6dc7ce3ff7ce4356b776725ef7e37f212e908d4f8346a",
+          "episodes": 16,
+          "seed_first": 8012400,
+          "seed_last": 8012415,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000026-attempt-000026.json.gz",
+          "index_sha256": "c6003f087fe4d3483a09f2b91656c9fe006755ec3806df137b073ec4807da9e8",
+          "episodes": 16,
+          "seed_first": 8012416,
+          "seed_last": 8012431,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000027-attempt-000027.json.gz",
+          "index_sha256": "7ecff090bb04593fa0f6e88c43fe3dee7a6e023cacd2d12bf5e03130b7df2956",
+          "episodes": 16,
+          "seed_first": 8012432,
+          "seed_last": 8012447,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000028-attempt-000028.json.gz",
+          "index_sha256": "0a94ee39beacffd17eba343913dce1a82801a3fcb9bb5a7c4c08f8ecfbce6479",
+          "episodes": 16,
+          "seed_first": 8012448,
+          "seed_last": 8012463,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000029-attempt-000029.json.gz",
+          "index_sha256": "c319fead1299d3d9e49b37c296a3011b27375c41a2254055f743fba639e57718",
+          "episodes": 16,
+          "seed_first": 8012464,
+          "seed_last": 8012479,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000030-attempt-000030.json.gz",
+          "index_sha256": "eca05311100c446b1fd005342e235905693d11dfb3bb7dd283e2b5e0ffbdc39a",
+          "episodes": 16,
+          "seed_first": 8012480,
+          "seed_last": 8012495,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000031-attempt-000031.json.gz",
+          "index_sha256": "4c929433cf989718b27a120b334ba262d1414b08519b65fbbeb2f05f9c82981d",
+          "episodes": 16,
+          "seed_first": 8012496,
+          "seed_last": 8012511,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000032-attempt-000032.json.gz",
+          "index_sha256": "406913dbce096f7257326f4a5dc8429166337f275de59686ab9c59c08362d790",
+          "episodes": 16,
+          "seed_first": 8012512,
+          "seed_last": 8012527,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000033-attempt-000033.json.gz",
+          "index_sha256": "cfce0e989db5266c8f92b2b4d90e3136299e4eb236981d0a8614ad428846c5a8",
+          "episodes": 16,
+          "seed_first": 8012528,
+          "seed_last": 8012543,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000034-attempt-000034.json.gz",
+          "index_sha256": "53e6ce13e56a1f7d9173331f8431aa049a3e2de16837609e8fe6b5f2c13100f5",
+          "episodes": 16,
+          "seed_first": 8012544,
+          "seed_last": 8012559,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000035-attempt-000035.json.gz",
+          "index_sha256": "8e9254699cf6406f1b88dde168d3b4dcfb6701804bc76e830f2648ac30b84f13",
+          "episodes": 16,
+          "seed_first": 8012560,
+          "seed_last": 8012575,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000036-attempt-000036.json.gz",
+          "index_sha256": "d1f7c4418052118bd821601b48564f0a985cadaf153c463d1d5660813603b995",
+          "episodes": 16,
+          "seed_first": 8012576,
+          "seed_last": 8012591,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000037-attempt-000037.json.gz",
+          "index_sha256": "c3160eaff3fec09dcedd504986844b57e7c82cd2adfba731ca5b816775a73bd9",
+          "episodes": 16,
+          "seed_first": 8012592,
+          "seed_last": 8012607,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000038-attempt-000038.json.gz",
+          "index_sha256": "98e7e8501ba2fae0fe166f7020efe6383a842a064147265776d12f263325afa0",
+          "episodes": 16,
+          "seed_first": 8012608,
+          "seed_last": 8012623,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000039-attempt-000039.json.gz",
+          "index_sha256": "555b6a35b92ddeb1ef0879aa31a91c8db07e876d0f06ac7f7c07ad1cd93d0d06",
+          "episodes": 16,
+          "seed_first": 8012624,
+          "seed_last": 8012639,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000040-attempt-000040.json.gz",
+          "index_sha256": "acd75130962cb70706fb9ea3c515aa08cccc5b523377875931b45277a83c0c80",
+          "episodes": 16,
+          "seed_first": 8012640,
+          "seed_last": 8012655,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000041-attempt-000041.json.gz",
+          "index_sha256": "8ad4cee069f2627fc073cae578ebdf465f76c47500319bc34f3d20c1dd7ff92f",
+          "episodes": 16,
+          "seed_first": 8012656,
+          "seed_last": 8012671,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000042-attempt-000042.json.gz",
+          "index_sha256": "881b70c159cdf7a35d36e0f20fcdeef7f55b5bfa0f83657a96a0d5e85c3a074f",
+          "episodes": 16,
+          "seed_first": 8012672,
+          "seed_last": 8012687,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000043-attempt-000043.json.gz",
+          "index_sha256": "54c821db8a6f3e132e75139f653abc641147c3a30e128bcb452af39f59da7b79",
+          "episodes": 16,
+          "seed_first": 8012688,
+          "seed_last": 8012703,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000044-attempt-000044.json.gz",
+          "index_sha256": "a3b5ee62917ec756dc3998fe34691c8052f552a0589a40de66adc9a5e9c94c76",
+          "episodes": 16,
+          "seed_first": 8012704,
+          "seed_last": 8012719,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000045-attempt-000045.json.gz",
+          "index_sha256": "9d22148ffcfcf600863af7b5622f48747ff62f20ac2120a47faded65a6bf9fdb",
+          "episodes": 16,
+          "seed_first": 8012720,
+          "seed_last": 8012735,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000046-attempt-000046.json.gz",
+          "index_sha256": "303df12249dfd93f9bd6e5a182fa7d0af8f2cd31cf7fe2c14a19c5bb213713f4",
+          "episodes": 16,
+          "seed_first": 8012736,
+          "seed_last": 8012751,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000047-attempt-000047.json.gz",
+          "index_sha256": "dd182e90ae3df3634b85bfad3a7b468bc3d16e43bd9e534dd7ca5f041441b1b4",
+          "episodes": 16,
+          "seed_first": 8012752,
+          "seed_last": 8012767,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h64/training/batch-000048-attempt-000048.json.gz",
+          "index_sha256": "c7e5e0191cad7347cdef09b34372c562e2466cf8160b55a8368abf05d86830d1",
+          "episodes": 16,
+          "seed_first": 8012768,
+          "seed_last": 8012783,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        }
+      ],
+      "phase_totals": {
+        "imitation": {
+          "batches": 16,
+          "episodes": 256,
+          "records": 89138,
+          "optimizer_steps": 2109,
+          "update_wall_s": 448.49376942403615,
+          "update_cpu_s": 446.24666124999993,
+          "sum_episode_wall_time_s": 821.5245363209397,
+          "sum_episode_worker_cpu_s": 817.070917415,
+          "sum_episode_policy_wall_s": 746.7574054580182,
+          "sum_episode_policy_cpu_s": 742.6604173740001,
+          "sum_episode_posthoc_bound_wall_s": 74.10811814852059,
+          "sum_episode_posthoc_bound_cpu_s": 73.79330800799987
+        },
+        "ppo": {
+          "batches": 32,
+          "episodes": 512,
+          "records": 216880,
+          "optimizer_steps": 5133,
+          "update_wall_s": 1107.6053036637604,
+          "update_cpu_s": 1101.6063269519987,
+          "sum_episode_wall_time_s": 2607.471154058352,
+          "sum_episode_worker_cpu_s": 2592.38480037,
+          "sum_episode_policy_wall_s": 2446.1506544742733,
+          "sum_episode_policy_cpu_s": 2432.721540577,
+          "sum_episode_posthoc_bound_wall_s": 159.24181182309985,
+          "sum_episode_posthoc_bound_cpu_s": 158.59641289199993
+        }
+      },
+      "epochs_per_committed_batch": 3,
+      "optimizer_steps_from_checkpoint": [
+        7242
+      ],
+      "endpoint_latest_model_and_optimizer_exactly_equal": true,
+      "checkpoints": {
+        "endpoint": {
+          "path": "g3_h64/training/checkpoint-000048.pt",
+          "sha256": "ffe55c86799b317cc306867795ca8a1a3c08d91905080a51953c56b8a6d05c0e",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-g3-negative-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 58,
+            "hidden": 64
+          },
+          "feature_schema_version": "q4-micro-g3-negative-v1"
+        },
+        "latest": {
+          "path": "g3_h64/training/latest.pt",
+          "sha256": "9f72dd07c105e7ab2fc97d8c6369a7a382f121c2ba389c5c510c512a6d04fb3c",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-g3-negative-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 58,
+            "hidden": 64
+          },
+          "feature_schema_version": "q4-micro-g3-negative-v1"
+        },
+        "warmstart": {
+          "path": "g3_h64/training/warmstart.pt",
+          "sha256": "e399cf3a9a4e0c8865e1137fc2e8e48515e8da0975b10fb4f2105048e5126ab0",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-g3-negative-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 58,
+            "hidden": 64
+          },
+          "feature_schema_version": "q4-micro-g3-negative-v1"
+        }
+      },
+      "final_stop_reason": "administrative_stop_reserved_batch_retained",
+      "final_wall_time_s": 3599.661664856598,
+      "structured_log_matches_progress": true
+    },
+    {
+      "job": "g1_h128",
+      "committed_batches": 40,
+      "committed_episodes": 640,
+      "committed_seed_interval_inclusive": [
+        8012000,
+        8012639
+      ],
+      "pending_unlearned_seeds": [
+        8012640,
+        8012641,
+        8012642,
+        8012643,
+        8012644,
+        8012645,
+        8012646,
+        8012647,
+        8012648,
+        8012649,
+        8012650,
+        8012651,
+        8012652,
+        8012653,
+        8012654,
+        8012655
+      ],
+      "index_count": 41,
+      "journal_indexes": [
+        {
+          "path": "g1_h128/training/batch-000000-attempt-000000.json.gz",
+          "index_sha256": "e14dace816c369b346fa09f57f8d0397ea619f91025cfab7341b74b6e95fbb04",
+          "episodes": 16,
+          "seed_first": 8012000,
+          "seed_last": 8012015,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000001-attempt-000001.json.gz",
+          "index_sha256": "1315336526ce289ac916b90b59c8f3982681b5bf7dd4c2d544a6197cb65a0b90",
+          "episodes": 16,
+          "seed_first": 8012016,
+          "seed_last": 8012031,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000002-attempt-000002.json.gz",
+          "index_sha256": "081d632df635c1e967b9ceafacf642367d14aef02d22b4c65214c6a2d293bfb0",
+          "episodes": 16,
+          "seed_first": 8012032,
+          "seed_last": 8012047,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000003-attempt-000003.json.gz",
+          "index_sha256": "e9018c8f4838318b90dcc61443abc25b32a320cd48056752e7fd47d578e6229c",
+          "episodes": 16,
+          "seed_first": 8012048,
+          "seed_last": 8012063,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000004-attempt-000004.json.gz",
+          "index_sha256": "5257ebb2e79452e6abd3cacd166d37ba400f1b709af016bbddeae318242cd774",
+          "episodes": 16,
+          "seed_first": 8012064,
+          "seed_last": 8012079,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000005-attempt-000005.json.gz",
+          "index_sha256": "0a35b3435baad1da6a784e9f6ae7418991211e3edbd1e881f9550654b5280608",
+          "episodes": 16,
+          "seed_first": 8012080,
+          "seed_last": 8012095,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000006-attempt-000006.json.gz",
+          "index_sha256": "faffa5887072669a3513843ba71af762ec727c61911eedbe1f9ce69cd607a199",
+          "episodes": 16,
+          "seed_first": 8012096,
+          "seed_last": 8012111,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000007-attempt-000007.json.gz",
+          "index_sha256": "a871e966897137c8160a662fbb62bd8dbebcf2deadfb5510cd704af3d2dd7b17",
+          "episodes": 16,
+          "seed_first": 8012112,
+          "seed_last": 8012127,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000008-attempt-000008.json.gz",
+          "index_sha256": "83bd78232886178c3e315e3adffea72c3f32a44475ee6e0091a61767673dbe46",
+          "episodes": 16,
+          "seed_first": 8012128,
+          "seed_last": 8012143,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000009-attempt-000009.json.gz",
+          "index_sha256": "99c439b0d7ff168f1f25561d2a07749496e2d82c79f2bbd6167fb976d2885beb",
+          "episodes": 16,
+          "seed_first": 8012144,
+          "seed_last": 8012159,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000010-attempt-000010.json.gz",
+          "index_sha256": "374ba6656bae89829a53d7ccf939522a48cd763bbae703c16c385753793c4931",
+          "episodes": 16,
+          "seed_first": 8012160,
+          "seed_last": 8012175,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000011-attempt-000011.json.gz",
+          "index_sha256": "6b0d17714d2c8def78c5522e8fb60f340ac37f3c969b2b610acfebeaf915b768",
+          "episodes": 16,
+          "seed_first": 8012176,
+          "seed_last": 8012191,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000012-attempt-000012.json.gz",
+          "index_sha256": "66cbd770322be583f78bd6a5794ad51b2b8142954635d248ab3c69bf9805a568",
+          "episodes": 16,
+          "seed_first": 8012192,
+          "seed_last": 8012207,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000013-attempt-000013.json.gz",
+          "index_sha256": "ae23af984e6a93f081f8ad4d79b660fec5a6278c054d66ab86cf69360d36e6b4",
+          "episodes": 16,
+          "seed_first": 8012208,
+          "seed_last": 8012223,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000014-attempt-000014.json.gz",
+          "index_sha256": "a9fff39b8f0424e2e5339a9f04dad24b0f53bb188f5dd3ea5d210225331b8bcf",
+          "episodes": 16,
+          "seed_first": 8012224,
+          "seed_last": 8012239,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000015-attempt-000015.json.gz",
+          "index_sha256": "39e9bea358920c885337e531b10ddc3a39c4d53c538bf6af1ac303b0850fbbf9",
+          "episodes": 16,
+          "seed_first": 8012240,
+          "seed_last": 8012255,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000016-attempt-000016.json.gz",
+          "index_sha256": "b2382b2f329beac8918f2040512c2b344d30e6c727d2af8d4cca81f19467494c",
+          "episodes": 16,
+          "seed_first": 8012256,
+          "seed_last": 8012271,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000017-attempt-000017.json.gz",
+          "index_sha256": "6b4137e151f9d440ef8bc65c9599865ae363850838b6db2a546996a400758f36",
+          "episodes": 16,
+          "seed_first": 8012272,
+          "seed_last": 8012287,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000018-attempt-000018.json.gz",
+          "index_sha256": "190b75e6d4e9741e0540f13df041aa3567935756b972ccdccd3e28674182bc07",
+          "episodes": 16,
+          "seed_first": 8012288,
+          "seed_last": 8012303,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000019-attempt-000019.json.gz",
+          "index_sha256": "9520db9cef3f9b72384379dc09872162431c65f25dfd8423b2cc997f969b97db",
+          "episodes": 16,
+          "seed_first": 8012304,
+          "seed_last": 8012319,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000020-attempt-000020.json.gz",
+          "index_sha256": "5fdf54796639bde65e5106d1b95b5de52824a67f5347de50ae9b0cd7155c71b5",
+          "episodes": 16,
+          "seed_first": 8012320,
+          "seed_last": 8012335,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000021-attempt-000021.json.gz",
+          "index_sha256": "0bfb49240d7483821e352455657c7149748e81a3ef85234df78ac24c5f5b99ef",
+          "episodes": 16,
+          "seed_first": 8012336,
+          "seed_last": 8012351,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000022-attempt-000022.json.gz",
+          "index_sha256": "c69e716d109360716afdc697516eadbd52252777a3bc0bc16d96d4b14fc9ca8f",
+          "episodes": 16,
+          "seed_first": 8012352,
+          "seed_last": 8012367,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000023-attempt-000023.json.gz",
+          "index_sha256": "d55cdce8c409dc5d20c6f8e8b4ef5793c38be227aec41c338e92f4ef5c91da65",
+          "episodes": 16,
+          "seed_first": 8012368,
+          "seed_last": 8012383,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000024-attempt-000024.json.gz",
+          "index_sha256": "bb0f75115fc19e4bb7d5b32433628d47a38027c8a711d18404c959d266e37059",
+          "episodes": 16,
+          "seed_first": 8012384,
+          "seed_last": 8012399,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000025-attempt-000025.json.gz",
+          "index_sha256": "cd8958824056c971279afe748af84c73af9452841f2a7243a809fd5b20c453a4",
+          "episodes": 16,
+          "seed_first": 8012400,
+          "seed_last": 8012415,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000026-attempt-000026.json.gz",
+          "index_sha256": "654d2e11f41280bd436602a06962bf143fa12c3a19eb097436f90fad5ecc2bf0",
+          "episodes": 16,
+          "seed_first": 8012416,
+          "seed_last": 8012431,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000027-attempt-000027.json.gz",
+          "index_sha256": "346eff3ebdec99ba567aa467b1cc94b66428930864d525e4cb60a179c598939f",
+          "episodes": 16,
+          "seed_first": 8012432,
+          "seed_last": 8012447,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000028-attempt-000028.json.gz",
+          "index_sha256": "d2b1261f8f20f6561e564d5d1d97360ec9c7c99bf336df89d09af62afc7b29da",
+          "episodes": 16,
+          "seed_first": 8012448,
+          "seed_last": 8012463,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000029-attempt-000029.json.gz",
+          "index_sha256": "7b1fd49a41083511c6f8634f8a5f63122a66b30b12986622a7e4ce876207ad3a",
+          "episodes": 16,
+          "seed_first": 8012464,
+          "seed_last": 8012479,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000030-attempt-000030.json.gz",
+          "index_sha256": "9a29a628aaefcc1782ff7f6e77e90551f7b6000cdd89c947fc7f1050a998f234",
+          "episodes": 16,
+          "seed_first": 8012480,
+          "seed_last": 8012495,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000031-attempt-000031.json.gz",
+          "index_sha256": "893e68e81a45d5083ecf8db09fbeb89e8dd876b1b78dd34c8038f06e6d02dd3b",
+          "episodes": 16,
+          "seed_first": 8012496,
+          "seed_last": 8012511,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000032-attempt-000032.json.gz",
+          "index_sha256": "bc9d0e0fe0769ff0b89fd9205c3fe9b754ec54055eef29522f373a100d486808",
+          "episodes": 16,
+          "seed_first": 8012512,
+          "seed_last": 8012527,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000033-attempt-000033.json.gz",
+          "index_sha256": "0d5ae817f959e0ea6164a7de45a9c640ef783f7e97263269363cd74e7c69cdc8",
+          "episodes": 16,
+          "seed_first": 8012528,
+          "seed_last": 8012543,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000034-attempt-000034.json.gz",
+          "index_sha256": "80a6db25d54cb028bce7252474e2dd118c769795224225cdfe82818bc4760e50",
+          "episodes": 16,
+          "seed_first": 8012544,
+          "seed_last": 8012559,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000035-attempt-000035.json.gz",
+          "index_sha256": "6b81c00539ce6d35ed456ee85b48a660dec327a797b7374d0c107e7b45274277",
+          "episodes": 16,
+          "seed_first": 8012560,
+          "seed_last": 8012575,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000036-attempt-000036.json.gz",
+          "index_sha256": "291cb371036080cb0757251d3dec33b1418977c4eba3abe436498abce71e13c4",
+          "episodes": 16,
+          "seed_first": 8012576,
+          "seed_last": 8012591,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000037-attempt-000037.json.gz",
+          "index_sha256": "188935a9dd6347a4eef02112858e9bb58a673b766f4efcbbd8fec169a819f925",
+          "episodes": 16,
+          "seed_first": 8012592,
+          "seed_last": 8012607,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000038-attempt-000038.json.gz",
+          "index_sha256": "ebdd0cbef844f3027def379b8e89a102d0c1f2810c57c84d57413f4cc0e09c47",
+          "episodes": 16,
+          "seed_first": 8012608,
+          "seed_last": 8012623,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000039-attempt-000039.json.gz",
+          "index_sha256": "0f0e464eda028d10f45bf7529b586bbbbe2bc24ff9505a097259ea1ca6989177",
+          "episodes": 16,
+          "seed_first": 8012624,
+          "seed_last": 8012639,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g1_h128/training/batch-000040-attempt-000040.json.gz",
+          "index_sha256": "8038ab533d14f867e75347aedcc5cd98bd790a55da6199c2796e9fdb735ebaa7",
+          "episodes": 16,
+          "seed_first": 8012640,
+          "seed_last": 8012655,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        }
+      ],
+      "phase_totals": {
+        "imitation": {
+          "batches": 16,
+          "episodes": 256,
+          "records": 89138,
+          "optimizer_steps": 2109,
+          "update_wall_s": 791.2957498561591,
+          "update_cpu_s": 787.4860151290001,
+          "sum_episode_wall_time_s": 633.01472161524,
+          "sum_episode_worker_cpu_s": 627.86541448,
+          "sum_episode_policy_wall_s": 556.0194426625967,
+          "sum_episode_policy_cpu_s": 551.5533863239999,
+          "sum_episode_posthoc_bound_wall_s": 75.75781282037497,
+          "sum_episode_posthoc_bound_cpu_s": 75.20239475299995
+        },
+        "ppo": {
+          "batches": 24,
+          "episodes": 384,
+          "records": 162270,
+          "optimizer_steps": 3846,
+          "update_wall_s": 1447.526765042916,
+          "update_cpu_s": 1440.0922204550006,
+          "sum_episode_wall_time_s": 1568.9730892851949,
+          "sum_episode_worker_cpu_s": 1552.782192867,
+          "sum_episode_policy_wall_s": 1440.9774750526994,
+          "sum_episode_policy_cpu_s": 1425.733985889,
+          "sum_episode_posthoc_bound_wall_s": 126.92137949354947,
+          "sum_episode_posthoc_bound_cpu_s": 126.03317360200033
+        }
+      },
+      "epochs_per_committed_batch": 3,
+      "optimizer_steps_from_checkpoint": [
+        5955
+      ],
+      "endpoint_latest_model_and_optimizer_exactly_equal": true,
+      "checkpoints": {
+        "endpoint": {
+          "path": "g1_h128/training/checkpoint-000040.pt",
+          "sha256": "952ea2c9aa943c98f1394e600155ae337d5b7f882061dc69aad634019ae91082",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-micro-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 50,
+            "hidden": 128
+          },
+          "feature_schema_version": "q4-micro-g1-v1"
+        },
+        "latest": {
+          "path": "g1_h128/training/latest.pt",
+          "sha256": "956ef183169d96fcb3acb6f9956c9c0db654bf553b1774efcb257666d8fb698e",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-micro-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 50,
+            "hidden": 128
+          },
+          "feature_schema_version": "q4-micro-g1-v1"
+        },
+        "warmstart": {
+          "path": "g1_h128/training/warmstart.pt",
+          "sha256": "a3170afc53ae48d5b03618872400a424ce27d9c1110f7f2b342fdea13837688d",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-micro-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 50,
+            "hidden": 128
+          },
+          "feature_schema_version": "q4-micro-g1-v1"
+        }
+      },
+      "final_stop_reason": "administrative_stop_reserved_batch_retained",
+      "final_wall_time_s": 3599.530844172463,
+      "structured_log_matches_progress": true
+    },
+    {
+      "job": "g3_h128",
+      "committed_batches": 38,
+      "committed_episodes": 608,
+      "committed_seed_interval_inclusive": [
+        8012000,
+        8012607
+      ],
+      "pending_unlearned_seeds": [
+        8012608,
+        8012609,
+        8012610,
+        8012611,
+        8012612,
+        8012613,
+        8012614,
+        8012615,
+        8012616,
+        8012617,
+        8012618,
+        8012619,
+        8012620,
+        8012621,
+        8012622,
+        8012623
+      ],
+      "index_count": 39,
+      "journal_indexes": [
+        {
+          "path": "g3_h128/training/batch-000000-attempt-000000.json.gz",
+          "index_sha256": "4fd0b716f73b428432aed84cb88d05923e9a48b5e2ccd2676b570b548d1770d2",
+          "episodes": 16,
+          "seed_first": 8012000,
+          "seed_last": 8012015,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000001-attempt-000001.json.gz",
+          "index_sha256": "f7951144c3bffda79292072c6eed485b226a20736a20fb5b61a804fb09a1a332",
+          "episodes": 16,
+          "seed_first": 8012016,
+          "seed_last": 8012031,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000002-attempt-000002.json.gz",
+          "index_sha256": "8f351e3a690ad55cb0db15db6439154bc2a8b680009f55f4309b5758a3b24a98",
+          "episodes": 16,
+          "seed_first": 8012032,
+          "seed_last": 8012047,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000003-attempt-000003.json.gz",
+          "index_sha256": "37a0b3195470163622cc488acdde2c4ea7b89793dccbfce2a9d8acc8d60238c3",
+          "episodes": 16,
+          "seed_first": 8012048,
+          "seed_last": 8012063,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000004-attempt-000004.json.gz",
+          "index_sha256": "1d8829f7a413da5f3536044ad4f0f563dd18e419aee59343ad5a41e06605d069",
+          "episodes": 16,
+          "seed_first": 8012064,
+          "seed_last": 8012079,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000005-attempt-000005.json.gz",
+          "index_sha256": "aaa8463afec5063fa309d6175a2ed4eefc8bddaf06eeaf50ce27431158a97cff",
+          "episodes": 16,
+          "seed_first": 8012080,
+          "seed_last": 8012095,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000006-attempt-000006.json.gz",
+          "index_sha256": "06a744bd50ba7539c97de202d755ea81a6a7a32f6cf19fb115f69670416037f0",
+          "episodes": 16,
+          "seed_first": 8012096,
+          "seed_last": 8012111,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000007-attempt-000007.json.gz",
+          "index_sha256": "43e1b6c88107bd306323ed835d1125d91e33b8e2cd3e54d12c6a8c2502999c6f",
+          "episodes": 16,
+          "seed_first": 8012112,
+          "seed_last": 8012127,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000008-attempt-000008.json.gz",
+          "index_sha256": "bbd894ffc84fb5d41e747b1df460ce8bd6dd0140f68707c216a8cdbd771de98a",
+          "episodes": 16,
+          "seed_first": 8012128,
+          "seed_last": 8012143,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000009-attempt-000009.json.gz",
+          "index_sha256": "94d2c2b743b076432cb0c1294d0705a0762f73c21525de0ca2702c7f5f90fc8c",
+          "episodes": 16,
+          "seed_first": 8012144,
+          "seed_last": 8012159,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000010-attempt-000010.json.gz",
+          "index_sha256": "ee3bdcef0021566ac6ff500314150bd3d9894ae539c09ea9d3e85ceb31e615c9",
+          "episodes": 16,
+          "seed_first": 8012160,
+          "seed_last": 8012175,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000011-attempt-000011.json.gz",
+          "index_sha256": "c1cd0a6c17a77240372d1e50619f9ed2f1b9dac34a73b5b11f1e4404b8518bc0",
+          "episodes": 16,
+          "seed_first": 8012176,
+          "seed_last": 8012191,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000012-attempt-000012.json.gz",
+          "index_sha256": "8ba278e44512162353e2e256e6f00e5bea70c88c4a2ec9c5c72cfc38b076ec6b",
+          "episodes": 16,
+          "seed_first": 8012192,
+          "seed_last": 8012207,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000013-attempt-000013.json.gz",
+          "index_sha256": "8b04014ff69693bbe6a4877b7818a9b9787f5ab395e42ca4e155bdc69ae6ff96",
+          "episodes": 16,
+          "seed_first": 8012208,
+          "seed_last": 8012223,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000014-attempt-000014.json.gz",
+          "index_sha256": "bbe22dfcfd9b017be77d32dda68d8fc43f306a126d9fe9381c8f7ce22f2cfaad",
+          "episodes": 16,
+          "seed_first": 8012224,
+          "seed_last": 8012239,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000015-attempt-000015.json.gz",
+          "index_sha256": "a678d6f5208e854f9f283b7a3cd9157fab7eecbf6285b2c8caa1e592a735502e",
+          "episodes": 16,
+          "seed_first": 8012240,
+          "seed_last": 8012255,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000016-attempt-000016.json.gz",
+          "index_sha256": "768a92d756575a9fff0a6e54cc1c3b424344db1c6332ec4de1b5d3be5367754f",
+          "episodes": 16,
+          "seed_first": 8012256,
+          "seed_last": 8012271,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000017-attempt-000017.json.gz",
+          "index_sha256": "9a3f0fcc155036602c364770a85c5b2a0e0eac2dd4c2e315cfc0d7a5438bebaa",
+          "episodes": 16,
+          "seed_first": 8012272,
+          "seed_last": 8012287,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000018-attempt-000018.json.gz",
+          "index_sha256": "e45ec2e2d95509d8b98ed60583debd5baad2ddd6ea4dc2753f82ca5ed58fb2fb",
+          "episodes": 16,
+          "seed_first": 8012288,
+          "seed_last": 8012303,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000019-attempt-000019.json.gz",
+          "index_sha256": "f083a70ae5f4b8c2793e1a5f4cdfdb94581866592271fefa5636fca5e2471880",
+          "episodes": 16,
+          "seed_first": 8012304,
+          "seed_last": 8012319,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000020-attempt-000020.json.gz",
+          "index_sha256": "60274ab6138dfeebb031e1291831a7af5a5682d6e122b05115ee859e87ba4621",
+          "episodes": 16,
+          "seed_first": 8012320,
+          "seed_last": 8012335,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000021-attempt-000021.json.gz",
+          "index_sha256": "6297bcc445f5fd2f4c00681ed4b47cc3c317858fb38eb0be4919d085d5057f75",
+          "episodes": 16,
+          "seed_first": 8012336,
+          "seed_last": 8012351,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000022-attempt-000022.json.gz",
+          "index_sha256": "ecda7fd09db9e8efbe179800b39ea831a797b31c0effdf93c001adf8b277f355",
+          "episodes": 16,
+          "seed_first": 8012352,
+          "seed_last": 8012367,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000023-attempt-000023.json.gz",
+          "index_sha256": "25f29dfd63c225ecd5818ce2c51c45c55b35212fbf27c2a90e62781fe6ca778b",
+          "episodes": 16,
+          "seed_first": 8012368,
+          "seed_last": 8012383,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000024-attempt-000024.json.gz",
+          "index_sha256": "ccdfbaa9b1034e9a0cc9792b32fced55ecaa7f0f0ec5a0e744943f8a3ccbcdc5",
+          "episodes": 16,
+          "seed_first": 8012384,
+          "seed_last": 8012399,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000025-attempt-000025.json.gz",
+          "index_sha256": "e80ae7f540ae3e8830f7e20754feb902a463a1ee37d5d1ad067c933507655b20",
+          "episodes": 16,
+          "seed_first": 8012400,
+          "seed_last": 8012415,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000026-attempt-000026.json.gz",
+          "index_sha256": "11ad3d8908ff2bcf4e92dea23492da154d238d266398f2b5b795836d52fcb949",
+          "episodes": 16,
+          "seed_first": 8012416,
+          "seed_last": 8012431,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000027-attempt-000027.json.gz",
+          "index_sha256": "e9f4bf75e76bd065d537b349347114a7485e566edec11bdfd7f5f6d710424c6f",
+          "episodes": 16,
+          "seed_first": 8012432,
+          "seed_last": 8012447,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000028-attempt-000028.json.gz",
+          "index_sha256": "2fa37ed4637930ed731984731c08029cdfe783106a015575282b7c57b125cfa3",
+          "episodes": 16,
+          "seed_first": 8012448,
+          "seed_last": 8012463,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000029-attempt-000029.json.gz",
+          "index_sha256": "68b59cf4c9b57c077c517133df3b56cefe6d7a39aae13e8b9e40fb8d922b82e8",
+          "episodes": 16,
+          "seed_first": 8012464,
+          "seed_last": 8012479,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000030-attempt-000030.json.gz",
+          "index_sha256": "d67521029e46d2bc9851f7a18f11dbb5faa748c999bb11beb313d64bcdfc9ed4",
+          "episodes": 16,
+          "seed_first": 8012480,
+          "seed_last": 8012495,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000031-attempt-000031.json.gz",
+          "index_sha256": "956345d92d26dda54f843c857598cefb57ef4fcaaa70eb7b9c6284b74cbb720a",
+          "episodes": 16,
+          "seed_first": 8012496,
+          "seed_last": 8012511,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000032-attempt-000032.json.gz",
+          "index_sha256": "3b38c6147d1218e7e0f432de635876669b8b51756e53c372633a0b2d7a39c0ef",
+          "episodes": 16,
+          "seed_first": 8012512,
+          "seed_last": 8012527,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000033-attempt-000033.json.gz",
+          "index_sha256": "e14135ff4004209d7dec3d99c18f69410f80427a69b8d732896f2d970538419a",
+          "episodes": 16,
+          "seed_first": 8012528,
+          "seed_last": 8012543,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000034-attempt-000034.json.gz",
+          "index_sha256": "4cd1adcfff89e07272b1590e0753361b559b97e3a09ea4c607b17f7c1978f49d",
+          "episodes": 16,
+          "seed_first": 8012544,
+          "seed_last": 8012559,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000035-attempt-000035.json.gz",
+          "index_sha256": "34e696a11cd3aef0e16f8bb7e980c54fe633862b41f55adc6095d3e76f6deffd",
+          "episodes": 16,
+          "seed_first": 8012560,
+          "seed_last": 8012575,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000036-attempt-000036.json.gz",
+          "index_sha256": "46a0adb6f99025f2b51f54b68fbb83290dd8591760ead27242aa4bb17514c118",
+          "episodes": 16,
+          "seed_first": 8012576,
+          "seed_last": 8012591,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000037-attempt-000037.json.gz",
+          "index_sha256": "a8f3217a23c927970af90a7b602b7cb6da9e25d8cfdd4f492514111fae758da6",
+          "episodes": 16,
+          "seed_first": 8012592,
+          "seed_last": 8012607,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        },
+        {
+          "path": "g3_h128/training/batch-000038-attempt-000038.json.gz",
+          "index_sha256": "f326875636382f8c67507e78ea6fe4b7882603fd2700329667e8d308bcac30ac",
+          "episodes": 16,
+          "seed_first": 8012608,
+          "seed_last": 8012623,
+          "all_episode_hashes_match_OBJECT_READBACK": true
+        }
+      ],
+      "phase_totals": {
+        "imitation": {
+          "batches": 16,
+          "episodes": 256,
+          "records": 89138,
+          "optimizer_steps": 2109,
+          "update_wall_s": 818.9005592912436,
+          "update_cpu_s": 814.8099315320001,
+          "sum_episode_wall_time_s": 822.5749400537461,
+          "sum_episode_worker_cpu_s": 815.342007061,
+          "sum_episode_policy_wall_s": 747.8104722313583,
+          "sum_episode_policy_cpu_s": 741.0236636140002,
+          "sum_episode_posthoc_bound_wall_s": 73.96683909185231,
+          "sum_episode_posthoc_bound_cpu_s": 73.55772833499991
+        },
+        "ppo": {
+          "batches": 22,
+          "episodes": 352,
+          "records": 139139,
+          "optimizer_steps": 3288,
+          "update_wall_s": 1282.8457337860018,
+          "update_cpu_s": 1276.4115463529993,
+          "sum_episode_wall_time_s": 1699.5494061112404,
+          "sum_episode_worker_cpu_s": 1677.8461968830002,
+          "sum_episode_policy_wall_s": 1580.1187213920057,
+          "sum_episode_policy_cpu_s": 1559.3400435750004,
+          "sum_episode_posthoc_bound_wall_s": 118.45068717002869,
+          "sum_episode_posthoc_bound_cpu_s": 117.57389437500055
+        }
+      },
+      "epochs_per_committed_batch": 3,
+      "optimizer_steps_from_checkpoint": [
+        5397
+      ],
+      "endpoint_latest_model_and_optimizer_exactly_equal": true,
+      "checkpoints": {
+        "endpoint": {
+          "path": "g3_h128/training/checkpoint-000038.pt",
+          "sha256": "1c264e455d4760ba802f78d8ed4f658941f4eeda4752d26b03865c88f28e6d7e",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-g3-negative-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 58,
+            "hidden": 128
+          },
+          "feature_schema_version": "q4-micro-g3-negative-v1"
+        },
+        "latest": {
+          "path": "g3_h128/training/latest.pt",
+          "sha256": "497a9c37edcd37ff94ea10c7b4cb558d264c70fe5527da5b405bddc52f1b4d53",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-g3-negative-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 58,
+            "hidden": 128
+          },
+          "feature_schema_version": "q4-micro-g3-negative-v1"
+        },
+        "warmstart": {
+          "path": "g3_h128/training/warmstart.pt",
+          "sha256": "61d4ac338cdfc0b62fcbb0cf9c4f2baaf9f832c8d203ac8d33a0f9b308f5ce49",
+          "matches_frozen_copy": true,
+          "network": {
+            "architecture": "q4-g3-negative-candidate-mlp-v1",
+            "global_dim": 13,
+            "candidate_dim": 58,
+            "hidden": 128
+          },
+          "feature_schema_version": "q4-micro-g3-negative-v1"
+        }
+      },
+      "final_stop_reason": "administrative_stop_reserved_batch_retained",
+      "final_wall_time_s": 3599.5914913546294,
+      "structured_log_matches_progress": true
+    }
+  ],
+  "measurement_notes": [
+    "No progress.jsonl exists for this driver. Structured JSON lines in the four job .log files equal all immutable progress-*.json records exactly.",
+    "CPU totals below include committed batches only. They exclude retained administrative attempts and parent serialization/sync/other CPU not measured by progress.",
+    "Worker CPU includes policy and posthoc lower-bound CPU; these components must not be added again.",
+    "The four jobs share TRAIN seed prefixes but commit unequal counts under equal wall budgets. These are accounting totals, not paired performance comparisons.",
+    "Administrative attempt journal indexes contain sixteen preserved payload references, but no corresponding committed progress/checkpoint. Latest model AND optimizer equal the preceding committed endpoint.",
+    "Historical sync TimeoutExpired remains recorded. The terminal final_sync_attempts entry succeeded; complete readback subsequently verified.",
+    "Policy safety/full-clear replay of the raw training episodes is outside this bounded metadata audit; no claim is made that this audit reran it."
+  ],
+  "metadata_hashes_rechecked": {
+    "training-pair.json": "337c375a7359b28d6a8ad692ce2ead8e305c801eeb3161d329c8940667245787",
+    "training-pair-launch.json": "c813e78df022e48464d5e99d0fd79211eb4ce6548b1371b376270d97e2e8bef3",
+    "supervisor.json": "776e1dfe6a4e3453a99de908d6a87cc07201aa921e39afc0d30521151ad8686b",
+    "g1_h64/training/status.json": "07815ab871a97e50169c633ea1897851eb998201252f95525a0534b74430b134",
+    "g1_h64/training/progress-000001.json": "7b549090203fd7754d7b52a0e44dabd5d04ae10cda897b6158db1718da0025e9",
+    "g1_h64/training/progress-000002.json": "a423b5b20c57f5a14c487f543a3268b669df76c48304607bf9216e08b29b07de",
+    "g1_h64/training/progress-000003.json": "64798faf18556546b078d27c0910ba22286f1e7f8b4a2fbf5dd0e4d41cdbd57c",
+    "g1_h64/training/progress-000004.json": "f75dba424dd79d93554ffe88f4b771c34978ba964c469c1f7324101ca6c9c1d5",
+    "g1_h64/training/progress-000005.json": "625bc0b8ccd61e513b2273ff341057b82e408c9aa4e6ea84aa1dc670bc74912d",
+    "g1_h64/training/progress-000006.json": "888c02c4bc17dfd8e14da6cd3bafa3d23da776945c497e142d5a3f63af061c0c",
+    "g1_h64/training/progress-000007.json": "e176d4c721d3641ffe9684e261d26922e1d5024cafc91542b9e0260a2722270d",
+    "g1_h64/training/progress-000008.json": "a3f8d1ff8ed687f60077b3c326e4c8d1d68c6ccd8222d153de0b57a3d2950b12",
+    "g1_h64/training/progress-000009.json": "03bbf080677100ba7373cc82143a8c46c7e64f70f414d4b0d0cd0435cf79e9dc",
+    "g1_h64/training/progress-000010.json": "6e1c6203675c70e07e55057d615b9d1785b922438ad0520dc373d6dd0d67e869",
+    "g1_h64/training/progress-000011.json": "f5f48732a9e2c89256be6097677ffde78580bdf3d0768f36f41363398bd7b8f0",
+    "g1_h64/training/progress-000012.json": "bea84e984c1c626c93e2711949a2bb35486a728e0adbd568b395ce57ca82bd60",
+    "g1_h64/training/progress-000013.json": "e600aa3c1c113902279f0af6a1d46ac32f5009418f8309ff0d7b1ff72abe1ea3",
+    "g1_h64/training/progress-000014.json": "dfca25f1d7236028c88039c4d6ef6e365c5994695006b61d6e1817f2e83dfd46",
+    "g1_h64/training/progress-000015.json": "54246f5ae9d0a674a3287e21c1083b2963035cb8d37188d9b2f3dca3e6df8105",
+    "g1_h64/training/progress-000016.json": "2ca007389973df608c8439afdaea99326e4fbd8ce5b0e785ee7ae3cda5dc309d",
+    "g1_h64/training/progress-000017.json": "c4f91c08fb31b77af4e484b63ccbdd2dd13aa118c45fd25f18226f76858872f3",
+    "g1_h64/training/progress-000018.json": "d9d39bdb716fe68c8eb81c40f79d9c2073a03d850978559ab8fd06fd16d74b39",
+    "g1_h64/training/progress-000019.json": "75565eea0056402632eac179a8874b78bcf2afd22f397003e18e8c5bdb6a5502",
+    "g1_h64/training/progress-000020.json": "af6fa853020a8e15eb06713803b2dbcf8e69c2f61fd359094ceaf6a4701a2637",
+    "g1_h64/training/progress-000021.json": "abc3abe8f14a68cc6505df7743a183d7286181c44f71c47539d507887220f70c",
+    "g1_h64/training/progress-000022.json": "29e4895c728b3a3f6d1fd9347cc57a0c888dc6715c58b26013fc903f79dcd899",
+    "g1_h64/training/progress-000023.json": "50fc07e7c571ebb03c167e3f915f9cddeb690e5f0f1392b72a6935d62b3a9bff",
+    "g1_h64/training/progress-000024.json": "50d02bea29dab597c7ea29093df76e1030def5947b907af5461d8a385793e691",
+    "g1_h64/training/progress-000025.json": "822c157e97fc97bfbb7c4e76be4c5622bffc19be311fa4e8360c4f0de6dfcbca",
+    "g1_h64/training/progress-000026.json": "17d2f1a0752bbd1f47812a87e9f1bff1f9b0d5ed8b41d09d3ba3c50fc5f03a85",
+    "g1_h64/training/progress-000027.json": "a947d214b8868d56548acb65dcf949d15601f48a0c9d5d0750afeeaf8cb83456",
+    "g1_h64/training/progress-000028.json": "07fc769dd81b8b65a6466a81a1c99545300cbf44f35db0f79130f0d8ee793112",
+    "g1_h64/training/progress-000029.json": "e15a615a2cd820b5080694277866399de4514631edd707baaab8a22302a8d113",
+    "g1_h64/training/progress-000030.json": "60c2cd9084c1f1777349068b9c6bf364ed73da4b0a57dc6dfade2e13b90ed869",
+    "g1_h64/training/progress-000031.json": "0ebaa8f61b3c661209cd28bae7f4db6739145ab3bd4978c9124d0e1dfd6c7565",
+    "g1_h64/training/progress-000032.json": "648515d4adf731d5c96f4ee675fc0a6e077e0909f738a2f2ec5cea9e0cfc7c43",
+    "g1_h64/training/progress-000033.json": "e6753578053906558e042efafd20a6d3a96567bec293267f9cbaa4deb5c9d5f6",
+    "g1_h64/training/progress-000034.json": "0ea6f58e11b017e5fa7c98b02f0e81065c44f27a1bf6ed834c5e6ecce8b8b361",
+    "g1_h64/training/progress-000035.json": "a7e9c9e8f5e74ee5ac1bd6e959267d2931633b4c0fe655111be950cafd948490",
+    "g1_h64/training/progress-000036.json": "caf9ab618101d1805be1877defaea6842c8d2d790b567e8699afd23f9689bd25",
+    "g1_h64/training/progress-000037.json": "f26d4a799ac99273ff276ebd52e86b7491d8f06fb0defe10f90b1e09ce95b8ba",
+    "g1_h64/training/progress-000038.json": "e904d31f402e4f707c0b1098abf69ccb124d125bfd96b2a1381d6b0a0dd4d038",
+    "g1_h64/training/progress-000039.json": "c0c2234a4dc1b80c7f3a6748c9a100aede83de459b7c8c03c27f58cb286ce56d",
+    "g1_h64/training/progress-000040.json": "04adfae94afdd45433fb0b14840ad452e6eba487dc04b0e4c5fa62539f001e55",
+    "g1_h64/training/progress-000041.json": "3f88bc3eab6605b058139bf9ebec18389a8a871b74d860b0db2495d485643fa2",
+    "g1_h64/training/progress-000042.json": "15f31c121b87302be640381ef00e3f88f46bf27ea0bcd255ccbd4a6fef462cbd",
+    "g1_h64/training/progress-000043.json": "9de6277a14ba24eb7281ce05c29c00ae9190e142b1c8a519fb3ab918ac77d145",
+    "g1_h64/training/progress-000044.json": "17092c3a37da49e4637f10246f7340819632f875cc3978b03a6490d38f9501c4",
+    "g1_h64/training/progress-000045.json": "160728c2b71acff9ddc225a1f46bd882d770ad6204d22e9bf669bb973de7db57",
+    "g1_h64/training/progress-000046.json": "ac030f5f48630fec7adf1c1a29b29164241ebce63d786348690be200267f460f",
+    "g1_h64/training/progress-000047.json": "93125e3d99d3a911d9663c28d629a510d3a38d6adf45ba88f1b87a69081183cc",
+    "g1_h64/training/progress-000048.json": "738cc8c8f8e016b6bd791e413c0c7be41dcaeec219fa714d5b51742ba93e748e",
+    "g1_h64/training/progress-000049.json": "2a3ebcfb59f6c9b5c362716b85df072f86fb46f5ccb86275c82f121134d7cbc1",
+    "g1_h64/training/progress-000050.json": "6afe00531ea4f7ee616557291d32202acce20e5ece77e034cb23f524917591a9",
+    "g1_h64/training/progress-000051.json": "7da4a6cb52e947e4c99c31a80bad879bdc2276beb3d61865b22ccb6db01bf5aa",
+    "g1_h64/training/progress-000052.json": "e7ae99f458693ea849c600a3ea1f55f1d582dde9adb79804f04041a761695a0d",
+    "g1_h64/training/progress-000053.json": "3ed732b131fba736b78589ebe1051fd9d65d38fd0367b8fdb57d5aa07f73a3cf",
+    "g1_h64/training/progress-000054.json": "a3797b64eebeadc549103d1c76fdaf8a1c390c9d1b3f74880487c07df8271e8e",
+    "g1_h64/training/progress.json": "a3797b64eebeadc549103d1c76fdaf8a1c390c9d1b3f74880487c07df8271e8e",
+    "g1_h64.log": "00da60c616127ae093125faf23477094f88bd402bbdb873908e12adf0194e28f",
+    "g1_h64/training/batch-000000-attempt-000000.json.gz": "b81a115ddf96fc78d3cefa333e32523bed9d630ccb508b4fd8081af347003004",
+    "g1_h64/training/batch-000001-attempt-000001.json.gz": "0df85066a37a664239d3f39147f36a27066d758ce11f1e6a7b4eff5c6fb4b753",
+    "g1_h64/training/batch-000002-attempt-000002.json.gz": "26d18053b9f7db233a767ec4d35f7d75ede0f1e7c7361857643a155569eddcb8",
+    "g1_h64/training/batch-000003-attempt-000003.json.gz": "11b7b313c77567bea2cb79cd659a5980fef8da178a052b8a8e8b622a6024d70f",
+    "g1_h64/training/batch-000004-attempt-000004.json.gz": "1d4d85bbc65edf0b929cdcedb21cf5345d90b12f4c4191867571ec0b6ba04aa4",
+    "g1_h64/training/batch-000005-attempt-000005.json.gz": "b470f43b81e2628b1031a5133cc38dab9d64356f5e0c66881e43a11fbcd85a4c",
+    "g1_h64/training/batch-000006-attempt-000006.json.gz": "2869d066e8b81144c5a5a8e595d5733d1fe46b308c14d142949e7d7c56c1fa80",
+    "g1_h64/training/batch-000007-attempt-000007.json.gz": "d4cbb14c062657e4792efe64cfc6dcbe965da7510edd913678305b8fd3b4833c",
+    "g1_h64/training/batch-000008-attempt-000008.json.gz": "beed43be28978d6b4a4f6a7d254baaa1c5d409076300e650f08145a62979f11b",
+    "g1_h64/training/batch-000009-attempt-000009.json.gz": "84faeaf380583e9ac182978c645747d065044bfe4dab057515405cea05769d11",
+    "g1_h64/training/batch-000010-attempt-000010.json.gz": "42e20d629d8bac2bee91d719e4187d72aa014836475f655b0e0e45116aeacdb1",
+    "g1_h64/training/batch-000011-attempt-000011.json.gz": "d7b2157e99ec5781ebc77a9ca91b92a106c99a8c1bfc44a7295e18b6d78d090b",
+    "g1_h64/training/batch-000012-attempt-000012.json.gz": "c99f9902d5c192f2e595cf3c74205d14f64c11d064e5cc64d948e789f6918bc9",
+    "g1_h64/training/batch-000013-attempt-000013.json.gz": "1200bfc445407e36cae431950ff556dbd5956f7872040e2e0abda8e0039a35b3",
+    "g1_h64/training/batch-000014-attempt-000014.json.gz": "5ab6731a2c1779073e708ba0a9d1b5ca33df8b60edda9181058a93a2a1ca563b",
+    "g1_h64/training/batch-000015-attempt-000015.json.gz": "73bf1d8998729a5797dadd0f299530e02ae8021023d397bb03c454555116683b",
+    "g1_h64/training/batch-000016-attempt-000016.json.gz": "077198b461e0d40991fa11fff9cce2fd43e8d8389681a3c17f85298e3640a680",
+    "g1_h64/training/batch-000017-attempt-000017.json.gz": "5573adce52f0783cae321853bafee395c6e2ae2e38ea6b11f42b19426dda287d",
+    "g1_h64/training/batch-000018-attempt-000018.json.gz": "441691fa6db39bab18dabdb21046d1651a161d0ad20b607622230cb49d2e6cf8",
+    "g1_h64/training/batch-000019-attempt-000019.json.gz": "aa22f0b98e6c7e210df5fc10f883d8ca08bbf167d485247f0e714158c4fdc0dd",
+    "g1_h64/training/batch-000020-attempt-000020.json.gz": "85037c4c6e28a30cc3ad1d14713abe198425b4546656ef6fc17da52aa7cfc7f3",
+    "g1_h64/training/batch-000021-attempt-000021.json.gz": "87ad5860bd07fe35c46c1a09968285e6d03cc3f18b9c3da6cd252f6628994bd2",
+    "g1_h64/training/batch-000022-attempt-000022.json.gz": "583038b95f5033978f4ea3d285645e0cd020e430955421c75d45b73aca729d0a",
+    "g1_h64/training/batch-000023-attempt-000023.json.gz": "b573c25fb1cc141f29efe470cf8548f2015c1bf2c98984e13ae887e939079841",
+    "g1_h64/training/batch-000024-attempt-000024.json.gz": "17e3c0a7d3918e07ac7b28625aea3b878b4a0608c0ecb2b33aa433cd7accf155",
+    "g1_h64/training/batch-000025-attempt-000025.json.gz": "eb03489468772ebd551297b8101a7c799ab4e0e9e5cce04d60fc541a6a011df7",
+    "g1_h64/training/batch-000026-attempt-000026.json.gz": "465ece3383ed10bbcf8c45a1f97f07d843252acd75bf0265a83f226514e68c2b",
+    "g1_h64/training/batch-000027-attempt-000027.json.gz": "3da8935241e82c50bed24a14a5971719802bbcafd694935ec321c85b5744e621",
+    "g1_h64/training/batch-000028-attempt-000028.json.gz": "f4ffb0fef25a86a6c3e92bffd7102a985af5d9a57345647b7bc5193c148d5eac",
+    "g1_h64/training/batch-000029-attempt-000029.json.gz": "262aa8992b7310d1026d758baa427f23ad0b84d362d7d0c9d6e5f76ae1967347",
+    "g1_h64/training/batch-000030-attempt-000030.json.gz": "1ef65b2ea3dfdfab1782c195ddb9cde8810461a986adc08e9d6a906d1d87fc98",
+    "g1_h64/training/batch-000031-attempt-000031.json.gz": "f8f7028fdb057a7da29ad87387b81f98baa5d3bf5ea0b17f4091b2c5d3d60572",
+    "g1_h64/training/batch-000032-attempt-000032.json.gz": "272526c6b4fcb7f4b73ebfff435a5991b4d4dfed30e408d6fc0cec8708960341",
+    "g1_h64/training/batch-000033-attempt-000033.json.gz": "8fe3ce2b08fc43c4c0e70e2a573ab6043998b27e3a7eced4a24d3587ae171b5a",
+    "g1_h64/training/batch-000034-attempt-000034.json.gz": "af565adacb145a7e4996dc8c85404d36ec9900418bd210e5a70fe20bfa710885",
+    "g1_h64/training/batch-000035-attempt-000035.json.gz": "e82c3daf65f3add0816e351b15797c3bab744b61791852d0c41178d353f99357",
+    "g1_h64/training/batch-000036-attempt-000036.json.gz": "546457e5ab8adff649169b820a72b1cfd1e62bf10d2797c614aa0ba55b3525be",
+    "g1_h64/training/batch-000037-attempt-000037.json.gz": "d19eab73cc822355f5991c5b83fb97aa944655cd239faf8748e4c4d453dc8219",
+    "g1_h64/training/batch-000038-attempt-000038.json.gz": "e1623ea962ca43f78d8d5ff48c76164dd7b498b8574e9894aeeea01b183431ff",
+    "g1_h64/training/batch-000039-attempt-000039.json.gz": "0a3af66fd023769a9cca010438d7a38979c4c2efcecf4f27169d47a209e247ba",
+    "g1_h64/training/batch-000040-attempt-000040.json.gz": "4e1d52461f4cd1b4306649c3f2ba4c162070496112e7a687b56df5cb928c574e",
+    "g1_h64/training/batch-000041-attempt-000041.json.gz": "a6d74da1347dca1b9f815a532c1115e106547360164b907bcc3b2e772e1353a0",
+    "g1_h64/training/batch-000042-attempt-000042.json.gz": "acf40cb814f3b7623085578dd6b4d0eb3097410220f300b2cdb8d15c0e7188be",
+    "g1_h64/training/batch-000043-attempt-000043.json.gz": "27330a6040d4d77d870b06bfc19a74460a8155b3e7ce326246f439e79837f089",
+    "g1_h64/training/batch-000044-attempt-000044.json.gz": "f4b7d39682d50bb3d0affafbaa167bc21021785854eae16139b6766d4030a148",
+    "g1_h64/training/batch-000045-attempt-000045.json.gz": "de78f4634eb4b20af95ac768a027cd5ccd0ce5b876e5c45bd7153495519c1a94",
+    "g1_h64/training/batch-000046-attempt-000046.json.gz": "310622b9cb8383874d27f34fcd862d342964bc2d70aaa6fe2f7f2524792f2d84",
+    "g1_h64/training/batch-000047-attempt-000047.json.gz": "f8fa5a5386ec7b38cad2d3a5ebb05195eaf83d8f1610b86f32cc7c03a5d97758",
+    "g1_h64/training/batch-000048-attempt-000048.json.gz": "6d98996c8b667ece0e84d6a0fa12f80bf28b4ddd7b425180d3d5c52b3844ecf3",
+    "g1_h64/training/batch-000049-attempt-000049.json.gz": "ea1ecc6dcac3a36277ac75b28bca5f97bbb9f027dd08974618af23244c7752c2",
+    "g1_h64/training/batch-000050-attempt-000050.json.gz": "36bb0958cc07d833e747be41c760eb2a8593abc248a1f43c744c996fe0887e17",
+    "g1_h64/training/batch-000051-attempt-000051.json.gz": "e0bd9cb38bcf4bd2b1994ffb879edd78d422d3b4cf934d71ee29fdcb57cdffe7",
+    "g1_h64/training/batch-000052-attempt-000052.json.gz": "ae73de6266ee4c4bfd3180a81664a02018e21c56945b93cd80fb5a2300112a3f",
+    "g1_h64/training/batch-000053-attempt-000053.json.gz": "080abb65d3aace3fa896abddbebcf7fac5f5b5129abd25c9d9dbb582a6254286",
+    "g1_h64/training/checkpoint-000054.pt": "18e06c8c659a1fcbb9608f88f2160892e325db84a324df8dc0413eb763bf83a6",
+    "g1_h64/training/latest.pt": "3092f65a01d4dac1d8bd12daa9a984370e980fbd29764801917c0137ce6eff7e",
+    "g1_h64/training/warmstart.pt": "77cfacfe3ff4d419b947f9eca277f80d0cebf63002d09aea0723f93f12890023",
+    "g3_h64/training/status.json": "ff2c2a8ea14e5cfeb319b5afa6033dc18217dc0ddf676d9214a1c4b6d7ca11de",
+    "g3_h64/training/progress-000001.json": "ff2750b835ed8ac7b75877b47b5040c925cf99e0bab96d53b716539f0b8137ab",
+    "g3_h64/training/progress-000002.json": "ff35d63ef29684af0e2086a526467a4672b1a8e64d8cb27407c12ac54eeabd07",
+    "g3_h64/training/progress-000003.json": "491d04aaa629464f790325fe5136025d5a2a4ba2378e18e261400f702f3d4ae3",
+    "g3_h64/training/progress-000004.json": "b73f2c7e0ce067b1f958381a21f30c8fc1945161c2545324cf5bf098fe27c1e5",
+    "g3_h64/training/progress-000005.json": "1086f0c062dfc819c2f8d44ae6983957af43675a81cc57d94015cee6213e01a1",
+    "g3_h64/training/progress-000006.json": "7ec0cb97fd0d5a9f3ce79d4705d99de70622f5bfaf179092ae13d0b4323c23c4",
+    "g3_h64/training/progress-000007.json": "056c3c6dd120ef6fae8558fe19384aac0197044b0f5af88e123c6e489e334c34",
+    "g3_h64/training/progress-000008.json": "4a26b2ab9e32c66c1fdf8920956b809d49e00c103e5683df921efc7499650a78",
+    "g3_h64/training/progress-000009.json": "3a8168d2cc0afd354c6ad286080da9890229a993a8f1bc6668a3c11806817fa6",
+    "g3_h64/training/progress-000010.json": "939a0a71992cf49cff7028e9ae6ff76272fcbccfa9682cd984ecff35fc19eb7b",
+    "g3_h64/training/progress-000011.json": "6844b1922da62de2818b4d4a1796134225ff398430b6bf9d7118b768bb6fe492",
+    "g3_h64/training/progress-000012.json": "cb0666c8d1fb208b6f22c8b7a41ee79d8f91506f5c67ceff4f2317b2b7ed6d19",
+    "g3_h64/training/progress-000013.json": "437c4df62de49773f7c05331561b40eff1765554d58162ab65f591447e69a133",
+    "g3_h64/training/progress-000014.json": "5a1b11bb915d036a3ea139789fbf0da2c9e95429920d7e95efbc30578801da50",
+    "g3_h64/training/progress-000015.json": "599f738240a04c5caac84190f266c6c01a02e79f63081548ea7cdf3b7ec93c3f",
+    "g3_h64/training/progress-000016.json": "c6fc9ea70e4a2bc0690f744b866ac8c9ac8d107d86740f30595f6d9505122733",
+    "g3_h64/training/progress-000017.json": "3ea20839698d26e62b40b3e871d709cf720ba2c9ef33766c24ba21ae7d3d489b",
+    "g3_h64/training/progress-000018.json": "8ab0b2ef8177349f465404ba151ce4653afceeb3d5ede311505847511809bc05",
+    "g3_h64/training/progress-000019.json": "dd4a67f7ca5cf4e6b8fc80e333e306242663b15d3c905fa6de4b18880bde2e8c",
+    "g3_h64/training/progress-000020.json": "a765d05020e0ae4bbee73fc71bdb2bdb54b82c8a619056173c34985a486b2d9d",
+    "g3_h64/training/progress-000021.json": "7e7f47f20cf35535770fc4b8ef6f0461aa28517db14db473b81ecde67489c76e",
+    "g3_h64/training/progress-000022.json": "d1d556b120301f1a1a99803422feba11f824c4cb98547b250a6ec38fb764c555",
+    "g3_h64/training/progress-000023.json": "915f7ae97aa3a37cb0ed9ab0c1d59086189bb027df1bcdc2b65ba20e35def06c",
+    "g3_h64/training/progress-000024.json": "4b1debf063de19e6586c3824c797cdffde06eecfc8401da675c887c2aef1ba25",
+    "g3_h64/training/progress-000025.json": "5ded89835d0dcc1ed65fd560c71a304872d8a95f3e3e21b84b3fa6edb724cd90",
+    "g3_h64/training/progress-000026.json": "43a8f8dfd836bdc790294955fecd6059fdfe6871aa50fdb1b8bb1153f98f8772",
+    "g3_h64/training/progress-000027.json": "113130e632c7a3fdeda357e45a7997ccfd79860ab908beb0a7ae38e9d8b22ddd",
+    "g3_h64/training/progress-000028.json": "d6f4a786e363b2cd8ecca73c0edbc01dcd5d61b3ccf0affd96ffc80f20c9f697",
+    "g3_h64/training/progress-000029.json": "fbab7b92ebc52226d2b2d1958720623a9e33f446d1101904271dcd0cfdf325cd",
+    "g3_h64/training/progress-000030.json": "a610c727c4150bda81e489b5c4ac455cf51383fc7c3ca6650e5428e045f16480",
+    "g3_h64/training/progress-000031.json": "0a67f405b8185947286e532dc3a9ebc713777145db837a9281a081eb2963e052",
+    "g3_h64/training/progress-000032.json": "c975b6fa7a6ce06d4d50ef405b4c5483bf4159862c76d83519603c81de6042ad",
+    "g3_h64/training/progress-000033.json": "97f0790d087a0a6cad3f1de7f467def8cf371d11c179566cce095d60c05424af",
+    "g3_h64/training/progress-000034.json": "02091f46bddfbcaac0e6968bdbc7ba08b5461e6ac7f298a2aea7a300af868a16",
+    "g3_h64/training/progress-000035.json": "a74a60f3fde88b9274e0f4e20cb46ab29584c5da45293775cee78afa4bb99385",
+    "g3_h64/training/progress-000036.json": "ecaaa1fbf0653c617dc34fe6a46f91d6c4352e6029cd9431a0cf1a69f538578b",
+    "g3_h64/training/progress-000037.json": "c52421532cd510ebff049f0ecb0c3b5ccece111aa7ef1e1799b9d3da94a036cb",
+    "g3_h64/training/progress-000038.json": "71ab40eb2d9dab09b844f2cd99ec69d99c0f6ff6db5ffb66e3426135ac5bfb72",
+    "g3_h64/training/progress-000039.json": "cea56375913c2d7ebc2f810a5e196468ab30fa42f604f33136ba20ca682c08c9",
+    "g3_h64/training/progress-000040.json": "bc914dc0ed45df4869e4eeb5b01727d1f3be84f22fbe23da3880d97ff42b2cae",
+    "g3_h64/training/progress-000041.json": "b05f051d967eb6ab9efc0cdc9eab5cdd6d012e4bbdc6ec6a338e75b027c7b274",
+    "g3_h64/training/progress-000042.json": "612f8f677f7001d6a6bade9298280c4253d77308079421f4fe6b30387b545d4b",
+    "g3_h64/training/progress-000043.json": "8ff646fdedc908db5bb191744ce02d8edd5b5dc422372e30c1acb95f374f591d",
+    "g3_h64/training/progress-000044.json": "d056ebde4c17882bbc167a5ecbdf0ff4c95c12ea7773bc36772893f1441bfba1",
+    "g3_h64/training/progress-000045.json": "e5191ac37e266e64438bbcdbf494422a7a36bebbce5b798f274390c663b8e2b6",
+    "g3_h64/training/progress-000046.json": "819e086e914c37f29fb61db08d3dd0c804c73b91d4c00fc0753b14ee8acf581b",
+    "g3_h64/training/progress-000047.json": "19994bd3fd493ae27802f194197c53e31457b2e4509481c87ccc184ee20e97d3",
+    "g3_h64/training/progress-000048.json": "5fea9104091282a618d1e2894a1c3a72996fc1b7a400fbb2e80e03851039e96e",
+    "g3_h64/training/progress.json": "5fea9104091282a618d1e2894a1c3a72996fc1b7a400fbb2e80e03851039e96e",
+    "g3_h64.log": "d604390b6b8f788211408ee711e0464552e197e5521eeaf381bb0161b8cf1e13",
+    "g3_h64/training/batch-000000-attempt-000000.json.gz": "f729fa4892942fedce17f1c6c6fbd5d36cf6b9aabb1c42d916b6d43467c3ad81",
+    "g3_h64/training/batch-000001-attempt-000001.json.gz": "092bd93a7876222ab58baeee72116352dc662c81c2010bfabd898d18e21f4175",
+    "g3_h64/training/batch-000002-attempt-000002.json.gz": "f0b320d1d10f103e4cfd5d3259730ba330a756eae2bb6607b99119a5f187a017",
+    "g3_h64/training/batch-000003-attempt-000003.json.gz": "bad26259a9c10c21f7f95df9d0df583f9f931c466c8551d9ffd3eaf4ed7cf60c",
+    "g3_h64/training/batch-000004-attempt-000004.json.gz": "1641b37ae7c6c7aab669a29f2d5a7c91a75e5b0fade0f07a8dfdec13f79c7027",
+    "g3_h64/training/batch-000005-attempt-000005.json.gz": "ba70d16618a7a979b779b409ce5405d7b29b60f78221fec20145abcb7920e075",
+    "g3_h64/training/batch-000006-attempt-000006.json.gz": "3b62fc0946f3716a0bc1e435e87bef8714be24192074f9c4f4be5968c68f75b3",
+    "g3_h64/training/batch-000007-attempt-000007.json.gz": "af784fe214b21e9a4ac0f0320362f37ae9d7b68d406da72555b8fa607657b516",
+    "g3_h64/training/batch-000008-attempt-000008.json.gz": "1368c8f4a454974d4e634c1af1f27c74e54fe83ae716c6daa091207b4514c05b",
+    "g3_h64/training/batch-000009-attempt-000009.json.gz": "9db968778ab20accecc08807d69af49afd8a3b125667133c634d327e9e45ddc5",
+    "g3_h64/training/batch-000010-attempt-000010.json.gz": "50cc18bf0b38ff917f01ddc1c92942f9499058dd8bac7ef98094115d66f38919",
+    "g3_h64/training/batch-000011-attempt-000011.json.gz": "c0eae795479c82001ad3de1afde25da1448c05dea810e3fc6da2c80a75785965",
+    "g3_h64/training/batch-000012-attempt-000012.json.gz": "9bb707c00628eded813d436e99e311fc1d9acf3a4dffde4336f22ef2dc63372e",
+    "g3_h64/training/batch-000013-attempt-000013.json.gz": "ae65bfc92dcb114ecc15a930953d3511a21612756e1f20bc334cc150c7b9334a",
+    "g3_h64/training/batch-000014-attempt-000014.json.gz": "c19786c0dab06a7ad127e06fa0a1892a1805ced1cbc7d34b8f5795205839412c",
+    "g3_h64/training/batch-000015-attempt-000015.json.gz": "054e391e041939c78a6f2e0d09af385086da22c304570d576f15d09e7e58bf9f",
+    "g3_h64/training/batch-000016-attempt-000016.json.gz": "06e81b6d76eaefc7593ba025ad858cff4e459ccaba0655cb52a415950c3f403e",
+    "g3_h64/training/batch-000017-attempt-000017.json.gz": "ec3281af63c828fd5430f92a732530ca5b677107f5ca25e6ce01541807868308",
+    "g3_h64/training/batch-000018-attempt-000018.json.gz": "b2b317ffc3b164a250f0dde0341037e8f980713f91d5a15d918bfda32e807801",
+    "g3_h64/training/batch-000019-attempt-000019.json.gz": "2da83d750beb8bf82aff47bab014f728f5b09c427b91cb88169f3b2985839116",
+    "g3_h64/training/batch-000020-attempt-000020.json.gz": "27337f59cf18c0f06c7f8330c2504c05c8b7d542e50c442b4d59f82b096e6de4",
+    "g3_h64/training/batch-000021-attempt-000021.json.gz": "e0b8b8183313d2b157d467f8a49bc2ba395a241458c057ea61d7aacf63abc0c4",
+    "g3_h64/training/batch-000022-attempt-000022.json.gz": "e8d2dd81c2406caa7798c924720f8527c2782b6b5a412f06994899e6b89d425d",
+    "g3_h64/training/batch-000023-attempt-000023.json.gz": "0346079dbee0ab032993b1cea93cad2278f6efb5692482047ca161565730b67b",
+    "g3_h64/training/batch-000024-attempt-000024.json.gz": "cd28a3268b02e5627e4f5a1d847d03431f9f3157f523d7a97a0b1a82f0f78402",
+    "g3_h64/training/batch-000025-attempt-000025.json.gz": "4eb9be72d690fb38cbb6dc7ce3ff7ce4356b776725ef7e37f212e908d4f8346a",
+    "g3_h64/training/batch-000026-attempt-000026.json.gz": "c6003f087fe4d3483a09f2b91656c9fe006755ec3806df137b073ec4807da9e8",
+    "g3_h64/training/batch-000027-attempt-000027.json.gz": "7ecff090bb04593fa0f6e88c43fe3dee7a6e023cacd2d12bf5e03130b7df2956",
+    "g3_h64/training/batch-000028-attempt-000028.json.gz": "0a94ee39beacffd17eba343913dce1a82801a3fcb9bb5a7c4c08f8ecfbce6479",
+    "g3_h64/training/batch-000029-attempt-000029.json.gz": "c319fead1299d3d9e49b37c296a3011b27375c41a2254055f743fba639e57718",
+    "g3_h64/training/batch-000030-attempt-000030.json.gz": "eca05311100c446b1fd005342e235905693d11dfb3bb7dd283e2b5e0ffbdc39a",
+    "g3_h64/training/batch-000031-attempt-000031.json.gz": "4c929433cf989718b27a120b334ba262d1414b08519b65fbbeb2f05f9c82981d",
+    "g3_h64/training/batch-000032-attempt-000032.json.gz": "406913dbce096f7257326f4a5dc8429166337f275de59686ab9c59c08362d790",
+    "g3_h64/training/batch-000033-attempt-000033.json.gz": "cfce0e989db5266c8f92b2b4d90e3136299e4eb236981d0a8614ad428846c5a8",
+    "g3_h64/training/batch-000034-attempt-000034.json.gz": "53e6ce13e56a1f7d9173331f8431aa049a3e2de16837609e8fe6b5f2c13100f5",
+    "g3_h64/training/batch-000035-attempt-000035.json.gz": "8e9254699cf6406f1b88dde168d3b4dcfb6701804bc76e830f2648ac30b84f13",
+    "g3_h64/training/batch-000036-attempt-000036.json.gz": "d1f7c4418052118bd821601b48564f0a985cadaf153c463d1d5660813603b995",
+    "g3_h64/training/batch-000037-attempt-000037.json.gz": "c3160eaff3fec09dcedd504986844b57e7c82cd2adfba731ca5b816775a73bd9",
+    "g3_h64/training/batch-000038-attempt-000038.json.gz": "98e7e8501ba2fae0fe166f7020efe6383a842a064147265776d12f263325afa0",
+    "g3_h64/training/batch-000039-attempt-000039.json.gz": "555b6a35b92ddeb1ef0879aa31a91c8db07e876d0f06ac7f7c07ad1cd93d0d06",
+    "g3_h64/training/batch-000040-attempt-000040.json.gz": "acd75130962cb70706fb9ea3c515aa08cccc5b523377875931b45277a83c0c80",
+    "g3_h64/training/batch-000041-attempt-000041.json.gz": "8ad4cee069f2627fc073cae578ebdf465f76c47500319bc34f3d20c1dd7ff92f",
+    "g3_h64/training/batch-000042-attempt-000042.json.gz": "881b70c159cdf7a35d36e0f20fcdeef7f55b5bfa0f83657a96a0d5e85c3a074f",
+    "g3_h64/training/batch-000043-attempt-000043.json.gz": "54c821db8a6f3e132e75139f653abc641147c3a30e128bcb452af39f59da7b79",
+    "g3_h64/training/batch-000044-attempt-000044.json.gz": "a3b5ee62917ec756dc3998fe34691c8052f552a0589a40de66adc9a5e9c94c76",
+    "g3_h64/training/batch-000045-attempt-000045.json.gz": "9d22148ffcfcf600863af7b5622f48747ff62f20ac2120a47faded65a6bf9fdb",
+    "g3_h64/training/batch-000046-attempt-000046.json.gz": "303df12249dfd93f9bd6e5a182fa7d0af8f2cd31cf7fe2c14a19c5bb213713f4",
+    "g3_h64/training/batch-000047-attempt-000047.json.gz": "dd182e90ae3df3634b85bfad3a7b468bc3d16e43bd9e534dd7ca5f041441b1b4",
+    "g3_h64/training/batch-000048-attempt-000048.json.gz": "c7e5e0191cad7347cdef09b34372c562e2466cf8160b55a8368abf05d86830d1",
+    "g3_h64/training/checkpoint-000048.pt": "ffe55c86799b317cc306867795ca8a1a3c08d91905080a51953c56b8a6d05c0e",
+    "g3_h64/training/latest.pt": "9f72dd07c105e7ab2fc97d8c6369a7a382f121c2ba389c5c510c512a6d04fb3c",
+    "g3_h64/training/warmstart.pt": "e399cf3a9a4e0c8865e1137fc2e8e48515e8da0975b10fb4f2105048e5126ab0",
+    "g1_h128/training/status.json": "41c1f1ba6200057b480abbe56091e74c081cba7d8d99fe21ba45b75f097c673c",
+    "g1_h128/training/progress-000001.json": "7045904fdc69656e05711e9c2e3de1f9d3562d4920fa498e07eee94d145c341b",
+    "g1_h128/training/progress-000002.json": "89ed3de42d9f990b1436a4df912c169addfe7828d76651bbbcb192731ae726ce",
+    "g1_h128/training/progress-000003.json": "d55fb0cd4b7aa6656ff33869a1a7689d9847958be4eab19cf62a9fa69b2de31a",
+    "g1_h128/training/progress-000004.json": "7985aa25a938a88e2cf050a2e9389ba805e39f6af28bef9d7b251a934077e7c0",
+    "g1_h128/training/progress-000005.json": "f6755936f073c23f769b68c677d29e0db1e608f8b6a4a6288906849f0d122a0a",
+    "g1_h128/training/progress-000006.json": "75886b74c3993d633e6db99aa10d950e62f6e4906545c7207283458e2b0cfa2b",
+    "g1_h128/training/progress-000007.json": "00e15411caff611f2b792a7f385a148490fb1d09f83d0cd6cea53d1a98d8ed79",
+    "g1_h128/training/progress-000008.json": "79daa891e3119ed032fe85a916029685dda22f9a58e45cd4399919618b8b4461",
+    "g1_h128/training/progress-000009.json": "c784a07cb9bfcc95e62980a005ea6886bc96f0ff94680e64caa15b93c8ee9181",
+    "g1_h128/training/progress-000010.json": "2c75c927dcc8edaff8f2a62e5ae17c98b416c0ebe9b5c7fe0078a32d5b08e693",
+    "g1_h128/training/progress-000011.json": "2e19247372ef3887a5d0d09a28251a4163e2976951fb716deba84afecb597afc",
+    "g1_h128/training/progress-000012.json": "76a65d94c6779aa859b2cc9c11b9aa6c6525ce9b4cd606b5a5f1df4c5850d106",
+    "g1_h128/training/progress-000013.json": "d5405706a0c73cf661265e49e9a7c5bd3bd93cb12d7161c9ac2dbc5671c1b6f2",
+    "g1_h128/training/progress-000014.json": "2d3e0683709711c215cdab37ca2127ad2d77bd2823c2bedd3b9856a2645891ad",
+    "g1_h128/training/progress-000015.json": "abecf5e1c6b8b741697450473620aa37c08499d48556b2bae337f4b82d742dc3",
+    "g1_h128/training/progress-000016.json": "148d696cecbec5c0f9d4bfe4aac29e3982c7d9ed90bcae9fb170b47450289906",
+    "g1_h128/training/progress-000017.json": "1c5592059bfb0c1b715320396d49de1f763e2d1b35bef3ec000e7876685cc4b9",
+    "g1_h128/training/progress-000018.json": "68d05e391abbb8bfde46739c68a4083144519ab46d4a5a04d5fb233bcfd07d17",
+    "g1_h128/training/progress-000019.json": "a428652d8fb347e3a90eadb3ce0dcf3c1e9e822a20de45debe7ffd44c583da15",
+    "g1_h128/training/progress-000020.json": "a72cabeedcf854f71a05319e314bd4232e38e15c48e56d003f5c3506831d76b1",
+    "g1_h128/training/progress-000021.json": "059c97023f977424a6411503b1a5b63a73cc73ef114fb36388af8745fa6a7641",
+    "g1_h128/training/progress-000022.json": "05ab48289b19dca0fde3033ad98a532b1b092a6ba4e0e4d61e4fc0ef94baf954",
+    "g1_h128/training/progress-000023.json": "5e8672744476e82159adba1e6eb29bd9806fb597bb06dace7d5fc98e568842bc",
+    "g1_h128/training/progress-000024.json": "fc0f7387ceca0a3f6ab645e2e48355e43f5d423e8ae110b07b069d7c46d5b34b",
+    "g1_h128/training/progress-000025.json": "28c44eb9ca4cfe9ad60732ed413749d44df46f6670afb57edafd3fa73ff06df9",
+    "g1_h128/training/progress-000026.json": "c46424600ab134a1d9aba832f9bee626410cb58750f6ad7a35f1fc583f027ef7",
+    "g1_h128/training/progress-000027.json": "ce4d3d3bf1a018dd06d87593eea5fd42fda3b5fd53fe922c61b4354c4f83a808",
+    "g1_h128/training/progress-000028.json": "88a3db5b7cea4d58724b72f87481c3821a7b15a536dcaf8263ed50e6e9834d09",
+    "g1_h128/training/progress-000029.json": "8e68ef688abeca5cb070606e565ec8afa3e62ac9bb6160f5368bc509ac913bc5",
+    "g1_h128/training/progress-000030.json": "d91592b434fd38847f0bbc4306d9ae37fd8812291ab8fd8d482769313a75a1a2",
+    "g1_h128/training/progress-000031.json": "901a140a6ebaf403e4e4a4047e9a5a9eef70e33678d9fa5ba2c8c040aa45ce40",
+    "g1_h128/training/progress-000032.json": "29c10d95c70241a9bf31f2fd7c036d929aa1208b82ed73947d4763e0db690204",
+    "g1_h128/training/progress-000033.json": "ae31b8e14165b5bdfba22a3c47f216f4f0346acb2985d0fa6d7c048022e92e97",
+    "g1_h128/training/progress-000034.json": "458ba514a856df53dc516feb06fdd2ad5eeed98b0ed3d304d3f8ff447f2d18e0",
+    "g1_h128/training/progress-000035.json": "b29a5e0cf5de38ee141ab47d5c1bba0a858c56022ea80773c2cf3ae64a37baaf",
+    "g1_h128/training/progress-000036.json": "5f32e0dfc740f54dd6448aca92629bf014700758cb47f2797d766e3be284d2b6",
+    "g1_h128/training/progress-000037.json": "f69fe064d3f7c1b41485d8a98223bd4e34e5060a852f4a193f6290366196dc49",
+    "g1_h128/training/progress-000038.json": "3e8a6825d2f4b638f5dbb540a73b488412ada84de251938fd203ea81591cd70f",
+    "g1_h128/training/progress-000039.json": "ded55550695e055ac07b08bf9e395edf86a3b2100062a45d02cd0ece490ff3b0",
+    "g1_h128/training/progress-000040.json": "9acd00f295b4fa1dd4b9cc0564dad1603fb44b365eb4a19a1a06fcab4d71392b",
+    "g1_h128/training/progress.json": "9acd00f295b4fa1dd4b9cc0564dad1603fb44b365eb4a19a1a06fcab4d71392b",
+    "g1_h128.log": "51f38fd6ab9edbbf47ffae13e3d1f409387992c08a743c84784078967518e5e7",
+    "g1_h128/training/batch-000000-attempt-000000.json.gz": "e14dace816c369b346fa09f57f8d0397ea619f91025cfab7341b74b6e95fbb04",
+    "g1_h128/training/batch-000001-attempt-000001.json.gz": "1315336526ce289ac916b90b59c8f3982681b5bf7dd4c2d544a6197cb65a0b90",
+    "g1_h128/training/batch-000002-attempt-000002.json.gz": "081d632df635c1e967b9ceafacf642367d14aef02d22b4c65214c6a2d293bfb0",
+    "g1_h128/training/batch-000003-attempt-000003.json.gz": "e9018c8f4838318b90dcc61443abc25b32a320cd48056752e7fd47d578e6229c",
+    "g1_h128/training/batch-000004-attempt-000004.json.gz": "5257ebb2e79452e6abd3cacd166d37ba400f1b709af016bbddeae318242cd774",
+    "g1_h128/training/batch-000005-attempt-000005.json.gz": "0a35b3435baad1da6a784e9f6ae7418991211e3edbd1e881f9550654b5280608",
+    "g1_h128/training/batch-000006-attempt-000006.json.gz": "faffa5887072669a3513843ba71af762ec727c61911eedbe1f9ce69cd607a199",
+    "g1_h128/training/batch-000007-attempt-000007.json.gz": "a871e966897137c8160a662fbb62bd8dbebcf2deadfb5510cd704af3d2dd7b17",
+    "g1_h128/training/batch-000008-attempt-000008.json.gz": "83bd78232886178c3e315e3adffea72c3f32a44475ee6e0091a61767673dbe46",
+    "g1_h128/training/batch-000009-attempt-000009.json.gz": "99c439b0d7ff168f1f25561d2a07749496e2d82c79f2bbd6167fb976d2885beb",
+    "g1_h128/training/batch-000010-attempt-000010.json.gz": "374ba6656bae89829a53d7ccf939522a48cd763bbae703c16c385753793c4931",
+    "g1_h128/training/batch-000011-attempt-000011.json.gz": "6b0d17714d2c8def78c5522e8fb60f340ac37f3c969b2b610acfebeaf915b768",
+    "g1_h128/training/batch-000012-attempt-000012.json.gz": "66cbd770322be583f78bd6a5794ad51b2b8142954635d248ab3c69bf9805a568",
+    "g1_h128/training/batch-000013-attempt-000013.json.gz": "ae23af984e6a93f081f8ad4d79b660fec5a6278c054d66ab86cf69360d36e6b4",
+    "g1_h128/training/batch-000014-attempt-000014.json.gz": "a9fff39b8f0424e2e5339a9f04dad24b0f53bb188f5dd3ea5d210225331b8bcf",
+    "g1_h128/training/batch-000015-attempt-000015.json.gz": "39e9bea358920c885337e531b10ddc3a39c4d53c538bf6af1ac303b0850fbbf9",
+    "g1_h128/training/batch-000016-attempt-000016.json.gz": "b2382b2f329beac8918f2040512c2b344d30e6c727d2af8d4cca81f19467494c",
+    "g1_h128/training/batch-000017-attempt-000017.json.gz": "6b4137e151f9d440ef8bc65c9599865ae363850838b6db2a546996a400758f36",
+    "g1_h128/training/batch-000018-attempt-000018.json.gz": "190b75e6d4e9741e0540f13df041aa3567935756b972ccdccd3e28674182bc07",
+    "g1_h128/training/batch-000019-attempt-000019.json.gz": "9520db9cef3f9b72384379dc09872162431c65f25dfd8423b2cc997f969b97db",
+    "g1_h128/training/batch-000020-attempt-000020.json.gz": "5fdf54796639bde65e5106d1b95b5de52824a67f5347de50ae9b0cd7155c71b5",
+    "g1_h128/training/batch-000021-attempt-000021.json.gz": "0bfb49240d7483821e352455657c7149748e81a3ef85234df78ac24c5f5b99ef",
+    "g1_h128/training/batch-000022-attempt-000022.json.gz": "c69e716d109360716afdc697516eadbd52252777a3bc0bc16d96d4b14fc9ca8f",
+    "g1_h128/training/batch-000023-attempt-000023.json.gz": "d55cdce8c409dc5d20c6f8e8b4ef5793c38be227aec41c338e92f4ef5c91da65",
+    "g1_h128/training/batch-000024-attempt-000024.json.gz": "bb0f75115fc19e4bb7d5b32433628d47a38027c8a711d18404c959d266e37059",
+    "g1_h128/training/batch-000025-attempt-000025.json.gz": "cd8958824056c971279afe748af84c73af9452841f2a7243a809fd5b20c453a4",
+    "g1_h128/training/batch-000026-attempt-000026.json.gz": "654d2e11f41280bd436602a06962bf143fa12c3a19eb097436f90fad5ecc2bf0",
+    "g1_h128/training/batch-000027-attempt-000027.json.gz": "346eff3ebdec99ba567aa467b1cc94b66428930864d525e4cb60a179c598939f",
+    "g1_h128/training/batch-000028-attempt-000028.json.gz": "d2b1261f8f20f6561e564d5d1d97360ec9c7c99bf336df89d09af62afc7b29da",
+    "g1_h128/training/batch-000029-attempt-000029.json.gz": "7b1fd49a41083511c6f8634f8a5f63122a66b30b12986622a7e4ce876207ad3a",
+    "g1_h128/training/batch-000030-attempt-000030.json.gz": "9a29a628aaefcc1782ff7f6e77e90551f7b6000cdd89c947fc7f1050a998f234",
+    "g1_h128/training/batch-000031-attempt-000031.json.gz": "893e68e81a45d5083ecf8db09fbeb89e8dd876b1b78dd34c8038f06e6d02dd3b",
+    "g1_h128/training/batch-000032-attempt-000032.json.gz": "bc9d0e0fe0769ff0b89fd9205c3fe9b754ec54055eef29522f373a100d486808",
+    "g1_h128/training/batch-000033-attempt-000033.json.gz": "0d5ae817f959e0ea6164a7de45a9c640ef783f7e97263269363cd74e7c69cdc8",
+    "g1_h128/training/batch-000034-attempt-000034.json.gz": "80a6db25d54cb028bce7252474e2dd118c769795224225cdfe82818bc4760e50",
+    "g1_h128/training/batch-000035-attempt-000035.json.gz": "6b81c00539ce6d35ed456ee85b48a660dec327a797b7374d0c107e7b45274277",
+    "g1_h128/training/batch-000036-attempt-000036.json.gz": "291cb371036080cb0757251d3dec33b1418977c4eba3abe436498abce71e13c4",
+    "g1_h128/training/batch-000037-attempt-000037.json.gz": "188935a9dd6347a4eef02112858e9bb58a673b766f4efcbbd8fec169a819f925",
+    "g1_h128/training/batch-000038-attempt-000038.json.gz": "ebdd0cbef844f3027def379b8e89a102d0c1f2810c57c84d57413f4cc0e09c47",
+    "g1_h128/training/batch-000039-attempt-000039.json.gz": "0f0e464eda028d10f45bf7529b586bbbbe2bc24ff9505a097259ea1ca6989177",
+    "g1_h128/training/batch-000040-attempt-000040.json.gz": "8038ab533d14f867e75347aedcc5cd98bd790a55da6199c2796e9fdb735ebaa7",
+    "g1_h128/training/checkpoint-000040.pt": "952ea2c9aa943c98f1394e600155ae337d5b7f882061dc69aad634019ae91082",
+    "g1_h128/training/latest.pt": "956ef183169d96fcb3acb6f9956c9c0db654bf553b1774efcb257666d8fb698e",
+    "g1_h128/training/warmstart.pt": "a3170afc53ae48d5b03618872400a424ce27d9c1110f7f2b342fdea13837688d",
+    "g3_h128/training/status.json": "2baf0c5515b5d1ba484e699c7ceb8555a7fead137fe8a9992488999283b1a352",
+    "g3_h128/training/progress-000001.json": "03c8874f78902a8e75d4225e3b07b90e93c62f24312dfe208192dbe68cac841c",
+    "g3_h128/training/progress-000002.json": "b3daf109c0a0c832263333b757f83f59549a3bd0cdae213a7b72a4ab3da8f1a4",
+    "g3_h128/training/progress-000003.json": "4c8930ff90e8b167bb7f8309e531a45c7ab7b20420cd64c61375d19af810ba11",
+    "g3_h128/training/progress-000004.json": "00137e52e2b9aac0bcae5ae60e45f51c7ff54e87b17ab70d7bbe65d6114ee800",
+    "g3_h128/training/progress-000005.json": "205855bc50958c4a6b4abf68660f6edaaa04c100975e8a2f924541960d9fd179",
+    "g3_h128/training/progress-000006.json": "dbe34d771cbf2b39e2dba67f0a374163feb4b28967ba6a85599a7cd4a96257c0",
+    "g3_h128/training/progress-000007.json": "338c0d4259f7804cde3d11c6e7b7704baf0b9126d0c74f845cb307a58ec9e37c",
+    "g3_h128/training/progress-000008.json": "d3a4eedd3c00f2851800136a34a6073d98a9513254c3e43e66c325a27de22473",
+    "g3_h128/training/progress-000009.json": "d6b4183228aae05548fb56cde1ac1973850b4b169896e5ef9e3b6321db3570b8",
+    "g3_h128/training/progress-000010.json": "49554a9ca229fcb4ec866c94807a0034ec5142ec9c280f022bf6b1f3345c26d5",
+    "g3_h128/training/progress-000011.json": "4f9fdf2cfe09e106d13b3eee8ff8b7d277b4b4842b4d9fa0f2f5af3da394bb2a",
+    "g3_h128/training/progress-000012.json": "5070b2366a1eaa9c8c611c4c1c2f1258d0a122c768149012f4f6b012a6ee4487",
+    "g3_h128/training/progress-000013.json": "c92ec05f03030e2b3200958f08d0f5bb992e44d89f449e40b925a46495a9a510",
+    "g3_h128/training/progress-000014.json": "ea575dd1143d0f8e8e97f5a8685e894ce26feb89c36f1653bc3b8453578abd62",
+    "g3_h128/training/progress-000015.json": "be7e653e9f1ca118517cdb062d6419e450248ef17a75e36f8cc65bf153be5159",
+    "g3_h128/training/progress-000016.json": "c33a97ee184c35048f3d19cbc53dcd9e260e0dfb7196a678e4d667d89575c2e5",
+    "g3_h128/training/progress-000017.json": "e28be41c27b73c1d4b714aa88b90d70fc008318fc580e69440bc6e5f6e07c73a",
+    "g3_h128/training/progress-000018.json": "675232271b20e01b30fe36e6a7fbf2408475e02ec102394b7058937505802284",
+    "g3_h128/training/progress-000019.json": "ccc30b89c204e3cdbcee8d7dd751c0fa14fbd57534200838367a42d7333c51fd",
+    "g3_h128/training/progress-000020.json": "9d371d73035135a95ec7f952655553cda0075e92939aa23f3468e049215dc479",
+    "g3_h128/training/progress-000021.json": "919fdf6ae0deaf716d33477aacdf3d8dc54586c4aaab5deedab95b7086a642d5",
+    "g3_h128/training/progress-000022.json": "5b88f63020a0bee8da38c1d7fca279ac9f4ef5c37f6acacf87dfaeec1d92b8a0",
+    "g3_h128/training/progress-000023.json": "170d5a03041b386405880ca49720b2a1d2c94a0a95f77ca2164cf66774c2e186",
+    "g3_h128/training/progress-000024.json": "4f97bd831802082ca12fe8d8c47b082d201006c0515174fb346ad64e39579c4a",
+    "g3_h128/training/progress-000025.json": "2b9c1f27634cfdb7661f33e87650dfed1e7403f8a67892a508d4492c9703b92b",
+    "g3_h128/training/progress-000026.json": "00018738e4caa0f31c8438a344ace0f508c5e83f736963b7129c90266f83a8e6",
+    "g3_h128/training/progress-000027.json": "d072e13e0f9d92eea1032c4b34eee020dfd89c50c80418472531a6b7aafa37dd",
+    "g3_h128/training/progress-000028.json": "3adb23a3b867c3005045b4029a4d1f0965e78605832efd0e7d7be969a77aa0ad",
+    "g3_h128/training/progress-000029.json": "807dba3ab6d046987cf181b446516c4bfc1be745dd591eb7d41e1b8c4320a857",
+    "g3_h128/training/progress-000030.json": "61db4dc8cd1cfa4afb081c568ca07c6889f109fc2368fe549e92d5a32304ae1c",
+    "g3_h128/training/progress-000031.json": "a6c25278ac512d0c869dee8e5ae3bea4fd7f6dfb5ab3365da2ef9eee12626d15",
+    "g3_h128/training/progress-000032.json": "485c3ffa158db5315cc0ecd9987e4d35f8b7bcbbc77d6d85c0a038ef7a4dd95e",
+    "g3_h128/training/progress-000033.json": "95183a5b4e6c0e9124e5b56ec913f35d27f2ab8b3997932611932de39b19d037",
+    "g3_h128/training/progress-000034.json": "d822bb72aedb62c5fe09bac6fdde989a151be0e625f18fc9aa6712c987d6dbe1",
+    "g3_h128/training/progress-000035.json": "02c747ae1ddc74f4238c2e4670754db89b09f80af362b7d979708a9221b8cf92",
+    "g3_h128/training/progress-000036.json": "55ffadc507049b76a8e0ff56a2db80d7dc1a0d66a10df59c8cfd0abde282657c",
+    "g3_h128/training/progress-000037.json": "93b565dd3a144409ac1f2df5cdd9c9b9b48016dc183296861e5b6b5b68f30f8c",
+    "g3_h128/training/progress-000038.json": "8fa5b203b8fa7674cc236b8fc830a552f6c30654e7f3940e882fef17279f5483",
+    "g3_h128/training/progress.json": "8fa5b203b8fa7674cc236b8fc830a552f6c30654e7f3940e882fef17279f5483",
+    "g3_h128.log": "01b0890259e8a2e7504a626eb1b04c39e207e55291cece9818835b28587bc0ca",
+    "g3_h128/training/batch-000000-attempt-000000.json.gz": "4fd0b716f73b428432aed84cb88d05923e9a48b5e2ccd2676b570b548d1770d2",
+    "g3_h128/training/batch-000001-attempt-000001.json.gz": "f7951144c3bffda79292072c6eed485b226a20736a20fb5b61a804fb09a1a332",
+    "g3_h128/training/batch-000002-attempt-000002.json.gz": "8f351e3a690ad55cb0db15db6439154bc2a8b680009f55f4309b5758a3b24a98",
+    "g3_h128/training/batch-000003-attempt-000003.json.gz": "37a0b3195470163622cc488acdde2c4ea7b89793dccbfce2a9d8acc8d60238c3",
+    "g3_h128/training/batch-000004-attempt-000004.json.gz": "1d8829f7a413da5f3536044ad4f0f563dd18e419aee59343ad5a41e06605d069",
+    "g3_h128/training/batch-000005-attempt-000005.json.gz": "aaa8463afec5063fa309d6175a2ed4eefc8bddaf06eeaf50ce27431158a97cff",
+    "g3_h128/training/batch-000006-attempt-000006.json.gz": "06a744bd50ba7539c97de202d755ea81a6a7a32f6cf19fb115f69670416037f0",
+    "g3_h128/training/batch-000007-attempt-000007.json.gz": "43e1b6c88107bd306323ed835d1125d91e33b8e2cd3e54d12c6a8c2502999c6f",
+    "g3_h128/training/batch-000008-attempt-000008.json.gz": "bbd894ffc84fb5d41e747b1df460ce8bd6dd0140f68707c216a8cdbd771de98a",
+    "g3_h128/training/batch-000009-attempt-000009.json.gz": "94d2c2b743b076432cb0c1294d0705a0762f73c21525de0ca2702c7f5f90fc8c",
+    "g3_h128/training/batch-000010-attempt-000010.json.gz": "ee3bdcef0021566ac6ff500314150bd3d9894ae539c09ea9d3e85ceb31e615c9",
+    "g3_h128/training/batch-000011-attempt-000011.json.gz": "c1cd0a6c17a77240372d1e50619f9ed2f1b9dac34a73b5b11f1e4404b8518bc0",
+    "g3_h128/training/batch-000012-attempt-000012.json.gz": "8ba278e44512162353e2e256e6f00e5bea70c88c4a2ec9c5c72cfc38b076ec6b",
+    "g3_h128/training/batch-000013-attempt-000013.json.gz": "8b04014ff69693bbe6a4877b7818a9b9787f5ab395e42ca4e155bdc69ae6ff96",
+    "g3_h128/training/batch-000014-attempt-000014.json.gz": "bbe22dfcfd9b017be77d32dda68d8fc43f306a126d9fe9381c8f7ce22f2cfaad",
+    "g3_h128/training/batch-000015-attempt-000015.json.gz": "a678d6f5208e854f9f283b7a3cd9157fab7eecbf6285b2c8caa1e592a735502e",
+    "g3_h128/training/batch-000016-attempt-000016.json.gz": "768a92d756575a9fff0a6e54cc1c3b424344db1c6332ec4de1b5d3be5367754f",
+    "g3_h128/training/batch-000017-attempt-000017.json.gz": "9a3f0fcc155036602c364770a85c5b2a0e0eac2dd4c2e315cfc0d7a5438bebaa",
+    "g3_h128/training/batch-000018-attempt-000018.json.gz": "e45ec2e2d95509d8b98ed60583debd5baad2ddd6ea4dc2753f82ca5ed58fb2fb",
+    "g3_h128/training/batch-000019-attempt-000019.json.gz": "f083a70ae5f4b8c2793e1a5f4cdfdb94581866592271fefa5636fca5e2471880",
+    "g3_h128/training/batch-000020-attempt-000020.json.gz": "60274ab6138dfeebb031e1291831a7af5a5682d6e122b05115ee859e87ba4621",
+    "g3_h128/training/batch-000021-attempt-000021.json.gz": "6297bcc445f5fd2f4c00681ed4b47cc3c317858fb38eb0be4919d085d5057f75",
+    "g3_h128/training/batch-000022-attempt-000022.json.gz": "ecda7fd09db9e8efbe179800b39ea831a797b31c0effdf93c001adf8b277f355",
+    "g3_h128/training/batch-000023-attempt-000023.json.gz": "25f29dfd63c225ecd5818ce2c51c45c55b35212fbf27c2a90e62781fe6ca778b",
+    "g3_h128/training/batch-000024-attempt-000024.json.gz": "ccdfbaa9b1034e9a0cc9792b32fced55ecaa7f0f0ec5a0e744943f8a3ccbcdc5",
+    "g3_h128/training/batch-000025-attempt-000025.json.gz": "e80ae7f540ae3e8830f7e20754feb902a463a1ee37d5d1ad067c933507655b20",
+    "g3_h128/training/batch-000026-attempt-000026.json.gz": "11ad3d8908ff2bcf4e92dea23492da154d238d266398f2b5b795836d52fcb949",
+    "g3_h128/training/batch-000027-attempt-000027.json.gz": "e9f4bf75e76bd065d537b349347114a7485e566edec11bdfd7f5f6d710424c6f",
+    "g3_h128/training/batch-000028-attempt-000028.json.gz": "2fa37ed4637930ed731984731c08029cdfe783106a015575282b7c57b125cfa3",
+    "g3_h128/training/batch-000029-attempt-000029.json.gz": "68b59cf4c9b57c077c517133df3b56cefe6d7a39aae13e8b9e40fb8d922b82e8",
+    "g3_h128/training/batch-000030-attempt-000030.json.gz": "d67521029e46d2bc9851f7a18f11dbb5faa748c999bb11beb313d64bcdfc9ed4",
+    "g3_h128/training/batch-000031-attempt-000031.json.gz": "956345d92d26dda54f843c857598cefb57ef4fcaaa70eb7b9c6284b74cbb720a",
+    "g3_h128/training/batch-000032-attempt-000032.json.gz": "3b38c6147d1218e7e0f432de635876669b8b51756e53c372633a0b2d7a39c0ef",
+    "g3_h128/training/batch-000033-attempt-000033.json.gz": "e14135ff4004209d7dec3d99c18f69410f80427a69b8d732896f2d970538419a",
+    "g3_h128/training/batch-000034-attempt-000034.json.gz": "4cd1adcfff89e07272b1590e0753361b559b97e3a09ea4c607b17f7c1978f49d",
+    "g3_h128/training/batch-000035-attempt-000035.json.gz": "34e696a11cd3aef0e16f8bb7e980c54fe633862b41f55adc6095d3e76f6deffd",
+    "g3_h128/training/batch-000036-attempt-000036.json.gz": "46a0adb6f99025f2b51f54b68fbb83290dd8591760ead27242aa4bb17514c118",
+    "g3_h128/training/batch-000037-attempt-000037.json.gz": "a8f3217a23c927970af90a7b602b7cb6da9e25d8cfdd4f492514111fae758da6",
+    "g3_h128/training/batch-000038-attempt-000038.json.gz": "f326875636382f8c67507e78ea6fe4b7882603fd2700329667e8d308bcac30ac",
+    "g3_h128/training/checkpoint-000038.pt": "1c264e455d4760ba802f78d8ed4f658941f4eeda4752d26b03865c88f28e6d7e",
+    "g3_h128/training/latest.pt": "497a9c37edcd37ff94ea10c7b4cb558d264c70fe5527da5b405bddc52f1b4d53",
+    "g3_h128/training/warmstart.pt": "61d4ac338cdfc0b62fcbb0cf9c4f2baaf9f832c8d203ac8d33a0f9b308f5ce49"
+  },
+  "audit_script_sha256": "e2c8a4422298b346d06cccc4823ceb040131e7eee32d7164f33bf6f97ef9da6d",
+  "committed_compute_totals": {
+    "batches": 180,
+    "episodes": 2880,
+    "records": 1143952,
+    "optimizer_steps": 27066,
+    "update_wall_s": 7623.496287269518,
+    "update_cpu_s": 7584.231173709001,
+    "sum_episode_wall_time_s": 11334.957954667509,
+    "sum_episode_worker_cpu_s": 11233.890715003,
+    "sum_episode_policy_wall_s": 10439.762285977602,
+    "sum_episode_policy_cpu_s": 10345.235087464,
+    "sum_episode_posthoc_bound_wall_s": 885.9747772589326,
+    "sum_episode_posthoc_bound_cpu_s": 880.8901826230007
+  }
+}
