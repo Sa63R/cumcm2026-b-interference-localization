@@ -1,0 +1,27 @@
+{
+  "status": "freeze-ready-awaiting-root-review",
+  "base_commit": "81aa6e1a1231a2358cf098fbba3fdd0557b540ef",
+  "runtime_files_unchanged": 49,
+  "historical_evidence_files_verified": 20,
+  "plans": {
+    "confirmation": {
+      "plan_sha256": "ccb58651b23e026512146f792a049106cfc788bd4754d7e8a21b038d425f2fc4",
+      "cases": 140,
+      "release_schema_checked_in_memory": "q4-qualified-reference-release-v1"
+    },
+    "stress": {
+      "plan_sha256": "56e19db453182a16d410162aef9dab4b24603c188c267e5b9418d6e771493c11",
+      "cases": 98,
+      "release_schema_checked_in_memory": "q4-qualified-reference-release-v1"
+    }
+  },
+  "tests": {
+    "command": "python -B -m pytest -q tests/test_q4_per_source.py tests/test_audit_q4_per_source.py",
+    "passed": 79,
+    "elapsed_s": 9.15
+  },
+  "new630_cases_constructed": 0,
+  "new_policy_runs": 0,
+  "reference_release_files_written": 0,
+  "scope": "Only plans and offline historical/source validation; no performance result and no new development gate claim"
+}
