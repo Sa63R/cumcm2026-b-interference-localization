@@ -1,0 +1,22 @@
+{
+  "purpose": "Same public 10/16 input/action/reward ablation; architecture-only CPU experiment",
+  "common": {"global_dim": 10, "candidate_dim": 16, "hidden": 64, "gamma": 1.0, "device": "cpu", "native_threads_per_worker": 1},
+  "recommended_pilot": "induced16_dim16_residual",
+  "configurations": {
+    "mlp64": {"architecture": "mlp", "hidden": 64},
+    "induced16_dim64_norm_ff": {"architecture": "induced", "hidden": 64, "inducing_points": 16, "attention_heads": 2, "attention_blocks": 1, "attention_dim": 64, "attention_refinement": "norm_ff"},
+    "induced16_dim16_norm_ff": {"architecture": "induced", "hidden": 64, "inducing_points": 16, "attention_heads": 2, "attention_blocks": 1, "attention_dim": 16, "attention_refinement": "norm_ff"},
+    "induced16_dim16_residual": {"architecture": "induced", "hidden": 64, "inducing_points": 16, "attention_heads": 2, "attention_blocks": 1, "attention_dim": 16, "attention_refinement": "residual"}
+  },
+  "raw_benchmarks": {
+    "mlp-b32.json": "mlp64",
+    "mlp-b128.json": "mlp64",
+    "induced16-b32.json": "induced16_dim64_norm_ff",
+    "induced16-dim16-b32.json": "induced16_dim16_norm_ff",
+    "induced16-dim16-residual-b32.json": "induced16_dim16_residual",
+    "induced16-dim16-residual-b128.json": "induced16_dim16_residual"
+  },
+  "benchmark_protocol": {"model_initialization_seed": 409, "fabricated_input_seed": 410, "candidates": 440, "warmup_updates": 5, "b32_repetitions": 30, "b128_repetitions": 10, "fresh_process_per_configuration": true, "python_record_packing_included": false, "scenario_or_simulator_calls": false},
+  "pilot_status": "proposed_only_no_scenario_training_performed",
+  "checkpoint_compatibility": "Legacy MLP architecture and config shape retained. Attention checkpoints require explicit dimensions/refinement metadata."
+}

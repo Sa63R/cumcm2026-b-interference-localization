@@ -1,0 +1,59 @@
+{
+  "kind": "isolated-fabricated-tensor-cpu-benchmark-not-policy-performance",
+  "network": {
+    "architecture": "q4-candidate-mlp-v1",
+    "global_dim": 10,
+    "candidate_dim": 16,
+    "hidden": 64
+  },
+  "torch_version": "2.9.1+cpu",
+  "native_threads": 1,
+  "source_sha256": "9ec34c8d6beb18a807cc6079eafefca7148b733f9344fdf23a2c8a42bb34673a",
+  "batch_size": 128,
+  "candidates": 440,
+  "repetitions": 10,
+  "parameter_count": 26690,
+  "raw_times": {
+    "forward_batch1_s": [
+      0.0015731000021332875,
+      0.0016791999951237813,
+      0.0017414000030839816,
+      0.004292800003895536,
+      0.0015047000051708892,
+      0.0016975000035017729,
+      0.001818799995817244,
+      0.0015048999921418726,
+      0.0013485999952536076,
+      0.001360399997793138
+    ],
+    "ppo_tensor_update_s": [
+      0.257815600009053,
+      0.24487090000184253,
+      0.2619013000075938,
+      0.2442384000023594,
+      0.22720439999829978,
+      0.2283910999976797,
+      0.226483599995845,
+      0.22687499999301508,
+      0.23013340000761673,
+      0.24221060000127181
+    ]
+  },
+  "summary": {
+    "forward_batch1_s": {
+      "median": 0.0016261499986285344,
+      "mean": 0.001852139999391511,
+      "max": 0.004292800003895536
+    },
+    "ppo_tensor_update_s": {
+      "median": 0.23617200000444427,
+      "mean": 0.2390124300014577,
+      "max": 0.2619013000075938
+    }
+  },
+  "peak_process_bytes_before_model": 209739776,
+  "peak_process_bytes_after_warmup": 429641728,
+  "peak_process_bytes_end": 429649920,
+  "memory_scope": "Fresh process peak working set including interpreter/PyTorch; not allocator-exact model memory",
+  "score_scope": "No physical actions/scenarios, no virtual time or theoretical task lower-bound ratio applies"
+}

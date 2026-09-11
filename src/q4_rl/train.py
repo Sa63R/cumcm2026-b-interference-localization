@@ -32,7 +32,7 @@ import torch
 from torch.distributions import Categorical
 from torch import nn
 
-from .network import (CandidateActorCritic, TorchPolicy, CHECKPOINT_VERSION,
+from .network import (CandidateActorCritic, InducedCandidateActorCritic, TorchPolicy, CHECKPOINT_VERSION,
                       configure_cpu, feature_schema, model_from_metadata, pack_observations)
 
 
@@ -344,10 +344,15 @@ def parse_deadline(value):
 
 def _configuration(args):
     # Paths, credentials, machine/user names never enter uploaded checkpoints.
-    return {name: getattr(args, name) for name in (
+    config = {name: getattr(args, name) for name in (
         "hidden", "learning_rate", "epochs", "minibatch_size", "batch_episodes",
         "warmstart_episodes", "max_decisions", "random_seed", "scenario_start",
         "scenario_end", "entropy_coefficient")}
+    # Preserve the exact legacy MLP config shape so old checkpoints can resume.
+    if args.architecture != "mlp":
+        config.update({name: getattr(args, name) for name in
+                       ("architecture", "inducing_points", "attention_heads", "attention_blocks", "attention_dim", "attention_refinement")})
+    return config
 
 
 def main(argv=None):
@@ -359,6 +364,12 @@ def main(argv=None):
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--cpu-budget", type=int, default=2)
     parser.add_argument("--hidden", type=int, default=64)
+    parser.add_argument("--architecture", choices=("mlp", "induced"), default="mlp")
+    parser.add_argument("--inducing-points", type=int, default=16)
+    parser.add_argument("--attention-heads", type=int, default=2)
+    parser.add_argument("--attention-blocks", type=int, default=1)
+    parser.add_argument("--attention-dim", type=int, default=16)
+    parser.add_argument("--attention-refinement", choices=("residual", "norm_ff"), default="residual")
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--minibatch-size", type=int, default=128)
@@ -396,7 +407,10 @@ def main(argv=None):
             parser.error("new training output must be empty; use --resume for existing runs")
         torch.manual_seed(args.random_seed)
         random.seed(args.random_seed)
-        model = CandidateActorCritic(hidden=args.hidden)
+        model = (CandidateActorCritic(hidden=args.hidden) if args.architecture == "mlp" else
+                 InducedCandidateActorCritic(hidden=args.hidden, inducing_points=args.inducing_points,
+                    attention_heads=args.attention_heads, attention_blocks=args.attention_blocks,
+                    attention_dim=args.attention_dim, attention_refinement=args.attention_refinement))
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
         state = {"next_seed": args.scenario_start, "episodes": 0, "attempted_episodes": 0,
                  "warmstart_completed": 0, "ppo_batches": 0, "batches": 0,

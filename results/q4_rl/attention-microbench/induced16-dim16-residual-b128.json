@@ -1,0 +1,64 @@
+{
+  "kind": "isolated-fabricated-tensor-cpu-benchmark-not-policy-performance",
+  "network": {
+    "architecture": "q4-candidate-induced-v1",
+    "global_dim": 10,
+    "candidate_dim": 16,
+    "hidden": 64,
+    "inducing_points": 16,
+    "attention_heads": 2,
+    "attention_blocks": 1,
+    "attention_dim": 16,
+    "attention_refinement": "residual"
+  },
+  "torch_version": "2.9.1+cpu",
+  "native_threads": 1,
+  "source_sha256": "9ec34c8d6beb18a807cc6079eafefca7148b733f9344fdf23a2c8a42bb34673a",
+  "batch_size": 128,
+  "candidates": 440,
+  "repetitions": 10,
+  "parameter_count": 31858,
+  "raw_times": {
+    "forward_batch1_s": [
+      0.0031891999969957396,
+      0.0031789000058779493,
+      0.003227100009098649,
+      0.0032704000041121617,
+      0.004283800008124672,
+      0.004493600004934706,
+      0.004567500000121072,
+      0.0029753999988315627,
+      0.002871199991204776,
+      0.0051774000021396205
+    ],
+    "ppo_tensor_update_s": [
+      0.520887099992251,
+      0.5159740000090096,
+      0.5201189999934286,
+      0.49978129999362864,
+      0.5022699000110151,
+      0.5014719999890076,
+      0.5429352999926778,
+      0.5129138000047533,
+      0.5119312000024365,
+      0.4841990999993868
+    ]
+  },
+  "summary": {
+    "forward_batch1_s": {
+      "median": 0.0032487500066054054,
+      "mean": 0.003723450002144091,
+      "max": 0.0051774000021396205
+    },
+    "ppo_tensor_update_s": {
+      "median": 0.5124225000035949,
+      "mean": 0.5112482699987595,
+      "max": 0.5429352999926778
+    }
+  },
+  "peak_process_bytes_before_model": 209580032,
+  "peak_process_bytes_after_warmup": 484196352,
+  "peak_process_bytes_end": 484204544,
+  "memory_scope": "Fresh process peak working set including interpreter/PyTorch; not allocator-exact model memory",
+  "score_scope": "No physical actions/scenarios, no virtual time or theoretical task lower-bound ratio applies"
+}
