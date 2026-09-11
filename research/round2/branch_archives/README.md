@@ -6,6 +6,9 @@
 | --- | --- | --- |
 | feedback.bundle | a19d9b69ba0cafbc3a90932f8273b9a949b6e300 | 7b755aa9ce8ebd9c4da1a2c8741d460165f5135d |
 | clear_lens.bundle | 2d045bed0b6107b35134ce4a8a61a03a7f03a985 | dbc0ea552510fd72ccd42b4f82fe1eb34511bd63 |
+| negative_hull.bundle | 3026099cf71e09fa4e3bcdb964a6349929176677 | 同左 |
+
+index.json保存每个bundle的SHA256、验证过的分支/工作树及清理状态。三个失败或低价值的原样候选均已用冻结实现完成严格历史前缀验证，之后清理不会丢失验证依据。
 
 从仓库根恢复（恢复到新名称，避免覆盖现有分支）：
 
