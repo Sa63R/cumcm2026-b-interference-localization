@@ -1,0 +1,247 @@
+{
+  "scope": "Post-audit descriptive learning-phase contrasts on the same fixed development panel; no new model or scenario evaluation",
+  "prior_audit_sha256": "198d2251d17c640cde301dfce9fa48eb977fe1d5cfa92516faec6e211c922b23",
+  "summary_sha256": "2848138b614b571be706f5f3ebe18e28031610886c4c45c0ebce40c59adc2026",
+  "script_sha256": "5c2c29aff091284c69d1a5d422ac476e38983a4499535c0920ae1f36cfd1894b",
+  "bootstrap": {
+    "samples": 5000,
+    "seed": 4260911,
+    "unit": "paired seed cluster"
+  },
+  "groups": {
+    "all": [
+      {
+        "reference": "mlp_v3_bc512",
+        "target": "mlp_v3_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": -330.2917075859368,
+        "mean_saved_ci95_s": [
+          -460.6064221412113,
+          -205.25309475429802
+        ],
+        "relative_saving": -0.03715976662565135,
+        "relative_saving_ci95": [
+          -0.051948582259461966,
+          -0.022768096207917227
+        ]
+      },
+      {
+        "reference": "attention_v3_bc512",
+        "target": "attention_v3_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": 252.36984637500063,
+        "mean_saved_ci95_s": [
+          148.40164213789149,
+          355.28453535781136
+        ],
+        "relative_saving": 0.028134908005779558,
+        "relative_saving_ci95": [
+          0.01675999714254433,
+          0.03925618195513074
+        ]
+      },
+      {
+        "reference": "micro_v2_bc512",
+        "target": "micro_v2_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": -172.03059949414092,
+        "mean_saved_ci95_s": [
+          -324.00282648266574,
+          -21.12779126713992
+        ],
+        "relative_saving": -0.01885714080729617,
+        "relative_saving_ci95": [
+          -0.03552725189174852,
+          -0.0023209752460568492
+        ]
+      },
+      {
+        "reference": "ppo_initialized512",
+        "target": "scst_initialized512",
+        "seed_clusters": 32,
+        "mean_saved_s": 417.9943325507811,
+        "mean_saved_ci95_s": [
+          312.0891383423829,
+          530.1413740857912
+        ],
+        "relative_saving": 0.04559338416742875,
+        "relative_saving_ci95": [
+          0.03422002541162708,
+          0.057435330883723185
+        ]
+      },
+      {
+        "reference": "mlp_v3_ppo512",
+        "target": "attention_v3_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": 501.09399931445296,
+        "mean_saved_ci95_s": [
+          418.2082799930176,
+          593.175486384912
+        ],
+        "relative_saving": 0.05435617000102788,
+        "relative_saving_ci95": [
+          0.045893498276824915,
+          0.06347465061469225
+        ]
+      }
+    ],
+    "random": [
+      {
+        "reference": "mlp_v3_bc512",
+        "target": "mlp_v3_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": -395.1012552656248,
+        "mean_saved_ci95_s": [
+          -645.3307573296888,
+          -150.84731629687576
+        ],
+        "relative_saving": -0.044643799186742994,
+        "relative_saving_ci95": [
+          -0.07387156376728722,
+          -0.016897785537224035
+        ]
+      },
+      {
+        "reference": "attention_v3_bc512",
+        "target": "attention_v3_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": 290.33066098437484,
+        "mean_saved_ci95_s": [
+          31.481957912108737,
+          552.360856984374
+        ],
+        "relative_saving": 0.03248334418412524,
+        "relative_saving_ci95": [
+          0.0035893760228977085,
+          0.060243272105651204
+        ]
+      },
+      {
+        "reference": "micro_v2_bc512",
+        "target": "micro_v2_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": -108.18425801562626,
+        "mean_saved_ci95_s": [
+          -324.2707192457018,
+          104.1020522527348
+        ],
+        "relative_saving": -0.011931128305697314,
+        "relative_saving_ci95": [
+          -0.03605009044637626,
+          0.011366833338133047
+        ]
+      },
+      {
+        "reference": "ppo_initialized512",
+        "target": "scst_initialized512",
+        "seed_clusters": 32,
+        "mean_saved_s": 463.5464859531239,
+        "mean_saved_ci95_s": [
+          265.7968280476568,
+          685.1004084550773
+        ],
+        "relative_saving": 0.05179063834090303,
+        "relative_saving_ci95": [
+          0.030234862789305768,
+          0.07463692011337723
+        ]
+      },
+      {
+        "reference": "mlp_v3_ppo512",
+        "target": "attention_v3_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": 597.6816551718748,
+        "mean_saved_ci95_s": [
+          388.2824508464852,
+          809.682029312891
+        ],
+        "relative_saving": 0.06464790147383903,
+        "relative_saving_ci95": [
+          0.04293858312167314,
+          0.08594933784335347
+        ]
+      }
+    ],
+    "stress": [
+      {
+        "reference": "mlp_v3_bc512",
+        "target": "mlp_v3_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": -321.0332007745528,
+        "mean_saved_ci95_s": [
+          -451.1403778482701,
+          -195.6092534533479
+        ],
+        "relative_saving": -0.03609588659641516,
+        "relative_saving_ci95": [
+          -0.05106062486825548,
+          -0.021751006553826092
+        ]
+      },
+      {
+        "reference": "attention_v3_bc512",
+        "target": "attention_v3_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": 246.9468728593747,
+        "mean_saved_ci95_s": [
+          141.95825886529104,
+          351.8490654422436
+        ],
+        "relative_saving": 0.027516246784945464,
+        "relative_saving_ci95": [
+          0.015909084265025818,
+          0.03889633416010176
+        ]
+      },
+      {
+        "reference": "micro_v2_bc512",
+        "target": "micro_v2_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": -181.1515054196443,
+        "mean_saved_ci95_s": [
+          -352.4458003086492,
+          -12.828928028962245
+        ],
+        "relative_saving": -0.01983970527467127,
+        "relative_saving_ci95": [
+          -0.038736123146186144,
+          -0.0014205129114646126
+        ]
+      },
+      {
+        "reference": "ppo_initialized512",
+        "target": "scst_initialized512",
+        "seed_clusters": 32,
+        "mean_saved_s": 411.4868820647316,
+        "mean_saved_ci95_s": [
+          302.05283107963237,
+          528.0131504412395
+        ],
+        "relative_saving": 0.04473198300340597,
+        "relative_saving_ci95": [
+          0.03303117027163291,
+          0.05696716648545326
+        ]
+      },
+      {
+        "reference": "mlp_v3_ppo512",
+        "target": "attention_v3_ppo512",
+        "seed_clusters": 32,
+        "mean_saved_s": 487.2957627633914,
+        "mean_saved_ci95_s": [
+          403.3679829598761,
+          579.8244908662391
+        ],
+        "relative_saving": 0.05288109631490223,
+        "relative_saving_ci95": [
+          0.04405742315792885,
+          0.062223595739369336
+        ]
+      }
+    ]
+  },
+  "reliability_scope": "512/512 is the observed completion count for this fixed panel. Wilson intervals treating runs as independent are descriptive only; 512 correlated transformed scenes are not an independent reliability guarantee. The panel has 32 shared seed clusters.",
+  "confounding": "BC/PPO within architecture tracks the additional training phase. Cross-architecture and SCST/initialized-PPO comparisons also differ in actual training exposure; identical wall allocations do not imply identical data or update counts.",
+  "prior_audit_sha256_before_editorial": "0d49c4a6db0c94439796f98517c9d60ad55516e08e302f4c2ceea1a7e6c7ad0d"
+}
