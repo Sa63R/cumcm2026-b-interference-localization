@@ -57,10 +57,12 @@ def read_process(pid, proc_root=Path("/proc")):
         # Zombie processes no longer train; their cwd often cannot be resolved.
         try:
             cwd = str((directory / "cwd").resolve(strict=True)) if state != "Z" else None
-        except FileNotFoundError:
+        except (FileNotFoundError, PermissionError):
             if is_training_command(command):
                 raise
-            # A reused, non-training PID can have a deleted working directory.
+            # Non-training command lines are already excluded. Linux may hide
+            # their cwd even from the same uid (e.g. non-dumpable services).
+            # Missing/inaccessible cwd of any training process remains fatal.
             cwd = None
         return dict(pid=pid, state=state, command=command, cwd=cwd)
     except (FileNotFoundError, ProcessLookupError):

@@ -1,0 +1,127 @@
+{
+  "kind": "serial_public_runtime_execution",
+  "planned_ids": [
+    "baseline",
+    "state-future-cover",
+    "rl-gae095-u512",
+    "geo-future-cover"
+  ],
+  "execution_order": "baseline,state,rl,geo",
+  "registry_sha256": "25ef13c9a0b4200268bb5850a3041642f1612a6a4e48087f0469c0f0f57662e2",
+  "selection_sha256": "aa22f122171bc2dfff82203362438a15706131d69ee2beca9e4abeb1a9f4d305",
+  "tool_sha256": "b025647b044b2b82cdd874e95ad0fec70fe812c7db52eaa3f4423494ec4ce3dd",
+  "launcher_sha256": "284a10f669010a25c8f17d97b39fa4b0821fb96a27cc60bc0e8cfc0f1cb02214",
+  "worker_sha256": "bdab1cea20fcdab8de05da466a481a5f437e49456ba52141109a77ed74112ca0",
+  "started_epoch": 1789090288.463365,
+  "elapsed_wall_s": 0.06937479972839355,
+  "hard_deadline_epoch": 1789113600.0,
+  "cpu_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "complete": false,
+  "error": null,
+  "final_identity_checked": true,
+  "jobs": [
+    {
+      "id": "baseline",
+      "output": "/home/volleyball/q3-research-v1/v1-selection/serial/benchmarks/baseline.json",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/serial_runtime_benchmark.py",
+        "--source",
+        "/home/volleyball/q3-research-v1/registered-baseline-2f0a486",
+        "--spec",
+        "/home/volleyball/q3-research-v1/registered-baseline-2f0a486/research/v1_baseline_rollout.json",
+        "--freeze-record",
+        "/home/volleyball/q3-research-v1/v1-selection/freezes/baseline.json",
+        "--environment",
+        "/home/volleyball/q3-research-v1/v1-selection/environment-linux.json",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/serial/benchmarks/baseline.json",
+        "--repeats",
+        "2"
+      ],
+      "cwd": "/home/volleyball/q3-research-v1/registered-baseline-2f0a486",
+      "started_process": false,
+      "error": "PermissionError: [Errno 13] Permission denied: '/proc/1865/cwd'",
+      "finished_epoch": 1789090288.5049133
+    },
+    {
+      "id": "state-future-cover",
+      "output": "/home/volleyball/q3-research-v1/v1-selection/serial/benchmarks/state-future-cover.json",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/serial_runtime_benchmark.py",
+        "--source",
+        "/home/volleyball/q3-research-v1/state-8aa6206-git",
+        "--spec",
+        "/home/volleyball/q3-research-v1/state-8aa6206-git/experiments/state_search_candidate_relocating_cover_v1.json",
+        "--freeze-record",
+        "/home/volleyball/q3-research-v1/v1-selection/freezes/state-future-cover.json",
+        "--environment",
+        "/home/volleyball/q3-research-v1/v1-selection/environment-linux.json",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/serial/benchmarks/state-future-cover.json",
+        "--repeats",
+        "2"
+      ],
+      "cwd": "/home/volleyball/q3-research-v1/state-8aa6206-git",
+      "started_process": false,
+      "not_started_reason": "preflight_or_evidence_error",
+      "finished_epoch": 1789090288.5049665
+    },
+    {
+      "id": "rl-gae095-u512",
+      "output": "/home/volleyball/q3-research-v1/v1-selection/serial/benchmarks/rl-gae095-u512.json",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/serial_runtime_benchmark.py",
+        "--source",
+        "/home/volleyball/q3-research-v1/rl-de7d65b-git",
+        "--spec",
+        "/home/volleyball/q3-research-v1/rl-de7d65b-git/research/v1-candidate-rl-gae095-u512.json",
+        "--freeze-record",
+        "/home/volleyball/q3-research-v1/v1-selection/freezes/rl-gae095-u512.json",
+        "--environment",
+        "/home/volleyball/q3-research-v1/v1-selection/environment-linux.json",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/serial/benchmarks/rl-gae095-u512.json",
+        "--repeats",
+        "2"
+      ],
+      "cwd": "/home/volleyball/q3-research-v1/rl-de7d65b-git",
+      "started_process": false,
+      "not_started_reason": "preflight_or_evidence_error",
+      "finished_epoch": 1789090288.504995
+    },
+    {
+      "id": "geo-future-cover",
+      "output": "/home/volleyball/q3-research-v1/v1-selection/serial/benchmarks/geo-future-cover.json",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/serial_runtime_benchmark.py",
+        "--source",
+        "/home/volleyball/q3-research-v1/geo-3c4f86f-git",
+        "--spec",
+        "/home/volleyball/q3-research-v1/geo-3c4f86f-git/research/v1_geometric_probe_relocation.json",
+        "--freeze-record",
+        "/home/volleyball/q3-research-v1/v1-selection/freezes/geo-future-cover.json",
+        "--environment",
+        "/home/volleyball/q3-research-v1/v1-selection/environment-linux.json",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/serial/benchmarks/geo-future-cover.json",
+        "--repeats",
+        "2"
+      ],
+      "cwd": "/home/volleyball/q3-research-v1/geo-3c4f86f-git",
+      "started_process": false,
+      "not_started_reason": "preflight_or_evidence_error",
+      "finished_epoch": 1789090288.505015
+    }
+  ],
+  "ledger": "/home/volleyball/q3-research-v1/v1-selection/serial/serial-benchmark-execution-1789090288463440331.jsonl",
+  "scope": "Serial public 6000..6015 whole-policy timing; no independent final evidence. Other non-training evaluation jobs must also be stopped operationally."
+}

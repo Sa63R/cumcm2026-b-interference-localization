@@ -1,0 +1,347 @@
+{
+  "kind": "serial_public_runtime_execution",
+  "planned_ids": [
+    "baseline",
+    "state-future-cover",
+    "rl-gae095-u512",
+    "geo-future-cover"
+  ],
+  "execution_order": "baseline,state,rl,geo",
+  "registry_sha256": "25ef13c9a0b4200268bb5850a3041642f1612a6a4e48087f0469c0f0f57662e2",
+  "selection_sha256": "aa22f122171bc2dfff82203362438a15706131d69ee2beca9e4abeb1a9f4d305",
+  "tool_sha256": "b025647b044b2b82cdd874e95ad0fec70fe812c7db52eaa3f4423494ec4ce3dd",
+  "launcher_sha256": "8f4f9a363547103dc6ec583210fe1026b206b31e23a146ab3c42bbc4665e84cd",
+  "worker_sha256": "bdab1cea20fcdab8de05da466a481a5f437e49456ba52141109a77ed74112ca0",
+  "started_epoch": 1789090405.4574375,
+  "elapsed_wall_s": 289.7230005264282,
+  "hard_deadline_epoch": 1789113600.0,
+  "cpu_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "complete": true,
+  "error": null,
+  "final_identity_checked": true,
+  "jobs": [
+    {
+      "id": "baseline",
+      "output": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/baseline.json",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/serial_runtime_benchmark.py",
+        "--source",
+        "/home/volleyball/q3-research-v1/registered-baseline-2f0a486",
+        "--spec",
+        "/home/volleyball/q3-research-v1/registered-baseline-2f0a486/research/v1_baseline_rollout.json",
+        "--freeze-record",
+        "/home/volleyball/q3-research-v1/v1-selection/freezes/baseline.json",
+        "--environment",
+        "/home/volleyball/q3-research-v1/v1-selection/environment-linux.json",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/baseline.json",
+        "--repeats",
+        "2"
+      ],
+      "cwd": "/home/volleyball/q3-research-v1/registered-baseline-2f0a486",
+      "started_process": true,
+      "training_preflight": {
+        "research_root": "/home/volleyball/q3-research-v1",
+        "record_checks": [
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-route-v3-001-process.json",
+            "sha256": "85f29e92c4a81971ce01c8074204b0ebccf43d92520add46f3f2a02aaff81701",
+            "recorded_pid": 818284,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-route-v4-001-process.json",
+            "sha256": "56777c242acc15cc6c02ab0a90bc02c4abaa6146f7c4e94cbc1e8fa9c109ac47",
+            "recorded_pid": 818285,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-strong-attention-001-process.json",
+            "sha256": "dc6656581caeaaaa0b335fefa0fceadb0deb69fab084f359bb2e81d2b7b0b16e",
+            "recorded_pid": 904461,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-gae095-001-process.json",
+            "sha256": "bc039695e54c6ab01fb78e581e253adcf9cfbf661cec5b28a13b828746792a6c",
+            "recorded_pid": 951283,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          }
+        ],
+        "active_training": [],
+        "checked_epoch": 1789090405.5050013,
+        "scope": "Current-user /proc scan and exact recorded PID command/cwd checks; no training process is terminated."
+      },
+      "log": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/logs/baseline.log",
+      "started_epoch": 1789090405.505025,
+      "timed_out": false,
+      "not_started_due_to_deadline": false,
+      "returncode": 0,
+      "error": null,
+      "pid": 1099736,
+      "elapsed_wall_s": 193.09210968017578,
+      "benchmark": {
+        "path": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/baseline.json",
+        "sha256": "7cf921734b56d44def59ba81d3f5a6c607e6515002010c2b43eaa89c89fdc0bb",
+        "complete": true,
+        "all_successful": true,
+        "timed_cases": 32,
+        "repeated_action_histories_identical": true
+      },
+      "finished_epoch": 1789090598.597606
+    },
+    {
+      "id": "state-future-cover",
+      "output": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/state-future-cover.json",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/serial_runtime_benchmark.py",
+        "--source",
+        "/home/volleyball/q3-research-v1/state-8aa6206-git",
+        "--spec",
+        "/home/volleyball/q3-research-v1/state-8aa6206-git/experiments/state_search_candidate_relocating_cover_v1.json",
+        "--freeze-record",
+        "/home/volleyball/q3-research-v1/v1-selection/freezes/state-future-cover.json",
+        "--environment",
+        "/home/volleyball/q3-research-v1/v1-selection/environment-linux.json",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/state-future-cover.json",
+        "--repeats",
+        "2"
+      ],
+      "cwd": "/home/volleyball/q3-research-v1/state-8aa6206-git",
+      "started_process": true,
+      "training_preflight": {
+        "research_root": "/home/volleyball/q3-research-v1",
+        "record_checks": [
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-route-v3-001-process.json",
+            "sha256": "85f29e92c4a81971ce01c8074204b0ebccf43d92520add46f3f2a02aaff81701",
+            "recorded_pid": 818284,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-route-v4-001-process.json",
+            "sha256": "56777c242acc15cc6c02ab0a90bc02c4abaa6146f7c4e94cbc1e8fa9c109ac47",
+            "recorded_pid": 818285,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-strong-attention-001-process.json",
+            "sha256": "dc6656581caeaaaa0b335fefa0fceadb0deb69fab084f359bb2e81d2b7b0b16e",
+            "recorded_pid": 904461,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-gae095-001-process.json",
+            "sha256": "bc039695e54c6ab01fb78e581e253adcf9cfbf661cec5b28a13b828746792a6c",
+            "recorded_pid": 951283,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          }
+        ],
+        "active_training": [],
+        "checked_epoch": 1789090598.6460145,
+        "scope": "Current-user /proc scan and exact recorded PID command/cwd checks; no training process is terminated."
+      },
+      "log": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/logs/state-future-cover.log",
+      "started_epoch": 1789090598.646042,
+      "timed_out": false,
+      "not_started_due_to_deadline": false,
+      "returncode": 0,
+      "error": null,
+      "pid": 1106076,
+      "elapsed_wall_s": 19.851804971694946,
+      "benchmark": {
+        "path": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/state-future-cover.json",
+        "sha256": "db56e901b43316a5253796b5f2ef00b2937d99e6d3b06aa6a98d452e63d6334d",
+        "complete": true,
+        "all_successful": true,
+        "timed_cases": 32,
+        "repeated_action_histories_identical": true
+      },
+      "finished_epoch": 1789090618.4982026
+    },
+    {
+      "id": "rl-gae095-u512",
+      "output": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/rl-gae095-u512.json",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/serial_runtime_benchmark.py",
+        "--source",
+        "/home/volleyball/q3-research-v1/rl-de7d65b-git",
+        "--spec",
+        "/home/volleyball/q3-research-v1/rl-de7d65b-git/research/v1-candidate-rl-gae095-u512.json",
+        "--freeze-record",
+        "/home/volleyball/q3-research-v1/v1-selection/freezes/rl-gae095-u512.json",
+        "--environment",
+        "/home/volleyball/q3-research-v1/v1-selection/environment-linux.json",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/rl-gae095-u512.json",
+        "--repeats",
+        "2"
+      ],
+      "cwd": "/home/volleyball/q3-research-v1/rl-de7d65b-git",
+      "started_process": true,
+      "training_preflight": {
+        "research_root": "/home/volleyball/q3-research-v1",
+        "record_checks": [
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-route-v3-001-process.json",
+            "sha256": "85f29e92c4a81971ce01c8074204b0ebccf43d92520add46f3f2a02aaff81701",
+            "recorded_pid": 818284,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-route-v4-001-process.json",
+            "sha256": "56777c242acc15cc6c02ab0a90bc02c4abaa6146f7c4e94cbc1e8fa9c109ac47",
+            "recorded_pid": 818285,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-strong-attention-001-process.json",
+            "sha256": "dc6656581caeaaaa0b335fefa0fceadb0deb69fab084f359bb2e81d2b7b0b16e",
+            "recorded_pid": 904461,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-gae095-001-process.json",
+            "sha256": "bc039695e54c6ab01fb78e581e253adcf9cfbf661cec5b28a13b828746792a6c",
+            "recorded_pid": 951283,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          }
+        ],
+        "active_training": [],
+        "checked_epoch": 1789090618.5461268,
+        "scope": "Current-user /proc scan and exact recorded PID command/cwd checks; no training process is terminated."
+      },
+      "log": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/logs/rl-gae095-u512.log",
+      "started_epoch": 1789090618.5461526,
+      "timed_out": false,
+      "not_started_due_to_deadline": false,
+      "returncode": 0,
+      "error": null,
+      "pid": 1106674,
+      "elapsed_wall_s": 6.826864242553711,
+      "benchmark": {
+        "path": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/rl-gae095-u512.json",
+        "sha256": "2696a371797d6926b4c9b8fc50c69c4464c8f97e92ac0fac3a48570b88901141",
+        "complete": true,
+        "all_successful": true,
+        "timed_cases": 32,
+        "repeated_action_histories_identical": true
+      },
+      "finished_epoch": 1789090625.3733943
+    },
+    {
+      "id": "geo-future-cover",
+      "output": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/geo-future-cover.json",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/serial_runtime_benchmark.py",
+        "--source",
+        "/home/volleyball/q3-research-v1/geo-3c4f86f-git",
+        "--spec",
+        "/home/volleyball/q3-research-v1/geo-3c4f86f-git/research/v1_geometric_probe_relocation.json",
+        "--freeze-record",
+        "/home/volleyball/q3-research-v1/v1-selection/freezes/geo-future-cover.json",
+        "--environment",
+        "/home/volleyball/q3-research-v1/v1-selection/environment-linux.json",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/geo-future-cover.json",
+        "--repeats",
+        "2"
+      ],
+      "cwd": "/home/volleyball/q3-research-v1/geo-3c4f86f-git",
+      "started_process": true,
+      "training_preflight": {
+        "research_root": "/home/volleyball/q3-research-v1",
+        "record_checks": [
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-route-v3-001-process.json",
+            "sha256": "85f29e92c4a81971ce01c8074204b0ebccf43d92520add46f3f2a02aaff81701",
+            "recorded_pid": 818284,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-route-v4-001-process.json",
+            "sha256": "56777c242acc15cc6c02ab0a90bc02c4abaa6146f7c4e94cbc1e8fa9c109ac47",
+            "recorded_pid": 818285,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-strong-attention-001-process.json",
+            "sha256": "dc6656581caeaaaa0b335fefa0fceadb0deb69fab084f359bb2e81d2b7b0b16e",
+            "recorded_pid": 904461,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          },
+          {
+            "path": "/home/volleyball/q3-research-v1/logs/rl-cold-gae095-001-process.json",
+            "sha256": "bc039695e54c6ab01fb78e581e253adcf9cfbf661cec5b28a13b828746792a6c",
+            "recorded_pid": 951283,
+            "same_command_and_cwd": false,
+            "observed": null,
+            "status": "not_present"
+          }
+        ],
+        "active_training": [],
+        "checked_epoch": 1789090625.420636,
+        "scope": "Current-user /proc scan and exact recorded PID command/cwd checks; no training process is terminated."
+      },
+      "log": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/logs/geo-future-cover.log",
+      "started_epoch": 1789090625.420662,
+      "timed_out": false,
+      "not_started_due_to_deadline": false,
+      "returncode": 0,
+      "error": null,
+      "pid": 1106937,
+      "elapsed_wall_s": 69.72974753379822,
+      "benchmark": {
+        "path": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/benchmarks/geo-future-cover.json",
+        "sha256": "e13aae79919eaddaaf82fd1e9fed71ed3a505c2c87bb4c42d113e334936e93cc",
+        "complete": true,
+        "all_successful": true,
+        "timed_cases": 32,
+        "repeated_action_histories_identical": true
+      },
+      "finished_epoch": 1789090695.150909
+    }
+  ],
+  "ledger": "/home/volleyball/q3-research-v1/v1-selection/serial-r1/serial-benchmark-execution-1789090405457551044.jsonl",
+  "scope": "Serial public 6000..6015 whole-policy timing; no independent final evidence. Other non-training evaluation jobs must also be stopped operationally."
+}
