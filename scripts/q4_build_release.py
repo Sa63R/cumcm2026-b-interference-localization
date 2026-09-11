@@ -29,6 +29,7 @@ def main():
         files.extend((ROOT / "research/q4_rl").glob("*.json"))
         files.extend((ROOT / "tests").glob("test_q4_rl*.py"))
         files.extend((ROOT / "tests").glob("test_q4_training*.py"))
+        files.extend((ROOT / "tests").glob("test_q4_scst*.py"))
         files.append(ROOT / "pyproject.toml")
     contents = {}
     for path in sorted(set(files)):
