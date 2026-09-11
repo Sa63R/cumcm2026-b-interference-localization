@@ -106,9 +106,9 @@ def _next_problem(counts, targets):
 
 
 def _is_rejected_start_only(episode, error):
-    """A timeout after starting/entering/finishing a case is never recoverable."""
+    """Only explicit transient rejections before any case evidence can recover."""
     if (not isinstance(error, PracticeRequestFailed)
-            or getattr(error, "error_code", None) != "server_timeout"):
+            or getattr(error, "error_code", None) not in ("server_timeout", "server_unavailable")):
         return False
     return _only_start_error(episode, error)
 
@@ -204,7 +204,17 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
         recovery_events = list(prior.get("recovery_events", []))
         coordination_events = list(prior.get("coordination_events", []))
         waiting = None
-        start_recovery_streak = 0
+        start_recovery_streak = prior.get("consecutive_start_recoveries", 0)
+        if (type(start_recovery_streak) is not int or not 0 <= start_recovery_streak <= 3
+                or (recovery_events and "consecutive_start_recoveries" not in prior)):
+            raise ValueError("Saved consecutive_start_recoveries must be an explicit integer from 0 to 3")
+        if start_recovery_streak in (1, 2) and prior.get("current_episode"):
+            last_recovery = recovery_events[-1] if recovery_events else {}
+            if (not isinstance(last_recovery, dict)
+                    or prior["current_episode"] != last_recovery.get("episode")):
+                # A different case directory was persisted before the allocated
+                # retry could be sent. Preserve that evidence across resumes.
+                raise BridgeError("Saved practice start recovery may already have been used; automatic resume stopped")
         collection_started_at = prior.get("collection_started_at", _utc_now())
         recovered = 0
         incomplete_streak = 0
@@ -271,6 +281,24 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
             if should_stop():
                 publish("paused")
                 return report
+            if start_recovery_streak >= 3:
+                # A previous process may have sent its final allocated retry
+                # before crashing. Never issue an additional start on resume.
+                raise BridgeError("Saved practice start recovery budget is exhausted; automatic resume stopped")
+            if start_recovery_streak:
+                recovery = recovery_events[-1] if recovery_events else {}
+                try:
+                    finished = datetime.fromisoformat(recovery["finished_at"])
+                    ready = (type(recovery.get("consecutive_attempt")) is int
+                             and recovery["consecutive_attempt"] == start_recovery_streak
+                             and recovery.get("status") == "ready"
+                             and finished.utcoffset() is not None)
+                except (KeyError, TypeError, ValueError):
+                    ready = False
+                if not ready:
+                    # A paused/crashed backoff is not proof the wait elapsed.
+                    # Preserve its budget; never skip or allocate another wait.
+                    raise BridgeError("Saved practice start recovery backoff is not confirmed ready; automatic resume stopped")
             with bridge_factory(debug_port) as native:
                 if not cooperative:
                     _require_idle(native.current_test())
@@ -383,8 +411,12 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
             publish("paused")
             return report
         except (Exception, KeyboardInterrupt) as exc:
-            errors.append({"at": _utc_now(), "type": type(exc).__name__, "error": str(exc),
-                           "episode": str(current_episode) if current_episode else None})
+            error = {"at": _utc_now(), "type": type(exc).__name__, "error": str(exc),
+                     "episode": str(current_episode) if current_episode else None}
+            error_code = getattr(exc, "error_code", None)
+            if isinstance(error_code, str) and error_code:
+                error["error_code"] = error_code
+            errors.append(error)
             try:
                 publish("failed")
             except Exception:

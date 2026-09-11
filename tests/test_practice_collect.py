@@ -272,12 +272,17 @@ def reject_start(control, kwargs, *, code="server_timeout", extra_file=None, str
     raise error
 
 
-def test_rejected_server_timeout_recovery_is_bounded_and_preserves_each_attempt(setup):
+@pytest.mark.parametrize("codes", [
+    ["server_timeout"] * 4,
+    ["server_unavailable"] * 4,
+    ["server_timeout", "server_unavailable", "server_timeout", "server_unavailable"],
+])
+def test_rejected_start_recovery_is_bounded_and_preserves_each_attempt(setup, codes):
     folders = []
 
     def runner(control, **kwargs):
         folders.append(kwargs["output"])
-        return reject_start(control, kwargs)
+        return reject_start(control, kwargs, code=codes[len(folders) - 1])
 
     with pytest.raises(PracticeRequestFailed):
         execute(setup, episode_runner=runner, q3=1, q4=0)
@@ -289,8 +294,161 @@ def test_rejected_server_timeout_recovery_is_bounded_and_preserves_each_attempt(
     assert progress["counts"] == {"3": 0, "4": 0}
     assert progress["start_recovery_count"] == 3
     assert len(progress["errors"]) == 4
+    assert [e["error_code"] for e in progress["errors"]] == codes
     assert [r["wait_seconds"] for r in progress["recovery_events"]] == [10, 20, 40]
     assert setup["store"].import_calls == []
+
+
+def saved_recovery_progress(setup, streak, *, status="failed"):
+    path = setup["db"].parent / "training-raw" / "progress.json"
+    path.parent.mkdir(parents=True)
+    prior = {"status": status, "consecutive_start_recoveries": streak,
+             "errors": [{"error_code": "server_timeout", "error": "prior rejection"}],
+             "recovery_events": [{"consecutive_attempt": i + 1, "wait_seconds": delay,
+                                  "episode": str(path.parent / "episodes" / f"prior-rejection-{i + 1}"),
+                                  "error_code": "server_timeout", "status": "ready",
+                                  "finished_at": "2026-09-11T14:23:50+00:00"}
+                                 for i, delay in enumerate((10, 20, 40)[:streak])]}
+    prior["current_episode"] = prior["recovery_events"][-1]["episode"] if streak else None
+    path.write_text(json.dumps(prior), encoding="utf-8")
+    return path, prior
+
+
+@pytest.mark.parametrize("streak,expected_starts", [
+    (1, [(3, 5.0), (3, 25.0), (3, 65.0)]),
+    (2, [(3, 5.0), (3, 45.0)]),
+])
+def test_resume_preserves_mixed_recovery_budget_and_history(setup, streak, expected_starts):
+    path, prior = saved_recovery_progress(setup, streak)
+    new_codes = ["server_unavailable", "server_timeout", "server_unavailable"][:4 - streak]
+    codes = iter(new_codes)
+
+    def runner(control, **kwargs):
+        return reject_start(control, kwargs, code=next(codes))
+
+    with pytest.raises(PracticeRequestFailed):
+        execute(setup, resume=True, episode_runner=runner, q3=1, q4=0)
+    assert setup["bridge"].starts == expected_starts
+    progress = json.loads(path.read_text(encoding="utf-8"))
+    assert progress["consecutive_start_recoveries"] == 3
+    assert progress["recovery_events"][:streak] == prior["recovery_events"]
+    assert [e["wait_seconds"] for e in progress["recovery_events"]] == [10, 20, 40]
+    assert [e["error_code"] for e in progress["errors"]] == ["server_timeout", *new_codes]
+
+
+@pytest.mark.parametrize("status", ["running", "paused", "recovering", "failed"])
+@pytest.mark.parametrize("cooperative", [False, True])
+def test_resume_exhausted_budget_never_connects_or_starts(setup, status, cooperative):
+    path, _ = saved_recovery_progress(setup, 3, status=status)
+    for _ in range(2):
+        with pytest.raises(BridgeError, match="budget is exhausted"):
+            execute(setup, resume=True, cooperative=cooperative, q3=1, q4=0,
+                    bridge_factory=lambda port: pytest.fail("Exhausted resume must not connect"))
+        progress = json.loads(path.read_text(encoding="utf-8"))
+        assert progress["consecutive_start_recoveries"] == 3
+        assert progress["status"] == "failed"
+    assert setup["bridge"].starts == []
+
+
+@pytest.mark.parametrize("streak", [1, 2])
+@pytest.mark.parametrize("status", ["running", "failed"])
+def test_resume_cannot_reuse_ready_recovery_after_a_new_attempt_was_persisted(setup, streak, status):
+    path, prior = saved_recovery_progress(setup, streak, status=status)
+    prior["current_episode"] = str(path.parent / "episodes" / "next-start-outcome-unknown")
+    path.write_text(json.dumps(prior), encoding="utf-8")
+    original = path.read_bytes()
+    for _ in range(2):
+        with pytest.raises(BridgeError, match="recovery may already have been used"):
+            execute(setup, resume=True, cooperative=True,
+                    bridge_factory=lambda port: pytest.fail("Already allocated retry must not connect"))
+        assert path.read_bytes() == original
+    assert setup["bridge"].starts == []
+
+
+@pytest.mark.parametrize("streak", [1, 2])
+@pytest.mark.parametrize("cooperative", [False, True])
+@pytest.mark.parametrize("status", ["waiting", "paused", "waiting_for_simulator", "aborted"])
+def test_resume_unfinished_backoff_never_connects_or_changes_budget(setup, streak, cooperative, status):
+    path, prior = saved_recovery_progress(setup, streak)
+    prior["recovery_events"][-1]["status"] = status
+    path.write_text(json.dumps(prior), encoding="utf-8")
+    with pytest.raises(BridgeError, match="backoff is not confirmed ready"):
+        execute(setup, resume=True, cooperative=cooperative,
+                bridge_factory=lambda port: pytest.fail("Unfinished backoff must not connect"))
+    progress = json.loads(path.read_text(encoding="utf-8"))
+    assert progress["consecutive_start_recoveries"] == streak
+    assert progress["recovery_events"] == prior["recovery_events"]
+    assert setup["bridge"].starts == []
+    assert setup["clock"].now == 0
+    with controller_lock(setup["simulator"] / ".practice-control" / "controller.lock"):
+        pass  # Failure never leaves the simulator lock held.
+
+
+@pytest.mark.parametrize("update", [
+    {"finished_at": None}, {"finished_at": ""}, {"finished_at": "invalid"},
+    {"finished_at": "2026-09-11T14:23:50"},
+    {"consecutive_attempt": 1}, {"consecutive_attempt": True},
+])
+def test_resume_ready_label_requires_matching_completed_backoff_evidence(setup, update):
+    path, prior = saved_recovery_progress(setup, 2)
+    prior["recovery_events"][-1].update(update)
+    path.write_text(json.dumps(prior), encoding="utf-8")
+    with pytest.raises(BridgeError, match="backoff is not confirmed ready"):
+        execute(setup, resume=True,
+                bridge_factory=lambda port: pytest.fail("Unproven backoff must not connect"))
+    assert json.loads(path.read_text(encoding="utf-8"))["consecutive_start_recoveries"] == 2
+
+
+def test_resume_unfinished_backoff_honors_stop_without_connecting(setup):
+    path, prior = saved_recovery_progress(setup, 2)
+    prior["recovery_events"][-1]["status"] = "paused"
+    path.write_text(json.dumps(prior), encoding="utf-8")
+    stop = path.parent / "STOP"
+    stop.touch()
+    result = execute(setup, resume=True, cooperative=True,
+                     bridge_factory=lambda port: pytest.fail("Stopped resume must not connect"))
+    assert result["status"] == "paused" and result["stop_reason"] == "stop_file"
+    assert result["consecutive_start_recoveries"] == 2
+    assert result["recovery_events"] == prior["recovery_events"]
+
+
+@pytest.mark.parametrize("value", [True, False, -1, 4, 1.0, "2", None])
+def test_resume_invalid_recovery_budget_never_connects(setup, value):
+    path, prior = saved_recovery_progress(setup, 1)
+    prior["consecutive_start_recoveries"] = value
+    path.write_text(json.dumps(prior), encoding="utf-8")
+    original = path.read_bytes()
+    with pytest.raises(ValueError, match="consecutive_start_recoveries"):
+        execute(setup, resume=True,
+                bridge_factory=lambda port: pytest.fail("Invalid resume must not connect"))
+    assert path.read_bytes() == original
+
+
+def test_resume_missing_budget_with_recovery_history_is_rejected(setup):
+    path, prior = saved_recovery_progress(setup, 1)
+    del prior["consecutive_start_recoveries"]
+    path.write_text(json.dumps(prior), encoding="utf-8")
+    with pytest.raises(ValueError, match="consecutive_start_recoveries"):
+        execute(setup, resume=True,
+                bridge_factory=lambda port: pytest.fail("Missing recovery budget must not connect"))
+
+
+def test_resume_success_resets_saved_budget_before_next_rejection(setup):
+    saved_recovery_progress(setup, 2)
+    rejected_q4 = False
+
+    def runner(control, **kwargs):
+        nonlocal rejected_q4
+        if kwargs["problem"] == 4 and not rejected_q4:
+            rejected_q4 = True
+            return reject_start(control, kwargs, code="server_unavailable")
+        return setup["runner"](control, **kwargs)
+
+    result = execute(setup, resume=True, episode_runner=runner, q3=1, q4=1)
+    assert result["status"] == "complete"
+    assert result["consecutive_start_recoveries"] == 0
+    assert [e["wait_seconds"] for e in result["recovery_events"]] == [10, 20, 10]
+    assert result["recovery_events"][-1]["consecutive_attempt"] == 1
 
 
 def test_successful_run_resets_consecutive_start_recovery_delay(setup):
@@ -322,9 +480,10 @@ def test_recovery_refuses_any_evidence_beyond_rejected_start(setup, extra):
     assert len(setup["bridge"].starts) == 1
 
 
-@pytest.mark.parametrize("code,structured", [("server_timeout", False), ("login_required", True),
+@pytest.mark.parametrize("code,structured", [("server_timeout", False), ("server_unavailable", False),
+                                            ("login_required", True), ("rate_limited", True),
                                             ("deadline_exceeded", True), ("request_failed", True)])
-def test_recovery_allowlist_requires_exact_structured_server_timeout(setup, code, structured):
+def test_recovery_allowlist_requires_exact_structured_transient_code(setup, code, structured):
     def runner(control, **kwargs):
         return reject_start(control, kwargs, code=code, structured=structured)
 
