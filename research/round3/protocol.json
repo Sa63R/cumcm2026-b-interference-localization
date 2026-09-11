@@ -225,7 +225,7 @@
       "diagnosis": "research/round3/diagnoses/DIRECTED_LOCALIZATION_PILOT.md"
     },
     "directed_incumbent": {
-      "status": "developing_single_incumbent_fix",
+      "status": "frozen_before_new_cases",
       "candidate_label": "candidate",
       "hypothesis": "18 of 540 completed finite models omitted a cheaper existing parent route. Seed that feasible route as incumbent without changing cost model, probe family or search budgets. Both model error and search error were observed; require new paired episodes.",
       "parent_trial": "directed_localization",
@@ -246,7 +246,11 @@
       "stress_seeds": [
         926091232001,
         926091232028
-      ]
+      ],
+      "source_commit": "1e0515521bee64164cae5c0acd21e4f54c0c2d75",
+      "recipes_sha256": "0b9cf4ed4352f772cb64efecdef1b3bea2d9043fa966d41ecbb70e0c644ee291",
+      "implementation_tests_passed": 156,
+      "review": "Independent pure-code review passed; no change to proxies, weights, family or budgets."
     }
   },
   "logging_scope": "Keep full raw machine records, immutable source/config/model identities and concise decisions; extensive prose optional, do not delay experiments.",
