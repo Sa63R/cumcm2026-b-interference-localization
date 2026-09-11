@@ -121,7 +121,9 @@ class _Search:
                 bearing = response["svd_deg"]
                 item["bearing_deg"] = bearing
                 self.first_bearings.setdefault(channel, bearing)
-                self.regions.setdefault(channel, CandidateRegion()).observe(position, bearing)
+                if channel not in self.regions:
+                    self.regions[channel] = CandidateRegion()
+                self.regions[channel].observe(position, bearing)
             elif kind == "near":
                 self.near_points[channel] = position
             # no_signal cannot remove candidates with unknown reception radius

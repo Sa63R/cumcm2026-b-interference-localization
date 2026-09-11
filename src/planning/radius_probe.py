@@ -11,11 +11,54 @@ import time
 from simulator_client.state import Position
 
 
-def choose_radius_probe(region, current, first_bearing, observed, weight=0.5, *, extra_points=()):
+class ProbeGeometryMemo:
+    """Exact posterior geometry shared by two scores of one public region.
+
+    This is deliberately a caller-owned, short-lived cache, not a policy/global
+    cache. Values are only None (empty polygon) or immutable binary64 radii.
+    Ordered histories and vertices are part of the binding because Q3 negative
+    feedback affects hypothetical positive updates even without changing C.
+    """
+
+    def __init__(self):
+        self._region = None
+        self._signature = None
+        self._values = {}
+
+    def bind(self, region):
+        def coords(value):
+            return tuple(float(v).hex() for v in value)
+
+        signature = (
+            type(region), tuple(coords(v) for v in region.vertices),
+            tuple((coords(o.position), float(o.bearing_deg).hex(), float(o.error_deg).hex())
+                  for o in region.observations),
+            tuple(coords(v) for v in getattr(region, "no_signal_positions", ())),
+            tuple(float(getattr(region, name)).hex() for name in
+                  ("prior_radius", "disk_sides", "error_deg", "reception_radius")),
+        )
+        if self._region is not region or self._signature != signature:
+            self._region, self._signature = region, signature
+            self._values.clear()
+
+    def posterior_radius(self, point, bearing):
+        # Hex keys distinguish signed zero; no coordinate rounding or bins.
+        key = (float(point.x).hex(), float(point.y).hex(), float(bearing).hex())
+        if key not in self._values:
+            hypothetical = self._region.copy().observe(point, bearing)
+            self._values[key] = (hypothetical.enclosing_disk().radius
+                                 if hypothetical.vertices else None)
+        return self._values[key]
+
+
+def choose_radius_probe(region, current, first_bearing, observed, weight=0.5, *,
+                        extra_points=(), geometry_memo=None):
     if not math.isfinite(weight) or weight < 0:
         raise ValueError("nonnegative finite weight is required for the score bound")
     started = time.perf_counter()
     circle = region.enclosing_disk()
+    if geometry_memo is not None:
+        geometry_memo.bind(region)
     center = Position(*circle.center)
     theta = math.radians(first_bearing)
     perpendicular = (-math.sin(theta), math.cos(theta))
@@ -63,12 +106,15 @@ def choose_radius_probe(region, current, first_bearing, observed, weight=0.5, *,
                 total += d / 5
             else:
                 bearing = math.degrees(math.atan2(source.y - point.y, source.x - point.x)) % 360
-                hypothetical = region.copy().observe(point, bearing)
+                if geometry_memo is None:
+                    hypothetical = region.copy().observe(point, bearing)
+                    radius = hypothetical.enclosing_disk().radius if hypothetical.vertices else None
+                else:
+                    radius = geometry_memo.posterior_radius(point, bearing)
                 updates += 1
-                if not hypothetical.vertices:
+                if radius is None:
                     total = math.inf
                     break
-                radius = hypothetical.enclosing_disk().radius
                 total += d / 5 + (6.0 if radius > 19.9 else 0.0) + weight * max(0.0, radius - 19.9) / 5
             partial_lower = travel + (total + sum(d / 5 for d in distances[i + 1:])) / len(hypotheses)
             if partial_lower > best[0] + 1e-9:

@@ -58,8 +58,30 @@ def disk_cover_radius(stations, arena_radius=1800.0):
                 y = ay + (ux * local_rhs2 - local_rhs * vx) / determinant
                 if x * x + y * y <= radius2 + 1e-6:
                     candidates.append((x, y))
-    return math.sqrt(max(min((x - ax)**2 + (y - ay)**2 for ax, ay in points)
-                         for x, y in candidates))
+    # Only ordinary, bounded coordinates use the short circuit. In this
+    # domain each squared-distance sum is finite (at most 8e300). Outside
+    # it, keep the original reduction: skipping a later point could hide
+    # an OverflowError or change order-sensitive NaN/custom-number behavior.
+    if not all(type(value) in (int, float) and abs(value) <= 1e150
+               for collection in (points, candidates)
+               for pair in collection for value in pair):
+        return math.sqrt(max(min((x - ax)**2 + (y - ay)**2 for ax, ay in points)
+                             for x, y in candidates))
+
+    farthest2 = 0.0
+    for x, y in candidates:
+        nearest2 = math.inf
+        for ax, ay in points:
+            distance2 = (x - ax)**2 + (y - ay)**2
+            if distance2 <= farthest2:
+                # This candidate's minimum cannot raise the outer maximum.
+                break
+            if distance2 < nearest2:
+                nearest2 = distance2
+        else:
+            # Every distance was above farthest2, so the minimum raises it.
+            farthest2 = nearest2
+    return math.sqrt(farthest2)
 
 
 def certifies_disk_cover(stations, reception_radius=1000.0, *, margin=1e-5):

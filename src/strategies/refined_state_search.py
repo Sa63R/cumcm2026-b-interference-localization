@@ -1,7 +1,7 @@
 """Nested finite active-action search using v1's unchanged surrogate score."""
 
 from planning.probe_candidates import geometry_candidates
-from planning.radius_probe import choose_radius_probe
+from planning.radius_probe import ProbeGeometryMemo, choose_radius_probe
 
 from .pruned_state_search import PrunedStateSearch
 
@@ -19,13 +19,18 @@ class RefinedStateSearch(PrunedStateSearch):
             return super()._next_probe(channel, index)
         current = self.client.state.position
         observed = self.observed_positions.get(channel, set())
+        # Shared only across these two synchronous evaluations. A subsequent
+        # real or inferred observation always receives a fresh cache.
+        geometry_memo = ProbeGeometryMemo()
         old, before = choose_radius_probe(region, current, self.first_bearings[channel],
-                                         observed, config.probe_uncertainty_weight)
+                                         observed, config.probe_uncertainty_weight,
+                                         geometry_memo=geometry_memo)
         if old is None:
             return super()._next_probe(channel, index)
         extra, geometry = geometry_candidates(region, mode=self.refine_mode, old_best=old)
         point, after = choose_radius_probe(region, current, self.first_bearings[channel],
-            observed, config.probe_uncertainty_weight, extra_points=extra)
+            observed, config.probe_uncertainty_weight, extra_points=extra,
+            geometry_memo=geometry_memo)
         self.probe_log.append({"channel": channel, "index": index, **after, **geometry,
             "family": self.refine_mode, "old_best_position": [old.x, old.y],
             "old_best_score_s": before["score_s"], "score_improvement_s": before["score_s"] - after["score_s"],
