@@ -1,0 +1,23 @@
+{
+  "version": "q4-rl-evaluation-v1",
+  "problem": 4,
+  "scope": "Local synthetic feedback, not official performance",
+  "splits": {"train": [8000000, 8099999], "development": [8100000, 8199999], "confirmation": [8200000, 8299999], "final": [8300000, 8399999]},
+  "default_stage": "development",
+  "validation_database_policy": "The entire designated practice_training.sqlite3 is audit-only, never training, imitation, normalization, distribution fitting, or repetitive selection; recorded trajectories are not counterfactual simulators.",
+  "distribution": "Predeclared uniform-area disk positions, 10..16 exclusive channels, uniform reception radii and orientations; report mixed and all-directional strata separately. Stress transforms are fixed before evaluation.",
+  "policy_inputs": "Only legal observations and public physical constants; no scene identifier, seed, source truth, evaluator bounds or timestamps.",
+  "bounds_version": "q4-common-source-edge-v1",
+  "limits": {"virtual_seconds": 360000, "real_seconds": 1200, "actions": 20000, "max_active_probes": 6},
+  "failure_policy": "Retain actual interrupted time and all failed actions. Unsuccessful runs have 360000s penalized time and null actual all-clear T/L. Never discard incomplete pairs.",
+  "ratios": ["sum_penalized_time / sum_common_lower_bound", "mean_per_case_penalized_time_over_common_lower_bound"],
+  "frozen_controls": ["state", "compact_cover", "combo", "r8"],
+  "extensions": ["heuristic", "learned"],
+  "selection": "Only development may select checkpoints. Confirmation/final require explicit stage and a selection file binding source/config/model hashes and complete reserved requests. A failed confirmation is consumed and cannot be reused as independent evidence after changing a candidate.",
+  "promotion_gate": "All-clear and observation/physical completion audits pass for all predeclared independent strata; paired mean-saving CI lower bound >0 versus R8 on random strata; p95 ratio <=1.05 on every stratum. Report legitimate failed optical attempts separately. Final assessment uses a frozen candidate and unconsumed final requests. No automatic promotion by this evaluator.",
+  "bootstrap": {"seed": 4260911, "samples": 2000, "confidence": 0.95, "unit": "complete scenario pair; stratified by predeclared family/source mode"},
+  "resources": "CPU-only; one native numerical thread per evaluator worker; workers count toward the task-wide 50-core default/60-core ceiling. Actual allocation is managed by the task supervisor.",
+  "audits": "Raw accepted history determines completion: 16 actual clears, or every unresolved channel has certified directional coverage by its actual negative measurements, and every discovered channel has actually cleared. Dyadic coverage exhaustion is inconclusive, never proof of absence.",
+  "training_deadline_beijing": "2026-09-12T10:00:00+08:00",
+  "delivery_deadline_beijing": "2026-09-12T12:00:00+08:00"
+}
