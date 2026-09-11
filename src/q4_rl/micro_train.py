@@ -28,6 +28,7 @@ from .micro_network import (MicroCandidateActorCritic, TorchPolicy, configure_cp
 from .train import (TRAIN_START, TRAIN_END, DEFAULT_DEADLINE, TrainingStop,
     training_case_spec, attach_returns, ppo_update, imitation_update,
     summarize_training_metrics, parse_deadline, _configuration, _write_json, _write_batch)
+from .training_journal import EpisodeJournal
 
 
 _stop_requested = False
@@ -243,6 +244,7 @@ def main(argv=None):
             raw_path = args.output/raw_name
             if raw_path.exists():
                 raise FileExistsError("refusing to overwrite a recorded micro attempt")
+            journal = EpisodeJournal(raw_path, _write_batch)
             tasks = [dict(seed=seed, action_seed=action_seed, mode=pending["mode"],
                 model=model.state_dict(), network=model.metadata(), max_decisions=args.max_decisions,
                 deadline_epoch=deadline) for seed, action_seed in zip(pending["seeds"], pending["action_seeds"])]
@@ -250,9 +252,9 @@ def main(argv=None):
             rows = executor.map(rollout, tasks) if executor else map(rollout, tasks)
             for row in rows:
                 batch.append(row)
-                # Persist every returned episode before requesting the next one.
-                # A partial attempt is retained and the full reservation replays.
-                _write_batch(raw_path, batch)
+                # Preserve every returned episode once. Rewriting only the small
+                # hash index avoids repeatedly serializing previous trajectories.
+                journal.append(row)
             if _stop_requested or any(row.get("administrative_skip") for row in batch):
                 state["stop_reason"] = "deadline_in_reserved_batch"
                 break

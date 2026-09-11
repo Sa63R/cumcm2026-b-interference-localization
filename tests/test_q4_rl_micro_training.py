@@ -185,8 +185,8 @@ def test_main_keeps_partial_raw_batch_and_reserves_all_seeds(tmp_path, monkeypat
     assert state["pending_batch"]["seeds"] == [8005010, 8005011]
     raw = tmp_path/"batch-000000-attempt-000000.json.gz"
     old = raw.read_bytes()
-    with gzip.open(raw, "rt", encoding="utf-8") as stream:
-        assert len(json.load(stream)) == 1
+    from q4_rl.training_journal import read_batch
+    assert len(read_batch(raw)) == 1
     state = train.main(args+["--resume", str(tmp_path/"latest.pt")])
     assert state["episodes"] == 2
     assert calls == [8005010, 8005011, 8005010, 8005011]

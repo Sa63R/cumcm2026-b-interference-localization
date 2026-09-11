@@ -24,7 +24,7 @@ PPO、可选 BC、回报构造、固定训练种子映射、统计和原始批�
 
 ## 事务与恢复
 
-每批先将训练种子、独立动作随机种子、当前模型/优化器和 RNG 保留到 `latest.pt`，再执行采样。每次尝试使用不同文件名 `batch-BBBBBB-attempt-AAAAAA.json.gz`；每返回一局就原子保存当前批前缀。恢复整批重跑同一预留种子，不覆盖旧尝试，不跳过失败场景。
+每批先将训练种子、独立动作随机种子、当前模型/优化器和 RNG 保留到 `latest.pt`，再执行采样。每次尝试使用不同文件名 `batch-BBBBBB-attempt-AAAAAA.json.gz`。初版存完整前缀列表；后续修复改为小型 `q4-training-episode-index-v1` 索引，每个返回局另写一次不可覆盖的 `-episode-NNNN.json.gz`，索引记录逐文件 SHA256。`q4_rl.training_journal.read_batch` 同时读取旧列表和新索引，返回相同的工作进程结果。恢复整批重跑同一预留种子，不覆盖旧尝试，不跳过失败场景。
 
 更新中收到行政停止或异常时回滚到最近完整事务，包含模型、优化器、种子位置及随机流；一次更新完整成功后才推进 episodes/batches，并将进度及原始尝试文件名随模型提交。进度写到 `progress.json` 和每批独立的 `progress-NNNNNN.json`，没有覆盖式丢弃历史。`latest.pt` 内的 `last_progress` 可在恢复后重建最新进度。
 
