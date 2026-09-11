@@ -1,0 +1,118 @@
+{
+  "algorithm": "self-critical-sequence-training-v1",
+  "batch": 1,
+  "pairs": 1,
+  "rollouts": 2,
+  "wall_time_s": 12.32125530000485,
+  "sample": {
+    "full_clear": 1,
+    "full_clear_rate": 1.0,
+    "batch_episodes": 1,
+    "mean_actual_time_s": 12470.172592,
+    "p95_actual_time_s": 12470.172592,
+    "mean_penalized_time_s": 12470.172592,
+    "p95_penalized_time_s": 12470.172592,
+    "mean_common_lower_bound_s": 2096.4844374346803,
+    "ratio_of_mean_penalized_time_to_mean_bound": 5.948135063315266,
+    "all_clear_actual_time_over_mean_bound": 5.948135063315266,
+    "mean_of_penalized_ratios": 5.948135063315266,
+    "failed_clear_count": 36,
+    "mean_penalized_time_bootstrap95_s": [
+      12470.172592,
+      12470.172592
+    ],
+    "uncertainty_scope": "descriptive resampling only; synthetic curriculum batch is not an independent efficacy estimate",
+    "case_ratios": [
+      {
+        "seed": 8006000,
+        "actual_time_over_lower_bound": 5.948135063315266,
+        "penalized_time_over_lower_bound": 5.948135063315266
+      }
+    ],
+    "sum_episode_wall_time_s": 4.763274800003273,
+    "mean_episode_wall_time_s": 4.763274800003273,
+    "sum_episode_worker_cpu_s": 4.34375,
+    "mean_episode_worker_cpu_s": 4.34375,
+    "sum_episode_policy_wall_s": 4.656801999997697,
+    "mean_episode_policy_wall_s": 4.656801999997697,
+    "sum_episode_policy_cpu_s": 4.3125,
+    "mean_episode_policy_cpu_s": 4.3125,
+    "sum_episode_posthoc_bound_wall_s": 0.008200099997338839,
+    "mean_episode_posthoc_bound_wall_s": 0.008200099997338839,
+    "sum_episode_posthoc_bound_cpu_s": 0.015625,
+    "mean_episode_posthoc_bound_cpu_s": 0.015625
+  },
+  "greedy": {
+    "full_clear": 1,
+    "full_clear_rate": 1.0,
+    "batch_episodes": 1,
+    "mean_actual_time_s": 8470.453858,
+    "p95_actual_time_s": 8470.453858,
+    "mean_penalized_time_s": 8470.453858,
+    "p95_penalized_time_s": 8470.453858,
+    "mean_common_lower_bound_s": 2096.4844374346803,
+    "ratio_of_mean_penalized_time_to_mean_bound": 4.040313253345537,
+    "all_clear_actual_time_over_mean_bound": 4.040313253345537,
+    "mean_of_penalized_ratios": 4.040313253345537,
+    "failed_clear_count": 5,
+    "mean_penalized_time_bootstrap95_s": [
+      8470.453858,
+      8470.453858
+    ],
+    "uncertainty_scope": "descriptive resampling only; synthetic curriculum batch is not an independent efficacy estimate",
+    "case_ratios": [
+      {
+        "seed": 8006000,
+        "actual_time_over_lower_bound": 4.040313253345537,
+        "penalized_time_over_lower_bound": 4.040313253345537
+      }
+    ],
+    "sum_episode_wall_time_s": 5.059486700003617,
+    "mean_episode_wall_time_s": 5.059486700003617,
+    "sum_episode_worker_cpu_s": 4.65625,
+    "mean_episode_worker_cpu_s": 4.65625,
+    "sum_episode_policy_wall_s": 5.047203599999193,
+    "mean_episode_policy_wall_s": 5.047203599999193,
+    "sum_episode_policy_cpu_s": 4.640625,
+    "mean_episode_policy_cpu_s": 4.640625,
+    "sum_episode_posthoc_bound_wall_s": 0.008986700006062165,
+    "mean_episode_posthoc_bound_wall_s": 0.008986700006062165,
+    "sum_episode_posthoc_bound_cpu_s": 0.015625,
+    "mean_episode_posthoc_bound_cpu_s": 0.015625
+  },
+  "sum_both_legs_worker_cpu_s": 9.0,
+  "sum_both_legs_worker_wall_s": 9.82276150000689,
+  "update": {
+    "updates": 1,
+    "trajectory_pairs": 1,
+    "sampled_steps": 508,
+    "loss": -4435.241516113281,
+    "gradient_norm": 465.1211853027344,
+    "mean_advantage": -3.999718734,
+    "advantage_std": 0.0,
+    "entropy_coefficient": 0.0,
+    "reduction": "mean_trajectory_sum_log_probability",
+    "wall_time_s": 0.9148908000061056,
+    "cpu_time_s": 0.875
+  },
+  "raw_index": "raw/batch-000000-attempt-000000.jsonl",
+  "raw_legs": [
+    {
+      "file": "batch-000000-attempt-000000-leg-0000.json.gz",
+      "sha256": "1cb7fe33a069b73b625a6a33d0320d29e77ca3ed347ec0b1331aaa47db4e6844",
+      "bytes": 2280706,
+      "seed": 8006000,
+      "leg": "sample",
+      "administrative_skip": null
+    },
+    {
+      "file": "batch-000000-attempt-000000-leg-0001.json.gz",
+      "sha256": "21ec2305831180093d668ef3120b0c284bf0a044ad3280eaed708274f393c1c1",
+      "bytes": 30150,
+      "seed": 8006000,
+      "leg": "greedy",
+      "administrative_skip": null
+    }
+  ],
+  "scope": "fresh synthetic SCST diagnostics; not independent validation"
+}
