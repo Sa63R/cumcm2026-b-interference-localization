@@ -1,0 +1,16 @@
+{
+  "protocol": "q3-fresh-round2-20260912-v1",
+  "baseline_commit": "01fbea52",
+  "baseline": "frozen V1b, verified action-identical StepperQ3",
+  "order": ["verified stronger bound", "B/C development", "B/C/R/CR development", "independent attempt-clear development", "freeze one candidate", "new nominal and pressure tests", "12 new validation episode groups"],
+  "development": {"original_seed_start": 910100, "random_cases": 12, "old_pressure_cases": 12, "new_pressure_seed_start": 960000, "new_pressure_cases": 12},
+  "nominal_test": {"seed_start": 980000, "count": 64},
+  "pressure_test": {"seed_start": 970000, "count": 32},
+  "validation": {"selection": "SHA256(fresh-q3-v2:case_code), exclude all round1 evidence hashes", "original_episode_groups": 12, "radius_fractions": [0.25, 0.75], "use": "validation only; no prior or threshold fitting"},
+  "rollout": {"max_candidates": 6, "non_attempt_candidates": 5, "initial_common_worlds": 4, "additional_common_worlds": 8, "refinement": "baseline and best alternative; guarantees a paired 12-world comparison", "max_decisions_per_episode": 12, "min_actions_between_decisions": 8, "planning_budget_s": 60, "decision_budget_s": 6, "execution_reserve_s": 30, "selection_guard": "mean paired delta + one standard error < -3 seconds"},
+  "attempt_clear": {"known_sources_only": true, "max_since_new_observation": 2, "proposal_max_enclosure_radius_m": 80, "failures": "retain exclusion disks, unchanged outer source geometry, normal baseline continuation"},
+  "compute": {"max_concurrent_cpu_processes": 2, "gpu": false, "cpu_hour_ceiling": 6},
+  "acceptance": {"hard": ["all cleared", "valid exit certificate", "no hidden truth in planner", "no incomplete rollout scored as cheap", "planning budgets respected"], "rollout_default_mean_gain_target_percent": 3, "nominal_paired_95_interval_upper_s": 0, "p95_regression_ceiling_percent": 2, "tail_module": "may remain conditional when useful on long-tail pressure cases with ordinary mean regression at most 1 percent"},
+  "report": ["suite groups separately", "source count strata", "T/N per case", "physical and strengthened guarantee lower bounds", "failed cases included", "tail costs are not confused with whole-task lower bound"],
+  "official_simulator_calls": 0
+}
