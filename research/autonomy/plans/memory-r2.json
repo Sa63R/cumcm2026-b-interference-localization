@@ -1,0 +1,30 @@
+{
+  "name": "memory-r2",
+  "trainer": "research_rl.train_recurrent",
+  "entrypoint": "research_rl.recurrent:run_recurrent_search",
+  "replication": 2,
+  "cpu_slots": 50,
+  "workers": 48,
+  "learner_threads": 16,
+  "blocks": 2,
+  "block_seconds": 1800,
+  "remote": "jiangsu10:bucket-c20250204-pool01/lianghao/bwc/shumo/q3-autonomy-20260911-r1",
+  "training_args": [
+    "--hidden",
+    "96",
+    "--episodes-per-update",
+    "128",
+    "--lr",
+    "0.0001",
+    "--gae-lambda",
+    "0.95",
+    "--entropy-coef",
+    "0.005",
+    "--epochs",
+    "4",
+    "--memory-hidden",
+    "64",
+    "--episodes-per-minibatch",
+    "4"
+  ]
+}
