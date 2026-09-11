@@ -162,6 +162,26 @@ def test_any_failed_final_case_blocks_acceptance(tmp_path, protocol, split, meth
         assert not result['baseline_complete_and_successful']
 
 
+@pytest.mark.parametrize('split', ['final_random', 'final_stress'])
+def test_baseline_failed_clear_blocks_screen_even_when_eventually_all_cleared(tmp_path, protocol, split):
+    random = comparison(tmp_path, protocol, 'final_random')
+    stress = comparison(tmp_path, protocol, 'final_stress')
+    baseline = tmp_path / f'{split}-baseline'
+    # A recovered failed attempt can coexist with a successful completed run.
+    alter_rows(baseline, lambda rows: rows[0].update(failed_clear_count=1))
+    changed = reporting.compare_directories(baseline, {'candidate': tmp_path / f'{split}-candidate'}, protocol)
+    assert changed['methods']['baseline']['successful_runs'] == 2
+    assert not changed['comparisons']['candidate']['baseline_all_successful_no_failed_clear']
+    assert not changed['comparisons']['candidate']['performance_target_met_on_supplied_cases']
+    if split == 'final_random':
+        random = changed
+    else:
+        stress = changed
+    decision = reporting.final_acceptance(random, stress, protocol)['acceptance']['candidate']
+    assert not decision['baseline_complete_and_successful']
+    assert not decision['first_version_practical_target_met']
+
+
 @pytest.mark.parametrize('reason', ['incomplete', 'candidate_failed_clear', 'stress_tail'])
 def test_final_completion_reliability_and_separate_stress_guard(tmp_path, protocol, reason):
     random = comparison(tmp_path, protocol, 'final_random')

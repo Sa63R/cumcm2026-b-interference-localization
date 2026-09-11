@@ -79,9 +79,12 @@ def compare_directories(baseline, candidates, protocol):
         if label == "baseline":
             continue
         contrast = paired_comparison(base["rows"], rows, protocol)
+        contrast["baseline_all_successful_no_failed_clear"] = all(
+            row["successful"] and row["failed_clear_count"] == 0 for row in base["rows"])
         criteria = protocol["acceptance"]
         contrast["performance_target_met_on_supplied_cases"] = bool(
             contrast["all_pairs_successful_no_candidate_failed_clear"]
+            and contrast["baseline_all_successful_no_failed_clear"]
             and contrast["mean_reduction_fraction"] >= criteria["minimum_mean_total_time_reduction_fraction"]
             and contrast["saving_ci95_s"][0] > criteria["paired_saving_bootstrap_ci95_lower_seconds_strictly_above"]
             and contrast["p95_time_ratio"] <= criteria["maximum_p95_total_time_ratio"])
@@ -108,6 +111,7 @@ def final_acceptance(random_report, stress_report, protocol):
     baseline_valid = all(report["methods"]["baseline"]["complete"]
                          and report["methods"]["baseline"]["runs"] == count
                          and report["methods"]["baseline"]["successful_runs"] == count
+                         and report["methods"]["baseline"]["failed_clear_count"] == 0
                          for report, count in zip((random_report, stress_report), expected))
     results = {}
     for label in random_report["inputs"]:
