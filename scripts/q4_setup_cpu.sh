@@ -17,6 +17,13 @@ fi
 if ! "$ROOT/.venv-cpu/bin/python" -m pip --version >/dev/null 2>&1; then
   PYTHONPATH="$ROOT/bootstrap/pip-25.2-py3-none-any.whl" "$ROOT/.venv-cpu/bin/python" -m pip install --no-index "$ROOT/bootstrap/pip-25.2-py3-none-any.whl"
 fi
-"$ROOT/.venv-cpu/bin/python" -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.9.1+cpu' 'numpy==2.2.6'
-"$ROOT/.venv-cpu/bin/python" -m pip install 'pytest>=8,<9'
+if [[ -d "$ROOT/wheelhouse" ]]; then
+  dependency_source=(--no-index --find-links "$ROOT/wheelhouse")
+else
+  dependency_source=(--index-url https://pypi.org/simple)
+fi
+"$ROOT/.venv-cpu/bin/python" -m pip install "${dependency_source[@]}" 'numpy==2.2.6' 'filelock>=3.20,<4' 'typing_extensions>=4.10,<5' 'sympy==1.14.0' 'networkx==3.4.2' 'jinja2==3.1.6' 'fsspec>=2025,<2027' 'pytest>=8,<9'
+"$ROOT/.venv-cpu/bin/python" -m pip install --no-deps --index-url https://download.pytorch.org/whl/cpu 'torch==2.9.1+cpu'
+"$ROOT/.venv-cpu/bin/python" -m pip check
+"$ROOT/.venv-cpu/bin/python" -m pip freeze > "$ROOT/runs/setup/requirements-resolved.log"
 "$ROOT/.venv-cpu/bin/python" -c 'import torch,numpy,json; assert torch.version.cuda is None; print(json.dumps({"torch":torch.__version__,"numpy":numpy.__version__,"cuda_build":torch.version.cuda}))'

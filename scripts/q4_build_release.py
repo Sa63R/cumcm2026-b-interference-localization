@@ -22,7 +22,7 @@ def main():
     files = [ROOT / "scripts/q4_setup_cpu.sh"]
     files.extend((ROOT / "bootstrap").glob("*.whl"))
     if not args.setup_only:
-        for package in ("simulation", "simulator_client", "strategies", "planning", "q4_rl"):
+        for package in ("simulation", "simulator_client", "strategies", "planning", "geometry", "localization", "q4_rl"):
             files.extend((ROOT / "src" / package).rglob("*.py"))
         files.extend((ROOT / "experiments").glob("*.py"))
         files.extend((ROOT / "scripts").glob("q4_*.py"))
@@ -54,7 +54,9 @@ def main():
     with tarfile.open(args.output, "w:gz") as archive:
         for name, raw in contents.items():
             info = tarfile.TarInfo(name)
-            info.size, info.mode, info.mtime = len(raw), 0o600, 0
+            # A deterministic ZIP-compatible timestamp lets the evaluator archive
+            # the extracted source with the standard zipfile implementation.
+            info.size, info.mode, info.mtime = len(raw), 0o600, 946684800
             archive.addfile(info, io.BytesIO(raw))
     sha = hashlib.sha256(args.output.read_bytes()).hexdigest()
     args.output.with_suffix(args.output.suffix + ".sha256").write_text(

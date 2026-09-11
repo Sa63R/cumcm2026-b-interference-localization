@@ -13,6 +13,30 @@ import re
 BASE = "lianghao/bwc/shumo/"
 
 
+def list_all_objects(client, bucket, task_prefix, name_prefix=""):
+    """Consume every continuation page or fail explicitly on a broken cursor."""
+    result, cursor, seen_cursors, seen_keys = [], None, set(), set()
+    prefix = task_prefix + name_prefix
+    while True:
+        request = {"Bucket": bucket, "Prefix": prefix, "MaxKeys": 200}
+        if cursor is not None:
+            request["ContinuationToken"] = cursor
+        page = client.list_objects_v2(**request)
+        for item in page.get("Contents", []):
+            key = item["Key"]
+            if not key.startswith(prefix):
+                raise ValueError("Object listing escaped requested prefix")
+            if key not in seen_keys:
+                result.append({"name": key[len(task_prefix):], "bytes": item["Size"]})
+                seen_keys.add(key)
+        if not page.get("IsTruncated", False):
+            return result
+        cursor = page.get("NextContinuationToken")
+        if not cursor or cursor in seen_cursors:
+            raise ValueError("Truncated object listing has no advancing continuation token")
+        seen_cursors.add(cursor)
+
+
 def connection(document):
     import boto3
     from botocore.config import Config
@@ -49,9 +73,7 @@ def main():
     client = connection(args.credentials_document)
     bucket, prefix = "bucket-c20250204-pool01", BASE + args.task + "/"
     if args.action == "list":
-        items = client.list_objects_v2(Bucket=bucket, Prefix=prefix + args.name, MaxKeys=200)
-        print(json.dumps([{"name": x["Key"][len(prefix):], "bytes": x["Size"]}
-                          for x in items.get("Contents", [])]))
+        print(json.dumps(list_all_objects(client, bucket, prefix, args.name)))
         return
     if not args.name or not args.file:
         raise ValueError("file and name required")
