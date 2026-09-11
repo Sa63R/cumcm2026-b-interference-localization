@@ -57,8 +57,10 @@ def read_official_result(path, summary):
         raise ValueError("Official result source counts must sum to a total from 10 to 16")
     if problem == 3 and (omni != total or directional != 0):
         raise ValueError("Problem 3 requires only omnidirectional sources")
-    if problem == 4 and (omni == 0 or directional == 0):
-        raise ValueError("Problem 4 requires both omnidirectional and directional sources")
+    # Q4 practice can contain only directional sources; a nonzero omni count
+    # is not required (observed in the simulator's completed practice results).
+    if problem == 4 and directional == 0:
+        raise ValueError("Problem 4 requires at least one directional source")
     code = result.get("case_code")
     if not isinstance(code, str) or not code.strip() or not code.isprintable():
         raise ValueError("Official result case code must be nonempty and printable")

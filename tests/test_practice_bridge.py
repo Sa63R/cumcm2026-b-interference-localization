@@ -305,3 +305,58 @@ def test_read_timeout_is_not_misreported_as_a_mutation(monkeypatch):
         PracticeBridge(9223).current_test()
     assert not isinstance(caught.value, MutationOutcomeUnknown)
     assert socket.closed is True
+
+
+def test_scoped_connection_reuses_transport_but_queries_fresh_state(monkeypatch):
+    first, second = state(), state(case_code="ZYXW-VUTS-RQPO-NMLK")
+    socket, connections = fake_socket(monkeypatch, [
+        {"id": 1, "result": {"result": {"value": first}}},
+        {"id": 1, "result": {"result": {"value": first}}},  # stale reply
+        {"id": 2, "result": {"result": {"value": second}}},
+    ])
+    with PracticeBridge(9223) as client:
+        assert client.current_test() == first
+        assert not socket.closed
+        assert client.current_test() == second
+        assert not socket.closed
+    assert socket.closed
+    assert len(connections) == 1
+    assert [request["id"] for request in socket.sent] == [1, 2]
+    for request in socket.sent:
+        expression = request["params"]["expression"]
+        assert "location.protocol !== 'http:'" in expression
+        assert "location.hostname" in expression and "document.title" in expression
+        assert "Call.ByID(3522211836, 1000)" in expression
+
+
+def test_scoped_failed_mutation_closes_socket_and_requires_explicit_reconciliation(monkeypatch):
+    first = Socket([TimeoutError("reply lost")])
+    second = Socket([{"id": 2, "result": {"result": {"value": state()}}}])
+    sockets = iter([first, second])
+    connections = []
+
+    def connect(url, **kwargs):
+        connections.append(url)
+        return next(sockets)
+
+    monkeypatch.setitem(sys.modules, "websocket", types.SimpleNamespace(create_connection=connect))
+    monkeypatch.setattr(PracticeBridge, "_discover_target", lambda self: "ws://127.0.0.1:9223/devtools/page/1")
+    with PracticeBridge(9223) as client:
+        with pytest.raises(MutationOutcomeUnknown):
+            client._evaluate("fixed test expression", mutation=True)
+        assert first.closed and len(connections) == len(first.sent) == 1
+        assert client.current_test() == state()
+        assert len(connections) == 2 and len(second.sent) == 1
+        assert "fixed test expression" not in second.sent[0]["params"]["expression"]
+    assert second.closed
+
+
+def test_scoped_page_navigation_rejection_drops_transport(monkeypatch):
+    socket, connections = fake_socket(monkeypatch, [
+        {"id": 1, "result": {"exceptionDetails": {"text": "Unexpected simulator page"}}},
+    ])
+    with PracticeBridge(9223) as client:
+        with pytest.raises(BridgeError, match="evaluation failed"):
+            client.current_test()
+        assert socket.closed
+    assert len(connections) == len(socket.sent) == 1

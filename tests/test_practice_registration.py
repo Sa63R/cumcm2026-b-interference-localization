@@ -183,12 +183,44 @@ def test_official_result_keeps_exit_and_duplicate_checks(tmp_path):
     assert (args.output_dir / "总表.csv").read_bytes() == before
 
 
-def test_official_q4_result_requires_matching_mixed_type_counts(tmp_path):
+def test_official_q4_result_requires_directional_sources_and_matching_type_counts(tmp_path):
     args = official_inputs(tmp_path, result_patch={"problem_no": 4}, summary_patch={"problem": 4})
-    with pytest.raises(ValueError, match="both omnidirectional and directional"):
+    with pytest.raises(ValueError, match="at least one directional"):
         register(args)
     args = official_inputs(tmp_path,
                            result_patch={"problem_no": 4, "omnidirectional_jammer_count": 8,
                                          "directional_jammer_count": 7},
                            summary_patch={"problem": 4})
     assert register(args)["source_total"] == 15
+
+
+@pytest.mark.parametrize("total", [10, 12, 16])
+def test_official_q4_all_directional_boundary_is_registered_without_changing_evidence(tmp_path, total):
+    args = official_inputs(tmp_path,
+        result_patch={"problem_no": 4, "jammer_count": total,
+                      "omnidirectional_jammer_count": 0, "directional_jammer_count": total},
+        summary_patch={"problem": 4, "state": {"session": "exited", "cleared_count": total,
+                                                 "virtual_time_s": 1200}})
+    original = args.official_result_json.read_bytes()
+    result = register(args)
+    assert result["source_total"] == total
+    assert result["clearance_ratio"] == 1
+    record = json.loads(next(args.output_dir.glob("practice-*.json")).read_text(encoding="utf-8"))
+    assert record["omnidirectional_source_total"] == 0
+    assert record["directional_source_total"] == total
+    assert record["official_result_sha256"] == hashlib.sha256(original).hexdigest()
+    assert (args.output_dir / record["official_result_path"]).read_bytes() == original
+
+
+@pytest.mark.parametrize("patch", [
+    {"directional_jammer_count": 11},
+    {"omnidirectional_jammer_count": -1, "directional_jammer_count": 13},
+    {"omnidirectional_jammer_count": False},
+])
+def test_official_q4_all_directional_does_not_bypass_count_validation(tmp_path, patch):
+    result = {"problem_no": 4, "jammer_count": 12,
+              "omnidirectional_jammer_count": 0, "directional_jammer_count": 12, **patch}
+    args = official_inputs(tmp_path, result_patch=result, summary_patch={"problem": 4})
+    with pytest.raises(ValueError, match="counts"):
+        register(args)
+    assert not args.output_dir.exists()

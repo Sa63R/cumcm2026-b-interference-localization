@@ -164,15 +164,31 @@ class PracticeBridge:
         if isinstance(timeout, bool) or not isinstance(timeout, (int, float)) or not 0 < timeout <= 120:
             raise ValueError("timeout must be greater than zero and at most 120 seconds")
         self.timeout = float(timeout)
+        self._connection = None
+        self._reuse_connection = False
+        self._request_id = 0
 
     def __enter__(self) -> PracticeBridge:
+        # A scoped, serial controller keeps its verified WebView connection.
+        # The lifecycle query still executes afresh before every robot action.
+        self._reuse_connection = True
         return self
 
     def __exit__(self, exc_type, exc_value, traceback) -> None:
         self.close()
 
     def close(self) -> None:
-        """Compatibility with scoped runners; each request closes its socket."""
+        """Release a scoped connection; unscoped calls remain one-shot."""
+        self._reuse_connection = False
+        self._disconnect()
+
+    def _disconnect(self) -> None:
+        connection, self._connection = self._connection, None
+        if connection is not None:
+            try:
+                connection.close()
+            except Exception:
+                pass
 
     def _discover_target(self) -> str:
         url = f"http://127.0.0.1:{self.debug_port}/json/list"
@@ -213,22 +229,32 @@ class PracticeBridge:
         return target["webSocketDebuggerUrl"]
 
     def _evaluate(self, expression: str, *, mutation: bool = False) -> Any:
-        socket_url = self._discover_target()
         try:
             from websocket import create_connection
         except ImportError as exc:
             raise BridgeError("Install the practice-control extra to use the simulator bridge") from exc
-        connection = None
         sent = False
         try:
-            connection = create_connection(
-                socket_url, timeout=self.timeout, suppress_origin=True,
-                http_no_proxy=["127.0.0.1", "localhost"],
-                redirect_limit=0,
+            if self._connection is None:
+                self._connection = create_connection(
+                    self._discover_target(), timeout=self.timeout, suppress_origin=True,
+                    http_no_proxy=["127.0.0.1", "localhost"],
+                    redirect_limit=0,
+                )
+            connection = self._connection
+            self._request_id += 1
+            request_id = self._request_id
+            # A reused page target could navigate. Check its current origin
+            # and title before evaluating any binding, including mutations.
+            guarded_expression = (
+                "(() => {if (location.protocol !== 'http:' || "
+                "!['127.0.0.1','localhost','wails.localhost'].includes(location.hostname) || "
+                "document.title !== " + json.dumps(_TITLE) + ") "
+                "throw new Error('Unexpected simulator page'); return (" + expression + ");})()"
             )
             request = {
-                "id": 1, "method": "Runtime.evaluate",
-                "params": {"expression": expression, "awaitPromise": True, "returnByValue": True},
+                "id": request_id, "method": "Runtime.evaluate",
+                "params": {"expression": guarded_expression, "awaitPromise": True, "returnByValue": True},
             }
             sent = True  # A partial send is also an uncertain mutation.
             connection.send(json.dumps(request, ensure_ascii=True))
@@ -239,7 +265,7 @@ class PracticeBridge:
                     raise TimeoutError("CDP response timed out")
                 connection.settimeout(remaining)
                 response = json.loads(connection.recv())
-                if response.get("id") != 1:
+                if response.get("id") != request_id:
                     continue
                 if response.get("error") or response.get("result", {}).get("exceptionDetails"):
                     raise BridgeError("The simulator bridge evaluation failed")
@@ -248,6 +274,9 @@ class PracticeBridge:
                     raise BridgeError("The simulator bridge returned no JSON value")
                 return remote_value["value"]
         except Exception as exc:
+            # Drop failed sockets without replaying a query or mutation.
+            # A caller may explicitly reconcile state on a fresh connection.
+            self._disconnect()
             if mutation and sent:
                 raise MutationOutcomeUnknown(
                     "The practice request may have executed. Read current state before taking any further action."
@@ -256,11 +285,8 @@ class PracticeBridge:
                 raise
             raise BridgeError("The local simulator bridge connection failed") from exc
         finally:
-            if connection is not None:
-                try:
-                    connection.close()
-                except Exception:
-                    pass
+            if not self._reuse_connection:
+                self._disconnect()
 
     def current_test(self) -> dict[str, Any] | None:
         """Read lifecycle metadata only; never retrieve scenario data."""

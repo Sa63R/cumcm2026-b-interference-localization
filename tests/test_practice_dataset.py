@@ -179,6 +179,27 @@ def test_mathematical_labels_ignore_fake_summary_truth_and_remain_bounded(tmp_pa
     assert all(label["method"] == "success_disk" for label in labels[1:])
 
 
+def test_q4_all_directional_case_imports_and_preserves_verified_counts(tmp_path):
+    episode = example(tmp_path / "raw", problem=4)
+    result_path = episode.parent / "registered/evidence/archived.result.json"
+    result = load(result_path)
+    result.update(omnidirectional_jammer_count=0, directional_jammer_count=10)
+    write(result_path, result)
+    record_path = episode.parent / "registered/practice-test.json"
+    record = load(record_path)
+    record["official_result_sha256"] = hashlib.sha256(result_path.read_bytes()).hexdigest()
+    write(record_path, record)
+    database = tmp_path / "data.sqlite3"
+    imported = import_episode(database, episode)
+    assert imported["complete"] and imported["source_estimates"] == 10
+    assert stats(database)["complete_by_problem"] == {"3": 0, "4": 1}
+    with sqlite3.connect(database) as connection:
+        saved = decode_blob(connection.execute(
+            "SELECT content_zlib FROM evidence WHERE name='official-result.json'").fetchone()[0])
+    assert saved["omnidirectional_jammer_count"] == 0
+    assert saved["directional_jammer_count"] == 10
+
+
 @pytest.mark.parametrize("complete,clears,expected_flags", [
     (False, 9, ["search_incomplete", "not_all_sources_cleared"]),
     (False, 10, ["search_incomplete"]),

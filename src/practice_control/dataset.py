@@ -158,6 +158,7 @@ def _validate_episode(summary, created, before, after, registration, record, off
     total = _integer(official.get("jammer_count"), "source total", 10, 16)
     omni = _integer(official.get("omnidirectional_jammer_count"), "omni total", 0, total)
     directional = _integer(official.get("directional_jammer_count"), "directional total", 0, total)
+    # Zero omnidirectional sources is valid in Q4; do not require a mixed case.
     if (omni + directional != total or (problem == 3 and directional != 0)
             or total != record.get("source_total") or total != registration.get("source_total")):
         raise ValueError("Registered practice source totals disagree")
