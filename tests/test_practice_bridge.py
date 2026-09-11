@@ -93,8 +93,9 @@ def test_changed_state_in_browser_blocks_start():
 
 def test_explicit_practice_rejection_is_reported_without_retry():
     client = MockBridge([{"active": False}, {"ok": False, "error_code": "test_preparation_canceled"}])
-    with pytest.raises(PracticeRequestFailed, match="test_preparation_canceled"):
+    with pytest.raises(PracticeRequestFailed, match="test_preparation_canceled") as caught:
         client.start_practice(3)
+    assert caught.value.error_code == "test_preparation_canceled"
     assert len(client.calls) == 2
 
 

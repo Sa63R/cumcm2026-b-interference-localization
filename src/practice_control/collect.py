@@ -17,7 +17,7 @@ import sys
 import time
 from uuid import uuid4
 
-from .bridge import BridgeError, PracticeBridge, _require_idle
+from .bridge import BridgeError, PracticeBridge, PracticeRequestFailed, _require_idle
 from .runner import controller_lock, run_once, validate_run
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -91,7 +91,8 @@ class SpacedPracticeBridge:
             # Short sleeps allow stop-file checks without interrupting a case.
             time.sleep(min(delay, 0.5))
         self.last_start = time.monotonic()
-        # Exactly one call. Any rejection or uncertain result stops collection.
+        # Exactly one call. Only the collector can reconcile an explicit
+        # rejected start; this bridge never replays a lifecycle operation.
         return self.bridge.start_practice(problem)
 
 
@@ -104,6 +105,29 @@ def _counts(summary):
 def _next_problem(counts, targets):
     candidates = [p for p in (3, 4) if counts[p] < targets[p]]
     return min(candidates, key=lambda p: (counts[p] / targets[p], p)) if candidates else None
+
+
+def _is_rejected_start_only(episode, error):
+    """A timeout after starting/entering/finishing a case is never recoverable."""
+    if (not isinstance(error, PracticeRequestFailed)
+            or getattr(error, "error_code", None) != "server_timeout"):
+        return False
+    if not episode.is_dir() or {item.name for item in episode.iterdir()} != {"start_error.json"}:
+        return False
+    evidence = episode / "start_error.json"
+    if evidence.is_symlink() or not evidence.is_file():
+        return False
+    try:
+        saved = json.loads(evidence.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    return isinstance(saved, dict) and saved.get("type") == type(error).__name__ and saved.get("error") == str(error)
+
+
+def _require_recovery_idle(state):
+    _require_idle(state)
+    if state.get("api_open") is not False or state.get("entered") is not False:
+        raise BridgeError("Practice recovery requires an idle simulator with no open or entered API")
 
 
 def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226,
@@ -158,6 +182,8 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
         episodes.mkdir(parents=True, exist_ok=True)
         prior = json.loads(progress_path.read_text(encoding="utf-8")) if progress_path.is_file() else {}
         errors = list(prior.get("errors", []))
+        recovery_events = list(prior.get("recovery_events", []))
+        start_recovery_streak = 0
         collection_started_at = prior.get("collection_started_at", _utc_now())
         recovered = 0
         incomplete_streak = 0
@@ -188,6 +214,8 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
                 "episodes_per_hour": rate * 3600 if rate else None,
                 "estimated_remaining_s": remaining / rate if rate else None,
                 "errors": errors, "stop_reason": stop_reason,
+                "recovery_events": recovery_events, "start_recovery_count": len(recovery_events),
+                "consecutive_start_recoveries": start_recovery_streak,
                 "current_episode": str(current_episode) if current_episode else None,
                 "last_episode": last_episode,
             }
@@ -223,13 +251,48 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
                     )
                     publish("running")
                     variant = "efficient" if problem == 3 else "triangular"
-                    record = episode_runner(
-                        bridge, problem=problem, robot_id=robot_id,
-                        variant=variant, solver=run_collection_search,
-                        method_label=variant + "+bounded_refinement",
-                        method_metadata={"dataset_refinement": dict(REFINEMENT_CONFIG)},
-                        max_actions=max_actions, output=current_episode, simulator_dir=simulator_dir,
-                    )
+                    try:
+                        record = episode_runner(
+                            bridge, problem=problem, robot_id=robot_id,
+                            variant=variant, solver=run_collection_search,
+                            method_label=variant + "+bounded_refinement",
+                            method_metadata={"dataset_refinement": dict(REFINEMENT_CONFIG)},
+                            max_actions=max_actions, output=current_episode, simulator_dir=simulator_dir,
+                        )
+                    except PracticeRequestFailed as exc:
+                        if not _is_rejected_start_only(current_episode, exc) or start_recovery_streak >= 3:
+                            raise
+                        errors.append({"at": _utc_now(), "type": type(exc).__name__, "error": str(exc),
+                                       "episode": str(current_episode), "error_code": exc.error_code})
+                        _require_recovery_idle(native.current_test())
+                        delay = (10, 20, 40)[start_recovery_streak]
+                        start_recovery_streak += 1
+                        recovery = {"at": _utc_now(), "episode": str(current_episode),
+                                    "problem": problem, "error_code": exc.error_code,
+                                    "consecutive_attempt": start_recovery_streak,
+                                    "wait_seconds": delay, "status": "waiting"}
+                        recovery_events.append(recovery)
+                        publish("recovering")
+                        wait_until = time.monotonic() + delay
+                        try:
+                            while time.monotonic() < wait_until:
+                                if should_stop():
+                                    raise CollectionStopped("Pause requested during rejected-start recovery")
+                                time.sleep(min(0.5, max(0.0, wait_until - time.monotonic())))
+                            _require_recovery_idle(native.current_test())
+                        except CollectionStopped:
+                            recovery.update(status="paused", finished_at=_utc_now())
+                            raise
+                        except Exception:
+                            recovery.update(status="aborted", finished_at=_utc_now())
+                            raise
+                        recovery.update(status="ready", finished_at=_utc_now())
+                        publish("recovering")
+                        current_episode = None
+                        # The rejected attempt and its evidence stay immutable.
+                        # The next loop creates a new practice request and dir.
+                        continue
+                    start_recovery_streak = 0
                     _atomic_json(current_episode / "collector-result.json", record)
                     imported = importer(output, current_episode)
                     incomplete_streak = 0 if imported.get("complete") is True else incomplete_streak + 1

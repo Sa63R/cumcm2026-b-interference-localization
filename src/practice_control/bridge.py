@@ -31,6 +31,10 @@ class MutationOutcomeUnknown(BridgeError):
 class PracticeRequestFailed(BridgeError):
     """The simulator explicitly rejected a practice lifecycle request."""
 
+    def __init__(self, message: str, *, error_code: str | None = None):
+        super().__init__(message)
+        self.error_code = error_code
+
 
 class _NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -320,7 +324,8 @@ return {ok: typeof reply?.ok === 'boolean' ? reply.ok : null, run: project(reply
         if type(reply.get("ok")) is not bool:
             raise MutationOutcomeUnknown("Unexpected practice-start response; read current state")
         if reply.get("ok") is not True:
-            raise PracticeRequestFailed(f"Practice start rejected: {reply.get('error_code', 'request_failed')}")
+            code = reply.get("error_code", "request_failed")
+            raise PracticeRequestFailed(f"Practice start rejected: {code}", error_code=code)
         try:
             state = _safe_state(reply.get("run"))
         except UnsafeSimulatorState as exc:

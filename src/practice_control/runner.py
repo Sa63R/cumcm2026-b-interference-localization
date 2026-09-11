@@ -33,10 +33,14 @@ def assert_owned(state, problem, case, *, api=False):
 
 
 class GuardedPracticeClient(SimulatorClient):
-    def __init__(self, robot_id, *, bridge, problem, case, **kwargs):
+    def __init__(self, robot_id, *, bridge, problem, case, keep_alive_http=False, **kwargs):
         self.bridge, self.problem, self.case = bridge, problem, case
+        self._practice_transport = None
         # Port 2026 is the original simulator HTTP API, not the CDP port.
         super().__init__(robot_id, base_url="http://127.0.0.1:2026", **kwargs)
+        if keep_alive_http:
+            from .transport import LoopbackHTTPTransport
+            self._practice_transport = LoopbackHTTPTransport()
 
     def _exchange(self, action, timeout):
         try:
@@ -46,7 +50,16 @@ class GuardedPracticeClient(SimulatorClient):
                 raise PracticeOwnershipError("Another client has entered this practice case")
         except BridgeError as exc:
             raise PracticeOwnershipError("Cannot verify the practice case; no HTTP request sent") from exc
+        if self._practice_transport is not None:
+            return self._practice_transport.exchange(action, timeout)
         return super()._exchange(action, timeout)
+
+    def close(self):
+        try:
+            super().close()
+        finally:
+            if self._practice_transport is not None:
+                self._practice_transport.close()
 
 
 @contextmanager
@@ -165,7 +178,7 @@ def run_once(bridge, *, problem, robot_id, variant, max_actions, output,
     error = None
     started = time.monotonic()
     with GuardedPracticeClient(robot_id, bridge=bridge, problem=problem, case=case,
-                               log_path=output / "requests.jsonl") as client:
+                               log_path=output / "requests.jsonl", keep_alive_http=True) as client:
         try:
             result = solver(client, problem=problem, variant=variant, max_actions=max_actions)
             report["search"] = result.as_dict()

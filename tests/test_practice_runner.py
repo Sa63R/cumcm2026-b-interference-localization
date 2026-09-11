@@ -103,6 +103,33 @@ def test_own_pending_enter_can_resolve_uncertainty_with_same_action(monkeypatch,
     assert requests == [action]
 
 
+def test_reused_http_transport_still_checks_state_before_every_request(monkeypatch, tmp_path):
+    from practice_control import transport
+    requests = []
+    closed = []
+
+    class Transport:
+        def exchange(self, action, timeout):
+            requests.append((action, timeout))
+            return 200, {"accepted": True}
+
+        def close(self):
+            closed.append(True)
+
+    monkeypatch.setattr(transport, "LoopbackHTTPTransport", Transport)
+    control = FakeBridge(state(entered=True, phase="running"))
+    action = SimpleNamespace(path="/measure", had_unknown_attempt=False)
+    with runner.GuardedPracticeClient("TEST-ROBOT", bridge=control, problem=3,
+                                      case=CASE, log_path=tmp_path / "journal.jsonl",
+                                      keep_alive_http=True) as client:
+        assert client._exchange(action, 3) == (200, {"accepted": True})
+        control.state = state(mode="formal", entered=True, phase="running")
+        with pytest.raises(runner.PracticeOwnershipError):
+            client._exchange(action, 3)
+    assert requests == [(action, 3)]
+    assert closed
+
+
 def test_direct_run_once_rejects_invalid_robot_before_creating_practice(tmp_path):
     control = FakeBridge()
     with pytest.raises(ValueError):

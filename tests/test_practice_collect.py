@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from practice_control import collect as module
-from practice_control.bridge import BridgeError, MutationOutcomeUnknown
+from practice_control.bridge import BridgeError, MutationOutcomeUnknown, PracticeRequestFailed
 from practice_control.runner import controller_lock
 
 
@@ -25,7 +25,8 @@ class Bridge:
     def __init__(self, clock):
         self.clock = clock
         self.starts = []
-        self.state = {"active": False, "mode": "", "phase": "", "case_code": ""}
+        self.state = {"active": False, "mode": "", "phase": "", "case_code": "",
+                      "api_open": False, "entered": False}
 
     def __enter__(self):
         return self
@@ -257,3 +258,150 @@ def test_invalid_limits_never_start_practice(setup, arguments):
     with pytest.raises(ValueError):
         execute(setup, **arguments)
     assert setup["bridge"].starts == []
+
+
+def reject_start(control, kwargs, *, code="server_timeout", extra_file=None, structured=True):
+    control.start_practice(kwargs["problem"])
+    error = PracticeRequestFailed(f"Practice start rejected: {code}", error_code=code if structured else None)
+    folder = kwargs["output"]
+    folder.mkdir()
+    (folder / "start_error.json").write_text(
+        json.dumps({"type": type(error).__name__, "error": str(error)}), encoding="utf-8")
+    if extra_file:
+        (folder / extra_file).write_text("{}", encoding="utf-8")
+    raise error
+
+
+def test_rejected_server_timeout_recovery_is_bounded_and_preserves_each_attempt(setup):
+    folders = []
+
+    def runner(control, **kwargs):
+        folders.append(kwargs["output"])
+        return reject_start(control, kwargs)
+
+    with pytest.raises(PracticeRequestFailed):
+        execute(setup, episode_runner=runner, q3=1, q4=0)
+    assert setup["bridge"].starts == [(3, 5.0), (3, 15.0), (3, 35.0), (3, 75.0)]
+    assert len(set(folders)) == 4
+    assert all({p.name for p in folder.iterdir()} == {"start_error.json"} for folder in folders)
+    progress = json.loads((setup["db"].parent / "training-raw" / "progress.json").read_text(encoding="utf-8"))
+    assert progress["status"] == "failed"
+    assert progress["counts"] == {"3": 0, "4": 0}
+    assert progress["start_recovery_count"] == 3
+    assert len(progress["errors"]) == 4
+    assert [r["wait_seconds"] for r in progress["recovery_events"]] == [10, 20, 40]
+    assert setup["store"].import_calls == []
+
+
+def test_successful_run_resets_consecutive_start_recovery_delay(setup):
+    failed_problems = set()
+
+    def runner(control, **kwargs):
+        if kwargs["problem"] not in failed_problems:
+            failed_problems.add(kwargs["problem"])
+            return reject_start(control, kwargs)
+        return setup["runner"](control, **kwargs)
+
+    result = execute(setup, episode_runner=runner, q3=1, q4=1)
+    assert result["status"] == "complete"
+    assert result["counts"] == {"3": 1, "4": 1}
+    assert result["consecutive_start_recoveries"] == 0
+    assert [e["wait_seconds"] for e in result["recovery_events"]] == [10, 10]
+    assert len(result["errors"]) == 2
+    assert len(setup["bridge"].starts) == 4
+    assert len(setup["store"].records) == 2
+
+
+@pytest.mark.parametrize("extra", ["created.json", "requests.jsonl", "summary.json", "registration.json", "unknown.txt"])
+def test_recovery_refuses_any_evidence_beyond_rejected_start(setup, extra):
+    def runner(control, **kwargs):
+        return reject_start(control, kwargs, extra_file=extra)
+
+    with pytest.raises(PracticeRequestFailed):
+        execute(setup, episode_runner=runner, q3=1, q4=0)
+    assert len(setup["bridge"].starts) == 1
+
+
+@pytest.mark.parametrize("code,structured", [("server_timeout", False), ("login_required", True),
+                                            ("deadline_exceeded", True), ("request_failed", True)])
+def test_recovery_allowlist_requires_exact_structured_server_timeout(setup, code, structured):
+    def runner(control, **kwargs):
+        return reject_start(control, kwargs, code=code, structured=structured)
+
+    with pytest.raises(PracticeRequestFailed):
+        execute(setup, episode_runner=runner, q3=1, q4=0)
+    assert len(setup["bridge"].starts) == 1
+
+
+@pytest.mark.parametrize("state", [
+    {"active": True, "mode": "practice", "phase": "running", "case_code": "OTHER"},
+    {"active": False, "mode": "practice", "phase": "ended", "case_code": "OTHER"},
+    {"active": False, "mode": "formal", "phase": "", "case_code": ""},
+    {"active": False, "mode": "", "phase": "", "case_code": "", "api_open": True},
+    {"active": False, "mode": "", "phase": "", "case_code": "", "entered": True},
+    {"active": False, "mode": "", "phase": "", "case_code": "", "api_open": False},
+    {"active": False, "mode": "", "phase": "", "case_code": "", "entered": False},
+    {"active": False, "mode": "", "phase": "", "case_code": "", "api_open": None, "entered": False},
+    {"active": False, "mode": "", "phase": "", "case_code": "", "api_open": False, "entered": None},
+])
+def test_recovery_requires_idle_immediately_after_rejection(setup, state):
+    def runner(control, **kwargs):
+        try:
+            return reject_start(control, kwargs)
+        finally:
+            setup["bridge"].state = state
+
+    with pytest.raises(BridgeError):
+        execute(setup, episode_runner=runner, q3=1, q4=0)
+    assert len(setup["bridge"].starts) == 1
+    assert setup["clock"].now == 5
+
+
+def test_recovery_checks_idle_again_after_waiting(setup, monkeypatch):
+    clock = setup["clock"]
+    original_sleep = clock.sleep
+
+    def sleep(seconds):
+        original_sleep(seconds)
+        if clock.now >= 8:
+            setup["bridge"].state = {"active": True, "mode": "practice", "phase": "running", "case_code": "OTHER"}
+
+    monkeypatch.setattr(module.time, "sleep", sleep)
+    with pytest.raises(BridgeError):
+        execute(setup, episode_runner=lambda control, **kwargs: reject_start(control, kwargs), q3=1, q4=0)
+    assert len(setup["bridge"].starts) == 1
+    progress = json.loads((setup["db"].parent / "training-raw" / "progress.json").read_text(encoding="utf-8"))
+    assert progress["recovery_events"][-1]["status"] == "aborted"
+
+
+def test_stop_file_interrupts_recovery_wait_without_new_case(setup, monkeypatch):
+    stop = setup["db"].parent / "stop-recovery"
+    clock = setup["clock"]
+    original_sleep = clock.sleep
+
+    def sleep(seconds):
+        original_sleep(seconds)
+        if clock.now >= 7:
+            stop.touch()
+
+    monkeypatch.setattr(module.time, "sleep", sleep)
+    result = execute(setup, episode_runner=lambda control, **kwargs: reject_start(control, kwargs),
+                     q3=1, q4=0, stop_file=stop)
+    assert result["status"] == "paused"
+    assert result["stop_reason"] == "stop_file"
+    assert result["recovery_events"][-1]["status"] == "paused"
+    assert len(setup["bridge"].starts) == 1
+
+
+@pytest.mark.parametrize("exception", [MutationOutcomeUnknown("server_timeout"), BridgeError("connection timeout")])
+def test_transport_uncertainty_never_uses_rejected_start_recovery(setup, exception):
+    def runner(control, **kwargs):
+        control.start_practice(kwargs["problem"])
+        kwargs["output"].mkdir()
+        (kwargs["output"] / "start_error.json").write_text(
+            json.dumps({"type": type(exception).__name__, "error": str(exception)}), encoding="utf-8")
+        raise exception
+
+    with pytest.raises(type(exception)):
+        execute(setup, episode_runner=runner, q3=1, q4=0)
+    assert len(setup["bridge"].starts) == 1
