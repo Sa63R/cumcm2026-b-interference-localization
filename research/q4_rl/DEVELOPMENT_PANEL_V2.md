@@ -1,0 +1,9 @@
+# Prespecified larger development comparison
+
+Before inspecting final paired-training checkpoints, reserve development seeds 8101000..8101031, all eight `scenarios.FAMILIES`, and both source modes. This is 512 matched scenarios in **32 independent seed clusters**, not 512 independent observations. Use 5000 seed-cluster bootstrap replicates and the existing common lower bound and resource/action limits. Evaluate R8, macro512 rule/BC/PPO, and micro512 rule/BC/PPO. Both PPO arms use their last complete checkpoint after the fixed 1800-second pilot; do not select a best checkpoint from this panel.
+
+Report the 16 predefined strata and ordinary `random` strata separately from the equally weighted stress-panel aggregate. Generator RNG consumption differs across some families and source modes: this is a pressure panel, not a pure radius/direction causal ablation. Repeated development comparisons inform further experiments but cannot qualify as independent confirmation. Confirmation and final seed namespaces remain unused.
+
+The paired training branches have unequal throughput and therefore different completed episode counts despite equal wall/worker budgets. The pilot's micro storage overhead is measured and retained; subsequent architecture comparisons must share the linear journal implementation. Preserve all full-clear failures and unsuccessful clear attempts; report physical certification failures separately from charged optical misses.
+
+Run on the same Q4 CPU server after training ends, under one 50-core supervisor with initially 6 evaluation workers. The evaluator freezes exact source, kwargs, checkpoint hashes and case requests before executing. No historical trajectory is used for unsupported counterfactual actions; this panel uses the local generative simulator only, and the protected SQLite is unopened.
