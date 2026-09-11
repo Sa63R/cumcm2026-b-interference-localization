@@ -1,0 +1,27 @@
+{
+  "baseline_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+  "tested_candidate_commit": "9932cb5e614a462f38c65b6e2575bdd2cd62a207",
+  "integrated_policy_commit": "309bf76563370b34fd4f3aec2069b37216b5a991",
+  "tested_source_files_matched": 56,
+  "source_byte_identity_confirmed": true,
+  "final_suite": {
+    "command": "python -m pytest -q",
+    "passed": 954,
+    "duration_s": 127.09,
+    "source": "experiment/q3-runtime-disk-cache@9932cb5e",
+    "log_sha256": "e99f5bfad9792a7ccd610bd9c27dd68e4668662374761be0959386225d31403e",
+    "archived_log": "research/runtime_equivalent/full-regression.txt.gz"
+  },
+  "audit_statistics_tests": {
+    "command": "python -m pytest -q tests/test_runtime_equivalence_audit.py tests/test_runtime_summary.py",
+    "passed": 10,
+    "duration_s": 0.12
+  },
+  "stage_a_suite": {
+    "passed": 917,
+    "duration_s": 142.68
+  },
+  "official_actions_this_task": 0,
+  "cpu_execution": "One serial nice-priority CPU process on the existing 4060 host; no GPU or training",
+  "transport": "Small source and result archives through the authorized object-store project prefix; SSH used for commands/status only"
+}
