@@ -1,5 +1,7 @@
 # 最终比较的独立物理、几何与下界深审入口
 
+**后续最终交付：** 全部 1136 条冻结最终记录的审计已完成，结果、条件下界差距与复算入口见 [FINAL_RESULTS.md](FINAL_RESULTS.md)。下文“尚未执行最终命令”的表述保留为工具准备阶段的历史说明。
+
 这是审计工具准备与已打开开发记录验证，不是最终测试结果，也不产生新仿真。源码：[`experiments/research_v1_physical_audit.py`](../../experiments/research_v1_physical_audit.py)。与 state 分支 `experiments/research_v1_selection.py` 的身份/归档审查相接；后者负责冻结配置、完整种子、归档 SHA、同场景真值身份与选择规则，本工具负责逐物理动作、观测前缀证书和下界。它不改策略、不训练、不导入模拟器或场景生成器。
 
 ## 审计的事实与证明层次
