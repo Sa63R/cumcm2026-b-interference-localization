@@ -1,0 +1,767 @@
+{
+  "passed": true,
+  "version": "q3-derived-silence-model-gate-v1",
+  "created_at": "2026-09-11T21:23:20.564073+08:00",
+  "candidate_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+  "policies": {
+    "relative_only": {
+      "source_sha256": {
+        "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+        "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+        "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+        "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+        "src/planning/binned_probe_tree.py": "9ca8bd363ca76e88bb0c19ff540c8e16448762494a1cff6c4a758340c6f5acc1",
+        "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+        "src/planning/coverage_relocation.py": "0206daefa72878b1e7276386abc417c2e62b4fa427e890fca9279f07aff70648",
+        "src/planning/disk_cover.py": "8731a6b7b8d396de04e2d6155fa130626b218e085672e6c432eff11311d4e09d",
+        "src/planning/probe_candidates.py": "2b79f97f5dd25025c18cc0e78a740135b4fcfb8ab19df6a35305b80ec8516f71",
+        "src/planning/probe_tree.py": "11f5d9da1758f121712a372e63370fd1c4a724ecc34a0e69f51d703b9c78475e",
+        "src/planning/radius_probe.py": "e76e927f27e48d13311b8b19c0ff54e8f6e3f7a50788b105e948da8edcb812d4",
+        "src/planning/region_travel.py": "6fb090ce623e8d35e71937b6caf6722fa533bd576940162ea44fa5b1b8b5d667",
+        "src/planning/relative_silence.py": "08ce6c76cc0d5a87fd0731a585b7d975acf4312ad800e6751c535258b6258f69",
+        "src/planning/ring_layout.py": "335e070f3c7028b89f854b4967bb583829d70c5d708928d529b3d6325932502f",
+        "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+        "src/planning/shared_observation.py": "eb669cf127fb2f884921eeac226ccc9c516e9b662f238b83612be2e3565fd1d9",
+        "src/planning/silence_certificate.py": "ebb0ca8630e81cbb556a51b5b932b9c769ae621f4fc540e0436c8e8141cf688a",
+        "src/planning/state_route.py": "ea39eff80cf81378cc8dbd242c2519947aa13e89eebf370cf28ed1c419200261",
+        "src/planning/unknown_mass.py": "1aab85d8e515b5426e7102754d14b0bf5a9db533acf3683cd64bcd1226383161",
+        "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+        "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+        "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+        "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+        "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+        "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+        "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+        "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+        "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+        "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+        "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+        "src/strategies/binned_state_search.py": "ab613456a0428fb5f9d027492894a851ba6ddfd8f2e41edc8518ee3548e644f6",
+        "src/strategies/derived_silence_state_search.py": "eb0e4d6f024363bf54f369c758179cafdb5e1d875efdcc03eea45ef6e89f57ce",
+        "src/strategies/discovery_state_search.py": "dffd046f62fb661b87f2a6ec321044c30f47e12db7d7fae3fc8f60ac5cd07055",
+        "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+        "src/strategies/executing_cover_state_search.py": "4f8afbb95e7c51edcd5fec78248e9d47b6449010b3ed0eea06ee62f4d70877bf",
+        "src/strategies/inferred_region_state_search.py": "f511ed8d49f8cc97130d60eba15a6eeb835844a3456a6ecabe737cce4a9b6d50",
+        "src/strategies/inferred_state_search.py": "ddb41c926abee1e66ff4e83b0db02df4916c14b6b313868b613b2e731119d0e8",
+        "src/strategies/layout_state_search.py": "8ac73709135fef73be66f13260eca0c7ec46d832ce05300eed8dc9015d86a813",
+        "src/strategies/pruned_state_search.py": "f5ec628008e8f2aab6bdf933210e5ef1668c0c5cdecd77338e4c93add0a3c73b",
+        "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+        "src/strategies/recourse_state_search.py": "9807e48819722bf009e983bde05428e9d23b94908655e9c3a21d5ca7797e2041",
+        "src/strategies/refined_state_search.py": "d2dd58f6d6ee325692737626ec1d26aa93bf6ae02dd752f7b53c41aa66cda683",
+        "src/strategies/region_state_search.py": "c44c721fd58c028418a8a1f615ea7e80aaab212f6caebb169355deaabb190096",
+        "src/strategies/relocating_state_search.py": "1454a7286d0180d97ad6c3e2f218160ad628d152735005f1320335bdfdac8d6d",
+        "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+        "src/strategies/search.py": "68733b0298516dff6aaacd7d1780f24195400c25b241ab730e185e4b1ecb82b6",
+        "src/strategies/sharing_state_search.py": "36d2e6cd1a5725f52af81e755becdc49627118f97d7bda7aa8e7d47e5cd72ae8",
+        "src/strategies/state_search.py": "dc4221a690a2f077a0e669320dc384186d21e6cccecf64f49e6891c37d216f4d",
+        "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+        "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+        "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80"
+      },
+      "spec_sha256": "9d86ea05f9fccdc2935c0e0e689dcdd60bd260fbf5063e72dfe58412238f1ecc"
+    },
+    "cap_only": {
+      "source_sha256": {
+        "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+        "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+        "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+        "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+        "src/planning/binned_probe_tree.py": "9ca8bd363ca76e88bb0c19ff540c8e16448762494a1cff6c4a758340c6f5acc1",
+        "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+        "src/planning/coverage_relocation.py": "0206daefa72878b1e7276386abc417c2e62b4fa427e890fca9279f07aff70648",
+        "src/planning/disk_cover.py": "8731a6b7b8d396de04e2d6155fa130626b218e085672e6c432eff11311d4e09d",
+        "src/planning/probe_candidates.py": "2b79f97f5dd25025c18cc0e78a740135b4fcfb8ab19df6a35305b80ec8516f71",
+        "src/planning/probe_tree.py": "11f5d9da1758f121712a372e63370fd1c4a724ecc34a0e69f51d703b9c78475e",
+        "src/planning/radius_probe.py": "e76e927f27e48d13311b8b19c0ff54e8f6e3f7a50788b105e948da8edcb812d4",
+        "src/planning/region_travel.py": "6fb090ce623e8d35e71937b6caf6722fa533bd576940162ea44fa5b1b8b5d667",
+        "src/planning/relative_silence.py": "08ce6c76cc0d5a87fd0731a585b7d975acf4312ad800e6751c535258b6258f69",
+        "src/planning/ring_layout.py": "335e070f3c7028b89f854b4967bb583829d70c5d708928d529b3d6325932502f",
+        "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+        "src/planning/shared_observation.py": "eb669cf127fb2f884921eeac226ccc9c516e9b662f238b83612be2e3565fd1d9",
+        "src/planning/silence_certificate.py": "ebb0ca8630e81cbb556a51b5b932b9c769ae621f4fc540e0436c8e8141cf688a",
+        "src/planning/state_route.py": "ea39eff80cf81378cc8dbd242c2519947aa13e89eebf370cf28ed1c419200261",
+        "src/planning/unknown_mass.py": "1aab85d8e515b5426e7102754d14b0bf5a9db533acf3683cd64bcd1226383161",
+        "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+        "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+        "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+        "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+        "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+        "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+        "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+        "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+        "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+        "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+        "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+        "src/strategies/binned_state_search.py": "ab613456a0428fb5f9d027492894a851ba6ddfd8f2e41edc8518ee3548e644f6",
+        "src/strategies/derived_silence_state_search.py": "eb0e4d6f024363bf54f369c758179cafdb5e1d875efdcc03eea45ef6e89f57ce",
+        "src/strategies/discovery_state_search.py": "dffd046f62fb661b87f2a6ec321044c30f47e12db7d7fae3fc8f60ac5cd07055",
+        "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+        "src/strategies/executing_cover_state_search.py": "4f8afbb95e7c51edcd5fec78248e9d47b6449010b3ed0eea06ee62f4d70877bf",
+        "src/strategies/inferred_region_state_search.py": "f511ed8d49f8cc97130d60eba15a6eeb835844a3456a6ecabe737cce4a9b6d50",
+        "src/strategies/inferred_state_search.py": "ddb41c926abee1e66ff4e83b0db02df4916c14b6b313868b613b2e731119d0e8",
+        "src/strategies/layout_state_search.py": "8ac73709135fef73be66f13260eca0c7ec46d832ce05300eed8dc9015d86a813",
+        "src/strategies/pruned_state_search.py": "f5ec628008e8f2aab6bdf933210e5ef1668c0c5cdecd77338e4c93add0a3c73b",
+        "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+        "src/strategies/recourse_state_search.py": "9807e48819722bf009e983bde05428e9d23b94908655e9c3a21d5ca7797e2041",
+        "src/strategies/refined_state_search.py": "d2dd58f6d6ee325692737626ec1d26aa93bf6ae02dd752f7b53c41aa66cda683",
+        "src/strategies/region_state_search.py": "c44c721fd58c028418a8a1f615ea7e80aaab212f6caebb169355deaabb190096",
+        "src/strategies/relocating_state_search.py": "1454a7286d0180d97ad6c3e2f218160ad628d152735005f1320335bdfdac8d6d",
+        "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+        "src/strategies/search.py": "68733b0298516dff6aaacd7d1780f24195400c25b241ab730e185e4b1ecb82b6",
+        "src/strategies/sharing_state_search.py": "36d2e6cd1a5725f52af81e755becdc49627118f97d7bda7aa8e7d47e5cd72ae8",
+        "src/strategies/state_search.py": "dc4221a690a2f077a0e669320dc384186d21e6cccecf64f49e6891c37d216f4d",
+        "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+        "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+        "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80"
+      },
+      "spec_sha256": "796e6042d9ca38b05726fd931da67ec34d234e4e48333a315b2b68faffd033c6"
+    },
+    "derived_silence": {
+      "source_sha256": {
+        "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+        "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+        "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+        "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+        "src/planning/binned_probe_tree.py": "9ca8bd363ca76e88bb0c19ff540c8e16448762494a1cff6c4a758340c6f5acc1",
+        "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+        "src/planning/coverage_relocation.py": "0206daefa72878b1e7276386abc417c2e62b4fa427e890fca9279f07aff70648",
+        "src/planning/disk_cover.py": "8731a6b7b8d396de04e2d6155fa130626b218e085672e6c432eff11311d4e09d",
+        "src/planning/probe_candidates.py": "2b79f97f5dd25025c18cc0e78a740135b4fcfb8ab19df6a35305b80ec8516f71",
+        "src/planning/probe_tree.py": "11f5d9da1758f121712a372e63370fd1c4a724ecc34a0e69f51d703b9c78475e",
+        "src/planning/radius_probe.py": "e76e927f27e48d13311b8b19c0ff54e8f6e3f7a50788b105e948da8edcb812d4",
+        "src/planning/region_travel.py": "6fb090ce623e8d35e71937b6caf6722fa533bd576940162ea44fa5b1b8b5d667",
+        "src/planning/relative_silence.py": "08ce6c76cc0d5a87fd0731a585b7d975acf4312ad800e6751c535258b6258f69",
+        "src/planning/ring_layout.py": "335e070f3c7028b89f854b4967bb583829d70c5d708928d529b3d6325932502f",
+        "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+        "src/planning/shared_observation.py": "eb669cf127fb2f884921eeac226ccc9c516e9b662f238b83612be2e3565fd1d9",
+        "src/planning/silence_certificate.py": "ebb0ca8630e81cbb556a51b5b932b9c769ae621f4fc540e0436c8e8141cf688a",
+        "src/planning/state_route.py": "ea39eff80cf81378cc8dbd242c2519947aa13e89eebf370cf28ed1c419200261",
+        "src/planning/unknown_mass.py": "1aab85d8e515b5426e7102754d14b0bf5a9db533acf3683cd64bcd1226383161",
+        "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+        "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+        "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+        "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+        "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+        "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+        "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+        "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+        "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+        "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+        "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+        "src/strategies/binned_state_search.py": "ab613456a0428fb5f9d027492894a851ba6ddfd8f2e41edc8518ee3548e644f6",
+        "src/strategies/derived_silence_state_search.py": "eb0e4d6f024363bf54f369c758179cafdb5e1d875efdcc03eea45ef6e89f57ce",
+        "src/strategies/discovery_state_search.py": "dffd046f62fb661b87f2a6ec321044c30f47e12db7d7fae3fc8f60ac5cd07055",
+        "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+        "src/strategies/executing_cover_state_search.py": "4f8afbb95e7c51edcd5fec78248e9d47b6449010b3ed0eea06ee62f4d70877bf",
+        "src/strategies/inferred_region_state_search.py": "f511ed8d49f8cc97130d60eba15a6eeb835844a3456a6ecabe737cce4a9b6d50",
+        "src/strategies/inferred_state_search.py": "ddb41c926abee1e66ff4e83b0db02df4916c14b6b313868b613b2e731119d0e8",
+        "src/strategies/layout_state_search.py": "8ac73709135fef73be66f13260eca0c7ec46d832ce05300eed8dc9015d86a813",
+        "src/strategies/pruned_state_search.py": "f5ec628008e8f2aab6bdf933210e5ef1668c0c5cdecd77338e4c93add0a3c73b",
+        "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+        "src/strategies/recourse_state_search.py": "9807e48819722bf009e983bde05428e9d23b94908655e9c3a21d5ca7797e2041",
+        "src/strategies/refined_state_search.py": "d2dd58f6d6ee325692737626ec1d26aa93bf6ae02dd752f7b53c41aa66cda683",
+        "src/strategies/region_state_search.py": "c44c721fd58c028418a8a1f615ea7e80aaab212f6caebb169355deaabb190096",
+        "src/strategies/relocating_state_search.py": "1454a7286d0180d97ad6c3e2f218160ad628d152735005f1320335bdfdac8d6d",
+        "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+        "src/strategies/search.py": "68733b0298516dff6aaacd7d1780f24195400c25b241ab730e185e4b1ecb82b6",
+        "src/strategies/sharing_state_search.py": "36d2e6cd1a5725f52af81e755becdc49627118f97d7bda7aa8e7d47e5cd72ae8",
+        "src/strategies/state_search.py": "dc4221a690a2f077a0e669320dc384186d21e6cccecf64f49e6891c37d216f4d",
+        "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+        "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+        "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80"
+      },
+      "spec_sha256": "4167a6146a7c231793a4c6600139d506121d46fbecdc94dc21e4f692e5ff2b81"
+    }
+  },
+  "evidence_sha256": {
+    "experiments/round2_derived_silence_audit.py": "0c9c02b7f534949c3da9281812e965e782e9d69a9de7d0f87f936f26f8cba04c",
+    "tests/test_round2_derived_silence_audit.py": "023e609eb8269c18d7b7c15473192f07394e83e996d86966f57b43d27ba00dd8",
+    "experiments/round2_model_smoke.py": "b0f841614998cece6bd98fa7ea30809c631ae14dbb9ea1f845a35066fe00d28b",
+    "research/round2/pilot_audit.json": "8173fa2cc3dfdfbd14aca86f59ed432367ac1b5dffe8888812a716b4cf648ee8",
+    "research/round2/diagnoses/DERIVED_SILENCE_REVIEW.md": "4f0abb1c805d19d1ea1c0765d490b97187f4d53f11f2a8bcff57f464793b2171",
+    "results/round2/derived_silence/model_smoke/implementation-tests.xml": "6252aa4924bc251705d3236546498be6e61f0382d6e4bd5038567b821c989752",
+    "results/round2/derived_silence/model_smoke/auditor-tests.xml": "ca126e135651cec01af7ba0796175b15afa2577c9022f0a6e6d680bdb7c3b5be",
+    "results/round2/derived_silence/model_smoke/auditor-tests-retune-fixed.xml": "0d70c67a8b168f3957032549aa0f33bfe68cdc4ef4623433b6d87783fd22bb60",
+    "results/round2/feedback/pilot/records/baseline-200114.json.gz": "478dce09450a19fe05f5973b4c97fca2a2f2b7e4b6073e63f76831f6cf9be5f6",
+    "results/round2/derived_silence/model_smoke/baseline-200114-independent-audit-retune-fixed.json": "ebf9e7fb18b592eb463cd285f2d98ef4ad1a64a9375d7cb4cfc2a6d91383acba",
+    "results/round2/derived_silence/model_smoke/relative_only.json.gz": "5b2a1d37a4b2c4e2c4fefc066b5171d0d7a2eff9660734b99f1f87c6c2b1ef36",
+    "results/round2/derived_silence/model_smoke/relative_only-independent-audit-retune-fixed.json": "17a200b038b354a373ecd9be6744a178d1269f672bec049c1b34c599dafaa913",
+    "results/round2/derived_silence/model_smoke/relative_only-independent-audit.json": "17a200b038b354a373ecd9be6744a178d1269f672bec049c1b34c599dafaa913",
+    "results/round2/derived_silence/model_smoke/cap_only.json.gz": "bd98ee19156cc9810939588f0d2102e8e90132759a2a63f6805bef063062d4d9",
+    "results/round2/derived_silence/model_smoke/cap_only-independent-audit-retune-fixed.json": "4784e42b3afbe08e1b3913234d09a5e382e00df58e230e7a50d0c936d00a48e7",
+    "results/round2/derived_silence/model_smoke/cap_only-independent-audit.json": "4784e42b3afbe08e1b3913234d09a5e382e00df58e230e7a50d0c936d00a48e7",
+    "results/round2/derived_silence/model_smoke/combined.json.gz": "68b17cac1d630fde544b29a6571d3eb111419644cee67189ff577935584f743f",
+    "results/round2/derived_silence/model_smoke/combined-independent-audit-retune-fixed.json": "98ff2790cbbdfff541edf2ce91c9084705f166e7d1d3ccb8eb3db66091b38aca",
+    "results/round2/derived_silence/model_smoke/combined-independent-audit.json": "98ff2790cbbdfff541edf2ce91c9084705f166e7d1d3ccb8eb3db66091b38aca",
+    "results/round2/derived_silence/model_smoke/disabled.json.gz": "5f9cb59748ecc6d2ad8a45469091e1b9c86de03c1329df5ae4801b9a556c251b",
+    "results/round2/derived_silence/model_smoke/disabled-independent-audit-retune-fixed.json": "b1db6a31bb24d8c96761b4ea687bbddf95e908dac3c41a6f4187dcc1edec2225",
+    "results/round2/derived_silence/model_smoke/disabled-independent-audit.json": "b1db6a31bb24d8c96761b4ea687bbddf95e908dac3c41a6f4187dcc1edec2225"
+  },
+  "checks": {
+    "source_freeze": {
+      "passed": true,
+      "all_51_src_before_after_equal_git_blob_sha256": true,
+      "complete_source_set_equal": true,
+      "git_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+      "implementation_test_git_blob_sha256": "da959af40f2cb65df4f4090c3ad9f1cefba8c4d6c70dbb3d313dfd85e2274be7"
+    },
+    "tests": {
+      "implementation-tests.xml": {
+        "passed": true,
+        "tests": 39,
+        "role": "frozen candidate implementation"
+      },
+      "auditor-tests.xml": {
+        "passed": true,
+        "tests": 42,
+        "role": "prior auditor snapshot superseded by 43-test run"
+      },
+      "auditor-tests-retune-fixed.xml": {
+        "passed": true,
+        "tests": 43,
+        "role": "current independent auditor"
+      }
+    },
+    "independent_replay": {
+      "passed": true,
+      "four_smokes_and_original_baseline_passed": true,
+      "new_relative_constraints_stripped_before_legacy": true,
+      "legacy_never_weakened": true,
+      "fraction_certifies_binary64_input_vertices_with_margin": true,
+      "inferred_absence_coverage_credits": 0,
+      "actual_per_action_microsecond_costs_reconstructed": true
+    },
+    "disabled_identity": {
+      "passed": true,
+      "baseline_archive": "results/round2/feedback/pilot/records/baseline-200114.json.gz",
+      "entries": 128,
+      "all_actual_enter_measure_clear_exit_semantics_equal": true,
+      "compared_fields": [
+        "action",
+        "position",
+        "channel",
+        "accepted",
+        "measure_result",
+        "clear_result",
+        "svd_deg",
+        "virtual_time_s"
+      ],
+      "excluded_nondeterministic_or_harness_metadata": [
+        "index already independently checked",
+        "real_timestamp_ms",
+        "max_real_duration_s",
+        "remaining_real_duration_s",
+        "advertised session duration fields"
+      ]
+    },
+    "mechanism_presence": {
+      "relative_geometry_seen_in_relative_and_combined": true,
+      "midscan_cap_seen_in_cap_and_combined": true,
+      "cap_skips_only_after_actual_known_count_reaches_16": true,
+      "known_measurements_continue_after_cap": true,
+      "disabled_has_no_new_logs_or_inferences": true,
+      "combined_this_case_savings_are_additive": true
+    },
+    "smokes": {
+      "relative_only": {
+        "passed": true,
+        "seed": 200114,
+        "physical_actions_measure_clear": 121,
+        "session_history_entries_including_enter_exit": 123,
+        "real_measurements": 105,
+        "cleared": 16,
+        "failed_clears": 0,
+        "legacy_inferences": 3,
+        "relative_inferences": 5,
+        "count_skips": 0,
+        "geometric_station_credits": 6,
+        "audited_new_scan_geometric_credits": 6,
+        "virtual_time_s": 3331.326128,
+        "original_clairvoyant_lower_s": 1921.8195892031908,
+        "time_over_original_lower": 1.733422922065857,
+        "actual_time_parts_s": {
+          "movement_s": 2633.326128,
+          "switching_s": 93.0,
+          "detection_s": 525.0,
+          "optical_s": 48.0,
+          "removal_s": 32.0
+        },
+        "wall_seconds_one_run": 1.0677504999912344,
+        "cpu_seconds_one_run": 1.0625,
+        "actual_count_trigger_scans": [],
+        "relative_witnesses": [
+          {
+            "channel": 3,
+            "after_actual_action_count": 55,
+            "witness_action_ordinal": 29,
+            "signed_bisector_distance_lower_m": 50.92233872193978
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 61,
+            "witness_action_ordinal": 38,
+            "signed_bisector_distance_lower_m": 50.92233872193978
+          },
+          {
+            "channel": 3,
+            "after_actual_action_count": 73,
+            "witness_action_ordinal": 29,
+            "signed_bisector_distance_lower_m": 0.9843422617635492
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 79,
+            "witness_action_ordinal": 38,
+            "signed_bisector_distance_lower_m": 0.9843422617635492
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 93,
+            "witness_action_ordinal": 38,
+            "signed_bisector_distance_lower_m": 13.541524693437557
+          }
+        ],
+        "retained_actual_actions_match_baseline_subsequence": true,
+        "removed_baseline_real_no_signal_queries": [
+          {
+            "baseline_action_ordinal": 56,
+            "channel": 3,
+            "position": {
+              "x": -574.9999999999998,
+              "y": 995.9292143521045
+            }
+          },
+          {
+            "baseline_action_ordinal": 63,
+            "channel": 14,
+            "position": {
+              "x": -574.9999999999998,
+              "y": 995.9292143521045
+            }
+          },
+          {
+            "baseline_action_ordinal": 76,
+            "channel": 3,
+            "position": {
+              "x": 549.5885259011417,
+              "y": 953.7230049942015
+            }
+          },
+          {
+            "baseline_action_ordinal": 83,
+            "channel": 14,
+            "position": {
+              "x": 549.5885259011417,
+              "y": 953.7230049942015
+            }
+          },
+          {
+            "baseline_action_ordinal": 98,
+            "channel": 14,
+            "position": {
+              "x": 1126.03600025177,
+              "y": 13.835621705500705
+            }
+          }
+        ],
+        "virtual_time_saved_vs_disabled_s": 30.0
+      },
+      "cap_only": {
+        "passed": true,
+        "seed": 200114,
+        "physical_actions_measure_clear": 123,
+        "session_history_entries_including_enter_exit": 125,
+        "real_measurements": 107,
+        "cleared": 16,
+        "failed_clears": 0,
+        "legacy_inferences": 3,
+        "relative_inferences": 0,
+        "count_skips": 3,
+        "geometric_station_credits": 5,
+        "audited_new_scan_geometric_credits": 5,
+        "virtual_time_s": 3343.326128,
+        "original_clairvoyant_lower_s": 1921.8195892031908,
+        "time_over_original_lower": 1.7396670045319824,
+        "actual_time_parts_s": {
+          "movement_s": 2633.326128,
+          "switching_s": 95.0,
+          "detection_s": 535.0,
+          "optical_s": 48.0,
+          "removal_s": 32.0
+        },
+        "wall_seconds_one_run": 1.0491176999930758,
+        "cpu_seconds_one_run": 1.03125,
+        "actual_count_trigger_scans": [
+          {
+            "start_prefix": 106,
+            "known_before": 14,
+            "end_prefix": 112,
+            "known_after": 16,
+            "actual_measured_channels": [
+              1,
+              2,
+              3,
+              8,
+              14,
+              16
+            ],
+            "count_skipped": [
+              {
+                "channel": 9,
+                "after_actual_action_count": 110,
+                "known_channels": [
+                  1,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  10,
+                  11,
+                  12,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19
+                ]
+              },
+              {
+                "channel": 13,
+                "after_actual_action_count": 110,
+                "known_channels": [
+                  1,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  10,
+                  11,
+                  12,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19
+                ]
+              },
+              {
+                "channel": 20,
+                "after_actual_action_count": 112,
+                "known_channels": [
+                  1,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  10,
+                  11,
+                  12,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19
+                ]
+              }
+            ],
+            "credited_geometric_station": false
+          }
+        ],
+        "relative_witnesses": [],
+        "retained_actual_actions_match_baseline_subsequence": true,
+        "removed_baseline_real_no_signal_queries": [
+          {
+            "baseline_action_ordinal": 111,
+            "channel": 9,
+            "position": {
+              "x": 575.0000000000001,
+              "y": -995.9292143521044
+            }
+          },
+          {
+            "baseline_action_ordinal": 112,
+            "channel": 13,
+            "position": {
+              "x": 575.0000000000001,
+              "y": -995.9292143521044
+            }
+          },
+          {
+            "baseline_action_ordinal": 115,
+            "channel": 20,
+            "position": {
+              "x": 575.0000000000001,
+              "y": -995.9292143521044
+            }
+          }
+        ],
+        "virtual_time_saved_vs_disabled_s": 18.0
+      },
+      "combined": {
+        "passed": true,
+        "seed": 200114,
+        "physical_actions_measure_clear": 118,
+        "session_history_entries_including_enter_exit": 120,
+        "real_measurements": 102,
+        "cleared": 16,
+        "failed_clears": 0,
+        "legacy_inferences": 3,
+        "relative_inferences": 5,
+        "count_skips": 3,
+        "geometric_station_credits": 5,
+        "audited_new_scan_geometric_credits": 5,
+        "virtual_time_s": 3313.326128,
+        "original_clairvoyant_lower_s": 1921.8195892031908,
+        "time_over_original_lower": 1.724056798366669,
+        "actual_time_parts_s": {
+          "movement_s": 2633.326128,
+          "switching_s": 90.0,
+          "detection_s": 510.0,
+          "optical_s": 48.0,
+          "removal_s": 32.0
+        },
+        "wall_seconds_one_run": 1.0654942999972263,
+        "cpu_seconds_one_run": 1.03125,
+        "actual_count_trigger_scans": [
+          {
+            "start_prefix": 101,
+            "known_before": 14,
+            "end_prefix": 107,
+            "known_after": 16,
+            "actual_measured_channels": [
+              1,
+              2,
+              3,
+              8,
+              14,
+              16
+            ],
+            "count_skipped": [
+              {
+                "channel": 9,
+                "after_actual_action_count": 105,
+                "known_channels": [
+                  1,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  10,
+                  11,
+                  12,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19
+                ]
+              },
+              {
+                "channel": 13,
+                "after_actual_action_count": 105,
+                "known_channels": [
+                  1,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  10,
+                  11,
+                  12,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19
+                ]
+              },
+              {
+                "channel": 20,
+                "after_actual_action_count": 107,
+                "known_channels": [
+                  1,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  10,
+                  11,
+                  12,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19
+                ]
+              }
+            ],
+            "credited_geometric_station": false
+          }
+        ],
+        "relative_witnesses": [
+          {
+            "channel": 3,
+            "after_actual_action_count": 55,
+            "witness_action_ordinal": 29,
+            "signed_bisector_distance_lower_m": 50.92233872193978
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 61,
+            "witness_action_ordinal": 38,
+            "signed_bisector_distance_lower_m": 50.92233872193978
+          },
+          {
+            "channel": 3,
+            "after_actual_action_count": 73,
+            "witness_action_ordinal": 29,
+            "signed_bisector_distance_lower_m": 0.9843422617635492
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 79,
+            "witness_action_ordinal": 38,
+            "signed_bisector_distance_lower_m": 0.9843422617635492
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 93,
+            "witness_action_ordinal": 38,
+            "signed_bisector_distance_lower_m": 13.541524693437557
+          }
+        ],
+        "retained_actual_actions_match_baseline_subsequence": true,
+        "removed_baseline_real_no_signal_queries": [
+          {
+            "baseline_action_ordinal": 56,
+            "channel": 3,
+            "position": {
+              "x": -574.9999999999998,
+              "y": 995.9292143521045
+            }
+          },
+          {
+            "baseline_action_ordinal": 63,
+            "channel": 14,
+            "position": {
+              "x": -574.9999999999998,
+              "y": 995.9292143521045
+            }
+          },
+          {
+            "baseline_action_ordinal": 76,
+            "channel": 3,
+            "position": {
+              "x": 549.5885259011417,
+              "y": 953.7230049942015
+            }
+          },
+          {
+            "baseline_action_ordinal": 83,
+            "channel": 14,
+            "position": {
+              "x": 549.5885259011417,
+              "y": 953.7230049942015
+            }
+          },
+          {
+            "baseline_action_ordinal": 98,
+            "channel": 14,
+            "position": {
+              "x": 1126.03600025177,
+              "y": 13.835621705500705
+            }
+          },
+          {
+            "baseline_action_ordinal": 111,
+            "channel": 9,
+            "position": {
+              "x": 575.0000000000001,
+              "y": -995.9292143521044
+            }
+          },
+          {
+            "baseline_action_ordinal": 112,
+            "channel": 13,
+            "position": {
+              "x": 575.0000000000001,
+              "y": -995.9292143521044
+            }
+          },
+          {
+            "baseline_action_ordinal": 115,
+            "channel": 20,
+            "position": {
+              "x": 575.0000000000001,
+              "y": -995.9292143521044
+            }
+          }
+        ],
+        "virtual_time_saved_vs_disabled_s": 48.0
+      },
+      "disabled": {
+        "passed": true,
+        "seed": 200114,
+        "physical_actions_measure_clear": 126,
+        "session_history_entries_including_enter_exit": 128,
+        "real_measurements": 110,
+        "cleared": 16,
+        "failed_clears": 0,
+        "legacy_inferences": 3,
+        "relative_inferences": 0,
+        "count_skips": 0,
+        "geometric_station_credits": 6,
+        "audited_new_scan_geometric_credits": 0,
+        "virtual_time_s": 3361.326128,
+        "original_clairvoyant_lower_s": 1921.8195892031908,
+        "time_over_original_lower": 1.7490331282311706,
+        "actual_time_parts_s": {
+          "movement_s": 2633.326128,
+          "switching_s": 98.0,
+          "detection_s": 550.0,
+          "optical_s": 48.0,
+          "removal_s": 32.0
+        },
+        "wall_seconds_one_run": 1.0549975000030827,
+        "cpu_seconds_one_run": 1.03125,
+        "actual_count_trigger_scans": [],
+        "relative_witnesses": []
+      }
+    },
+    "auditor_correction": {
+      "detail": "Only actual measure retunes receiver; an optical clear preserves the preceding channel.",
+      "regression_failed_before_fix": true,
+      "regression_passed_after_fix": true,
+      "current_tests": 43,
+      "initial_four_smoke_audit_conclusions_unchanged": true
+    }
+  },
+  "limits": {
+    "performance": "Implementation gate on the already-opened development case 200114 only; not a new independent gain estimate or success-rate estimate.",
+    "lower_bound": "The reused 1921.8195892031908 s bound is the old per-case clairvoyant physical lower bound. The ratio does not certify online optimality or a competitive ratio.",
+    "geometry": "Fraction verifies the supplied binary64 outer-polygon vertices; outer-region construction retains the pre-existing floating conservative-region premise.",
+    "route": "Exact retained-action subsequence, unchanged movement and additive 30+18 seconds are verified only for this old episode; other feedback paths require paired pilot and fresh confirmation.",
+    "timing": "One approximately one-second run per policy, no reliable CPU-speed ranking.",
+    "coverage": "Disabled dispatch has no derived scan logs and remains covered by legacy per-channel terminal audit. Zero-action and interrupted-scan edge cases were checked artificially, not exercised by this smoke.",
+    "gate_scope": "Source-bound permission to open the predeclared pilot, not a performance selection or confirmation gate.",
+    "access": "No new simulator case, no SQLite, no network, no candidate/runner/protocol modification in this review."
+  }
+}

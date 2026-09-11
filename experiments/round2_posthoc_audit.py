@@ -114,6 +114,7 @@ def verify_batch(batch):
 
 def build(batches, seed_caches=()):
     physical, observations, dependency_hashes = load_helpers()
+    observation_extensions, extension_hashes = {}, {}
     oracle_checks = physical.self_check()  # n=1..7, all permutations versus subset DP.
     # The two aggregate ratios are different estimands, not interchangeable.
     example = [{"ratio_eligible": True, "successful": True, "audit_passed": True,
@@ -143,6 +144,16 @@ def build(batches, seed_caches=()):
     for batch in batches:
         batch = batch.resolve(strict=True)
         manifest, summary, runner_status, runner_path = verify_batch(batch)
+        if manifest["trial"] == "derived_silence" and "derived_silence" not in observation_extensions:
+            # Keep this independent proof extension out of the physical-bound
+            # cache identity: the original physical oracle is unchanged.
+            extension_path = ROOT / "experiments/round2_derived_silence_audit.py"
+            extension_spec = importlib.util.spec_from_file_location("_round2_derived_silence_auditor", extension_path)
+            extension = importlib.util.module_from_spec(extension_spec)
+            sys.modules[extension_spec.name] = extension
+            extension_hashes[str(extension_path)] = sha(extension_path)
+            extension_spec.loader.exec_module(extension)
+            observation_extensions["derived_silence"] = extension
         label = f"{manifest['trial']}/{manifest['stage']}"
         summary_rows = {(row["strategy"], row["seed"]): row for row in summary["rows"]}
         if len(summary_rows) != len(summary["records_sha256"]):
@@ -191,7 +202,9 @@ def build(batches, seed_caches=()):
                 # This auditor reads only summary/history and checks the
                 # maximum vertex distance from the actual clear point. It
                 # therefore accepts valid lens points outside the MEC subdisk.
-                observation_result = observations.observation_audit(record, cover_cache)
+                extension = observation_extensions.get(manifest["trial"])
+                observation_result = (extension.observation_audit(record, cover_cache, observations)
+                                      if extension else observations.observation_audit(record, cover_cache))
             except Exception as error:
                 errors.append(f"causal_certificate: {type(error).__name__}: {error}")
             lower = physical_result["physical_clairvoyant_lower_s"] if physical_result else None
@@ -220,12 +233,16 @@ def build(batches, seed_caches=()):
     for path, expected_hash in dependency_hashes.items():
         if sha(path) != expected_hash:
             raise ValueError("Audit dependency changed during execution")
+    for path, expected_hash in extension_hashes.items():
+        if sha(path) != expected_hash:
+            raise ValueError("Observation proof extension changed during execution")
     return {"version": "q3-round2-posthoc-original-physical-v1",
             "created_at_utc": datetime.now(timezone.utc).isoformat(),
             "truth_scope": "post-policy-termination archives only",
             "sqlite_read": False, "simulator_calls": 0, "new_simulations": 0,
             "exhaustive_small_graph_oracles": oracle_checks,
             "ratio_aggregation_oracle": True, "dependency_sha256": dependency_hashes,
+            "observation_extension_sha256": extension_hashes,
             "script_sha256": sha(__file__), "batches": batch_evidence,
             "records": len(rows), "unique_cases": len(case_identities),
             "independent_physical_bound_calculations": len(geometry_cache) - initial_cache_size,
@@ -286,6 +303,8 @@ def markdown(result):
                   f"原始JSON中的审计脚本SHA-256：`{result['script_sha256']}`。",
                   f"本次Markdown渲染脚本SHA-256：`{sha(__file__)}`。",
                   "若二者不同，表示仅用更新后的显示模板重新渲染已有JSON；没有重算实验或下界，也没有修改原JSON的审计哈希。", ""])
+    if result.get("observation_extension_sha256"):
+        lines.extend(["", "本次还加载了单独记录哈希的冗余测量证书审核器：以精确有理数复核相对距离不等式、此前同频道真实无信号反馈、扫描过程中的16源上限及实际覆盖计数；删除新增推断后，原审核器仍须独立通过清除与终止证书。物理下界及其缓存依赖没有改变。", ""])
     errors = [row for row in result["rows"] if row["errors"]]
     if errors:
         lines += ["审核错误：", ""] + [f"- {row['batch']}/{row['strategy']}/{row['seed']}: {row['errors']}" for row in errors]
