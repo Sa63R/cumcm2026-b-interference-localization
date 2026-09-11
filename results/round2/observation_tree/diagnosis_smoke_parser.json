@@ -1,0 +1,1086 @@
+{
+  "version": "round2-observation-tree-smoke-parser-only",
+  "script_sha256": "07d29e406f9a66e861e7d8b4e53622dbeebfcd3be7d7bb7cbf4b9e3ff5f08b31",
+  "scope": "Parsing check only; unpaired/unfrozen development records are not independent performance evidence",
+  "records": [
+    {
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\observation_tree\\model_smoke\\depth1-90s.json.gz",
+      "sha256": "e08fa3c4fa25a5c9477bb35f79b83c23c236cb2b70d08d932b96e9afb83a11d5",
+      "scope": "Unfrozen implementation smoke on already-opened development 200114; not independent evidence",
+      "source_unchanged_claim": true,
+      "planning": {
+        "depth": 1,
+        "planning_attempts": 1,
+        "statuses": {
+          "evaluated_baseline": 1
+        },
+        "completed_comparisons": 1,
+        "logged_changed": 0,
+        "macro_identity_changed": 0,
+        "mechanism_active": 0,
+        "first_actions_with_multiple_effective_z": 0,
+        "first_actions_with_observation_dependent_actions": 0,
+        "tail_evaluations_started": 48,
+        "completed_tails_retained_in_nodes": 48,
+        "tail_completion_not_identifiable_from_retained_nodes": 0,
+        "generated_actions": 4686,
+        "planning_runtime_s": 52.49014259999967,
+        "fallback_reasons": {},
+        "decisions": [
+          {
+            "index": 0,
+            "action_boundary": 20,
+            "status": "evaluated_baseline",
+            "baseline": {
+              "kind": "source",
+              "channel": 10,
+              "position": [
+                -749.9060070252016,
+                22.24031589070479
+              ]
+            },
+            "selected": {
+              "kind": "source",
+              "channel": 10,
+              "position": [
+                -749.9060070252016,
+                22.24031589070479
+              ]
+            },
+            "macro_identity_changed": false,
+            "next_actual_action": {
+              "action": "measure",
+              "channel": 10,
+              "position": [
+                -567.0088736706248,
+                -169.86255075471863
+              ],
+              "result": "direction",
+              "bearing_deg": 30.89,
+              "virtual_time_s": 243.381139
+            },
+            "fallback_reason": null,
+            "root_pool": {
+              "draw_weight_ess": 16.0,
+              "distinct_active_position_worlds": 16,
+              "position_pool_ess": {
+                "count": 20,
+                "min": 197.50600497526568,
+                "mean": 1727.9333704817423,
+                "max": 2381.5142579268845
+              },
+              "position_pool_distinct": {
+                "count": 20,
+                "min": 251,
+                "mean": 2043.65,
+                "max": 2811
+              },
+              "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+            },
+            "tail_evaluations_started": 48,
+            "generated_actions": 4686,
+            "planning_runtime_s": 52.49014259999967,
+            "first_actions": [
+              {
+                "task": {
+                  "kind": "source",
+                  "channel": 10,
+                  "position": [
+                    -749.9060070252016,
+                    22.24031589070479
+                  ]
+                },
+                "effective_distinct_z": 0,
+                "distinct_conditional_actions": 0,
+                "representatives_retained": 2,
+                "paired_gain_s": null,
+                "heuristic_margin_s": null,
+                "nodes": [
+                  {
+                    "status": "fixed_v1_tail",
+                    "observation_sha256": "bec932124d5a4f8096a2685687186cdde6e70b02ef7be261f739f44446dc9e6f",
+                    "observation_count": 2,
+                    "first_cost_s": 182.140105,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -745.2731375767725,
+                        -86.24752116332296
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 8,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "draws": 8,
+                      "equal_draw_weight_ess": 8,
+                      "distinct_active_position_worlds": 8,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 198.8308689777096,
+                        "mean": 1737.6929603762633,
+                        "max": 2390.5592418597516
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 251,
+                        "mean": 2049.85,
+                        "max": 2820
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 201.84745409495,
+                        "mean": 1719.4164799536288,
+                        "max": 2363.8196042181207
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 2033.3,
+                        "max": 2796
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 8
+                  },
+                  {
+                    "status": "fixed_v1_tail",
+                    "observation_sha256": "0a188a85d4706ec619bfefde00810e99ff19c3e207cfc8546f069708c7938fde",
+                    "observation_count": 3,
+                    "first_cost_s": 173.661968,
+                    "inner_baseline": {
+                      "kind": "cover",
+                      "channel": null,
+                      "position": [
+                        -1099.0384578704834,
+                        1.3459339295709308e-13
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 8,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "draws": 8,
+                      "equal_draw_weight_ess": 8,
+                      "distinct_active_position_worlds": 8,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 201.17329998595326,
+                        "mean": 1774.2476377062521,
+                        "max": 2439.646159765039
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 2081.1,
+                        "max": 2864
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 198.37770203303572,
+                        "mean": 1718.704399041332,
+                        "max": 2360.908167042891
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 2020.8,
+                        "max": 2778
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 8
+                  }
+                ]
+              },
+              {
+                "task": {
+                  "kind": "cover",
+                  "channel": null,
+                  "position": [
+                    -1099.0384578704834,
+                    1.3459339295709308e-13
+                  ]
+                },
+                "effective_distinct_z": 0,
+                "distinct_conditional_actions": 0,
+                "representatives_retained": 2,
+                "paired_gain_s": -150.8750644375,
+                "heuristic_margin_s": -166.98229303125004,
+                "nodes": [
+                  {
+                    "status": "fixed_v1_tail",
+                    "observation_sha256": "2fd98c4cd4692564d8b20562274f78ebb14d30bb3b51fc04c9c54e1a43f30ae3",
+                    "observation_count": 20,
+                    "first_cost_s": 338.807692,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -986.5841138723512,
+                        -106.85588924926839
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 8,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "draws": 8,
+                      "equal_draw_weight_ess": 8,
+                      "distinct_active_position_worlds": 8,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 193.5336047968283,
+                        "mean": 1286.818220014809,
+                        "max": 1738.184794370367
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 251,
+                        "mean": 1562.15,
+                        "max": 2123
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 197.64706096163525,
+                        "mean": 1269.6644087664627,
+                        "max": 1712.7384993501369
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 253,
+                        "mean": 1550.5,
+                        "max": 2106
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 8
+                  },
+                  {
+                    "status": "fixed_v1_tail",
+                    "observation_sha256": "eeed764a988b8d6fab2aa728169708f899c12d6a811b198c966aafabc0ec89d5",
+                    "observation_count": 20,
+                    "first_cost_s": 338.807692,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -1052.9851382595243,
+                        -114.259724313301
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 8,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "draws": 8,
+                      "equal_draw_weight_ess": 8,
+                      "distinct_active_position_worlds": 8,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 200.1828440113142,
+                        "mean": 1128.5278377213021,
+                        "max": 1726.2270443099153
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 1383.6,
+                        "max": 2137
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 199.1348714520018,
+                        "mean": 1138.9672208319166,
+                        "max": 1744.1570032170503
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 1384.65,
+                        "max": 2138
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 8
+                  }
+                ]
+              },
+              {
+                "task": {
+                  "kind": "cover",
+                  "channel": null,
+                  "position": [
+                    -575.0000000000005,
+                    -995.9292143521043
+                  ]
+                },
+                "effective_distinct_z": 0,
+                "distinct_conditional_actions": 0,
+                "representatives_retained": 2,
+                "paired_gain_s": -122.80959306249997,
+                "heuristic_margin_s": -166.96307484374984,
+                "nodes": [
+                  {
+                    "status": "fixed_v1_tail",
+                    "observation_sha256": "e73926a377bc3d98ead85ae5d4f74580dc2ed011f2dafb4afd2de2790f1ab398",
+                    "observation_count": 20,
+                    "first_cost_s": 349.0,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 16,
+                      "position": [
+                        -864.8658732229844,
+                        -712.4765866040216
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 8,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "draws": 8,
+                      "equal_draw_weight_ess": 8,
+                      "distinct_active_position_worlds": 8,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 208.99273598821685,
+                        "mean": 1280.913060619217,
+                        "max": 1724.5539739801463
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 250,
+                        "mean": 1561.5,
+                        "max": 2122
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 209.1145591102357,
+                        "mean": 1264.164273359548,
+                        "max": 1700.8393890989855
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 251,
+                        "mean": 1571.75,
+                        "max": 2137
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 8
+                  },
+                  {
+                    "status": "fixed_v1_tail",
+                    "observation_sha256": "36d400d560b4f216d934a5ff80d48890e179b049d893bf004f7fd19481a01469",
+                    "observation_count": 20,
+                    "first_cost_s": 349.0,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 15,
+                      "position": [
+                        -660.44354138166,
+                        -1317.1624615683581
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 8,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "draws": 8,
+                      "equal_draw_weight_ess": 8,
+                      "distinct_active_position_worlds": 8,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 203.34006853706424,
+                        "mean": 1061.5394102758523,
+                        "max": 1730.776105100503
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 249,
+                        "mean": 1282.1,
+                        "max": 2124
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 207.1979285802458,
+                        "mean": 1105.669702292484,
+                        "max": 1810.3399361321938
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 249,
+                        "mean": 1307.0,
+                        "max": 2169
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 8
+                  }
+                ]
+              }
+            ],
+            "mechanism_active_recomputed": false,
+            "completed_tails_retained": 48,
+            "tails_not_identifiable_from_retained_nodes": 0,
+            "second_layer_comparisons_logged": 0,
+            "second_layer_comparisons_retained": 0,
+            "partial_candidate_logging_gap": 0
+          }
+        ],
+        "errors": [],
+        "unlogged_skips": "Not observable: disabled, max_searches, fewer than two candidates and no remaining planning time can return before log creation",
+        "tail_count_scope": "Started != completed on fallback; partial current candidate nodes are not retained by strategy"
+      }
+    },
+    {
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\observation_tree\\model_smoke\\depth2-90s.json.gz",
+      "sha256": "06f376212e4dfb43d40438ce3848b33905891f58e6994493cf10b58422aba36f",
+      "scope": "Unfrozen implementation smoke on already-opened development 200114; not independent evidence",
+      "source_unchanged_claim": true,
+      "planning": {
+        "depth": 2,
+        "planning_attempts": 1,
+        "statuses": {
+          "evaluated_baseline": 1
+        },
+        "completed_comparisons": 1,
+        "logged_changed": 0,
+        "macro_identity_changed": 0,
+        "mechanism_active": 1,
+        "first_actions_with_multiple_effective_z": 3,
+        "first_actions_with_observation_dependent_actions": 2,
+        "tail_evaluations_started": 48,
+        "completed_tails_retained_in_nodes": 48,
+        "tail_completion_not_identifiable_from_retained_nodes": 0,
+        "generated_actions": 4721,
+        "planning_runtime_s": 53.273338500002865,
+        "fallback_reasons": {},
+        "decisions": [
+          {
+            "index": 0,
+            "action_boundary": 20,
+            "status": "evaluated_baseline",
+            "baseline": {
+              "kind": "source",
+              "channel": 10,
+              "position": [
+                -749.9060070252016,
+                22.24031589070479
+              ]
+            },
+            "selected": {
+              "kind": "source",
+              "channel": 10,
+              "position": [
+                -749.9060070252016,
+                22.24031589070479
+              ]
+            },
+            "macro_identity_changed": false,
+            "next_actual_action": {
+              "action": "measure",
+              "channel": 10,
+              "position": [
+                -567.0088736706248,
+                -169.86255075471863
+              ],
+              "result": "direction",
+              "bearing_deg": 30.89,
+              "virtual_time_s": 243.381139
+            },
+            "fallback_reason": null,
+            "root_pool": {
+              "draw_weight_ess": 16.0,
+              "distinct_active_position_worlds": 16,
+              "position_pool_ess": {
+                "count": 20,
+                "min": 197.50600497526568,
+                "mean": 1727.9333704817423,
+                "max": 2381.5142579268845
+              },
+              "position_pool_distinct": {
+                "count": 20,
+                "min": 251,
+                "mean": 2043.65,
+                "max": 2811
+              },
+              "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+            },
+            "tail_evaluations_started": 48,
+            "generated_actions": 4721,
+            "planning_runtime_s": 53.273338500002865,
+            "first_actions": [
+              {
+                "task": {
+                  "kind": "source",
+                  "channel": 10,
+                  "position": [
+                    -749.9060070252016,
+                    22.24031589070479
+                  ]
+                },
+                "effective_distinct_z": 2,
+                "distinct_conditional_actions": 1,
+                "representatives_retained": 2,
+                "paired_gain_s": null,
+                "heuristic_margin_s": null,
+                "nodes": [
+                  {
+                    "status": "conditional_action_evaluated",
+                    "observation_sha256": "bec932124d5a4f8096a2685687186cdde6e70b02ef7be261f739f44446dc9e6f",
+                    "observation_count": 2,
+                    "first_cost_s": 182.140105,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -745.2731375767725,
+                        -86.24752116332296
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -745.2731375767725,
+                        -86.24752116332296
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 2,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 198.8308689777096,
+                        "mean": 1737.6929603762633,
+                        "max": 2390.5592418597516
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 251,
+                        "mean": 2049.85,
+                        "max": 2820
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 201.84745409495,
+                        "mean": 1719.4164799536288,
+                        "max": 2363.8196042181207
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 2033.3,
+                        "max": 2796
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 12
+                  },
+                  {
+                    "status": "conditional_action_evaluated",
+                    "observation_sha256": "0a188a85d4706ec619bfefde00810e99ff19c3e207cfc8546f069708c7938fde",
+                    "observation_count": 3,
+                    "first_cost_s": 173.661968,
+                    "inner_baseline": {
+                      "kind": "cover",
+                      "channel": null,
+                      "position": [
+                        -1099.0384578704834,
+                        1.3459339295709308e-13
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -1021.5319488604403,
+                        -113.17443357156358
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 2,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 201.17329998595326,
+                        "mean": 1774.2476377062521,
+                        "max": 2439.646159765039
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 2081.1,
+                        "max": 2864
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 198.37770203303572,
+                        "mean": 1718.704399041332,
+                        "max": 2360.908167042891
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 2020.8,
+                        "max": 2778
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 12
+                  }
+                ]
+              },
+              {
+                "task": {
+                  "kind": "cover",
+                  "channel": null,
+                  "position": [
+                    -1099.0384578704834,
+                    1.3459339295709308e-13
+                  ]
+                },
+                "effective_distinct_z": 2,
+                "distinct_conditional_actions": 2,
+                "representatives_retained": 2,
+                "paired_gain_s": -102.09000975000026,
+                "heuristic_margin_s": -237.57009237500029,
+                "nodes": [
+                  {
+                    "status": "conditional_action_evaluated",
+                    "observation_sha256": "2fd98c4cd4692564d8b20562274f78ebb14d30bb3b51fc04c9c54e1a43f30ae3",
+                    "observation_count": 20,
+                    "first_cost_s": 338.807692,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -986.5841138723512,
+                        -106.85588924926839
+                      ]
+                    },
+                    "selected": {
+                      "kind": "cover",
+                      "channel": null,
+                      "position": [
+                        -574.9999999999998,
+                        995.9292143521045
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 2,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 193.5336047968283,
+                        "mean": 1286.818220014809,
+                        "max": 1738.184794370367
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 251,
+                        "mean": 1562.15,
+                        "max": 2123
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 197.64706096163525,
+                        "mean": 1269.6644087664627,
+                        "max": 1712.7384993501369
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 253,
+                        "mean": 1550.5,
+                        "max": 2106
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 12
+                  },
+                  {
+                    "status": "conditional_action_evaluated",
+                    "observation_sha256": "eeed764a988b8d6fab2aa728169708f899c12d6a811b198c966aafabc0ec89d5",
+                    "observation_count": 20,
+                    "first_cost_s": 338.807692,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -1052.9851382595243,
+                        -114.259724313301
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -1052.9851382595243,
+                        -114.259724313301
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 2,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 200.1828440113142,
+                        "mean": 1128.5278377213021,
+                        "max": 1726.2270443099153
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 1383.6,
+                        "max": 2137
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 199.1348714520018,
+                        "mean": 1138.9672208319166,
+                        "max": 1744.1570032170503
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 1384.65,
+                        "max": 2138
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 12
+                  }
+                ]
+              },
+              {
+                "task": {
+                  "kind": "cover",
+                  "channel": null,
+                  "position": [
+                    -575.0000000000005,
+                    -995.9292143521043
+                  ]
+                },
+                "effective_distinct_z": 2,
+                "distinct_conditional_actions": 2,
+                "representatives_retained": 2,
+                "paired_gain_s": -71.5949277499999,
+                "heuristic_margin_s": -158.1057558749999,
+                "nodes": [
+                  {
+                    "status": "conditional_action_evaluated",
+                    "observation_sha256": "e73926a377bc3d98ead85ae5d4f74580dc2ed011f2dafb4afd2de2790f1ab398",
+                    "observation_count": 20,
+                    "first_cost_s": 349.0,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 16,
+                      "position": [
+                        -864.8658732229844,
+                        -712.4765866040216
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 16,
+                      "position": [
+                        -864.8658732229844,
+                        -712.4765866040216
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 2,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 208.99273598821685,
+                        "mean": 1280.913060619217,
+                        "max": 1724.5539739801463
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 250,
+                        "mean": 1561.5,
+                        "max": 2122
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 209.1145591102357,
+                        "mean": 1264.164273359548,
+                        "max": 1700.8393890989855
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 251,
+                        "mean": 1571.75,
+                        "max": 2137
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 12
+                  },
+                  {
+                    "status": "conditional_action_evaluated",
+                    "observation_sha256": "36d400d560b4f216d934a5ff80d48890e179b049d893bf004f7fd19481a01469",
+                    "observation_count": 20,
+                    "first_cost_s": 349.0,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 15,
+                      "position": [
+                        -660.44354138166,
+                        -1317.1624615683581
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 15,
+                      "position": [
+                        -660.44354138166,
+                        -1317.1624615683581
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 8,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 2,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 203.34006853706424,
+                        "mean": 1061.5394102758523,
+                        "max": 1730.776105100503
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 249,
+                        "mean": 1282.1,
+                        "max": 2124
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 207.1979285802458,
+                        "mean": 1105.669702292484,
+                        "max": 1810.3399361321938
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 249,
+                        "mean": 1307.0,
+                        "max": 2169
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": 12
+                  }
+                ]
+              }
+            ],
+            "mechanism_active_recomputed": true,
+            "completed_tails_retained": 48,
+            "tails_not_identifiable_from_retained_nodes": 0,
+            "second_layer_comparisons_logged": 6,
+            "second_layer_comparisons_retained": 6,
+            "partial_candidate_logging_gap": 0
+          }
+        ],
+        "errors": [],
+        "unlogged_skips": "Not observable: disabled, max_searches, fewer than two candidates and no remaining planning time can return before log creation",
+        "tail_count_scope": "Started != completed on fallback; partial current candidate nodes are not retained by strategy"
+      }
+    }
+  ],
+  "all_log_checks_passed": true
+}
