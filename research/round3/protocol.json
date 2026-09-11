@@ -116,7 +116,7 @@
     "feedback_envelope": {
       "candidate_label": "candidate",
       "hypothesis": "A conservative continuous-feedback one-measurement completion plan can reduce costly additional localization while preserving real clear certificates. Same 23-point family; conservative UB-vs-parent-nominal screening is a heuristic.",
-      "status": "pilot_rejected_pending_archive_diagnosis",
+      "status": "closed_rejected_implementation_archived",
       "source_commit": "14946fd9f3b476a23ec872b909bbd48bee0aed47",
       "recipes_sha256": "f64e9b681361037541ebd9eb1e8874e36eaedfb3d5ec735e896994ab16ba8153",
       "pilot_seeds": [
@@ -159,6 +159,15 @@
         "confirmation_opened": false,
         "final_opened": false,
         "interpretation": "This frozen complete-cost envelope policy shows no improvement and fails the predeclared gate; not a theorem against all robust localization planners."
+      },
+      "closure": {
+        "source_commit": "14946fd9f3b476a23ec872b909bbd48bee0aed47",
+        "bundle": "research/round3/closed_trials/feedback_envelope.bundle",
+        "bundle_sha256": "1ba0d754fd0a34c495e46a5a9607991b55afa9ee5f08debb63760ac7e7b6a4d0",
+        "required_base_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+        "reason": "Gate failed: mean and tail cost worsened; 87/87 planned tails executed safely, 86 already certifiable at parent probe. No implementation failure or hidden incomplete-plan success. Further parameter scanning not justified.",
+        "diagnosis": "research/round3/diagnoses/FEEDBACK_ENVELOPE_PILOT.md",
+        "delete_scope": "Only the newly created research/q3-r3-feedback-envelope branch/worktree after archive push; all start-of-round protected refs retained."
       }
     },
     "directed_localization": {

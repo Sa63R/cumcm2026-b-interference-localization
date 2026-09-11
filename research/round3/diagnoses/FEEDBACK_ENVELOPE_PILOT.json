@@ -1,0 +1,5323 @@
+{
+  "version": 1,
+  "purpose": "Completed frozen development pilot mechanism diagnosis; no retuning or new evaluation",
+  "candidate_commit": "14946fd9f3b476a23ec872b909bbd48bee0aed47",
+  "baseline_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+  "scope": {
+    "new_cases_run": 0,
+    "sqlite_read": false,
+    "truth_used_in_decision": false,
+    "public_histories_inspected": 64,
+    "audited_raw_hashes_checked": 128,
+    "lower_bound": "Previously computed posthoc clairvoyant physical relaxation copied from validated audit; not attainable online optimum."
+  },
+  "checks": {
+    "all_raw_sha_match_summary_and_audit": true,
+    "all128_audit_passed": true,
+    "public_action_cost_repricing64_passed": true,
+    "selected87_action_ordinal_query_clear_bound_checks_passed": true
+  },
+  "evidence_sha256": {
+    "results/round3/feedback_envelope/pilot/summary.json": "a1b3a23770a9c866133a54b64172c49e9db60783070233b287cd5c495cd32d50",
+    "results/round3/feedback_envelope/pilot/audit.json": "5ff24234e3104b9fb5bfe34512b67b675bed44d57e4c5e8b354bda74d63352b0",
+    "results/round3/feedback_envelope/pilot/manifest.json": "c2d1c6cea1ca1e904480eed846f4fb7ffafde311a8aefb9d81a47da86f6f6112",
+    "results/round3/feedback_envelope/pilot/protocol.json": "fae94df9532689281ba4ba9a8e2c706bf492da084a4cb8a8f33b9618666e51f2",
+    "results/round3/feedback_envelope/pilot/runner.py": "a4fabe4168675780ed773ae944e028df8d816873124e90dbd640deef7b711494",
+    "results/round3/feedback_envelope/pilot/round2_runner.py": "4119190603ffb4a7d28d7e3bc1e286bdda88c3d6667c59f5659119152d759535",
+    "results/round3/feedback_envelope/pilot/candidate-source.zip": "5b0ec79979f0479df302709e2cede0243d8b04bff51d52fb841bdadc546401af",
+    "results/round3/feedback_envelope/pilot/baseline-source.zip": "5f949567d3dddd90fa245e34cea572782787fd17e836ec7868022a41161fd20f",
+    "results/round3/feedback_envelope/pilot/original-source.zip": "6b77f301c8233dea03183360f22a3ce3e9842eb84eee81fb2659897eeb7c9ea0",
+    "results/round3/feedback_envelope/pilot/rl-source.zip": "7c195a605aafef46272e1a4c2bd9f8a466116fb929940b07b97b7f99d37f4a35",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220101.json.gz": "0563cbefdbbe827d1a159f29b2296e6f35fdd5c16760c2dc925ad380eb2ca9ee",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220102.json.gz": "ab8d446334f7354461493bd7b409a0735516c69f7b6e4f38dd36d0701faa7150",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220103.json.gz": "5681b7754059e2b58e037445a28d030a9fcb89d0bd6a25b37b3bfea5a7c870d0",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220104.json.gz": "99caa92872a12d2c5dab6f8b94528462e09412b81d96c505c361fa11c29c681a",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220105.json.gz": "460056662583829cb1e7a38ac7552e8ba4c723c4cb450007e9af47af748912b7",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220106.json.gz": "2f49b661f516cc539028e50cfedbd5996d1fd7288df20b4af3b8abf50682881c",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220107.json.gz": "1012bf42bd94494b28b29596b0d3e400c6fcfdf8af16386d27ea1daf48f8e0b2",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220108.json.gz": "1567b859bc962247bf8b472c8c1fc3675df0e6494301bfd70c92e277d8025fee",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220109.json.gz": "4ebccb40e002a4c1c02deed539bc273c1df867fd235e72ecbcc0d83c50faa3d3",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220110.json.gz": "bc96a1cfb4a6b0439417cfd03242090cde0e3fb959ee21e12b33f08f31d8771f",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220111.json.gz": "4d54be0c33f7b30502529ea720980d87a14fed079522f01381c05ecc2c010fe3",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220112.json.gz": "d7db3d7e75f81ac5035d58036a6c9eae970b7be5e913c20f03c6291d4cff81ee",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220113.json.gz": "f42e148f2a5a55d18c296798cf9dc822edc51eee1fb19e054ce63984b2d75bfa",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220114.json.gz": "ba31179a276844d865355f0903fe9e5e0510f96127e2e78fdbaf662f10c96a66",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220115.json.gz": "ebbf48dce2c03829a638b52bf1341a19b0e85ece38dcafe21a6c9176ebb920ce",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220116.json.gz": "2d3c959c18065b851ec133b6b75bb912f5d68f70039900b38717ac17c424668b",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220117.json.gz": "d8c368a03b8e7003b4ec235dd7b32121fc1aee81550ceb0995b919e140c5f88e",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220118.json.gz": "5d27402540b7d5fa7f845be35f6406d99e2abd4cfbf76c4685f1485d990fb20c",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220119.json.gz": "a0ce204d609a4fd64950f382e44aee89dbcdf4ae8115c31bd5bbdead9da1a816",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220120.json.gz": "e8a6d690e8b254918bf18f70833a0331144275d52662c5af2268557bf9dc406f",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220121.json.gz": "97ae96f2986d6a4218215dd61872cb291feb461fa8d02b6daa05a987d9ec9341",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220122.json.gz": "d1304f2d492c6216f2a1a5466ae68f412175fda6f5aa7ddaac12f12fea0b8972",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220123.json.gz": "8bf46ee6e2360916adff66ad0c624fb06684c5af36bd358002800d2e759a2f1f",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220124.json.gz": "99163f8e5918e36abe2ceae7e005a08431c10476644b120e15e1208297f2bcc1",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220125.json.gz": "9d6c9d515bd8e8755508741e70dd839c8cca4191bc77d371b2aecc9e0c0bebaf",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220126.json.gz": "46b9b1f8d53e20d0f5f98bdd687c5b9ae276b6e17aa6513737ab25e0e620f529",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220127.json.gz": "1249c5680b6be28b99dbf0cad5cc7dc7e6c12ca1af2c3e0f2e4f28c0960f02a8",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220128.json.gz": "41b11396240bcbbbc3421e817ecc147f1298aa2c0ca604f059d1ccb86dea35ac",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220129.json.gz": "b7fd5f5acbcb0c2d934935d68ded9f41840f331cb8850a1018dc39fd5482ca76",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220130.json.gz": "0e1cdc33188b03485906d55b9b8d5db9f409a06918a1965091cc9e2b784f899c",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220131.json.gz": "3a712466a5198b68fc05b940b68fb9383837a379a094b9b6fcd975ce1cda3da6",
+    "results/round3/feedback_envelope/pilot/records/baseline-926091220132.json.gz": "4fe0fb6c0f8acd172a0ed2b57c7aacb32db415aa2cfe43e0b3e832e92074f80f",
+    "results/round3/feedback_envelope/pilot/records/original-926091220101.json.gz": "b48d10360de35854f21ead2157ee586bf9d47d5c01aa59e20b07864c665c63cb",
+    "results/round3/feedback_envelope/pilot/records/original-926091220102.json.gz": "52398f12e2d74af14cc34b39883fad36e29246b8ea6af79e1fecb78084e3b791",
+    "results/round3/feedback_envelope/pilot/records/original-926091220103.json.gz": "9b512a0f9949e0955c5f3fe915e2b7f9b9eeca2f2dd27de1abdf489c692259fd",
+    "results/round3/feedback_envelope/pilot/records/original-926091220104.json.gz": "a04bf4bb975e0714e964f905da780c1d664072b11911b981f66bf76a54b46cc4",
+    "results/round3/feedback_envelope/pilot/records/original-926091220105.json.gz": "08352007774d83bd8d98df7e8ab5c99865563ea90dafef817e966663bd777b76",
+    "results/round3/feedback_envelope/pilot/records/original-926091220106.json.gz": "f18d54a1a1c2c42a9542af16dd686adc040375d8b9d6c18512afff82d5ce0f9b",
+    "results/round3/feedback_envelope/pilot/records/original-926091220107.json.gz": "bf95e1b5bfef734c7615d43284bebf98414149c0cd398275dea79c092a441dcb",
+    "results/round3/feedback_envelope/pilot/records/original-926091220108.json.gz": "4fda9d905ee3624db04ea40898913fc65a074e930382e15b08831400f9babbfe",
+    "results/round3/feedback_envelope/pilot/records/original-926091220109.json.gz": "25b09f2a0e8935887f5a14904ecec944d4a90619f710149e3aa4ede9f1893205",
+    "results/round3/feedback_envelope/pilot/records/original-926091220110.json.gz": "50dd6a7839fbe67f9a600dbeedc57884769e0845b31a688934ff10f8f3747e6e",
+    "results/round3/feedback_envelope/pilot/records/original-926091220111.json.gz": "976dec539c2b4d412161c44a86fdf1c84208feb3c35d443ed257aa2cb2887553",
+    "results/round3/feedback_envelope/pilot/records/original-926091220112.json.gz": "e1ff3867cf6ba90c5f7bc7e19f9c827015dd745e5ec4408e08b878b911a28656",
+    "results/round3/feedback_envelope/pilot/records/original-926091220113.json.gz": "aa2039f84098dac1cd92813b57a7131b48933cb0702e47e5c09af13b236be35b",
+    "results/round3/feedback_envelope/pilot/records/original-926091220114.json.gz": "d84278c09fc084450e1ce047341b6ada36677f8782c828da67c540787edb362f",
+    "results/round3/feedback_envelope/pilot/records/original-926091220115.json.gz": "12e279958a2abf5d76828c51cde1a7b8a1dd7bf5ae43668d53dfc671ab8481fb",
+    "results/round3/feedback_envelope/pilot/records/original-926091220116.json.gz": "11db58a52d96ee34773849a65068e00d93dae2e51358d91d779dad02bb12e4b6",
+    "results/round3/feedback_envelope/pilot/records/original-926091220117.json.gz": "957183215f2cab235c6e7bd109ad24b542483ceb2a5d4be46f5069ff68eeb28b",
+    "results/round3/feedback_envelope/pilot/records/original-926091220118.json.gz": "92411c15c6b6f486db8ea90b071ef8d4e15ab56ab4e334bb415caed740f79e68",
+    "results/round3/feedback_envelope/pilot/records/original-926091220119.json.gz": "ae433a6017fa5caeeb8dd9da1f1f676768a6b0d2aef4b7ec54481cb609727581",
+    "results/round3/feedback_envelope/pilot/records/original-926091220120.json.gz": "718dfd5597a9700ed7161e08a388db375286025c6cfb7c5ceb01299b0eb2a1bd",
+    "results/round3/feedback_envelope/pilot/records/original-926091220121.json.gz": "278b1c16a0499d4723f6df391fdfd6ee96a83d53b95bd3cb6928d0a06dc05df2",
+    "results/round3/feedback_envelope/pilot/records/original-926091220122.json.gz": "1813fba647b497592b3e2eff241e38d538ae0daa09262276b794826b066fd5c8",
+    "results/round3/feedback_envelope/pilot/records/original-926091220123.json.gz": "bccd153ca1763428935ca21d2c831c8fc111eb98017f9479ec2c574957f846de",
+    "results/round3/feedback_envelope/pilot/records/original-926091220124.json.gz": "51121e6ad8fa704d6c3b4f654246a313555395eeb899dd533e6d5cb551dbb78b",
+    "results/round3/feedback_envelope/pilot/records/original-926091220125.json.gz": "74e565bd6688ad9107d150b292ea4e029c9068640bc62230bd388c7f027a8d86",
+    "results/round3/feedback_envelope/pilot/records/original-926091220126.json.gz": "fa7cd25a59b6162fbbe59e2e60217139a05e2522ce452f7f9f860c50c6691e44",
+    "results/round3/feedback_envelope/pilot/records/original-926091220127.json.gz": "cfc458ad0f0950d02b4d29661bb8f0fc19e0241471a26201dc40a11561e62890",
+    "results/round3/feedback_envelope/pilot/records/original-926091220128.json.gz": "77549af998e53aecb11d4b8ea47dcfb209b3c6de3751c89bcc0e19c3cffd258d",
+    "results/round3/feedback_envelope/pilot/records/original-926091220129.json.gz": "f206f5a9f24a03c0a37c2f92fa4d871a784a229da60f24a4c1ea8436a5d4a02c",
+    "results/round3/feedback_envelope/pilot/records/original-926091220130.json.gz": "e71f37feab3465abfc76662af137040c360ee1080ad5de259e293f58b0317b1f",
+    "results/round3/feedback_envelope/pilot/records/original-926091220131.json.gz": "54d3e43e3c0035dd39611ff5c05b0e78633e3801850507564353ace1fe256bde",
+    "results/round3/feedback_envelope/pilot/records/original-926091220132.json.gz": "cffca3d902046611a3f765b41dde3456d1197e1fd5d11fd58a6fcdbd2ab8b038",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220101.json.gz": "79a3120265cacde6681494a34be49334c4cde3786d5424a4e1eb70d04e8167db",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220102.json.gz": "1cc261d1b1afe1585d2722ea30fa76db4c5ded113493482c15dddda81e183b95",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220103.json.gz": "481b54b92ccc918f79d775694ae76d936270807b4b4717cb156563887cc4d5bd",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220104.json.gz": "468cbed54913e0d22a3541996c7b5e0543e295325136d86bb493ede0b482ec0d",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220105.json.gz": "c3632fd9e64ae34dbd5cc630e2b940b904acb49a8239cb6aa347d88642628f58",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220106.json.gz": "9654ca1ad3c35955900d6137a4333bf8ece266c6484fc877782f26af9f6c25ba",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220107.json.gz": "521cc661d9b76606ef7e0ff6d55e5bff1fc4cc5da16fa0d065a3ce6167789bed",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220108.json.gz": "f7c354b00893eb4f9a12274fbd1a29fac62192a2c4e1c51866a8cca2fd6a7359",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220109.json.gz": "a73836d22a04a1fbf6bebdac27d0ed30688d4625c4c2e3d8975a8cf8bebaf555",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220110.json.gz": "9f3c8189e7cafe5a1a7fd40eca6b7764dc06678fcfab0cc270546f44275dab3a",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220111.json.gz": "c96bdecfd19021c62162d4d5d9b650d3e03978c9aa81415a9f05b8c66b58e059",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220112.json.gz": "0ecf0bc95dc7f04ce6181acea93da204d06548be9dc31158d9415e8ab8c0ff77",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220113.json.gz": "eea35e895d865d3477d8d988459fc89c52e6178e2266cb8c9336517b816a808a",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220114.json.gz": "eb968009b2ea2ae5f01025ec380110fafe6211e1320244531a66ecb9f13c237d",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220115.json.gz": "bd2110eda3274fcf9a329cc831bfb44036d5c1ad1e3ad29af0f9ba6b5e818576",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220116.json.gz": "fb8bfaae102640826116dfc72a25c92ebbc60c80605055e33ca409df2e9545f7",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220117.json.gz": "21f754521a19ef3412364afd3a1cf9b357c829bb5158d48cb4dc61316d41b15e",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220118.json.gz": "ab5fc5a2286c422fede1c5cef388a0dbb54404a0649db91f68f9b2f4cdb00b7f",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220119.json.gz": "c221be4b121d43b3a3c1a54c9acd94a6c95bf0276bd7f31c689de848d1e09d38",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220120.json.gz": "da5530bea56f5e4b3b975b86f9210291cfc56adc5ee3aded5ba0557ce384668f",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220121.json.gz": "438cc6a19f5a59bdc98167b551148507d109a6e1efc71550a495870c139a3051",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220122.json.gz": "3791f6ac5b2881d4c93258d9a29049fea73f79cdfcf493802a96c3685c21e826",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220123.json.gz": "b8b6929eb5d5db03a460b464327a12c24b4eb27794334d69b2e19463dae530ea",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220124.json.gz": "1fbc5e972cb492cf37765745994429005b5b6b75cd17d0dff7a8fbb41a93585b",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220125.json.gz": "cc383c89265eed52b9a16f3439f7e13734bfe7307e1f1bda3e7c019a8f0a1a42",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220126.json.gz": "9d286ba92bd1863016f440aef12d3c3879022b562287b27bd116f0767390fabb",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220127.json.gz": "d567b2a231389d0de60b371983a9ee4ad78c7cae419d4cc7b209ef1a1958f3db",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220128.json.gz": "b44a38d56cc4fd61d9982932f67ddadbde24fa70032c828a39547f20dda57d0e",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220129.json.gz": "9ac6a170c6d645577ec69b71294f8b25aeea7cf39a3dc26e6b2cd74578093f9b",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220130.json.gz": "dfe14f4a03fd1270033a313f9e32c2c8bf0893cb40655a0090c6928a43eec6b7",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220131.json.gz": "dd75a484ffba9c0b0d538699547c8fa254a26ded73852048305406ee982f35ee",
+    "results/round3/feedback_envelope/pilot/records/rl-926091220132.json.gz": "553eb9a3066ee343f3c5706282f4af159b8ecbf54e5d04f679709939824e25cb",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220101.json.gz": "c6853f753c1d97e905abef29bf683ce082e72f26e0f5ce1929b10e494ae96fc3",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220102.json.gz": "af56178f410209f7ec592c5d27a7825c03382b70968d7381846e947426ea7e55",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220103.json.gz": "870e43341ba5cad727735a8cc3c9b22e8ef0abef46e9b859fcf712582d2840f1",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220104.json.gz": "dd418992618d9b6cb272bf5956bfab3a7eaeb5e1598c65af55ef006411a7ce2c",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220105.json.gz": "4cef72b9a85418b3f3eddb5ba90dd42fd00764b06c279fdc295fe873c4c8b282",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220106.json.gz": "5705b854b2494b8c4e6846a828220abc146e655e55e89c598d9103d7ead6c42b",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220107.json.gz": "8ab8c052340d744f8c1c2c08617623b6f3bd7f0c29fa64d64e2116bcf85fb760",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220108.json.gz": "1ae1a2fc77a266e0b814743d6f2fe23dc4fc0986b8d423263001babfbaf53b48",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220109.json.gz": "168fcddb38ae4bcc7a17bd9d5e496330ed60ae01074c097a66dc2346117cd306",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220110.json.gz": "cfacdd608eb32c7dd7281605ef270906ad6c50eb0ba0ac5ee140059b8850bad0",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220111.json.gz": "77bc7d3a67164c2675d309380ca38f158a36cf3ef8f7cc78012cc80ff845299d",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220112.json.gz": "f2f23d687927e5add760e272a5b727db290c92681125c8f6a4cba26c261aad9a",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220113.json.gz": "cdc3848fb7c3fc41b5a8d6c6386467da39f9dfac7815cd7b791aa94a05fb0953",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220114.json.gz": "d8dc440ad69434391baf8fdcf39e9702c7ed25fe2824265039d61ad1cf0e016c",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220115.json.gz": "4acf58ee2c49de1f1799f1b410f6cad6abdf47fccd58dc4ef6887c5ab2e89231",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220116.json.gz": "c6b5d77c64c0cdc29c2cd79f2a43efc84ee4d2de7b81024dd5072fff550aca4a",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220117.json.gz": "887ad03a70d3201c98d3fa4c4464eab77725217950a88410fffadd173f55acae",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220118.json.gz": "9720c45da5dc7674335f8bfb3f6eda707936f0b41d464bd27628b4f4db53eedd",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220119.json.gz": "cbbdfbd56a753d715afd4d67c13c692881444c4dc87f57034cfc62060a893821",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220120.json.gz": "0661e9a4a8119b0eb3340ca4ce754397d0194f20f245f5b2080d99815e9e2211",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220121.json.gz": "c8c4cab191596c7a7346c89b455c2ad8340299982636208b175bf5f15dfe6fe0",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220122.json.gz": "159ec3250a2f5c99294553c600716459a876f5a8e2ec2a7630ceaae44fa826ec",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220123.json.gz": "795115169daedfdbb73c48184118f13f6c9e12fed9e584b1354b39936d9674ac",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220124.json.gz": "154fe3ebc98de01067c3e7d34647597c29345b0808efe4731ab98c41a5ccee07",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220125.json.gz": "4e2e1c04f02c72302241d4f989cd63b07c7460efde6756997db342a45acbabf9",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220126.json.gz": "e8ef026ed101ccb5bacc4da47d317a3b92c91f0f2f46f505e8ecf8dab78f5b29",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220127.json.gz": "3d1aa45fd012ec88d19adb0a5a453be7f42d5ff46301ba19742bc2154455da7d",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220128.json.gz": "7601124288d82c91d3126e1ae39674f4e793f694a0d3928a7a44cb3e4be3a0d5",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220129.json.gz": "5343a6a7a4bd710a70a9aa4699b02170be9155722a5b8d9d29991e1c8ddbaa76",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220130.json.gz": "926f207a75df6fb9ae5de162f2c60556e9ce50a2f322ae1d00a3af42666e278e",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220131.json.gz": "c95ff503c31735037b3e2c69cc6f6297d4135108bf8e3c6944f88c53ac55d096",
+    "results/round3/feedback_envelope/pilot/records/candidate-926091220132.json.gz": "dec648b4c11f14a707bd7c4bbbb8da4fed5c759605ce20c7192d46af18c85a3d"
+  },
+  "averages": {
+    "baseline": {
+      "runs": 32,
+      "successful": 32,
+      "failed_clears": 0,
+      "mean_s": 3059.7283858125,
+      "p95_s": 3525.5381076,
+      "max_s": 3572.897778,
+      "mean_runtime_s": 1.0840539968794474,
+      "p95_runtime_s": 1.589856385003077,
+      "max_runtime_s": 1.7506354000070132,
+      "mean_cpu_s": 1.06201171875,
+      "mean_measurements": 116.21875,
+      "mean_movement_s": 2308.6346358125
+    },
+    "original": {
+      "runs": 32,
+      "successful": 32,
+      "failed_clears": 0,
+      "mean_s": 3075.8533858125,
+      "p95_s": 3549.9881076,
+      "max_s": 3578.897778,
+      "mean_runtime_s": 1.0871593624970046,
+      "p95_runtime_s": 1.4903493549951234,
+      "max_runtime_s": 2.095766199985519,
+      "mean_cpu_s": 1.0654296875,
+      "mean_measurements": 118.90625,
+      "mean_movement_s": 2308.6346358125
+    },
+    "rl": {
+      "runs": 32,
+      "successful": 32,
+      "failed_clears": 0,
+      "mean_s": 3121.71715303125,
+      "p95_s": 3617.61887885,
+      "max_s": 3670.678335,
+      "mean_runtime_s": 2.2344201968735433,
+      "p95_runtime_s": 2.871719894997659,
+      "max_runtime_s": 3.7022322000120766,
+      "mean_cpu_s": 2.0048828125,
+      "mean_measurements": 124.65625,
+      "mean_movement_s": 2327.06090303125
+    },
+    "candidate": {
+      "runs": 32,
+      "successful": 32,
+      "failed_clears": 0,
+      "mean_s": 3062.6712381875,
+      "p95_s": 3526.86515155,
+      "max_s": 3602.107686,
+      "mean_runtime_s": 2.752635974999066,
+      "p95_runtime_s": 3.96403196000756,
+      "max_runtime_s": 5.1638081000128295,
+      "mean_cpu_s": 2.70849609375,
+      "mean_measurements": 116.25,
+      "mean_movement_s": 2311.4524881875
+    }
+  },
+  "candidate_comparison": {
+    "pairs": 32,
+    "safe": true,
+    "mean_saved_s": -2.942852375000001,
+    "ci95_saved_s": [
+      -6.159509950781307,
+      -0.16367697109378015
+    ],
+    "mean_reduction_fraction": -0.0009618018346483186,
+    "wins": 14,
+    "losses": 17,
+    "ties": 1,
+    "worst_paired_regression_s": 31.19938400000001,
+    "p90_paired_regression_s": 9.611351300000033,
+    "pilot_expansion_gate": false,
+    "pareto_confirmation_gate": false,
+    "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
+  },
+  "lower_bound_groups": {
+    "feedback_envelope/pilot:baseline": {
+      "runs": 32,
+      "successful": 32,
+      "audit_passed": 32,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 32,
+      "mean_time_s": 3059.7283858125,
+      "mean_physical_lower_s": 1718.332539590053,
+      "mean_case_time_over_lower": 1.7902919074436723,
+      "sum_time_over_sum_lower": 1.7806380984570467,
+      "maximum_case_time_over_lower": 2.202276318954061
+    },
+    "feedback_envelope/pilot:candidate": {
+      "runs": 32,
+      "successful": 32,
+      "audit_passed": 32,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 32,
+      "mean_time_s": 3062.6712381875,
+      "mean_physical_lower_s": 1718.332539590053,
+      "mean_case_time_over_lower": 1.7918842985810266,
+      "sum_time_over_sum_lower": 1.7823507194469874,
+      "maximum_case_time_over_lower": 2.203795631417572
+    },
+    "feedback_envelope/pilot:original": {
+      "runs": 32,
+      "successful": 32,
+      "audit_passed": 32,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 32,
+      "mean_time_s": 3075.8533858125,
+      "mean_physical_lower_s": 1718.332539590053,
+      "mean_case_time_over_lower": 1.7995681543177542,
+      "sum_time_over_sum_lower": 1.7900221959052898,
+      "maximum_case_time_over_lower": 2.202276318954061
+    },
+    "feedback_envelope/pilot:rl": {
+      "runs": 32,
+      "successful": 32,
+      "audit_passed": 32,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 32,
+      "mean_time_s": 3121.71715303125,
+      "mean_physical_lower_s": 1718.332539590053,
+      "mean_case_time_over_lower": 1.8280777015293332,
+      "sum_time_over_sum_lower": 1.816713052396718,
+      "maximum_case_time_over_lower": 2.3158135278396745
+    }
+  },
+  "mechanism": {
+    "probe_entries": 520,
+    "reason_counts": {
+      "no_certified_plan_beats_parent_proxy": 362,
+      "selected": 87,
+      "geometry_budget": 71
+    },
+    "comparison_complete": 449,
+    "selected": 87,
+    "selected_cases": 31,
+    "changed_probe": 70,
+    "same_probe_new_tail": 17,
+    "execution_status": {
+      "completed": 87
+    },
+    "independently_checked_immediate_honored_tails": 87,
+    "actual_feedback": {
+      "direction": 78,
+      "near": 9
+    },
+    "selected_probe_index": {
+      "2": 18,
+      "0": 64,
+      "1": 5
+    },
+    "parent_itself_one_step_certified": 86,
+    "same_scale_parent_UB_gain_s": {
+      "n": 86,
+      "mean": 0.2376911162790696,
+      "median": 0.036932499999988266,
+      "max": 1.561468000000005,
+      "zero_count": 17
+    },
+    "mean_nominal_parent_proxy_minus_selected_UB_s": 0.6439307570409747,
+    "geometry_bins": 1794801,
+    "envelope_logged_wall_s_total": 53.629074299824424,
+    "measure_delta_distribution": {
+      "0": 27,
+      "1": 3,
+      "-1": 2
+    },
+    "same_clear_order_cases": 32,
+    "identical_coverage_action_cases": 21,
+    "actual_measure_phase_counts": {
+      "baseline": {
+        "coverage": 3134,
+        "active_localization": 521,
+        "shared_cross_bearing": 64
+      },
+      "candidate": {
+        "coverage": 3135,
+        "active_localization": 520,
+        "shared_cross_bearing": 65
+      }
+    }
+  },
+  "cost_delta_total_candidate_minus_baseline": {
+    "virtual_time_s": 94.17127600000003,
+    "movement_s": 90.17127600000003,
+    "detection_s": 5.0,
+    "switching_s": -1.0,
+    "optical_s": 0.0,
+    "removal_s": 0.0,
+    "measurement_count": 1
+  },
+  "cost_delta_mean_candidate_minus_baseline": {
+    "virtual_time_s": 2.942852375000001,
+    "movement_s": 2.817852375000001,
+    "detection_s": 0.15625,
+    "switching_s": -0.03125,
+    "optical_s": 0.0,
+    "removal_s": 0.0,
+    "measurement_count": 0.03125
+  },
+  "cases": [
+    {
+      "seed": 926091220101,
+      "case_sha256": "4402aa4b14a686d6942178bde2282823bf0dec567828a3a28d4afafceef24690",
+      "baseline_time_s": 3051.547785,
+      "candidate_time_s": 3037.218966,
+      "saved_s": 14.328819000000294,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -14.328819000000294,
+        "movement_s": -14.328819000000294,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1741.1959569034025,
+      "baseline_T_over_LB": 1.752558506066697,
+      "candidate_T_over_LB": 1.7443292088740463,
+      "first_action_divergence_ordinal": 23,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 13,
+        "selected": 3,
+        "geometry_budget": 3
+      }
+    },
+    {
+      "seed": 926091220102,
+      "case_sha256": "cdf33505a6233f10d1058a467db054045a66179208ef6a14068b8644b369a515",
+      "baseline_time_s": 2857.937778,
+      "candidate_time_s": 2859.90942,
+      "saved_s": -1.9716419999999744,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 1.9716419999999744,
+        "movement_s": 1.9716419999999744,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1297.719888009937,
+      "baseline_T_over_LB": 2.202276318954061,
+      "candidate_T_over_LB": 2.203795631417572,
+      "first_action_divergence_ordinal": 82,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 10,
+        "selected": 1
+      }
+    },
+    {
+      "seed": 926091220103,
+      "case_sha256": "2735a00e326a5c07772069e1d9a0b99cf140fb07b707bb594fdbb4d518693514",
+      "baseline_time_s": 2915.805945,
+      "candidate_time_s": 2919.498738,
+      "saved_s": -3.6927929999997104,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 3.6927929999997104,
+        "movement_s": 3.6927929999997104,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1743.0597119081801,
+      "baseline_T_over_LB": 1.6728089835820823,
+      "candidate_T_over_LB": 1.6749275530004284,
+      "first_action_divergence_ordinal": 113,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 9,
+        "selected": 2
+      }
+    },
+    {
+      "seed": 926091220104,
+      "case_sha256": "abd4f0ecdf2958c9670207b4a7838f01ad5c6b637f835eb456c7aa3c85cd4a93",
+      "baseline_time_s": 2906.677667,
+      "candidate_time_s": 2907.551292,
+      "saved_s": -0.8736250000001746,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 0.8736250000001746,
+        "movement_s": 0.8736250000001746,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1592.9763231553222,
+      "baseline_T_over_LB": 1.8246835340543766,
+      "candidate_T_over_LB": 1.8252319571459827,
+      "first_action_divergence_ordinal": 69,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 11,
+        "selected": 3,
+        "geometry_budget": 2
+      }
+    },
+    {
+      "seed": 926091220105,
+      "case_sha256": "2a0340eb1282270ac0f6b3b59946663207d4f7a4389516106a743bd778f1c158",
+      "baseline_time_s": 3138.652522,
+      "candidate_time_s": 3138.650556,
+      "saved_s": 0.0019659999998111743,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -0.0019659999998111743,
+        "movement_s": -0.0019659999998111743,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1734.9473033974361,
+      "baseline_T_over_LB": 1.8090765730196978,
+      "candidate_T_over_LB": 1.80907543984407,
+      "first_action_divergence_ordinal": 109,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 13,
+        "selected": 3
+      }
+    },
+    {
+      "seed": 926091220106,
+      "case_sha256": "c3eb4fddd95d57c1a3431df508c4f7757301dd96d30638c31f6f6be964acba1f",
+      "baseline_time_s": 3523.117914,
+      "candidate_time_s": 3525.607501,
+      "saved_s": -2.4895870000000286,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 2.4895870000000286,
+        "movement_s": 2.4895870000000286,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1900.7379495498255,
+      "baseline_T_over_LB": 1.853552676650888,
+      "candidate_T_over_LB": 1.854862476879052,
+      "first_action_divergence_ordinal": 85,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 14,
+        "selected": 2,
+        "geometry_budget": 2
+      }
+    },
+    {
+      "seed": 926091220107,
+      "case_sha256": "547ec6fc757dbae0cddb4e2ae98c8c3a04b412f3d224ac3dc9c714e2087491ec",
+      "baseline_time_s": 2954.072587,
+      "candidate_time_s": 2954.431193,
+      "saved_s": -0.3586059999997815,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 0.3586059999997815,
+        "movement_s": 0.3586059999997815,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1662.6890436317176,
+      "baseline_T_over_LB": 1.776683739099878,
+      "candidate_T_over_LB": 1.7768994174321393,
+      "first_action_divergence_ordinal": 86,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 12,
+        "selected": 2
+      }
+    },
+    {
+      "seed": 926091220108,
+      "case_sha256": "bcc46173ebc38488ccaf67d7fbb1595392d043cb14bae62f42894af3d5dae3f4",
+      "baseline_time_s": 3322.414912,
+      "candidate_time_s": 3332.434313,
+      "saved_s": -10.019401000000016,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 10.019401000000016,
+        "movement_s": 10.019401000000016,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1942.7284842440088,
+      "baseline_T_over_LB": 1.7101797492267072,
+      "candidate_T_over_LB": 1.7153371353881086,
+      "first_action_divergence_ordinal": 47,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 12,
+        "selected": 2,
+        "geometry_budget": 7
+      }
+    },
+    {
+      "seed": 926091220109,
+      "case_sha256": "89265691bde38c7c8385e75a194f690272057a7dc5c494438a9bd53762d2f2a5",
+      "baseline_time_s": 2844.772521,
+      "candidate_time_s": 2844.481546,
+      "saved_s": 0.2909749999998894,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -0.2909749999998894,
+        "movement_s": -0.2909749999998894,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1514.8794925342827,
+      "baseline_T_over_LB": 1.8778870101679859,
+      "candidate_T_over_LB": 1.877694932183279,
+      "first_action_divergence_ordinal": 43,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 10,
+        "selected": 4
+      }
+    },
+    {
+      "seed": 926091220110,
+      "case_sha256": "476d4c6ba83b8d693a536c049b1d9a3e67b6f1a2b6131d384aa42fbf00f55126",
+      "baseline_time_s": 2846.462758,
+      "candidate_time_s": 2864.593146,
+      "saved_s": -18.13038800000004,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 18.13038800000004,
+        "movement_s": 12.130388000000039,
+        "detection_s": 5.0,
+        "switching_s": 1.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 1
+      },
+      "old_lower_s": 1597.0252644325606,
+      "baseline_T_over_LB": 1.7823529917739764,
+      "candidate_T_over_LB": 1.7937055911371693,
+      "first_action_divergence_ordinal": 42,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 11,
+        "selected": 5,
+        "geometry_budget": 3
+      }
+    },
+    {
+      "seed": 926091220111,
+      "case_sha256": "ff190bae2e2089cd635c770fe965c78623f2c2020001ca0d963da975437dcc3a",
+      "baseline_time_s": 2925.48452,
+      "candidate_time_s": 2924.610389,
+      "saved_s": 0.874131000000034,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -0.874131000000034,
+        "movement_s": -0.874131000000034,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1650.824869001861,
+      "baseline_T_over_LB": 1.7721349944096958,
+      "candidate_T_over_LB": 1.7716054827598449,
+      "first_action_divergence_ordinal": 44,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 10,
+        "selected": 3
+      }
+    },
+    {
+      "seed": 926091220112,
+      "case_sha256": "4912278d8e1b64cfb66316faee5bb5a3745142f2a06884e1da18a4c93bfde1c3",
+      "baseline_time_s": 3528.496122,
+      "candidate_time_s": 3528.40228,
+      "saved_s": 0.09384200000022247,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -0.09384200000022247,
+        "movement_s": -0.09384200000022247,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1953.1148905385057,
+      "baseline_T_over_LB": 1.8065993655023211,
+      "candidate_T_over_LB": 1.8065513181496258,
+      "first_action_divergence_ordinal": 51,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 14,
+        "selected": 2,
+        "geometry_budget": 9
+      }
+    },
+    {
+      "seed": 926091220113,
+      "case_sha256": "8d1cb8d4485a6c9ad6d59bfc8a4b7da7528d756a68b3c311e289bd4699416049",
+      "baseline_time_s": 2933.894996,
+      "candidate_time_s": 2932.100855,
+      "saved_s": 1.794140999999854,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -1.794140999999854,
+        "movement_s": -1.794140999999854,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1725.2538252856152,
+      "baseline_T_over_LB": 1.7005584644997351,
+      "candidate_T_over_LB": 1.6995185357810128,
+      "first_action_divergence_ordinal": 47,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 13,
+        "selected": 3,
+        "geometry_budget": 1
+      }
+    },
+    {
+      "seed": 926091220114,
+      "case_sha256": "aa47fccda36ff0eee5608a9bff9b87cb6daeff6885f4df5ef75663b7285bb055",
+      "baseline_time_s": 2976.54212,
+      "candidate_time_s": 2979.195046,
+      "saved_s": -2.652925999999752,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 2.652925999999752,
+        "movement_s": 2.652925999999752,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1384.5987323925551,
+      "baseline_T_over_LB": 2.1497507186479963,
+      "candidate_T_over_LB": 2.1516667438023855,
+      "first_action_divergence_ordinal": 92,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 11,
+        "selected": 3
+      }
+    },
+    {
+      "seed": 926091220115,
+      "case_sha256": "029a21b77782aa56e7a1f4b9fb72de2283941a820cf056331db55ddabd070e61",
+      "baseline_time_s": 3258.220053,
+      "candidate_time_s": 3264.158957,
+      "saved_s": -5.938904000000093,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 5.938904000000093,
+        "movement_s": 5.938904000000093,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1955.2571918480633,
+      "baseline_T_over_LB": 1.666389499337633,
+      "candidate_T_over_LB": 1.6694269023067976,
+      "first_action_divergence_ordinal": 60,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 13,
+        "selected": 2
+      }
+    },
+    {
+      "seed": 926091220116,
+      "case_sha256": "e6b3cdb61818f27272b9e6d1383dc59098b33c0e966f4cfc813bc7d6d4da5c78",
+      "baseline_time_s": 2985.030521,
+      "candidate_time_s": 2986.246455,
+      "saved_s": -1.2159339999998338,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 1.2159339999998338,
+        "movement_s": 1.2159339999998338,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1626.1305999696215,
+      "baseline_T_over_LB": 1.8356646883440757,
+      "candidate_T_over_LB": 1.8364124351732805,
+      "first_action_divergence_ordinal": 82,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 10,
+        "selected": 3,
+        "geometry_budget": 3
+      }
+    },
+    {
+      "seed": 926091220117,
+      "case_sha256": "1873dac45b9a6536f5bc168d8f205e1db4c99d2d11f1a4322c80dc7e4f0302d9",
+      "baseline_time_s": 3301.782743,
+      "candidate_time_s": 3332.982127,
+      "saved_s": -31.19938400000001,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 31.19938400000001,
+        "movement_s": 36.19938400000001,
+        "detection_s": -5.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": -1
+      },
+      "old_lower_s": 1861.9727841777185,
+      "baseline_T_over_LB": 1.7732712159152897,
+      "candidate_T_over_LB": 1.790027306157381,
+      "first_action_divergence_ordinal": 69,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 13,
+        "selected": 2,
+        "geometry_budget": 4
+      }
+    },
+    {
+      "seed": 926091220118,
+      "case_sha256": "204b09374626345a13c4a584eb025550ce574e45ffa6d95a7e172c917be8ca18",
+      "baseline_time_s": 2736.895794,
+      "candidate_time_s": 2739.549927,
+      "saved_s": -2.6541330000000016,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 2.6541330000000016,
+        "movement_s": 2.6541330000000016,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1673.2903757273004,
+      "baseline_T_over_LB": 1.6356370858885747,
+      "candidate_T_over_LB": 1.637223261867652,
+      "first_action_divergence_ordinal": 48,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 9,
+        "selected": 6,
+        "geometry_budget": 2
+      }
+    },
+    {
+      "seed": 926091220119,
+      "case_sha256": "11f89396a47d0ae374e0c584956a0346710e08b44f3402b85cb57f35e5a3fed8",
+      "baseline_time_s": 2965.864603,
+      "candidate_time_s": 2967.78177,
+      "saved_s": -1.9171670000000631,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 1.9171670000000631,
+        "movement_s": 1.9171670000000631,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1638.1101690774715,
+      "baseline_T_over_LB": 1.8105403769456332,
+      "candidate_T_over_LB": 1.8117107298536306,
+      "first_action_divergence_ordinal": 64,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 10,
+        "selected": 2,
+        "geometry_budget": 3
+      }
+    },
+    {
+      "seed": 926091220120,
+      "case_sha256": "240b3781198158718dd2dcfdd3ab5121101e654026dad264bc1d8ec700149745",
+      "baseline_time_s": 2905.670409,
+      "candidate_time_s": 2905.657064,
+      "saved_s": 0.013344999999844731,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -0.013344999999844731,
+        "movement_s": -0.013344999999844731,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1721.623827102406,
+      "baseline_T_over_LB": 1.6877498808147966,
+      "candidate_T_over_LB": 1.6877421294118538,
+      "first_action_divergence_ordinal": 84,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 14,
+        "selected": 1
+      }
+    },
+    {
+      "seed": 926091220121,
+      "case_sha256": "724de18ff48c0cb854f567010a858b71970f838d8446e685b8e2649245c37853",
+      "baseline_time_s": 3320.762353,
+      "candidate_time_s": 3326.090121,
+      "saved_s": -5.3277680000001055,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 5.3277680000001055,
+        "movement_s": 5.3277680000001055,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 2087.4648459701352,
+      "baseline_T_over_LB": 1.590811150382127,
+      "candidate_T_over_LB": 1.5933634175545708,
+      "first_action_divergence_ordinal": 63,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 12,
+        "selected": 2,
+        "geometry_budget": 6
+      }
+    },
+    {
+      "seed": 926091220122,
+      "case_sha256": "079cf9d2686142fe229cdbbdb753bb4f50f52021147baa1a4eabab59f007ba8e",
+      "baseline_time_s": 3273.343467,
+      "candidate_time_s": 3268.24398,
+      "saved_s": 5.099486999999954,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -5.099486999999954,
+        "movement_s": -5.099486999999954,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1866.3334491788755,
+      "baseline_T_over_LB": 1.7538899431075203,
+      "candidate_T_over_LB": 1.7511575873207001,
+      "first_action_divergence_ordinal": 51,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 15,
+        "selected": 1,
+        "geometry_budget": 5
+      }
+    },
+    {
+      "seed": 926091220123,
+      "case_sha256": "b111a10dde124361c9c4d76570c4c4282e45ae0aa80a31d774f4c05cd1b3b633",
+      "baseline_time_s": 3154.777644,
+      "candidate_time_s": 3153.394069,
+      "saved_s": 1.383574999999837,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -1.383574999999837,
+        "movement_s": -1.383574999999837,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1702.3896899983495,
+      "baseline_T_over_LB": 1.8531465871383763,
+      "candidate_T_over_LB": 1.8523338619391294,
+      "first_action_divergence_ordinal": 43,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 13,
+        "selected": 1,
+        "geometry_budget": 5
+      }
+    },
+    {
+      "seed": 926091220124,
+      "case_sha256": "ac044d51c8bf5c3ba396676fdc7663939f915cd592418e31d488b09eeb6c8d22",
+      "baseline_time_s": 3572.897778,
+      "candidate_time_s": 3602.107686,
+      "saved_s": -29.209907999999814,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 29.209907999999814,
+        "movement_s": 24.209907999999814,
+        "detection_s": 5.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 1
+      },
+      "old_lower_s": 2093.2637815069456,
+      "baseline_T_over_LB": 1.706855012523965,
+      "candidate_T_over_LB": 1.7208092538661486,
+      "first_action_divergence_ordinal": 45,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 10,
+        "selected": 3,
+        "geometry_budget": 11
+      }
+    },
+    {
+      "seed": 926091220125,
+      "case_sha256": "e19b2f9f48909251fc778ab0dbc6e2d0de6f4619f2cdbaefebd5b42602edb13c",
+      "baseline_time_s": 3378.312361,
+      "candidate_time_s": 3378.312361,
+      "saved_s": 0.0,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 0.0,
+        "movement_s": 0.0,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1908.9847149874815,
+      "baseline_T_over_LB": 1.7696906289907899,
+      "candidate_T_over_LB": 1.7696906289907899,
+      "first_action_divergence_ordinal": null,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 14
+      }
+    },
+    {
+      "seed": 926091220126,
+      "case_sha256": "680545a82445b0517735c0ff6739329936b05b9d57f4bb676ae498fdfcb571dd",
+      "baseline_time_s": 2895.897106,
+      "candidate_time_s": 2898.927983,
+      "saved_s": -3.030877000000146,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 3.030877000000146,
+        "movement_s": 3.030877000000146,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1505.1921503936853,
+      "baseline_T_over_LB": 1.9239384853572175,
+      "candidate_T_over_LB": 1.9259521000304054,
+      "first_action_divergence_ordinal": 66,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 11,
+        "selected": 4
+      }
+    },
+    {
+      "seed": 926091220127,
+      "case_sha256": "87193445eca1e6bd2fb25c4dd8fa8a6592d110587d58db49a9c732d5acf0b342",
+      "baseline_time_s": 2979.668667,
+      "candidate_time_s": 2977.505804,
+      "saved_s": 2.1628630000000157,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -2.1628630000000157,
+        "movement_s": 4.837136999999984,
+        "detection_s": -5.0,
+        "switching_s": -2.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": -1
+      },
+      "old_lower_s": 1844.9761347193198,
+      "baseline_T_over_LB": 1.6150174579105345,
+      "candidate_T_over_LB": 1.6138451592778864,
+      "first_action_divergence_ordinal": 23,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 10,
+        "selected": 2,
+        "geometry_budget": 4
+      }
+    },
+    {
+      "seed": 926091220128,
+      "case_sha256": "0b425676c478b52b4e0762783430b27a0bfe838b75266f009902332567000359",
+      "baseline_time_s": 2792.144086,
+      "candidate_time_s": 2788.671957,
+      "saved_s": 3.472128999999768,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -3.472128999999768,
+        "movement_s": -3.4721289999999954,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1619.9624737878892,
+      "baseline_T_over_LB": 1.7235856578030775,
+      "candidate_T_over_LB": 1.7214423186478927,
+      "first_action_divergence_ordinal": 66,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 11,
+        "selected": 4
+      }
+    },
+    {
+      "seed": 926091220129,
+      "case_sha256": "41cb7ae85f6189ae5956d9c66db74426a257c66ba8360534d1d8a5487982640b",
+      "baseline_time_s": 3100.987181,
+      "candidate_time_s": 3100.669693,
+      "saved_s": 0.31748800000013944,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -0.31748800000013944,
+        "movement_s": -0.31748800000013944,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1767.368032317797,
+      "baseline_T_over_LB": 1.754579195898005,
+      "candidate_T_over_LB": 1.7543995570258548,
+      "first_action_divergence_ordinal": 100,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 11,
+        "selected": 4
+      }
+    },
+    {
+      "seed": 926091220130,
+      "case_sha256": "a2649b2791e78bfe23a9685d144b36ee6c018fb07692ffebb1b4e0ed4f0d0e1b",
+      "baseline_time_s": 2680.49485,
+      "candidate_time_s": 2679.010132,
+      "saved_s": 1.4847180000001572,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -1.4847180000001572,
+        "movement_s": -1.4847179999999298,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1557.780378318314,
+      "baseline_T_over_LB": 1.720714220892743,
+      "candidate_T_over_LB": 1.719761122483837,
+      "first_action_divergence_ordinal": 43,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 6,
+        "selected": 6,
+        "geometry_budget": 1
+      }
+    },
+    {
+      "seed": 926091220131,
+      "case_sha256": "14e0a8f4689dcda7b869a0a7fafa99aa056fa2a32d24f9de2cd9586bcd655f37",
+      "baseline_time_s": 3010.688471,
+      "candidate_time_s": 3015.497353,
+      "saved_s": -4.808882000000267,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": 4.808882000000267,
+        "movement_s": -0.191117999999733,
+        "detection_s": 5.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 1
+      },
+      "old_lower_s": 1579.7391961306553,
+      "baseline_T_over_LB": 1.905813616813617,
+      "candidate_T_over_LB": 1.9088577154925501,
+      "first_action_divergence_ordinal": 61,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": false,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 8,
+        "selected": 4
+      }
+    },
+    {
+      "seed": 926091220132,
+      "case_sha256": "6864c59b7c94d7e429e7ce516fea0d37af6f2323fcbd350ca851d53e86a6e9c1",
+      "baseline_time_s": 2871.990112,
+      "candidate_time_s": 2871.986942,
+      "saved_s": 0.003169999999954598,
+      "delta_candidate_minus_baseline": {
+        "virtual_time_s": -0.003169999999954598,
+        "movement_s": -0.003169999999954598,
+        "detection_s": 0.0,
+        "switching_s": 0.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0,
+        "measurement_count": 0
+      },
+      "old_lower_s": 1535.0497366844572,
+      "baseline_T_over_LB": 1.8709427084774404,
+      "candidate_T_over_LB": 1.8709406433977727,
+      "first_action_divergence_ordinal": 46,
+      "same_clear_channel_order": true,
+      "identical_coverage_actions": true,
+      "log_reasons": {
+        "no_certified_plan_beats_parent_proxy": 9,
+        "selected": 2
+      }
+    }
+  ],
+  "extreme_examples": [
+    {
+      "seed": 926091220117,
+      "case": {
+        "seed": 926091220117,
+        "case_sha256": "1873dac45b9a6536f5bc168d8f205e1db4c99d2d11f1a4322c80dc7e4f0302d9",
+        "baseline_time_s": 3301.782743,
+        "candidate_time_s": 3332.982127,
+        "saved_s": -31.19938400000001,
+        "delta_candidate_minus_baseline": {
+          "virtual_time_s": 31.19938400000001,
+          "movement_s": 36.19938400000001,
+          "detection_s": -5.0,
+          "switching_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0,
+          "measurement_count": -1
+        },
+        "old_lower_s": 1861.9727841777185,
+        "baseline_T_over_LB": 1.7732712159152897,
+        "candidate_T_over_LB": 1.790027306157381,
+        "first_action_divergence_ordinal": 69,
+        "same_clear_channel_order": true,
+        "identical_coverage_actions": true,
+        "log_reasons": {
+          "no_certified_plan_beats_parent_proxy": 13,
+          "selected": 2,
+          "geometry_budget": 4
+        }
+      },
+      "selected_plans": [
+        {
+          "seed": 926091220117,
+          "channel": 20,
+          "index": 0,
+          "after_actual_action_count": 67,
+          "current_position": [
+            71.65163562207485,
+            1382.4448805531244
+          ],
+          "parent_position": [
+            127.28347182155554,
+            1057.6097425111363
+          ],
+          "changed_probe": false,
+          "parent_nominal_complete_s": 82.3159259898685,
+          "parent_complete_upper_us": 81217752,
+          "actual_measure_result": "direction",
+          "actual_measure_ordinal": 68,
+          "actual_clear_ordinal": 69,
+          "actual_complete_time_s": 81.21702800000003,
+          "completion_bound_honored": true,
+          "plan_point": [
+            127.28347182155554,
+            1057.6097425111363
+          ],
+          "plan_upper_s": 81.217752,
+          "clear_point": [
+            117.43611391809027,
+            1038.4742564111937
+          ]
+        },
+        {
+          "seed": 926091220117,
+          "channel": 9,
+          "index": 0,
+          "after_actual_action_count": 86,
+          "current_position": [
+            231.54931114183705,
+            705.9239232463475
+          ],
+          "parent_position": [
+            311.6872999604149,
+            532.6726972595116
+          ],
+          "changed_probe": true,
+          "parent_nominal_complete_s": 107.169521077007,
+          "parent_complete_upper_us": 105431123,
+          "actual_measure_result": "direction",
+          "actual_measure_ordinal": 87,
+          "actual_clear_ordinal": 88,
+          "actual_complete_time_s": 105.03597799999989,
+          "completion_bound_honored": true,
+          "plan_point": [
+            365.3885563016862,
+            401.86083007936963
+          ],
+          "plan_upper_s": 105.251636,
+          "clear_point": [
+            441.19227162990603,
+            286.5876790271122
+          ]
+        }
+      ],
+      "illustrative_later_channel": 15,
+      "segments": {
+        "baseline": {
+          "from_previous_clear_ordinal": 90,
+          "entry_position": [
+            775.9760289294014,
+            819.938571000346
+          ],
+          "entry_time_s": 1913.577496,
+          "ending_clear_ordinal": 94,
+          "duration_s": 182.569072,
+          "measure_count": 3,
+          "actions": [
+            {
+              "action": "measure",
+              "position": [
+                923.1316761031707,
+                611.1576777959076
+              ],
+              "channel": 15,
+              "phase": "active_localization",
+              "virtual_time_s": 1970.663402,
+              "result": "direction",
+              "bearing_deg": 325.96
+            },
+            {
+              "action": "measure",
+              "position": [
+                1067.1973666613897,
+                450.9635244473792
+              ],
+              "channel": 15,
+              "phase": "active_localization",
+              "virtual_time_s": 2018.752654,
+              "result": "direction",
+              "bearing_deg": 333.43
+            },
+            {
+              "action": "measure",
+              "position": [
+                1345.1931210690207,
+                292.0428564255366
+              ],
+              "channel": 15,
+              "phase": "active_localization",
+              "virtual_time_s": 2087.795583,
+              "result": "direction",
+              "bearing_deg": 12.2
+            },
+            {
+              "action": "clear",
+              "position": [
+                1361.580890279928,
+                295.5312052118075
+              ],
+              "channel": 15,
+              "phase": "certified_clear",
+              "virtual_time_s": 2096.146568,
+              "result": "success"
+            }
+          ]
+        },
+        "candidate": {
+          "from_previous_clear_ordinal": 90,
+          "entry_position": [
+            768.3365485985518,
+            824.4623782753698
+          ],
+          "entry_time_s": 1914.882169,
+          "ending_clear_ordinal": 93,
+          "duration_s": 209.2862909999999,
+          "measure_count": 2,
+          "actions": [
+            {
+              "action": "measure",
+              "position": [
+                1102.2428146285397,
+                743.2045934170401
+              ],
+              "channel": 15,
+              "phase": "active_localization",
+              "virtual_time_s": 1989.612431,
+              "result": "direction",
+              "bearing_deg": 302.31
+            },
+            {
+              "action": "measure",
+              "position": [
+                1426.8491288483515,
+                272.0002462651695
+              ],
+              "channel": 15,
+              "phase": "active_localization",
+              "virtual_time_s": 2109.050676,
+              "result": "direction",
+              "bearing_deg": 149.79
+            },
+            {
+              "action": "clear",
+              "position": [
+                1383.2326606582255,
+                297.6291837476923
+              ],
+              "channel": 15,
+              "phase": "certified_clear",
+              "virtual_time_s": 2124.16846,
+              "result": "success"
+            }
+          ]
+        }
+      },
+      "later_segment_saved_s": -26.717218999999886,
+      "interpretation": "Worst: later channel15 uses one fewer measure but its movement cost rises; this channel has no selected envelope plan."
+    },
+    {
+      "seed": 926091220124,
+      "case": {
+        "seed": 926091220124,
+        "case_sha256": "ac044d51c8bf5c3ba396676fdc7663939f915cd592418e31d488b09eeb6c8d22",
+        "baseline_time_s": 3572.897778,
+        "candidate_time_s": 3602.107686,
+        "saved_s": -29.209907999999814,
+        "delta_candidate_minus_baseline": {
+          "virtual_time_s": 29.209907999999814,
+          "movement_s": 24.209907999999814,
+          "detection_s": 5.0,
+          "switching_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0,
+          "measurement_count": 1
+        },
+        "old_lower_s": 2093.2637815069456,
+        "baseline_T_over_LB": 1.706855012523965,
+        "candidate_T_over_LB": 1.7208092538661486,
+        "first_action_divergence_ordinal": 45,
+        "same_clear_channel_order": true,
+        "identical_coverage_actions": false,
+        "log_reasons": {
+          "no_certified_plan_beats_parent_proxy": 10,
+          "selected": 3,
+          "geometry_budget": 11
+        }
+      },
+      "selected_plans": [
+        {
+          "seed": 926091220124,
+          "channel": 2,
+          "index": 2,
+          "after_actual_action_count": 44,
+          "current_position": [
+            -1631.041681840022,
+            -33.19498079927516
+          ],
+          "parent_position": [
+            -1761.933112821973,
+            2.1188598650896946
+          ],
+          "changed_probe": true,
+          "parent_nominal_complete_s": 40.97949982736733,
+          "parent_complete_upper_us": 40923144,
+          "actual_measure_result": "near",
+          "actual_measure_ordinal": 45,
+          "actual_clear_ordinal": 46,
+          "actual_complete_time_s": 38.670165,
+          "completion_bound_honored": true,
+          "plan_point": [
+            -1769.5464902575784,
+            3.76279848229556
+          ],
+          "plan_upper_s": 40.921238,
+          "clear_point": [
+            -1769.5464902575784,
+            3.76279848229556
+          ]
+        },
+        {
+          "seed": 926091220124,
+          "channel": 4,
+          "index": 1,
+          "after_actual_action_count": 52,
+          "current_position": [
+            -1407.1404533848763,
+            -832.8316007085352
+          ],
+          "parent_position": [
+            -1394.5863691052155,
+            -855.5994654947274
+          ],
+          "changed_probe": true,
+          "parent_nominal_complete_s": 17.95845111125346,
+          "parent_complete_upper_us": 17539032,
+          "actual_measure_result": "direction",
+          "actual_measure_ordinal": 53,
+          "actual_clear_ordinal": 54,
+          "actual_complete_time_s": 17.53842199999997,
+          "completion_bound_honored": true,
+          "plan_point": [
+            -1389.7662730015736,
+            -864.9635671270918
+          ],
+          "plan_upper_s": 17.538422,
+          "clear_point": [
+            -1389.2336893885265,
+            -865.998228465621
+          ]
+        },
+        {
+          "seed": 926091220124,
+          "channel": 16,
+          "index": 2,
+          "after_actual_action_count": 70,
+          "current_position": [
+            335.3653185268744,
+            -1498.6472058331015
+          ],
+          "parent_position": [
+            364.18750602248525,
+            -1551.1255466276866
+          ],
+          "changed_probe": true,
+          "parent_nominal_complete_s": 24.655812031029384,
+          "parent_complete_upper_us": 24415877,
+          "actual_measure_result": "direction",
+          "actual_measure_ordinal": 71,
+          "actual_clear_ordinal": 72,
+          "actual_complete_time_s": 24.111452999999983,
+          "completion_bound_honored": true,
+          "plan_point": [
+            369.91027576465626,
+            -1560.1693455895465
+          ],
+          "plan_upper_s": 24.412395,
+          "clear_point": [
+            369.91027576465626,
+            -1560.1693455895465
+          ]
+        }
+      ],
+      "illustrative_later_channel": 1,
+      "segments": {
+        "baseline": {
+          "from_previous_clear_ordinal": 74,
+          "entry_position": [
+            365.8301714477111,
+            -1523.566380821209
+          ],
+          "entry_time_s": 1524.152155,
+          "ending_clear_ordinal": 89,
+          "duration_s": 322.266028,
+          "measure_count": 14,
+          "actions": [
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 1,
+              "phase": "coverage",
+              "virtual_time_s": 1635.049107,
+              "result": "direction",
+              "bearing_deg": 232.83
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 5,
+              "phase": "coverage",
+              "virtual_time_s": 1641.049107,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 6,
+              "phase": "coverage",
+              "virtual_time_s": 1647.049107,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 7,
+              "phase": "coverage",
+              "virtual_time_s": 1653.049107,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 8,
+              "phase": "coverage",
+              "virtual_time_s": 1659.049107,
+              "result": "direction",
+              "bearing_deg": 80.63
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 9,
+              "phase": "coverage",
+              "virtual_time_s": 1665.049107,
+              "result": "direction",
+              "bearing_deg": 68.76
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 10,
+              "phase": "coverage",
+              "virtual_time_s": 1671.049107,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 14,
+              "phase": "coverage",
+              "virtual_time_s": 1677.049107,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 15,
+              "phase": "coverage",
+              "virtual_time_s": 1683.049107,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 17,
+              "phase": "coverage",
+              "virtual_time_s": 1689.049107,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 18,
+              "phase": "coverage",
+              "virtual_time_s": 1695.049107,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.2127291303689,
+                -1156.2491263997044
+              ],
+              "channel": 19,
+              "phase": "coverage",
+              "virtual_time_s": 1701.049107,
+              "result": "direction",
+              "bearing_deg": 55.3
+            },
+            {
+              "action": "measure",
+              "position": [
+                577.1823252153675,
+                -1282.7247899280005
+              ],
+              "channel": 1,
+              "phase": "active_localization",
+              "virtual_time_s": 1748.316531,
+              "result": "direction",
+              "bearing_deg": 239.73
+            },
+            {
+              "action": "measure",
+              "position": [
+                338.76620619854737,
+                -1626.7898770065963
+              ],
+              "channel": 1,
+              "phase": "active_localization",
+              "virtual_time_s": 1837.035831,
+              "result": "direction",
+              "bearing_deg": 313.92
+            },
+            {
+              "action": "clear",
+              "position": [
+                353.9002213366023,
+                -1642.6355983522942
+              ],
+              "channel": 1,
+              "phase": "certified_clear",
+              "virtual_time_s": 1846.418183,
+              "result": "success"
+            }
+          ]
+        },
+        "candidate": {
+          "from_previous_clear_ordinal": 75,
+          "entry_position": [
+            362.3460434698017,
+            -1522.6052301463735
+          ],
+          "entry_time_s": 1530.841634,
+          "ending_clear_ordinal": 90,
+          "duration_s": 336.96966999999995,
+          "measure_count": 14,
+          "actions": [
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 1,
+              "phase": "coverage",
+              "virtual_time_s": 1642.251845,
+              "result": "direction",
+              "bearing_deg": 233.39
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 5,
+              "phase": "coverage",
+              "virtual_time_s": 1648.251845,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 6,
+              "phase": "coverage",
+              "virtual_time_s": 1654.251845,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 7,
+              "phase": "coverage",
+              "virtual_time_s": 1660.251845,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 8,
+              "phase": "coverage",
+              "virtual_time_s": 1666.251845,
+              "result": "direction",
+              "bearing_deg": 81.2
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 9,
+              "phase": "coverage",
+              "virtual_time_s": 1672.251845,
+              "result": "direction",
+              "bearing_deg": 67.77
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 10,
+              "phase": "coverage",
+              "virtual_time_s": 1678.251845,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 14,
+              "phase": "coverage",
+              "virtual_time_s": 1684.251845,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 15,
+              "phase": "coverage",
+              "virtual_time_s": 1690.251845,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 17,
+              "phase": "coverage",
+              "virtual_time_s": 1696.251845,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 18,
+              "phase": "coverage",
+              "virtual_time_s": 1702.251845,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                740.8728680416966,
+                -1155.8624599294533
+              ],
+              "channel": 19,
+              "phase": "coverage",
+              "virtual_time_s": 1708.251845,
+              "result": "direction",
+              "bearing_deg": 54.44
+            },
+            {
+              "action": "measure",
+              "position": [
+                580.2628784882021,
+                -1282.3986096746935
+              ],
+              "channel": 1,
+              "phase": "active_localization",
+              "virtual_time_s": 1755.145349,
+              "result": "direction",
+              "bearing_deg": 239.47
+            },
+            {
+              "action": "measure",
+              "position": [
+                317.01031146529726,
+                -1668.9629242966773
+              ],
+              "channel": 1,
+              "phase": "active_localization",
+              "virtual_time_s": 1853.683338,
+              "result": "direction",
+              "bearing_deg": 23.4
+            },
+            {
+              "action": "clear",
+              "position": [
+                358.83786641476604,
+                -1650.7023203568353
+              ],
+              "channel": 1,
+              "phase": "certified_clear",
+              "virtual_time_s": 1867.811304,
+              "result": "success"
+            }
+          ]
+        }
+      },
+      "later_segment_saved_s": -14.703641999999945,
+      "interpretation": "Second worst: changed clearance ends slightly relocate a later coverage station; observed bearing and channel1 localization path then differ."
+    },
+    {
+      "seed": 926091220101,
+      "case": {
+        "seed": 926091220101,
+        "case_sha256": "4402aa4b14a686d6942178bde2282823bf0dec567828a3a28d4afafceef24690",
+        "baseline_time_s": 3051.547785,
+        "candidate_time_s": 3037.218966,
+        "saved_s": 14.328819000000294,
+        "delta_candidate_minus_baseline": {
+          "virtual_time_s": -14.328819000000294,
+          "movement_s": -14.328819000000294,
+          "detection_s": 0.0,
+          "switching_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0,
+          "measurement_count": 0
+        },
+        "old_lower_s": 1741.1959569034025,
+        "baseline_T_over_LB": 1.752558506066697,
+        "candidate_T_over_LB": 1.7443292088740463,
+        "first_action_divergence_ordinal": 23,
+        "same_clear_channel_order": true,
+        "identical_coverage_actions": false,
+        "log_reasons": {
+          "no_certified_plan_beats_parent_proxy": 13,
+          "selected": 3,
+          "geometry_budget": 3
+        }
+      },
+      "selected_plans": [
+        {
+          "seed": 926091220101,
+          "channel": 1,
+          "index": 2,
+          "after_actual_action_count": 22,
+          "current_position": [
+            1192.787524096533,
+            -70.38800570527678
+          ],
+          "parent_position": [
+            1257.7908939815306,
+            -53.11625860383306
+          ],
+          "changed_probe": true,
+          "parent_nominal_complete_s": 29.85241352890848,
+          "parent_complete_upper_us": 30634788,
+          "actual_measure_result": "direction",
+          "actual_measure_ordinal": 23,
+          "actual_clear_ordinal": 24,
+          "actual_complete_time_s": 26.731719999999996,
+          "completion_bound_honored": true,
+          "plan_point": [
+            1262.928242953633,
+            -27.17278586427297
+          ],
+          "plan_upper_s": 29.418906,
+          "clear_point": [
+            1261.798531082338,
+            -27.761002084190856
+          ]
+        },
+        {
+          "seed": 926091220101,
+          "channel": 18,
+          "index": 0,
+          "after_actual_action_count": 68,
+          "current_position": [
+            724.9060363279174,
+            1545.8173591749498
+          ],
+          "parent_position": [
+            292.9562679315488,
+            937.437493131843
+          ],
+          "changed_probe": true,
+          "parent_nominal_complete_s": 163.2652835174546,
+          "parent_complete_upper_us": 163163136,
+          "actual_measure_result": "direction",
+          "actual_measure_ordinal": 69,
+          "actual_clear_ordinal": 70,
+          "actual_complete_time_s": 161.06749400000012,
+          "completion_bound_honored": true,
+          "plan_point": [
+            284.40279949777516,
+            955.5161595028019
+          ],
+          "plan_upper_s": 162.322552,
+          "clear_point": [
+            278.99611884221537,
+            942.8276344878562
+          ]
+        },
+        {
+          "seed": 926091220101,
+          "channel": 3,
+          "index": 0,
+          "after_actual_action_count": 88,
+          "current_position": [
+            -997.7582948324916,
+            1216.1123593899313
+          ],
+          "parent_position": [
+            -927.0604924837263,
+            781.4482190982943
+          ],
+          "changed_probe": true,
+          "parent_nominal_complete_s": 205.6082011870182,
+          "parent_complete_upper_us": 205523351,
+          "actual_measure_result": "direction",
+          "actual_measure_ordinal": 89,
+          "actual_clear_ordinal": 90,
+          "actual_complete_time_s": 204.6526960000001,
+          "completion_bound_honored": true,
+          "plan_point": [
+            -883.0237260367812,
+            273.6715466238162
+          ],
+          "plan_upper_s": 205.261773,
+          "clear_point": [
+            -885.1031787704788,
+            254.92216026846023
+          ]
+        }
+      ],
+      "illustrative_later_channel": 10,
+      "segments": {
+        "baseline": {
+          "from_previous_clear_ordinal": 70,
+          "entry_position": [
+            282.85757691203406,
+            934.7136025875083
+          ],
+          "entry_time_s": 1343.691969,
+          "ending_clear_ordinal": 88,
+          "duration_s": 392.3135380000001,
+          "measure_count": 17,
+          "actions": [
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 2,
+              "phase": "coverage",
+              "virtual_time_s": 1516.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 3,
+              "phase": "coverage",
+              "virtual_time_s": 1522.473219,
+              "result": "direction",
+              "bearing_deg": 244.78
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 4,
+              "phase": "coverage",
+              "virtual_time_s": 1528.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 5,
+              "phase": "coverage",
+              "virtual_time_s": 1534.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 6,
+              "phase": "coverage",
+              "virtual_time_s": 1540.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 8,
+              "phase": "coverage",
+              "virtual_time_s": 1546.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 9,
+              "phase": "coverage",
+              "virtual_time_s": 1552.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 10,
+              "phase": "coverage",
+              "virtual_time_s": 1558.473219,
+              "result": "direction",
+              "bearing_deg": 148.5
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 11,
+              "phase": "coverage",
+              "virtual_time_s": 1564.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 12,
+              "phase": "coverage",
+              "virtual_time_s": 1570.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 13,
+              "phase": "coverage",
+              "virtual_time_s": 1576.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 14,
+              "phase": "coverage",
+              "virtual_time_s": 1582.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 16,
+              "phase": "coverage",
+              "virtual_time_s": 1588.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 17,
+              "phase": "coverage",
+              "virtual_time_s": 1594.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -550.8561305946437,
+                952.6324471540579
+              ],
+              "channel": 20,
+              "phase": "coverage",
+              "virtual_time_s": 1600.473219,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -740.3976409134357,
+                1006.2409542903129
+              ],
+              "channel": 10,
+              "phase": "active_localization",
+              "virtual_time_s": 1645.868577,
+              "result": "direction",
+              "bearing_deg": 140.96
+            },
+            {
+              "action": "measure",
+              "position": [
+                -1044.0537641872518,
+                1211.904048733651
+              ],
+              "channel": 10,
+              "phase": "active_localization",
+              "virtual_time_s": 1724.218246,
+              "result": "direction",
+              "bearing_deg": 5.82
+            },
+            {
+              "action": "clear",
+              "position": [
+                -1010.2866244299314,
+                1215.2882932236698
+              ],
+              "channel": 10,
+              "phase": "certified_clear",
+              "virtual_time_s": 1736.005507,
+              "result": "success"
+            }
+          ]
+        },
+        "candidate": {
+          "from_previous_clear_ordinal": 70,
+          "entry_position": [
+            278.99611884221537,
+            942.8276344878562
+          ],
+          "entry_time_s": 1339.129852,
+          "ending_clear_ordinal": 88,
+          "duration_s": 378.53658199999995,
+          "measure_count": 17,
+          "actions": [
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 2,
+              "phase": "coverage",
+              "virtual_time_s": 1510.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 3,
+              "phase": "coverage",
+              "virtual_time_s": 1516.844251,
+              "result": "direction",
+              "bearing_deg": 244.55
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 4,
+              "phase": "coverage",
+              "virtual_time_s": 1522.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 5,
+              "phase": "coverage",
+              "virtual_time_s": 1528.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 6,
+              "phase": "coverage",
+              "virtual_time_s": 1534.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 8,
+              "phase": "coverage",
+              "virtual_time_s": 1540.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 9,
+              "phase": "coverage",
+              "virtual_time_s": 1546.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 10,
+              "phase": "coverage",
+              "virtual_time_s": 1552.844251,
+              "result": "direction",
+              "bearing_deg": 149.94
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 11,
+              "phase": "coverage",
+              "virtual_time_s": 1558.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 12,
+              "phase": "coverage",
+              "virtual_time_s": 1564.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 13,
+              "phase": "coverage",
+              "virtual_time_s": 1570.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 14,
+              "phase": "coverage",
+              "virtual_time_s": 1576.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 16,
+              "phase": "coverage",
+              "virtual_time_s": 1582.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 17,
+              "phase": "coverage",
+              "virtual_time_s": 1588.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -549.5255555995388,
+                951.9592694041152
+              ],
+              "channel": 20,
+              "phase": "coverage",
+              "virtual_time_s": 1594.844251,
+              "result": "no_signal"
+            },
+            {
+              "action": "measure",
+              "position": [
+                -742.0382146328049,
+                1001.7231215213928
+              ],
+              "channel": 10,
+              "phase": "active_localization",
+              "virtual_time_s": 1640.612361,
+              "result": "direction",
+              "bearing_deg": 138.93
+            },
+            {
+              "action": "measure",
+              "position": [
+                -946.9409150362819,
+                1155.5874083502338
+              ],
+              "channel": 10,
+              "phase": "active_localization",
+              "virtual_time_s": 1696.860516,
+              "result": "direction",
+              "bearing_deg": 129.87
+            },
+            {
+              "action": "clear",
+              "position": [
+                -997.7582948324916,
+                1216.1123593899313
+              ],
+              "channel": 10,
+              "phase": "certified_clear",
+              "virtual_time_s": 1717.666434,
+              "result": "success"
+            }
+          ]
+        }
+      },
+      "later_segment_saved_s": 13.776956000000155,
+      "interpretation": "Best: the larger saving occurs downstream at channel10 after a relocated coverage station, not solely at the certified local tail."
+    },
+    {
+      "seed": 926091220122,
+      "case": {
+        "seed": 926091220122,
+        "case_sha256": "079cf9d2686142fe229cdbbdb753bb4f50f52021147baa1a4eabab59f007ba8e",
+        "baseline_time_s": 3273.343467,
+        "candidate_time_s": 3268.24398,
+        "saved_s": 5.099486999999954,
+        "delta_candidate_minus_baseline": {
+          "virtual_time_s": -5.099486999999954,
+          "movement_s": -5.099486999999954,
+          "detection_s": 0.0,
+          "switching_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0,
+          "measurement_count": 0
+        },
+        "old_lower_s": 1866.3334491788755,
+        "baseline_T_over_LB": 1.7538899431075203,
+        "candidate_T_over_LB": 1.7511575873207001,
+        "first_action_divergence_ordinal": 51,
+        "same_clear_channel_order": true,
+        "identical_coverage_actions": false,
+        "log_reasons": {
+          "no_certified_plan_beats_parent_proxy": 15,
+          "selected": 1,
+          "geometry_budget": 5
+        }
+      },
+      "selected_plans": [
+        {
+          "seed": 926091220122,
+          "channel": 20,
+          "index": 2,
+          "after_actual_action_count": 50,
+          "current_position": [
+            1107.2898332588172,
+            -1386.1135338124218
+          ],
+          "parent_position": [
+            1094.7053291784011,
+            -1404.9653767488423
+          ],
+          "changed_probe": true,
+          "parent_nominal_complete_s": 18.5050766014815,
+          "parent_complete_upper_us": 18108701,
+          "actual_measure_result": "direction",
+          "actual_measure_ordinal": 51,
+          "actual_clear_ordinal": 52,
+          "actual_complete_time_s": 17.90950900000007,
+          "completion_bound_honored": true,
+          "plan_point": [
+            1090.5104944849272,
+            -1411.2493243943184
+          ],
+          "plan_upper_s": 18.1087,
+          "clear_point": [
+            1085.2289775101844,
+            -1418.9354165379596
+          ]
+        }
+      ],
+      "illustrative_later_channel": 16,
+      "segments": {
+        "baseline": {
+          "from_previous_clear_ordinal": 99,
+          "entry_position": [
+            -1619.1647112465114,
+            172.4723892217177
+          ],
+          "entry_time_s": 2297.540067,
+          "ending_clear_ordinal": 101,
+          "duration_s": 58.205311000000165,
+          "measure_count": 1,
+          "actions": [
+            {
+              "action": "measure",
+              "position": [
+                -1619.1647112465114,
+                172.4723892217177
+              ],
+              "channel": 16,
+              "phase": "shared_cross_bearing",
+              "virtual_time_s": 2303.540067,
+              "result": "direction",
+              "bearing_deg": 358.56
+            },
+            {
+              "action": "clear",
+              "position": [
+                -1383.2198012374222,
+                166.26488090860417
+              ],
+              "channel": 16,
+              "phase": "certified_clear",
+              "virtual_time_s": 2355.745378,
+              "result": "success"
+            }
+          ]
+        },
+        "candidate": {
+          "from_previous_clear_ordinal": 99,
+          "entry_position": [
+            -1617.1956202435845,
+            156.22305165783905
+          ],
+          "entry_time_s": 2294.448896,
+          "ending_clear_ordinal": 101,
+          "duration_s": 54.93543600000021,
+          "measure_count": 1,
+          "actions": [
+            {
+              "action": "measure",
+              "position": [
+                -1617.1956202435845,
+                156.22305165783905
+              ],
+              "channel": 16,
+              "phase": "shared_cross_bearing",
+              "virtual_time_s": 2300.448896,
+              "result": "direction",
+              "bearing_deg": 4.2
+            },
+            {
+              "action": "clear",
+              "position": [
+                -1398.091159122254,
+                172.0754687608394
+              ],
+              "channel": 16,
+              "phase": "certified_clear",
+              "virtual_time_s": 2349.384332,
+              "result": "success"
+            }
+          ]
+        }
+      },
+      "later_segment_saved_s": 3.2698749999999563,
+      "interpretation": "Second best: later shared channel16 measurement at the previous clear point changes bearing and clearance travel."
+    }
+  ],
+  "selected_plan_checks": [
+    {
+      "seed": 926091220101,
+      "channel": 1,
+      "index": 2,
+      "after_actual_action_count": 22,
+      "current_position": [
+        1192.787524096533,
+        -70.38800570527678
+      ],
+      "parent_position": [
+        1257.7908939815306,
+        -53.11625860383306
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 29.85241352890848,
+      "parent_complete_upper_us": 30634788,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 23,
+      "actual_clear_ordinal": 24,
+      "actual_complete_time_s": 26.731719999999996,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1262.928242953633,
+        -27.17278586427297
+      ],
+      "plan_upper_s": 29.418906,
+      "clear_point": [
+        1261.798531082338,
+        -27.761002084190856
+      ]
+    },
+    {
+      "seed": 926091220101,
+      "channel": 18,
+      "index": 0,
+      "after_actual_action_count": 68,
+      "current_position": [
+        724.9060363279174,
+        1545.8173591749498
+      ],
+      "parent_position": [
+        292.9562679315488,
+        937.437493131843
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 163.2652835174546,
+      "parent_complete_upper_us": 163163136,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 69,
+      "actual_clear_ordinal": 70,
+      "actual_complete_time_s": 161.06749400000012,
+      "completion_bound_honored": true,
+      "plan_point": [
+        284.40279949777516,
+        955.5161595028019
+      ],
+      "plan_upper_s": 162.322552,
+      "clear_point": [
+        278.99611884221537,
+        942.8276344878562
+      ]
+    },
+    {
+      "seed": 926091220101,
+      "channel": 3,
+      "index": 0,
+      "after_actual_action_count": 88,
+      "current_position": [
+        -997.7582948324916,
+        1216.1123593899313
+      ],
+      "parent_position": [
+        -927.0604924837263,
+        781.4482190982943
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 205.6082011870182,
+      "parent_complete_upper_us": 205523351,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 89,
+      "actual_clear_ordinal": 90,
+      "actual_complete_time_s": 204.6526960000001,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -883.0237260367812,
+        273.6715466238162
+      ],
+      "plan_upper_s": 205.261773,
+      "clear_point": [
+        -885.1031787704788,
+        254.92216026846023
+      ]
+    },
+    {
+      "seed": 926091220102,
+      "channel": 15,
+      "index": 0,
+      "after_actual_action_count": 81,
+      "current_position": [
+        551.0063896338125,
+        -981.6547886905427
+      ],
+      "parent_position": [
+        614.1144997568038,
+        -900.5341731819731
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 34.39309014746326,
+      "parent_complete_upper_us": 33791264,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 82,
+      "actual_clear_ordinal": 83,
+      "actual_complete_time_s": 33.617614,
+      "completion_bound_honored": true,
+      "plan_point": [
+        619.6097442760638,
+        -891.7521093428702
+      ],
+      "plan_upper_s": 33.781474,
+      "clear_point": [
+        619.6097442760638,
+        -891.7521093428702
+      ]
+    },
+    {
+      "seed": 926091220103,
+      "channel": 5,
+      "index": 0,
+      "after_actual_action_count": 112,
+      "current_position": [
+        -890.5694578836708,
+        -443.1108521387549
+      ],
+      "parent_position": [
+        -323.0231423897119,
+        -331.88925623028223
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 129.56938104064795,
+      "parent_complete_upper_us": 129024579,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 113,
+      "actual_clear_ordinal": 114,
+      "actual_complete_time_s": 128.7263899999998,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -313.3901282995679,
+        -327.5617417166884
+      ],
+      "plan_upper_s": 128.970556,
+      "clear_point": [
+        -313.3901282995679,
+        -327.5617417166884
+      ]
+    },
+    {
+      "seed": 926091220103,
+      "channel": 1,
+      "index": 0,
+      "after_actual_action_count": 114,
+      "current_position": [
+        -313.3901282995679,
+        -327.5617417166884
+      ],
+      "parent_position": [
+        -491.4979486063254,
+        -684.2051685912421
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 94.66659017932817,
+      "parent_complete_upper_us": 94659392,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 115,
+      "actual_clear_ordinal": 116,
+      "actual_complete_time_s": 93.88162499999999,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -491.4979486063254,
+        -684.2051685912421
+      ],
+      "plan_upper_s": 94.659392,
+      "clear_point": [
+        -506.9723125015716,
+        -687.2144824880392
+      ]
+    },
+    {
+      "seed": 926091220104,
+      "channel": 17,
+      "index": 0,
+      "after_actual_action_count": 68,
+      "current_position": [
+        -1063.986156641226,
+        1347.7034142418115
+      ],
+      "parent_position": [
+        -832.4861157552375,
+        1203.0481938895737
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 133.34699165905275,
+      "parent_complete_upper_us": 131889838,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 69,
+      "actual_clear_ordinal": 70,
+      "actual_complete_time_s": 130.6299979999999,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -741.7743672464233,
+        1245.1359436806192
+      ],
+      "plan_upper_s": 130.770144,
+      "clear_point": [
+        -525.6017414060067,
+        1100.6604872177036
+      ]
+    },
+    {
+      "seed": 926091220104,
+      "channel": 10,
+      "index": 0,
+      "after_actual_action_count": 90,
+      "current_position": [
+        1387.856262390191,
+        886.5660655486824
+      ],
+      "parent_position": [
+        1423.455642269919,
+        663.9784291164972
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 57.863582377031435,
+      "parent_complete_upper_us": 57428913,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 91,
+      "actual_clear_ordinal": 92,
+      "actual_complete_time_s": 57.149640999999974,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1427.2047625583537,
+        654.1248625448206
+      ],
+      "plan_upper_s": 57.386724,
+      "clear_point": [
+        1427.2047625583537,
+        654.1248625448206
+      ]
+    },
+    {
+      "seed": 926091220104,
+      "channel": 14,
+      "index": 0,
+      "after_actual_action_count": 103,
+      "current_position": [
+        1126.03600025177,
+        13.835621705500705
+      ],
+      "parent_position": [
+        329.5723044776037,
+        24.704483838816724
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 173.10213895064726,
+      "parent_complete_upper_us": 172392988,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 104,
+      "actual_clear_ordinal": 105,
+      "actual_complete_time_s": 172.20066499999984,
+      "completion_bound_honored": true,
+      "plan_point": [
+        320.0669055142274,
+        21.26357744979687
+      ],
+      "plan_upper_s": 172.264276,
+      "clear_point": [
+        320.0669055142274,
+        21.26357744979687
+      ]
+    },
+    {
+      "seed": 926091220105,
+      "channel": 7,
+      "index": 0,
+      "after_actual_action_count": 108,
+      "current_position": [
+        1121.5552405867363,
+        -10.59407813017006
+      ],
+      "parent_position": [
+        965.2819188649669,
+        -219.7009322102382
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 96.53769178937381,
+      "parent_complete_upper_us": 96614180,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 109,
+      "actual_clear_ordinal": 110,
+      "actual_complete_time_s": 95.53274299999975,
+      "completion_bound_honored": true,
+      "plan_point": [
+        864.39762923347,
+        -289.40887982363864
+      ],
+      "plan_upper_s": 96.353878,
+      "clear_point": [
+        851.0629420905909,
+        -330.67247875069455
+      ]
+    },
+    {
+      "seed": 926091220105,
+      "channel": 20,
+      "index": 0,
+      "after_actual_action_count": 110,
+      "current_position": [
+        851.0629420905909,
+        -330.67247875069455
+      ],
+      "parent_position": [
+        766.3647198175642,
+        -348.9899233389001
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 31.21434136596423,
+      "parent_complete_upper_us": 30709294,
+      "actual_measure_result": "near",
+      "actual_measure_ordinal": 111,
+      "actual_clear_ordinal": 112,
+      "actual_complete_time_s": 30.438546000000315,
+      "completion_bound_honored": true,
+      "plan_point": [
+        756.3262868769882,
+        -352.3840732793733
+      ],
+      "plan_upper_s": 30.697233,
+      "clear_point": [
+        756.3262868769882,
+        -352.3840732793733
+      ]
+    },
+    {
+      "seed": 926091220105,
+      "channel": 3,
+      "index": 0,
+      "after_actual_action_count": 112,
+      "current_position": [
+        756.3262868769882,
+        -352.3840732793733
+      ],
+      "parent_position": [
+        854.470545922415,
+        -589.2043930272497
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 65.62996710837353,
+      "parent_complete_upper_us": 65408915,
+      "actual_measure_result": "near",
+      "actual_measure_ordinal": 113,
+      "actual_clear_ordinal": 114,
+      "actual_complete_time_s": 64.52958499999977,
+      "completion_bound_honored": true,
+      "plan_point": [
+        855.3618200444946,
+        -601.0351836071529
+      ],
+      "plan_upper_s": 65.295311,
+      "clear_point": [
+        855.3618200444946,
+        -601.0351836071529
+      ]
+    },
+    {
+      "seed": 926091220106,
+      "channel": 7,
+      "index": 2,
+      "after_actual_action_count": 84,
+      "current_position": [
+        1070.0406371083059,
+        1322.4598220657795
+      ],
+      "parent_position": [
+        1099.3988659705913,
+        1370.1973435583755
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 24.441723415409967,
+      "parent_complete_upper_us": 24074635,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 85,
+      "actual_clear_ordinal": 86,
+      "actual_complete_time_s": 23.76778800000011,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1102.769152394937,
+        1376.1564012822219
+      ],
+      "plan_upper_s": 24.073816,
+      "clear_point": [
+        1105.790737199594,
+        1381.287059059653
+      ]
+    },
+    {
+      "seed": 926091220106,
+      "channel": 8,
+      "index": 0,
+      "after_actual_action_count": 99,
+      "current_position": [
+        572.6791301785,
+        966.7118704949404
+      ],
+      "parent_position": [
+        -290.81490586539627,
+        1182.7507553416162
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 192.51834950080197,
+      "parent_complete_upper_us": 192232751,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 100,
+      "actual_clear_ordinal": 101,
+      "actual_complete_time_s": 190.58896900000036,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -278.0260923537593,
+        1198.127564144634
+      ],
+      "plan_upper_s": 191.679374,
+      "clear_point": [
+        -286.86955212527204,
+        1184.404717857431
+      ]
+    },
+    {
+      "seed": 926091220107,
+      "channel": 12,
+      "index": 0,
+      "after_actual_action_count": 85,
+      "current_position": [
+        821.4698609363627,
+        327.30261358911014
+      ],
+      "parent_position": [
+        723.1357082660521,
+        353.52991419099646
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 34.17456623432608,
+      "parent_complete_upper_us": 33554648,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 86,
+      "actual_clear_ordinal": 87,
+      "actual_complete_time_s": 33.41399000000001,
+      "completion_bound_honored": true,
+      "plan_point": [
+        713.2437734470774,
+        356.4022390374152
+      ],
+      "plan_upper_s": 33.554196,
+      "clear_point": [
+        713.2437734470774,
+        356.4022390374152
+      ]
+    },
+    {
+      "seed": 926091220107,
+      "channel": 8,
+      "index": 0,
+      "after_actual_action_count": 103,
+      "current_position": [
+        487.3840314380739,
+        1104.3968334943486
+      ],
+      "parent_position": [
+        171.3945250353424,
+        926.6762250126701
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 175.7262852587598,
+      "parent_complete_upper_us": 175333113,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 104,
+      "actual_clear_ordinal": 105,
+      "actual_complete_time_s": 174.47832900000003,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -192.02775215879197,
+        733.140046511222
+      ],
+      "plan_upper_s": 174.886153,
+      "clear_point": [
+        -232.6297696068028,
+        718.4972898565011
+      ]
+    },
+    {
+      "seed": 926091220108,
+      "channel": 7,
+      "index": 0,
+      "after_actual_action_count": 46,
+      "current_position": [
+        95.05328295885766,
+        1590.8401305972652
+      ],
+      "parent_position": [
+        326.01209323268176,
+        1437.3305173430213
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 68.54271822405946,
+      "parent_complete_upper_us": 68499331,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 47,
+      "actual_clear_ordinal": 48,
+      "actual_complete_time_s": 68.24929199999997,
+      "completion_bound_honored": true,
+      "plan_point": [
+        336.95192280482047,
+        1433.20535043083
+      ],
+      "plan_upper_s": 68.442235,
+      "clear_point": [
+        339.26187790869716,
+        1432.2011932949752
+      ]
+    },
+    {
+      "seed": 926091220108,
+      "channel": 5,
+      "index": 1,
+      "after_actual_action_count": 49,
+      "current_position": [
+        577.5812358072785,
+        1369.7785414532657
+      ],
+      "parent_position": [
+        612.8550073694898,
+        1375.8430265767895
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 19.844370375307754,
+      "parent_complete_upper_us": 19269126,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 50,
+      "actual_clear_ordinal": 51,
+      "actual_complete_time_s": 19.267795999999976,
+      "completion_bound_honored": true,
+      "plan_point": [
+        622.921779621785,
+        1377.1514341834747
+      ],
+      "plan_upper_s": 19.267796,
+      "clear_point": [
+        622.5222492635945,
+        1377.0995060767214
+      ]
+    },
+    {
+      "seed": 926091220109,
+      "channel": 12,
+      "index": 0,
+      "after_actual_action_count": 42,
+      "current_position": [
+        549.5192289352418,
+        -951.7952242519121
+      ],
+      "parent_position": [
+        287.2569290782716,
+        -822.9144464101362
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 147.0270637178674,
+      "parent_complete_upper_us": 146615460,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 43,
+      "actual_clear_ordinal": 44,
+      "actual_complete_time_s": 145.84760500000004,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -24.709136975498915,
+        -688.5989996866508
+      ],
+      "plan_upper_s": 146.185685,
+      "clear_point": [
+        -67.11576663753588,
+        -684.9274790515435
+      ]
+    },
+    {
+      "seed": 926091220109,
+      "channel": 6,
+      "index": 0,
+      "after_actual_action_count": 60,
+      "current_position": [
+        -548.4733978370642,
+        -979.6098465371083
+      ],
+      "parent_position": [
+        -940.4840320463221,
+        -421.1776478817463
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 157.60952136577922,
+      "parent_complete_upper_us": 157521138,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 61,
+      "actual_clear_ordinal": 62,
+      "actual_complete_time_s": 157.0790780000001,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -940.4840320463221,
+        -421.1776478817463
+      ],
+      "plan_upper_s": 157.521138,
+      "clear_point": [
+        -953.9806085059446,
+        -375.00377508058995
+      ]
+    },
+    {
+      "seed": 926091220109,
+      "channel": 20,
+      "index": 0,
+      "after_actual_action_count": 118,
+      "current_position": [
+        551.009479209716,
+        981.6874470598358
+      ],
+      "parent_position": [
+        412.10884714730764,
+        386.86343682590245
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 136.54423264320602,
+      "parent_complete_upper_us": 136119491,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 119,
+      "actual_clear_ordinal": 120,
+      "actual_complete_time_s": 135.66105700000026,
+      "completion_bound_honored": true,
+      "plan_point": [
+        412.10884714730764,
+        386.86343682590245
+      ],
+      "plan_upper_s": 136.119491,
+      "clear_point": [
+        411.97503088603844,
+        369.3851444987045
+      ]
+    },
+    {
+      "seed": 926091220109,
+      "channel": 16,
+      "index": 0,
+      "after_actual_action_count": 120,
+      "current_position": [
+        411.97503088603844,
+        369.3851444987045
+      ],
+      "parent_position": [
+        338.3102795883847,
+        290.81649598053906
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 34.839247696082474,
+      "parent_complete_upper_us": 34824327,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 121,
+      "actual_clear_ordinal": 122,
+      "actual_complete_time_s": 34.66706199999999,
+      "completion_bound_honored": true,
+      "plan_point": [
+        329.7840313157923,
+        284.8123109235046
+      ],
+      "plan_upper_s": 34.788429,
+      "clear_point": [
+        329.672793136325,
+        284.42450516387015
+      ]
+    },
+    {
+      "seed": 926091220110,
+      "channel": 5,
+      "index": 0,
+      "after_actual_action_count": 41,
+      "current_position": [
+        -549.5192289352415,
+        951.7952242519123
+      ],
+      "parent_position": [
+        -260.97697850057614,
+        871.5422135982234
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 112.72655936946549,
+      "parent_complete_upper_us": 112844538,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 42,
+      "actual_clear_ordinal": 43,
+      "actual_complete_time_s": 112.10567399999996,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -93.57800350932436,
+        775.2469749612038
+      ],
+      "plan_upper_s": 112.334644,
+      "clear_point": [
+        -77.40451579411443,
+        778.9824062091644
+      ]
+    },
+    {
+      "seed": 926091220110,
+      "channel": 16,
+      "index": 0,
+      "after_actual_action_count": 43,
+      "current_position": [
+        -77.40451579411443,
+        778.9824062091644
+      ],
+      "parent_position": [
+        -7.144454519366118,
+        1061.4849757661173
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 74.56334319241796,
+      "parent_complete_upper_us": 73457969,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 44,
+      "actual_clear_ordinal": 45,
+      "actual_complete_time_s": 72.95799399999999,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -2.4219343523597807,
+        1065.1532806617283
+      ],
+      "plan_upper_s": 73.408091,
+      "clear_point": [
+        -11.645146997947464,
+        1075.6307215454076
+      ]
+    },
+    {
+      "seed": 926091220110,
+      "channel": 17,
+      "index": 0,
+      "after_actual_action_count": 77,
+      "current_position": [
+        1125.6411795695612,
+        13.641863274843205
+      ],
+      "parent_position": [
+        722.5922294639136,
+        -152.8050619735876
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 100.90510834413621,
+      "parent_complete_upper_us": 100572541,
+      "actual_measure_result": "near",
+      "actual_measure_ordinal": 78,
+      "actual_clear_ordinal": 79,
+      "actual_complete_time_s": 100.32440799999995,
+      "completion_bound_honored": true,
+      "plan_point": [
+        713.0047198275087,
+        -157.2452325648556
+      ],
+      "plan_upper_s": 100.570715,
+      "clear_point": [
+        713.0047198275087,
+        -157.2452325648556
+      ]
+    },
+    {
+      "seed": 926091220110,
+      "channel": 18,
+      "index": 2,
+      "after_actual_action_count": 98,
+      "current_position": [
+        -499.84024004460304,
+        -1412.5039158642487
+      ],
+      "parent_position": [
+        -533.762970268081,
+        -1397.7041674827512
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 20.174529281322805,
+      "parent_complete_upper_us": 19642140,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 99,
+      "actual_clear_ordinal": 100,
+      "actual_complete_time_s": 19.47406500000011,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -543.4285470916202,
+        -1393.956484417692
+      ],
+      "plan_upper_s": 19.640746,
+      "clear_point": [
+        -543.4285470916202,
+        -1393.956484417692
+      ]
+    },
+    {
+      "seed": 926091220110,
+      "channel": 7,
+      "index": 1,
+      "after_actual_action_count": 115,
+      "current_position": [
+        -854.3075006481738,
+        -1322.8230510369167
+      ],
+      "parent_position": [
+        -1036.3259467664993,
+        -1406.0257592327189
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 56.60586669639877,
+      "parent_complete_upper_us": 56857896,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 116,
+      "actual_clear_ordinal": 117,
+      "actual_complete_time_s": 54.707468999999946,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1043.7418221579755,
+        -1430.9939456888992
+      ],
+      "plan_upper_s": 56.322767,
+      "clear_point": [
+        -1048.7607762359396,
+        -1432.9714706994096
+      ]
+    },
+    {
+      "seed": 926091220111,
+      "channel": 17,
+      "index": 2,
+      "after_actual_action_count": 43,
+      "current_position": [
+        -81.64276878652899,
+        1434.570507901733
+      ],
+      "parent_position": [
+        1.4553329792656924,
+        1620.4816653791938
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 53.59151279835905,
+      "parent_complete_upper_us": 53555319,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 44,
+      "actual_clear_ordinal": 45,
+      "actual_complete_time_s": 52.07651700000008,
+      "completion_bound_honored": true,
+      "plan_point": [
+        5.062836595791431,
+        1626.2550664489095
+      ],
+      "plan_upper_s": 53.542763,
+      "clear_point": [
+        5.062836595791431,
+        1626.2550664489095
+      ]
+    },
+    {
+      "seed": 926091220111,
+      "channel": 15,
+      "index": 0,
+      "after_actual_action_count": 85,
+      "current_position": [
+        1260.6899952504266,
+        -1012.0423540714139
+      ],
+      "parent_position": [
+        807.9320926115498,
+        -802.7706671821553
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 116.7515352148693,
+      "parent_complete_upper_us": 117001675,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 86,
+      "actual_clear_ordinal": 87,
+      "actual_complete_time_s": 114.9446190000001,
+      "completion_bound_honored": true,
+      "plan_point": [
+        807.0630669602931,
+        -794.9775605919552
+      ],
+      "plan_upper_s": 116.400172,
+      "clear_point": [
+        792.0088286100801,
+        -787.437569538382
+      ]
+    },
+    {
+      "seed": 926091220111,
+      "channel": 2,
+      "index": 0,
+      "after_actual_action_count": 104,
+      "current_position": [
+        -286.0560376834177,
+        -1439.0068477628365
+      ],
+      "parent_position": [
+        -114.58738832463898,
+        -929.2517032596908
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 123.6303662197554,
+      "parent_complete_upper_us": 122472715,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 105,
+      "actual_clear_ordinal": 106,
+      "actual_complete_time_s": 122.03660599999967,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -114.58738832463898,
+        -929.2517032596908
+      ],
+      "plan_upper_s": 122.472715,
+      "clear_point": [
+        -119.35324436628895,
+        -912.556954624224
+      ]
+    },
+    {
+      "seed": 926091220112,
+      "channel": 19,
+      "index": 0,
+      "after_actual_action_count": 49,
+      "current_position": [
+        1475.2391592432627,
+        -381.1650924738703
+      ],
+      "parent_position": [
+        909.8749669528169,
+        -328.597422071426
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 129.77487076333864,
+      "parent_complete_upper_us": 128495637,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 50,
+      "actual_clear_ordinal": 51,
+      "actual_complete_time_s": 128.32806499999992,
+      "completion_bound_honored": true,
+      "plan_point": [
+        909.8749669528169,
+        -328.597422071426
+      ],
+      "plan_upper_s": 128.495637,
+      "clear_point": [
+        897.5028117135935,
+        -314.39243143241316
+      ]
+    },
+    {
+      "seed": 926091220112,
+      "channel": 11,
+      "index": 2,
+      "after_actual_action_count": 67,
+      "current_position": [
+        1129.8370068303075,
+        1108.31768133664
+      ],
+      "parent_position": [
+        1170.3889933116593,
+        1183.3336939618096
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 29.969325192167535,
+      "parent_complete_upper_us": 29809547,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 68,
+      "actual_clear_ordinal": 69,
+      "actual_complete_time_s": 29.757115000000113,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1174.9124856781382,
+        1193.6059833988952
+      ],
+      "plan_upper_s": 29.803079,
+      "clear_point": [
+        1175.8553252471115,
+        1195.7241336993511
+      ]
+    },
+    {
+      "seed": 926091220113,
+      "channel": 18,
+      "index": 2,
+      "after_actual_action_count": 46,
+      "current_position": [
+        -1177.3438707217315,
+        775.8096688852953
+      ],
+      "parent_position": [
+        -1313.380562638477,
+        786.4560637065674
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 40.27641223865494,
+      "parent_complete_upper_us": 40284870,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 47,
+      "actual_clear_ordinal": 48,
+      "actual_complete_time_s": 40.2698529999999,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1324.9949972238858,
+        785.9871234315248
+      ],
+      "plan_upper_s": 40.269853,
+      "clear_point": [
+        -1328.3400680075981,
+        785.8520640949977
+      ]
+    },
+    {
+      "seed": 926091220113,
+      "channel": 9,
+      "index": 0,
+      "after_actual_action_count": 48,
+      "current_position": [
+        -1328.3400680075981,
+        785.8520640949977
+      ],
+      "parent_position": [
+        -728.0634495453262,
+        464.389115740894
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 152.17024626516312,
+      "parent_complete_upper_us": 150627800,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 49,
+      "actual_clear_ordinal": 50,
+      "actual_complete_time_s": 149.96054300000003,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -726.9914024606117,
+        459.292932700703
+      ],
+      "plan_upper_s": 150.542687,
+      "clear_point": [
+        -717.7884667835663,
+        454.22381602035506
+      ]
+    },
+    {
+      "seed": 926091220113,
+      "channel": 16,
+      "index": 0,
+      "after_actual_action_count": 87,
+      "current_position": [
+        -527.3342845867745,
+        -1401.4184197728543
+      ],
+      "parent_position": [
+        -288.18490271697533,
+        -1288.4237370017352
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 69.43224091980902,
+      "parent_complete_upper_us": 69311789,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 88,
+      "actual_clear_ordinal": 89,
+      "actual_complete_time_s": 67.08453600000007,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -348.0521394089541,
+        -1353.5693297108473
+      ],
+      "plan_upper_s": 67.836491,
+      "clear_point": [
+        -277.1760005768593,
+        -1290.514147705613
+      ]
+    },
+    {
+      "seed": 926091220114,
+      "channel": 17,
+      "index": 0,
+      "after_actual_action_count": 90,
+      "current_position": [
+        1397.1034857543864,
+        272.44164872216334
+      ],
+      "parent_position": [
+        987.1974187364095,
+        854.4207403291315
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 158.88172162427264,
+      "parent_complete_upper_us": 158257910,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 91,
+      "actual_clear_ordinal": 92,
+      "actual_complete_time_s": 157.6594399999999,
+      "completion_bound_honored": true,
+      "plan_point": [
+        987.1974187364095,
+        854.4207403291315
+      ],
+      "plan_upper_s": 158.25791,
+      "clear_point": [
+        971.8285503480947,
+        839.4536272231021
+      ]
+    },
+    {
+      "seed": 926091220114,
+      "channel": 5,
+      "index": 0,
+      "after_actual_action_count": 111,
+      "current_position": [
+        252.37233188450682,
+        477.65371120765275
+      ],
+      "parent_position": [
+        156.6555951422773,
+        731.5463295423937
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 69.63372765003845,
+      "parent_complete_upper_us": 68866619,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 112,
+      "actual_clear_ordinal": 113,
+      "actual_complete_time_s": 67.86003899999969,
+      "completion_bound_honored": true,
+      "plan_point": [
+        164.91518363813083,
+        738.3920931557719
+      ],
+      "plan_upper_s": 68.103556,
+      "clear_point": [
+        156.96364895308838,
+        743.1866467473417
+      ]
+    },
+    {
+      "seed": 926091220114,
+      "channel": 11,
+      "index": 2,
+      "after_actual_action_count": 125,
+      "current_position": [
+        -1144.0786279371941,
+        675.1505099463004
+      ],
+      "parent_position": [
+        -1252.2629258932966,
+        671.8584557339519
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 34.41034351709824,
+      "parent_complete_upper_us": 34395154,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 126,
+      "actual_clear_ordinal": 127,
+      "actual_complete_time_s": 33.879565000000184,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1263.3820964460242,
+        670.4047263472693
+      ],
+      "plan_upper_s": 34.385085,
+      "clear_point": [
+        -1263.3820964460242,
+        670.4047263472693
+      ]
+    },
+    {
+      "seed": 926091220115,
+      "channel": 12,
+      "index": 2,
+      "after_actual_action_count": 59,
+      "current_position": [
+        1054.3124885245275,
+        1199.8571884889604
+      ],
+      "parent_position": [
+        1153.6567810155443,
+        1303.596455074473
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 41.65369924691343,
+      "parent_complete_upper_us": 41245213,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 60,
+      "actual_clear_ordinal": 61,
+      "actual_complete_time_s": 40.87555300000008,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1162.1128367823571,
+        1310.3632059746983
+      ],
+      "plan_upper_s": 41.227644,
+      "clear_point": [
+        1162.1128367823571,
+        1310.3632059746983
+      ]
+    },
+    {
+      "seed": 926091220115,
+      "channel": 4,
+      "index": 0,
+      "after_actual_action_count": 95,
+      "current_position": [
+        -969.6571805303063,
+        -370.2779751982043
+      ],
+      "parent_position": [
+        -427.55828433499585,
+        -245.5495724544137
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 125.30848428671518,
+      "parent_complete_upper_us": 124860401,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 96,
+      "actual_clear_ordinal": 97,
+      "actual_complete_time_s": 124.85572399999978,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -417.0435534208661,
+        -242.38816867527942
+      ],
+      "plan_upper_s": 124.855724,
+      "clear_point": [
+        -419.01576078508816,
+        -242.9811409398485
+      ]
+    },
+    {
+      "seed": 926091220116,
+      "channel": 1,
+      "index": 2,
+      "after_actual_action_count": 81,
+      "current_position": [
+        1678.747604183213,
+        35.430945959450966
+      ],
+      "parent_position": [
+        1762.0287240342072,
+        22.64260168976698
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 30.619805342224552,
+      "parent_complete_upper_us": 30525524,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 82,
+      "actual_clear_ordinal": 83,
+      "actual_complete_time_s": 29.304527000000007,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1769.6229792273657,
+        21.687570033882714
+      ],
+      "plan_upper_s": 30.525002,
+      "clear_point": [
+        1774.1521953345907,
+        20.807590165950764
+      ]
+    },
+    {
+      "seed": 926091220116,
+      "channel": 10,
+      "index": 0,
+      "after_actual_action_count": 89,
+      "current_position": [
+        1390.2743499237915,
+        732.6599267398425
+      ],
+      "parent_position": [
+        1139.3278161530284,
+        432.2274400807929
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 91.0965938879064,
+      "parent_complete_upper_us": 91048163,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 90,
+      "actual_clear_ordinal": 91,
+      "actual_complete_time_s": 90.93201799999997,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1135.283995268701,
+        421.7508264013158
+      ],
+      "plan_upper_s": 90.932018,
+      "clear_point": [
+        1136.2058005395263,
+        424.1390127561039
+      ]
+    },
+    {
+      "seed": 926091220116,
+      "channel": 11,
+      "index": 0,
+      "after_actual_action_count": 105,
+      "current_position": [
+        571.907702550989,
+        964.2700835415944
+      ],
+      "parent_position": [
+        306.97727991052807,
+        853.2281415799307
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 145.19216745776242,
+      "parent_complete_upper_us": 144829073,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 106,
+      "actual_clear_ordinal": 107,
+      "actual_complete_time_s": 144.4121849999999,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -7.798323972622455,
+        738.2545451467469
+      ],
+      "plan_upper_s": 144.440832,
+      "clear_point": [
+        -50.67501948372215,
+        725.0854946952442
+      ]
+    },
+    {
+      "seed": 926091220117,
+      "channel": 20,
+      "index": 0,
+      "after_actual_action_count": 67,
+      "current_position": [
+        71.65163562207485,
+        1382.4448805531244
+      ],
+      "parent_position": [
+        127.28347182155554,
+        1057.6097425111363
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 82.3159259898685,
+      "parent_complete_upper_us": 81217752,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 68,
+      "actual_clear_ordinal": 69,
+      "actual_complete_time_s": 81.21702800000003,
+      "completion_bound_honored": true,
+      "plan_point": [
+        127.28347182155554,
+        1057.6097425111363
+      ],
+      "plan_upper_s": 81.217752,
+      "clear_point": [
+        117.43611391809027,
+        1038.4742564111937
+      ]
+    },
+    {
+      "seed": 926091220117,
+      "channel": 9,
+      "index": 0,
+      "after_actual_action_count": 86,
+      "current_position": [
+        231.54931114183705,
+        705.9239232463475
+      ],
+      "parent_position": [
+        311.6872999604149,
+        532.6726972595116
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 107.169521077007,
+      "parent_complete_upper_us": 105431123,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 87,
+      "actual_clear_ordinal": 88,
+      "actual_complete_time_s": 105.03597799999989,
+      "completion_bound_honored": true,
+      "plan_point": [
+        365.3885563016862,
+        401.86083007936963
+      ],
+      "plan_upper_s": 105.251636,
+      "clear_point": [
+        441.19227162990603,
+        286.5876790271122
+      ]
+    },
+    {
+      "seed": 926091220118,
+      "channel": 20,
+      "index": 1,
+      "after_actual_action_count": 46,
+      "current_position": [
+        -542.650087610004,
+        -1249.3955239021443
+      ],
+      "parent_position": [
+        -580.672770744377,
+        -1262.0825479087691
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 21.97164384157029,
+      "parent_complete_upper_us": 20756114,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 47,
+      "actual_clear_ordinal": 48,
+      "actual_complete_time_s": 20.721337999999946,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -580.672770744377,
+        -1262.0825479087691
+      ],
+      "plan_upper_s": 20.756114,
+      "clear_point": [
+        -593.4967786104148,
+        -1266.37464620188
+      ]
+    },
+    {
+      "seed": 926091220118,
+      "channel": 4,
+      "index": 0,
+      "after_actual_action_count": 63,
+      "current_position": [
+        -608.6567567629182,
+        -730.7321035577459
+      ],
+      "parent_position": [
+        -918.9020540459702,
+        -849.6344331540705
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 83.02275057845895,
+      "parent_complete_upper_us": 82084874,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 64,
+      "actual_clear_ordinal": 65,
+      "actual_complete_time_s": 81.31928400000004,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -924.9148282835855,
+        -847.5727624276045
+      ],
+      "plan_upper_s": 81.961994,
+      "clear_point": [
+        -938.4642085862838,
+        -852.5807199171853
+      ]
+    },
+    {
+      "seed": 926091220118,
+      "channel": 13,
+      "index": 0,
+      "after_actual_action_count": 65,
+      "current_position": [
+        -938.4642085862838,
+        -852.5807199171853
+      ],
+      "parent_position": [
+        -1048.753880463383,
+        -440.32068564848794
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 101.1728265666768,
+      "parent_complete_upper_us": 100753238,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 66,
+      "actual_clear_ordinal": 67,
+      "actual_complete_time_s": 98.84724600000004,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1048.753880463383,
+        -440.32068564848794
+      ],
+      "plan_upper_s": 100.753238,
+      "clear_point": [
+        -1036.8361674458165,
+        -436.62184630741217
+      ]
+    },
+    {
+      "seed": 926091220118,
+      "channel": 18,
+      "index": 0,
+      "after_actual_action_count": 85,
+      "current_position": [
+        -1008.0891581383942,
+        671.1761180303317
+      ],
+      "parent_position": [
+        -684.2844377689041,
+        774.7086145365176
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 83.970938653078,
+      "parent_complete_upper_us": null,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 86,
+      "actual_clear_ordinal": 87,
+      "actual_complete_time_s": 83.50033199999984,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -684.6160735055581,
+        782.0555571856189
+      ],
+      "plan_upper_s": 83.500346,
+      "clear_point": [
+        -664.1585465407011,
+        784.0312234688483
+      ]
+    },
+    {
+      "seed": 926091220118,
+      "channel": 3,
+      "index": 0,
+      "after_actual_action_count": 100,
+      "current_position": [
+        -299.5264295498897,
+        1182.4399664721946
+      ],
+      "parent_position": [
+        109.59665572428615,
+        716.9341517336924
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 137.80453603323448,
+      "parent_complete_upper_us": 136939485,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 101,
+      "actual_clear_ordinal": 102,
+      "actual_complete_time_s": 136.90049499999986,
+      "completion_bound_honored": true,
+      "plan_point": [
+        114.57502295736529,
+        708.3161915010019
+      ],
+      "plan_upper_s": 136.901518,
+      "clear_point": [
+        114.57502295736529,
+        708.3161915010019
+      ]
+    },
+    {
+      "seed": 926091220118,
+      "channel": 16,
+      "index": 0,
+      "after_actual_action_count": 110,
+      "current_position": [
+        551.0165335446792,
+        981.7972892982611
+      ],
+      "parent_position": [
+        551.6622737995309,
+        772.7368979596474
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 111.69213528902813,
+      "parent_complete_upper_us": 111972640,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 111,
+      "actual_clear_ordinal": 112,
+      "actual_complete_time_s": 110.96398499999987,
+      "completion_bound_honored": true,
+      "plan_point": [
+        597.9536477491007,
+        501.5093406098939
+      ],
+      "plan_upper_s": 111.528072,
+      "clear_point": [
+        609.8246676291709,
+        489.0020829627894
+      ]
+    },
+    {
+      "seed": 926091220119,
+      "channel": 7,
+      "index": 0,
+      "after_actual_action_count": 63,
+      "current_position": [
+        -1393.0892491134132,
+        1020.6020995405427
+      ],
+      "parent_position": [
+        -1150.3369537913832,
+        666.995832634878
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 103.14621316701688,
+      "parent_complete_upper_us": 103766644,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 64,
+      "actual_clear_ordinal": 65,
+      "actual_complete_time_s": 102.04627800000003,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1133.7131789921302,
+        670.606942686683
+      ],
+      "plan_upper_s": 102.205176,
+      "clear_point": [
+        -1137.2837630328372,
+        651.3324039266747
+      ]
+    },
+    {
+      "seed": 926091220119,
+      "channel": 20,
+      "index": 1,
+      "after_actual_action_count": 97,
+      "current_position": [
+        -7.009829447065798,
+        -1073.657937411806
+      ],
+      "parent_position": [
+        51.674205237437995,
+        -1319.5321686607467
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 63.40352133908111,
+      "parent_complete_upper_us": 63405738,
+      "actual_measure_result": "near",
+      "actual_measure_ordinal": 98,
+      "actual_clear_ordinal": 99,
+      "actual_complete_time_s": 62.78365900000017,
+      "completion_bound_honored": true,
+      "plan_point": [
+        56.59143642534705,
+        -1329.798024503862
+      ],
+      "plan_upper_s": 63.356759,
+      "clear_point": [
+        56.59143642534705,
+        -1329.798024503862
+      ]
+    },
+    {
+      "seed": 926091220120,
+      "channel": 17,
+      "index": 0,
+      "after_actual_action_count": 82,
+      "current_position": [
+        -1120.8172745790073,
+        13.25563444725625
+      ],
+      "parent_position": [
+        -641.5710062544027,
+        -724.4375173992163
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 197.19981064249188,
+      "parent_complete_upper_us": 197079909,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 83,
+      "actual_clear_ordinal": 84,
+      "actual_complete_time_s": 196.32645300000013,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -641.5710062544027,
+        -724.4375173992163
+      ],
+      "plan_upper_s": 197.079909,
+      "clear_point": [
+        -602.3521005096961,
+        -750.219751337535
+      ]
+    },
+    {
+      "seed": 926091220121,
+      "channel": 10,
+      "index": 2,
+      "after_actual_action_count": 62,
+      "current_position": [
+        1630.0221994816604,
+        -269.2664636172966
+      ],
+      "parent_position": [
+        1665.1186172616358,
+        -314.39366480507147
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 23.980757224732407,
+      "parent_complete_upper_us": 23505412,
+      "actual_measure_result": "near",
+      "actual_measure_ordinal": 63,
+      "actual_clear_ordinal": 64,
+      "actual_complete_time_s": 23.447557000000188,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1671.7969459668757,
+        -321.9522316136633
+      ],
+      "plan_upper_s": 23.502049,
+      "clear_point": [
+        1671.7969459668757,
+        -321.9522316136633
+      ]
+    },
+    {
+      "seed": 926091220121,
+      "channel": 12,
+      "index": 0,
+      "after_actual_action_count": 104,
+      "current_position": [
+        -1534.0754906937755,
+        -477.6820363163555
+      ],
+      "parent_position": [
+        -977.187347633995,
+        -482.66645998657435
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 125.92838872107309,
+      "parent_complete_upper_us": 125861141,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 105,
+      "actual_clear_ordinal": 106,
+      "actual_complete_time_s": 122.4594390000002,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -984.9869975616108,
+        -501.08290538210724
+      ],
+      "plan_upper_s": 125.402212,
+      "clear_point": [
+        -983.7137692058938,
+        -493.47847157788607
+      ]
+    },
+    {
+      "seed": 926091220122,
+      "channel": 20,
+      "index": 2,
+      "after_actual_action_count": 50,
+      "current_position": [
+        1107.2898332588172,
+        -1386.1135338124218
+      ],
+      "parent_position": [
+        1094.7053291784011,
+        -1404.9653767488423
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 18.5050766014815,
+      "parent_complete_upper_us": 18108701,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 51,
+      "actual_clear_ordinal": 52,
+      "actual_complete_time_s": 17.90950900000007,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1090.5104944849272,
+        -1411.2493243943184
+      ],
+      "plan_upper_s": 18.1087,
+      "clear_point": [
+        1085.2289775101844,
+        -1418.9354165379596
+      ]
+    },
+    {
+      "seed": 926091220123,
+      "channel": 6,
+      "index": 0,
+      "after_actual_action_count": 42,
+      "current_position": [
+        -1124.1299527048595,
+        -12.893895948940052
+      ],
+      "parent_position": [
+        -839.6334397259963,
+        -263.43288181480386
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 182.61701572112887,
+      "parent_complete_upper_us": 182064177,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 43,
+      "actual_clear_ordinal": 44,
+      "actual_complete_time_s": 181.399359,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -593.6458958846422,
+        -482.0805005734651
+      ],
+      "plan_upper_s": 181.505905,
+      "clear_point": [
+        -486.5539279827567,
+        -578.040848072744
+      ]
+    },
+    {
+      "seed": 926091220124,
+      "channel": 2,
+      "index": 2,
+      "after_actual_action_count": 44,
+      "current_position": [
+        -1631.041681840022,
+        -33.19498079927516
+      ],
+      "parent_position": [
+        -1761.933112821973,
+        2.1188598650896946
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 40.97949982736733,
+      "parent_complete_upper_us": 40923144,
+      "actual_measure_result": "near",
+      "actual_measure_ordinal": 45,
+      "actual_clear_ordinal": 46,
+      "actual_complete_time_s": 38.670165,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1769.5464902575784,
+        3.76279848229556
+      ],
+      "plan_upper_s": 40.921238,
+      "clear_point": [
+        -1769.5464902575784,
+        3.76279848229556
+      ]
+    },
+    {
+      "seed": 926091220124,
+      "channel": 4,
+      "index": 1,
+      "after_actual_action_count": 52,
+      "current_position": [
+        -1407.1404533848763,
+        -832.8316007085352
+      ],
+      "parent_position": [
+        -1394.5863691052155,
+        -855.5994654947274
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 17.95845111125346,
+      "parent_complete_upper_us": 17539032,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 53,
+      "actual_clear_ordinal": 54,
+      "actual_complete_time_s": 17.53842199999997,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1389.7662730015736,
+        -864.9635671270918
+      ],
+      "plan_upper_s": 17.538422,
+      "clear_point": [
+        -1389.2336893885265,
+        -865.998228465621
+      ]
+    },
+    {
+      "seed": 926091220124,
+      "channel": 16,
+      "index": 2,
+      "after_actual_action_count": 70,
+      "current_position": [
+        335.3653185268744,
+        -1498.6472058331015
+      ],
+      "parent_position": [
+        364.18750602248525,
+        -1551.1255466276866
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 24.655812031029384,
+      "parent_complete_upper_us": 24415877,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 71,
+      "actual_clear_ordinal": 72,
+      "actual_complete_time_s": 24.111452999999983,
+      "completion_bound_honored": true,
+      "plan_point": [
+        369.91027576465626,
+        -1560.1693455895465
+      ],
+      "plan_upper_s": 24.412395,
+      "clear_point": [
+        369.91027576465626,
+        -1560.1693455895465
+      ]
+    },
+    {
+      "seed": 926091220126,
+      "channel": 10,
+      "index": 0,
+      "after_actual_action_count": 65,
+      "current_position": [
+        1099.0384578704834,
+        0.0
+      ],
+      "parent_position": [
+        1073.332459453518,
+        51.75971858688383
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 25.439052032726657,
+      "parent_complete_upper_us": 24877200,
+      "actual_measure_result": "near",
+      "actual_measure_ordinal": 66,
+      "actual_clear_ordinal": 67,
+      "actual_complete_time_s": 24.654630999999995,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1068.0976774834237,
+        60.85960778892232
+      ],
+      "plan_upper_s": 24.873887,
+      "clear_point": [
+        1068.0976774834237,
+        60.85960778892232
+      ]
+    },
+    {
+      "seed": 926091220126,
+      "channel": 5,
+      "index": 2,
+      "after_actual_action_count": 86,
+      "current_position": [
+        848.9102006915518,
+        1434.6863262182796
+      ],
+      "parent_position": [
+        895.1849891824611,
+        1506.9376245718688
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 33.39257553101458,
+      "parent_complete_upper_us": 34255966,
+      "actual_measure_result": "near",
+      "actual_measure_ordinal": 87,
+      "actual_clear_ordinal": 88,
+      "actual_complete_time_s": 30.238100999999915,
+      "completion_bound_honored": true,
+      "plan_point": [
+        882.5901197694122,
+        1530.1073985756161
+      ],
+      "plan_upper_s": 33.133788,
+      "clear_point": [
+        882.5901197694122,
+        1530.1073985756161
+      ]
+    },
+    {
+      "seed": 926091220126,
+      "channel": 16,
+      "index": 0,
+      "after_actual_action_count": 100,
+      "current_position": [
+        -551.0063896338122,
+        981.6547886905428
+      ],
+      "parent_position": [
+        -698.1667700511441,
+        735.9320890672635
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 145.45536344211916,
+      "parent_complete_upper_us": 145484261,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 101,
+      "actual_clear_ordinal": 102,
+      "actual_complete_time_s": 144.89957800000002,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -865.8630930991499,
+        444.6212872651299
+      ],
+      "plan_upper_s": 145.209449,
+      "clear_point": [
+        -884.9102931071872,
+        401.6855254516085
+      ]
+    },
+    {
+      "seed": 926091220126,
+      "channel": 4,
+      "index": 0,
+      "after_actual_action_count": 119,
+      "current_position": [
+        -575.0000000000005,
+        -995.9292143521043
+      ],
+      "parent_position": [
+        -226.30018937156393,
+        -1135.1328174582989
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 179.93462542363534,
+      "parent_complete_upper_us": 179522066,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 120,
+      "actual_clear_ordinal": 121,
+      "actual_complete_time_s": 178.40851800000019,
+      "completion_bound_honored": true,
+      "plan_point": [
+        157.70556050273916,
+        -1309.7410905102392
+      ],
+      "plan_upper_s": 178.941202,
+      "clear_point": [
+        185.473925533593,
+        -1338.4810701991019
+      ]
+    },
+    {
+      "seed": 926091220127,
+      "channel": 20,
+      "index": 2,
+      "after_actual_action_count": 22,
+      "current_position": [
+        -446.94370417165857,
+        1023.2947273527842
+      ],
+      "parent_position": [
+        -479.7763803063197,
+        1033.7109513058515
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 19.623968048667262,
+      "parent_complete_upper_us": 19003762,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 23,
+      "actual_clear_ordinal": 24,
+      "actual_complete_time_s": 18.919407999999976,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -489.32965326399636,
+        1037.1629441903615
+      ],
+      "plan_upper_s": 19.002536,
+      "clear_point": [
+        -489.32965326399636,
+        1037.1629441903615
+      ]
+    },
+    {
+      "seed": 926091220127,
+      "channel": 10,
+      "index": 0,
+      "after_actual_action_count": 64,
+      "current_position": [
+        -1150.0,
+        1.4083438190194562e-13
+      ],
+      "parent_position": [
+        -1088.3768666080748,
+        -415.7342107769548
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 98.39695630228887,
+      "parent_complete_upper_us": 98321214,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 65,
+      "actual_clear_ordinal": 66,
+      "actual_complete_time_s": 97.48034000000007,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1090.5370577871117,
+        -427.6159579862322
+      ],
+      "plan_upper_s": 98.196714,
+      "clear_point": [
+        -1090.380432701864,
+        -428.2685995947839
+      ]
+    },
+    {
+      "seed": 926091220128,
+      "channel": 17,
+      "index": 0,
+      "after_actual_action_count": 65,
+      "current_position": [
+        -1058.4636122854054,
+        218.41048780757754
+      ],
+      "parent_position": [
+        -984.3636787576067,
+        27.461935019184587
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 74.7162899725056,
+      "parent_complete_upper_us": 74399674,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 66,
+      "actual_clear_ordinal": 67,
+      "actual_complete_time_s": 72.46344699999997,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -914.6652942181272,
+        -43.07972712192284
+      ],
+      "plan_upper_s": 73.293912,
+      "clear_point": [
+        -914.5189656827722,
+        -51.97476512102536
+      ]
+    },
+    {
+      "seed": 926091220128,
+      "channel": 10,
+      "index": 0,
+      "after_actual_action_count": 67,
+      "current_position": [
+        -914.5189656827722,
+        -51.97476512102536
+      ],
+      "parent_position": [
+        -346.824014258362,
+        -102.43433437362651
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 128.0469465341086,
+      "parent_complete_upper_us": 127751141,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 68,
+      "actual_clear_ordinal": 69,
+      "actual_complete_time_s": 126.37247200000002,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -356.68902352292986,
+        -85.03658761693441
+      ],
+      "plan_upper_s": 126.641856,
+      "clear_point": [
+        -339.91289753990964,
+        -91.70673681356345
+      ]
+    },
+    {
+      "seed": 926091220128,
+      "channel": 5,
+      "index": 0,
+      "after_actual_action_count": 69,
+      "current_position": [
+        -339.91289753990964,
+        -91.70673681356345
+      ],
+      "parent_position": [
+        -463.2964061924046,
+        381.68613647278323
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 113.68688469995833,
+      "parent_complete_upper_us": 112385290,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 70,
+      "actual_clear_ordinal": 71,
+      "actual_complete_time_s": 111.27252300000009,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -463.2964061924046,
+        381.68613647278323
+      ],
+      "plan_upper_s": 112.38529,
+      "clear_point": [
+        -464.2511174799287,
+        393.80336699947173
+      ]
+    },
+    {
+      "seed": 926091220128,
+      "channel": 20,
+      "index": 0,
+      "after_actual_action_count": 91,
+      "current_position": [
+        -267.46267687402235,
+        1698.3513447292298
+      ],
+      "parent_position": [
+        -123.11138447478668,
+        1517.077310553328
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 119.36509699795062,
+      "parent_complete_upper_us": 119600020,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 92,
+      "actual_clear_ordinal": 93,
+      "actual_complete_time_s": 117.88906100000008,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -23.51978700666048,
+        1508.0488160084597
+      ],
+      "plan_upper_s": 119.019291,
+      "clear_point": [
+        105.6153272832483,
+        1323.7304105776748
+      ]
+    },
+    {
+      "seed": 926091220129,
+      "channel": 6,
+      "index": 0,
+      "after_actual_action_count": 98,
+      "current_position": [
+        -550.886295234068,
+        -978.6402255873616
+      ],
+      "parent_position": [
+        -434.7380282464652,
+        -442.5588425564411
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 123.54524234712865,
+      "parent_complete_upper_us": 122821448,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 99,
+      "actual_clear_ordinal": 100,
+      "actual_complete_time_s": 122.5742200000002,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -434.7380282464652,
+        -442.5588425564411
+      ],
+      "plan_upper_s": 122.821448,
+      "clear_point": [
+        -430.63930193555353,
+        -434.15334518086684
+      ]
+    },
+    {
+      "seed": 926091220129,
+      "channel": 14,
+      "index": 0,
+      "after_actual_action_count": 100,
+      "current_position": [
+        -430.63930193555353,
+        -434.15334518086684
+      ],
+      "parent_position": [
+        -541.8508901148775,
+        -386.66131296644966
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 39.70175815954374,
+      "parent_complete_upper_us": 37843006,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 101,
+      "actual_clear_ordinal": 102,
+      "actual_complete_time_s": 37.72169299999996,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -541.8508901148775,
+        -386.66131296644966
+      ],
+      "plan_upper_s": 37.843006,
+      "clear_point": [
+        -553.3464917496576,
+        -381.3084908843973
+      ]
+    },
+    {
+      "seed": 926091220129,
+      "channel": 7,
+      "index": 2,
+      "after_actual_action_count": 116,
+      "current_position": [
+        -1454.4207497702407,
+        826.1101538817221
+      ],
+      "parent_position": [
+        -1517.7148901260323,
+        909.9555286910946
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 34.13153212386318,
+      "parent_complete_upper_us": 33805707,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 117,
+      "actual_clear_ordinal": 118,
+      "actual_complete_time_s": 33.48457700000017,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1521.3938795981023,
+        915.6446677032293
+      ],
+      "plan_upper_s": 33.802354,
+      "clear_point": [
+        -1525.1116741623582,
+        919.8476096962463
+      ]
+    },
+    {
+      "seed": 926091220129,
+      "channel": 20,
+      "index": 0,
+      "after_actual_action_count": 118,
+      "current_position": [
+        -1525.1116741623582,
+        919.8476096962463
+      ],
+      "parent_position": [
+        -874.9963633371556,
+        369.9789195814649
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 186.3530145722253,
+      "parent_complete_upper_us": 184792982,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 119,
+      "actual_clear_ordinal": 120,
+      "actual_complete_time_s": 184.1087309999998,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -870.3464091372982,
+        372.4471815784364
+      ],
+      "plan_upper_s": 184.321261,
+      "clear_point": [
+        -866.8074811126357,
+        360.8754831663141
+      ]
+    },
+    {
+      "seed": 926091220130,
+      "channel": 7,
+      "index": 0,
+      "after_actual_action_count": 41,
+      "current_position": [
+        1099.0384578704834,
+        0.0
+      ],
+      "parent_position": [
+        943.0011275226934,
+        656.1816258052104
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 150.86946309649494,
+      "parent_complete_upper_us": 150251215,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 42,
+      "actual_clear_ordinal": 43,
+      "actual_complete_time_s": 149.75565499999993,
+      "completion_bound_honored": true,
+      "plan_point": [
+        943.0011275226934,
+        656.1816258052104
+      ],
+      "plan_upper_s": 150.251215,
+      "clear_point": [
+        930.8069497546154,
+        671.1403213842632
+      ]
+    },
+    {
+      "seed": 926091220130,
+      "channel": 3,
+      "index": 0,
+      "after_actual_action_count": 77,
+      "current_position": [
+        -551.0063896338122,
+        981.6547886905428
+      ],
+      "parent_position": [
+        -586.2397732366238,
+        722.852297809121
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 134.48806714102125,
+      "parent_complete_upper_us": 134266005,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 78,
+      "actual_clear_ordinal": 79,
+      "actual_complete_time_s": 133.65585699999997,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -645.9574984159339,
+        420.45488729747893
+      ],
+      "plan_upper_s": 133.949667,
+      "clear_point": [
+        -669.386734489508,
+        383.08923034251944
+      ]
+    },
+    {
+      "seed": 926091220130,
+      "channel": 14,
+      "index": 0,
+      "after_actual_action_count": 79,
+      "current_position": [
+        -669.386734489508,
+        383.08923034251944
+      ],
+      "parent_position": [
+        -580.3889237370728,
+        306.57373719046785
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 37.42712031238255,
+      "parent_complete_upper_us": 37045003,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 80,
+      "actual_clear_ordinal": 81,
+      "actual_complete_time_s": 36.559974999999895,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -574.7058061033554,
+        297.2502540203717
+      ],
+      "plan_upper_s": 36.947586,
+      "clear_point": [
+        -574.7058061033554,
+        297.2502540203717
+      ]
+    },
+    {
+      "seed": 926091220130,
+      "channel": 17,
+      "index": 0,
+      "after_actual_action_count": 100,
+      "current_position": [
+        -1293.3649161413177,
+        -674.4818839982156
+      ],
+      "parent_position": [
+        -525.7470463213278,
+        -580.0183656445765
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 170.10995209216836,
+      "parent_complete_upper_us": 169624373,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 101,
+      "actual_clear_ordinal": 102,
+      "actual_complete_time_s": 167.47721,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -525.7470463213278,
+        -580.0183656445765
+      ],
+      "plan_upper_s": 169.624373,
+      "clear_point": [
+        -519.1274984970536,
+        -573.9537308287331
+      ]
+    },
+    {
+      "seed": 926091220130,
+      "channel": 2,
+      "index": 0,
+      "after_actual_action_count": 110,
+      "current_position": [
+        -574.6615281252516,
+        -968.0319302515652
+      ],
+      "parent_position": [
+        -483.24205150556173,
+        -1128.8345709076752
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 51.59571336103772,
+      "parent_complete_upper_us": 51530968,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 111,
+      "actual_clear_ordinal": 112,
+      "actual_complete_time_s": 51.23705300000029,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -480.2963610611813,
+        -1135.7496766001505
+      ],
+      "plan_upper_s": 51.521548,
+      "clear_point": [
+        -476.4643697550608,
+        -1143.6081649553853
+      ]
+    },
+    {
+      "seed": 926091220130,
+      "channel": 15,
+      "index": 0,
+      "after_actual_action_count": 112,
+      "current_position": [
+        -476.4643697550608,
+        -1143.6081649553853
+      ],
+      "parent_position": [
+        -352.9748756059633,
+        -1141.1533611581278
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 45.78243157066799,
+      "parent_complete_upper_us": 46189111,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 113,
+      "actual_clear_ordinal": 114,
+      "actual_complete_time_s": 41.603843999999754,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -327.83241847394794,
+        -1158.11841519043
+      ],
+      "plan_upper_s": 45.514113,
+      "clear_point": [
+        -326.783036784342,
+        -1154.5905150588912
+      ]
+    },
+    {
+      "seed": 926091220131,
+      "channel": 5,
+      "index": 2,
+      "after_actual_action_count": 60,
+      "current_position": [
+        478.3898237787118,
+        -1389.2661243313703
+      ],
+      "parent_position": [
+        552.157264612838,
+        -1377.9303070344397
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 27.777023198940583,
+      "parent_complete_upper_us": 27682259,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 61,
+      "actual_clear_ordinal": 62,
+      "actual_complete_time_s": 27.166817000000037,
+      "completion_bound_honored": true,
+      "plan_point": [
+        563.3468570846926,
+        -1377.0271370513474
+      ],
+      "plan_upper_s": 27.67721,
+      "clear_point": [
+        563.3468570846926,
+        -1377.0271370513474
+      ]
+    },
+    {
+      "seed": 926091220131,
+      "channel": 13,
+      "index": 2,
+      "after_actual_action_count": 79,
+      "current_position": [
+        1126.2191036052116,
+        -956.3501702881609
+      ],
+      "parent_position": [
+        1271.6558981503651,
+        -989.8999014721327
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 42.76299462421086,
+      "parent_complete_upper_us": 42025525,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 80,
+      "actual_clear_ordinal": 81,
+      "actual_complete_time_s": 41.88288499999999,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1281.8777006958865,
+        -990.7501734719211
+      ],
+      "plan_upper_s": 42.005727,
+      "clear_point": [
+        1281.8777006958865,
+        -990.7501734719211
+      ]
+    },
+    {
+      "seed": 926091220131,
+      "channel": 7,
+      "index": 0,
+      "after_actual_action_count": 81,
+      "current_position": [
+        1281.8777006958865,
+        -990.7501734719211
+      ],
+      "parent_position": [
+        1010.852529769985,
+        -493.23877258251366
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 129.1393784432857,
+      "parent_complete_upper_us": 128360817,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 82,
+      "actual_clear_ordinal": 83,
+      "actual_complete_time_s": 127.15445100000011,
+      "completion_bound_honored": true,
+      "plan_point": [
+        1016.9377258846214,
+        -490.7346748178235
+      ],
+      "plan_upper_s": 128.066842,
+      "clear_point": [
+        1002.1465594401865,
+        -488.9172370302381
+      ]
+    },
+    {
+      "seed": 926091220131,
+      "channel": 3,
+      "index": 0,
+      "after_actual_action_count": 115,
+      "current_position": [
+        197.33969752114558,
+        764.9806274043015
+      ],
+      "parent_position": [
+        -26.490903661274658,
+        987.4997825957936
+      ],
+      "changed_probe": true,
+      "parent_nominal_complete_s": 77.2165628595094,
+      "parent_complete_upper_us": 76502886,
+      "actual_measure_result": "near",
+      "actual_measure_ordinal": 116,
+      "actual_clear_ordinal": 117,
+      "actual_complete_time_s": 76.19710399999985,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -35.41618870095785,
+        993.2157182312563
+      ],
+      "plan_upper_s": 76.456588,
+      "clear_point": [
+        -35.41618870095785,
+        993.2157182312563
+      ]
+    },
+    {
+      "seed": 926091220132,
+      "channel": 10,
+      "index": 0,
+      "after_actual_action_count": 44,
+      "current_position": [
+        -279.4058491711105,
+        -1450.652722423294
+      ],
+      "parent_position": [
+        -43.59726833112759,
+        -1173.7898951847433
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 88.66129783628936,
+      "parent_complete_upper_us": 87417378,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 45,
+      "actual_clear_ordinal": 46,
+      "actual_complete_time_s": 85.478703,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -43.59726833112759,
+        -1173.7898951847433
+      ],
+      "plan_upper_s": 87.417378,
+      "clear_point": [
+        -40.34787064063098,
+        -1165.6983626412073
+      ]
+    },
+    {
+      "seed": 926091220132,
+      "channel": 16,
+      "index": 0,
+      "after_actual_action_count": 113,
+      "current_position": [
+        -551.0086868111362,
+        981.6875481063944
+      ],
+      "parent_position": [
+        -1068.9039385174365,
+        728.6022714359954
+      ],
+      "changed_probe": false,
+      "parent_nominal_complete_s": 131.62654893158873,
+      "parent_complete_upper_us": 131514580,
+      "actual_measure_result": "direction",
+      "actual_measure_ordinal": 114,
+      "actual_clear_ordinal": 115,
+      "actual_complete_time_s": 130.87634100000014,
+      "completion_bound_honored": true,
+      "plan_point": [
+        -1068.9039385174365,
+        728.6022714359954
+      ],
+      "plan_upper_s": 131.51458,
+      "clear_point": [
+        -1078.7845489902327,
+        707.8824857254943
+      ]
+    }
+  ],
+  "conclusion": "Reject this frozen implementation after pilot; no confirmation or threshold scan. The single-source complete-tail certificate held in all selected executions but did not yield whole-run gains. This is not evidence of theoretical impossibility or of all complete-tail objectives being ineffective.",
+  "limits": [
+    "Same-case paired runs share a scenario but diverge after the first changed action; later bearings and geometry are not controlled isolated effects.",
+    "Parent proxy gaps and conditional per-state UBs are not expected-time savings, and their sum is not a whole-run causal decomposition.",
+    "No profiler run; logged envelope wall times identify overhead, not a rigorous nonoverlapping CPU decomposition.",
+    "This diagnosis checks actual selected plan execution and existing audit receipts; it is not a new universal geometry proof or independent confirmation sample."
+  ]
+}
