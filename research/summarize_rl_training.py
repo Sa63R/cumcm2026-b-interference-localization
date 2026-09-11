@@ -23,7 +23,8 @@ import numpy as np
 
 DEFAULT_ARCHIVES = ("milestone-0200.tar.gz", "milestone-0300.tar.gz", "cold-001-complete.tar.gz",
                     "milestone-0410.tar.gz", "milestone-0510.tar.gz",
-                    "milestone-0550.tar.gz", "milestone-0605.tar.gz", "milestone-0715.tar.gz")
+                    "milestone-0550.tar.gz", "milestone-0605.tar.gz", "milestone-0715.tar.gz",
+                    "milestone-0755.tar.gz", "milestone-0818.tar.gz")
 VALIDATION_SEEDS = list(range(6000, 6048))
 
 
@@ -368,6 +369,36 @@ def audit_selected_designs(report):
             both_initializations_match_parent_virtual_times=True,training_vs_parent=deltas,
             final_v4_vs_v3=paired_endpoint(validation[routes[0]+"-ppo_000512"],validation[routes[1]+"-ppo_000512"]),
             scope="Same initial episode costs, actions/schema and completed samples; only v4 observation representation changes. Early wallclock checkpoints have unequal update counts.")
+    final_trials=("cold-strong-attention-001","cold-gae095-001")
+    control_name="cold-route-v3-001"
+    if all(name in trials for name in (*final_trials,control_name)):
+        control=trials[control_name]
+        validation=report["validation"]
+        parent=validation["cold-finetune-ppo-002-ppo_000384"]
+        keys=("feature_version","hidden","seed","scenario_start","updates","episodes_per_update","bc_episodes",
+              "initialize_from","epochs","minibatch","lr","clip","value_coef","entropy_coef","group_alpha",
+              "probe_candidates","aux_bc_coef","target_kl","max_decisions","workers","num_threads","gamma")
+        ablations={}
+        for name in final_trials:
+            run=trials[name]
+            if any(run["config"].get(key)!=control["config"].get(key) for key in keys):
+                raise ValueError("Final RL ablation differs in a supposedly shared setting")
+            for key in ("policy_episodes_used","completed_updates","actual_policy_seed_ranges","actual_bc_episodes"):
+                if run["summary"][key]!=control["summary"][key]:
+                    raise ValueError("Final RL ablation endpoints do not match control sample budget")
+            expected_arch,expected_lambda=("attention",1.) if "attention" in name else ("mlp",.95)
+            if run["config"]["architecture"]!=expected_arch or run["config"]["gae_lambda"]!=expected_lambda:
+                raise ValueError("Unexpected final RL ablation settings")
+            if validation[name+"-initialized"]["case_virtual_times_s"]!=parent["case_virtual_times_s"]:
+                raise ValueError("Final RL ablation initialized times differ from parent")
+            ablations[name]=dict(config_keys_checked=list(keys),source_commit=run["config"]["git_commit"],
+                control_commit=control["config"]["git_commit"],
+                source_difference="de7 isolates generic CPU Torch state during attention construction; shipped MLP/update behavior is unchanged",
+                initialized_costs_match_parent=True,sampled_episodes=run["summary"]["policy_episodes_used"],
+                training_vs_parent={s:paired_endpoint(parent,r) for s,r in validation.items()
+                    if checkpoint_update(s,name) is not None and checkpoint_update(s,name)>0},
+                final_vs_matched_v3=paired_endpoint(validation[control_name+"-ppo_000512"],validation[name+"-ppo_000512"]))
+        designs["strong_attention_and_gae_ablations"]=ablations
     return designs
 
 
@@ -585,7 +616,8 @@ def write_report(report, output):
 7. 05:10新增的第二次PPO微调u384为3162.245秒，比冻结rollout均值3373.253秒节省211.008秒（6.255%）；同48局41胜7负、全部清除、零失败清除，最坏局仍慢199.794秒。这条继承链累计40960条参与更新的策略轨迹，不能只报告最后一轮12288局。相对上一轮再快16.094秒，不据此断言该增量已经显著。
 8. alpha0/alpha1同预算u512分别3294.830/3257.778秒；alpha1相对alpha0节省37.052秒，原归档配对95%区间[-12.447,86.859]秒、24胜24负，额外收益尚未确立。这一区间来自归档比较文件，表中各策略对rollout的区间由本脚本独立bootstrap；两者对象和随机种子不同，不能混写。
 9. 06:05完成的base/axis训练每组512×32=16384条，使用同best002权重和seed9112036。base初始化逐局重现best002；axis初始化3134.115秒属于零训练动作集迁移效应。base/axis末端分别3174.712/3149.841秒，两个末端及其余四个中间端点相对各自初始化的增量区间跨0；axis u157例外，节省-56.903秒、区间[-110.221,-5.418]全负，显示该开发集上的早期退化。没有任何已测训练端点确立额外收益，不能误写成所有区间均跨0。base u512最坏局相对rollout多764.699秒，不能只看其均值。中间墙钟检查点的更新数不同，不构成同预算对照。
-10. 07:15完成的v3/v4覆盖负债表示对照每组512×32=16384条，两个initialized逐局总时均等于best002，末端3176.419/3160.230秒。v4相对共同parent仅快2.015秒，95%区间[-40.678,44.600]跨0，尚无新特征额外收益的证据。源代码、动作集合、随机种子9112037、新场景180001..196384及完整采样量已核对；中间墙钟端点仍不是相同更新数。强起点attention仍不在本次归档范围。
+10. 07:15完成的v3/v4覆盖负债表示对照每组512×32=16384条，两个initialized逐局总时均等于best002，末端3176.419/3160.230秒。v4相对共同parent仅快2.015秒，95%区间[-40.678,44.600]跨0，尚无新特征额外收益的证据。源代码、动作集合、随机种子9112037、新场景180001..196384及完整采样量已核对；中间墙钟端点仍不是相同更新数。
+11. 最后两轮均完成512×32条：强起点attention最终3188.226秒，比parent慢25.981秒，其4个训练端点均无胜过parent的可靠证据。GAE lambda0.95最终3114.041秒，比rollout节省7.684%，相对parent快48.204秒但区间[-4.726,100.606]仍跨0；相对同起点/种子/预算lambda1控制末端则快62.377秒，区间[19.880,104.957]为正。这是本组训练条件下的开发集证据，不能声称所有种子或独立最终测试均改善。GAE没有改变gamma=1及实际时间回报，但改变优势估计与critic lambda-return，属于偏差/方差取舍，不是无偏改进保证。选择与最终评估记录不在本审计输入中。
 
 ## 复现
 
@@ -600,7 +632,7 @@ def write_report(report, output):
         text = text[:start] + text[end:]
     if not set(DEFAULT_ARCHIVES).issubset({entry["archive"] for entry in report["inputs"]}):
         start, end = text.index("## 当前证据的边界"), text.index("## 复现")
-        text = (text[:start] + "## 当前证据的边界\n\n本次显式输入只是历史归档的子集，故不复述需要完整07:15归档才能支持的数值结论。以上表格只列实际读取并通过场景身份及成功条件核验的数据；配对区间不能代表训练种子不确定性，也不能作为全局最优或最终测试保证。\n\n" + text[end:])
+        text = (text[:start] + "## 当前证据的边界\n\n本次显式输入只是历史归档的子集，故不复述需要完整08:18归档才能支持的数值结论。以上表格只列实际读取并通过场景身份及成功条件核验的数据；配对区间不能代表训练种子不确定性，也不能作为全局最优或最终测试保证。\n\n" + text[end:])
     if "matched_probe_endpoint" in report["audited_designs"]:
         design=report["audited_designs"]["matched_probe_endpoint"]
         probe_rows=[]
@@ -631,6 +663,18 @@ def write_report(report, output):
             +f"\n相同512更新末端，v4相对v3节省{pair['mean_seconds_saved']:.3f}秒，区间[{low:.3f}, {high:.3f}]。"
             "逐局均成功不等价于改进已经成立。\n\n")
         text=text.replace("## 全部已归档RL验证端点",route_text+"## 全部已归档RL验证端点")
+    if "strong_attention_and_gae_ablations" in report["audited_designs"]:
+        latest_rows=[]
+        for trial,detail in report["audited_designs"]["strong_attention_and_gae_ablations"].items():
+            for name,delta in detail["training_vs_parent"].items():
+                low,high=delta["saving_ci95_s"]
+                latest_rows.append([name,f"{report['validation'][name]['mean_virtual_time_s']:.3f}",
+                    f"{delta['mean_seconds_saved']:.3f}",f"[{low:.3f}, {high:.3f}]"])
+            delta=detail["final_vs_matched_v3"];low,high=delta["saving_ci95_s"]
+            latest_rows.append([trial+" u512 vs matched v3 u512","-",f"{delta['mean_seconds_saved']:.3f}",f"[{low:.3f}, {high:.3f}]"])
+        text=text.replace("## 全部已归档RL验证端点","## 最后有界对照：strong attention与GAE lambda0.95\n\n"
+            "以下正值表示节省；除明确注明matched v3的两行，其余都与共同parent best002比较。增量区间沿用原协议seed20260911/10000次Python random.choices。\n\n"
+            +table(["训练端点/参照","平均虚拟秒","节省秒","95% CI"],latest_rows)+"\n## 全部已归档RL验证端点")
     (output / "README.md").write_text(text, encoding="utf-8", newline="\n")
 
 
