@@ -225,7 +225,7 @@
       "diagnosis": "research/round3/diagnoses/DIRECTED_LOCALIZATION_PILOT.md"
     },
     "directed_incumbent": {
-      "status": "pilot_rejected_mechanism_review_pending",
+      "status": "frozen_before_new_cases",
       "candidate_label": "candidate",
       "hypothesis": "18 of 540 completed finite models omitted a cheaper existing parent route. Seed that feasible route as incumbent without changing cost model, probe family or search budgets. Both model error and search error were observed; require new paired episodes.",
       "parent_trial": "directed_localization",
@@ -250,32 +250,7 @@
       "source_commit": "1e0515521bee64164cae5c0acd21e4f54c0c2d75",
       "recipes_sha256": "0b9cf4ed4352f772cb64efecdef1b3bea2d9043fa966d41ecbb70e0c644ee291",
       "implementation_tests_passed": 156,
-      "review": "Independent pure-code review passed; no change to proxies, weights, family or budgets.",
-      "pilot_result": {
-        "paired_cases": 32,
-        "all_runs_audited": true,
-        "candidate_vs_baseline": {
-          "pairs": 32,
-          "safe": true,
-          "mean_saved_s": -22.697807062500004,
-          "ci95_saved_s": [
-            -75.940048578125,
-            25.63507661953119
-          ],
-          "mean_reduction_fraction": -0.0073708238718854825,
-          "wins": 10,
-          "losses": 12,
-          "ties": 10,
-          "worst_paired_regression_s": 472.03150400000004,
-          "p90_paired_regression_s": 191.93052299999968,
-          "pilot_expansion_gate": false,
-          "pareto_confirmation_gate": false,
-          "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
-        },
-        "confirmation_opened": false,
-        "final_opened": false,
-        "interpretation": "Independent new five-arm pilot fails its preregistered whole-episode gate. Mechanism audit pending; no promotion."
-      }
+      "review": "Independent pure-code review passed; no change to proxies, weights, family or budgets."
     }
   },
   "logging_scope": "Keep full raw machine records, immutable source/config/model identities and concise decisions; extensive prose optional, do not delay experiments.",
