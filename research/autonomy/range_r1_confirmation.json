@@ -1,0 +1,148 @@
+{
+  "scope": "Frozen independent 128-world confirmation; no updates after observing these results",
+  "frozen_unix": 1789155632.050933,
+  "model_sha256": "4d3b9367ca50ee6b191f109bf79f039717fa056cfdf5091c1f148cf30da8af05",
+  "source_commit": "38c4730b71263b7c4bfe098ad2acee1c7bf32191",
+  "snapshot": "autonomy-status-20260911T195342.704365Z-042d66e90707",
+  "manifest_sha256": "042d66e907079d3f7191a8f3b35172bbb81bfe2379a69cc960677aeea7e35152",
+  "lower_bound": "L/5+5N; report sum(T)/sum(LB), with all per-case ratios in audited_rows.json",
+  "evaluations": {
+    "state_search": {
+      "runs": 128,
+      "expected_runs": 128,
+      "complete": true,
+      "successful_runs": 128,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3087.8283024921875,
+      "penalized_mean_total_time_s": 3087.8283024921875,
+      "raw_p95_total_time_s": 3515.5362376499993,
+      "raw_max_total_time_s": 3722.543183,
+      "mean_time_per_source_s": 242.39002044674112,
+      "mean_program_runtime_s": 1.2982667850446887,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "checkpoint_sha256": null,
+      "split": "confirmation",
+      "physical_mean_lower_s": 1745.0132206206924,
+      "ratio_of_sums": 1.7695157068173177,
+      "audit_passed_records": 128,
+      "source_scope": "Local synthetic worlds, exact paired case hashes; not official simulator results"
+    },
+    "prior_rl": {
+      "runs": 128,
+      "expected_runs": 128,
+      "complete": true,
+      "successful_runs": 128,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3163.9181861171874,
+      "penalized_mean_total_time_s": 3163.9181861171874,
+      "raw_p95_total_time_s": 3587.57724405,
+      "raw_max_total_time_s": 3924.855091,
+      "mean_time_per_source_s": 248.14228468345706,
+      "mean_program_runtime_s": 0.390978562674718,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "checkpoint_sha256": "3a7a97e1805f3afe221d26e99b2906bff9196e2de9b9aff985aa1abd8611344b",
+      "split": "confirmation",
+      "physical_mean_lower_s": 1745.0132206206924,
+      "ratio_of_sums": 1.8131198942961577,
+      "audit_passed_records": 128,
+      "source_scope": "Local synthetic worlds, exact paired case hashes; not official simulator results"
+    },
+    "range": {
+      "runs": 128,
+      "expected_runs": 128,
+      "complete": true,
+      "successful_runs": 128,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3110.1062989453126,
+      "penalized_mean_total_time_s": 3110.1062989453126,
+      "raw_p95_total_time_s": 3630.7210481499997,
+      "raw_max_total_time_s": 3875.263617,
+      "mean_time_per_source_s": 243.96625635176855,
+      "mean_program_runtime_s": 0.4521038989769295,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "checkpoint_sha256": "4d3b9367ca50ee6b191f109bf79f039717fa056cfdf5091c1f148cf30da8af05",
+      "split": "confirmation",
+      "physical_mean_lower_s": 1745.0132206206924,
+      "ratio_of_sums": 1.7822823702384696,
+      "audit_passed_records": 128,
+      "source_scope": "Local synthetic worlds, exact paired case hashes; not official simulator results"
+    }
+  },
+  "comparisons": {
+    "range_vs_state_search": {
+      "pairs": 128,
+      "safe_full_clear_pairs": true,
+      "mean_seconds_saved": -22.277996453125,
+      "paired_mean_savings_ci95_s": [
+        -59.539615303515625,
+        14.512403337890564
+      ],
+      "mean_reduction_fraction": -0.007214778242412123,
+      "p95_time_ratio": 1.0327645066679776,
+      "max_time_ratio": 1.0410258327418307,
+      "wins": 62,
+      "losses": 66,
+      "maximum_paired_regression_s": 690.0901390000004,
+      "reference_time_over_physical_lower": 1.7695157068173177,
+      "candidate_time_over_physical_lower": 1.7822823702384696,
+      "strict_upgrade_on_supplied_cases": false,
+      "scope": "Independent confirmation of frozen policies; 128 identical world hashes, not official simulator"
+    },
+    "range_vs_prior_rl": {
+      "pairs": 128,
+      "safe_full_clear_pairs": true,
+      "mean_seconds_saved": 53.811887171875014,
+      "paired_mean_savings_ci95_s": [
+        23.603208659179696,
+        83.66118928066409
+      ],
+      "mean_reduction_fraction": 0.017007989463189488,
+      "p95_time_ratio": 1.0120258885495925,
+      "max_time_ratio": 0.987364763067631,
+      "wins": 84,
+      "losses": 44,
+      "maximum_paired_regression_s": 442.3095309999999,
+      "reference_time_over_physical_lower": 1.8131198942961577,
+      "candidate_time_over_physical_lower": 1.7822823702384696,
+      "strict_upgrade_on_supplied_cases": false,
+      "scope": "Independent confirmation of frozen policies; 128 identical world hashes, not official simulator"
+    },
+    "prior_rl_vs_state_search": {
+      "pairs": 128,
+      "safe_full_clear_pairs": true,
+      "mean_seconds_saved": -76.08988362500001,
+      "paired_mean_savings_ci95_s": [
+        -107.08209139824223,
+        -44.767290697460986
+      ],
+      "mean_reduction_fraction": -0.02464187648114624,
+      "p95_time_ratio": 1.0204921814283892,
+      "max_time_ratio": 1.0543477665817047,
+      "wins": 36,
+      "losses": 92,
+      "maximum_paired_regression_s": 484.5039370000004,
+      "reference_time_over_physical_lower": 1.7695157068173177,
+      "candidate_time_over_physical_lower": 1.8131198942961577,
+      "strict_upgrade_on_supplied_cases": false,
+      "scope": "Independent confirmation of frozen policies; 128 identical world hashes, not official simulator"
+    }
+  },
+  "case_artifacts": {
+    "state_search": {
+      "name": "range-confirm-r1/evaluation/state_search/audited_rows.json",
+      "sha256": "835f01b3850ec981ddfb7941c924ed2578067cdf4520c409f7cf09ca21801ae6",
+      "bytes": 112922
+    },
+    "prior_rl": {
+      "name": "range-confirm-r1/evaluation/prior_rl/audited_rows.json",
+      "sha256": "a2fdc3b5ef09dfabba1f3d975edee150354a55594741d11c8abf61674b554a23",
+      "bytes": 108923
+    },
+    "range": {
+      "name": "range-confirm-r1/evaluation/range/audited_rows.json",
+      "sha256": "33e6380c8357c45e2338dbde12a8cef58d3384355e722153806bd33533437512",
+      "bytes": 108448
+    }
+  },
+  "conclusion": "Range-probe policy improves mean versus prior RL but does not establish superiority over the best state search. Tail qualification must also pass; do not label an unconditional upgrade."
+}

@@ -14,7 +14,7 @@
     "mean_time_s": 3068.2903829375,
     "mean_lower_bound_s": 1702.2884780352904,
     "ratio_of_sums": 1.802450302946767,
-    "status": "Development-only small mean improvement; no strict upgrade or independent confirmation"
+    "status": "Range-probe policy improves mean versus prior RL but does not establish superiority over the best state search. Tail qualification must also pass; do not label an unconditional upgrade."
   },
   "ready_unrun": [
     "current-r1 later endpoint",
@@ -28,14 +28,24 @@
     "archive/q3-rl-cost-choice-v2-r1-failed-20260912"
   ],
   "remaining_quota_last_observed": {
-    "utc": "2026-09-11T19:35:10Z",
-    "percent": 9
+    "utc": "2026-09-11T19:52:32Z",
+    "percent": 4
   },
-  "next_priority": "Complete current scan experiment while quota permits; preserve quota for frozen independent comparison. Do not start further implementation or use reset credits. Stop work at <=1%.",
+  "next_priority": "Finish frozen independent confirmation and current scan endpoint while quota allows; no new implementation. Stop/save at <=1%; no reset.",
   "sealed_splits": [
-    "confirmation 5400001..5400128",
     "final 5500001..5500256",
     "stress 5600001..5600056"
   ],
-  "constraints": "Q3 port 42122, 50 CPU default/60 maximum, no GPU, transfers only object storage, no formal tests, validation database never used for training"
+  "constraints": "Q3 port 42122, 50 CPU default/60 maximum, no GPU, transfers only object storage, no formal tests, validation database never used for training",
+  "independent_confirmation": {
+    "job": "range-confirm-r1",
+    "frozen_unix": 1789155632.050933,
+    "pid": 1746076,
+    "start_ticks": "2343677263",
+    "cpu_slots": 1,
+    "scope": "Same 50-CPU allocation; frozen range-r1/block-01, prior RL and state search on 128 unseen confirmation worlds",
+    "status": "complete; all three policies 128/128 safe full clear",
+    "launch_repair": "First operational coordinator failed before evaluation due to command quoting. Re-launched with original immutable freeze records; no policy or dataset changes.",
+    "evidence": "research/autonomy/range_r1_confirmation.json"
+  }
 }
