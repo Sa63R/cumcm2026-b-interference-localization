@@ -1,0 +1,3156 @@
+{
+  "scope": "18 new asymmetric-count public layouts; no scenario, observation, truth or policy execution",
+  "protocol_sha256": "5b6f6c4ba3d2d669dd33091e74428751738312a894b143c124fcd8f436411557",
+  "script_sha256": "84fc841cf8bd2b817d71efba8433a7d8401dc321bc2683b099d7791fe3c8c49c",
+  "certificate_budget": {
+    "arena_radius": 1800.0,
+    "reception_radius": 1000.0,
+    "max_depth": 16,
+    "max_cells": 200000,
+    "range_margin_m": 1e-05,
+    "orientation_margin_m": 1e-07
+  },
+  "source_sha256": {
+    "q4-r12-joint-continuation\\src\\planning\\q4_directional_cover.py": "e863b3f0fb83e1deba8d1a24c4b929b8fe1caca9927f8b99e514b1deea6da5c1",
+    "q4-r12-joint-continuation\\src\\simulator_client\\state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42"
+  },
+  "results": [
+    {
+      "inner_count": 7,
+      "outer_count": 13,
+      "station_count": 21,
+      "inner_radius_m": 970.0,
+      "outer_radius_m": 1858.8700957095093,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 0.0,
+      "outer_half_step_phase": false,
+      "first_outer_native_index": 11,
+      "first_outer_angle_difference_deg": 3.956043956044011,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          604.7851078029715,
+          758.3765379939889
+        ],
+        [
+          -215.84530593762491,
+          945.6800748163689
+        ],
+        [
+          -873.9398018653465,
+          420.8672269440315
+        ],
+        [
+          -873.9398018653466,
+          -420.86722694403124
+        ],
+        [
+          -215.84530593762514,
+          -945.6800748163689
+        ],
+        [
+          604.7851078029714,
+          -758.376537993989
+        ],
+        [
+          1055.95857012534,
+          -1529.8200975611242
+        ],
+        [
+          224.06203036271916,
+          -1845.3168398063287
+        ],
+        [
+          -659.1644203158185,
+          -1738.0737325305827
+        ],
+        [
+          -1391.3842460924116,
+          -1232.6588791912109
+        ],
+        [
+          -1804.8547090871305,
+          -444.8567317789967
+        ],
+        [
+          -1804.8547090871302,
+          444.85673177899713
+        ],
+        [
+          -1391.3842460924113,
+          1232.658879191211
+        ],
+        [
+          -659.1644203158177,
+          1738.073732530583
+        ],
+        [
+          224.0620303627188,
+          1845.3168398063287
+        ],
+        [
+          1055.958570125342,
+          1529.820097561123
+        ],
+        [
+          1645.947727152544,
+          863.8600072954267
+        ],
+        [
+          1858.8700957095093,
+          0.0
+        ],
+        [
+          1645.9477271525443,
+          -863.8600072954265
+        ]
+      ],
+      "route_length_m": 17590.658757441324,
+      "pure_movement_s": 3518.131751488265,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "523b7023506c42ed7740343c1eac5424d02fe0ed9858d9b4601530a1cd9db5ff",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 35,
+        "deepest_level": 10,
+        "outside_leaves": 21,
+        "covered_leaves": 1,
+        "counterexample": {
+          "source": [
+            -1153.125,
+            -1381.640625
+          ],
+          "normal": [
+            0.5680647467311531,
+            0.8229838658936582
+          ],
+          "local_stations": [
+            [
+              -1391.3842460924116,
+              -1232.6588791912109
+            ],
+            [
+              -659.1644203158185,
+              -1738.0737325305827
+            ]
+          ],
+          "max_projection_m": -12.73710517453766
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1799.6188713934378,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -12.73710517453766,
+        "min_unreachable_distance_margin_m": 0.514816116932252
+      },
+      "certificate_runtime_s": 0.00033370000892318785,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i7-o13-r970-half0.json.gz",
+      "proof_gzip_sha256": "5b5fd006238300c08dfee623c2c531689cc46dd4bde3278915cafde2d9bb224d",
+      "proof_raw_sha256": "06ca0e7892d01f4d0d77da62786b0781166c0f8e2777823fa8d14b11864e590e"
+    },
+    {
+      "inner_count": 7,
+      "outer_count": 13,
+      "station_count": 21,
+      "inner_radius_m": 970.0,
+      "outer_radius_m": 1858.8700957095093,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 13.846153846153847,
+      "outer_half_step_phase": true,
+      "first_outer_native_index": 11,
+      "first_outer_angle_difference_deg": 9.890109890109823,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          604.7851078029715,
+          758.3765379939889
+        ],
+        [
+          -215.84530593762491,
+          945.6800748163689
+        ],
+        [
+          -873.9398018653465,
+          420.8672269440315
+        ],
+        [
+          -873.9398018653466,
+          -420.86722694403124
+        ],
+        [
+          -215.84530593762514,
+          -945.6800748163689
+        ],
+        [
+          604.7851078029714,
+          -758.376537993989
+        ],
+        [
+          1391.3842460924095,
+          -1232.6588791912131
+        ],
+        [
+          659.1644203158178,
+          -1738.073732530583
+        ],
+        [
+          -224.06203036271987,
+          -1845.3168398063287
+        ],
+        [
+          -1055.958570125342,
+          -1529.820097561123
+        ],
+        [
+          -1645.9477271525445,
+          -863.8600072954259
+        ],
+        [
+          -1858.8700957095093,
+          2.2764593127413846e-13
+        ],
+        [
+          -1645.9477271525443,
+          863.8600072954263
+        ],
+        [
+          -1055.9585701253416,
+          1529.8200975611232
+        ],
+        [
+          -224.06203036271899,
+          1845.3168398063287
+        ],
+        [
+          659.1644203158182,
+          1738.0737325305827
+        ],
+        [
+          1391.384246092411,
+          1232.658879191211
+        ],
+        [
+          1804.8547090871302,
+          444.8567317789973
+        ],
+        [
+          1804.8547090871302,
+          -444.85673177899736
+        ]
+      ],
+      "route_length_m": 17615.489893570484,
+      "pure_movement_s": 3523.097978714097,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "941492d52541bf191d88ea7bfe2365d324b5c9001b56c82232d0c2b82ec8b824",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 35,
+        "deepest_level": 10,
+        "outside_leaves": 21,
+        "covered_leaves": 1,
+        "counterexample": {
+          "source": [
+            -1153.125,
+            -1381.640625
+          ],
+          "normal": [
+            0.748510748171105,
+            0.6631226582407909
+          ],
+          "local_stations": [
+            [
+              -1645.9477271525445,
+              -863.8600072954259
+            ],
+            [
+              -1055.958570125342,
+              -1529.820097561123
+            ]
+          ],
+          "max_projection_m": -25.531048618854783
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1799.6188713934378,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -25.531048618854783,
+        "min_unreachable_distance_margin_m": 0.514816116932252
+      },
+      "certificate_runtime_s": 0.0003047000209335238,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i7-o13-r970-half1.json.gz",
+      "proof_gzip_sha256": "9768f0448f0bf74d5fe990101178d945b2c04b223b59e71727dd57a9350b9159",
+      "proof_raw_sha256": "e6f37de447ba30ec65bca5c6c2c14829615ffb23707e6fda66ff7b47349d5720"
+    },
+    {
+      "inner_count": 7,
+      "outer_count": 13,
+      "station_count": 21,
+      "inner_radius_m": 990.0,
+      "outer_radius_m": 1858.8700957095093,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 0.0,
+      "outer_half_step_phase": false,
+      "first_outer_native_index": 11,
+      "first_outer_angle_difference_deg": 3.956043956044011,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          990.0,
+          0.0
+        ],
+        [
+          617.2549038401463,
+          774.0131676433496
+        ],
+        [
+          -220.2957246167512,
+          965.1786330600054
+        ],
+        [
+          -891.9591792233948,
+          429.54490172638265
+        ],
+        [
+          -891.9591792233949,
+          -429.5449017263824
+        ],
+        [
+          -220.29572461675144,
+          -965.1786330600054
+        ],
+        [
+          617.2549038401461,
+          -774.0131676433496
+        ],
+        [
+          1055.95857012534,
+          -1529.8200975611242
+        ],
+        [
+          224.06203036271916,
+          -1845.3168398063287
+        ],
+        [
+          -659.1644203158185,
+          -1738.0737325305827
+        ],
+        [
+          -1391.3842460924116,
+          -1232.6588791912109
+        ],
+        [
+          -1804.8547090871305,
+          -444.8567317789967
+        ],
+        [
+          -1804.8547090871302,
+          444.85673177899713
+        ],
+        [
+          -1391.3842460924113,
+          1232.658879191211
+        ],
+        [
+          -659.1644203158177,
+          1738.073732530583
+        ],
+        [
+          224.0620303627188,
+          1845.3168398063287
+        ],
+        [
+          1055.958570125342,
+          1529.820097561123
+        ],
+        [
+          1645.947727152544,
+          863.8600072954267
+        ],
+        [
+          1858.8700957095093,
+          0.0
+        ],
+        [
+          1645.9477271525443,
+          -863.8600072954265
+        ]
+      ],
+      "route_length_m": 17695.002564508213,
+      "pure_movement_s": 3539.0005129016427,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "5e5621937babe9e5f5a74d979f32e86a40c1d3e33ac42eaed54a593ed5c28b91",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 64,
+        "deepest_level": 13,
+        "outside_leaves": 39,
+        "covered_leaves": 4,
+        "counterexample": {
+          "source": [
+            -1125.0,
+            -1402.734375
+          ],
+          "normal": [
+            0.5680647467311527,
+            0.8229838658936585
+          ],
+          "local_stations": [
+            [
+              -1391.3842460924116,
+              -1232.6588791912109
+            ],
+            [
+              -659.1644203158185,
+              -1738.0737325305827
+            ]
+          ],
+          "max_projection_m": -11.354110255156826
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1798.1347910561767,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -11.354110255156826,
+        "min_unreachable_distance_margin_m": 0.7026406674536929
+      },
+      "certificate_runtime_s": 0.0004661999992094934,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i7-o13-r990-half0.json.gz",
+      "proof_gzip_sha256": "0964e1eb9787c52d034ba1272b640eb243f046c6249f5777b600c870b129e5b5",
+      "proof_raw_sha256": "d80e49f0a99d0e0cb51b63a131261caf823efb69002d5847e7e556ffdbfc83a8"
+    },
+    {
+      "inner_count": 7,
+      "outer_count": 13,
+      "station_count": 21,
+      "inner_radius_m": 990.0,
+      "outer_radius_m": 1858.8700957095093,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 13.846153846153847,
+      "outer_half_step_phase": true,
+      "first_outer_native_index": 11,
+      "first_outer_angle_difference_deg": 9.890109890109823,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          990.0,
+          0.0
+        ],
+        [
+          617.2549038401463,
+          774.0131676433496
+        ],
+        [
+          -220.2957246167512,
+          965.1786330600054
+        ],
+        [
+          -891.9591792233948,
+          429.54490172638265
+        ],
+        [
+          -891.9591792233949,
+          -429.5449017263824
+        ],
+        [
+          -220.29572461675144,
+          -965.1786330600054
+        ],
+        [
+          617.2549038401461,
+          -774.0131676433496
+        ],
+        [
+          1391.3842460924095,
+          -1232.6588791912131
+        ],
+        [
+          659.1644203158178,
+          -1738.073732530583
+        ],
+        [
+          -224.06203036271987,
+          -1845.3168398063287
+        ],
+        [
+          -1055.958570125342,
+          -1529.820097561123
+        ],
+        [
+          -1645.9477271525445,
+          -863.8600072954259
+        ],
+        [
+          -1858.8700957095093,
+          2.2764593127413846e-13
+        ],
+        [
+          -1645.9477271525443,
+          863.8600072954263
+        ],
+        [
+          -1055.9585701253416,
+          1529.8200975611232
+        ],
+        [
+          -224.06203036271899,
+          1845.3168398063287
+        ],
+        [
+          659.1644203158182,
+          1738.0737325305827
+        ],
+        [
+          1391.384246092411,
+          1232.658879191211
+        ],
+        [
+          1804.8547090871302,
+          444.8567317789973
+        ],
+        [
+          1804.8547090871302,
+          -444.85673177899736
+        ]
+      ],
+      "route_length_m": 17720.895986456442,
+      "pure_movement_s": 3544.1791972912883,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "74688fba16d69b5a7fef15e286ad99dcc19ed2aa660a5f3846651f0f2dc56da6",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 64,
+        "deepest_level": 13,
+        "outside_leaves": 39,
+        "covered_leaves": 4,
+        "counterexample": {
+          "source": [
+            -1125.0,
+            -1402.734375
+          ],
+          "normal": [
+            0.7485107481711042,
+            0.6631226582407916
+          ],
+          "local_stations": [
+            [
+              -1645.9477271525445,
+              -863.8600072954259
+            ],
+            [
+              -1055.958570125342,
+              -1529.820097561123
+            ]
+          ],
+          "max_projection_m": -32.59516983890058
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1798.1347910561767,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -32.59516983890058,
+        "min_unreachable_distance_margin_m": 0.7026406674536929
+      },
+      "certificate_runtime_s": 0.0005204000044614077,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i7-o13-r990-half1.json.gz",
+      "proof_gzip_sha256": "ddf18373e892d3bc3613ae32d8076d95167fa703cac1f3660e71ac76e0fa20cc",
+      "proof_raw_sha256": "21005062b4acee3a1d1b27e9ff343b0d2d8bde8770fa3c77a78778231989cf20"
+    },
+    {
+      "inner_count": 7,
+      "outer_count": 13,
+      "station_count": 21,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1858.8700957095093,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 0.0,
+      "outer_half_step_phase": false,
+      "first_outer_native_index": 11,
+      "first_outer_angle_difference_deg": 3.956043956044011,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          622.8663120568749,
+          781.0496509855618
+        ],
+        [
+          -222.29841302235803,
+          973.9529842696418
+        ],
+        [
+          -900.0678990345166,
+          433.44985537844065
+        ],
+        [
+          -900.0678990345167,
+          -433.4498553784405
+        ],
+        [
+          -222.29841302235826,
+          -973.9529842696418
+        ],
+        [
+          622.8663120568747,
+          -781.0496509855619
+        ],
+        [
+          1055.95857012534,
+          -1529.8200975611242
+        ],
+        [
+          224.06203036271916,
+          -1845.3168398063287
+        ],
+        [
+          -659.1644203158185,
+          -1738.0737325305827
+        ],
+        [
+          -1391.3842460924116,
+          -1232.6588791912109
+        ],
+        [
+          -1804.8547090871305,
+          -444.8567317789967
+        ],
+        [
+          -1804.8547090871302,
+          444.85673177899713
+        ],
+        [
+          -1391.3842460924113,
+          1232.658879191211
+        ],
+        [
+          -659.1644203158177,
+          1738.073732530583
+        ],
+        [
+          224.0620303627188,
+          1845.3168398063287
+        ],
+        [
+          1055.958570125342,
+          1529.820097561123
+        ],
+        [
+          1645.947727152544,
+          863.8600072954267
+        ],
+        [
+          1858.8700957095093,
+          0.0
+        ],
+        [
+          1645.9477271525443,
+          -863.8600072954265
+        ]
+      ],
+      "route_length_m": 17741.96045478833,
+      "pure_movement_s": 3548.3920909576655,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "inconclusive",
+        "reason": "depth_budget",
+        "station_count": 21,
+        "station_sha256": "4f7ae9694d9370cef4468cce1387271117e5a3e312cef9f704542a8e8dee86ad",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 1214,
+        "deepest_level": 16,
+        "outside_leaves": 368,
+        "covered_leaves": 538,
+        "counterexample": null,
+        "unresolved_cell": {
+          "path": "0233333131311312",
+          "box": [
+            -900.10986328125,
+            -900.054931640625,
+            -19.061279296875,
+            -19.00634765625
+          ]
+        },
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": null,
+      "certificate_runtime_s": 0.01204250002047047,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i7-o13-r999-half0.json.gz",
+      "proof_gzip_sha256": "95d715fa7906fa937ebc9ef6669d019938bfb4e419ba2c745fb74c2ca3e0a59d",
+      "proof_raw_sha256": "e59714149a81d655c188a469c03191073dc8a7d2e9978a88c2816ba6b0e7c590"
+    },
+    {
+      "inner_count": 7,
+      "outer_count": 13,
+      "station_count": 21,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1858.8700957095093,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 13.846153846153847,
+      "outer_half_step_phase": true,
+      "first_outer_native_index": 11,
+      "first_outer_angle_difference_deg": 9.890109890109823,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          622.8663120568749,
+          781.0496509855618
+        ],
+        [
+          -222.29841302235803,
+          973.9529842696418
+        ],
+        [
+          -900.0678990345166,
+          433.44985537844065
+        ],
+        [
+          -900.0678990345167,
+          -433.4498553784405
+        ],
+        [
+          -222.29841302235826,
+          -973.9529842696418
+        ],
+        [
+          622.8663120568747,
+          -781.0496509855619
+        ],
+        [
+          1391.3842460924095,
+          -1232.6588791912131
+        ],
+        [
+          659.1644203158178,
+          -1738.073732530583
+        ],
+        [
+          -224.06203036271987,
+          -1845.3168398063287
+        ],
+        [
+          -1055.958570125342,
+          -1529.820097561123
+        ],
+        [
+          -1645.9477271525445,
+          -863.8600072954259
+        ],
+        [
+          -1858.8700957095093,
+          2.2764593127413846e-13
+        ],
+        [
+          -1645.9477271525443,
+          863.8600072954263
+        ],
+        [
+          -1055.9585701253416,
+          1529.8200975611232
+        ],
+        [
+          -224.06203036271899,
+          1845.3168398063287
+        ],
+        [
+          659.1644203158182,
+          1738.0737325305827
+        ],
+        [
+          1391.384246092411,
+          1232.658879191211
+        ],
+        [
+          1804.8547090871302,
+          444.8567317789973
+        ],
+        [
+          1804.8547090871302,
+          -444.85673177899736
+        ]
+      ],
+      "route_length_m": 17768.346785821846,
+      "pure_movement_s": 3553.669357164369,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "inconclusive",
+        "reason": "depth_budget",
+        "station_count": 21,
+        "station_sha256": "fe142ffa26a0496ccb80b19fbf8ad75dda5b1e7eb6d104080c8aeb1de6f2c726",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 1735,
+        "deepest_level": 16,
+        "outside_leaves": 488,
+        "covered_leaves": 809,
+        "counterexample": null,
+        "unresolved_cell": {
+          "path": "1022233323222232",
+          "box": [
+            102.06298828125,
+            102.117919921875,
+            -900.054931640625,
+            -900.0
+          ]
+        },
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": null,
+      "certificate_runtime_s": 0.021087100001750514,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i7-o13-r999-half1.json.gz",
+      "proof_gzip_sha256": "24ec09e778cc9fb89255dba595897cc212f7bcd6229ef250af8ad3baf3c6eec9",
+      "proof_raw_sha256": "b17aaec216c9c8ab89c5373f3be1b1dcbd1f152f93f2bd3c2ace7e43a6aa4ada"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 14,
+      "station_count": 21,
+      "inner_radius_m": 970.0,
+      "outer_radius_m": 1851.290353890597,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 0.0,
+      "outer_half_step_phase": false,
+      "first_outer_native_index": 12,
+      "first_outer_angle_difference_deg": 8.571428571428555,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          485.0000000000001,
+          840.0446416709054
+        ],
+        [
+          -484.9999999999998,
+          840.0446416709055
+        ],
+        [
+          -970.0,
+          1.1879073951729327e-13
+        ],
+        [
+          -485.00000000000045,
+          -840.0446416709053
+        ],
+        [
+          485.0000000000001,
+          -840.0446416709054
+        ],
+        [
+          1154.2606559302328,
+          -1447.3970818610492
+        ],
+        [
+          411.9508585720495,
+          -1804.8746395609096
+        ],
+        [
+          -411.9508585720518,
+          -1804.8746395609091
+        ],
+        [
+          -1154.2606559302333,
+          -1447.397081861049
+        ],
+        [
+          -1667.9549743034802,
+          -803.2447809383194
+        ],
+        [
+          -1851.290353890597,
+          2.2671768061844906e-13
+        ],
+        [
+          -1667.95497430348,
+          803.2447809383199
+        ],
+        [
+          -1154.260655930233,
+          1447.3970818610492
+        ],
+        [
+          -411.95085857205135,
+          1804.8746395609091
+        ],
+        [
+          411.9508585720516,
+          1804.8746395609091
+        ],
+        [
+          1154.2606559302333,
+          1447.397081861049
+        ],
+        [
+          1667.9549743034802,
+          803.2447809383196
+        ],
+        [
+          1851.290353890597,
+          0.0
+        ],
+        [
+          1667.9549743034806,
+          -803.2447809383185
+        ]
+      ],
+      "route_length_m": 17434.484909054623,
+      "pure_movement_s": 3486.8969818109244,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "inconclusive",
+        "reason": "depth_budget",
+        "station_count": 21,
+        "station_sha256": "c9472046a1a893bbe3654466037bfca19dc17632ba9d366c14c2d1397f525f4b",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 228,
+        "deepest_level": 16,
+        "outside_leaves": 107,
+        "covered_leaves": 58,
+        "counterexample": null,
+        "unresolved_cell": {
+          "path": "0023031313312311",
+          "box": [
+            -1462.994384765625,
+            -1462.939453125,
+            -1048.7548828125,
+            -1048.699951171875
+          ]
+        },
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": null,
+      "certificate_runtime_s": 0.0024833999923430383,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o14-r970-half0.json.gz",
+      "proof_gzip_sha256": "7ef888071a86657b3d07ae9bccfda4919abe5a821668145dcca60867229816f9",
+      "proof_raw_sha256": "5131801e5525c7ebf0e6df91b69a766f08e043badb5d116735ff68bfa77b05b1"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 14,
+      "station_count": 21,
+      "inner_radius_m": 970.0,
+      "outer_radius_m": 1851.290353890597,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 12.857142857142858,
+      "outer_half_step_phase": true,
+      "first_outer_native_index": 11,
+      "first_outer_angle_difference_deg": 4.285714285714354,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        20,
+        19
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          485.0000000000001,
+          840.0446416709054
+        ],
+        [
+          -484.9999999999998,
+          840.0446416709055
+        ],
+        [
+          -970.0,
+          1.1879073951729327e-13
+        ],
+        [
+          -485.00000000000045,
+          -840.0446416709053
+        ],
+        [
+          485.0000000000001,
+          -840.0446416709054
+        ],
+        [
+          803.2447809383178,
+          -1667.954974303481
+        ],
+        [
+          -3.4007652092767354e-13,
+          -1851.290353890597
+        ],
+        [
+          -803.24478093832,
+          -1667.95497430348
+        ],
+        [
+          -1447.3970818610492,
+          -1154.2606559302328
+        ],
+        [
+          -1804.8746395609091,
+          -411.95085857205123
+        ],
+        [
+          -1804.8746395609091,
+          411.9508585720517
+        ],
+        [
+          -1447.397081861049,
+          1154.2606559302333
+        ],
+        [
+          -803.2447809383195,
+          1667.9549743034802
+        ],
+        [
+          1.1335884030922453e-13,
+          1851.290353890597
+        ],
+        [
+          803.2447809383198,
+          1667.9549743034802
+        ],
+        [
+          1447.397081861049,
+          1154.260655930233
+        ],
+        [
+          1804.8746395609091,
+          411.95085857205146
+        ],
+        [
+          1804.8746395609094,
+          -411.9508585720503
+        ],
+        [
+          1447.397081861049,
+          -1154.2606559302333
+        ]
+      ],
+      "route_length_m": 17417.692028936774,
+      "pure_movement_s": 3483.538405787355,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "bdba6c5920893154aec14b872068ade623258ba15f91983f71081aef8252f487",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 305,
+        "deepest_level": 10,
+        "outside_leaves": 125,
+        "covered_leaves": 101,
+        "counterexample": {
+          "source": [
+            -1518.75,
+            -956.25
+          ],
+          "normal": [
+            0.900968867902419,
+            0.43388373911755856
+          ],
+          "local_stations": [
+            [
+              -1804.8746395609091,
+              -411.95085857205123
+            ],
+            [
+              -1447.3970818610492,
+              -1154.2606559302328
+            ]
+          ],
+          "max_projection_m": -21.62684590294475
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1794.7188150236793,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -21.62684590294475,
+        "min_unreachable_distance_margin_m": 9.193583487736873
+      },
+      "certificate_runtime_s": 0.0027424999861977994,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o14-r970-half1.json.gz",
+      "proof_gzip_sha256": "e8f693761dd5212d699368f1c63a90c1b6f11665a931cc3e8c60774bea9c6e4a",
+      "proof_raw_sha256": "c6c97782f1d0eda73ae586d18833798f8cd6aa710098321c478c7541eedc729b"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 14,
+      "station_count": 21,
+      "inner_radius_m": 990.0,
+      "outer_radius_m": 1851.290353890597,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 0.0,
+      "outer_half_step_phase": false,
+      "first_outer_native_index": 12,
+      "first_outer_angle_difference_deg": 8.571428571428555,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          990.0,
+          0.0
+        ],
+        [
+          495.0000000000001,
+          857.3651497465942
+        ],
+        [
+          -494.9999999999998,
+          857.3651497465943
+        ],
+        [
+          -990.0,
+          1.2124003311558797e-13
+        ],
+        [
+          -495.00000000000045,
+          -857.365149746594
+        ],
+        [
+          495.0000000000001,
+          -857.3651497465942
+        ],
+        [
+          1154.2606559302328,
+          -1447.3970818610492
+        ],
+        [
+          411.9508585720495,
+          -1804.8746395609096
+        ],
+        [
+          -411.9508585720518,
+          -1804.8746395609091
+        ],
+        [
+          -1154.2606559302333,
+          -1447.397081861049
+        ],
+        [
+          -1667.9549743034802,
+          -803.2447809383194
+        ],
+        [
+          -1851.290353890597,
+          2.2671768061844906e-13
+        ],
+        [
+          -1667.95497430348,
+          803.2447809383199
+        ],
+        [
+          -1154.260655930233,
+          1447.3970818610492
+        ],
+        [
+          -411.95085857205135,
+          1804.8746395609091
+        ],
+        [
+          411.9508585720516,
+          1804.8746395609091
+        ],
+        [
+          1154.2606559302333,
+          1447.397081861049
+        ],
+        [
+          1667.9549743034802,
+          803.2447809383196
+        ],
+        [
+          1851.290353890597,
+          0.0
+        ],
+        [
+          1667.9549743034806,
+          -803.2447809383185
+        ]
+      ],
+      "route_length_m": 17535.460868078797,
+      "pure_movement_s": 3507.0921736157593,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "3748f8043eaa7e246a3a1780391e6a30c0153dfe21b4e85c6db9b1c4b081b2cc",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 251,
+        "deepest_level": 15,
+        "outside_leaves": 118,
+        "covered_leaves": 66,
+        "counterexample": {
+          "source": [
+            -1481.8359375,
+            -1021.2890625
+          ],
+          "normal": [
+            0.7818314824680319,
+            0.6234898018587308
+          ],
+          "local_stations": [
+            [
+              -1667.9549743034802,
+              -803.2447809383194
+            ],
+            [
+              -1154.2606559302333,
+              -1447.397081861049
+            ]
+          ],
+          "max_projection_m": -9.56533655226292
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1799.6858322631294,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -9.56533655226292,
+        "min_unreachable_distance_margin_m": 0.35804425909884685
+      },
+      "certificate_runtime_s": 0.0019626999855972826,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o14-r990-half0.json.gz",
+      "proof_gzip_sha256": "4c805c2b5fcd78d25dd7c859e7c2cd872a2c56476b167d961ae7b44791f3d514",
+      "proof_raw_sha256": "378b137d2dfd9606c44819bc02e41ada976cde2c4892cc00d3c9a73f17015414"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 14,
+      "station_count": 21,
+      "inner_radius_m": 990.0,
+      "outer_radius_m": 1851.290353890597,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 12.857142857142858,
+      "outer_half_step_phase": true,
+      "first_outer_native_index": 11,
+      "first_outer_angle_difference_deg": 4.285714285714354,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        20,
+        19
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          990.0,
+          0.0
+        ],
+        [
+          495.0000000000001,
+          857.3651497465942
+        ],
+        [
+          -494.9999999999998,
+          857.3651497465943
+        ],
+        [
+          -990.0,
+          1.2124003311558797e-13
+        ],
+        [
+          -495.00000000000045,
+          -857.365149746594
+        ],
+        [
+          495.0000000000001,
+          -857.3651497465942
+        ],
+        [
+          803.2447809383178,
+          -1667.954974303481
+        ],
+        [
+          -3.4007652092767354e-13,
+          -1851.290353890597
+        ],
+        [
+          -803.24478093832,
+          -1667.95497430348
+        ],
+        [
+          -1447.3970818610492,
+          -1154.2606559302328
+        ],
+        [
+          -1804.8746395609091,
+          -411.95085857205123
+        ],
+        [
+          -1804.8746395609091,
+          411.9508585720517
+        ],
+        [
+          -1447.397081861049,
+          1154.2606559302333
+        ],
+        [
+          -803.2447809383195,
+          1667.9549743034802
+        ],
+        [
+          1.1335884030922453e-13,
+          1851.290353890597
+        ],
+        [
+          803.2447809383198,
+          1667.9549743034802
+        ],
+        [
+          1447.397081861049,
+          1154.260655930233
+        ],
+        [
+          1804.8746395609091,
+          411.95085857205146
+        ],
+        [
+          1804.8746395609094,
+          -411.9508585720503
+        ],
+        [
+          1447.397081861049,
+          -1154.2606559302333
+        ]
+      ],
+      "route_length_m": 17517.94242679787,
+      "pure_movement_s": 3503.5884853595735,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "d6475e16baf4bc8e3b42b8409f00705ca29bca7af8a842db36193e6cdee0a432",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 305,
+        "deepest_level": 10,
+        "outside_leaves": 125,
+        "covered_leaves": 101,
+        "counterexample": {
+          "source": [
+            -1518.75,
+            -956.25
+          ],
+          "normal": [
+            0.900968867902419,
+            0.43388373911755856
+          ],
+          "local_stations": [
+            [
+              -1804.8746395609091,
+              -411.95085857205123
+            ],
+            [
+              -1447.3970818610492,
+              -1154.2606559302328
+            ]
+          ],
+          "max_projection_m": -21.62684590294475
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1794.7188150236793,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -21.62684590294475,
+        "min_unreachable_distance_margin_m": 9.193583487736873
+      },
+      "certificate_runtime_s": 0.002881099993828684,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o14-r990-half1.json.gz",
+      "proof_gzip_sha256": "c957783705b1c3d926fcf6f78def8a39bf86bd9391fa0d99dc26526e61357514",
+      "proof_raw_sha256": "3faffb2cad98a4c686fb85f4f98db569c605ced264505b69046537cac23a7a6b"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 14,
+      "station_count": 21,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1851.290353890597,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 0.0,
+      "outer_half_step_phase": false,
+      "first_outer_native_index": 12,
+      "first_outer_angle_difference_deg": 8.571428571428555,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          499.5000000000001,
+          865.1593783806542
+        ],
+        [
+          -499.4999999999998,
+          865.1593783806543
+        ],
+        [
+          -999.0,
+          1.223422152348206e-13
+        ],
+        [
+          -499.50000000000045,
+          -865.1593783806541
+        ],
+        [
+          499.5000000000001,
+          -865.1593783806542
+        ],
+        [
+          1154.2606559302328,
+          -1447.3970818610492
+        ],
+        [
+          411.9508585720495,
+          -1804.8746395609096
+        ],
+        [
+          -411.9508585720518,
+          -1804.8746395609091
+        ],
+        [
+          -1154.2606559302333,
+          -1447.397081861049
+        ],
+        [
+          -1667.9549743034802,
+          -803.2447809383194
+        ],
+        [
+          -1851.290353890597,
+          2.2671768061844906e-13
+        ],
+        [
+          -1667.95497430348,
+          803.2447809383199
+        ],
+        [
+          -1154.260655930233,
+          1447.3970818610492
+        ],
+        [
+          -411.95085857205135,
+          1804.8746395609091
+        ],
+        [
+          411.9508585720516,
+          1804.8746395609091
+        ],
+        [
+          1154.2606559302333,
+          1447.397081861049
+        ],
+        [
+          1667.9549743034802,
+          803.2447809383196
+        ],
+        [
+          1851.290353890597,
+          0.0
+        ],
+        [
+          1667.9549743034806,
+          -803.2447809383185
+        ]
+      ],
+      "route_length_m": 17580.91423102378,
+      "pure_movement_s": 3516.182846204756,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "5fc1a58da7a913804b095f194c788fc56bdef8d7f60774658f0a651bd3a9d71a",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 317,
+        "deepest_level": 13,
+        "outside_leaves": 132,
+        "covered_leaves": 103,
+        "counterexample": {
+          "source": [
+            -1518.75,
+            -956.25
+          ],
+          "normal": [
+            0.7818314824680319,
+            0.6234898018587308
+          ],
+          "local_stations": [
+            [
+              -1667.9549743034802,
+              -803.2447809383194
+            ],
+            [
+              -1154.2606559302333,
+              -1447.397081861049
+            ]
+          ],
+          "max_projection_m": -21.25595253517298
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1794.7188150236793,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -21.25595253517298,
+        "min_unreachable_distance_margin_m": 12.42142878629545
+      },
+      "certificate_runtime_s": 0.0029356000013649464,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o14-r999-half0.json.gz",
+      "proof_gzip_sha256": "53c2d830aecd1b0fd710f2382a55bea826beab0aa7dff6edcca400ed60dd88b5",
+      "proof_raw_sha256": "87ed34e1f470b7315e29988e9af040b528074383ca5d231a56bc5cbd770a94f5"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 14,
+      "station_count": 21,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1851.290353890597,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 12.857142857142858,
+      "outer_half_step_phase": true,
+      "first_outer_native_index": 11,
+      "first_outer_angle_difference_deg": 4.285714285714354,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        20,
+        19
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          499.5000000000001,
+          865.1593783806542
+        ],
+        [
+          -499.4999999999998,
+          865.1593783806543
+        ],
+        [
+          -999.0,
+          1.223422152348206e-13
+        ],
+        [
+          -499.50000000000045,
+          -865.1593783806541
+        ],
+        [
+          499.5000000000001,
+          -865.1593783806542
+        ],
+        [
+          803.2447809383178,
+          -1667.954974303481
+        ],
+        [
+          -3.4007652092767354e-13,
+          -1851.290353890597
+        ],
+        [
+          -803.24478093832,
+          -1667.95497430348
+        ],
+        [
+          -1447.3970818610492,
+          -1154.2606559302328
+        ],
+        [
+          -1804.8746395609091,
+          -411.95085857205123
+        ],
+        [
+          -1804.8746395609091,
+          411.9508585720517
+        ],
+        [
+          -1447.397081861049,
+          1154.2606559302333
+        ],
+        [
+          -803.2447809383195,
+          1667.9549743034802
+        ],
+        [
+          1.1335884030922453e-13,
+          1851.290353890597
+        ],
+        [
+          803.2447809383198,
+          1667.9549743034802
+        ],
+        [
+          1447.397081861049,
+          1154.260655930233
+        ],
+        [
+          1804.8746395609091,
+          411.95085857205146
+        ],
+        [
+          1804.8746395609094,
+          -411.9508585720503
+        ],
+        [
+          1447.397081861049,
+          -1154.2606559302333
+        ]
+      ],
+      "route_length_m": 17563.058889017615,
+      "pure_movement_s": 3512.611777803523,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "3685cc5ed7531d5ce4d1bb1c05d3305ae89dcf05215baf18634ccfe83fc6f63e",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 305,
+        "deepest_level": 10,
+        "outside_leaves": 125,
+        "covered_leaves": 101,
+        "counterexample": {
+          "source": [
+            -1518.75,
+            -956.25
+          ],
+          "normal": [
+            0.900968867902419,
+            0.43388373911755856
+          ],
+          "local_stations": [
+            [
+              -1804.8746395609091,
+              -411.95085857205123
+            ],
+            [
+              -1447.3970818610492,
+              -1154.2606559302328
+            ]
+          ],
+          "max_projection_m": -21.62684590294475
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1794.7188150236793,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -21.62684590294475,
+        "min_unreachable_distance_margin_m": 9.193583487736873
+      },
+      "certificate_runtime_s": 0.00269950000802055,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o14-r999-half1.json.gz",
+      "proof_gzip_sha256": "61c9e94537195a9bd8a07aaa9f6f38bfd97ce764f15c8008945ec0200b9f06e5",
+      "proof_raw_sha256": "f04c15dbb534a93355a5077200715a5105496ebcfd807187c24ae372ee895c74"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 15,
+      "station_count": 22,
+      "inner_radius_m": 970.0,
+      "outer_radius_m": 1845.2130707570525,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 0.0,
+      "outer_half_step_phase": false,
+      "first_outer_native_index": 12,
+      "first_outer_angle_difference_deg": 12.000000000000018,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        21,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          485.0000000000001,
+          840.0446416709054
+        ],
+        [
+          -484.9999999999998,
+          840.0446416709055
+        ],
+        [
+          -970.0,
+          1.1879073951729327e-13
+        ],
+        [
+          -485.00000000000045,
+          -840.0446416709053
+        ],
+        [
+          485.0000000000001,
+          -840.0446416709054
+        ],
+        [
+          570.2021971067112,
+          -1754.901914896485
+        ],
+        [
+          -192.87728668762404,
+          -1835.1048004876156
+        ],
+        [
+          -922.606535378527,
+          -1598.0013946707
+        ],
+        [
+          -1492.808732485238,
+          -1084.589030328303
+        ],
+        [
+          -1804.890738003669,
+          -383.6413694601281
+        ],
+        [
+          -1804.890738003669,
+          383.64136946012854
+        ],
+        [
+          -1492.8087324852377,
+          1084.5890303283034
+        ],
+        [
+          -922.6065353785258,
+          1598.0013946707004
+        ],
+        [
+          -192.87728668762236,
+          1835.1048004876159
+        ],
+        [
+          570.2021971067117,
+          1754.9019148964849
+        ],
+        [
+          1234.6885408969574,
+          1371.2605454363563
+        ],
+        [
+          1685.6860191728604,
+          750.5157701593124
+        ],
+        [
+          1845.2130707570525,
+          0.0
+        ],
+        [
+          1685.6860191728606,
+          -750.5157701593124
+        ],
+        [
+          1234.6885408969576,
+          -1371.260545436356
+        ]
+      ],
+      "route_length_m": 17480.77456413833,
+      "pure_movement_s": 3496.154912827666,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 22,
+        "station_sha256": "31378932d836710bd8db771273da76c5b2a9664cf6a15d2b6d79bfb13e80b09d",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 850,
+        "deepest_level": 11,
+        "outside_leaves": 278,
+        "covered_leaves": 355,
+        "counterexample": {
+          "source": [
+            -1589.0625,
+            -843.75
+          ],
+          "normal": [
+            0.9135454576425984,
+            0.40673664307580565
+          ],
+          "local_stations": [
+            [
+              -1804.890738003669,
+              -383.6413694601281
+            ],
+            [
+              -1492.808732485238,
+              -1084.589030328303
+            ]
+          ],
+          "max_projection_m": -10.025866623263795
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1799.1758367114232,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -10.025866623263795,
+        "min_unreachable_distance_margin_m": 6.50818135881741
+      },
+      "certificate_runtime_s": 0.008283999981358647,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o15-r970-half0.json.gz",
+      "proof_gzip_sha256": "691fd5e3347d61231615a26d6b91b50e7c9b74bf6fbe21d2285bb7e91e076164",
+      "proof_raw_sha256": "def1cf4d1f084f987f1d5462e448ee29d814d738ae0d29823fc3e8b3b07bef56"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 15,
+      "station_count": 22,
+      "inner_radius_m": 970.0,
+      "outer_radius_m": 1845.2130707570525,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 12.0,
+      "outer_half_step_phase": true,
+      "first_outer_native_index": 12,
+      "first_outer_angle_difference_deg": 0.0,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        21,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          485.0000000000001,
+          840.0446416709054
+        ],
+        [
+          -484.9999999999998,
+          840.0446416709055
+        ],
+        [
+          -970.0,
+          1.1879073951729327e-13
+        ],
+        [
+          -485.00000000000045,
+          -840.0446416709053
+        ],
+        [
+          485.0000000000001,
+          -840.0446416709054
+        ],
+        [
+          922.6065353785265,
+          -1598.0013946707002
+        ],
+        [
+          192.87728668762173,
+          -1835.1048004876159
+        ],
+        [
+          -570.2021971067118,
+          -1754.9019148964849
+        ],
+        [
+          -1234.6885408969576,
+          -1371.260545436356
+        ],
+        [
+          -1685.6860191728608,
+          -750.5157701593118
+        ],
+        [
+          -1845.2130707570525,
+          2.2597342808474828e-13
+        ],
+        [
+          -1685.6860191728601,
+          750.515770159313
+        ],
+        [
+          -1234.6885408969567,
+          1371.260545436357
+        ],
+        [
+          -570.2021971067114,
+          1754.901914896485
+        ],
+        [
+          192.87728668762261,
+          1835.1048004876156
+        ],
+        [
+          922.6065353785265,
+          1598.0013946707002
+        ],
+        [
+          1492.808732485238,
+          1084.5890303283031
+        ],
+        [
+          1804.890738003669,
+          383.6413694601286
+        ],
+        [
+          1804.890738003669,
+          -383.6413694601279
+        ],
+        [
+          1492.8087324852384,
+          -1084.5890303283022
+        ]
+      ],
+      "route_length_m": 17437.171415640652,
+      "pure_movement_s": 3487.4342831281306,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "inconclusive",
+        "reason": "depth_budget",
+        "station_count": 22,
+        "station_sha256": "45df82fde4ed5fcca4798c96857fa0d6c6a3d3c0e666433096773f05b194f001",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 280,
+        "deepest_level": 16,
+        "outside_leaves": 127,
+        "covered_leaves": 77,
+        "counterexample": null,
+        "unresolved_cell": {
+          "path": "0023031313312311",
+          "box": [
+            -1462.994384765625,
+            -1462.939453125,
+            -1048.7548828125,
+            -1048.699951171875
+          ]
+        },
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": null,
+      "certificate_runtime_s": 0.0033022999996319413,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o15-r970-half1.json.gz",
+      "proof_gzip_sha256": "57674de3fe0467d750a3c5b196db7eabbb88b58169e1eaad1f9f683602a6a0e3",
+      "proof_raw_sha256": "995537eafcddd3a04e161b03ef75685076064e44c965d214a5c9c69d733a90e5"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 15,
+      "station_count": 22,
+      "inner_radius_m": 990.0,
+      "outer_radius_m": 1845.2130707570525,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 0.0,
+      "outer_half_step_phase": false,
+      "first_outer_native_index": 12,
+      "first_outer_angle_difference_deg": 12.000000000000018,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        21,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          990.0,
+          0.0
+        ],
+        [
+          495.0000000000001,
+          857.3651497465942
+        ],
+        [
+          -494.9999999999998,
+          857.3651497465943
+        ],
+        [
+          -990.0,
+          1.2124003311558797e-13
+        ],
+        [
+          -495.00000000000045,
+          -857.365149746594
+        ],
+        [
+          495.0000000000001,
+          -857.3651497465942
+        ],
+        [
+          570.2021971067112,
+          -1754.901914896485
+        ],
+        [
+          -192.87728668762404,
+          -1835.1048004876156
+        ],
+        [
+          -922.606535378527,
+          -1598.0013946707
+        ],
+        [
+          -1492.808732485238,
+          -1084.589030328303
+        ],
+        [
+          -1804.890738003669,
+          -383.6413694601281
+        ],
+        [
+          -1804.890738003669,
+          383.64136946012854
+        ],
+        [
+          -1492.8087324852377,
+          1084.5890303283034
+        ],
+        [
+          -922.6065353785258,
+          1598.0013946707004
+        ],
+        [
+          -192.87728668762236,
+          1835.1048004876159
+        ],
+        [
+          570.2021971067117,
+          1754.9019148964849
+        ],
+        [
+          1234.6885408969574,
+          1371.2605454363563
+        ],
+        [
+          1685.6860191728604,
+          750.5157701593124
+        ],
+        [
+          1845.2130707570525,
+          0.0
+        ],
+        [
+          1685.6860191728606,
+          -750.5157701593124
+        ],
+        [
+          1234.6885408969576,
+          -1371.260545436356
+        ]
+      ],
+      "route_length_m": 17582.64009514026,
+      "pure_movement_s": 3516.5280190280523,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 22,
+        "station_sha256": "31f2282d8ea82c064d2f9afeec8a48833c16303aa55183e0f755ce6317c675d0",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 874,
+        "deepest_level": 11,
+        "outside_leaves": 278,
+        "covered_leaves": 373,
+        "counterexample": {
+          "source": [
+            -1589.0625,
+            -843.75
+          ],
+          "normal": [
+            0.9135454576425984,
+            0.40673664307580565
+          ],
+          "local_stations": [
+            [
+              -1804.890738003669,
+              -383.6413694601281
+            ],
+            [
+              -1492.808732485238,
+              -1084.589030328303
+            ]
+          ],
+          "max_projection_m": -10.025866623263795
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1799.1758367114232,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -10.025866623263795,
+        "min_unreachable_distance_margin_m": 6.50818135881741
+      },
+      "certificate_runtime_s": 0.008749500004341826,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o15-r990-half0.json.gz",
+      "proof_gzip_sha256": "4d44a3a38a6c22215fea5cd1208ea3517f566d2da5f1f72d2d4422d1ad02f534",
+      "proof_raw_sha256": "c936154fb9927674c269459c89ff1317344ca90799776220e309b5ee0e13ff93"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 15,
+      "station_count": 22,
+      "inner_radius_m": 990.0,
+      "outer_radius_m": 1845.2130707570525,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 12.0,
+      "outer_half_step_phase": true,
+      "first_outer_native_index": 12,
+      "first_outer_angle_difference_deg": 0.0,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        21,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          990.0,
+          0.0
+        ],
+        [
+          495.0000000000001,
+          857.3651497465942
+        ],
+        [
+          -494.9999999999998,
+          857.3651497465943
+        ],
+        [
+          -990.0,
+          1.2124003311558797e-13
+        ],
+        [
+          -495.00000000000045,
+          -857.365149746594
+        ],
+        [
+          495.0000000000001,
+          -857.3651497465942
+        ],
+        [
+          922.6065353785265,
+          -1598.0013946707002
+        ],
+        [
+          192.87728668762173,
+          -1835.1048004876159
+        ],
+        [
+          -570.2021971067118,
+          -1754.9019148964849
+        ],
+        [
+          -1234.6885408969576,
+          -1371.260545436356
+        ],
+        [
+          -1685.6860191728608,
+          -750.5157701593118
+        ],
+        [
+          -1845.2130707570525,
+          2.2597342808474828e-13
+        ],
+        [
+          -1685.6860191728601,
+          750.515770159313
+        ],
+        [
+          -1234.6885408969567,
+          1371.260545436357
+        ],
+        [
+          -570.2021971067114,
+          1754.901914896485
+        ],
+        [
+          192.87728668762261,
+          1835.1048004876156
+        ],
+        [
+          922.6065353785265,
+          1598.0013946707002
+        ],
+        [
+          1492.808732485238,
+          1084.5890303283031
+        ],
+        [
+          1804.890738003669,
+          383.6413694601286
+        ],
+        [
+          1804.890738003669,
+          -383.6413694601279
+        ],
+        [
+          1492.8087324852384,
+          -1084.5890303283022
+        ]
+      ],
+      "route_length_m": 17537.171415640652,
+      "pure_movement_s": 3507.4342831281306,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 22,
+        "station_sha256": "c85f1d0bfcfd8cdf992da170a6f28aa7479238b4fa5823647c94a2127ab90821",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 311,
+        "deepest_level": 15,
+        "outside_leaves": 139,
+        "covered_leaves": 90,
+        "counterexample": {
+          "source": [
+            -1481.8359375,
+            -1021.2890625
+          ],
+          "normal": [
+            0.80901699437495,
+            0.5877852522924695
+          ],
+          "local_stations": [
+            [
+              -1685.6860191728608,
+              -750.5157701593118
+            ],
+            [
+              -1234.6885408969576,
+              -1371.260545436356
+            ]
+          ],
+          "max_projection_m": -5.761632425528717
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1799.6858322631294,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -5.761632425528717,
+        "min_unreachable_distance_margin_m": 0.35804425909884685
+      },
+      "certificate_runtime_s": 0.0027080999861937016,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o15-r990-half1.json.gz",
+      "proof_gzip_sha256": "9bd0a0d85be6ebb617fcbd63377fd2841c27a52864e689fbb45da9584ea96158",
+      "proof_raw_sha256": "e65d9162fee2afde28ba31c110ef73b75724db3f2005cb6cb0e4a905e50bb8a0"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 15,
+      "station_count": 22,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1845.2130707570525,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 0.0,
+      "outer_half_step_phase": false,
+      "first_outer_native_index": 12,
+      "first_outer_angle_difference_deg": 12.000000000000018,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        21,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          499.5000000000001,
+          865.1593783806542
+        ],
+        [
+          -499.4999999999998,
+          865.1593783806543
+        ],
+        [
+          -999.0,
+          1.223422152348206e-13
+        ],
+        [
+          -499.50000000000045,
+          -865.1593783806541
+        ],
+        [
+          499.5000000000001,
+          -865.1593783806542
+        ],
+        [
+          570.2021971067112,
+          -1754.901914896485
+        ],
+        [
+          -192.87728668762404,
+          -1835.1048004876156
+        ],
+        [
+          -922.606535378527,
+          -1598.0013946707
+        ],
+        [
+          -1492.808732485238,
+          -1084.589030328303
+        ],
+        [
+          -1804.890738003669,
+          -383.6413694601281
+        ],
+        [
+          -1804.890738003669,
+          383.64136946012854
+        ],
+        [
+          -1492.8087324852377,
+          1084.5890303283034
+        ],
+        [
+          -922.6065353785258,
+          1598.0013946707004
+        ],
+        [
+          -192.87728668762236,
+          1835.1048004876159
+        ],
+        [
+          570.2021971067117,
+          1754.9019148964849
+        ],
+        [
+          1234.6885408969574,
+          1371.2605454363563
+        ],
+        [
+          1685.6860191728604,
+          750.5157701593124
+        ],
+        [
+          1845.2130707570525,
+          0.0
+        ],
+        [
+          1685.6860191728606,
+          -750.5157701593124
+        ],
+        [
+          1234.6885408969576,
+          -1371.260545436356
+        ]
+      ],
+      "route_length_m": 17628.505588429474,
+      "pure_movement_s": 3525.701117685895,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 22,
+        "station_sha256": "10a9a6c53a31ca0475a4a617e74f5a62f3b14943625b83a952e6870642416ff6",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 898,
+        "deepest_level": 11,
+        "outside_leaves": 278,
+        "covered_leaves": 391,
+        "counterexample": {
+          "source": [
+            -1589.0625,
+            -843.75
+          ],
+          "normal": [
+            0.9135454576425984,
+            0.40673664307580565
+          ],
+          "local_stations": [
+            [
+              -1804.890738003669,
+              -383.6413694601281
+            ],
+            [
+              -1492.808732485238,
+              -1084.589030328303
+            ]
+          ],
+          "max_projection_m": -10.025866623263795
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1799.1758367114232,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -10.025866623263795,
+        "min_unreachable_distance_margin_m": 6.50818135881741
+      },
+      "certificate_runtime_s": 0.009315800009062514,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o15-r999-half0.json.gz",
+      "proof_gzip_sha256": "f77095b488556e34e4985a60cf3c94bf58b124e1471ffd52157b8254605a2ea8",
+      "proof_raw_sha256": "0efa103a6c52e35594c01c47f7fec3546dbdec575a1d2e0ecf47fc42953d55f8"
+    },
+    {
+      "inner_count": 6,
+      "outer_count": 15,
+      "station_count": 22,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1845.2130707570525,
+      "inner_phase_deg": 0.0,
+      "outer_phase_deg": 12.0,
+      "outer_half_step_phase": true,
+      "first_outer_native_index": 12,
+      "first_outer_angle_difference_deg": 0.0,
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        21,
+        20
+      ],
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          499.5000000000001,
+          865.1593783806542
+        ],
+        [
+          -499.4999999999998,
+          865.1593783806543
+        ],
+        [
+          -999.0,
+          1.223422152348206e-13
+        ],
+        [
+          -499.50000000000045,
+          -865.1593783806541
+        ],
+        [
+          499.5000000000001,
+          -865.1593783806542
+        ],
+        [
+          922.6065353785265,
+          -1598.0013946707002
+        ],
+        [
+          192.87728668762173,
+          -1835.1048004876159
+        ],
+        [
+          -570.2021971067118,
+          -1754.9019148964849
+        ],
+        [
+          -1234.6885408969576,
+          -1371.260545436356
+        ],
+        [
+          -1685.6860191728608,
+          -750.5157701593118
+        ],
+        [
+          -1845.2130707570525,
+          2.2597342808474828e-13
+        ],
+        [
+          -1685.6860191728601,
+          750.515770159313
+        ],
+        [
+          -1234.6885408969567,
+          1371.260545436357
+        ],
+        [
+          -570.2021971067114,
+          1754.901914896485
+        ],
+        [
+          192.87728668762261,
+          1835.1048004876156
+        ],
+        [
+          922.6065353785265,
+          1598.0013946707002
+        ],
+        [
+          1492.808732485238,
+          1084.5890303283031
+        ],
+        [
+          1804.890738003669,
+          383.6413694601286
+        ],
+        [
+          1804.890738003669,
+          -383.6413694601279
+        ],
+        [
+          1492.8087324852384,
+          -1084.5890303283022
+        ]
+      ],
+      "route_length_m": 17582.171415640652,
+      "pure_movement_s": 3516.4342831281306,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 22,
+        "station_sha256": "855c40acf72734946239856263e064412c487cbbd1db1f32caffab46b2ce4dca",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 16,
+        "max_cells": 200000,
+        "visited_cells": 381,
+        "deepest_level": 13,
+        "outside_leaves": 156,
+        "covered_leaves": 127,
+        "counterexample": {
+          "source": [
+            -1518.75,
+            -956.25
+          ],
+          "normal": [
+            0.8090169943749476,
+            0.5877852522924729
+          ],
+          "local_stations": [
+            [
+              -1685.6860191728608,
+              -750.5157701593118
+            ],
+            [
+              -1234.6885408969576,
+              -1371.260545436356
+            ]
+          ],
+          "max_projection_m": -14.126530292039945
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1794.7188150236793,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -14.126530292039945,
+        "min_unreachable_distance_margin_m": 10.441586173156566
+      },
+      "certificate_runtime_s": 0.003845800005365163,
+      "proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o15-r999-half1.json.gz",
+      "proof_gzip_sha256": "781ab056721761012715b85ac2a8b0eb09bc12486a5b2d27dda9a81b454d5b11",
+      "proof_raw_sha256": "9b2325e68e9dfe95a063d7fdb5032b60348c212cbf13ebfe8885d8a2da03034d"
+    }
+  ],
+  "summary": {
+    "attempted": 18,
+    "passed": 0,
+    "counterexamples": 14,
+    "inconclusive": 4
+  },
+  "limits": [
+    "Failure/unknown here covers only these fixed 18 layouts, not every asymmetric ring placement",
+    "Continuous coverage proof uses conservative floats, not interval arithmetic",
+    "Pure-route cost is not a source-service or complete-task performance result"
+  ]
+}
