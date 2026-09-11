@@ -55,6 +55,8 @@ def snapshot(contents=None, mutate_manifest=None, mutate_pointer=None):
             "base-r1/trial-1/training.jsonl": b"large private training log",
             "base-r1/trial-1/latest.pt": b"opaque model, never unpickled",
             "base-r1/evaluation/block-01/case-5300001.json.gz": b"opaque compressed case",
+            "cost-r1/trial-1/evidence/group-3100001.json.gz": b"opaque evidence DO-NOT-PRINT-EVIDENCE",
+            "cost-r1/trial-1/evidence/group-3100002.json.gz": b"unselected evidence",
         }
     entries, objects = {}, {}
     for name, data in contents.items():
@@ -95,6 +97,7 @@ def test_default_fetches_only_verified_metadata_and_printable_summary_is_anonymo
     assert "DO-NOT-PRINT" not in json.dumps(result) and "987654" not in json.dumps(result)
     assert "base-r1" not in json.dumps(result)
     assert not (output / "base-r1/trial-1").exists()
+    assert result["optional_evidence"] == 0 and not (output / "cost-r1").exists()
     for name in manifest["files"]:
         assert (output / name).exists() == fetch.metadata_path(name)
     assert json.loads((output / "verified_status.json").read_text()) == result
@@ -108,6 +111,111 @@ def test_optional_models_and_cases_are_exactly_selected_and_not_executed(tmp_pat
     assert result["verified_objects"] == 6 and result["optional_models"] == result["optional_cases"] == 1
     assert (tmp_path / "selected" / model).read_bytes() == b"opaque model, never unpickled"
     assert (tmp_path / "selected" / case).read_bytes() == b"opaque compressed case"
+
+
+def test_optional_evidence_is_exact_selected_opaque_and_verified(tmp_path):
+    client, manifest, _ = snapshot()
+    name = "cost-r1/trial-1/evidence/group-3100001.json.gz"
+    output = tmp_path / "evidence"
+    result = fetch.fetch_status(client, "test-bucket", output=output, evidence=[name, name])
+    assert result["verified_objects"] == 5 and result["optional_evidence"] == 1
+    assert result["optional_cases"] == result["optional_models"] == 0
+    assert len(client.calls) == 7
+    assert (output / name).read_bytes() == b"opaque evidence DO-NOT-PRINT-EVIDENCE"
+    assert not (output / "cost-r1/trial-1/evidence/group-3100002.json.gz").exists()
+    assert not (output / "base-r1/trial-1").exists()
+    index = json.loads((output / "fetch_index.json").read_text())["files"]
+    assert index[name] == {key: manifest["files"][name][key] for key in ("sha256", "bytes")}
+    assert "DO-NOT-PRINT" not in json.dumps(result) and "group-3100001" not in json.dumps(result)
+    assert all(key.startswith(fetch.PREFIX + "/") for key in client.calls)
+
+
+@pytest.mark.parametrize("name", [
+    "cost-r1/trial-2/evidence/group-3100001.json.gz",
+    "cost-r1/trial-1/group-3100001.json.gz",
+    "cost-r1/trial-1/evidence/nested/group-3100001.json.gz",
+    "cost-r1/trial-1/evidence/case-3100001.json.gz",
+    "cost-r1/trial-1/evidence/group-3100001.json",
+    "cost-r1/trial-1/evidence/group-private.json.gz",
+    "cost-r1/trial-1/evidence/group-3100001.json.gz.part",
+    "cost-r1/trial-1/training.jsonl",
+    "cost-r1/trial-1/latest.pt",
+    "cost-r1/evaluation/block-01/group-3100001.json.gz",
+])
+def test_evidence_selector_rejects_other_manifest_artifacts(tmp_path, name):
+    client, _, _ = snapshot({name: b"must not download"})
+    with pytest.raises(ValueError, match="wrong type"):
+        fetch.fetch_status(client, "test-bucket", output=tmp_path / "bad", evidence=[name])
+    assert len(client.calls) == 2 and not (tmp_path / "bad").exists()
+
+
+@pytest.mark.parametrize("name", [
+    "cost-r1/trial-1/evidence/group-*.json.gz",
+    "cost-r1/trial-1/evidence/../group-3100001.json.gz",
+    "cost-r1/trial-1/evidence/group-3100999.json.gz",
+    "other-prefix/cost-r1/trial-1/evidence/group-3100001.json.gz",
+    "live/objects/" + "0" * 64,
+])
+def test_evidence_selector_requires_exact_present_safe_relative_path(tmp_path, name):
+    client, _, _ = snapshot()
+    with pytest.raises(ValueError):
+        fetch.fetch_status(client, "test-bucket", output=tmp_path / "bad", evidence=[name])
+    assert len(client.calls) == 2 and not (tmp_path / "bad").exists()
+
+
+@pytest.mark.parametrize("kind", ["models", "cases"])
+def test_evidence_cannot_be_selected_using_other_optional_types(tmp_path, kind):
+    name = "cost-r1/trial-1/evidence/group-3100001.json.gz"
+    client, _, _ = snapshot()
+    with pytest.raises(ValueError, match="wrong type"):
+        fetch.fetch_status(client, "test-bucket", output=tmp_path / "bad", **{kind: [name]})
+    assert len(client.calls) == 2 and not (tmp_path / "bad").exists()
+
+
+@pytest.mark.parametrize("damage", ["hash", "bytes", "stream_length", "oversize"])
+def test_selected_evidence_integrity_and_size_failure_never_publishes_artifact(tmp_path, damage):
+    name = "cost-r1/trial-1/evidence/group-3100001.json.gz"
+    def mutate(manifest):
+        if damage == "bytes":
+            manifest["files"][name]["bytes"] = 1
+        elif damage == "oversize":
+            manifest["files"][name]["bytes"] = fetch.LIMITS["evidence"] + 1
+    client, manifest, _ = snapshot({name: b"opaque evidence"}, mutate_manifest=mutate)
+    key = fetch.PREFIX + "/" + manifest["files"][name]["object_key"]
+    if damage == "hash":
+        client.objects[key] = b"changed evidence"
+    elif damage == "stream_length":
+        client.lengths[key] = len(client.objects[key]) + 1
+    output = tmp_path / "bad"
+    with pytest.raises(ValueError):
+        fetch.fetch_status(client, "test-bucket", output=output, evidence=[name])
+    assert not (output / name).exists() and not list(output.rglob("*.part"))
+    assert not (output / "verified_status.json").exists()
+    assert not (output / "fetch_index.json").exists()
+    if damage == "oversize":
+        assert len(client.calls) == 2
+
+
+def test_unselected_large_evidence_is_not_downloaded(tmp_path):
+    name = "cost-r1/trial-1/evidence/group-3100001.json.gz"
+    client, _, _ = snapshot(mutate_manifest=lambda m: m["files"][name].update(bytes=20 << 30))
+    result = fetch.fetch_status(client, "test-bucket", output=tmp_path / "metadata")
+    assert result["verified_objects"] == 4 and result["optional_evidence"] == 0
+    assert len(client.calls) == 6
+
+
+def test_cli_evidence_option_is_independent_exact_and_stdout_stays_anonymous(monkeypatch, tmp_path, capsys):
+    client, _, _ = snapshot()
+    monkeypatch.setattr(fetch, "client_from_config", lambda _: (client, "test-bucket"))
+    name = "cost-r1/trial-1/evidence/group-3100001.json.gz"
+    output = tmp_path / "selected"
+    assert fetch.main(["--config", str(tmp_path / "unused.json"), "--output", str(output),
+                       "--evidence", name]) == 0
+    captured = capsys.readouterr()
+    result = json.loads(captured.out)
+    assert result["optional_evidence"] == 1 and result["optional_models"] == result["optional_cases"] == 0
+    assert captured.err == "" and "DO-NOT-PRINT" not in captured.out and str(tmp_path) not in captured.out
+    assert (output / name).is_file()
 
 
 @pytest.mark.parametrize("pointer_change", [

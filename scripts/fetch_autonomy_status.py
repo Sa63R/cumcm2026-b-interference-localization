@@ -2,7 +2,9 @@
 
 Credentials stay in the external JSON file. Only the fixed cost-to-go task
 prefix is read, regardless of a legacy prefix in that credential file.
-Default downloads are summaries/comparisons/environment, not logs or models.
+Default downloads are summaries/comparisons/environment. Models, cases, and
+training evidence are opt-in; training logs cannot be selected. Select optional
+artifacts individually by their exact manifest-relative path.
 """
 from __future__ import annotations
 
@@ -20,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PREFIX = "lianghao/bwc/shumo/q3-cost-20260912-r1"
 HASH = re.compile(r"[0-9a-f]{64}")
 LIMITS = {"pointer": 65536, "manifest": 16 << 20, "metadata": 16 << 20,
-          "case": 64 << 20, "model": 2 << 30}
+          "case": 64 << 20, "evidence": 64 << 20, "model": 2 << 30}
 
 
 def validate_prefix(prefix):
@@ -104,8 +106,13 @@ def optional_path(name, kind):
     if kind == "model":
         return ((len(parts) == 3 and re.fullmatch(r"trial-[123]", parts[1]) and parts[2].endswith(".pt"))
                 or (len(parts) == 4 and parts[1] == "evaluation" and parts[3].endswith(".pt")))
-    return (len(parts) == 4 and parts[1] == "evaluation"
-            and bool(re.fullmatch(r"case-\d+\.json\.gz", parts[3])))
+    if kind == "case":
+        return (len(parts) == 4 and parts[1] == "evaluation"
+                and bool(re.fullmatch(r"case-\d+\.json\.gz", parts[3])))
+    if kind == "evidence":
+        return (len(parts) == 4 and parts[1:3] == ["trial-1", "evidence"]
+                and bool(re.fullmatch(r"group-[0-9]+\.json\.gz", parts[3])))
+    return False
 
 
 def _numeric_fields(value, names):
@@ -176,9 +183,9 @@ def anonymous_summary(documents):
     return tasks
 
 
-def fetch_status(client, bucket, *, prefix=PREFIX, output=None, models=(), cases=()):
+def fetch_status(client, bucket, *, prefix=PREFIX, output=None, models=(), cases=(), evidence=()):
     validate_prefix(prefix)
-    models, cases = tuple(models), tuple(cases)
+    models, cases, evidence = tuple(models), tuple(cases), tuple(evidence)
     if output is not None and Path(output).exists():
         raise ValueError("Use a new output directory")
     pointer_bytes = read_object(client, bucket, "live/LATEST.json", LIMITS["pointer"])
@@ -209,7 +216,7 @@ def fetch_status(client, bucket, *, prefix=PREFIX, output=None, models=(), cases
                 or meta.get("object_key") != "live/objects/" + meta["sha256"]):
             raise ValueError("Manifest has an invalid content object identity")
     selected = {name: "metadata" for name in entries if metadata_path(name)}
-    for kind, names in (("model", models), ("case", cases)):
+    for kind, names in (("model", models), ("case", cases), ("evidence", evidence)):
         for name in names:
             if not optional_path(name, kind) or name not in entries:
                 raise ValueError("Requested optional artifact is absent or has the wrong type")
@@ -251,6 +258,7 @@ def fetch_status(client, bucket, *, prefix=PREFIX, output=None, models=(), cases
                                     "pointer_sha256": hashlib.sha256(pointer_bytes).hexdigest()},
                   verified_objects=len(verified), downloaded_bytes=sum(v["bytes"] for v in verified.values()),
                   optional_models=len(set(models)), optional_cases=len(set(cases)),
+                  optional_evidence=len(set(evidence)),
                   reported_final_sync=manifest.get("final_sync") is True,
                   process_liveness="not_observed",
                   scope="Verified per-file stored snapshots; running/PID fields are not live-process evidence. File capture times can differ.",
@@ -286,10 +294,13 @@ def main(argv=None):
     parser.add_argument("--prefix", default=PREFIX, choices=(PREFIX,))
     parser.add_argument("--model", action="append", default=[], help="Exact manifest-relative .pt path; repeat to select")
     parser.add_argument("--case", action="append", default=[], help="Exact manifest-relative case-N.json.gz path; repeat to select")
+    parser.add_argument("--evidence", action="append", default=[],
+                        help="Exact manifest-relative TASK/trial-1/evidence/group-N.json.gz path; no glob; repeat to select")
     args = parser.parse_args(argv)
     try:
         client, bucket = client_from_config(args.config)
-        result = fetch_status(client, bucket, prefix=args.prefix, output=args.output, models=args.model, cases=args.case)
+        result = fetch_status(client, bucket, prefix=args.prefix, output=args.output,
+                              models=args.model, cases=args.case, evidence=args.evidence)
     except Exception as exc:
         # Do not print provider errors, endpoint, bucket, local credential path,
         # credentials, raw metadata, or a traceback with private filesystem names.
