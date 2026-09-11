@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\jwt\2026��ģ����\q4-r33-transit-budget\research\q4_transit_budget\prepare_freeze.py", line 140, in <module>
+    verify_existing()
+  File "D:\jwt\2026��ģ����\q4-r33-transit-budget\research\q4_transit_budget\prepare_freeze.py", line 123, in verify_existing
+    git('diff', '--cached', '--check', env=env)
+  File "D:\jwt\2026��ģ����\q4-r33-transit-budget\research\q4_transit_budget\prepare_freeze.py", line 22, in git
+    return subprocess.check_output(['git', *args], cwd=ROOT, env=env)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jwt\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jwt\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'diff', '--cached', '--check']' returned non-zero exit status 2.

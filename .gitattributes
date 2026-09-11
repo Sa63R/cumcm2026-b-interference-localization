@@ -1,5 +1,6 @@
 # Research manifests hash exact source/evidence bytes. Do not let a checkout
 # silently change those bytes according to the host's core.autocrlf setting.
+/.gitattributes -text
 src/** -text
 experiments/*.py -text
 experiments/audit_q4_clear_before_probe_batch.py whitespace=cr-at-eol
@@ -29,3 +30,9 @@ results/q4_joint_visibility/** -text whitespace=cr-at-eol
 research/q4_joint_visibility/** -text whitespace=cr-at-eol
 results/q4_joint_continuation/** -text whitespace=cr-at-eol
 research/q4_joint_continuation/** -text whitespace=cr-at-eol
+research/q4_transit_budget/** -text whitespace=cr-at-eol
+results/q4_transit_budget/** -text whitespace=cr-at-eol
+tests/test_q4_transit_budget.py -text
+tests/test_audit_q4_transit_budget.py -text
+tests/test_q4_per_source.py -text
+tests/test_q4_transit_budget_release.py -text
