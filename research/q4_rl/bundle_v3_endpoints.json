@@ -1,0 +1,67 @@
+{
+  "task": "q4-rl-bundle-v3-20260912",
+  "source_commit": "89e518e0c4e7fc80d8b3be754a9f8b08d489e16a",
+  "training_config": "train_bundle_v3.json",
+  "evaluation_specs_sha256": "d02af58fa805fa9de34b68ce1432c0a89e22452edcbab43c26fd7609941dc349",
+  "endpoints": [
+    {
+      "alias": "mlp_v3_ppo512",
+      "job": "mlp_scratch",
+      "checkpoint": "runs/train-bundle-v3/mlp_scratch/training/checkpoint-000025.pt",
+      "batches": 25,
+      "committed_episodes": 400,
+      "committed_pairs": null,
+      "committed_rollouts": 400,
+      "wall_time_s": 1799.5194340553135,
+      "sha256": "e63d4cdd660b1225b03c99a39be3a3891a7beff1543464ad65f75e60aa1eaaa9",
+      "selection": "last_complete_checkpoint",
+      "pending_attempt_retained_not_learned": true
+    },
+    {
+      "alias": "attention_v3_ppo512",
+      "job": "attention_scratch",
+      "checkpoint": "runs/train-bundle-v3/attention_scratch/training/checkpoint-000020.pt",
+      "batches": 20,
+      "committed_episodes": 320,
+      "committed_pairs": null,
+      "committed_rollouts": 320,
+      "wall_time_s": 1799.7302117105573,
+      "sha256": "189b29ae077f41c626e7f9d95d85755c7215251055842118e3f8fcbc83c4a8fa",
+      "selection": "last_complete_checkpoint",
+      "pending_attempt_retained_not_learned": true
+    },
+    {
+      "alias": "ppo_initialized512",
+      "job": "ppo_initialized",
+      "checkpoint": "runs/train-bundle-v3/ppo_initialized/training/checkpoint-000024.pt",
+      "batches": 24,
+      "committed_episodes": 384,
+      "committed_pairs": null,
+      "committed_rollouts": 384,
+      "wall_time_s": 1814.6028006151319,
+      "sha256": "b0fabade288616c269b3f4d2319d57d1895127024f7f3367edf454190d3cd4a1",
+      "selection": "last_complete_checkpoint",
+      "pending_attempt_retained_not_learned": true
+    },
+    {
+      "alias": "scst_initialized512",
+      "job": "scst_initialized",
+      "checkpoint": "runs/train-bundle-v3/scst_initialized/training/checkpoint-000068.pt",
+      "batches": 68,
+      "committed_episodes": null,
+      "committed_pairs": 544,
+      "committed_rollouts": 1088,
+      "wall_time_s": 1799.5024929586798,
+      "sha256": "4707791c00a26145f4672d9e75207bb6cb05f3134791e8f2fe9d5a4e463a1cec",
+      "selection": "last_complete_checkpoint",
+      "pending_attempt_retained_not_learned": true
+    }
+  ],
+  "scope": "Frozen development endpoints; independent comparison required before any promotion",
+  "notes": [
+    "PPO scratch totals include 64 BC episodes; initialized PPO has no repeated BC.",
+    "SCST runs sampled and greedy legs on each scene; 544 pairs mean 1088 rollouts.",
+    "Interrupted reserved batches and SCST rolled-back update are retained and excluded from committed counters.",
+    "End-of-run wall includes transaction cleanup and can modestly exceed the nominal 1800-second training allowance."
+  ]
+}
