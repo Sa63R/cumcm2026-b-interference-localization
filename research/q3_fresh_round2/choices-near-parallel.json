@@ -1,0 +1,475 @@
+{
+  "scope": "posthoc_completed_synthetic_traces_only",
+  "online_or_fitting_use": false,
+  "status": "completed",
+  "summary": {
+    "traces": 2,
+    "valid_replays": 2,
+    "attempted_audits": 6,
+    "usable_audits": 6,
+    "incomplete_or_invalid_audits": 0,
+    "actual_improvements": 2,
+    "wrong_sign_choices": 4,
+    "mean_predicted_delta_s": -92.03477945833332,
+    "mean_actual_delta_s": -59.0332251666667,
+    "selection": "First selected overrides in caller-specified trace order; diagnostic sample, not a performance estimate"
+  },
+  "reports": [
+    {
+      "case_id": "q3-hard-near_parallel",
+      "strategy": "R",
+      "suite_group": "development_original_pressure",
+      "replay_valid": true,
+      "replay_error": null,
+      "audits": [
+        {
+          "action_index": 28,
+          "selected": "probe_other_source",
+          "candidate_index": 2,
+          "public_virtual_time_s": 407.0,
+          "pending": {
+            "kind": "measure",
+            "position": [
+              1200.0,
+              0.0
+            ],
+            "channel": 9,
+            "phase": "cover",
+            "speculative": false
+          },
+          "candidate_actions": [
+            {
+              "kind": "measure",
+              "position": [
+                1500.0,
+                -14.226356322050357
+              ],
+              "channel": 3,
+              "phase": "rollout_probe",
+              "speculative": false
+            }
+          ],
+          "recorded_predicted_mean_delta_s": -49.009115750000056,
+          "recorded_prediction_standard_error_s": 24.69380175241592,
+          "recorded_paired_world_count": 12,
+          "baseline_actual_branch": {
+            "complete": true,
+            "remaining_s": 2168.316149,
+            "error": null,
+            "final_virtual_time_s": 2575.316149,
+            "executed_future_actions": 99,
+            "confirmation_tail_s": 1364.8424480000003,
+            "wall_s": 0.127172224005335,
+            "cpu_s": 0.127166461,
+            "full_time_over_physical_lower_bound": 9.681639519585604,
+            "full_time_over_guarantee_lower_bound": 2.268761143315245
+          },
+          "candidate_actual_branch": {
+            "complete": true,
+            "remaining_s": 2185.565313,
+            "error": null,
+            "final_virtual_time_s": 2592.565313,
+            "executed_future_actions": 102,
+            "confirmation_tail_s": 1364.210743,
+            "wall_s": 0.1365320719924057,
+            "cpu_s": 0.13653122699999998,
+            "full_time_over_physical_lower_bound": 9.746485999862232,
+            "full_time_over_guarantee_lower_bound": 2.2839570380224123
+          },
+          "complete": true,
+          "actual_delta_s": 17.249163999999837,
+          "prediction_error_s": 66.2582797499999,
+          "actual_improves": false,
+          "wrong_sign": true,
+          "usable": true
+        },
+        {
+          "action_index": 86,
+          "selected": "transverse_probe",
+          "candidate_index": 4,
+          "public_virtual_time_s": 903.670587,
+          "pending": {
+            "kind": "measure",
+            "position": [
+              1088.9605041509717,
+              0.08010108346543438
+            ],
+            "channel": 7,
+            "phase": "localize",
+            "speculative": false
+          },
+          "candidate_actions": [
+            {
+              "kind": "measure",
+              "position": [
+                1087.4290841688617,
+                -74.90426230543315
+              ],
+              "channel": 7,
+              "phase": "rollout_probe",
+              "speculative": false
+            }
+          ],
+          "recorded_predicted_mean_delta_s": -216.6064445833333,
+          "recorded_prediction_standard_error_s": 115.88089184937658,
+          "recorded_paired_world_count": 12,
+          "baseline_actual_branch": {
+            "complete": true,
+            "remaining_s": 1688.894726,
+            "error": null,
+            "final_virtual_time_s": 2592.565313,
+            "executed_future_actions": 44,
+            "confirmation_tail_s": 1364.210743,
+            "wall_s": 0.017630182002903894,
+            "cpu_s": 0.017626065000000024,
+            "full_time_over_physical_lower_bound": 9.746485999862232,
+            "full_time_over_guarantee_lower_bound": 2.2839570380224123
+          },
+          "candidate_actual_branch": {
+            "complete": true,
+            "remaining_s": 1460.8634969999998,
+            "error": null,
+            "final_virtual_time_s": 2364.534084,
+            "executed_future_actions": 39,
+            "confirmation_tail_s": 1361.8404839999998,
+            "wall_s": 0.021443764999276027,
+            "cpu_s": 0.021443765000000004,
+            "full_time_over_physical_lower_bound": 8.88922575271031,
+            "full_time_over_guarantee_lower_bound": 2.083069705405596
+          },
+          "complete": true,
+          "actual_delta_s": -228.03122900000017,
+          "prediction_error_s": -11.424784416666853,
+          "actual_improves": true,
+          "wrong_sign": false,
+          "usable": true
+        }
+      ],
+      "physical_lower_bound_s": 266.00000379999994,
+      "guarantee_lower_bound_s": 1135.1199999999997,
+      "recorded_total_time_s": 2364.534084,
+      "recorded_time_over_physical_lower_bound": 8.88922575271031,
+      "recorded_time_over_guarantee_lower_bound": 2.083069705405596,
+      "selected_overrides": 2,
+      "decisions_replayed": 12,
+      "cpu_s": 0.408450983,
+      "wall_s": 0.40846598699863534,
+      "trace_name": "trace-018-R.json.gz",
+      "trace_sha256": "de920093cf57c77bc283e98ce537352924c1b9935dbf3f5badcf12847e9a4276"
+    },
+    {
+      "case_id": "q3-hard-near_parallel",
+      "strategy": "CR",
+      "suite_group": "development_original_pressure",
+      "replay_valid": true,
+      "replay_error": null,
+      "audits": [
+        {
+          "action_index": 52,
+          "selected": "probe_other_source",
+          "candidate_index": 1,
+          "public_virtual_time_s": 602.531802,
+          "pending": {
+            "kind": "measure",
+            "position": [
+              1462.3950418648174,
+              -13.353057056058155
+            ],
+            "channel": 18,
+            "phase": "opportunistic",
+            "speculative": false
+          },
+          "candidate_actions": [
+            {
+              "kind": "measure",
+              "position": [
+                1462.3950418648171,
+                -12.290909070792193
+              ],
+              "channel": 19,
+              "phase": "rollout_probe",
+              "speculative": false
+            }
+          ],
+          "recorded_predicted_mean_delta_s": -87.40794724999995,
+          "recorded_prediction_standard_error_s": 52.7304930812029,
+          "recorded_paired_world_count": 12,
+          "baseline_actual_branch": {
+            "complete": true,
+            "remaining_s": 1836.6905729999999,
+            "error": null,
+            "final_virtual_time_s": 2439.222375,
+            "executed_future_actions": 72,
+            "confirmation_tail_s": 1363.9223679999998,
+            "wall_s": 0.06479753900202923,
+            "cpu_s": 0.06479665800000001,
+            "full_time_over_physical_lower_bound": 9.170008797571304,
+            "full_time_over_guarantee_lower_bound": 2.148867410494045
+          },
+          "candidate_actual_branch": {
+            "complete": true,
+            "remaining_s": 1853.945675,
+            "error": null,
+            "final_virtual_time_s": 2456.477477,
+            "executed_future_actions": 72,
+            "confirmation_tail_s": 1364.131322,
+            "wall_s": 0.0808127060008701,
+            "cpu_s": 0.08081241799999994,
+            "full_time_over_physical_lower_bound": 9.234877601155885,
+            "full_time_over_guarantee_lower_bound": 2.1640685363662
+          },
+          "complete": true,
+          "actual_delta_s": 17.25510200000008,
+          "prediction_error_s": 104.66304925000003,
+          "actual_improves": false,
+          "wrong_sign": true,
+          "usable": true
+        },
+        {
+          "action_index": 60,
+          "selected": "shared_current",
+          "candidate_index": 3,
+          "public_virtual_time_s": 676.386039,
+          "pending": {
+            "kind": "measure",
+            "position": [
+              1330.9657277050853,
+              -1.7634331580586662
+            ],
+            "channel": 16,
+            "phase": "opportunistic",
+            "speculative": false
+          },
+          "candidate_actions": [
+            {
+              "kind": "measure",
+              "position": [
+                1330.9657277050853,
+                -1.7634331580586662
+              ],
+              "channel": 16,
+              "phase": "rollout_shared",
+              "speculative": false
+            },
+            {
+              "kind": "measure",
+              "position": [
+                1330.9657277050853,
+                -1.7634331580586662
+              ],
+              "channel": 6,
+              "phase": "rollout_shared",
+              "speculative": false
+            }
+          ],
+          "recorded_predicted_mean_delta_s": -69.48980950000004,
+          "recorded_prediction_standard_error_s": 58.01063529012666,
+          "recorded_paired_world_count": 12,
+          "baseline_actual_branch": {
+            "complete": true,
+            "remaining_s": 1780.091438,
+            "error": null,
+            "final_virtual_time_s": 2456.477477,
+            "executed_future_actions": 64,
+            "confirmation_tail_s": 1364.131322,
+            "wall_s": 0.06100375400274061,
+            "cpu_s": 0.061003790999999974,
+            "full_time_over_physical_lower_bound": 9.234877601155885,
+            "full_time_over_guarantee_lower_bound": 2.1640685363662
+          },
+          "candidate_actual_branch": {
+            "complete": true,
+            "remaining_s": 1786.474663,
+            "error": null,
+            "final_virtual_time_s": 2462.860702,
+            "executed_future_actions": 65,
+            "confirmation_tail_s": 1364.131322,
+            "wall_s": 0.059344437991967425,
+            "cpu_s": 0.05934400800000006,
+            "full_time_over_physical_lower_bound": 9.258874687279235,
+            "full_time_over_guarantee_lower_bound": 2.169691928606668
+          },
+          "complete": true,
+          "actual_delta_s": 6.383225000000039,
+          "prediction_error_s": 75.87303450000007,
+          "actual_improves": false,
+          "wrong_sign": true,
+          "usable": true
+        },
+        {
+          "action_index": 68,
+          "selected": "shared_current",
+          "candidate_index": 3,
+          "public_virtual_time_s": 738.094433,
+          "pending": {
+            "kind": "measure",
+            "position": [
+              1247.468001170661,
+              0.6514354875031194
+            ],
+            "channel": 2,
+            "phase": "opportunistic",
+            "speculative": false
+          },
+          "candidate_actions": [
+            {
+              "kind": "measure",
+              "position": [
+                1247.468001170661,
+                0.6514354875031194
+              ],
+              "channel": 6,
+              "phase": "rollout_shared",
+              "speculative": false
+            },
+            {
+              "kind": "measure",
+              "position": [
+                1247.468001170661,
+                0.6514354875031194
+              ],
+              "channel": 2,
+              "phase": "rollout_shared",
+              "speculative": false
+            },
+            {
+              "kind": "measure",
+              "position": [
+                1247.468001170661,
+                0.6514354875031194
+              ],
+              "channel": 11,
+              "phase": "rollout_shared",
+              "speculative": false
+            }
+          ],
+          "recorded_predicted_mean_delta_s": -94.99757341666663,
+          "recorded_prediction_standard_error_s": 35.55179354550476,
+          "recorded_paired_world_count": 12,
+          "baseline_actual_branch": {
+            "complete": true,
+            "remaining_s": 1724.766269,
+            "error": null,
+            "final_virtual_time_s": 2462.860702,
+            "executed_future_actions": 57,
+            "confirmation_tail_s": 1364.131322,
+            "wall_s": 0.04028265101078432,
+            "cpu_s": 0.040282260000000014,
+            "full_time_over_physical_lower_bound": 9.258874687279235,
+            "full_time_over_guarantee_lower_bound": 2.169691928606668
+          },
+          "candidate_actual_branch": {
+            "complete": true,
+            "remaining_s": 1738.2806509999998,
+            "error": null,
+            "final_virtual_time_s": 2476.375084,
+            "executed_future_actions": 59,
+            "confirmation_tail_s": 1363.2726369999998,
+            "wall_s": 0.04116262000752613,
+            "cpu_s": 0.04116295299999995,
+            "full_time_over_physical_lower_bound": 9.309680633921857,
+            "full_time_over_guarantee_lower_bound": 2.181597614349144
+          },
+          "complete": true,
+          "actual_delta_s": 13.514381999999841,
+          "prediction_error_s": 108.51195541666647,
+          "actual_improves": false,
+          "wrong_sign": true,
+          "usable": true
+        },
+        {
+          "action_index": 76,
+          "selected": "shared_current",
+          "candidate_index": 2,
+          "public_virtual_time_s": 797.919381,
+          "pending": {
+            "kind": "clear",
+            "position": [
+              1144.78445626583,
+              -0.47399038379184666
+            ],
+            "channel": 1,
+            "phase": "clear",
+            "speculative": false
+          },
+          "candidate_actions": [
+            {
+              "kind": "measure",
+              "position": [
+                1168.3682491821191,
+                -1.0330722472223155
+              ],
+              "channel": 11,
+              "phase": "rollout_shared",
+              "speculative": false
+            },
+            {
+              "kind": "measure",
+              "position": [
+                1168.3682491821191,
+                -1.0330722472223155
+              ],
+              "channel": 8,
+              "phase": "rollout_shared",
+              "speculative": false
+            },
+            {
+              "kind": "measure",
+              "position": [
+                1168.3682491821191,
+                -1.0330722472223155
+              ],
+              "channel": 12,
+              "phase": "rollout_shared",
+              "speculative": false
+            }
+          ],
+          "recorded_predicted_mean_delta_s": -34.69778624999996,
+          "recorded_prediction_standard_error_s": 21.211547737001506,
+          "recorded_paired_world_count": 12,
+          "baseline_actual_branch": {
+            "complete": true,
+            "remaining_s": 1678.4557029999996,
+            "error": null,
+            "final_virtual_time_s": 2476.375084,
+            "executed_future_actions": 51,
+            "confirmation_tail_s": 1363.2726369999998,
+            "wall_s": 0.022136890998808667,
+            "cpu_s": 0.022136545999999924,
+            "full_time_over_physical_lower_bound": 9.309680633921857,
+            "full_time_over_guarantee_lower_bound": 2.181597614349144
+          },
+          "candidate_actual_branch": {
+            "complete": true,
+            "remaining_s": 1497.8857079999998,
+            "error": null,
+            "final_virtual_time_s": 2295.805089,
+            "executed_future_actions": 45,
+            "confirmation_tail_s": 1368.714969,
+            "wall_s": 0.016676270999596454,
+            "cpu_s": 0.016676279000000016,
+            "full_time_over_physical_lower_bound": 8.630846075950322,
+            "full_time_over_guarantee_lower_bound": 2.022521926316161
+          },
+          "complete": true,
+          "actual_delta_s": -180.56999499999984,
+          "prediction_error_s": -145.87220874999988,
+          "actual_improves": true,
+          "wrong_sign": false,
+          "usable": true
+        }
+      ],
+      "physical_lower_bound_s": 266.00000379999994,
+      "guarantee_lower_bound_s": 1135.1199999999997,
+      "recorded_total_time_s": 2245.873664,
+      "recorded_time_over_physical_lower_bound": 8.443133954571772,
+      "recorded_time_over_guarantee_lower_bound": 1.9785341320741427,
+      "selected_overrides": 5,
+      "decisions_replayed": 12,
+      "cpu_s": 0.491341438,
+      "wall_s": 0.4913477699883515,
+      "trace_name": "trace-018-CR.json.gz",
+      "trace_sha256": "fb63d45e2a11b9d0f13d3f921bd5f1caab5fb8db5c1ff31356706e44f061e1a7"
+    }
+  ]
+}

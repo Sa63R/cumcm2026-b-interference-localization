@@ -1,0 +1,91 @@
+{
+  "freeze_utc": "2026-09-11T19:40:26.389447+00:00",
+  "selected_candidate": "CR",
+  "baseline": "B",
+  "development_code_commit": "1a43a5beaf34a608a3945e8b7378a127d2d58790",
+  "source_sha256": {
+    "src/strategies/q3_fresh.py": "cc71eba5703eff20a9d7b927ae9b16982ecffe46ca1a7b9a17bc4dce9fad0698",
+    "src/strategies/q3_fresh_stepper.py": "ba1cfc153be5020e32f0f62b27dd89ca9c36e4a4b148ac625a1464d30f647242",
+    "src/strategies/q3_movable_tail.py": "085b8883ff959eba4af15ea2e6ab120ac79190773af99a358ca3d1b60f6a7a43",
+    "src/strategies/q3_fresh_rollout.py": "46581607244f125ec827610639a71137bdbaddf042db706866c5dea246f8b068",
+    "src/strategies/q3_fresh_belief.py": "9e889e711092e3de4d2bf0b42da670ae26bfbb48a7ede4b38d47970887fffb1e",
+    "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+    "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+    "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+    "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+    "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+    "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+    "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+    "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+    "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+    "experiments/run_q3_fresh_round2.py": "0f06dd86f3b5a9dd8c2ac6e990e1a18a0641ef6d98313cabd150604b49ee30a4",
+    "experiments/run_q3_fresh.py": "d3c797ca46b20559c54f6864f8452ad3a73cabea43c79d329f1a7a8f30a4629d",
+    "experiments/session_lower_bounds.py": "b966b1ab78f726866d0c760356b47441661c58e6d219fe2b7e8f3ad3ecf53859",
+    "experiments/q3_confirmation_bound.py": "17226d68a7852292b8d041d67b4e5b59ea9d0128c7def492d3dfefb44cb65dc2",
+    "research/q3_fresh_round2/confirmation_certificate.json": "9fdcf78bcd5d4d731b448cfcd7c25f423e4bd05cbe7a6377accd3d8f0aa609de"
+  },
+  "decision": "CR wins development mean against R in every group. CRA adds 17 failed clears and has negligible ordinary benefit, worse means in both pressure groups; exclude attempt module from frozen candidate. Do not retune after test results.",
+  "attempt_increment_vs_CR": {
+    "development_added_pressure": {
+      "mean_group_delta_s": 0.047708916666617064,
+      "paired_group_bootstrap_95_delta_s": [
+        -1.8922969166667372,
+        1.6818859999999631
+      ],
+      "case_wins": 2,
+      "case_losses": 3,
+      "case_ties": 7
+    },
+    "development_original_nominal": {
+      "mean_group_delta_s": -0.4064890000000408,
+      "paired_group_bootstrap_95_delta_s": [
+        -40.867859666666696,
+        56.245376583333304
+      ],
+      "case_wins": 7,
+      "case_losses": 1,
+      "case_ties": 4
+    },
+    "development_original_pressure": {
+      "mean_group_delta_s": 5.955466083333363,
+      "paired_group_bootstrap_95_delta_s": [
+        0.633347416666652,
+        12.54730350000015
+      ],
+      "case_wins": 2,
+      "case_losses": 6,
+      "case_ties": 4
+    }
+  },
+  "development_analysis_sha256": "2a7cab529b5c9fbcaed3afca599cf97f232f25017de265ef96e67460fff843ca",
+  "protocol_sha256": "136c4a8859924ab19d7b61f18b4566e65721fcab2b4427f7c188cbd48d00b94b",
+  "nominal_test": {
+    "seed_start": 980000,
+    "count": 64
+  },
+  "pressure_test": {
+    "seed_start": 970000,
+    "count": 32
+  },
+  "validation": {
+    "groups": 12,
+    "variants_per_group": 2,
+    "selection_salt": "fresh-q3-v2:",
+    "excluded_round1_groups": 12,
+    "export_after_this_freeze": true
+  },
+  "acceptance": {
+    "hard": [
+      "all cleared",
+      "valid exit certificate",
+      "no hidden truth in planner",
+      "no incomplete rollout scored as cheap",
+      "planning budgets respected"
+    ],
+    "rollout_default_mean_gain_target_percent": 3,
+    "nominal_paired_95_interval_upper_s": 0,
+    "p95_regression_ceiling_percent": 2,
+    "tail_module": "may remain conditional when useful on long-tail pressure cases with ordinary mean regression at most 1 percent"
+  },
+  "completed_new_test_runs_at_freeze": 0
+}
