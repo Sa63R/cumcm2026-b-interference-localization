@@ -1,7 +1,7 @@
 {
   "scope": "Q3 resumed research round3",
   "started_at_utc": "2026-09-11T18:03:20.300971+00:00",
-  "status": "research_finished_archive_cleanup_pending",
+  "status": "complete_no_new_upgrade",
   "protected_existing_branches": {
     "experiment/q4-r2-routing": "f5421e4b1671cd0660a1a0a0e4d26ca150865a2a",
     "experiment/q4-r2-scheduling": "34c53d922bf23f63047b9919f1855701751e6d2d",
@@ -232,7 +232,9 @@
         "diagnosis": "research/round3/diagnoses/DIRECTED_INCUMBENT_PILOT.md",
         "delete_scope": "Only this newly-created trial branch/worktree after archive push; do not delete any starting core branch or user changes.",
         "cleanup": {
-          "pending": true
+          "new_local_branch_removed": true,
+          "new_remote_branch_removed": true,
+          "new_worktree_removed": true
         }
       }
     },
@@ -297,7 +299,9 @@
         "diagnosis": "research/round3/diagnoses/DIRECTED_INCUMBENT_PILOT.md",
         "delete_scope": "Only this newly-created trial branch/worktree after archive push; do not delete any starting core branch or user changes.",
         "cleanup": {
-          "pending": true
+          "new_local_branch_removed": true,
+          "new_remote_branch_removed": true,
+          "new_worktree_removed": true
         }
       },
       "diagnosis": "research/round3/diagnoses/DIRECTED_INCUMBENT_PILOT.md"
@@ -328,6 +332,8 @@
     },
     "official_sessions_started": 0,
     "sqlite_used": false,
-    "paper_body_written": false
+    "paper_body_written": false,
+    "cleanup_verified": true,
+    "post_cleanup_index_replay_exact": true
   }
 }
