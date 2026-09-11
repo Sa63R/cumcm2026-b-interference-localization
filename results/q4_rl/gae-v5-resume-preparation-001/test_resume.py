@@ -13,7 +13,9 @@ import pytest
 import torch
 
 BASE = Path(__file__).resolve().parent
-ROOT = BASE.parents[1]
+ROOT = next(parent for parent in BASE.parents
+            if (parent / "src/q4_rl").is_dir()
+            and (parent / "results/q4_rl/gae-v5-deployment-001").is_dir())
 sys.path[:0] = [str(ROOT / "src"), str(ROOT)]
 spec = importlib.util.spec_from_file_location("gae_resume_sidecar", BASE / "resume.py")
 resume = importlib.util.module_from_spec(spec)

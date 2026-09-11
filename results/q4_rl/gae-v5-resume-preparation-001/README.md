@@ -98,3 +98,11 @@ applied. G1 missing binding is incompatible; G3 init+resume is rejected. No
 simulator, formal test, validation database, object transfer or remote process
 was used. Linux supervisor ownership and real pending-journal checks remain a
 server preflight obligation; no policy efficacy or virtual-time claim is made.
+
+Archive portability check: after copying these files into the tracked results
+directory, `test_resume.py` was changed to locate the repository by its source
+and deployment directories instead of assuming the original handoff depth.
+The tracked-path command `python -B -m pytest
+results/q4_rl/gae-v5-resume-preparation-001/test_resume.py -q` passed all 20 checks
+in 6.65 seconds. `PORTABLE_TESTS.json` records its current test hash and unchanged
+sidecar hash; `OFFLINE_VERIFIED.json` retains the original handoff execution hashes.
