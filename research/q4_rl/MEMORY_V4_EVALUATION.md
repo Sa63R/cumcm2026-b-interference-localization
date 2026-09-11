@@ -1,6 +1,6 @@
 # Frozen memory/capacity development comparison
 
-Predeclared 2026-09-11 around 18:14 UTC, before any completed bundle-v3 or memory-v4 performance summary was read. A running bundle-v3 progress row is not used for endpoint selection.
+Predeclared 2026-09-11 18:10 UTC, before any completed bundle-v3 or memory-v4 performance summary was read. A running bundle-v3 progress row is not used for endpoint selection.
 
 Freeze all four memory-v4 jobs' BC256 warmstart and last complete PPO endpoints. No checkpoint is selected for favorable loss or evaluation. Compare G1/G3 within width (64/128), widths within schema, and BC/PPO within job. All use 512 upper decisions, the same public action space, complete billed fallback, physical constraints and the unchanged common lower bound. If a job stops before 256 BC or before any complete PPO update, mark the endpoint unavailable; do not relabel an earlier checkpoint as completed training.
 
