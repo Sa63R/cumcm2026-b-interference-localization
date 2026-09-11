@@ -134,6 +134,8 @@ def prepare(args):
                 "runtime_scope": "Concurrent independent processes; diagnostic elapsed wall time"}
     if model_gate:
         manifest["model_gate"] = model_gate
+    if trial.get("comparison_pair"):
+        manifest["comparison_pair"] = trial["comparison_pair"]
     write(output / "manifest.json", manifest)
     (output / "runner.py").write_bytes(Path(__file__).read_bytes())
     print(json.dumps({"frozen": str(output), "cases_per_policy": len(manifest["seeds"]),
@@ -146,7 +148,9 @@ def make_case(seed, stage):
         return random_scenario(3, seed)
     # Public-law stress families; a new seed block, independent of old hard
     # cases and any practice data. This function is frozen with the runner.
-    offset = seed-211001 if 211001 <= seed <= 211028 else seed-215001
+    # Each registered stress block ends in 001..028; the leading block is
+    # independently reserved per experiment in the frozen manifest.
+    offset = seed % 1000 - 1
     if not 0 <= offset < 28:
         raise ValueError("Unexpected reserved stress identity")
     families = ("minimum_radius", "boundary", "cluster", "positive_error",
@@ -307,18 +311,22 @@ def summarize(output):
             "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"}
     result = {"stage": manifest["stage"], "averages": averages, "comparisons": comparisons,
               "records_sha256": file_hashes, "rows": rows}
-    if "root_mc" in by_policy and "observation_tree" in by_policy:
-        mc = {r["seed"]: r for r in by_policy["root_mc"]}
+    comparison_pair = manifest.get("comparison_pair")
+    if comparison_pair is None and "root_mc" in by_policy and "observation_tree" in by_policy:
+        comparison_pair = ["root_mc", "observation_tree"]
+    if comparison_pair:
+        left, right = comparison_pair
+        mc = {r["seed"]: r for r in by_policy[left]}
         differences = [mc[r["seed"]]["penalized_time_s"]-r["penalized_time_s"]
-                       for r in by_policy["observation_tree"]]
+                       for r in by_policy[right]]
         rng = random.Random(52173)
         samples = [statistics.mean(rng.choices(differences, k=len(differences))) for _ in range(10000)]
-        result["observation_tree_vs_root_mc"] = {"pairs": len(differences),
+        result[f"{right}_vs_{left}"] = {"pairs": len(differences),
             "mean_saved_s": statistics.mean(differences),
             "ci95_saved_s": [percentile(samples, .025), percentile(samples, .975)],
             "wins": sum(s>1e-6 for s in differences), "losses": sum(s < -1e-6 for s in differences),
             "ties": sum(abs(s)<=1e-6 for s in differences),
-            "scope": "Same model/actions/v1 tail/compute ceilings; different estimate precision at the same cost. Check actual mechanism coverage separately."}
+            "scope": "Same fixed model/candidates/v1 tail and compute ceilings; actual work and estimate precision can differ. Check actual work and mechanism coverage separately."}
     write(output / "summary.json", result)
     print(json.dumps({"averages": averages, "comparisons": comparisons}), flush=True)
 

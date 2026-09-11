@@ -1,0 +1,2073 @@
+{
+  "version": "round2-observation-tree-smoke-parser-only",
+  "script_sha256": "606a4e4dbe538e34f4f119c771fa866179af88a0c2ca193b03213ef17624a267",
+  "scope": "Parsing check only; unpaired/unfrozen development records are not independent performance evidence",
+  "records": [
+    {
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\coupled_tree\\model_smoke\\disabled.json.gz",
+      "sha256": "c43180ddf8aeac13876ad0020c0a880679921f3b0cbe9b70335a93a7b8e7ecb3",
+      "scope": "Unfrozen implementation smoke on already-opened development 200114; not independent evidence",
+      "source_unchanged_claim": true,
+      "planning": {
+        "depth": 2,
+        "evaluation_mode": "coupled_predictive",
+        "planning_attempts": 0,
+        "statuses": {},
+        "completed_comparisons": 0,
+        "logged_changed": 0,
+        "macro_identity_changed": 0,
+        "mechanism_active": 0,
+        "first_actions_with_multiple_effective_z": 0,
+        "first_actions_with_observation_dependent_actions": 0,
+        "tail_evaluations_started": 0,
+        "completed_tails_retained_in_nodes": 0,
+        "tail_completion_not_identifiable_from_retained_nodes": 0,
+        "tail_completions_verified_by_ledger": 0,
+        "tail_not_completed_explicit": 0,
+        "tail_completion_unknown": 0,
+        "completed_tails_missing_cost_arrays": 0,
+        "generated_actions": 0,
+        "planning_runtime_s": 0.0,
+        "fallback_reasons": {},
+        "decisions": [],
+        "errors": [],
+        "unlogged_skips": "Not observable: disabled, max_searches, fewer than two candidates and no remaining planning time can return before log creation",
+        "tail_count_scope": "Started != completed. Old mode drops partial candidates; coupled mode retains nodes and a separate completion ledger. Missing node cost arrays can have known completed training tails, explicitly failed tails, or still-unknown tails; do not equate these."
+      }
+    },
+    {
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\coupled_tree\\model_smoke\\depth1.json.gz",
+      "sha256": "bff44ed1f79c1a7c3090a45303db9da9f1dfddc7158739082621f298198598c9",
+      "scope": "Unfrozen implementation smoke on already-opened development 200114; not independent evidence",
+      "source_unchanged_claim": true,
+      "planning": {
+        "depth": 1,
+        "evaluation_mode": "coupled_predictive",
+        "planning_attempts": 1,
+        "statuses": {
+          "evaluated_baseline": 1
+        },
+        "completed_comparisons": 1,
+        "logged_changed": 0,
+        "macro_identity_changed": 0,
+        "mechanism_active": 0,
+        "first_actions_with_multiple_effective_z": 0,
+        "first_actions_with_observation_dependent_actions": 0,
+        "tail_evaluations_started": 6,
+        "completed_tails_retained_in_nodes": 6,
+        "tail_completion_not_identifiable_from_retained_nodes": 0,
+        "tail_completions_verified_by_ledger": 6,
+        "tail_not_completed_explicit": 0,
+        "tail_completion_unknown": 0,
+        "completed_tails_missing_cost_arrays": 0,
+        "generated_actions": 658,
+        "planning_runtime_s": 6.679274699999951,
+        "fallback_reasons": {},
+        "decisions": [
+          {
+            "index": 0,
+            "action_boundary": 20,
+            "status": "evaluated_baseline",
+            "evaluation_mode": "coupled_predictive",
+            "baseline": {
+              "kind": "source",
+              "channel": 10,
+              "position": [
+                -749.9060070252016,
+                22.24031589070479
+              ]
+            },
+            "selected": {
+              "kind": "source",
+              "channel": 10,
+              "position": [
+                -749.9060070252016,
+                22.24031589070479
+              ]
+            },
+            "macro_identity_changed": false,
+            "next_actual_action": {
+              "action": "measure",
+              "channel": 10,
+              "position": [
+                -567.0088736706248,
+                -169.86255075471863
+              ],
+              "result": "direction",
+              "bearing_deg": 30.89,
+              "virtual_time_s": 243.381139
+            },
+            "fallback_reason": null,
+            "root_pool": {
+              "draw_weight_ess": 16.0,
+              "distinct_active_position_worlds": 16,
+              "position_pool_ess": {
+                "count": 20,
+                "min": 197.50600497526568,
+                "mean": 1727.9333704817423,
+                "max": 2381.5142579268845
+              },
+              "position_pool_distinct": {
+                "count": 20,
+                "min": 251,
+                "mean": 2043.65,
+                "max": 2811
+              },
+              "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+            },
+            "tail_evaluations_started": 6,
+            "generated_actions": 658,
+            "planning_runtime_s": 6.679274699999951,
+            "first_actions": [
+              {
+                "task": {
+                  "kind": "source",
+                  "channel": 10,
+                  "position": [
+                    -749.9060070252016,
+                    22.24031589070479
+                  ]
+                },
+                "status": "completed",
+                "effective_distinct_z": 0,
+                "distinct_conditional_actions": 0,
+                "representatives_retained": 2,
+                "paired_gain_s": null,
+                "heuristic_margin_s": null,
+                "nodes": [
+                  {
+                    "status": "coupled_fixed_v1_tail",
+                    "observation_sha256": "bec932124d5a4f8096a2685687186cdde6e70b02ef7be261f739f44446dc9e6f",
+                    "observation_count": 2,
+                    "first_cost_s": 182.140105,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -745.2731375767725,
+                        -86.24752116332296
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 1,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 0,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": null,
+                    "unused_training_pool_draws": null,
+                    "tail_completions_verified_by_ledger": 1,
+                    "completed_training_tails": 0,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 0,
+                        "status": "completed",
+                        "start_virtual_time_s": 301.140105,
+                        "task": null,
+                        "first_action_index": 0,
+                        "representative_index": 0,
+                        "role": "coupled_fixed_v1_evaluation",
+                        "cost_s": 2519.318218
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  },
+                  {
+                    "status": "coupled_fixed_v1_tail",
+                    "observation_sha256": "0a188a85d4706ec619bfefde00810e99ff19c3e207cfc8546f069708c7938fde",
+                    "observation_count": 3,
+                    "first_cost_s": 173.661968,
+                    "inner_baseline": {
+                      "kind": "cover",
+                      "channel": null,
+                      "position": [
+                        -1099.0384578704834,
+                        1.3459339295709308e-13
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 1,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 1,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": null,
+                    "unused_training_pool_draws": null,
+                    "tail_completions_verified_by_ledger": 1,
+                    "completed_training_tails": 0,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 1,
+                        "status": "completed",
+                        "start_virtual_time_s": 292.661968,
+                        "task": null,
+                        "first_action_index": 0,
+                        "representative_index": 1,
+                        "role": "coupled_fixed_v1_evaluation",
+                        "cost_s": 3013.629702
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  }
+                ]
+              },
+              {
+                "task": {
+                  "kind": "cover",
+                  "channel": null,
+                  "position": [
+                    -1099.0384578704834,
+                    1.3459339295709308e-13
+                  ]
+                },
+                "status": "completed",
+                "effective_distinct_z": 0,
+                "distinct_conditional_actions": 0,
+                "representatives_retained": 2,
+                "paired_gain_s": -44.49827899999991,
+                "heuristic_margin_s": -70.89060949999998,
+                "nodes": [
+                  {
+                    "status": "coupled_fixed_v1_tail",
+                    "observation_sha256": "2fd98c4cd4692564d8b20562274f78ebb14d30bb3b51fc04c9c54e1a43f30ae3",
+                    "observation_count": 20,
+                    "first_cost_s": 338.807692,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -986.5841138723512,
+                        -106.85588924926839
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 1,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 0,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": null,
+                    "unused_training_pool_draws": null,
+                    "tail_completions_verified_by_ledger": 1,
+                    "completed_training_tails": 0,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 2,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": null,
+                        "first_action_index": 1,
+                        "representative_index": 0,
+                        "role": "coupled_fixed_v1_evaluation",
+                        "cost_s": 2439.933571
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  },
+                  {
+                    "status": "coupled_fixed_v1_tail",
+                    "observation_sha256": "eeed764a988b8d6fab2aa728169708f899c12d6a811b198c966aafabc0ec89d5",
+                    "observation_count": 20,
+                    "first_cost_s": 338.807692,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -1052.9851382595243,
+                        -114.259724313301
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 1,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 1,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": null,
+                    "unused_training_pool_draws": null,
+                    "tail_completions_verified_by_ledger": 1,
+                    "completed_training_tails": 0,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 3,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": null,
+                        "first_action_index": 1,
+                        "representative_index": 1,
+                        "role": "coupled_fixed_v1_evaluation",
+                        "cost_s": 2860.197596
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  }
+                ]
+              },
+              {
+                "task": {
+                  "kind": "cover",
+                  "channel": null,
+                  "position": [
+                    -575.0000000000005,
+                    -995.9292143521043
+                  ]
+                },
+                "status": "completed",
+                "effective_distinct_z": 0,
+                "distinct_conditional_actions": 0,
+                "representatives_retained": 2,
+                "paired_gain_s": -68.50574600000004,
+                "heuristic_margin_s": -123.98197350000021,
+                "nodes": [
+                  {
+                    "status": "coupled_fixed_v1_tail",
+                    "observation_sha256": "e73926a377bc3d98ead85ae5d4f74580dc2ed011f2dafb4afd2de2790f1ab398",
+                    "observation_count": 20,
+                    "first_cost_s": 349.0,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 16,
+                      "position": [
+                        -864.8658732229844,
+                        -712.4765866040216
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 1,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 0,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": null,
+                    "unused_training_pool_draws": null,
+                    "tail_completions_verified_by_ledger": 1,
+                    "completed_training_tails": 0,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 4,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": null,
+                        "first_action_index": 2,
+                        "representative_index": 0,
+                        "role": "coupled_fixed_v1_evaluation",
+                        "cost_s": 2511.916524
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  },
+                  {
+                    "status": "coupled_fixed_v1_tail",
+                    "observation_sha256": "36d400d560b4f216d934a5ff80d48890e179b049d893bf004f7fd19481a01469",
+                    "observation_count": 20,
+                    "first_cost_s": 349.0,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 15,
+                      "position": [
+                        -660.44354138166,
+                        -1317.1624615683581
+                      ]
+                    },
+                    "selected": null,
+                    "completed_tail_count_from_cost_arrays": 1,
+                    "actual_training_draws": 0,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": null,
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 1,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": null,
+                    "unused_training_pool_draws": null,
+                    "tail_completions_verified_by_ledger": 1,
+                    "completed_training_tails": 0,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 5,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": null,
+                        "first_action_index": 2,
+                        "representative_index": 1,
+                        "role": "coupled_fixed_v1_evaluation",
+                        "cost_s": 2815.844961
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  }
+                ]
+              }
+            ],
+            "mechanism_active_recomputed": false,
+            "completed_tails_retained": 6,
+            "tails_not_identifiable_from_retained_nodes": 0,
+            "second_layer_comparisons_logged": 0,
+            "second_layer_comparisons_retained": 0,
+            "partial_candidate_logging_gap": 0,
+            "tail_completion_ledger": {
+              "completed": 6,
+              "not_completed": 0,
+              "unknown": 0,
+              "by_role_and_status": {
+                "coupled_fixed_v1_evaluation:completed": 6
+              }
+            },
+            "completed_tails_missing_cost_arrays": 0
+          }
+        ],
+        "errors": [],
+        "unlogged_skips": "Not observable: disabled, max_searches, fewer than two candidates and no remaining planning time can return before log creation",
+        "tail_count_scope": "Started != completed. Old mode drops partial candidates; coupled mode retains nodes and a separate completion ledger. Missing node cost arrays can have known completed training tails, explicitly failed tails, or still-unknown tails; do not equate these."
+      }
+    },
+    {
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\coupled_tree\\model_smoke\\depth2.json.gz",
+      "sha256": "08226913195db1ecf5c62bd663baebb166ca18119097d521fb6bb99b76eea754",
+      "scope": "Unfrozen implementation smoke on already-opened development 200114; not independent evidence",
+      "source_unchanged_claim": true,
+      "planning": {
+        "depth": 2,
+        "evaluation_mode": "coupled_predictive",
+        "planning_attempts": 1,
+        "statuses": {
+          "evaluated_baseline": 1
+        },
+        "completed_comparisons": 1,
+        "logged_changed": 0,
+        "macro_identity_changed": 0,
+        "mechanism_active": 1,
+        "first_actions_with_multiple_effective_z": 3,
+        "first_actions_with_observation_dependent_actions": 2,
+        "tail_evaluations_started": 42,
+        "completed_tails_retained_in_nodes": 42,
+        "tail_completion_not_identifiable_from_retained_nodes": 0,
+        "tail_completions_verified_by_ledger": 42,
+        "tail_not_completed_explicit": 0,
+        "tail_completion_unknown": 0,
+        "completed_tails_missing_cost_arrays": 0,
+        "generated_actions": 4146,
+        "planning_runtime_s": 45.13849719999416,
+        "fallback_reasons": {},
+        "decisions": [
+          {
+            "index": 0,
+            "action_boundary": 20,
+            "status": "evaluated_baseline",
+            "evaluation_mode": "coupled_predictive",
+            "baseline": {
+              "kind": "source",
+              "channel": 10,
+              "position": [
+                -749.9060070252016,
+                22.24031589070479
+              ]
+            },
+            "selected": {
+              "kind": "source",
+              "channel": 10,
+              "position": [
+                -749.9060070252016,
+                22.24031589070479
+              ]
+            },
+            "macro_identity_changed": false,
+            "next_actual_action": {
+              "action": "measure",
+              "channel": 10,
+              "position": [
+                -567.0088736706248,
+                -169.86255075471863
+              ],
+              "result": "direction",
+              "bearing_deg": 30.89,
+              "virtual_time_s": 243.381139
+            },
+            "fallback_reason": null,
+            "root_pool": {
+              "draw_weight_ess": 16.0,
+              "distinct_active_position_worlds": 16,
+              "position_pool_ess": {
+                "count": 20,
+                "min": 197.50600497526568,
+                "mean": 1727.9333704817423,
+                "max": 2381.5142579268845
+              },
+              "position_pool_distinct": {
+                "count": 20,
+                "min": 251,
+                "mean": 2043.65,
+                "max": 2811
+              },
+              "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+            },
+            "tail_evaluations_started": 42,
+            "generated_actions": 4146,
+            "planning_runtime_s": 45.13849719999416,
+            "first_actions": [
+              {
+                "task": {
+                  "kind": "source",
+                  "channel": 10,
+                  "position": [
+                    -749.9060070252016,
+                    22.24031589070479
+                  ]
+                },
+                "status": "completed",
+                "effective_distinct_z": 2,
+                "distinct_conditional_actions": 1,
+                "representatives_retained": 2,
+                "paired_gain_s": null,
+                "heuristic_margin_s": null,
+                "nodes": [
+                  {
+                    "status": "coupled_conditional_action_evaluated",
+                    "observation_sha256": "bec932124d5a4f8096a2685687186cdde6e70b02ef7be261f739f44446dc9e6f",
+                    "observation_count": 2,
+                    "first_cost_s": 182.140105,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -745.2731375767725,
+                        -86.24752116332296
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -745.2731375767725,
+                        -86.24752116332296
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 7,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 198.8308689777096,
+                        "mean": 1737.6929603762633,
+                        "max": 2390.5592418597516
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 251,
+                        "mean": 2049.85,
+                        "max": 2820
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 0,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": 8,
+                    "unused_training_pool_draws": 6,
+                    "tail_completions_verified_by_ledger": 7,
+                    "completed_training_tails": 6,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 0,
+                        "status": "completed",
+                        "start_virtual_time_s": 301.140105,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -745.2731375767725,
+                            -86.24752116332296
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2703.212807
+                      },
+                      {
+                        "index": 1,
+                        "status": "completed",
+                        "start_virtual_time_s": 301.140105,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -745.2731375767725,
+                            -86.24752116332296
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2734.195035
+                      },
+                      {
+                        "index": 2,
+                        "status": "completed",
+                        "start_virtual_time_s": 301.140105,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -1099.0384578704834,
+                            1.3459339295709308e-13
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2677.0633390000003
+                      },
+                      {
+                        "index": 3,
+                        "status": "completed",
+                        "start_virtual_time_s": 301.140105,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -1099.0384578704834,
+                            1.3459339295709308e-13
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2807.238958
+                      },
+                      {
+                        "index": 4,
+                        "status": "completed",
+                        "start_virtual_time_s": 301.140105,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -575.1609920936838,
+                            -968.3640588172061
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2745.846411
+                      },
+                      {
+                        "index": 5,
+                        "status": "completed",
+                        "start_virtual_time_s": 301.140105,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -575.1609920936838,
+                            -968.3640588172061
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2866.304661
+                      },
+                      {
+                        "index": 6,
+                        "status": "completed",
+                        "start_virtual_time_s": 301.140105,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -745.2731375767725,
+                            -86.24752116332296
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 0,
+                        "role": "coupled_policy_evaluation",
+                        "cost_s": 2519.318218
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  },
+                  {
+                    "status": "coupled_conditional_action_evaluated",
+                    "observation_sha256": "0a188a85d4706ec619bfefde00810e99ff19c3e207cfc8546f069708c7938fde",
+                    "observation_count": 3,
+                    "first_cost_s": 173.661968,
+                    "inner_baseline": {
+                      "kind": "cover",
+                      "channel": null,
+                      "position": [
+                        -1099.0384578704834,
+                        1.3459339295709308e-13
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -1021.5319488604403,
+                        -113.17443357156358
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 7,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 201.17329998595326,
+                        "mean": 1774.2476377062521,
+                        "max": 2439.646159765039
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 2081.1,
+                        "max": 2864
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 1,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": 8,
+                    "unused_training_pool_draws": 6,
+                    "tail_completions_verified_by_ledger": 7,
+                    "completed_training_tails": 6,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 7,
+                        "status": "completed",
+                        "start_virtual_time_s": 292.661968,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -1099.0384578704834,
+                            1.3459339295709308e-13
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2865.16944
+                      },
+                      {
+                        "index": 8,
+                        "status": "completed",
+                        "start_virtual_time_s": 292.661968,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -1099.0384578704834,
+                            1.3459339295709308e-13
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2927.902692
+                      },
+                      {
+                        "index": 9,
+                        "status": "completed",
+                        "start_virtual_time_s": 292.661968,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -1021.5319488604403,
+                            -113.17443357156358
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2867.498586
+                      },
+                      {
+                        "index": 10,
+                        "status": "completed",
+                        "start_virtual_time_s": 292.661968,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -1021.5319488604403,
+                            -113.17443357156358
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2692.605858
+                      },
+                      {
+                        "index": 11,
+                        "status": "completed",
+                        "start_virtual_time_s": 292.661968,
+                        "task": {
+                          "kind": "source",
+                          "channel": 16,
+                          "position": [
+                            -578.0233620894445,
+                            -478.2674812379603
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 3014.984915
+                      },
+                      {
+                        "index": 12,
+                        "status": "completed",
+                        "start_virtual_time_s": 292.661968,
+                        "task": {
+                          "kind": "source",
+                          "channel": 16,
+                          "position": [
+                            -578.0233620894445,
+                            -478.2674812379603
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2990.774985
+                      },
+                      {
+                        "index": 13,
+                        "status": "completed",
+                        "start_virtual_time_s": 292.661968,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -1021.5319488604403,
+                            -113.17443357156358
+                          ]
+                        },
+                        "first_action_index": 0,
+                        "representative_index": 1,
+                        "role": "coupled_policy_evaluation",
+                        "cost_s": 3054.375503
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  }
+                ]
+              },
+              {
+                "task": {
+                  "kind": "cover",
+                  "channel": null,
+                  "position": [
+                    -1099.0384578704834,
+                    1.3459339295709308e-13
+                  ]
+                },
+                "status": "completed",
+                "effective_distinct_z": 2,
+                "distinct_conditional_actions": 2,
+                "representatives_retained": 2,
+                "paired_gain_s": -227.47156399999994,
+                "heuristic_margin_s": -365.72343750000005,
+                "nodes": [
+                  {
+                    "status": "coupled_conditional_action_evaluated",
+                    "observation_sha256": "2fd98c4cd4692564d8b20562274f78ebb14d30bb3b51fc04c9c54e1a43f30ae3",
+                    "observation_count": 20,
+                    "first_cost_s": 338.807692,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -986.5841138723512,
+                        -106.85588924926839
+                      ]
+                    },
+                    "selected": {
+                      "kind": "cover",
+                      "channel": null,
+                      "position": [
+                        -574.9999999999998,
+                        995.9292143521045
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 7,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 193.5336047968283,
+                        "mean": 1286.818220014809,
+                        "max": 1738.184794370367
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 251,
+                        "mean": 1562.15,
+                        "max": 2123
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 0,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": 8,
+                    "unused_training_pool_draws": 6,
+                    "tail_completions_verified_by_ledger": 7,
+                    "completed_training_tails": 6,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 14,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -986.5841138723512,
+                            -106.85588924926839
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 3123.987658
+                      },
+                      {
+                        "index": 15,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -986.5841138723512,
+                            -106.85588924926839
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2460.258582
+                      },
+                      {
+                        "index": 16,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -575.0000000000005,
+                            -995.9292143521043
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 3269.773188
+                      },
+                      {
+                        "index": 17,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -575.0000000000005,
+                            -995.9292143521043
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2544.6457880000003
+                      },
+                      {
+                        "index": 18,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -574.9999999999998,
+                            995.9292143521045
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 3024.452251
+                      },
+                      {
+                        "index": 19,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -574.9999999999998,
+                            995.9292143521045
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2497.791443
+                      },
+                      {
+                        "index": 20,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -574.9999999999998,
+                            995.9292143521045
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 0,
+                        "role": "coupled_policy_evaluation",
+                        "cost_s": 2846.625942
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  },
+                  {
+                    "status": "coupled_conditional_action_evaluated",
+                    "observation_sha256": "eeed764a988b8d6fab2aa728169708f899c12d6a811b198c966aafabc0ec89d5",
+                    "observation_count": 20,
+                    "first_cost_s": 338.807692,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -1052.9851382595243,
+                        -114.259724313301
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 12,
+                      "position": [
+                        -1052.9851382595243,
+                        -114.259724313301
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 7,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 200.1828440113142,
+                        "mean": 1128.5278377213021,
+                        "max": 1726.2270443099153
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 252,
+                        "mean": 1383.6,
+                        "max": 2137
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 1,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": 8,
+                    "unused_training_pool_draws": 6,
+                    "tail_completions_verified_by_ledger": 7,
+                    "completed_training_tails": 6,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 21,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -1052.9851382595243,
+                            -114.259724313301
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2346.577793
+                      },
+                      {
+                        "index": 22,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -1052.9851382595243,
+                            -114.259724313301
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2964.321342
+                      },
+                      {
+                        "index": 23,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -575.0000000000005,
+                            -995.9292143521043
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2599.3330530000003
+                      },
+                      {
+                        "index": 24,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -575.0000000000005,
+                            -995.9292143521043
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 3149.0612880000003
+                      },
+                      {
+                        "index": 25,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -574.9999999999998,
+                            995.9292143521045
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2574.6956990000003
+                      },
+                      {
+                        "index": 26,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -574.9999999999998,
+                            995.9292143521045
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 3013.1374210000004
+                      },
+                      {
+                        "index": 27,
+                        "status": "completed",
+                        "start_virtual_time_s": 457.807692,
+                        "task": {
+                          "kind": "source",
+                          "channel": 12,
+                          "position": [
+                            -1052.9851382595243,
+                            -114.259724313301
+                          ]
+                        },
+                        "first_action_index": 1,
+                        "representative_index": 1,
+                        "role": "coupled_policy_evaluation",
+                        "cost_s": 2860.197596
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  }
+                ]
+              },
+              {
+                "task": {
+                  "kind": "cover",
+                  "channel": null,
+                  "position": [
+                    -575.0000000000005,
+                    -995.9292143521043
+                  ]
+                },
+                "status": "completed",
+                "effective_distinct_z": 2,
+                "distinct_conditional_actions": 2,
+                "representatives_retained": 2,
+                "paired_gain_s": -48.13284550000003,
+                "heuristic_margin_s": -113.7955232500002,
+                "nodes": [
+                  {
+                    "status": "coupled_conditional_action_evaluated",
+                    "observation_sha256": "e73926a377bc3d98ead85ae5d4f74580dc2ed011f2dafb4afd2de2790f1ab398",
+                    "observation_count": 20,
+                    "first_cost_s": 349.0,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 16,
+                      "position": [
+                        -864.8658732229844,
+                        -712.4765866040216
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 16,
+                      "position": [
+                        -864.8658732229844,
+                        -712.4765866040216
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 7,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 208.99273598821685,
+                        "mean": 1280.913060619217,
+                        "max": 1724.5539739801463
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 250,
+                        "mean": 1561.5,
+                        "max": 2122
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 0,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": 8,
+                    "unused_training_pool_draws": 6,
+                    "tail_completions_verified_by_ledger": 7,
+                    "completed_training_tails": 6,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 28,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "source",
+                          "channel": 16,
+                          "position": [
+                            -864.8658732229844,
+                            -712.4765866040216
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 3048.312041
+                      },
+                      {
+                        "index": 29,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "source",
+                          "channel": 16,
+                          "position": [
+                            -864.8658732229844,
+                            -712.4765866040216
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2609.636149
+                      },
+                      {
+                        "index": 30,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -1099.0384578704834,
+                            1.3459339295709308e-13
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 3008.176812
+                      },
+                      {
+                        "index": 31,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -1099.0384578704834,
+                            1.3459339295709308e-13
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2808.206322
+                      },
+                      {
+                        "index": 32,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            550.3123374805003,
+                            -969.8670624451125
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 3050.055687
+                      },
+                      {
+                        "index": 33,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            550.3123374805003,
+                            -969.8670624451125
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 0,
+                        "role": "conditional_training",
+                        "cost_s": 2642.662855
+                      },
+                      {
+                        "index": 34,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "source",
+                          "channel": 16,
+                          "position": [
+                            -864.8658732229844,
+                            -712.4765866040216
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 0,
+                        "role": "coupled_policy_evaluation",
+                        "cost_s": 2511.916524
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  },
+                  {
+                    "status": "coupled_conditional_action_evaluated",
+                    "observation_sha256": "36d400d560b4f216d934a5ff80d48890e179b049d893bf004f7fd19481a01469",
+                    "observation_count": 20,
+                    "first_cost_s": 349.0,
+                    "inner_baseline": {
+                      "kind": "source",
+                      "channel": 15,
+                      "position": [
+                        -660.44354138166,
+                        -1317.1624615683581
+                      ]
+                    },
+                    "selected": {
+                      "kind": "source",
+                      "channel": 15,
+                      "position": [
+                        -660.44354138166,
+                        -1317.1624615683581
+                      ]
+                    },
+                    "completed_tail_count_from_cost_arrays": 7,
+                    "actual_training_draws": 2,
+                    "actual_evaluation_draws": 1,
+                    "training_used_support": {
+                      "draws": 2,
+                      "equal_draw_weight_ess": 2,
+                      "distinct_active_position_worlds": 2,
+                      "scope": "Hypothesis draws only; equal-weight ESS does not certify accuracy or independent observed outcomes"
+                    },
+                    "evaluation_used_support": {
+                      "evaluated_worlds": 1,
+                      "scope": "One previously drawn predictive world conditioned by its generated observation; not a fresh conditional sample; no ESS guarantee"
+                    },
+                    "training_pool": {
+                      "draw_weight_ess": 8.0,
+                      "distinct_active_position_worlds": 8,
+                      "position_pool_ess": {
+                        "count": 20,
+                        "min": 203.34006853706424,
+                        "mean": 1061.5394102758523,
+                        "max": 1730.776105100503
+                      },
+                      "position_pool_distinct": {
+                        "count": 20,
+                        "min": 249,
+                        "mean": 1282.1,
+                        "max": 2124
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "evaluation_pool": {
+                      "draw_weight_ess": null,
+                      "distinct_active_position_worlds": null,
+                      "position_pool_ess": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "position_pool_distinct": {
+                        "count": 0,
+                        "min": null,
+                        "mean": null,
+                        "max": null
+                      },
+                      "scope": "Pool proposal support and equal draw weights are not actual evaluated sample sizes"
+                    },
+                    "unused_conditional_draws": null,
+                    "representative_index": 1,
+                    "evaluation_origin": "same_predictive_representative",
+                    "evaluation_is_independent_draw": false,
+                    "fresh_conditional_evaluation_draws": 0,
+                    "conditional_training_pool_draws": 8,
+                    "unused_training_pool_draws": 6,
+                    "tail_completions_verified_by_ledger": 7,
+                    "completed_training_tails": 6,
+                    "completed_evaluation_tails": 1,
+                    "completed_training_tails_missing_cost_arrays": 0,
+                    "tail_completion_log": [
+                      {
+                        "index": 35,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "source",
+                          "channel": 15,
+                          "position": [
+                            -660.44354138166,
+                            -1317.1624615683581
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2889.358425
+                      },
+                      {
+                        "index": 36,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "source",
+                          "channel": 15,
+                          "position": [
+                            -660.44354138166,
+                            -1317.1624615683581
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2491.818013
+                      },
+                      {
+                        "index": 37,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -1099.0384578704834,
+                            1.3459339295709308e-13
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 3365.421885
+                      },
+                      {
+                        "index": 38,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            -1099.0384578704834,
+                            1.3459339295709308e-13
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2711.384614
+                      },
+                      {
+                        "index": 39,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            552.0345687866212,
+                            -995.9292143521044
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 3415.142841
+                      },
+                      {
+                        "index": 40,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "cover",
+                          "channel": null,
+                          "position": [
+                            552.0345687866212,
+                            -995.9292143521044
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 1,
+                        "role": "conditional_training",
+                        "cost_s": 2661.366448
+                      },
+                      {
+                        "index": 41,
+                        "status": "completed",
+                        "start_virtual_time_s": 468.0,
+                        "task": {
+                          "kind": "source",
+                          "channel": 15,
+                          "position": [
+                            -660.44354138166,
+                            -1317.1624615683581
+                          ]
+                        },
+                        "first_action_index": 2,
+                        "representative_index": 1,
+                        "role": "coupled_policy_evaluation",
+                        "cost_s": 2815.844961
+                      }
+                    ],
+                    "training_selection_scope": "actual_training_draws counts completed common-action selection; partial completed training tails remain separately in the ledger",
+                    "evaluation_support_scope": "Reused predictive W, not a new conditional draw; no ESS or actual world identity proof follows from logged origin alone"
+                  }
+                ]
+              }
+            ],
+            "mechanism_active_recomputed": true,
+            "completed_tails_retained": 42,
+            "tails_not_identifiable_from_retained_nodes": 0,
+            "second_layer_comparisons_logged": 6,
+            "second_layer_comparisons_retained": 6,
+            "partial_candidate_logging_gap": 0,
+            "tail_completion_ledger": {
+              "completed": 42,
+              "not_completed": 0,
+              "unknown": 0,
+              "by_role_and_status": {
+                "conditional_training:completed": 36,
+                "coupled_policy_evaluation:completed": 6
+              }
+            },
+            "completed_tails_missing_cost_arrays": 0
+          }
+        ],
+        "errors": [],
+        "unlogged_skips": "Not observable: disabled, max_searches, fewer than two candidates and no remaining planning time can return before log creation",
+        "tail_count_scope": "Started != completed. Old mode drops partial candidates; coupled mode retains nodes and a separate completion ledger. Missing node cost arrays can have known completed training tails, explicitly failed tails, or still-unknown tails; do not equate these."
+      }
+    }
+  ],
+  "all_log_checks_passed": true
+}
