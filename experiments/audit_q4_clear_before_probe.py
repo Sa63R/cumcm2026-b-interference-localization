@@ -119,8 +119,9 @@ def audit_clear_before_probe_prefix(record):
         limit = b['max_actions']
         require(type(limit) is int and limit >= 2 and b['policy_action_count'] == accepted_counts[n]
                 and b['remaining_actions'] == limit-accepted_counts[n], 'Wrong accepted action/exit reserve count')
-        if 'spec' in record and 'max_actions' in record['spec'].get('kwargs', {}):
-            require(limit == record['spec']['kwargs']['max_actions'], 'Action budget differs from frozen spec')
+        if 'spec' in record:
+            expected_max = record['spec'].get('kwargs', {}).get('max_actions', 20000)
+            require(limit == expected_max, 'Action budget differs from frozen spec')
         movement = math.ceil(math.dist(current, p)/5.*1e6)/1e6
         cost = movement+8.+int(c != tuned)
         close(b['movement_ceiling_s'], movement, 'Wrong conservative incoming movement')

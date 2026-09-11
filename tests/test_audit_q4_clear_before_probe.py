@@ -76,6 +76,17 @@ def test_actual_success_ends_source_without_fabricated_measure(monkeypatch):
     assert len(r['summary']['action_history']) == 3
 
 
+def test_implicit_frozen_default_rejects_fabricated_larger_action_budget(monkeypatch):
+    r = example(monkeypatch)
+    r['spec']['kwargs'].pop('max_actions')
+    assert audit_clear_before_probe_prefix(r)['attempts'] == 1
+    budget = r['summary']['strategy_parameters']['clear_before_probe_log'][0]['budget']
+    budget['max_actions'] += 100
+    budget['remaining_actions'] += 100  # Internally consistent but violates frozen default.
+    with pytest.raises(ValueError, match='frozen spec'):
+        audit_clear_before_probe_prefix(r)
+
+
 @pytest.mark.parametrize('entered', [False,True])
 def test_insufficient_action_continuation_preserves_actual_original_probe(monkeypatch,entered):
     r = example(monkeypatch,entered=entered,skip=True)
