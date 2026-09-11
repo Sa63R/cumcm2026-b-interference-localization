@@ -1,0 +1,208 @@
+{
+  "stage": "smoke",
+  "averages": {
+    "baseline": {
+      "runs": 1,
+      "successful": 1,
+      "failed_clears": 0,
+      "mean_s": 3313.326128,
+      "p95_s": 3313.326128,
+      "max_s": 3313.326128,
+      "mean_runtime_s": 1.1993582000141032,
+      "p95_runtime_s": 1.1993582000141032,
+      "max_runtime_s": 1.1993582000141032,
+      "mean_cpu_s": 1.1875,
+      "mean_measurements": 102,
+      "mean_movement_s": 2633.326128
+    },
+    "original": {
+      "runs": 1,
+      "successful": 1,
+      "failed_clears": 0,
+      "mean_s": 3361.326128,
+      "p95_s": 3361.326128,
+      "max_s": 3361.326128,
+      "mean_runtime_s": 1.1881023999885656,
+      "p95_runtime_s": 1.1881023999885656,
+      "max_runtime_s": 1.1881023999885656,
+      "mean_cpu_s": 1.1875,
+      "mean_measurements": 110,
+      "mean_movement_s": 2633.326128
+    },
+    "rl": {
+      "runs": 1,
+      "successful": 1,
+      "failed_clears": 0,
+      "mean_s": 3653.640527,
+      "p95_s": 3653.640527,
+      "max_s": 3653.640527,
+      "mean_runtime_s": 2.1483595999889076,
+      "p95_runtime_s": 2.1483595999889076,
+      "max_runtime_s": 2.1483595999889076,
+      "mean_cpu_s": 1.890625,
+      "mean_measurements": 141,
+      "mean_movement_s": 2756.640527
+    }
+  },
+  "comparisons": {
+    "original": {
+      "pairs": 1,
+      "safe": true,
+      "mean_saved_s": -48.0,
+      "ci95_saved_s": [
+        -48.0,
+        -48.0
+      ],
+      "mean_reduction_fraction": -0.014486953033196857,
+      "wins": 0,
+      "losses": 1,
+      "ties": 0,
+      "worst_paired_regression_s": 48.0,
+      "p90_paired_regression_s": 48.0,
+      "pilot_expansion_gate": false,
+      "pareto_confirmation_gate": false,
+      "gate_scope": "Old 200114 implementation smoke only; never performance promotion"
+    },
+    "rl": {
+      "pairs": 1,
+      "safe": true,
+      "mean_saved_s": -340.31439899999987,
+      "ci95_saved_s": [
+        -340.31439899999987,
+        -340.31439899999987
+      ],
+      "mean_reduction_fraction": -0.10271080655903361,
+      "wins": 0,
+      "losses": 1,
+      "ties": 0,
+      "worst_paired_regression_s": 340.31439899999987,
+      "p90_paired_regression_s": 340.31439899999987,
+      "pilot_expansion_gate": false,
+      "pareto_confirmation_gate": false,
+      "gate_scope": "Old 200114 implementation smoke only; never performance promotion"
+    }
+  },
+  "records_sha256": {
+    "records/baseline-200114.json.gz": "40af1adecc479bc94d1ac99f4ce426dab942a6063eec041f14bd4242a741dc58",
+    "records/original-200114.json.gz": "3b28acbaf5abccfb8fc1bf8a8a5cc99cc1de8c1ddd193f7cb7d35d74d2d740dd",
+    "records/rl-200114.json.gz": "c5f7a49e7e082e6fb00d01fd08af65e3d7d7f4a72ef7e3ca31967dc2350ccaea"
+  },
+  "rows": [
+    {
+      "case_id": "q3-random-200114",
+      "seed": 200114,
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "strategy": "baseline",
+      "successful": true,
+      "all_cleared": true,
+      "completion_certified": true,
+      "accepted_exit": true,
+      "source_total": 16,
+      "cleared_total": 16,
+      "cleared_fraction": 1.0,
+      "virtual_time_s": 3313.326128,
+      "penalized_time_s": 3313.326128,
+      "time_per_source_s": 207.082883,
+      "program_runtime_s": 1.1993582000141032,
+      "program_cpu_s": 1.1875,
+      "failed_clear_count": 0,
+      "measurement_count": 102,
+      "action_count": 120,
+      "movement_s": 2633.326128,
+      "switching_s": 90.0,
+      "detection_s": 510.0,
+      "optical_s": 48.0,
+      "removal_s": 32.0,
+      "errors": []
+    },
+    {
+      "case_id": "q3-random-200114",
+      "seed": 200114,
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "strategy": "original",
+      "successful": true,
+      "all_cleared": true,
+      "completion_certified": true,
+      "accepted_exit": true,
+      "source_total": 16,
+      "cleared_total": 16,
+      "cleared_fraction": 1.0,
+      "virtual_time_s": 3361.326128,
+      "penalized_time_s": 3361.326128,
+      "time_per_source_s": 210.082883,
+      "program_runtime_s": 1.1881023999885656,
+      "program_cpu_s": 1.1875,
+      "failed_clear_count": 0,
+      "measurement_count": 110,
+      "action_count": 128,
+      "movement_s": 2633.326128,
+      "switching_s": 98.0,
+      "detection_s": 550.0,
+      "optical_s": 48.0,
+      "removal_s": 32.0,
+      "errors": []
+    },
+    {
+      "case_id": "q3-random-200114",
+      "seed": 200114,
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "strategy": "rl",
+      "successful": true,
+      "all_cleared": true,
+      "completion_certified": true,
+      "accepted_exit": true,
+      "source_total": 16,
+      "cleared_total": 16,
+      "cleared_fraction": 1.0,
+      "virtual_time_s": 3653.640527,
+      "penalized_time_s": 3653.640527,
+      "time_per_source_s": 228.3525329375,
+      "program_runtime_s": 2.1483595999889076,
+      "program_cpu_s": 1.890625,
+      "failed_clear_count": 0,
+      "measurement_count": 141,
+      "action_count": 159,
+      "movement_s": 2756.640527,
+      "switching_s": 112.0,
+      "detection_s": 705.0,
+      "optical_s": 48.0,
+      "removal_s": 32.0,
+      "errors": []
+    }
+  ],
+  "comparisons_vs_rl": {
+    "baseline": {
+      "pairs": 1,
+      "safe": true,
+      "mean_saved_s": 340.31439899999987,
+      "ci95_saved_s": [
+        340.31439899999987,
+        340.31439899999987
+      ],
+      "wins": 1,
+      "losses": 0,
+      "ties": 0,
+      "worst_paired_regression_s": -340.31439899999987,
+      "scope": "Reference minus candidate complete penalized episode cost; same world, no failure exclusion"
+    },
+    "original": {
+      "pairs": 1,
+      "safe": true,
+      "mean_saved_s": 292.31439899999987,
+      "ci95_saved_s": [
+        292.31439899999987,
+        292.31439899999987
+      ],
+      "wins": 1,
+      "losses": 0,
+      "ties": 0,
+      "worst_paired_regression_s": -292.31439899999987,
+      "scope": "Reference minus candidate complete penalized episode cost; same world, no failure exclusion"
+    }
+  },
+  "case_sha256": {
+    "200114": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7"
+  },
+  "source_and_weights_verified_after_batch": true,
+  "old_lower_bound_status": "Requires independent completed-record posthoc audit; no new denominator here"
+}
