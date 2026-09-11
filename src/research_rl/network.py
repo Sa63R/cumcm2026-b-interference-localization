@@ -3,6 +3,8 @@
 from functools import lru_cache
 from pathlib import Path
 
+from .cpu_runtime import require_cpu
+
 import numpy as np
 import torch
 from torch import nn
@@ -166,6 +168,7 @@ class CandidateActorCritic(nn.Module):
 
 
 def pack_observations(records, device="cpu"):
+    require_cpu(device)
     if not records or any(len(r["features"]) == 0 for r in records):
         raise ValueError("each observation needs at least one legal candidate")
     maximum = max(len(r["features"]) for r in records)
@@ -184,6 +187,7 @@ def pack_observations(records, device="cpu"):
 class TorchPolicy:
     def __init__(self, model, *, device="cpu", deterministic=True, teacher=False,
                  capture_diagnostics=False):
+        require_cpu(device)
         self.model = model
         self.device = device
         self.deterministic = deterministic
@@ -241,5 +245,6 @@ def _load_cached(path, modified_ns, device, deterministic):
 
 
 def load_policy(checkpoint, *, device="cpu", deterministic=True):
+    require_cpu(device)
     path = Path(checkpoint).resolve()
     return _load_cached(str(path), path.stat().st_mtime_ns, device, deterministic)

@@ -1,0 +1,24 @@
+{
+  "name": "q3-cpu-expansion-v2",
+  "hardware": "CPU only for sampling, optimization, inference and evaluation",
+  "parent_checkpoint_sha256": "8985b7fc8d1709c5a54bb1aaf8f21df66f56782119eb901163f723a03281734f",
+  "parent_branch_commit": "2409786",
+  "method": "PPO v3/base/MLP96/flat, gamma=1, GAE lambda=0.95; no behavior-cloning loss",
+  "train_ranges_inclusive": [[1000001, 1199999], [1200001, 1399999], [1400001, 1599999]],
+  "training_random_seeds": [9112101, 9112102, 9112103],
+  "benchmark_range_inclusive": [1900001, 1900384],
+  "development_range_inclusive": [2100001, 2100048],
+  "future_test_range_inclusive": [2200001, 2200256],
+  "future_test_access": "Not opened by the handoff runner; freeze model selection before later evaluation",
+  "budget": "Three trials, at most 60 minutes each by default; checkpoints every 10 minutes; complete or partial progress reported literally",
+  "comparison": "Report all three seeds and endpoints, initialization baseline and state-search baseline; no best-seed-only claim",
+  "failure_policy": "Keep failures; incomplete episodes receive 360000 virtual seconds penalty; failed-clear actions retain actual charged costs; no promotion if failed clearance or missing completion",
+  "official_observation_database": {
+    "path": "results/practice_batches/rl-dataset-20260911/practice_training.sqlite3",
+    "allowed_use": "Validation and trajectory auditing only, regardless of legacy trainable/split fields",
+    "forbidden_use": "Training, imitation targets, normalization fitting, scenario distribution fitting, or replacing hidden truth with source estimates",
+    "limitation": "Logged trajectories lack the hidden world needed for new-action counterfactual simulation; do not claim new-policy full clearance times from replay",
+    "included_in_training_package": false
+  },
+  "official_access": "No official HTTP client or official simulator access in this package"
+}

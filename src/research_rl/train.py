@@ -20,6 +20,8 @@ import random
 import subprocess
 import time
 
+from .cpu_runtime import require_cpu
+
 import numpy as np
 import torch
 from torch.distributions import Categorical
@@ -36,14 +38,66 @@ from .portable_checkpoint import portable_paths
 
 
 _worker_model = None
+TRAINING_SEED_RANGES = ((2000, 5099), (100001, 199999), (1000001, 1999999))
 
 
 def legal_training_seed(seed):
-    return 100001 <= seed < 200000 or 2000 <= seed <= 5099
+    return any(first <= seed <= last for first, last in TRAINING_SEED_RANGES)
+
+
+def restore_sampling_budget(state, args, previous_args=None):
+    """Preserve reserved attempts, including batches interrupted before results."""
+    previous_args = previous_args or {}
+    if previous_args.get("scenario_start", args.scenario_start) != args.scenario_start:
+        raise ValueError("resume cannot change scenario-start")
+    for name in ("scenario_end", "max_attempted_episodes"):
+        old = previous_args.get(name)
+        current = getattr(args, name)
+        if old is not None:
+            if current is None:
+                setattr(args, name, old)
+            elif current > old:
+                raise ValueError(f"resume cannot enlarge {name.replace('_', '-')}")
+    cursor = state["next_seed"]
+    # Old checkpoints advanced the cursor before sampling but counted episodes
+    # only after the entire batch returned. Recover that in-flight reservation.
+    state.setdefault("attempted_episodes", max(state.get("episodes", 0), cursor - args.scenario_start))
+    attempted = state["attempted_episodes"]
+    if type(attempted) is not int or attempted < state.get("episodes", 0) or attempted < 0:
+        raise ValueError("checkpoint has an invalid attempted episode count")
+    if args.scenario_end is not None:
+        if cursor != args.scenario_start + attempted or not args.scenario_start <= cursor <= args.scenario_end + 1:
+            raise ValueError("checkpoint cursor is outside its monotonic scenario partition")
+    if args.max_attempted_episodes is not None and attempted > args.max_attempted_episodes:
+        raise ValueError("checkpoint has already exceeded max-attempted-episodes")
+    state["stop_reason"] = None
+
+
+def sampling_stop_reason(state, args):
+    if args.max_attempted_episodes is not None and state["attempted_episodes"] >= args.max_attempted_episodes:
+        return "attempted_episode_limit"
+    if args.scenario_end is not None and state["next_seed"] > args.scenario_end:
+        return "scenario_range_exhausted"
+    if args.scenario_start >= 1000001 and not legal_training_seed(state["next_seed"]):
+        return "scenario_range_exhausted"
+    return None
+
+
+def initial_recovery_checkpoint(output):
+    """Recognize only a pristine initialization interrupted before latest.pt."""
+    allowed = {"random.pt", "initialized.pt", "random.pt.tmp", "initialized.pt.tmp", "latest.pt.tmp"}
+    names = {p.name for p in output.iterdir()}
+    if not names <= allowed:
+        return None
+    for name in ("initialized.pt", "random.pt"):
+        if (output / name).is_file():
+            return output / name
+    return None
 
 
 def episode(task):
-    """Worker: CPU inference/environment; parent batches optimizer work on GPU."""
+    """Worker and learner both run on CPU; each worker uses one Torch thread."""
+    require_cpu()
     global _worker_model
     seed, weights, hidden, action_seed, teacher, max_decisions = task[:6]
     deadline = task[6] if len(task) > 6 else None
@@ -201,7 +255,8 @@ def git_version():
 def source_manifest():
     root = Path(__file__).resolve().parents[2]
     files = sorted((root / "src").rglob("*.py"))
-    files += [root / "pyproject.toml", root / "research" / "v1_protocol.json"]
+    files += [root / "pyproject.toml", root / "research" / "v1_protocol.json",
+              root / "research" / "cpu_v2_protocol.json"]
     entries = {str(path.relative_to(root)).replace("\\", "/"): hashlib.sha256(path.read_bytes()).hexdigest()
                for path in files if path.is_file()}
     digest = hashlib.sha256(json.dumps(entries, sort_keys=True).encode()).hexdigest()
@@ -209,6 +264,9 @@ def source_manifest():
 
 
 def save_checkpoint(path, model, optimizer, args, state):
+    require_cpu(getattr(args, "device", "cpu"))
+    if any(p.device.type != "cpu" for p in model.parameters()):
+        raise ValueError("All model parameters must reside on CPU")
     payload = dict(algorithm=ALGORITHM_VERSIONS[args.feature_version], hidden=args.hidden,
                    architecture=model.architecture,
                    action_distribution=model.action_distribution,
@@ -220,8 +278,7 @@ def save_checkpoint(path, model, optimizer, args, state):
                    source_manifest=source_manifest(),
                    torch_version=torch.__version__, torch_rng=torch.get_rng_state(),
                    numpy_rng=np.random.get_state(), python_rng=random.getstate())
-    if torch.cuda.is_available():
-        payload["cuda_rng"] = torch.cuda.get_rng_state_all()
+    payload["compute_policy"] = "CPU-only; no GPU backend queried or used"
     temporary = path.with_suffix(path.suffix + ".tmp")
     # Concrete PosixPath/WindowsPath objects cannot be instantiated on the
     # other OS. Their provenance text is sufficient; tensors/RNG stay intact.
@@ -334,10 +391,14 @@ def main(argv=None):
                         help="0: original flat policy; 1: subtract log task-group size (v3 only)")
     parser.add_argument("--probe-candidates", choices=("base", "axis_quantiles"), default="base",
                         help="Explicit action-set extension; axis_quantiles requires v3 and a new trial")
-    parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
+    parser.add_argument("--device", choices=("cpu",), default="cpu")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112026)
     parser.add_argument("--scenario-start", type=int, default=100001)
+    parser.add_argument("--scenario-end", type=int,
+                        help="Inclusive final training seed; never recycle seeds when set")
+    parser.add_argument("--max-attempted-episodes", type=int,
+                        help="Lifetime sampling budget, including reserved/interrupted batches")
     parser.add_argument("--bc-episodes", type=int, default=128)
     parser.add_argument("--bc-epochs", type=int, default=20)
     parser.add_argument("--updates", type=int, default=1000)
@@ -359,16 +420,28 @@ def main(argv=None):
     parser.add_argument("--checkpoint-seconds", type=float, default=1200)
     parser.add_argument("--deadline-utc", help="ISO UTC hard deadline, e.g. 2026-09-11T06:00:00+00:00")
     args = parser.parse_args(argv)
+    require_cpu(args.device)
     if args.workers < 0 or args.num_threads < 1 or args.episodes_per_update < 1 or args.max_decisions < 1:
         parser.error("workers must be >= 0; threads and episodes must be positive")
     if not legal_training_seed(args.scenario_start):
         parser.error("scenario-start must be in training-only ranges")
+    if args.scenario_end is not None and not any(
+            first <= args.scenario_start <= args.scenario_end <= last for first, last in TRAINING_SEED_RANGES):
+        parser.error("scenario-start/end must form one contiguous training-only range")
+    if args.max_attempted_episodes is not None and args.max_attempted_episodes < 0:
+        parser.error("max-attempted-episodes must be nonnegative")
     if not 0 <= args.gae_lambda <= 1 or args.max_wall_s <= 0:
         parser.error("lambda must be in [0,1], wall time positive")
     if args.resume and args.initialize_from:
         parser.error("--resume and --initialize-from are mutually exclusive")
-    if args.output.exists() and any(args.output.iterdir()) and not args.resume:
-        parser.error("output directory is nonempty; choose a new trial directory or use --resume")
+    recovery = None
+    resume_path = args.resume
+    if args.output.exists() and any(args.output.iterdir()):
+        if not resume_path or (not resume_path.exists() and resume_path.resolve() == (args.output / "latest.pt").resolve()):
+            recovery = initial_recovery_checkpoint(args.output)
+            if recovery is None:
+                parser.error("output directory is nonempty; choose a new trial directory or use a valid --resume")
+            resume_path = recovery
     torch.set_num_threads(args.num_threads)
     torch.manual_seed(args.seed)
     np.random.seed(args.seed % 2**32)
@@ -377,25 +450,44 @@ def main(argv=None):
                                  architecture_from_args(args), distribution_from_args(args),
                                  action_schema_from_args(args)).to(args.device)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
-    state = dict(update=0, optimizer_steps=0, episodes=0, next_seed=args.scenario_start, bc_complete=False)
-    if args.resume:
-        payload = torch.load(args.resume, map_location=args.device, weights_only=False)
+    state = dict(update=0, optimizer_steps=0, episodes=0, attempted_episodes=0,
+                 next_seed=args.scenario_start, bc_complete=False, stop_reason=None)
+    if resume_path:
         try:
+            payload = torch.load(resume_path, map_location=args.device, weights_only=False)
             validate_resume(payload, args)
-        except ValueError as error:
+            state = dict(payload["state"])
+            restore_sampling_budget(state, args, payload.get("args"))
+            if recovery and any(state.get(key, 0) for key in ("update", "optimizer_steps", "episodes", "attempted_episodes")):
+                raise ValueError("initialization recovery checkpoint already contains training")
+            if recovery and payload.get("args", {}).get("seed", args.seed) != args.seed:
+                raise ValueError("initialization recovery cannot change its random seed")
+            if recovery and recovery.name == "random.pt":
+                pending = payload.get("args", {}).get("initialize_from")
+                if pending:
+                    if args.initialize_from and Path(pending).resolve() != args.initialize_from.resolve():
+                        raise ValueError("initialization recovery cannot change its parent checkpoint")
+                    args.initialize_from = Path(pending)
+                elif args.initialize_from:
+                    raise ValueError("initialization recovery cannot add a parent checkpoint")
+            if recovery and recovery.name == "initialized.pt":
+                if "initialization" not in state:
+                    raise ValueError("initialized checkpoint has no transfer provenance")
+                if (args.initialize_from and hashlib.sha256(args.initialize_from.read_bytes()).hexdigest()
+                        != state["initialization"].get("sha256")):
+                    raise ValueError("initialization recovery cannot change its parent checkpoint")
+                args.initialize_from = None  # Its initialized weights are already committed.
+        except Exception as error:
             parser.error(str(error))
         model.load_state_dict(payload["model"])
         optimizer.load_state_dict(payload["optimizer"])
         for group in optimizer.param_groups:
             group["lr"] = args.lr
-        state = payload["state"]
         torch.set_rng_state(payload["torch_rng"].cpu())
         np.random.set_state(payload["numpy_rng"])
         random.setstate(payload["python_rng"])
-        if args.device.startswith("cuda") and "cuda_rng" in payload:
-            torch.cuda.set_rng_state_all([s.cpu() for s in payload["cuda_rng"]])
     args.output.mkdir(parents=True, exist_ok=True)
-    if not args.resume:
+    if not resume_path:
         save_checkpoint(args.output / "random.pt", model, optimizer, args, state.copy())
     if args.initialize_from:
         payload = torch.load(args.initialize_from, map_location=args.device, weights_only=False)
@@ -411,7 +503,11 @@ def main(argv=None):
             probability_preservation_scope="identical legal observation/candidate histories; no guarantee after learning",
             source_state=payload.get("state"), source_git_commit=payload.get("git_commit"))
         save_checkpoint(args.output / "initialized.pt", model, optimizer, args, state.copy())
+    # Establish a restart point before config/log/executor setup, even when no
+    # episode fits the wall-clock budget or the process is killed immediately.
+    save_checkpoint(args.output / "latest.pt", model, optimizer, args, state.copy())
     started = time.monotonic()
+    elapsed_before = state.get("elapsed_training_s", 0.0)
     stop_at = started + args.max_wall_s
     if args.deadline_utc:
         deadline = datetime.fromisoformat(args.deadline_utc)
@@ -425,25 +521,44 @@ def main(argv=None):
               "feature_schema": feature_schema(args.feature_version),
               "source_manifest": source_manifest(),
               "gamma": 1.0, "reward_scale_s": 1000, "failure_penalty_s": 360000,
-              "training_seed_ranges": [[100001, 199999], [2000, 5099]],
+              "training_seed_ranges": [[100001, 199999], [2000, 5099], [1000001, 1999999]],
               "validation_seeds_not_used_by_training": [6000, 6047]}
     (args.output / "config.json").write_text(json.dumps(config, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
     executor = ProcessPoolExecutor(args.workers, mp_context=multiprocessing.get_context("spawn")) if args.workers else None
     last_checkpoint = started
     log = (args.output / "training.jsonl").open("a", encoding="utf-8")
 
+    def time_stop_reason():
+        if time.monotonic() < stop_at:
+            return None
+        return "global_deadline" if args.deadline_utc and deadline.timestamp() <= time.time() else "wall_time_limit"
+
+    def final_stop_reason():
+        return (sampling_stop_reason(state, args) or time_stop_reason()
+                or ("update_limit" if state["update"] >= args.updates else "no_training_records"))
+
     def collect(count, teacher):
         weights = {k: v.detach().cpu() for k, v in model.state_dict().items()}
         tasks = []
         for _ in range(count):
+            if sampling_stop_reason(state, args):
+                break
             seed = state["next_seed"]
             if not legal_training_seed(seed):
                 seed = 100001
             state["next_seed"] = seed + 1
+            state["attempted_episodes"] += 1
             epoch_deadline = time.time() + max(0.0, stop_at - time.monotonic())
             tasks.append((seed, weights, args.hidden, random.randrange(2**31), teacher,
                           args.max_decisions, epoch_deadline, args.feature_version, model.architecture,
                           model.action_distribution, model.action_schema))
+        if not tasks:
+            return [], []
+        # Reserve before dispatch: even an uncatchable process kill cannot
+        # reuse queued seeds or obtain extra budget by restarting an update.
+        # A killed batch consumes its reservation, including unstarted tasks.
+        state["elapsed_training_s"] = elapsed_before + time.monotonic() - started
+        save_checkpoint(args.output / "latest.pt", model, optimizer, args, state.copy())
         # Workers check the shared absolute deadline before every physical
         # action; already queued tasks skip instead of overrunning the cutoff.
         results = list(executor.map(episode, tasks)) if executor else [episode(t) for t in tasks]
@@ -452,7 +567,8 @@ def main(argv=None):
         return records, [metrics for _, metrics in results]
 
     try:
-        if not state["bc_complete"] and args.bc_episodes > 0 and time.monotonic() < stop_at:
+        if (not state["bc_complete"] and args.bc_episodes > 0 and time.monotonic() < stop_at
+                and not sampling_stop_reason(state, args)):
             collect_started = time.monotonic()
             records, episodes = collect(args.bc_episodes, True)
             collected = time.monotonic()
@@ -460,6 +576,7 @@ def main(argv=None):
             state["optimizer_steps"] += losses.get("optimizer_steps", 0)
             state["bc_complete"] = bool(records) and time.monotonic() < stop_at
             sha = save_checkpoint(args.output / "bc_only.pt", model, optimizer, args, state.copy())
+            save_checkpoint(args.output / "latest.pt", model, optimizer, args, state.copy())
             entry = dict(stage="bc", update=0, episodes=episodes, losses=losses,
                          sampling_probe_diagnostics=merge_probe_diagnostics(
                              [e.get("sampling_probe_diagnostics", {}) for e in episodes]),
@@ -467,22 +584,27 @@ def main(argv=None):
                          optimize_wall_s=time.monotonic() - collected, checkpoint_sha256=sha)
             log.write(json.dumps(entry) + "\n"); log.flush()
             print(json.dumps({k: v for k, v in entry.items() if k != "episodes"}), flush=True)
-        while state["update"] < args.updates and time.monotonic() < stop_at:
+        while (state["update"] < args.updates and time.monotonic() < stop_at
+               and not sampling_stop_reason(state, args)):
             collect_started = time.monotonic()
             records, episodes = collect(args.episodes_per_update, False)
             collected = time.monotonic()
             if not records or time.monotonic() >= stop_at:
-                log.write(json.dumps(dict(stage="deadline", episodes=episodes)) + "\n")
+                state["stop_reason"] = time_stop_reason() or "no_training_records"
+                log.write(json.dumps(dict(stage="deadline", stop_reason=state["stop_reason"], episodes=episodes)) + "\n")
                 log.flush()
                 break
             losses = update(model, optimizer, records, args, stop_at=stop_at)
             state["optimizer_steps"] += losses.get("optimizer_steps", 0)
             if losses.get("optimizer_steps", 0) == 0:
-                log.write(json.dumps(dict(stage="deadline", episodes=episodes, losses=losses)) + "\n")
+                state["stop_reason"] = time_stop_reason() or "no_training_records"
+                log.write(json.dumps(dict(stage="deadline", stop_reason=state["stop_reason"], episodes=episodes, losses=losses)) + "\n")
                 log.flush()
                 break
             state["update"] += 1
+            state["elapsed_training_s"] = elapsed_before + time.monotonic() - started
             entry = dict(stage="ppo", update=state["update"], total_episodes=state["episodes"],
+                         attempted_episodes=state["attempted_episodes"], next_seed=state["next_seed"],
                          sampling_probe_diagnostics=merge_probe_diagnostics(
                              [e.get("sampling_probe_diagnostics", {}) for e in episodes]),
                          mean_virtual_time_s=float(np.mean([e["virtual_time_s"] for e in episodes if not e.get("deadline_skipped")])),
@@ -498,7 +620,12 @@ def main(argv=None):
             if time.monotonic() - last_checkpoint >= args.checkpoint_seconds:
                 save_checkpoint(args.output / f"ppo_{state['update']:06d}.pt", model, optimizer, args, state.copy())
                 last_checkpoint = time.monotonic()
+    except BaseException:
+        state["stop_reason"] = "interrupted"
+        raise
     finally:
+        state["stop_reason"] = state.get("stop_reason") or final_stop_reason()
+        state["elapsed_training_s"] = elapsed_before + time.monotonic() - started
         save_checkpoint(args.output / "latest.pt", model, optimizer, args, state.copy())
         save_checkpoint(args.output / f"ppo_{state['update']:06d}.pt", model, optimizer, args, state.copy())
         log.close()

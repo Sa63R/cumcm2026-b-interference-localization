@@ -16,6 +16,8 @@ from pathlib import Path
 import random
 import time
 
+from .cpu_runtime import require_cpu
+
 import numpy as np
 import torch
 from torch.distributions import Categorical
@@ -184,7 +186,7 @@ def main(argv=None):
     parser.add_argument("--initialize-from", type=Path)
     parser.add_argument("--resume", type=Path)
     parser.add_argument("--feature-version", choices=PAIRED_FEATURE_VERSIONS, default="v2")
-    parser.add_argument("--device", default="cuda")
+    parser.add_argument("--device", choices=("cpu",), default="cpu")
     parser.add_argument("--hidden", type=int, default=96)
     parser.add_argument("--seed", type=int, default=9112028)
     parser.add_argument("--scenario-start", type=int, default=100001)
@@ -200,6 +202,7 @@ def main(argv=None):
     parser.add_argument("--checkpoint-seconds", type=float, default=600)
     parser.add_argument("--deadline-utc", required=True)
     args = parser.parse_args(argv)
+    require_cpu(args.device)
     if args.resume and args.initialize_from:
         parser.error("resume and initialize-from are mutually exclusive")
     if args.workers < 0 or min(args.pairs_per_update, args.minibatch, args.updates,
@@ -239,8 +242,6 @@ def main(argv=None):
         torch.set_rng_state(payload["torch_rng"].cpu())
         np.random.set_state(payload["numpy_rng"])
         random.setstate(payload["python_rng"])
-        if args.device.startswith("cuda") and "cuda_rng" in payload:
-            torch.cuda.set_rng_state_all([s.cpu() for s in payload["cuda_rng"]])
     args.output.mkdir(parents=True, exist_ok=True)
     if not args.resume:
         save_checkpoint(args.output / "random.pt", model, optimizer, args, state.copy())
