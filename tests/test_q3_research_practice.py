@@ -1,7 +1,9 @@
 """Practice-only preflight and an actual in-memory legal client session."""
 
 from argparse import Namespace
+from datetime import datetime
 import json
+from types import SimpleNamespace
 
 import pytest
 
@@ -89,3 +91,94 @@ def test_hard_cutoff_stops_actions_but_allows_exit(tmp_path):
     wrapped.exit()
     assert client.state.session == "exited"
     assert sim.evaluation()["measurement_count"] == 0
+
+
+def test_expired_default_rejects_before_client_creation(tmp_path, monkeypatch):
+    args = options(tmp_path)
+    args.gui_practice_confirmed = True
+    monkeypatch.setattr(run_q3_practice.time, "time", lambda: datetime.fromisoformat(
+        "2026-09-11T16:12:00+08:00").timestamp())
+    with pytest.raises(ValueError, match="First-version execution deadline reached"):
+        run(args, lambda *a, **k: pytest.fail("Expired default must not create a client"))
+    assert not args.output.exists()
+    args.dry_run = True
+    result = run(args, lambda *a, **k: pytest.fail("Dry run must remain offline"))
+    assert result["action_deadline_source"] == "protocol_minus_30_seconds"
+    assert result["action_deadline"] == "2026-09-11T15:59:30+08:00"
+
+
+@pytest.mark.parametrize("value, message", [
+    ("2026-09-11T16:45:00", "explicit timezone"),
+    ("2026-09-11T16:00:00+08:00", "in the future"),
+    ("2026-09-11T16:12:00+08:00", "in the future"),
+    ("not-a-date", "ISO8601"),
+])
+def test_invalid_explicit_deadline_rejects_without_client(tmp_path, monkeypatch, value, message):
+    args = options(tmp_path, action_deadline=value)
+    args.gui_practice_confirmed = True
+    monkeypatch.setattr(run_q3_practice.time, "time", lambda: datetime.fromisoformat(
+        "2026-09-11T16:12:00+08:00").timestamp())
+    with pytest.raises(ValueError, match=message):
+        run(args, lambda *a, **k: pytest.fail("Invalid deadline must not create a client"))
+    assert not args.output.exists()
+
+
+def test_explicit_new_window_runs_mock_and_logs_original_deadline(tmp_path, monkeypatch):
+    new_deadline = "2026-09-11T16:45:00+08:00"
+    args = options(tmp_path, action_deadline=new_deadline)
+    args.gui_practice_confirmed = True
+    monkeypatch.setattr(run_q3_practice.time, "time", lambda: datetime.fromisoformat(
+        "2026-09-11T16:12:00+08:00").timestamp())
+
+    class MockClient:
+        def __init__(self):
+            self.state = SimpleNamespace(session="idle")
+            self.state.snapshot = lambda: {"session": self.state.session}
+            self.pending_request = None
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc):
+            return False
+
+        def enter(self):
+            self.state.session = "active"
+
+        def exit(self):
+            self.state.session = "exited"
+
+    def callback(client, **kwargs):
+        assert client.deadline == datetime.fromisoformat(new_deadline).timestamp()
+        client.enter()
+        client.exit()
+        return SimpleNamespace(as_dict=lambda: {"mock": True}, error=None, exit_error=None,
+                               completion_certified_under_model=True)
+
+    monkeypatch.setattr(run_q3_practice, "prepare", lambda path: (
+        {"name": "mock", "kwargs": {}}, callback, {"mock_identity": True}))
+    result = run(args, lambda *a, **k: MockClient())
+    assert result["completed"]
+    for filename in ("preflight.json", "summary.json"):
+        saved = json.loads((args.output / filename).read_text(encoding="utf-8"))
+        assert saved["protocol_hard_deadline"] == "2026-09-11T16:00:00+08:00"
+        assert saved["default_action_deadline"] == "2026-09-11T15:59:30+08:00"
+        assert saved["action_deadline"] == new_deadline
+        assert saved["action_deadline_override"] == new_deadline
+        assert saved["action_deadline_source"] == "explicit_cli_override"
+
+
+def test_explicit_window_expiring_during_prepare_never_creates_client(tmp_path, monkeypatch):
+    deadline = datetime.fromisoformat("2026-09-11T16:45:00+08:00").timestamp()
+    args = options(tmp_path, action_deadline="2026-09-11T16:45:00+08:00")
+    args.gui_practice_confirmed = True
+    monkeypatch.setattr(run_q3_practice.time, "time", lambda: deadline - 1)
+
+    def prepare(path):
+        monkeypatch.setattr(run_q3_practice.time, "time", lambda: deadline)
+        return {}, None, {}
+
+    monkeypatch.setattr(run_q3_practice, "prepare", prepare)
+    with pytest.raises(ValueError, match="deadline reached during preflight"):
+        run(args, lambda *a, **k: pytest.fail("Preparation must not bypass the new cutoff"))
+    assert not args.output.exists()
