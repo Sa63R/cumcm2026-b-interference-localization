@@ -1,0 +1,14 @@
+{
+  "r8": {
+    "entrypoint": "strategies.q4_clear_before_probe:run_q4_clear_before_probe",
+    "kwargs": {"config": "center_once", "max_expansions": 200}
+  },
+  "micro512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {"max_decisions": 512, "record_transitions": false}
+  },
+  "shared512": {
+    "entrypoint": "q4_rl.shared_micro_controller:run_q4_shared_micro",
+    "kwargs": {"max_decisions": 512, "record_transitions": false, "max_shared_reviews": 8}
+  }
+}
