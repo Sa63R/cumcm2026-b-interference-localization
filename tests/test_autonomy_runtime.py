@@ -255,6 +255,22 @@ def test_plan_rejects_duplicate_options_and_private_argument_values():
             job.validate_plan(selected)
 
 
+def test_cost_choice_plans_bind_shared_budget_and_distinct_ablation():
+    selected = {}
+    for name in ("cost2-r1", "cost2-r2", "costpairs-r1"):
+        value = job.read(ROOT / "research/autonomy/plans" / (name + ".json"))
+        job.validate_plan(value)
+        assert (value["cpu_slots"], value["workers"], value["learner_threads"]) == (50, 48, 16)
+        assert (value["blocks"], value["block_seconds"]) == (2, 1800)
+        options = dict(zip(value["training_args"][::2], value["training_args"][1::2]))
+        assert options["--pair-scope"] == "original"
+        assert options["--gap-scale-s"] == "100" and options["--max-pair-weight"] == "2"
+        selected[name] = options
+    assert selected["cost2-r1"] == selected["cost2-r2"]
+    assert selected["cost2-r1"]["--alternative-sampling"] == "runner_up_uniform"
+    assert selected["costpairs-r1"]["--alternative-sampling"] == "uniform"
+
+
 def test_package_verify_binds_actual_source_bytes_and_rejects_escape(monkeypatch, tmp_path):
     monkeypatch.setattr(job, "ROOT", tmp_path)
     monkeypatch.setenv("Q3_SOURCE_COMMIT", "prior")

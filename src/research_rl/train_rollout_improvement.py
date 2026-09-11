@@ -1,7 +1,7 @@
 """CPU policy improvement from full continuations at matched public prefixes.
 
 One group is one new training world: original greedy action and up to two
-random legal alternatives, followed by the same frozen deterministic actor.
+legal alternatives, followed by the same frozen deterministic actor.
 Only complete groups supply labels. Critic parameters are frozen; actor and
 shared representation use weighted pairwise cost ranking plus full-action KL.
 The inference checkpoint remains the original v3/base/flat MLP schema.
@@ -35,6 +35,7 @@ from .train import git_version, legal_training_seed, initialize_from, source_man
 
 TRAINING_ALGORITHM = "q3-prefix-full-continuation-pairwise-kl-v1"
 SCHEMA = {"version": 1, "name": "base"}
+PAIR_SCOPES = ("all", "original")
 
 
 def collect_group(task):
@@ -48,7 +49,9 @@ def objective_config(args):
         alternatives=args.alternatives, lr=args.lr, epochs=args.epochs, minibatch=args.minibatch,
         gap_scale_s=args.gap_scale_s, max_pair_weight=args.max_pair_weight, kl_coef=args.kl_coef,
         max_grad_norm=args.max_grad_norm, max_decisions=args.max_decisions,
-        pair_normalization="mean all unordered evaluated-candidate pairs, then mean groups",
+        pair_scope=args.pair_scope, alternative_sampling=args.alternative_sampling,
+        pair_normalization=("mean all unordered evaluated-candidate pairs, then mean groups"
+            if args.pair_scope == "all" else "mean original-versus-alternative pairs, then mean groups"),
         cost="complete remaining physical cost plus collector-declared safety failure penalty",
         old_policy="the frozen actor that collected this entire batch",
         kl_direction="old_to_new over all legal candidates, including unevaluated candidates",
@@ -142,7 +145,7 @@ def validate_resume(payload, args):
         raise ValueError("Resume cannot change the trial seed")
 
 
-def validate_group(group):
+def validate_group(group, alternative_sampling=None):
     features = np.asarray(group["features"], dtype=np.float32)
     context = np.asarray(group["context"], dtype=np.float32)
     old = np.asarray(group["old_logits"], dtype=np.float32)
@@ -157,6 +160,17 @@ def validate_group(group):
     indices = [c["index"] for c in candidates]
     if not 2 <= len(candidates) <= 3 or len(set(indices)) != len(indices) or original not in indices:
         raise ValueError("A complete group requires original plus distinct legal alternatives")
+    sampling = group.get("alternative_sampling", "uniform")
+    if sampling not in ("uniform", "runner_up_uniform") or (
+            alternative_sampling is not None and sampling != alternative_sampling):
+        raise ValueError("Collected alternative sampling differs from the declared objective")
+    alternatives = [i for i in indices if i != original]
+    if group.get("alternative_indices", alternatives) != alternatives:
+        raise ValueError("Recorded alternative indices differ from evaluated candidates")
+    if sampling == "runner_up_uniform":
+        runner_up = min((i for i in range(len(features)) if i != original), key=lambda i: (-float(old[i]), i))
+        if alternatives[0] != runner_up:
+            raise ValueError("First alternative is not the frozen runner-up candidate")
     prefix = float(group["prefix_cost_s"])
     if not math.isfinite(prefix) or prefix < 0:
         raise ValueError("Invalid accepted prefix cost")
@@ -177,8 +191,13 @@ def validate_group(group):
 def ranking_pairs(group, args):
     pairs = []
     candidates = group["evaluated_candidates"]
+    scope = getattr(args, "pair_scope", "all")
+    if scope not in PAIR_SCOPES:
+        raise ValueError("Invalid pair_scope")
     for i, left in enumerate(candidates):
         for right in candidates[i+1:]:
+            if scope == "original" and group["original_index"] not in (left["index"], right["index"]):
+                continue
             difference = float(left["cost_to_go_s"])-float(right["cost_to_go_s"])
             better, worse = (right, left) if difference > 0 else (left, right)
             pairs.append((int(better["index"]), int(worse["index"]),
@@ -224,7 +243,9 @@ def policy_statistics(model, groups, args):
             selected = max(candidates, key=lambda c:float(scores[c["index"]]))
             regrets.append(float(selected["cost_to_go_s"])-min(float(c["cost_to_go_s"]) for c in candidates))
             evaluated_greedy += int(int(scores.argmax()) in {c["index"] for c in candidates})
-    return dict(full_candidate_kl=float(np.mean(kl_values)), maximum_group_kl=max(kl_values),
+    return dict(pair_scope=getattr(args, "pair_scope", "all"),
+        alternative_sampling=getattr(args, "alternative_sampling", "uniform"),
+        full_candidate_kl=float(np.mean(kl_values)), maximum_group_kl=max(kl_values),
         pairwise_loss=float(np.mean(pair_values)), informative_pairs=pair_count,
         pairwise_accuracy=correct/pair_count if pair_count else None,
         weighted_pairwise_accuracy=weight_correct/total_weight if total_weight else None,
@@ -235,7 +256,7 @@ def policy_statistics(model, groups, args):
 
 def update_actor(model, optimizer, groups, args, *, stop_at=None, on_step=None):
     """The reference logits never change within an update, including epochs."""
-    groups = [validate_group(g) for g in groups]
+    groups = [validate_group(g, getattr(args, "alternative_sampling", "uniform")) for g in groups]
     if not groups:
         raise ValueError("No complete groups available")
     before = policy_statistics(model, groups, args)
@@ -333,6 +354,8 @@ def parser():
     p.add_argument("--checkpoint-seconds", type=float, default=600)
     p.add_argument("--groups-per-update", type=int, default=128)
     p.add_argument("--alternatives", type=int, default=2)
+    p.add_argument("--pair-scope", choices=PAIR_SCOPES, default="all")
+    p.add_argument("--alternative-sampling", choices=("uniform", "runner_up_uniform"), default="uniform")
     p.add_argument("--lr", type=float, default=1e-4)
     p.add_argument("--epochs", type=int, default=4)
     p.add_argument("--minibatch", type=int, default=32)
@@ -450,6 +473,7 @@ def main(argv=None):
                 tasks.append(dict(seed=seed, weights=weights, hidden=args.hidden,
                     action_seed=random.randrange(2**31), deadline_epoch=time.time()+max(0.,stop_at-time.monotonic()),
                     max_decisions=args.max_decisions, alternatives=args.alternatives,
+                    alternative_sampling=args.alternative_sampling,
                     capture_evidence=state["attempted_groups"] < 2))
                 state["next_seed"] += 1
                 state["attempted_episodes"] += 1; state["attempted_groups"] += 1
@@ -462,10 +486,11 @@ def main(argv=None):
             statuses = add_collection_counts(state,results)
             state["active_batch"]["stage"] = "collected_results"
             save_small_evidence(args.output,results,snapshot_hash,state)
-            groups = [validate_group(group) for group,_ in results if group is not None]
+            groups = [validate_group(group, args.alternative_sampling) for group,_ in results if group is not None]
             collection_seconds = time.monotonic()-collection_started
             entry = dict(stage="full_continuation_improvement", next_update=state["update"]+1,
                 actor_tensor_sha256=snapshot_hash, reserved_groups=len(tasks), complete_groups=len(groups),
+                pair_scope=args.pair_scope, alternative_sampling=args.alternative_sampling,
                 group_status_counts=statuses, collect_wall_s=collection_seconds,
                 episode_unit=state["episode_unit"], collection_metrics=[m for _,m in results])
             if statuses.get("invalid_execution"):

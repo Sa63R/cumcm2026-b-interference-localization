@@ -31,6 +31,13 @@ def complete(task):
     return group, metrics
 
 
+@pytest.fixture(scope="module")
+def runner_complete(task):
+    group, metrics = pr.collect_group(dict(task, alternative_sampling="runner_up_uniform", capture_evidence=True))
+    assert metrics["status"] == "complete", metrics
+    return group, metrics
+
+
 def test_complete_groups_include_all_tail_cost_and_exact_public_prefix(complete):
     group, metrics = complete
     assert group["features"].shape == (group["candidate_count"], 60)
@@ -177,6 +184,64 @@ def test_standard_metadata_is_accepted_but_other_schema_rejected(task):
         pr._validate_task(dict(task, action_schema={"version": 1, "name": "range_probes"}))
 
 
+def test_unknown_sampling_is_rejected_before_engine_construction(task,monkeypatch):
+    monkeypatch.setattr(pr,"LocalResearchSimulator",lambda *a,**k:pytest.fail("engine constructed"))
+    with pytest.raises(ValueError,match="alternative_sampling"):
+        pr.collect_group(dict(task,alternative_sampling="future_best"))
+
+
+def test_uniform_alternatives_preserve_legacy_rng_results_and_state():
+    for seed in range(20):
+        old_rng, new_rng = random.Random(seed), random.Random(seed)
+        expected = old_rng.sample([0,2,3,4],2)
+        assert pr.select_alternatives([1.,5.,4.,4.,0.],1,2,new_rng) == expected
+        assert new_rng.getstate() == old_rng.getstate()
+
+
+def test_runner_up_is_highest_nonoriginal_then_remaining_uniform_with_stable_ties():
+    logits = [1.,5.,4.,4.,0.]
+    counts = {0:0,3:0,4:0}
+    for seed in range(1200):
+        chosen = pr.select_alternatives(logits,1,2,random.Random(seed),"runner_up_uniform")
+        assert chosen[0] == 2  # Equal runner-up scores resolve by lowest index.
+        assert chosen[1] in counts and len(set(chosen)) == 2 and 1 not in chosen
+        counts[chosen[1]] += 1
+    assert all(330 < count < 470 for count in counts.values()), counts
+    assert pr.select_alternatives([5.,4.],0,2,random.Random(0),"runner_up_uniform") == [1]
+    assert pr.select_alternatives([5.],0,2,random.Random(0),"runner_up_uniform") == []
+    assert pr.select_alternatives(logits,1,1,random.Random(0),"runner_up_uniform") == [2]
+
+
+def test_runner_up_collection_keeps_same_prefix_and_exact_continuations_with_physical_lb(complete,runner_complete,monkeypatch):
+    old,_ = complete
+    group,metrics = runner_complete
+    assert group["prefix_sha256"] == old["prefix_sha256"]
+    assert group["prefix_step"] == old["prefix_step"]
+    assert np.array_equal(group["features"],old["features"])
+    assert np.array_equal(group["old_logits"],old["old_logits"])
+    assert metrics["alternative_sampling"] == group["alternative_sampling"] == "runner_up_uniform"
+    labels = group["evaluated_candidates"]
+    alternatives = [row["index"] for row in labels[1:]]
+    assert alternatives == group["alternative_indices"] == metrics["alternative_indices"]
+    expected_runner = min((i for i in range(group["candidate_count"]) if i != group["original_index"]),
+        key=lambda i:(-float(group["old_logits"][i]),i))
+    assert alternatives[0] == expected_runner and labels[0]["index"] == group["original_index"]
+    assert metrics["trajectories_started"] == metrics["trajectories_completed"] == len(labels)
+    assert all(row["forced_actions"] == 1 and row["prefix_verified"] for row in labels[1:])
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1]/"research/theory_v1"))
+    from audit_eval_bounds import audit_record, physical_bounds
+    bounds = []
+    for row,evidence in zip(labels,metrics["evidence"]):
+        sources,_ = audit_record(evidence)
+        bound = physical_bounds(sources.values())["physical_clairvoyant_lower_s"]
+        bounds.append(bound)
+        assert row["total_time_s"] >= bound
+        assert row["cost_to_go_s"] == pytest.approx(row["total_time_s"]-group["prefix_cost_s"])
+    print({"scope":"cold-actor runner-up API smoke, not performance evidence", "seed":group["seed"],
+        "physical_LB_s":bounds[0], "T_s":[row["total_time_s"] for row in labels],
+        "T_over_LB":[row["total_time_s"]/bound for row,bound in zip(labels,bounds)]})
+
+
 def test_public_history_only_ignores_wall_timestamp():
     history = [{"action": "/measure", "response": {"real_timestamp_ms": 9,
         "virtual_time_s": 7.0, "measure_result": "direction", "svd_deg": 12.34}}]
@@ -204,12 +269,13 @@ def test_prefix_sampling_is_uniform_including_one_choice_decisions(monkeypatch):
     assert all(190 <= value <= 310 for value in counts), counts
 
 
-def test_one_choice_prefix_is_not_resampled_or_rerun(task, complete, monkeypatch):
+@pytest.mark.parametrize("sampling",["uniform","runner_up_uniform"])
+def test_one_choice_prefix_is_not_resampled_or_rerun(task, complete, monkeypatch,sampling):
     _, metrics = complete
     row = copy.deepcopy(metrics["trajectory_metrics"][0])
     monkeypatch.setattr(pr, "_run_trajectory", lambda *a, **k: dict(row=row,
         selected_prefix={"candidate_count": 1}, decisions=[], evidence=None))
-    group, actual = pr.collect_group(task)
+    group, actual = pr.collect_group(dict(task,alternative_sampling=sampling))
     assert group is None and actual["status"] == "no_choice"
     assert actual["trajectories_started"] == 1
 
@@ -252,10 +318,11 @@ def test_full_continuation_cost_difference_and_physical_bound(task, monkeypatch)
         "T_over_LB": [row["total_time_s"]/bound for row in labels]})
 
 
-def test_spawn_worker_matches_local_group(task, complete):
+@pytest.mark.parametrize("sampling",["uniform","runner_up_uniform"])
+def test_spawn_worker_matches_local_group(task, complete,runner_complete,sampling):
     with ProcessPoolExecutor(max_workers=1, mp_context=multiprocessing.get_context("spawn")) as pool:
-        group, metrics = pool.submit(pr.collect_group, task).result(timeout=60)
-    expected, _ = complete
+        group, metrics = pool.submit(pr.collect_group, dict(task,alternative_sampling=sampling)).result(timeout=60)
+    expected, _ = complete if sampling == "uniform" else runner_complete
     assert metrics["status"] == "complete"
     assert group["evaluated_candidates"] == expected["evaluated_candidates"]
     assert group["prefix_sha256"] == expected["prefix_sha256"]

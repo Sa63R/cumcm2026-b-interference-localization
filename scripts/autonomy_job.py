@@ -162,6 +162,7 @@ ALGORITHM_ARGS = {
     "--entropy-coef", "--aux-bc-coef", "--epochs", "--minibatch", "--clip", "--value-coef",
     "--target-kl", "--max-grad-norm", "--max-decisions", "--memory-hidden", "--episodes-per-minibatch",
     "--groups-per-update", "--alternatives", "--gap-scale-s", "--max-pair-weight", "--kl-coef",
+    "--pair-scope", "--alternative-sampling",
 }
 
 
@@ -368,16 +369,16 @@ def run(args):
             "--deadline-utc",datetime.fromtimestamp(effective_deadline,timezone.utc).isoformat(),*plan["training_args"]]
         argv += ["--initialize-from","models/parent.pt"] if initialize else ["--resume",trial_rel+"/latest.pt"]
         command(argv,f"train-block-{block:02d}.log",limit+60)
-    def evaluation(label,checkpoint=None,reference=False):
+    def evaluation(label,checkpoint=None,reference=False,entrypoint=None):
         output=f"cpu_runs/{plan['name']}/evaluation/{label}"
         argv=[sys.executable,"scripts/autonomy_job.py","evaluate","--output",output,
-              "--label",label,"--split","development","--entrypoint",plan["entrypoint"]]
+              "--label",label,"--split","development","--entrypoint",entrypoint or plan["entrypoint"]]
         if reference:argv += ["--reference-state"]
         else:argv += ["--checkpoint",checkpoint]
         command(argv,f"evaluation-{label}.log",1200)
         state["evaluations"][label]=read(inside(ROOT,output)/"summary.json")
         comparisons={}
-        for baseline in ("state_search","initial"):
+        for baseline in ("state_search","rl_reference","initial"):
             reference=job/"evaluation"/baseline
             if baseline!=label and (reference/"audited_rows.json").is_file():
                 comparisons[baseline]=compare_evaluations(reference,inside(ROOT,output),protocol["acceptance"])
@@ -388,6 +389,8 @@ def run(args):
     try:
         if not (trial/"latest.pt").exists():train(0,initialize=True)
         if "state_search" not in state["evaluations"]:evaluation("state_search",reference=True)
+        if "rl_reference" not in state["evaluations"]:
+            evaluation("rl_reference","models/parent.pt",entrypoint="research_rl:run_rl_search")
         if "initial" not in state["evaluations"]:
             initial_rel=f"cpu_runs/{plan['name']}/evaluation/initial/model.pt"
             initial=inside(ROOT,initial_rel);initial.parent.mkdir(parents=True,exist_ok=True)

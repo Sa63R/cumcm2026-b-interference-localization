@@ -3,7 +3,8 @@
 ``collect_group(task) -> (group_or_None, metrics)`` is a spawn-safe worker.
 Required task keys: seed, weights (CPU state_dict), hidden, action_seed.
 Optional: deadline_epoch, max_decisions=256, alternatives=2,
-capture_evidence=False. Only v3/base/flat MLP is supported in this experiment.
+alternative_sampling="uniform" (or "runner_up_uniform"), capture_evidence=False.
+Only v3/base/flat MLP is supported in this experiment.
 The scene seed and post-termination costs are provenance/labels, never inputs
 to the actor. One group is sampled uniformly from ALL actual policy decisions,
 including single-candidate decisions; a one-choice group is not resampled.
@@ -29,6 +30,7 @@ from simulation import LocalResearchSimulator, random_scenario
 
 
 COLLECTOR_VERSION = "public-prefix-full-rollout-v1"
+ALTERNATIVE_SAMPLINGS = ("uniform", "runner_up_uniform")
 FAILURE_PENALTY_S = 360000.0
 TRAINING_RANGES = ((3100001, 3399999), (3400001, 3699999), (3700001, 3999999))
 _worker_model = None
@@ -69,6 +71,8 @@ def _validate_task(task):
     _integer(task["action_seed"], "action_seed", 0, 2**63 - 1)
     _integer(task.get("max_decisions", 256), "max_decisions", 1, 256)
     _integer(task.get("alternatives", 2), "alternatives", 1, 2)
+    if task.get("alternative_sampling", "uniform") not in ALTERNATIVE_SAMPLINGS:
+        raise ValueError("Invalid collector alternative_sampling")
     deadline = task.get("deadline_epoch")
     if deadline is not None and (isinstance(deadline, bool)
             or not isinstance(deadline, (int, float)) or not math.isfinite(deadline)):
@@ -288,6 +292,32 @@ def _label(row, index, prefix_cost):
                 cost_to_go_s=max(0.0, remaining) + row["failure_penalty_s"])
 
 
+def select_alternatives(old_logits, original, count, rng, mode="uniform"):
+    """Use only frozen public logits; never choose by continuation outcomes.
+
+    The uniform branch retains its original RNG call and index ordering.
+    Runner-up ties use the lowest candidate index; an optional second action
+    is sampled uniformly without replacement from the remaining legal actions.
+    """
+    if mode not in ALTERNATIVE_SAMPLINGS:
+        raise ValueError("Invalid collector alternative_sampling")
+    logits = np.asarray(old_logits)
+    if (logits.ndim != 1 or not len(logits) or not np.isfinite(logits).all()
+            or isinstance(original, bool) or not isinstance(original, (int, np.integer))
+            or original != int(logits.argmax())):
+        raise ValueError("Alternative selection requires valid frozen greedy logits")
+    _integer(count, "alternatives", 1, 2)
+    available = [i for i in range(len(logits)) if i != original]
+    count = min(count, len(available))
+    if mode == "uniform":
+        return rng.sample(available, count)
+    if count == 0:
+        return []
+    runner_up = min(available, key=lambda i: (-float(logits[i]), i))
+    remaining = [i for i in available if i != runner_up]
+    return [runner_up] + (rng.sample(remaining, count - 1) if count > 1 else [])
+
+
 def collect_group(task):
     """Return one complete action-cost group and exact actual-work accounting.
 
@@ -298,12 +328,15 @@ def collect_group(task):
     """
     require_cpu()
     _validate_task(task)
+    sampling = task.get("alternative_sampling", "uniform")
     started, cpu_started = time.perf_counter(), time.process_time()
     metrics = dict(seed=task["seed"], collector_version=COLLECTOR_VERSION,
         status="administrative_timeout", trajectories_started=0, trajectories_completed=0,
         trajectories_interrupted=0, successful_trajectories=0, failed_trajectories=0,
         failed_clear_count=0, simulator_action_count=0, accepted_request_count=0,
-        replay_prefix_action_count=0, baseline_total_time_s=None, trajectory_metrics=[])
+        replay_prefix_action_count=0, baseline_total_time_s=None, trajectory_metrics=[],
+        alternative_sampling=sampling, alternative_indices=[],
+        alternative_selection_scope="frozen public logits and independent action RNG; no future outcomes")
     if task.get("capture_evidence", False):
         metrics["evidence"] = []
 
@@ -342,8 +375,9 @@ def collect_group(task):
     if prefix is None or prefix["candidate_count"] < 2:
         return finish(None, "no_choice")
     original = prefix["original_index"]
-    alternatives = rng.sample([i for i in range(prefix["candidate_count"]) if i != original],
-                              min(task.get("alternatives", 2), prefix["candidate_count"]-1))
+    alternatives = select_alternatives(prefix["old_logits"], original,
+                                      task.get("alternatives", 2), rng, sampling)
+    metrics["alternative_indices"] = list(alternatives)
     prefix["decisions"] = baseline["decisions"][:prefix["step"]+1]
     labels = [_label(row, original, prefix["prefix_cost_s"])]
     for index in alternatives:
@@ -362,5 +396,6 @@ def collect_group(task):
         original_index=original, prefix_cost_s=prefix["prefix_cost_s"], prefix_step=prefix["step"],
         prefix_sha256=prefix["prefix_sha256"], prefix_signature=prefix["signature"],
         candidate_count=prefix["candidate_count"], baseline_decisions=len(baseline["decisions"]),
-        case_sha256=baseline["row"]["case_sha256"], evaluated_candidates=labels)
+        case_sha256=baseline["row"]["case_sha256"], evaluated_candidates=labels,
+        alternative_sampling=sampling, alternative_indices=list(alternatives))
     return finish(group, "complete")
