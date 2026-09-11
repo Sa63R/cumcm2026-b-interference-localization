@@ -1,0 +1,86 @@
+{
+  "scope": "Intermediate development result; not a final or independent superiority claim",
+  "snapshot_directory": "handoff/autonomy-status-20260911T155108.750880Z-807c923638cf",
+  "verified_manifest_sha256": "807c923638cf3506e51b00c7bbb03cf456bd3f958c5f9d15a8c280c890e7e41c",
+  "checkpoint_sha256": "b3d690aee54afc015c82fc364ad4b122afa683ff8f8f25f936db916d22fd1211",
+  "training_log_verification": {
+    "source": "cpu_runs/base-r1/trial-1/training.jsonl through update 131",
+    "updates": 131,
+    "policy_decisions": 2254514,
+    "episode_rows": 16768,
+    "successful_episodes": 16768,
+    "deadline_skipped": 0,
+    "failed_clear_count": 0,
+    "scope": "Read-only aggregate of actual completed training rows; not validation performance"
+  },
+  "checkpoint_state": {
+    "update": 131,
+    "optimizer_steps": 68744,
+    "episodes": 16768,
+    "attempted_episodes": 16896,
+    "next_seed": 3116897,
+    "bc_complete": true,
+    "stop_reason": "global_deadline",
+    "elapsed_training_s": 1458.8671252951026
+  },
+  "evaluation": {
+    "runs": 64,
+    "expected_runs": 64,
+    "complete": true,
+    "successful_runs": 64,
+    "failed_clear_count": 0,
+    "raw_mean_total_time_s": 3134.100035921875,
+    "penalized_mean_total_time_s": 3134.100035921875,
+    "raw_p95_total_time_s": 3541.3352843,
+    "raw_max_total_time_s": 3700.210348,
+    "mean_time_per_source_s": 243.22924773442145,
+    "mean_program_runtime_s": 0.3682785773416981,
+    "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+    "checkpoint_sha256": "b3d690aee54afc015c82fc364ad4b122afa683ff8f8f25f936db916d22fd1211",
+    "split": "development",
+    "physical_mean_lower_s": 1702.2884780352904,
+    "ratio_of_sums": 1.8411098214910797,
+    "audit_passed_records": 64,
+    "source_scope": "Local synthetic worlds, exact paired case hashes; not official simulator results"
+  },
+  "comparisons": {
+    "state_search": {
+      "pairs": 64,
+      "safe_full_clear_pairs": true,
+      "mean_seconds_saved": -58.45123176562498,
+      "paired_mean_savings_ci95_s": [
+        -108.97030046757817,
+        -6.82092811601559
+      ],
+      "mean_reduction_fraction": -0.01900452083041393,
+      "p95_time_ratio": 0.9861320097450282,
+      "max_time_ratio": 0.9808907240483057,
+      "wins": 25,
+      "losses": 39,
+      "maximum_paired_regression_s": 498.1506910000003,
+      "reference_time_over_physical_lower": 1.8067729670038266,
+      "candidate_time_over_physical_lower": 1.8411098214910797,
+      "strict_upgrade_on_supplied_cases": false,
+      "scope": "Development comparison; selection evidence, not independent confirmation"
+    },
+    "initial": {
+      "pairs": 64,
+      "safe_full_clear_pairs": true,
+      "mean_seconds_saved": -36.575895249999995,
+      "paired_mean_savings_ci95_s": [
+        -79.59047024375,
+        6.134423016406148
+      ],
+      "mean_reduction_fraction": -0.011808106600281976,
+      "p95_time_ratio": 1.0257220757445247,
+      "max_time_ratio": 1.0118618287236079,
+      "wins": 26,
+      "losses": 38,
+      "maximum_paired_regression_s": 714.1493100000002,
+      "reference_time_over_physical_lower": 1.8196235130762948,
+      "candidate_time_over_physical_lower": 1.8411098214910797,
+      "strict_upgrade_on_supplied_cases": false,
+      "scope": "Development comparison; selection evidence, not independent confirmation"
+    }
+  }
+}
