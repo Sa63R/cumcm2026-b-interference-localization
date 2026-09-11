@@ -98,7 +98,7 @@ mixed层启发式比R8平均多343.273秒，95%区间[5.573,712.735]秒，4胜4�
 
 本次只读取已有对象结果，没有重新运行策略或模拟器。
 
-1. 80个gzip原始记录全部与[evidence.json](../../results/q4_rl/server-baseline-001/evidence.json)的SHA256一致，没有漏项或额外记录；manifest与summary文件哈希一致，freeze中的canonical manifest摘要一致。
+1. 86个回读对象全部与OBJECT_READBACK记录的大小及SHA256一致。80个gzip原始记录全部与[evidence.json](../../results/q4_rl/server-baseline-001/evidence.json)的SHA256一致，没有漏项或额外记录；manifest与summary文件哈希一致，freeze中的canonical manifest摘要一致。
 2. source.zip内48项文件逐项对照manifest源码SHA256，全部一致。raw中的row与summary同`case_id/strategy`行逐项相等；16个场景都具有完整五臂配对。
 3. 80条原始记录均有`row.successful=true`、`all_cleared=true`、`completion_certified=true`、`accepted_exit=true`、`audit_passed=true`和`audit.passed=true`，错误列表为空；退出后的evaluation确认每臂202源全部实际清除。
 4. 对全部27,507条实际历史请求，另行从起点、请求位置和接收机频道重算移动微秒、切频、检测、光学及移除费用；逐请求累计虚拟时间、五项费用组成与最终T全部匹配。这里按每次移动四舍五入到微秒后求和，没有混用连续距离总和再舍入。
