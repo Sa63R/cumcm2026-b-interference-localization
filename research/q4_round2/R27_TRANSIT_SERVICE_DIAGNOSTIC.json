@@ -1,0 +1,1102 @@
+{
+  "scope": "Fixed 38 OLD 621 R12 development summaries; no strategy execution or counterfactual feedback",
+  "protocol": {
+    "radius_lower_exclusive": 19.9,
+    "radius_upper_inclusive": 40.0,
+    "projection_interval": [
+      0.1,
+      0.9
+    ],
+    "detour_upper_m": 100.0,
+    "first_approach_upper_s_must_exceed": 60.0,
+    "original_attempt_cap": 4,
+    "prefixes": "All actual chain decisions plus first ten complete coverage-block ends per case; deduplicated",
+    "edge_selection": "Next actual action must be coverage at the next original station; exclude any same-prefix source selection/early interior or zero-length start",
+    "counting": "First qualifying case-channel occasion only; not a proposed simultaneous schedule"
+  },
+  "input_sha256": {
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621001.json.gz": "4fc604df6325d617eb68dae844276529389cd805789b901b268f9cceb0976e6b",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621002.json.gz": "cdcb0b9b4f5009dce297236e9c57e23ad90727706bd8b2a2f8ad17ccd4eef97f",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621003.json.gz": "f6f525e6f62449e2f886496bb3975ee954d75cb67bf5904e36a34f232601a9c8",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621004.json.gz": "da050e0befc2360264ea982126be161dbb9760218582b871c18fb33a6c9402ff",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621005.json.gz": "a1f45742f1f5b5c311fe7356e27ebe037aae6050a8f100bb44263cf239fa4175",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621006.json.gz": "6e3798d48b3d2085271c1d0cdd2261d0dedb2a49a8f2a16b0fdb4833e7926738",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621007.json.gz": "5f5ae42e28a791accdd8ab98b9c3f67918f16029948749a01a00b027bd0f39e2",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621008.json.gz": "09fa7a42baefcecdedb9eb1fdd996049a16181f657f6e72cf6a507d083244e0e",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621009.json.gz": "7099a92c1bdea6b3a31c20a948c72b65f315ddcc422a0bf5dd6e17b793044ba8",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621010.json.gz": "957745b77b46bb98d7489664b637b8b1345d2ab15121308d56655e18ac6e15c6",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621011.json.gz": "67795c43526527ef1e2abbbd0b8f07ff59767e6516fe68bd5f25da28ba772b23",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621012.json.gz": "4fa0db6d5c2f43cecd55840db00bfcae8db9a03e5a52b1c60b394b22d789bb22",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621013.json.gz": "21055462d1c770d386c93a269fcd4fc3844a7979dae1d9614553ff2b942a3d90",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621014.json.gz": "4f7283f02db225471d157d97ec5885f062c66448ff67bb39678c3f1fd2fcae47",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621015.json.gz": "43f20858c8def85bb118de852ed6b6d6379210ccea7f8846bbe20a94aa30e623",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621016.json.gz": "00e2babd4d2b0097bef9c1968867ad4759b7dc43cd551ec0100869d7bf02ff0a",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621017.json.gz": "482ebf0516b1b4f189bdc5773ff1394368156909d97f6a90e676f07115a04cc7",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621018.json.gz": "4251717a641b319ecb0138c3284413d996f960e5db337cd6cec580c5a76d47d3",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621019.json.gz": "2c75fbca398daf06bc73f1dfef8182d3fe654fb4998781dd5a34ed71fa3af6ac",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621020.json.gz": "3ef940b6d9fbaa875f3fa264ef769498bd0806b4d85bf52b62c495b7901131e9",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621021.json.gz": "6d40714cb1e8af020b630f2dd6f9ce4470274e3c057dda47eeae2687a23ea9e4",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621022.json.gz": "94342d7e616cd383d2ff7bc180c1e8c760b87f2c09a0909dd810bbbe5fdabbc6",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621023.json.gz": "5d654bf770bc446db397cdca1a231229d756eb7c61a901e4067ff60a1982d53b",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development/records/compact_joint_continuation-621024.json.gz": "bd386d861d2087170711c63423827fcfc235b136973a4a32e2151db0b2944dc9",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621031.json.gz": "cf8700780ebdc4ffa531ccd9fd2fa40fb6513a07c18753161c71bb439b2f556c",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621032.json.gz": "95efce33b8c627f7ea7ab10ff95571f97186944488b8daf4a0de386b9397e211",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621033.json.gz": "1253494e8aaad29532e377df16b90b09df5632722c05916d9bbbfb8ac667228f",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621034.json.gz": "62638830326ed63d8ae1f2d3b9e94c0a66ca18328deaab04b0dbd9be402e2a30",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621035.json.gz": "0a8ee848384812b6451c5e923fd4f56336715ec5acb975a06bb029cf7ec67dca",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621036.json.gz": "e42e7eb8aaa664f9a846bc8497c8a48a29bff1c24709ed1c1df4a744a64709c8",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621037.json.gz": "598caeef37a6013d6580ad52972a79879503eee998dfba84928510decf26677d",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621038.json.gz": "f591f4934da41c0020bfc639d264ae8d6ff6c29cef235618bf99cd7b3fcc74a0",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621039.json.gz": "fde98648c3cca4f49e96e6cff0e1975c8e07b91f378968c82bddec0bd48615f7",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621040.json.gz": "6d1fed29214fbfd039c1db49ad458b37b3af18bf6093c56f2359dce502b6fb8e",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621041.json.gz": "5df9ec62d7e14d86d8caaef02b167641110e4494d100157951f906becac93223",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621042.json.gz": "9a314cf609d51c9592ad186a80a816e038b0bb1b80a68838fce8f5f4b946f9ed",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621043.json.gz": "67467c817dc3829bd3275572155f554c9e2c740ebad018f6db8e0e567de3f443",
+    "q4-r12-joint-continuation/results/q4_joint_continuation/development-stress/records/compact_joint_continuation-621044.json.gz": "5e3ea77a319d27f505196f8f9a016efe7cde559a3a6781d21da6f35e7dc1271a"
+  },
+  "script_sha256": "f197ca67c02b5ece2cd84b72b528e937ba2f15c0dd327dd337e7ac6538efa43e",
+  "dependencies_sha256": {
+    "q4-round2\\research\\q4_round2\\R24_EARLY_SERVICE_DIAGNOSTIC.py": "9936c64d2c15ffcb9bb380a35a8c4fc3a49233587bc0bc34ff9fd23b1f6cb489",
+    "q4-r12-joint-continuation\\src\\localization\\__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+    "q4-r12-joint-continuation\\src\\geometry\\__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+    "q4-r12-joint-continuation\\src\\strategies\\q4_r2_scheduling.py": "48d0f20ed0a073d26f177078f54dd1b40a532038aa74bb0de098c81f84509a44"
+  },
+  "summary": {
+    "prefixes": 957,
+    "actual_cover_edges": 506,
+    "excluded_source_or_early": 305,
+    "no_actual_cover_next": 0,
+    "no_cover_or_known16": 146,
+    "four_cap_exhausted_edges": 0,
+    "radius_window_snapshot_channels": 742,
+    "projection_and_detour_pass": 10,
+    "far_first_approach_snapshot_channels": 10,
+    "cases": 38,
+    "opportunities": 10,
+    "cases_with_opportunities": 9,
+    "random_cases_with_opportunities": 7,
+    "stress_cases_with_opportunities": 2
+  },
+  "distributions": {
+    "radius_m": {
+      "count": 10,
+      "min": 20.365078218745783,
+      "mean": 24.259489629512665,
+      "median": 23.222502715091288,
+      "p95": 30.671986728662095,
+      "max": 33.79040609192386
+    },
+    "projection_t": {
+      "count": 10,
+      "min": 0.5333212889990079,
+      "mean": 0.7083678318369258,
+      "median": 0.7132176646064183,
+      "p95": 0.8630508482995284,
+      "max": 0.8896094406748628
+    },
+    "detour_m": {
+      "count": 10,
+      "min": 3.84072750801829,
+      "mean": 27.397243881816074,
+      "median": 18.91861106738628,
+      "p95": 74.7760942640589,
+      "max": 76.39109823214051
+    },
+    "detour_s": {
+      "count": 10,
+      "min": 0.768145501603658,
+      "mean": 5.479448776363215,
+      "median": 3.7837222134772563,
+      "p95": 14.95521885281178,
+      "max": 15.278219646428102
+    },
+    "approach_m": {
+      "count": 10,
+      "min": 462.9203467987189,
+      "mean": 590.2021230480775,
+      "median": 583.8584681037198,
+      "p95": 726.476184790212,
+      "max": 749.2739632943643
+    },
+    "first_approach_upper_s": {
+      "count": 10,
+      "min": 98.58406935974378,
+      "mean": 124.04042460961548,
+      "median": 122.77169362074395,
+      "p95": 151.2952369580424,
+      "max": 155.85479265887287
+    },
+    "shared_along_edge_m": {
+      "count": 10,
+      "min": 448.91490394245756,
+      "mean": 581.2719198538095,
+      "median": 579.6145091345156,
+      "p95": 719.7943699249291,
+      "max": 748.8149167201208
+    },
+    "shared_along_edge_s": {
+      "count": 10,
+      "min": 89.78298078849151,
+      "mean": 116.25438397076191,
+      "median": 115.92290182690314,
+      "p95": 143.95887398498581,
+      "max": 149.76298334402415
+    },
+    "off_line_m": {
+      "count": 10,
+      "min": 26.223893080222712,
+      "mean": 85.7190372398752,
+      "median": 73.82166205576952,
+      "p95": 163.81604028097905,
+      "max": 182.8393743658837
+    },
+    "proposed_approach_plus_service_allowance_s": {
+      "count": 10,
+      "min": 152.58406935974378,
+      "mean": 178.04042460961548,
+      "median": 176.77169362074395,
+      "p95": 205.2952369580424,
+      "max": 209.85479265887287
+    }
+  },
+  "per_case": [
+    {
+      "seed": 621001,
+      "stage": "development",
+      "prefixes": 34,
+      "actual_cover_edges": 21,
+      "excluded_source_or_early": 9,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 4,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 51,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621002,
+      "stage": "development",
+      "prefixes": 30,
+      "actual_cover_edges": 19,
+      "excluded_source_or_early": 5,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 6,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 28,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621003,
+      "stage": "development",
+      "prefixes": 33,
+      "actual_cover_edges": 20,
+      "excluded_source_or_early": 9,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 4,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 22,
+      "projection_and_detour_pass": 1,
+      "far_first_approach_snapshot_channels": 1,
+      "opportunities": 1
+    },
+    {
+      "seed": 621004,
+      "stage": "development",
+      "prefixes": 36,
+      "actual_cover_edges": 21,
+      "excluded_source_or_early": 13,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 2,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 30,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621005,
+      "stage": "development",
+      "prefixes": 30,
+      "actual_cover_edges": 20,
+      "excluded_source_or_early": 9,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 1,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 27,
+      "projection_and_detour_pass": 1,
+      "far_first_approach_snapshot_channels": 1,
+      "opportunities": 1
+    },
+    {
+      "seed": 621006,
+      "stage": "development",
+      "prefixes": 20,
+      "actual_cover_edges": 4,
+      "excluded_source_or_early": 9,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 7,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 9,
+      "projection_and_detour_pass": 1,
+      "far_first_approach_snapshot_channels": 1,
+      "opportunities": 1
+    },
+    {
+      "seed": 621007,
+      "stage": "development",
+      "prefixes": 18,
+      "actual_cover_edges": 6,
+      "excluded_source_or_early": 8,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 4,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 5,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621008,
+      "stage": "development",
+      "prefixes": 29,
+      "actual_cover_edges": 13,
+      "excluded_source_or_early": 6,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 10,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 19,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621009,
+      "stage": "development",
+      "prefixes": 32,
+      "actual_cover_edges": 19,
+      "excluded_source_or_early": 9,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 4,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 37,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621010,
+      "stage": "development",
+      "prefixes": 25,
+      "actual_cover_edges": 13,
+      "excluded_source_or_early": 11,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 1,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 13,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621011,
+      "stage": "development",
+      "prefixes": 18,
+      "actual_cover_edges": 6,
+      "excluded_source_or_early": 7,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 5,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 4,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621012,
+      "stage": "development",
+      "prefixes": 31,
+      "actual_cover_edges": 19,
+      "excluded_source_or_early": 7,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 5,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 25,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621013,
+      "stage": "development",
+      "prefixes": 18,
+      "actual_cover_edges": 8,
+      "excluded_source_or_early": 8,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 2,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 17,
+      "projection_and_detour_pass": 1,
+      "far_first_approach_snapshot_channels": 1,
+      "opportunities": 1
+    },
+    {
+      "seed": 621014,
+      "stage": "development",
+      "prefixes": 33,
+      "actual_cover_edges": 20,
+      "excluded_source_or_early": 12,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 1,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 49,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621015,
+      "stage": "development",
+      "prefixes": 29,
+      "actual_cover_edges": 19,
+      "excluded_source_or_early": 9,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 1,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 20,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621016,
+      "stage": "development",
+      "prefixes": 32,
+      "actual_cover_edges": 16,
+      "excluded_source_or_early": 11,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 5,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 26,
+      "projection_and_detour_pass": 1,
+      "far_first_approach_snapshot_channels": 1,
+      "opportunities": 1
+    },
+    {
+      "seed": 621017,
+      "stage": "development",
+      "prefixes": 31,
+      "actual_cover_edges": 19,
+      "excluded_source_or_early": 9,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 3,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 36,
+      "projection_and_detour_pass": 1,
+      "far_first_approach_snapshot_channels": 1,
+      "opportunities": 1
+    },
+    {
+      "seed": 621018,
+      "stage": "development",
+      "prefixes": 24,
+      "actual_cover_edges": 14,
+      "excluded_source_or_early": 9,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 1,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 17,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621019,
+      "stage": "development",
+      "prefixes": 19,
+      "actual_cover_edges": 7,
+      "excluded_source_or_early": 10,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 2,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 2,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621020,
+      "stage": "development",
+      "prefixes": 26,
+      "actual_cover_edges": 18,
+      "excluded_source_or_early": 6,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 2,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 26,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621021,
+      "stage": "development",
+      "prefixes": 22,
+      "actual_cover_edges": 11,
+      "excluded_source_or_early": 8,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 3,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 20,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621022,
+      "stage": "development",
+      "prefixes": 21,
+      "actual_cover_edges": 9,
+      "excluded_source_or_early": 10,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 2,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 25,
+      "projection_and_detour_pass": 1,
+      "far_first_approach_snapshot_channels": 1,
+      "opportunities": 1
+    },
+    {
+      "seed": 621023,
+      "stage": "development",
+      "prefixes": 23,
+      "actual_cover_edges": 13,
+      "excluded_source_or_early": 8,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 2,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 43,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621024,
+      "stage": "development",
+      "prefixes": 21,
+      "actual_cover_edges": 5,
+      "excluded_source_or_early": 2,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 14,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 8,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621031,
+      "stage": "development-stress",
+      "prefixes": 22,
+      "actual_cover_edges": 12,
+      "excluded_source_or_early": 10,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 0,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 11,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621032,
+      "stage": "development-stress",
+      "prefixes": 22,
+      "actual_cover_edges": 10,
+      "excluded_source_or_early": 3,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 9,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 1,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621033,
+      "stage": "development-stress",
+      "prefixes": 16,
+      "actual_cover_edges": 9,
+      "excluded_source_or_early": 7,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 0,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 0,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621034,
+      "stage": "development-stress",
+      "prefixes": 33,
+      "actual_cover_edges": 21,
+      "excluded_source_or_early": 3,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 9,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 79,
+      "projection_and_detour_pass": 1,
+      "far_first_approach_snapshot_channels": 1,
+      "opportunities": 1
+    },
+    {
+      "seed": 621035,
+      "stage": "development-stress",
+      "prefixes": 24,
+      "actual_cover_edges": 8,
+      "excluded_source_or_early": 7,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 9,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 7,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621036,
+      "stage": "development-stress",
+      "prefixes": 21,
+      "actual_cover_edges": 9,
+      "excluded_source_or_early": 7,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 5,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 5,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621037,
+      "stage": "development-stress",
+      "prefixes": 18,
+      "actual_cover_edges": 6,
+      "excluded_source_or_early": 11,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 1,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 5,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621038,
+      "stage": "development-stress",
+      "prefixes": 28,
+      "actual_cover_edges": 15,
+      "excluded_source_or_early": 13,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 0,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 23,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621039,
+      "stage": "development-stress",
+      "prefixes": 21,
+      "actual_cover_edges": 9,
+      "excluded_source_or_early": 6,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 6,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 0,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621040,
+      "stage": "development-stress",
+      "prefixes": 23,
+      "actual_cover_edges": 13,
+      "excluded_source_or_early": 6,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 4,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 0,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621041,
+      "stage": "development-stress",
+      "prefixes": 26,
+      "actual_cover_edges": 16,
+      "excluded_source_or_early": 4,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 6,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 23,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621042,
+      "stage": "development-stress",
+      "prefixes": 30,
+      "actual_cover_edges": 17,
+      "excluded_source_or_early": 13,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 0,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 23,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621043,
+      "stage": "development-stress",
+      "prefixes": 22,
+      "actual_cover_edges": 12,
+      "excluded_source_or_early": 6,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 4,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 4,
+      "projection_and_detour_pass": 0,
+      "far_first_approach_snapshot_channels": 0,
+      "opportunities": 0
+    },
+    {
+      "seed": 621044,
+      "stage": "development-stress",
+      "prefixes": 16,
+      "actual_cover_edges": 9,
+      "excluded_source_or_early": 5,
+      "no_actual_cover_next": 0,
+      "no_cover_or_known16": 2,
+      "four_cap_exhausted_edges": 0,
+      "radius_window_snapshot_channels": 2,
+      "projection_and_detour_pass": 2,
+      "far_first_approach_snapshot_channels": 2,
+      "opportunities": 2
+    }
+  ],
+  "opportunities": [
+    {
+      "seed": 621003,
+      "stage": "development",
+      "prefix": 40,
+      "channel": 1,
+      "prefix_kinds": [
+        "first_10_complete_cover_ends"
+      ],
+      "selected_by": "direct_no_ready_cover",
+      "current": [
+        -873.9398018653466,
+        -420.86722694403124
+      ],
+      "next_station_id": 2,
+      "next_station": [
+        -873.9398018653465,
+        420.8672269440315
+      ],
+      "canonical_center": [
+        -1056.7791762312302,
+        33.51797040574866
+      ],
+      "radius_m": 25.508331105570868,
+      "projection_t": 0.5398201240913039,
+      "cover_edge_m": 841.7344538880627,
+      "approach_m": 489.79193989806134,
+      "shared_along_edge_m": 454.3851973497799,
+      "shared_along_edge_s": 90.87703946995597,
+      "off_line_m": 182.8393743658837,
+      "detour_m": 76.39109823214051,
+      "detour_s": 15.278219646428102,
+      "first_approach_upper_s": 103.95838797961227,
+      "proposed_approach_plus_service_allowance_s": 157.95838797961227,
+      "known_count": 5,
+      "cleared_count": 0,
+      "attempted_channels": [],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    },
+    {
+      "seed": 621005,
+      "stage": "development",
+      "prefix": 92,
+      "channel": 14,
+      "prefix_kinds": [
+        "actual_chain_decision",
+        "first_10_complete_cover_ends"
+      ],
+      "selected_by": "chain_cover",
+      "current": [
+        604.7851078029715,
+        758.3765379939889
+      ],
+      "next_station_id": 5,
+      "next_station": [
+        970.0,
+        0.0
+      ],
+      "canonical_center": [
+        901.3780705071529,
+        402.9502278330748
+      ],
+      "radius_m": 21.8401128505323,
+      "projection_t": 0.5333212889990079,
+      "cover_edge_m": 841.7344538880627,
+      "approach_m": 462.9203467987189,
+      "shared_along_edge_m": 448.91490394245756,
+      "shared_along_edge_s": 89.78298078849151,
+      "off_line_m": 113.00732940203635,
+      "detour_m": 29.937474336402147,
+      "detour_s": 5.98749486728043,
+      "first_approach_upper_s": 98.58406935974378,
+      "proposed_approach_plus_service_allowance_s": 152.58406935974378,
+      "known_count": 8,
+      "cleared_count": 0,
+      "attempted_channels": [],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    },
+    {
+      "seed": 621006,
+      "stage": "development",
+      "prefix": 43,
+      "channel": 9,
+      "prefix_kinds": [
+        "actual_chain_decision"
+      ],
+      "selected_by": "chain_cover",
+      "current": [
+        -751.2938377039914,
+        -260.967302414224
+      ],
+      "next_station_id": 2,
+      "next_station": [
+        -873.9398018653465,
+        420.8672269440315
+      ],
+      "canonical_center": [
+        -791.2258953959908,
+        308.01519621732496
+      ],
+      "radius_m": 22.774202479013518,
+      "projection_t": 0.8185379982669032,
+      "cover_edge_m": 692.7772787485615,
+      "approach_m": 570.3820237178918,
+      "shared_along_edge_m": 567.0645269916399,
+      "shared_along_edge_s": 113.41290539832798,
+      "off_line_m": 61.42861880480004,
+      "detour_m": 17.523189652520045,
+      "detour_s": 3.504637930504009,
+      "first_approach_upper_s": 120.07640474357837,
+      "proposed_approach_plus_service_allowance_s": 174.07640474357837,
+      "known_count": 12,
+      "cleared_count": 1,
+      "attempted_channels": [
+        4
+      ],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    },
+    {
+      "seed": 621013,
+      "stage": "development",
+      "prefix": 114,
+      "channel": 20,
+      "prefix_kinds": [
+        "actual_chain_decision",
+        "first_10_complete_cover_ends"
+      ],
+      "selected_by": "chain_cover",
+      "current": [
+        970.0,
+        0.0
+      ],
+      "next_station_id": 6,
+      "next_station": [
+        604.7851078029714,
+        -758.376537993989
+      ],
+      "canonical_center": [
+        669.7844659199767,
+        -541.3351747657164
+      ],
+      "radius_m": 20.365078218745783,
+      "projection_t": 0.7341802098960094,
+      "cover_edge_m": 841.734453888063,
+      "approach_m": 619.009804721688,
+      "shared_along_edge_m": 617.9847780322409,
+      "shared_along_edge_s": 123.59695560644818,
+      "off_line_m": 35.60832012359278,
+      "detour_m": 3.84072750801829,
+      "detour_s": 0.768145501603658,
+      "first_approach_upper_s": 129.80196094433762,
+      "proposed_approach_plus_service_allowance_s": 183.80196094433762,
+      "known_count": 7,
+      "cleared_count": 1,
+      "attempted_channels": [],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    },
+    {
+      "seed": 621016,
+      "stage": "development",
+      "prefix": 161,
+      "channel": 2,
+      "prefix_kinds": [
+        "actual_chain_decision"
+      ],
+      "selected_by": "chain_cover",
+      "current": [
+        1667.9549743034806,
+        -803.2447809383185
+      ],
+      "next_station_id": 12,
+      "next_station": [
+        1851.290353890597,
+        0.0
+      ],
+      "canonical_center": [
+        1696.9028532575483,
+        -188.1879889890343
+      ],
+      "radius_m": 33.79040609192386,
+      "projection_t": 0.7356187400727016,
+      "cover_edge_m": 823.9017171441017,
+      "approach_m": 615.7376365132185,
+      "shared_along_edge_m": 606.0775431092794,
+      "shared_along_edge_s": 121.21550862185589,
+      "off_line_m": 108.64091658994775,
+      "detour_m": 35.24959924651512,
+      "detour_s": 7.0499198493030235,
+      "first_approach_upper_s": 129.1475273026437,
+      "proposed_approach_plus_service_allowance_s": 183.1475273026437,
+      "known_count": 14,
+      "cleared_count": 6,
+      "attempted_channels": [
+        12
+      ],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    },
+    {
+      "seed": 621017,
+      "stage": "development",
+      "prefix": 76,
+      "channel": 10,
+      "prefix_kinds": [
+        "first_10_complete_cover_ends"
+      ],
+      "selected_by": "direct_no_ready_cover",
+      "current": [
+        -215.84530593762491,
+        945.6800748163689
+      ],
+      "next_station_id": 4,
+      "next_station": [
+        604.7851078029715,
+        758.3765379939889
+      ],
+      "canonical_center": [
+        308.66147927844673,
+        880.215688622062
+      ],
+      "radius_m": 20.905359445022455,
+      "projection_t": 0.624809283929678,
+      "cover_edge_m": 841.7344538880626,
+      "approach_m": 528.5763460442547,
+      "shared_along_edge_m": 525.923501392739,
+      "shared_along_edge_s": 105.18470027854781,
+      "off_line_m": 52.890682358024,
+      "detour_m": 7.051170591875575,
+      "detour_s": 1.410234118375115,
+      "first_approach_upper_s": 111.71526920885094,
+      "proposed_approach_plus_service_allowance_s": 165.71526920885094,
+      "known_count": 7,
+      "cleared_count": 0,
+      "attempted_channels": [],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    },
+    {
+      "seed": 621022,
+      "stage": "development",
+      "prefix": 108,
+      "channel": 18,
+      "prefix_kinds": [
+        "first_10_complete_cover_ends"
+      ],
+      "selected_by": "direct_no_ready_cover",
+      "current": [
+        970.0,
+        0.0
+      ],
+      "next_station_id": 6,
+      "next_station": [
+        604.7851078029714,
+        -758.376537993989
+      ],
+      "canonical_center": [
+        668.7282952869534,
+        -686.0370485696376
+      ],
+      "radius_m": 26.860585284675505,
+      "projection_t": 0.8896094406748628,
+      "cover_edge_m": 841.734453888063,
+      "approach_m": 749.2739632943643,
+      "shared_along_edge_m": 748.8149167201208,
+      "shared_along_edge_s": 149.76298334402415,
+      "off_line_m": 26.223893080222712,
+      "detour_m": 4.088631389815646,
+      "detour_s": 0.8177262779631291,
+      "first_approach_upper_s": 155.85479265887287,
+      "proposed_approach_plus_service_allowance_s": 209.85479265887287,
+      "known_count": 8,
+      "cleared_count": 0,
+      "attempted_channels": [],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    },
+    {
+      "seed": 621034,
+      "stage": "development-stress",
+      "prefix": 294,
+      "channel": 9,
+      "prefix_kinds": [
+        "actual_chain_decision"
+      ],
+      "selected_by": "chain_cover",
+      "current": [
+        -1667.9549743034802,
+        -803.2447809383194
+      ],
+      "next_station_id": 21,
+      "next_station": [
+        -1154.2606559302333,
+        -1447.397081861049
+      ],
+      "canonical_center": [
+        -1131.3870566020082,
+        -1250.6304335794755
+      ],
+      "radius_m": 24.8202711584165,
+      "projection_t": 0.8305903465074531,
+      "cover_edge_m": 823.9017171441029,
+      "approach_m": 698.6122332851371,
+      "shared_along_edge_m": 684.3248127308061,
+      "shared_along_edge_s": 136.86496254616122,
+      "off_line_m": 140.56529862165124,
+      "detour_m": 72.8022005252925,
+      "detour_s": 14.5604401050585,
+      "first_approach_upper_s": 145.72244665702743,
+      "proposed_approach_plus_service_allowance_s": 199.72244665702743,
+      "known_count": 12,
+      "cleared_count": 3,
+      "attempted_channels": [],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    },
+    {
+      "seed": 621044,
+      "stage": "development-stress",
+      "prefix": 40,
+      "channel": 15,
+      "prefix_kinds": [
+        "first_10_complete_cover_ends"
+      ],
+      "selected_by": "direct_no_ready_cover",
+      "current": [
+        -873.9398018653466,
+        -420.86722694403124
+      ],
+      "next_station_id": 2,
+      "next_station": [
+        -873.9398018653465,
+        420.8672269440315
+      ],
+      "canonical_center": [
+        -923.7110356112009,
+        155.66680651563507
+      ],
+      "radius_m": 22.05974671005679,
+      "projection_t": 0.68493576661451,
+      "cover_edge_m": 841.7344538880627,
+      "approach_m": 578.6783799709957,
+      "shared_along_edge_m": 576.5340334596661,
+      "shared_along_edge_s": 115.30680669193323,
+      "off_line_m": 49.77123374585449,
+      "detour_m": 6.774314853328406,
+      "detour_s": 1.3548629706656812,
+      "first_approach_upper_s": 121.73567599419914,
+      "proposed_approach_plus_service_allowance_s": 175.73567599419914,
+      "known_count": 7,
+      "cleared_count": 0,
+      "attempted_channels": [],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    },
+    {
+      "seed": 621044,
+      "stage": "development-stress",
+      "prefix": 40,
+      "channel": 17,
+      "prefix_kinds": [
+        "first_10_complete_cover_ends"
+      ],
+      "selected_by": "direct_no_ready_cover",
+      "current": [
+        -873.9398018653466,
+        -420.86722694403124
+      ],
+      "next_station_id": 2,
+      "next_station": [
+        -873.9398018653465,
+        420.8672269440315
+      ],
+      "canonical_center": [
+        -960.1545071720855,
+        161.82775786533392
+      ],
+      "radius_m": 23.670802951169055,
+      "projection_t": 0.6922551193168271,
+      "cover_edge_m": 841.7344538880627,
+      "approach_m": 589.0385562364438,
+      "shared_along_edge_m": 582.6949848093652,
+      "shared_along_edge_s": 116.53899696187304,
+      "off_line_m": 86.214705306739,
+      "detour_m": 20.314032482252514,
+      "detour_s": 4.062806496450503,
+      "first_approach_upper_s": 123.80771124728876,
+      "proposed_approach_plus_service_allowance_s": 177.80771124728875,
+      "known_count": 7,
+      "cleared_count": 0,
+      "attempted_channels": [],
+      "blocked_channels": [],
+      "sole_original_barrier": "first_approach_distance_div5_plus6_above60"
+    }
+  ],
+  "limitations": [
+    "Restricted observed prefixes, not exhaustive all-policy opportunity frequency",
+    "MEC center is an observable representative, not a known true source position or guaranteed receiver",
+    "No counterfactual observation, clearing success, measured saving or improvement is inferred",
+    "Shared projection length is part of the original straight edge, not an extra service-cost discount certificate",
+    "Allowing approach/5+60 is a direct per-service allowance; ensuing changed decisions can cause unbounded-by-this-allowance relative whole-case regression",
+    "Multiple old-path opportunities need not remain available after selecting one; four-service cap must remain enforced"
+  ]
+}
