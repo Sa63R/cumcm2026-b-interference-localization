@@ -1,0 +1,507 @@
+{
+  "scope": "fixed synthetic-TRAIN teacher-input supervised classification; no counterfactual or independent efficacy claim",
+  "checkpoint_sha256": "77cfacfe3ff4d419b947f9eca277f80d0cebf63002d09aea0723f93f12890023",
+  "policy_loader": "q4_rl.micro_network:load_policy",
+  "feature_schema": {
+    "version": "q4-micro-g1-v1",
+    "global_features": [
+      "current_x",
+      "current_y",
+      "elapsed_virtual_fraction",
+      "detected_fraction",
+      "cleared_fraction",
+      "unknown_fraction",
+      "ready_fraction",
+      "unknown_cover_pairs_fraction",
+      "unfinished_cover_sites_fraction",
+      "current_unmeasured_channels_fraction",
+      "remaining_decisions_fraction",
+      "remaining_requests_fraction",
+      "remaining_virtual_fraction"
+    ],
+    "candidate_features": [
+      "is_measure",
+      "is_clear",
+      "relative_x",
+      "relative_y",
+      "distance",
+      "immediate_cost_upper",
+      "same_position",
+      "same_current_channel",
+      "known_channel",
+      "ready_channel",
+      "outer_radius",
+      "outer_area",
+      "measurement_count",
+      "negative_measurement_count",
+      "site_unknown_fraction",
+      "channel_unmeasured_cover_fraction",
+      "is_certified_clear",
+      "is_grid_clear",
+      "center_relative_current_x",
+      "center_relative_current_y",
+      "center_relative_candidate_x",
+      "center_relative_candidate_y",
+      "outer_support_0_deg",
+      "outer_support_45_deg",
+      "outer_support_90_deg",
+      "outer_support_135_deg",
+      "outer_support_180_deg",
+      "outer_support_225_deg",
+      "outer_support_270_deg",
+      "outer_support_315_deg",
+      "candidate_region_distance_lower",
+      "candidate_region_distance_upper",
+      "region_vertex_count",
+      "has_positive_bearing",
+      "region_degenerate",
+      "first_positive_relative_x",
+      "first_positive_relative_y",
+      "first_positive_distance",
+      "first_positive_view_sin",
+      "first_positive_view_cos",
+      "first_positive_error",
+      "latest_positive_relative_x",
+      "latest_positive_relative_y",
+      "latest_positive_distance",
+      "latest_positive_view_sin",
+      "latest_positive_view_cos",
+      "latest_positive_error",
+      "grid_started",
+      "grid_remaining_fraction",
+      "grid_attempted_fraction"
+    ]
+  },
+  "network": {
+    "architecture": "q4-micro-candidate-mlp-v1",
+    "global_dim": 13,
+    "candidate_dim": 50,
+    "hidden": 64
+  },
+  "inputs": [
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000.json.gz",
+      "bytes": 908,
+      "sha256": "b81a115ddf96fc78d3cefa333e32523bed9d630ccb508b4fd8081af347003004"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0000.json.gz",
+      "bytes": 2277304,
+      "sha256": "7f930ac58c54213a8ad72028f4068cf3bd1550732ec10b114f6f0d0bf55ed136"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0001.json.gz",
+      "bytes": 1710665,
+      "sha256": "f6d27724b568b858d35e8f8306848ae51321cf2b090656625c9d4c8465c5cbb5"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0002.json.gz",
+      "bytes": 4895974,
+      "sha256": "e0c97f0c90c20e6f3d3621fa4624865992e1f878452cf011a350acb644ed6c03"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0003.json.gz",
+      "bytes": 878376,
+      "sha256": "9a8d1c1266e1d4d1368a17cbbd105d8971675ccd584e2386ad877e6f34fe7e55"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0004.json.gz",
+      "bytes": 2724239,
+      "sha256": "0d4cecc0e7ff6337630076b6331753ce9dd9e2a8224714b25983a4f699a667e7"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0005.json.gz",
+      "bytes": 3171598,
+      "sha256": "ed7f3980eef4e9f118524557c3a579af6a5cde3605aef0386c0f45b1f128e049"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0006.json.gz",
+      "bytes": 2258969,
+      "sha256": "f53b1ca9fcbdfd35901d4ab08adc93a5fce3874d18e1788388695f239950156a"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0007.json.gz",
+      "bytes": 1764058,
+      "sha256": "4aa5fc98aa0dee878ee477d3036bc01a98c3ed4a6ec26d187a27e0997c3d723f"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0008.json.gz",
+      "bytes": 2541914,
+      "sha256": "2eb2b6d940e27f51e3cc5c330062cb6aa56cf93d186b4277cb83904b2017ed43"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0009.json.gz",
+      "bytes": 1717151,
+      "sha256": "b0a210507a32550e4323982e865128f229e27d1d347520ffc3deaa5f57c45080"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0010.json.gz",
+      "bytes": 3887228,
+      "sha256": "011d185d0330b581ce455881c6de8216d04633b9d877f1a61e5d1a47c70997cb"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0011.json.gz",
+      "bytes": 1292409,
+      "sha256": "9a7a27a15cce592ae5bc9c9078deb6538ec4b9237cf10d42fbd9b2d51baa9920"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0012.json.gz",
+      "bytes": 3269443,
+      "sha256": "550002e55893828276307d9ee7d2edf4e9322bf28e14d5c4adaa75a5dc91d8e7"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0013.json.gz",
+      "bytes": 2514473,
+      "sha256": "b187264a0ee36096f49fcc5952bae3c13a59e306d8b67b6e827dff30f64feead"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0014.json.gz",
+      "bytes": 3282738,
+      "sha256": "365413d95ac6a2117321e0264eb99d3e93d90a7ea6d340049e845ccf04c892e3"
+    },
+    {
+      "input_number": 1,
+      "file": "batch-000000-attempt-000000-episode-0015.json.gz",
+      "bytes": 1855099,
+      "sha256": "1ffed10d006366f43180a6e5a106ae2d46d6d929790ee734761f27521cb1704a"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015.json.gz",
+      "bytes": 909,
+      "sha256": "73bf1d8998729a5797dadd0f299530e02ae8021023d397bb03c454555116683b"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0000.json.gz",
+      "bytes": 1875381,
+      "sha256": "5197014c327acb61dead8fafb84745dda40d175077041e7f945f498b7eb3bc81"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0001.json.gz",
+      "bytes": 2172290,
+      "sha256": "950e07c28f0d3f4bffcc407cf8efc696bf8b05e175ff6b5ce661473577f4ca9f"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0002.json.gz",
+      "bytes": 3033036,
+      "sha256": "58e4dba33ac6fc63a218ce18040e95465c979e84b58220bfa7b770c269a6a480"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0003.json.gz",
+      "bytes": 860306,
+      "sha256": "cdfb5117045c3f8fa7cb52c3be2ee49faac47f92ab7da2b944394c9d38091ad3"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0004.json.gz",
+      "bytes": 1407049,
+      "sha256": "348837d3cea3dd029ddb00d0ba99781f6985461c8bfe709ad86afdccadc183bb"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0005.json.gz",
+      "bytes": 2578001,
+      "sha256": "332525d5b29e337fb5f5b6d1d3081d51eeb894eeb4638d498f02f13b8901c1b5"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0006.json.gz",
+      "bytes": 1727927,
+      "sha256": "5ad8afaaa5c2ee899642f5d79d61e7da8a840f63d6d2798948aa60180ed57c43"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0007.json.gz",
+      "bytes": 1246875,
+      "sha256": "9255e694e77f5d276930bc4122f4e50c9e47b0b6c221533c5591a06d8bf53899"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0008.json.gz",
+      "bytes": 2333825,
+      "sha256": "08c2a2c96b8b0c8a0d15db9c5dd406f503157c659fef7798b3836f0d00e63c15"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0009.json.gz",
+      "bytes": 2811572,
+      "sha256": "d8330b8caaff9234aabedf39ff769840c6a91d4c049dd6d2fcae104697bdc7e9"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0010.json.gz",
+      "bytes": 3613048,
+      "sha256": "81caeefd763831277d196aebfbd311edbc39cfa89f05bff43dce6e67908e164e"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0011.json.gz",
+      "bytes": 1379043,
+      "sha256": "2c33c5634e49bfe6e4833151e0a7858fb0e46ff102153d93b92deb7747daf155"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0012.json.gz",
+      "bytes": 2454607,
+      "sha256": "539c7ede6c29c23154d55fc99b1f1b9089807027fcd7890e77ca3f6b698b457e"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0013.json.gz",
+      "bytes": 4306573,
+      "sha256": "63fdc2d97f559a9c9873bbe405eb208b7bba364f883493ac1a7b41df8e6225a0"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0014.json.gz",
+      "bytes": 2322036,
+      "sha256": "a0ebf6b50e38ec197694a6f20fc57debdc00b6fb95b671b60c42d9cdcfeaf0e8"
+    },
+    {
+      "input_number": 2,
+      "file": "batch-000015-attempt-000015-episode-0015.json.gz",
+      "bytes": 2459262,
+      "sha256": "217f5b52c962d35c788aa373dff7ebeb18d53b47ca1310463c9178deab0d19b2"
+    }
+  ],
+  "episodes": 32,
+  "seeds": [
+    8012000,
+    8012001,
+    8012002,
+    8012003,
+    8012004,
+    8012005,
+    8012006,
+    8012007,
+    8012008,
+    8012009,
+    8012010,
+    8012011,
+    8012012,
+    8012013,
+    8012014,
+    8012015,
+    8012240,
+    8012241,
+    8012242,
+    8012243,
+    8012244,
+    8012245,
+    8012246,
+    8012247,
+    8012248,
+    8012249,
+    8012250,
+    8012251,
+    8012252,
+    8012253,
+    8012254,
+    8012255
+  ],
+  "administrative_episodes": [],
+  "groups": {
+    "all": {
+      "records": 11613,
+      "top1": 0.7956600361663653,
+      "float32_feature_equivalent_top1": 0.7956600361663653,
+      "cross_entropy": 1.6246015863166645,
+      "mean_teacher_probability": 0.3293630038160262,
+      "mean_teacher_equivalence_class_probability": 0.7557549066640888,
+      "fraction_teacher_has_indistinguishable_alternative": 0.5807284939292172,
+      "mean_teacher_class_size": 4.721949539309395,
+      "mean_exact_feature_ce_floor": 1.0595033078915466,
+      "ce_excess_over_exact_feature_floor": 0.565098278425118
+    },
+    "kind:measure": {
+      "records": 9722,
+      "top1": 0.7712404854968113,
+      "float32_feature_equivalent_top1": 0.7712404854968113,
+      "cross_entropy": 1.85173177345167,
+      "mean_teacher_probability": 0.24855911065756517,
+      "mean_teacher_equivalence_class_probability": 0.7578535853384785,
+      "fraction_teacher_has_indistinguishable_alternative": 0.6934787080847562,
+      "mean_teacher_class_size": 5.4455873277103475,
+      "mean_exact_feature_ce_floor": 1.2654001393823597,
+      "ce_excess_over_exact_feature_floor": 0.5863316340693104
+    },
+    "role:cover": {
+      "records": 8980,
+      "top1": 0.8111358574610245,
+      "float32_feature_equivalent_top1": 0.8111358574610245,
+      "cross_entropy": 1.812678292542587,
+      "mean_teacher_probability": 0.2529814437236376,
+      "mean_teacher_equivalence_class_probability": 0.8043579340184972,
+      "fraction_teacher_has_indistinguishable_alternative": 0.7507795100222717,
+      "mean_teacher_class_size": 5.812917594654788,
+      "mean_exact_feature_ce_floor": 1.3699577010106125,
+      "ce_excess_over_exact_feature_floor": 0.44272059153197446
+    },
+    "kind_role:measure/cover": {
+      "records": 8980,
+      "top1": 0.8111358574610245,
+      "float32_feature_equivalent_top1": 0.8111358574610245,
+      "cross_entropy": 1.812678292542587,
+      "mean_teacher_probability": 0.2529814437236376,
+      "mean_teacher_equivalence_class_probability": 0.8043579340184972,
+      "fraction_teacher_has_indistinguishable_alternative": 0.7507795100222717,
+      "mean_teacher_class_size": 5.812917594654788,
+      "mean_exact_feature_ce_floor": 1.3699577010106125,
+      "ce_excess_over_exact_feature_floor": 0.44272059153197446
+    },
+    "batch:1": {
+      "records": 6119,
+      "top1": 0.8094459879065207,
+      "float32_feature_equivalent_top1": 0.8094459879065207,
+      "cross_entropy": 1.6175874661695557,
+      "mean_teacher_probability": 0.3303899535732708,
+      "mean_teacher_equivalence_class_probability": 0.7676450386724409,
+      "fraction_teacher_has_indistinguishable_alternative": 0.5808138584736068,
+      "mean_teacher_class_size": 4.880045759110966,
+      "mean_exact_feature_ce_floor": 1.0827935679971983,
+      "ce_excess_over_exact_feature_floor": 0.5347938981723573
+    },
+    "role:localize": {
+      "records": 742,
+      "top1": 0.2884097035040431,
+      "float32_feature_equivalent_top1": 0.2884097035040431,
+      "cross_entropy": 2.32437363135405,
+      "mean_teacher_probability": 0.19503815252639195,
+      "mean_teacher_equivalence_class_probability": 0.19503815252639195,
+      "fraction_teacher_has_indistinguishable_alternative": 0.0,
+      "mean_teacher_class_size": 1.0,
+      "mean_exact_feature_ce_floor": 0.0,
+      "ce_excess_over_exact_feature_floor": 2.32437363135405
+    },
+    "kind_role:measure/localize": {
+      "records": 742,
+      "top1": 0.2884097035040431,
+      "float32_feature_equivalent_top1": 0.2884097035040431,
+      "cross_entropy": 2.32437363135405,
+      "mean_teacher_probability": 0.19503815252639195,
+      "mean_teacher_equivalence_class_probability": 0.19503815252639195,
+      "fraction_teacher_has_indistinguishable_alternative": 0.0,
+      "mean_teacher_class_size": 1.0,
+      "mean_exact_feature_ce_floor": 0.0,
+      "ce_excess_over_exact_feature_floor": 2.32437363135405
+    },
+    "kind:certified_clear": {
+      "records": 339,
+      "top1": 0.8053097345132744,
+      "float32_feature_equivalent_top1": 0.8053097345132744,
+      "cross_entropy": 1.1437655951948644,
+      "mean_teacher_probability": 0.46825484360398584,
+      "mean_teacher_equivalence_class_probability": 0.46922323571818203,
+      "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+      "mean_teacher_class_size": 1.008849557522124,
+      "mean_exact_feature_ce_floor": 0.005285426162914616,
+      "ce_excess_over_exact_feature_floor": 1.1384801690319497
+    },
+    "role:safe_clear": {
+      "records": 339,
+      "top1": 0.8053097345132744,
+      "float32_feature_equivalent_top1": 0.8053097345132744,
+      "cross_entropy": 1.1437655951948644,
+      "mean_teacher_probability": 0.46825484360398584,
+      "mean_teacher_equivalence_class_probability": 0.46922323571818203,
+      "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+      "mean_teacher_class_size": 1.008849557522124,
+      "mean_exact_feature_ce_floor": 0.005285426162914616,
+      "ce_excess_over_exact_feature_floor": 1.1384801690319497
+    },
+    "kind_role:certified_clear/safe_clear": {
+      "records": 339,
+      "top1": 0.8053097345132744,
+      "float32_feature_equivalent_top1": 0.8053097345132744,
+      "cross_entropy": 1.1437655951948644,
+      "mean_teacher_probability": 0.46825484360398584,
+      "mean_teacher_equivalence_class_probability": 0.46922323571818203,
+      "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+      "mean_teacher_class_size": 1.008849557522124,
+      "mean_exact_feature_ce_floor": 0.005285426162914616,
+      "ce_excess_over_exact_feature_floor": 1.1384801690319497
+    },
+    "kind:grid_clear": {
+      "records": 1552,
+      "top1": 0.946520618556701,
+      "float32_feature_equivalent_top1": 0.946520618556701,
+      "cross_entropy": 0.30684625233713175,
+      "mean_teacher_probability": 0.8051949081964642,
+      "mean_teacher_equivalence_class_probability": 0.8051949081964642,
+      "fraction_teacher_has_indistinguishable_alternative": 0.0,
+      "mean_teacher_class_size": 1.0,
+      "mean_exact_feature_ce_floor": 0.0,
+      "ce_excess_over_exact_feature_floor": 0.30684625233713175
+    },
+    "role:grid": {
+      "records": 1552,
+      "top1": 0.946520618556701,
+      "float32_feature_equivalent_top1": 0.946520618556701,
+      "cross_entropy": 0.30684625233713175,
+      "mean_teacher_probability": 0.8051949081964642,
+      "mean_teacher_equivalence_class_probability": 0.8051949081964642,
+      "fraction_teacher_has_indistinguishable_alternative": 0.0,
+      "mean_teacher_class_size": 1.0,
+      "mean_exact_feature_ce_floor": 0.0,
+      "ce_excess_over_exact_feature_floor": 0.30684625233713175
+    },
+    "kind_role:grid_clear/grid": {
+      "records": 1552,
+      "top1": 0.946520618556701,
+      "float32_feature_equivalent_top1": 0.946520618556701,
+      "cross_entropy": 0.30684625233713175,
+      "mean_teacher_probability": 0.8051949081964642,
+      "mean_teacher_equivalence_class_probability": 0.8051949081964642,
+      "fraction_teacher_has_indistinguishable_alternative": 0.0,
+      "mean_teacher_class_size": 1.0,
+      "mean_exact_feature_ce_floor": 0.0,
+      "ce_excess_over_exact_feature_floor": 0.30684625233713175
+    },
+    "batch:2": {
+      "records": 5494,
+      "top1": 0.7803057881325082,
+      "float32_feature_equivalent_top1": 0.7803057881325082,
+      "cross_entropy": 1.6324136360400279,
+      "mean_teacher_probability": 0.3282192277758771,
+      "mean_teacher_equivalence_class_probability": 0.7425121476981066,
+      "fraction_teacher_has_indistinguishable_alternative": 0.5806334182744812,
+      "mean_teacher_class_size": 4.545868219876229,
+      "mean_exact_feature_ce_floor": 1.0335635369438765,
+      "ce_excess_over_exact_feature_floor": 0.5988500990961515
+    }
+  },
+  "elapsed_s": 31.83505900000455,
+  "cpu_time_s": 30.203125,
+  "equivalence_definition": "exact equality of all 50 float32 candidate inputs within one decision",
+  "teacher_rollout_context": {
+    "scope": "original teacher rollouts only; not performance of the classified model",
+    "episodes": 32,
+    "all_cleared": 32,
+    "failed_clear_count": 2064,
+    "mean_actual_time_s": 8196.89212096875,
+    "mean_common_lower_bound_s": 1755.4275663425174,
+    "mean_penalized_time_s": 8196.89212096875,
+    "sum_penalized_time_over_sum_bound": 4.669456192970244,
+    "all_clear_actual_time_over_sum_bound": 4.669456192970244
+  }
+}

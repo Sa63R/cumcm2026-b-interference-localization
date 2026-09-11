@@ -1,0 +1,589 @@
+{
+  "scope": "fixed preselected trained teacher inputs only; no new rollout or independent efficacy claim",
+  "task": "q4-rl-memory-v4-20260912",
+  "run": "train-memory-v4",
+  "selected_BC_batches": [
+    1,
+    16
+  ],
+  "CLI_git_commit": "cb6d0036",
+  "CLI_sha256": "d653928bf22afd78cffeec56be91004074212eda0efd824dcded27d16c403d11",
+  "jobs": {
+    "g1_h64": {
+      "checkpoint_sha256": "77cfacfe3ff4d419b947f9eca277f80d0cebf63002d09aea0723f93f12890023",
+      "network": {
+        "architecture": "q4-micro-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 50,
+        "hidden": 64
+      },
+      "episodes": 32,
+      "teacher_decisions": 11613,
+      "all": {
+        "records": 11613,
+        "top1": 0.7956600361663653,
+        "float32_feature_equivalent_top1": 0.7956600361663653,
+        "cross_entropy": 1.6246015863166645,
+        "mean_teacher_probability": 0.3293630038160262,
+        "mean_teacher_equivalence_class_probability": 0.7557549066640888,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5807284939292172,
+        "mean_teacher_class_size": 4.721949539309395,
+        "mean_exact_feature_ce_floor": 1.0595033078915466,
+        "ce_excess_over_exact_feature_floor": 0.565098278425118
+      },
+      "by_kind": {
+        "measure": {
+          "records": 9722,
+          "top1": 0.7712404854968113,
+          "float32_feature_equivalent_top1": 0.7712404854968113,
+          "cross_entropy": 1.85173177345167,
+          "mean_teacher_probability": 0.24855911065756517,
+          "mean_teacher_equivalence_class_probability": 0.7578535853384785,
+          "fraction_teacher_has_indistinguishable_alternative": 0.6934787080847562,
+          "mean_teacher_class_size": 5.4455873277103475,
+          "mean_exact_feature_ce_floor": 1.2654001393823597,
+          "ce_excess_over_exact_feature_floor": 0.5863316340693104
+        },
+        "certified_clear": {
+          "records": 339,
+          "top1": 0.8053097345132744,
+          "float32_feature_equivalent_top1": 0.8053097345132744,
+          "cross_entropy": 1.1437655951948644,
+          "mean_teacher_probability": 0.46825484360398584,
+          "mean_teacher_equivalence_class_probability": 0.46922323571818203,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+          "mean_teacher_class_size": 1.008849557522124,
+          "mean_exact_feature_ce_floor": 0.005285426162914616,
+          "ce_excess_over_exact_feature_floor": 1.1384801690319497
+        },
+        "grid_clear": {
+          "records": 1552,
+          "top1": 0.946520618556701,
+          "float32_feature_equivalent_top1": 0.946520618556701,
+          "cross_entropy": 0.30684625233713175,
+          "mean_teacher_probability": 0.8051949081964642,
+          "mean_teacher_equivalence_class_probability": 0.8051949081964642,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 0.30684625233713175
+        }
+      },
+      "by_role": {
+        "cover": {
+          "records": 8980,
+          "top1": 0.8111358574610245,
+          "float32_feature_equivalent_top1": 0.8111358574610245,
+          "cross_entropy": 1.812678292542587,
+          "mean_teacher_probability": 0.2529814437236376,
+          "mean_teacher_equivalence_class_probability": 0.8043579340184972,
+          "fraction_teacher_has_indistinguishable_alternative": 0.7507795100222717,
+          "mean_teacher_class_size": 5.812917594654788,
+          "mean_exact_feature_ce_floor": 1.3699577010106125,
+          "ce_excess_over_exact_feature_floor": 0.44272059153197446
+        },
+        "localize": {
+          "records": 742,
+          "top1": 0.2884097035040431,
+          "float32_feature_equivalent_top1": 0.2884097035040431,
+          "cross_entropy": 2.32437363135405,
+          "mean_teacher_probability": 0.19503815252639195,
+          "mean_teacher_equivalence_class_probability": 0.19503815252639195,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 2.32437363135405
+        },
+        "safe_clear": {
+          "records": 339,
+          "top1": 0.8053097345132744,
+          "float32_feature_equivalent_top1": 0.8053097345132744,
+          "cross_entropy": 1.1437655951948644,
+          "mean_teacher_probability": 0.46825484360398584,
+          "mean_teacher_equivalence_class_probability": 0.46922323571818203,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+          "mean_teacher_class_size": 1.008849557522124,
+          "mean_exact_feature_ce_floor": 0.005285426162914616,
+          "ce_excess_over_exact_feature_floor": 1.1384801690319497
+        },
+        "grid": {
+          "records": 1552,
+          "top1": 0.946520618556701,
+          "float32_feature_equivalent_top1": 0.946520618556701,
+          "cross_entropy": 0.30684625233713175,
+          "mean_teacher_probability": 0.8051949081964642,
+          "mean_teacher_equivalence_class_probability": 0.8051949081964642,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 0.30684625233713175
+        }
+      },
+      "fixed_first_BC_batch": {
+        "records": 6119,
+        "top1": 0.8094459879065207,
+        "float32_feature_equivalent_top1": 0.8094459879065207,
+        "cross_entropy": 1.6175874661695557,
+        "mean_teacher_probability": 0.3303899535732708,
+        "mean_teacher_equivalence_class_probability": 0.7676450386724409,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5808138584736068,
+        "mean_teacher_class_size": 4.880045759110966,
+        "mean_exact_feature_ce_floor": 1.0827935679971983,
+        "ce_excess_over_exact_feature_floor": 0.5347938981723573
+      },
+      "fixed_sixteenth_BC_batch": {
+        "records": 5494,
+        "top1": 0.7803057881325082,
+        "float32_feature_equivalent_top1": 0.7803057881325082,
+        "cross_entropy": 1.6324136360400279,
+        "mean_teacher_probability": 0.3282192277758771,
+        "mean_teacher_equivalence_class_probability": 0.7425121476981066,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5806334182744812,
+        "mean_teacher_class_size": 4.545868219876229,
+        "mean_exact_feature_ce_floor": 1.0335635369438765,
+        "ce_excess_over_exact_feature_floor": 0.5988500990961515
+      },
+      "classifier_elapsed_s": 31.83505900000455,
+      "classifier_cpu_s": 30.203125,
+      "object_count": 37,
+      "downloaded_bytes": 77013196,
+      "linked_classifier_hashes_match_readback": true,
+      "result_sha256": "751dedbd6c4af69a1d2fb181ac6422bc809a2fafcdd750dd1413ccd99b2b511b"
+    },
+    "g3_h64": {
+      "checkpoint_sha256": "e399cf3a9a4e0c8865e1137fc2e8e48515e8da0975b10fb4f2105048e5126ab0",
+      "network": {
+        "architecture": "q4-g3-negative-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 58,
+        "hidden": 64
+      },
+      "episodes": 32,
+      "teacher_decisions": 11613,
+      "all": {
+        "records": 11613,
+        "top1": 0.7713769051924567,
+        "float32_feature_equivalent_top1": 0.7713769051924567,
+        "cross_entropy": 1.6261180000129885,
+        "mean_teacher_probability": 0.30731155332000476,
+        "mean_teacher_equivalence_class_probability": 0.732960587384653,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5807284939292172,
+        "mean_teacher_class_size": 4.721949539309395,
+        "mean_exact_feature_ce_floor": 1.0595033078915466,
+        "ce_excess_over_exact_feature_floor": 0.5666146921214419
+      },
+      "by_kind": {
+        "measure": {
+          "records": 9722,
+          "top1": 0.7563258588767743,
+          "float32_feature_equivalent_top1": 0.7563258588767743,
+          "cross_entropy": 1.79950085588782,
+          "mean_teacher_probability": 0.25496128987642525,
+          "mean_teacher_equivalence_class_probability": 0.7633474644823802,
+          "fraction_teacher_has_indistinguishable_alternative": 0.6934787080847562,
+          "mean_teacher_class_size": 5.4455873277103475,
+          "mean_exact_feature_ce_floor": 1.2654001393823597,
+          "ce_excess_over_exact_feature_floor": 0.5341007165054604
+        },
+        "certified_clear": {
+          "records": 339,
+          "top1": 0.7522123893805309,
+          "float32_feature_equivalent_top1": 0.7522123893805309,
+          "cross_entropy": 1.175410882138529,
+          "mean_teacher_probability": 0.42820782392151147,
+          "mean_teacher_equivalence_class_probability": 0.42977668254589524,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+          "mean_teacher_class_size": 1.008849557522124,
+          "mean_exact_feature_ce_floor": 0.005285426162914616,
+          "ce_excess_over_exact_feature_floor": 1.1701254559756145
+        },
+        "grid_clear": {
+          "records": 1552,
+          "top1": 0.8698453608247423,
+          "float32_feature_equivalent_top1": 0.8698453608247423,
+          "cross_entropy": 0.6384643841266018,
+          "mean_teacher_probability": 0.6088356676657323,
+          "mean_teacher_equivalence_class_probability": 0.6088356676657323,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 0.6384643841266018
+        }
+      },
+      "by_role": {
+        "cover": {
+          "records": 8980,
+          "top1": 0.7912026726057907,
+          "float32_feature_equivalent_top1": 0.7912026726057907,
+          "cross_entropy": 1.7797917257662248,
+          "mean_teacher_probability": 0.2566331575149461,
+          "mean_teacher_equivalence_class_probability": 0.8070262966596115,
+          "fraction_teacher_has_indistinguishable_alternative": 0.7507795100222717,
+          "mean_teacher_class_size": 5.812917594654788,
+          "mean_exact_feature_ce_floor": 1.3699577010106125,
+          "ce_excess_over_exact_feature_floor": 0.4098340247556121
+        },
+        "localize": {
+          "records": 742,
+          "top1": 0.33423180592991913,
+          "float32_feature_equivalent_top1": 0.33423180592991913,
+          "cross_entropy": 2.03802914226508,
+          "mean_teacher_probability": 0.23472763570672556,
+          "mean_teacher_equivalence_class_probability": 0.23472763570672556,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 2.03802914226508
+        },
+        "safe_clear": {
+          "records": 339,
+          "top1": 0.7522123893805309,
+          "float32_feature_equivalent_top1": 0.7522123893805309,
+          "cross_entropy": 1.175410882138529,
+          "mean_teacher_probability": 0.42820782392151147,
+          "mean_teacher_equivalence_class_probability": 0.42977668254589524,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+          "mean_teacher_class_size": 1.008849557522124,
+          "mean_exact_feature_ce_floor": 0.005285426162914616,
+          "ce_excess_over_exact_feature_floor": 1.1701254559756145
+        },
+        "grid": {
+          "records": 1552,
+          "top1": 0.8698453608247423,
+          "float32_feature_equivalent_top1": 0.8698453608247423,
+          "cross_entropy": 0.6384643841266018,
+          "mean_teacher_probability": 0.6088356676657323,
+          "mean_teacher_equivalence_class_probability": 0.6088356676657323,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 0.6384643841266018
+        }
+      },
+      "fixed_first_BC_batch": {
+        "records": 6119,
+        "top1": 0.7849321784605328,
+        "float32_feature_equivalent_top1": 0.7849321784605328,
+        "cross_entropy": 1.641727578654429,
+        "mean_teacher_probability": 0.3009324002571756,
+        "mean_teacher_equivalence_class_probability": 0.7371307783923358,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5808138584736068,
+        "mean_teacher_class_size": 4.880045759110966,
+        "mean_exact_feature_ce_floor": 1.0827935679971983,
+        "ce_excess_over_exact_feature_floor": 0.5589340106572306
+      },
+      "fixed_sixteenth_BC_batch": {
+        "records": 5494,
+        "top1": 0.7562795777211504,
+        "float32_feature_equivalent_top1": 0.7562795777211504,
+        "cross_entropy": 1.6087326684318137,
+        "mean_teacher_probability": 0.3144164018077098,
+        "mean_teacher_equivalence_class_probability": 0.7283159935047822,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5806334182744812,
+        "mean_teacher_class_size": 4.545868219876229,
+        "mean_exact_feature_ce_floor": 1.0335635369438765,
+        "ce_excess_over_exact_feature_floor": 0.5751691314879371
+      },
+      "classifier_elapsed_s": 36.092035000008764,
+      "classifier_cpu_s": 34.8125,
+      "object_count": 37,
+      "downloaded_bytes": 96145294,
+      "linked_classifier_hashes_match_readback": true,
+      "result_sha256": "cab5675a6e791c1276766c45e81473c6b22990d142838132142b620cf11d9af5"
+    },
+    "g1_h128": {
+      "checkpoint_sha256": "a3170afc53ae48d5b03618872400a424ce27d9c1110f7f2b342fdea13837688d",
+      "network": {
+        "architecture": "q4-micro-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 50,
+        "hidden": 128
+      },
+      "episodes": 32,
+      "teacher_decisions": 11613,
+      "all": {
+        "records": 11613,
+        "top1": 0.7955739257728408,
+        "float32_feature_equivalent_top1": 0.7955739257728408,
+        "cross_entropy": 1.5071492290056294,
+        "mean_teacher_probability": 0.347110223131052,
+        "mean_teacher_equivalence_class_probability": 0.7727048754271957,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5807284939292172,
+        "mean_teacher_class_size": 4.721949539309395,
+        "mean_exact_feature_ce_floor": 1.0595033078915466,
+        "ce_excess_over_exact_feature_floor": 0.4476459211140829
+      },
+      "by_kind": {
+        "measure": {
+          "records": 9722,
+          "top1": 0.7874922855379551,
+          "float32_feature_equivalent_top1": 0.7874922855379551,
+          "cross_entropy": 1.7026022751656005,
+          "mean_teacher_probability": 0.27315404085889444,
+          "mean_teacher_equivalence_class_probability": 0.7814616256049932,
+          "fraction_teacher_has_indistinguishable_alternative": 0.6934787080847562,
+          "mean_teacher_class_size": 5.4455873277103475,
+          "mean_exact_feature_ce_floor": 1.2654001393823597,
+          "ce_excess_over_exact_feature_floor": 0.4372021357832408
+        },
+        "certified_clear": {
+          "records": 339,
+          "top1": 0.6194690265486725,
+          "float32_feature_equivalent_top1": 0.6194690265486725,
+          "cross_entropy": 0.8159568652620619,
+          "mean_teacher_probability": 0.5408064204592334,
+          "mean_teacher_equivalence_class_probability": 0.5427661792012508,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+          "mean_teacher_class_size": 1.008849557522124,
+          "mean_exact_feature_ce_floor": 0.005285426162914616,
+          "ce_excess_over_exact_feature_floor": 0.8106714390991473
+        },
+        "grid_clear": {
+          "records": 1552,
+          "top1": 0.8846649484536082,
+          "float32_feature_equivalent_top1": 0.8846649484536082,
+          "cross_entropy": 0.43377274481866424,
+          "mean_teacher_probability": 0.7680760692365044,
+          "mean_teacher_equivalence_class_probability": 0.7680760692365044,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 0.43377274481866424
+        }
+      },
+      "by_role": {
+        "cover": {
+          "records": 8980,
+          "top1": 0.8148106904231626,
+          "float32_feature_equivalent_top1": 0.8148106904231626,
+          "cross_entropy": 1.7155197529751698,
+          "mean_teacher_probability": 0.26887612474412714,
+          "mean_teacher_equivalence_class_probability": 0.8191841803010951,
+          "fraction_teacher_has_indistinguishable_alternative": 0.7507795100222717,
+          "mean_teacher_class_size": 5.812917594654788,
+          "mean_exact_feature_ce_floor": 1.3699577010106125,
+          "ce_excess_over_exact_feature_floor": 0.34556205196455725
+        },
+        "localize": {
+          "records": 742,
+          "top1": 0.4568733153638814,
+          "float32_feature_equivalent_top1": 0.4568733153638814,
+          "cross_entropy": 1.5462694574702711,
+          "mean_teacher_probability": 0.3249272035416571,
+          "mean_teacher_equivalence_class_probability": 0.3249272035416571,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 1.5462694574702711
+        },
+        "safe_clear": {
+          "records": 339,
+          "top1": 0.6194690265486725,
+          "float32_feature_equivalent_top1": 0.6194690265486725,
+          "cross_entropy": 0.8159568652620619,
+          "mean_teacher_probability": 0.5408064204592334,
+          "mean_teacher_equivalence_class_probability": 0.5427661792012508,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+          "mean_teacher_class_size": 1.008849557522124,
+          "mean_exact_feature_ce_floor": 0.005285426162914616,
+          "ce_excess_over_exact_feature_floor": 0.8106714390991473
+        },
+        "grid": {
+          "records": 1552,
+          "top1": 0.8846649484536082,
+          "float32_feature_equivalent_top1": 0.8846649484536082,
+          "cross_entropy": 0.43377274481866424,
+          "mean_teacher_probability": 0.7680760692365044,
+          "mean_teacher_equivalence_class_probability": 0.7680760692365044,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 0.43377274481866424
+        }
+      },
+      "fixed_first_BC_batch": {
+        "records": 6119,
+        "top1": 0.8020918450727244,
+        "float32_feature_equivalent_top1": 0.8020918450727244,
+        "cross_entropy": 1.5311228247807627,
+        "mean_teacher_probability": 0.34072733188725035,
+        "mean_teacher_equivalence_class_probability": 0.776297549733754,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5808138584736068,
+        "mean_teacher_class_size": 4.880045759110966,
+        "mean_exact_feature_ce_floor": 1.0827935679971983,
+        "ce_excess_over_exact_feature_floor": 0.44832925678356433
+      },
+      "fixed_sixteenth_BC_batch": {
+        "records": 5494,
+        "top1": 0.7883145249362942,
+        "float32_feature_equivalent_top1": 0.7883145249362942,
+        "cross_entropy": 1.4804483858043118,
+        "mean_teacher_probability": 0.35421923505693875,
+        "mean_teacher_equivalence_class_probability": 0.7687034968174705,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5806334182744812,
+        "mean_teacher_class_size": 4.545868219876229,
+        "mean_exact_feature_ce_floor": 1.0335635369438765,
+        "ce_excess_over_exact_feature_floor": 0.4468848488604352
+      },
+      "classifier_elapsed_s": 34.26904390001437,
+      "classifier_cpu_s": 33.5,
+      "object_count": 37,
+      "downloaded_bytes": 77951582,
+      "linked_classifier_hashes_match_readback": true,
+      "result_sha256": "ed885d1fd8033c33c2dfee403b17989e2fe2bd3b397c3ecbbdb9004a19625e07"
+    },
+    "g3_h128": {
+      "checkpoint_sha256": "61d4ac338cdfc0b62fcbb0cf9c4f2baaf9f832c8d203ac8d33a0f9b308f5ce49",
+      "network": {
+        "architecture": "q4-g3-negative-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 58,
+        "hidden": 128
+      },
+      "episodes": 32,
+      "teacher_decisions": 11613,
+      "all": {
+        "records": 11613,
+        "top1": 0.8193403943856024,
+        "float32_feature_equivalent_top1": 0.8193403943856024,
+        "cross_entropy": 1.5171988878235259,
+        "mean_teacher_probability": 0.34523601528337206,
+        "mean_teacher_equivalence_class_probability": 0.7729215018576769,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5807284939292172,
+        "mean_teacher_class_size": 4.721949539309395,
+        "mean_exact_feature_ce_floor": 1.0595033078915466,
+        "ce_excess_over_exact_feature_floor": 0.4576955799319793
+      },
+      "by_kind": {
+        "measure": {
+          "records": 9722,
+          "top1": 0.8125900020571899,
+          "float32_feature_equivalent_top1": 0.8125900020571899,
+          "cross_entropy": 1.6980706321529877,
+          "mean_teacher_probability": 0.27669302931664363,
+          "mean_teacher_equivalence_class_probability": 0.7874978637577813,
+          "fraction_teacher_has_indistinguishable_alternative": 0.6934787080847562,
+          "mean_teacher_class_size": 5.4455873277103475,
+          "mean_exact_feature_ce_floor": 1.2654001393823597,
+          "ce_excess_over_exact_feature_floor": 0.43267049277062797
+        },
+        "certified_clear": {
+          "records": 339,
+          "top1": 0.8495575221238938,
+          "float32_feature_equivalent_top1": 0.8495575221238938,
+          "cross_entropy": 0.7670594186979274,
+          "mean_teacher_probability": 0.5540932718180889,
+          "mean_teacher_equivalence_class_probability": 0.5560606911415811,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+          "mean_teacher_class_size": 1.008849557522124,
+          "mean_exact_feature_ce_floor": 0.005285426162914616,
+          "ce_excess_over_exact_feature_floor": 0.7617739925350128
+        },
+        "grid_clear": {
+          "records": 1552,
+          "top1": 0.8550257731958762,
+          "float32_feature_equivalent_top1": 0.8550257731958762,
+          "cross_entropy": 0.5480379223999146,
+          "mean_teacher_probability": 0.7289810536875374,
+          "mean_teacher_equivalence_class_probability": 0.7289810536875374,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 0.5480379223999146
+        }
+      },
+      "by_role": {
+        "cover": {
+          "records": 8980,
+          "top1": 0.8452115812917594,
+          "float32_feature_equivalent_top1": 0.8452115812917594,
+          "cross_entropy": 1.7043540206724568,
+          "mean_teacher_probability": 0.2745992510491495,
+          "mean_teacher_equivalence_class_probability": 0.8276108992046886,
+          "fraction_teacher_has_indistinguishable_alternative": 0.7507795100222717,
+          "mean_teacher_class_size": 5.812917594654788,
+          "mean_exact_feature_ce_floor": 1.3699577010106125,
+          "ce_excess_over_exact_feature_floor": 0.33439631966184424
+        },
+        "localize": {
+          "records": 742,
+          "top1": 0.41778975741239893,
+          "float32_feature_equivalent_top1": 0.41778975741239893,
+          "cross_entropy": 1.6220263883459252,
+          "mean_teacher_probability": 0.30203282559979333,
+          "mean_teacher_equivalence_class_probability": 0.30203282559979333,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 1.6220263883459252
+        },
+        "safe_clear": {
+          "records": 339,
+          "top1": 0.8495575221238938,
+          "float32_feature_equivalent_top1": 0.8495575221238938,
+          "cross_entropy": 0.7670594186979274,
+          "mean_teacher_probability": 0.5540932718180889,
+          "mean_teacher_equivalence_class_probability": 0.5560606911415811,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0058997050147492625,
+          "mean_teacher_class_size": 1.008849557522124,
+          "mean_exact_feature_ce_floor": 0.005285426162914616,
+          "ce_excess_over_exact_feature_floor": 0.7617739925350128
+        },
+        "grid": {
+          "records": 1552,
+          "top1": 0.8550257731958762,
+          "float32_feature_equivalent_top1": 0.8550257731958762,
+          "cross_entropy": 0.5480379223999146,
+          "mean_teacher_probability": 0.7289810536875374,
+          "mean_teacher_equivalence_class_probability": 0.7289810536875374,
+          "fraction_teacher_has_indistinguishable_alternative": 0.0,
+          "mean_teacher_class_size": 1.0,
+          "mean_exact_feature_ce_floor": 0.0,
+          "ce_excess_over_exact_feature_floor": 0.5480379223999146
+        }
+      },
+      "fixed_first_BC_batch": {
+        "records": 6119,
+        "top1": 0.8164732799477039,
+        "float32_feature_equivalent_top1": 0.8164732799477039,
+        "cross_entropy": 1.5507475513373008,
+        "mean_teacher_probability": 0.33747586586164396,
+        "mean_teacher_equivalence_class_probability": 0.7748378498148228,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5808138584736068,
+        "mean_teacher_class_size": 4.880045759110966,
+        "mean_exact_feature_ce_floor": 1.0827935679971983,
+        "ce_excess_over_exact_feature_floor": 0.46795398334010235
+      },
+      "fixed_sixteenth_BC_batch": {
+        "records": 5494,
+        "top1": 0.822533673097925,
+        "float32_feature_equivalent_top1": 0.822533673097925,
+        "cross_entropy": 1.4798337127159924,
+        "mean_teacher_probability": 0.35387896291925747,
+        "mean_teacher_equivalence_class_probability": 0.7707871492639794,
+        "fraction_teacher_has_indistinguishable_alternative": 0.5806334182744812,
+        "mean_teacher_class_size": 4.545868219876229,
+        "mean_exact_feature_ce_floor": 1.0335635369438765,
+        "ce_excess_over_exact_feature_floor": 0.4462701757721159
+      },
+      "classifier_elapsed_s": 38.060486400005175,
+      "classifier_cpu_s": 37.046875,
+      "object_count": 37,
+      "downloaded_bytes": 97089945,
+      "linked_classifier_hashes_match_readback": true,
+      "result_sha256": "682d878f9950101d1909562321701e0de4e7324abb2b017cee29fb812d964712"
+    }
+  },
+  "teacher_rollout_context": {
+    "scope": "original teacher rollouts only; not performance of the classified model",
+    "episodes": 32,
+    "all_cleared": 32,
+    "failed_clear_count": 2064,
+    "mean_actual_time_s": 8196.89212096875,
+    "mean_common_lower_bound_s": 1755.4275663425174,
+    "mean_penalized_time_s": 8196.89212096875,
+    "sum_penalized_time_over_sum_bound": 4.669456192970244,
+    "all_clear_actual_time_over_sum_bound": 4.669456192970244
+  },
+  "total_downloaded_bytes": 348200017
+}
