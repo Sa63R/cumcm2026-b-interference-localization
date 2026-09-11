@@ -12,7 +12,6 @@ from planning.coverage import clearance_grid
 from simulator_client.rules import CHANNELS, MAX_SOURCES, NEAR_RADIUS_M
 from simulator_client.state import Position
 from strategies.search import _Search, _StopSearch
-from strategies.q4_range_pruning import region_distance_lower
 from .controller import (Q4RLSearch, GLOBAL_FEATURE_NAMES as V1_GLOBAL_NAMES,
                          CANDIDATE_FEATURE_NAMES as V1_CANDIDATE_NAMES)
 
@@ -65,8 +64,13 @@ class GridState:
 
 
 class Q4MicroSearch(Q4RLSearch):
-    def __init__(self, client, policy=None, **kwargs):
+    def __init__(self, client, policy=None, *, decision_cache=True, **kwargs):
+        if type(decision_cache) is not bool:
+            raise ValueError("decision_cache must be a boolean")
         super().__init__(client, policy=policy, **kwargs)
+        self.decision_cache = decision_cache
+        self._decision_cache = None
+        self._decision_cache_token = None
         self._in_fallback = False
         self.grid_states = {}
         self.local_measurements = {c: 0 for c in CHANNELS}
@@ -97,7 +101,39 @@ class Q4MicroSearch(Q4RLSearch):
             fallback_scope="Frozen R8 resolver for unstarted grids; resume full saved grid for already started grids",
             repetition_rule="Fresh real measure coordinates only, inherited v1 search-space restriction",
             heuristic_probe_limit=self.max_active_probes,
+            micro_decision_cache=decision_cache,
         )
+
+    def _public_cache_token(self):
+        state = self.client.state
+        return self.actions, state.position, state.current_channel, state.virtual_time_s
+
+    def _invalidate_decision_cache(self):
+        self._decision_cache = None
+        self._decision_cache_token = None
+
+    def _begin_decision_cache(self):
+        self._invalidate_decision_cache()
+        if self.decision_cache:
+            self._decision_cache = {"safe_points": {}, "region_distance": {}}
+            self._decision_cache_token = self._public_cache_token()
+
+    def _active_decision_cache(self):
+        # Every real action invalidates before and after observations are consumed.
+        # Also reject a directly updated public position/channel/billing state.
+        if self._decision_cache is not None and self._decision_cache_token != self._public_cache_token():
+            self._invalidate_decision_cache()
+        return self._decision_cache
+
+    def _region_distance_lower(self, point, channel):
+        cache = self._active_decision_cache()
+        if cache is None:
+            return super()._region_distance_lower(point, channel)
+        key = point, channel
+        distances = cache["region_distance"]
+        if key not in distances:
+            distances[key] = super()._region_distance_lower(point, channel)
+        return distances[key]
 
     def _maximum_virtual(self):
         maximum = self.client.state.max_virtual_duration_s
@@ -123,14 +159,18 @@ class Q4MicroSearch(Q4RLSearch):
             raise _StopSearch("virtual_budget")
 
     def _perform(self, action, position, channel, phase):
-        if self._in_fallback:
-            # Keep R8's actual clear-before-probe behavior only in the named tail.
-            return super()._perform(action, position, channel, phase)
+        self._invalidate_decision_cache()
         try:
-            # Deliberately bypass R8 interception: one request, one observation.
-            return _Search._perform(self, action, position, channel, phase)
+            if self._in_fallback:
+                # Keep R8's actual clear-before-probe behavior only in the named tail.
+                return super()._perform(action, position, channel, phase)
+            try:
+                # Deliberately bypass R8 interception: one request, one observation.
+                return _Search._perform(self, action, position, channel, phase)
+            finally:
+                self._consume_actual_history()
         finally:
-            self._consume_actual_history()
+            self._invalidate_decision_cache()
 
     def _can_measure(self, point, channel):
         return (super()._can_measure(point, channel)
@@ -160,6 +200,15 @@ class Q4MicroSearch(Q4RLSearch):
                     guard_m=GEOMETRY_GUARD_M)
 
     def _safe_points(self, channel):
+        cache = self._active_decision_cache()
+        if cache is None:
+            return self._compute_safe_points(channel)
+        safe = cache["safe_points"]
+        if channel not in safe:
+            safe[channel] = self._compute_safe_points(channel)
+        return safe[channel]
+
+    def _compute_safe_points(self, channel):
         if channel in self.near_points:
             proposed = [self.near_points[channel]]
         else:
@@ -216,6 +265,14 @@ class Q4MicroSearch(Q4RLSearch):
                                     remaining[len(remaining)//3], remaining[2*len(remaining)//3])))
 
     def _candidates(self):
+        self._begin_decision_cache()
+        try:
+            return self._build_candidates()
+        except BaseException:
+            self._invalidate_decision_cache()
+            raise
+
+    def _build_candidates(self):
         discovery_done = self._refresh_certificate()
         result, seen = [], set()
 
@@ -266,6 +323,15 @@ class Q4MicroSearch(Q4RLSearch):
                 sine, cosine, observation.error_deg/90.]
 
     def _features(self, candidates):
+        if self._active_decision_cache() is None:
+            self._begin_decision_cache()
+        try:
+            return self._build_features(candidates)
+        finally:
+            # Cached geometry never survives into policy selection or an action.
+            self._invalidate_decision_cache()
+
+    def _build_features(self, candidates):
         # Reuse v1 public summaries; replace its service bit with a clear bit.
         global_features, rows = super()._features(candidates)
         maximum = self._maximum_virtual()
@@ -291,7 +357,7 @@ class Q4MicroSearch(Q4RLSearch):
         for candidate, row in zip(candidates, rows):
             point, channel = candidate.point, candidate.channel
             center, vertices, support, first, latest, positive, degenerate = geometry[channel]
-            lower = region_distance_lower(point, vertices) if vertices else 0.
+            lower = self._region_distance_lower(point, channel) if vertices else 0.
             upper = max((math.hypot(point.x-x,point.y-y) for x,y in vertices), default=0.)
             state = self.grid_states.get(channel)
             row[1] = float(candidate.kind != "measure")
@@ -341,6 +407,7 @@ class Q4MicroSearch(Q4RLSearch):
         return min(covers or indexed,key=rank)[0]
 
     def _execute_candidate(self, candidate):
+        self._invalidate_decision_cache()
         before_index, before_time = len(self.report.action_history), self.client.state.virtual_time_s
         event = dict(decision=self.report.learning["decisions"], kind=candidate.kind,
             position=[candidate.point.x,candidate.point.y], channel=candidate.channel,
@@ -402,6 +469,7 @@ class Q4MicroSearch(Q4RLSearch):
         return False
 
     def _finish_with_baseline(self, reason):
+        self._invalidate_decision_cache()
         self._in_fallback = True
         try:
             return super()._finish_with_baseline(reason)

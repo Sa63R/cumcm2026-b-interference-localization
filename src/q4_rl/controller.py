@@ -178,9 +178,12 @@ class Q4RLSearch(Q4ClearBeforeProbe):
             return False
         region = self.regions.get(channel)
         if channel in self.detected and region is not None and region.vertices:
-            if region_distance_lower(point, region.vertices) > 1500. + RANGE_MARGIN_M:
+            if self._region_distance_lower(point, channel) > 1500. + RANGE_MARGIN_M:
                 return False
         return True
+
+    def _region_distance_lower(self, point, channel):
+        return region_distance_lower(point, self.regions[channel].vertices)
 
     def _candidates(self):
         discovery_done = self._refresh_certificate()
