@@ -1,0 +1,180 @@
+{
+  "task": "q4-rl-memory-v4-eval-20260912",
+  "source_archive_sha256": "e7da2c7d98bad3eb65c35c02afe20c3ffc89fa9994c55a8b316c01ba99791c69",
+  "source_manifest_sha256": "bbb0f9804bbf953f5be1883888ea7dadaa8a051d3ef911786b5cc44292bfba7a",
+  "base_git_commit": "57e02aacc933ef600df588ab81141399354261e6",
+  "r9_qualification_commit": "93922e6f56685ed41fdc7051391bd29a28f6b44c",
+  "identical_common_R9_files": 32,
+  "only_added_production_files": {
+    "src/planning/joint_visibility_region.py": "c2df945c3a3dc295827fd7afbbb78793b43184cf61e1d1070f47020293953d7a",
+    "src/strategies/q4_joint_visibility.py": "eb922aae8052b48c9d54cd4b269a088498a3feeddbae254344b6ed73e31ff0e6"
+  },
+  "plan_sha256": "cc4ec421fc9c9f86796cbfc2d6768bfe0c9680f8e97a10401702a5a722ba61a4",
+  "models": [
+    {
+      "alias": "g1_h64_bc512",
+      "sha256": "77cfacfe3ff4d419b947f9eca277f80d0cebf63002d09aea0723f93f12890023",
+      "network": {
+        "architecture": "q4-micro-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 50,
+        "hidden": 64
+      },
+      "strict_loader_passed": true
+    },
+    {
+      "alias": "g3_h64_bc512",
+      "sha256": "e399cf3a9a4e0c8865e1137fc2e8e48515e8da0975b10fb4f2105048e5126ab0",
+      "network": {
+        "architecture": "q4-g3-negative-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 58,
+        "hidden": 64
+      },
+      "strict_loader_passed": true
+    },
+    {
+      "alias": "g1_h128_bc512",
+      "sha256": "a3170afc53ae48d5b03618872400a424ce27d9c1110f7f2b342fdea13837688d",
+      "network": {
+        "architecture": "q4-micro-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 50,
+        "hidden": 128
+      },
+      "strict_loader_passed": true
+    },
+    {
+      "alias": "g3_h128_bc512",
+      "sha256": "61d4ac338cdfc0b62fcbb0cf9c4f2baaf9f832c8d203ac8d33a0f9b308f5ce49",
+      "network": {
+        "architecture": "q4-g3-negative-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 58,
+        "hidden": 128
+      },
+      "strict_loader_passed": true
+    },
+    {
+      "alias": "legacy_ppo128",
+      "sha256": "1c97401c239b20444da420614bdfa820752b5cf0d0b564a56b15df3f53827218",
+      "network": {
+        "architecture": "q4-candidate-mlp-v1",
+        "global_dim": 10,
+        "candidate_dim": 16,
+        "hidden": 64
+      },
+      "strict_loader_passed": true
+    },
+    {
+      "alias": "macro_v2_ppo512",
+      "sha256": "3e830b070d5247e3573b3e59b7dfc32d54da101c5aab05cd4effb0dec2b354e8",
+      "network": {
+        "architecture": "q4-candidate-mlp-v1",
+        "global_dim": 10,
+        "candidate_dim": 16,
+        "hidden": 64
+      },
+      "strict_loader_passed": true
+    },
+    {
+      "alias": "g1_h64_ppo512",
+      "sha256": "18e06c8c659a1fcbb9608f88f2160892e325db84a324df8dc0413eb763bf83a6",
+      "network": {
+        "architecture": "q4-micro-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 50,
+        "hidden": 64
+      },
+      "strict_loader_passed": true
+    },
+    {
+      "alias": "g3_h64_ppo512",
+      "sha256": "ffe55c86799b317cc306867795ca8a1a3c08d91905080a51953c56b8a6d05c0e",
+      "network": {
+        "architecture": "q4-g3-negative-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 58,
+        "hidden": 64
+      },
+      "strict_loader_passed": true
+    },
+    {
+      "alias": "g1_h128_ppo512",
+      "sha256": "952ea2c9aa943c98f1394e600155ae337d5b7f882061dc69aad634019ae91082",
+      "network": {
+        "architecture": "q4-micro-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 50,
+        "hidden": 128
+      },
+      "strict_loader_passed": true
+    },
+    {
+      "alias": "g3_h128_ppo512",
+      "sha256": "1c264e455d4760ba802f78d8ed4f658941f4eeda4752d26b03865c88f28e6d7e",
+      "network": {
+        "architecture": "q4-g3-negative-candidate-mlp-v1",
+        "global_dim": 13,
+        "candidate_dim": 58,
+        "hidden": 128
+      },
+      "strict_loader_passed": true
+    }
+  ],
+  "strict_model_loading_cpu_cores": 1,
+  "free_bytes_before": 33886830592,
+  "free_bytes_after": 33884209152,
+  "minimum_free_gib": 20,
+  "preflight": {
+    "preflight_passed": true,
+    "launched": false,
+    "panels": [
+      {
+        "run": "eval-memory-v4-fixed",
+        "start": 8101000,
+        "count": 32,
+        "families": [
+          "random",
+          "minimum_radius",
+          "boundary_outward",
+          "cluster",
+          "positive_error",
+          "negative_error",
+          "alternating_error",
+          "narrow_strip"
+        ],
+        "scenarios": 512,
+        "maximum_wall_seconds": 10800
+      },
+      {
+        "run": "eval-memory-v4-fresh",
+        "start": 8112000,
+        "count": 64,
+        "families": [
+          "random"
+        ],
+        "scenarios": 128,
+        "maximum_wall_seconds": 3600
+      }
+    ],
+    "arms": [
+      "r8",
+      "micro_rule512",
+      "legacy_ppo128",
+      "macro_v2_ppo512",
+      "g1_h64_bc512",
+      "g1_h64_ppo512",
+      "g1_h128_bc512",
+      "g1_h128_ppo512",
+      "g3_h64_bc512",
+      "g3_h64_ppo512",
+      "g3_h128_bc512",
+      "g3_h128_ppo512",
+      "r9_probe"
+    ]
+  },
+  "evaluation_started": false,
+  "training_started": false,
+  "next_action": "Await root's B raw eligibility audit and launch review; explicit --launch required"
+}

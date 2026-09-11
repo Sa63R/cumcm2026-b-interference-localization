@@ -1,0 +1,204 @@
+{
+  "r8": {
+    "entrypoint": "strategies.q4_clear_before_probe:run_q4_clear_before_probe",
+    "kwargs": {
+      "config": "center_once",
+      "max_expansions": 200
+    }
+  },
+  "micro_rule512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    }
+  },
+  "legacy_ppo128": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 128
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/legacy_ppo128.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/legacy_ppo128.pt"
+      }
+    }
+  },
+  "macro_v2_ppo512": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/macro_v2_ppo512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/macro_v2_ppo512.pt"
+      }
+    }
+  },
+  "g1_h64_bc512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/g1_h64_bc512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/g1_h64_bc512.pt"
+      }
+    }
+  },
+  "g1_h64_ppo512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/g1_h64_ppo512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/g1_h64_ppo512.pt"
+      }
+    }
+  },
+  "g1_h128_bc512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/g1_h128_bc512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/g1_h128_bc512.pt"
+      }
+    }
+  },
+  "g1_h128_ppo512": {
+    "entrypoint": "q4_rl.micro_controller:run_q4_micro",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/g1_h128_ppo512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.micro_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/g1_h128_ppo512.pt"
+      }
+    }
+  },
+  "g3_h64_bc512": {
+    "entrypoint": "q4_rl.memory_controller:run_q4_memory",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/g3_h64_bc512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.memory_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/g3_h64_bc512.pt"
+      }
+    }
+  },
+  "g3_h64_ppo512": {
+    "entrypoint": "q4_rl.memory_controller:run_q4_memory",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/g3_h64_ppo512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.memory_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/g3_h64_ppo512.pt"
+      }
+    }
+  },
+  "g3_h128_bc512": {
+    "entrypoint": "q4_rl.memory_controller:run_q4_memory",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/g3_h128_bc512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.memory_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/g3_h128_bc512.pt"
+      }
+    }
+  },
+  "g3_h128_ppo512": {
+    "entrypoint": "q4_rl.memory_controller:run_q4_memory",
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "models/eval-memory-v4/g3_h128_ppo512.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.memory_network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "models/eval-memory-v4/g3_h128_ppo512.pt"
+      }
+    }
+  },
+  "r9_probe": {
+    "entrypoint": "strategies.q4_joint_visibility:run_q4_joint_visibility",
+    "kwargs": {
+      "config": "probe",
+      "max_expansions": 200
+    }
+  }
+}
