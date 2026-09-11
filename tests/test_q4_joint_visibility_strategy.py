@@ -50,7 +50,8 @@ def helper(monkeypatch, fraction=0.3, fallback=False, anchor_min_x=False):
             vertices = tuple(vertices[first:])+tuple(vertices[:first])
         outer = tuple(vertices) if fallback else shrink(vertices, fraction)
         return outer, {"passed": True, "status": "fallback" if fallback else "outer_refined",
-                       "test_only": True, "output_vertices": outer}
+                       "test_only": True, "output_vertices": outer,
+                       "old_vertices_excluded": [0] if fraction < 1 and not fallback else []}
     monkeypatch.setattr("strategies.q4_joint_visibility.joint_visibility_outer", fake)
     return calls
 
@@ -88,7 +89,7 @@ def test_aux_probe_uses_same_five_point_family_without_expanding_r8_predicate(mo
 def test_aux_positive_updates_are_real_and_negative_does_not_recompute_helper(monkeypatch):
     policy, client = make(monkeypatch)
     prime(policy, client)
-    calls = helper(monkeypatch, 1.)
+    calls = helper(monkeypatch, .9)
     context = policy._start_joint(1)
     policy._joint_context = context
     canonical = policy.regions[1]
@@ -105,16 +106,45 @@ def test_aux_positive_updates_are_real_and_negative_does_not_recompute_helper(mo
     assert tuple(aux.vertices) != before and not policy.joint_contradictions
 
 
-def test_r8_local_success_exception_is_still_handled_when_aux_center_unchanged(monkeypatch):
+def test_r8_local_success_preserved_when_helper_has_no_boundary_reduction(monkeypatch):
     policy, client = make(monkeypatch)
     prime(policy, client)
     helper(monkeypatch, 1.)
     assert policy._resolve(1)
-    probe = policy.joint_probes[0]
-    assert probe["r8_clear_before_measure"] and probe["status"] == "cleared_by_r8"
-    assert not probe["executed_measure"]
+    assert not policy.joint_probes
+    assert policy.joint_resolvers[0]["skip_reason"] == "no_boundary_reduction"
     assert policy.speculative_attempted == {1} and policy.clear_before_probe_log[0]["status"] == "cleared"
     assert policy._probe_resolving_channel is None and policy._joint_context is None
+
+
+@pytest.mark.parametrize("status", ["real_unchanged", "outer_refined"])
+def test_no_boundary_reduction_keeps_actual_r8_and_probe_trace_identical(monkeypatch, status):
+    policy, client = make(monkeypatch)
+    baseline_client = Replies()
+    baseline = Q4ClearBeforeProbe(baseline_client, 20000, 6, max_expansions=0)
+    prime(policy, client)
+    prime(baseline, baseline_client)
+    if status == "outer_refined":
+        def only_interior(vertices, positives, negatives):
+            # Controller isolation: outward roundoff may shift a circle even
+            # though the exact retained hull excludes no old boundary vertex.
+            outer = tuple((x+1e-10, y) for x, y in vertices)
+            return outer, dict(passed=True, status="outer_refined", test_only=True,
+                               old_vertices_excluded=[], output_vertices=outer)
+        monkeypatch.setattr("strategies.q4_joint_visibility.joint_visibility_outer", only_interior)
+    for target in (client, baseline_client):
+        target.clear_replies = ["no_target_in_range", "success"]
+        target.measure_replies = [("near", None)]
+    assert policy._resolve(1) and baseline._resolve(1)
+    event = policy.joint_resolvers[0]
+    assert event["skip_reason"] == "no_boundary_reduction" and event["initial_aux_vertices"] is None
+    if status == "real_unchanged":
+        assert event["helper_evidence"]["status"] == "unchanged"
+    assert client.calls == baseline_client.calls
+    assert policy.report.action_history == baseline.report.action_history
+    assert policy.regions[1].__dict__ == baseline.regions[1].__dict__
+    assert policy.speculative_attempted == baseline.speculative_attempted == {1}
+    assert not policy.joint_probes and not policy.joint_grids and not policy.joint_terminal_clears
 
 
 def test_fallback_helper_preserves_original_r8_clear_path(monkeypatch):

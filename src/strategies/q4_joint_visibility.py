@@ -69,6 +69,8 @@ class Q4JointVisibility(Q4ClearBeforeProbe):
             event["helper_evidence"] = evidence
             if not evidence.get("passed") or evidence["status"] == "fallback":
                 event["skip_reason"] = "helper_fallback"
+            elif evidence["status"] == "unchanged" or not evidence["old_vertices_excluded"]:
+                event["skip_reason"] = "no_boundary_reduction"
             else:
                 aux = region.copy()
                 aux.vertices = tuple(tuple(v) for v in outer)
