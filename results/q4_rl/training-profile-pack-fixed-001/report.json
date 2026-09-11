@@ -1,0 +1,2129 @@
+{
+  "schema": "q4-training-offline-microbenchmark-v1",
+  "affinity": {
+    "method": "SetProcessAffinityMask",
+    "logical_cpus": 1
+  },
+  "source": {
+    "name": "batch-000000.json.gz",
+    "sha256": "6320dbf1e5260db865e863deffb4ec27882a2365d6fa8c9ba8f998e262b8da81",
+    "bytes": 2822994,
+    "decompressed_bytes": 106554238,
+    "episodes": 16
+  },
+  "script_sha256": "7ccd2a9ed0ea705ba463c84268240df0381b5b1ed90674a62e5d596888e07b19",
+  "gzip_read": {
+    "wall_s": 0.13067109999246895,
+    "cpu_s": 0.125
+  },
+  "json_parse": {
+    "wall_s": 1.684604499998386,
+    "cpu_s": 1.609375
+  },
+  "code_sha256": {
+    "src/q4_rl/train.py": "797f3ff5485f092c496d1f4afebad5bfc09280a58329ad0919575636a817e6c6",
+    "src/q4_rl/network.py": "890a828acb2712f4352f475902ab0e6db93983a21602bbeb5a5a96fcc976d1aa"
+  },
+  "compression": [],
+  "scope": "one local fixed-order microbenchmark; no new scene or retained model update; not strategy evidence",
+  "imitation_profile": {
+    "wall_s": 4.667780799994944,
+    "cpu_s": 3.984375,
+    "settings": {
+      "epochs": 1,
+      "minibatch_size": 128
+    },
+    "result": {
+      "updates": 16,
+      "records": 2048,
+      "imitation_loss": 5.717947006225586
+    },
+    "checkpoint": {
+      "name": "checkpoint-000001.pt",
+      "sha256": "44f68be12b4b19b16cf035e9f4e704bfa544e46e88135a2ab155f506293b3a98"
+    },
+    "profile_total_exclusive_s": 4.666149699999997,
+    "functions_by_cumulative": [
+      {
+        "file": "src/q4_rl/train.py",
+        "line": 269,
+        "function": "imitation_update",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 0.0183419,
+        "cumulative_s": 4.666130300000001
+      },
+      {
+        "file": "_tensor.py",
+        "line": 570,
+        "function": "backward",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00011850000000000001,
+        "cumulative_s": 1.9350687000000002
+      },
+      {
+        "file": "__init__.py",
+        "line": 243,
+        "function": "backward",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0003704,
+        "cumulative_s": 1.9349447000000002
+      },
+      {
+        "file": "graph.py",
+        "line": 832,
+        "function": "_engine_run_backward",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00019160000000000002,
+        "cumulative_s": 1.9330886
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'run_backward' of 'torch._C._EngineBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 1.9328713000000002,
+        "cumulative_s": 1.9328713000000002
+      },
+      {
+        "file": "module.py",
+        "line": 1771,
+        "function": "_wrapped_call_impl",
+        "primitive_calls": 16,
+        "total_calls": 272,
+        "exclusive_s": 0.0013603,
+        "cumulative_s": 1.4663202000000002
+      },
+      {
+        "file": "module.py",
+        "line": 1779,
+        "function": "_call_impl",
+        "primitive_calls": 16,
+        "total_calls": 272,
+        "exclusive_s": 0.0022367000000000003,
+        "cumulative_s": 1.4661747
+      },
+      {
+        "file": "src/q4_rl/network.py",
+        "line": 64,
+        "function": "forward",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0762477,
+        "cumulative_s": 1.4657815
+      },
+      {
+        "file": "src/q4_rl/train.py",
+        "line": 173,
+        "function": "_tensor_batch",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0001639,
+        "cumulative_s": 1.1491734
+      },
+      {
+        "file": "src/q4_rl/network.py",
+        "line": 83,
+        "function": "pack_observations",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.1254197,
+        "cumulative_s": 1.1490095
+      },
+      {
+        "file": "container.py",
+        "line": 245,
+        "function": "forward",
+        "primitive_calls": 64,
+        "total_calls": 64,
+        "exclusive_s": 0.0319798,
+        "cumulative_s": 1.1150949
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.tensor>",
+        "primitive_calls": 4128,
+        "total_calls": 4128,
+        "exclusive_s": 0.5908564000000001,
+        "cumulative_s": 0.5908564000000001
+      },
+      {
+        "file": "linear.py",
+        "line": 130,
+        "function": "forward",
+        "primitive_calls": 112,
+        "total_calls": 112,
+        "exclusive_s": 0.0004873,
+        "cumulative_s": 0.5641066
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._nn.linear>",
+        "primitive_calls": 112,
+        "total_calls": 112,
+        "exclusive_s": 0.5633782,
+        "cumulative_s": 0.5633782
+      },
+      {
+        "file": "activation.py",
+        "line": 426,
+        "function": "forward",
+        "primitive_calls": 80,
+        "total_calls": 80,
+        "exclusive_s": 0.00030010000000000003,
+        "cumulative_s": 0.5150763
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.tanh>",
+        "primitive_calls": 80,
+        "total_calls": 80,
+        "exclusive_s": 0.5147762,
+        "cumulative_s": 0.5147762
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.any>",
+        "primitive_calls": 2080,
+        "total_calls": 2080,
+        "exclusive_s": 0.059734800000000005,
+        "cumulative_s": 0.2119984
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.isfinite>",
+        "primitive_calls": 4096,
+        "total_calls": 4096,
+        "exclusive_s": 0.1631021,
+        "cumulative_s": 0.1631021
+      },
+      {
+        "file": "src/q4_rl/network.py",
+        "line": 94,
+        "function": "<genexpr>",
+        "primitive_calls": 652539,
+        "total_calls": 652539,
+        "exclusive_s": 0.1047266,
+        "cumulative_s": 0.1509528
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.cat>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.12017040000000001,
+        "cumulative_s": 0.12017040000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'masked_fill' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.07859450000000001,
+        "cumulative_s": 0.07859450000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.len>",
+        "primitive_calls": 661076,
+        "total_calls": 661076,
+        "exclusive_s": 0.048549600000000005,
+        "cumulative_s": 0.048549600000000005
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'all' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 4112,
+        "total_calls": 4112,
+        "exclusive_s": 0.047621000000000004,
+        "cumulative_s": 0.047621000000000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'sum' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0391508,
+        "cumulative_s": 0.0391508
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'amax' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0277915,
+        "cumulative_s": 0.0277915
+      },
+      {
+        "file": "clip_grad.py",
+        "line": 41,
+        "function": "_no_grad_wrapper",
+        "primitive_calls": 16,
+        "total_calls": 48,
+        "exclusive_s": 0.0008005,
+        "cumulative_s": 0.027257
+      },
+      {
+        "file": "clip_grad.py",
+        "line": 185,
+        "function": "clip_grad_norm_",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0005929,
+        "cumulative_s": 0.0266306
+      },
+      {
+        "file": "optimizer.py",
+        "line": 497,
+        "function": "wrapper",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0004969,
+        "cumulative_s": 0.0223579
+      },
+      {
+        "file": "optimizer.py",
+        "line": 62,
+        "function": "_use_grad",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0003955,
+        "cumulative_s": 0.0191137
+      },
+      {
+        "file": "adam.py",
+        "line": 213,
+        "function": "step",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00034930000000000003,
+        "cumulative_s": 0.018617500000000002
+      },
+      {
+        "file": "optimizer.py",
+        "line": 133,
+        "function": "maybe_fallback",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 6.57e-05,
+        "cumulative_s": 0.01675
+      },
+      {
+        "file": "adam.py",
+        "line": 885,
+        "function": "adam",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0001596,
+        "cumulative_s": 0.0166751
+      },
+      {
+        "file": "adam.py",
+        "line": 345,
+        "function": "_single_tensor_adam",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0046612,
+        "cumulative_s": 0.0161018
+      },
+      {
+        "file": "functional.py",
+        "line": 3375,
+        "function": "cross_entropy",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 9.16e-05,
+        "cumulative_s": 0.014298300000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._nn.cross_entropy_loss>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0141866,
+        "cumulative_s": 0.0141866
+      },
+      {
+        "file": "clip_grad.py",
+        "line": 49,
+        "function": "_get_total_norm",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00038760000000000004,
+        "cumulative_s": 0.013908
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._foreach_norm>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.010303600000000001,
+        "cumulative_s": 0.010303600000000001
+      },
+      {
+        "file": "clip_grad.py",
+        "line": 120,
+        "function": "_clip_grads_with_norm_",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0009898,
+        "cumulative_s": 0.009229300000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.zeros>",
+        "primitive_calls": 48,
+        "total_calls": 48,
+        "exclusive_s": 0.009066000000000001,
+        "cumulative_s": 0.009066000000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.randperm>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 0.0085138,
+        "cumulative_s": 0.0085138
+      },
+      {
+        "file": "_compile.py",
+        "line": 41,
+        "function": "inner",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0001043,
+        "cumulative_s": 0.008188
+      },
+      {
+        "file": "eval_frame.py",
+        "line": 1039,
+        "function": "_fn",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0001156,
+        "cumulative_s": 0.0080167
+      },
+      {
+        "file": "optimizer.py",
+        "line": 997,
+        "function": "zero_grad",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0010407,
+        "cumulative_s": 0.007800700000000001
+      },
+      {
+        "file": "_tensor.py",
+        "line": 1015,
+        "function": "split",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 0.00018150000000000002,
+        "cumulative_s": 0.0077511
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.split>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 0.007497800000000001,
+        "cumulative_s": 0.007497800000000001
+      },
+      {
+        "file": "profiler.py",
+        "line": 789,
+        "function": "__exit__",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0003774,
+        "cumulative_s": 0.0046476
+      },
+      {
+        "file": "_ops.py",
+        "line": 1068,
+        "function": "__call__",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 8.960000000000001e-05,
+        "cumulative_s": 0.0042509
+      },
+      {
+        "file": "profiler.py",
+        "line": 783,
+        "function": "__enter__",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0004597,
+        "cumulative_s": 0.0042465
+      },
+      {
+        "file": "functional.py",
+        "line": 3598,
+        "function": "smooth_l1_loss",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0001371,
+        "cumulative_s": 0.0039613
+      },
+      {
+        "file": "_ops.py",
+        "line": 1244,
+        "function": "__call__",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 4.55e-05,
+        "cumulative_s": 0.0037868000000000003
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._ops.profiler._record_function_enter_new>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0037413000000000004,
+        "cumulative_s": 0.0037413000000000004
+      },
+      {
+        "file": "_tensor.py",
+        "line": 38,
+        "function": "wrapped",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 5.95e-05,
+        "cumulative_s": 0.0034435000000000004
+      },
+      {
+        "file": "_tensor.py",
+        "line": 1077,
+        "function": "__rdiv__",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0005637,
+        "cumulative_s": 0.0033751000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'squeeze' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0032237000000000003,
+        "cumulative_s": 0.0032237000000000003
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'sqrt' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0030778000000000003,
+        "cumulative_s": 0.0030778000000000003
+      },
+      {
+        "file": "_tensor.py",
+        "line": 1161,
+        "function": "__iter__",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0001011,
+        "cumulative_s": 0.0030556000000000003
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'reciprocal' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0028114000000000004,
+        "cumulative_s": 0.0028114000000000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'unbind' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0026176000000000003,
+        "cumulative_s": 0.0026176000000000003
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._nn.smooth_l1_loss>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0025688,
+        "cumulative_s": 0.0025688
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._ops.profiler.>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0025369000000000004,
+        "cumulative_s": 0.0025369000000000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'any' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0024757,
+        "cumulative_s": 0.0024757
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._get_tracing_state>",
+        "primitive_calls": 288,
+        "total_calls": 288,
+        "exclusive_s": 0.0023502,
+        "cumulative_s": 0.0023502
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._foreach_mul_>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0021385,
+        "cumulative_s": 0.0021385
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.clamp>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0019630000000000003,
+        "cumulative_s": 0.0019630000000000003
+      },
+      {
+        "file": "module.py",
+        "line": 2656,
+        "function": "parameters",
+        "primitive_calls": 240,
+        "total_calls": 240,
+        "exclusive_s": 9.850000000000001e-05,
+        "cumulative_s": 0.0019613
+      },
+      {
+        "file": "module.py",
+        "line": 2681,
+        "function": "named_parameters",
+        "primitive_calls": 240,
+        "total_calls": 240,
+        "exclusive_s": 0.0001121,
+        "cumulative_s": 0.0018628000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'lerp_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0018032,
+        "cumulative_s": 0.0018032
+      },
+      {
+        "file": "module.py",
+        "line": 2636,
+        "function": "_named_members",
+        "primitive_calls": 240,
+        "total_calls": 240,
+        "exclusive_s": 0.0004967,
+        "cumulative_s": 0.0017507000000000002
+      },
+      {
+        "file": "_ops.py",
+        "line": 1128,
+        "function": "_must_dispatch_in_python",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 9.44e-05,
+        "cumulative_s": 0.0016244
+      },
+      {
+        "file": "_pytree.py",
+        "line": 1630,
+        "function": "tree_any",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.00010200000000000001,
+        "cumulative_s": 0.0015300000000000001
+      },
+      {
+        "file": "_contextlib.py",
+        "line": 117,
+        "function": "decorate_context",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 9.87e-05,
+        "cumulative_s": 0.0014962
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'add_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0014658000000000002,
+        "cumulative_s": 0.0014658000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'mul_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0014525,
+        "cumulative_s": 0.0014525
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'addcmul_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0014138,
+        "cumulative_s": 0.0014138
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.max>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0002773,
+        "cumulative_s": 0.0014033000000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'addcdiv_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0013776,
+        "cumulative_s": 0.0013776
+      },
+      {
+        "file": "adam.py",
+        "line": 138,
+        "function": "_init_group",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0008158000000000001,
+        "cumulative_s": 0.0013679
+      },
+      {
+        "file": "_pytree.py",
+        "line": 1302,
+        "function": "tree_iter",
+        "primitive_calls": 64,
+        "total_calls": 224,
+        "exclusive_s": 0.0003973,
+        "cumulative_s": 0.0012044
+      },
+      {
+        "file": "__init__.py",
+        "line": 89,
+        "function": "_make_grads",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0003597,
+        "cumulative_s": 0.0011583000000000001
+      },
+      {
+        "file": "functional.py",
+        "line": 48,
+        "function": "broadcast_tensors",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0002277,
+        "cumulative_s": 0.0011482
+      },
+      {
+        "file": "src/q4_rl/network.py",
+        "line": 86,
+        "function": "<genexpr>",
+        "primitive_calls": 2064,
+        "total_calls": 2064,
+        "exclusive_s": 0.0009308000000000001,
+        "cumulative_s": 0.001126
+      },
+      {
+        "file": "_foreach_utils.py",
+        "line": 58,
+        "function": "_has_foreach_support",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 7.77e-05,
+        "cumulative_s": 0.0010646
+      },
+      {
+        "file": "_foreach_utils.py",
+        "line": 43,
+        "function": "_group_tensors_by_device_and_dtype",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 3.77e-05,
+        "cumulative_s": 0.0010595000000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._group_tensors_by_device_and_dtype>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0010218,
+        "cumulative_s": 0.0010218
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'expand' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0009555000000000001,
+        "cumulative_s": 0.0009555000000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.broadcast_tensors>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0008698,
+        "cumulative_s": 0.0008698
+      },
+      {
+        "file": "module.py",
+        "line": 2823,
+        "function": "named_modules",
+        "primitive_calls": 288,
+        "total_calls": 992,
+        "exclusive_s": 0.0007709,
+        "cumulative_s": 0.0008611000000000001
+      },
+      {
+        "file": "_foreach_utils.py",
+        "line": 51,
+        "function": "_device_has_foreach_support",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0007057000000000001,
+        "cumulative_s": 0.0007968000000000001
+      },
+      {
+        "file": "typing.py",
+        "line": 392,
+        "function": "inner",
+        "primitive_calls": 64,
+        "total_calls": 65,
+        "exclusive_s": 0.0002143,
+        "cumulative_s": 0.0007376
+      },
+      {
+        "file": "module.py",
+        "line": 1951,
+        "function": "__getattr__",
+        "primitive_calls": 288,
+        "total_calls": 288,
+        "exclusive_s": 0.0006931000000000001,
+        "cumulative_s": 0.0006931000000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.stack>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0006912,
+        "cumulative_s": 0.0006912
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.ones_like>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0006473000000000001,
+        "cumulative_s": 0.0006473000000000001
+      },
+      {
+        "file": "optimizer.py",
+        "line": 92,
+        "function": "_get_value",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0002453,
+        "cumulative_s": 0.0006378
+      },
+      {
+        "file": "profiler.py",
+        "line": 772,
+        "function": "__init__",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.00015110000000000001,
+        "cumulative_s": 0.0005568
+      },
+      {
+        "file": "_pytree.py",
+        "line": 1008,
+        "function": "_get_node_type",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0001573,
+        "cumulative_s": 0.0005389
+      },
+      {
+        "file": "typing.py",
+        "line": 515,
+        "function": "__getitem__",
+        "primitive_calls": 3,
+        "total_calls": 4,
+        "exclusive_s": 8.6e-06,
+        "cumulative_s": 0.0005279
+      },
+      {
+        "file": "_pytree.py",
+        "line": 1020,
+        "function": "tree_is_leaf",
+        "primitive_calls": 128,
+        "total_calls": 128,
+        "exclusive_s": 8.580000000000001e-05,
+        "cumulative_s": 0.0004694
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'detach' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00044330000000000004,
+        "cumulative_s": 0.00044330000000000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.all>",
+        "primitive_calls": 64,
+        "total_calls": 64,
+        "exclusive_s": 0.00012450000000000002,
+        "cumulative_s": 0.0004194
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.isinstance>",
+        "primitive_calls": 1201,
+        "total_calls": 1235,
+        "exclusive_s": 0.0003622,
+        "cumulative_s": 0.00041660000000000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.is_complex>",
+        "primitive_calls": 448,
+        "total_calls": 448,
+        "exclusive_s": 0.000415,
+        "cumulative_s": 0.000415
+      },
+      {
+        "file": "typing.py",
+        "line": 694,
+        "function": "Union",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 4.0100000000000006e-05,
+        "cumulative_s": 0.0004082
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._linalg.linalg_vector_norm>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00038260000000000003,
+        "cumulative_s": 0.00038260000000000003
+      },
+      {
+        "file": "_pytree.py",
+        "line": 675,
+        "function": "is_namedtuple_class",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.00021370000000000002,
+        "cumulative_s": 0.0003816
+      },
+      {
+        "file": "container.py",
+        "line": 237,
+        "function": "__iter__",
+        "primitive_calls": 64,
+        "total_calls": 64,
+        "exclusive_s": 0.0002402,
+        "cumulative_s": 0.0003461
+      },
+      {
+        "file": "grad_mode.py",
+        "line": 80,
+        "function": "__enter__",
+        "primitive_calls": 80,
+        "total_calls": 80,
+        "exclusive_s": 0.0001575,
+        "cumulative_s": 0.000339
+      },
+      {
+        "file": "grad_mode.py",
+        "line": 184,
+        "function": "__init__",
+        "primitive_calls": 192,
+        "total_calls": 192,
+        "exclusive_s": 0.00016900000000000002,
+        "cumulative_s": 0.00033400000000000004
+      },
+      {
+        "file": "grad_mode.py",
+        "line": 84,
+        "function": "__exit__",
+        "primitive_calls": 80,
+        "total_calls": 80,
+        "exclusive_s": 0.00022840000000000002,
+        "cumulative_s": 0.00032710000000000004
+      },
+      {
+        "file": "optimizer.py",
+        "line": 163,
+        "function": "_default_to_fused_or_foreach",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 9.860000000000001e-05,
+        "cumulative_s": 0.0002994
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'item' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.00028020000000000003,
+        "cumulative_s": 0.00028020000000000003
+      },
+      {
+        "file": "typing.py",
+        "line": 747,
+        "function": "Optional",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 9e-06,
+        "cumulative_s": 0.0002659
+      },
+      {
+        "file": "typing.py",
+        "line": 1269,
+        "function": "__init__",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 6.900000000000001e-05,
+        "cumulative_s": 0.00023370000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'to' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 240,
+        "total_calls": 240,
+        "exclusive_s": 0.0002336,
+        "cumulative_s": 0.0002336
+      },
+      {
+        "file": "module.py",
+        "line": 2872,
+        "function": "train",
+        "primitive_calls": 1,
+        "total_calls": 17,
+        "exclusive_s": 4.9500000000000004e-05,
+        "cumulative_s": 0.00022950000000000002
+      },
+      {
+        "file": "_tensor.py",
+        "line": 1183,
+        "function": "__hash__",
+        "primitive_calls": 672,
+        "total_calls": 672,
+        "exclusive_s": 0.0001274,
+        "cumulative_s": 0.00020250000000000002
+      },
+      {
+        "file": "module.py",
+        "line": 2706,
+        "function": "<lambda>",
+        "primitive_calls": 272,
+        "total_calls": 272,
+        "exclusive_s": 0.00015560000000000001,
+        "cumulative_s": 0.0001953
+      },
+      {
+        "file": "__init__.py",
+        "line": 436,
+        "function": "is_compiling",
+        "primitive_calls": 496,
+        "total_calls": 496,
+        "exclusive_s": 0.0001543,
+        "cumulative_s": 0.0001888
+      },
+      {
+        "file": "grad_mode.py",
+        "line": 75,
+        "function": "__init__",
+        "primitive_calls": 80,
+        "total_calls": 80,
+        "exclusive_s": 0.0001751,
+        "cumulative_s": 0.0001865
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'add' of 'set' objects>",
+        "primitive_calls": 513,
+        "total_calls": 513,
+        "exclusive_s": 0.0001218,
+        "cumulative_s": 0.0001763
+      },
+      {
+        "file": "_contextlib.py",
+        "line": 158,
+        "function": "__new__",
+        "primitive_calls": 80,
+        "total_calls": 80,
+        "exclusive_s": 0.0001297,
+        "cumulative_s": 0.000171
+      },
+      {
+        "file": "statistics.py",
+        "line": 468,
+        "function": "mean",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 7.6e-06,
+        "cumulative_s": 0.00016900000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'append' of 'list' objects>",
+        "primitive_calls": 1158,
+        "total_calls": 1158,
+        "exclusive_s": 0.00016490000000000002,
+        "cumulative_s": 0.00016490000000000002
+      },
+      {
+        "file": "statistics.py",
+        "line": 154,
+        "function": "_sum",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 2.22e-05,
+        "cumulative_s": 0.0001432
+      },
+      {
+        "file": "optimizer.py",
+        "line": 180,
+        "function": "<genexpr>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0001399,
+        "cumulative_s": 0.0001399
+      },
+      {
+        "file": "optimizer.py",
+        "line": 444,
+        "function": "_cuda_graph_capture_health_check",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00011640000000000001,
+        "cumulative_s": 0.0001394
+      },
+      {
+        "file": "_pytree.py",
+        "line": 779,
+        "function": "_dict_flatten",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.00010810000000000001,
+        "cumulative_s": 0.00013900000000000002
+      },
+      {
+        "file": "typing.py",
+        "line": 175,
+        "function": "_type_check",
+        "primitive_calls": 7,
+        "total_calls": 7,
+        "exclusive_s": 3.8700000000000006e-05,
+        "cumulative_s": 0.00013800000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._set_grad_enabled>",
+        "primitive_calls": 192,
+        "total_calls": 192,
+        "exclusive_s": 0.00012780000000000002,
+        "cumulative_s": 0.00012780000000000002
+      },
+      {
+        "file": "module.py",
+        "line": 1968,
+        "function": "__setattr__",
+        "primitive_calls": 17,
+        "total_calls": 17,
+        "exclusive_s": 4.9800000000000004e-05,
+        "cumulative_s": 0.00012660000000000001
+      },
+      {
+        "file": "_foreach_utils.py",
+        "line": 59,
+        "function": "<genexpr>",
+        "primitive_calls": 480,
+        "total_calls": 480,
+        "exclusive_s": 0.00010960000000000001,
+        "cumulative_s": 0.00010960000000000001
+      },
+      {
+        "file": "_ops.py",
+        "line": 1130,
+        "function": "<lambda>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 8.76e-05,
+        "cumulative_s": 0.00010640000000000001
+      },
+      {
+        "file": "_foreach_utils.py",
+        "line": 9,
+        "function": "_get_foreach_kernels_supported_devices",
+        "primitive_calls": 48,
+        "total_calls": 48,
+        "exclusive_s": 4.2900000000000006e-05,
+        "cumulative_s": 0.0001022
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'size' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 9.620000000000001e-05,
+        "cumulative_s": 9.620000000000001e-05
+      },
+      {
+        "file": "typing.py",
+        "line": 730,
+        "function": "<genexpr>",
+        "primitive_calls": 9,
+        "total_calls": 9,
+        "exclusive_s": 4.69e-05,
+        "cumulative_s": 9.06e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'items' of 'dict' objects>",
+        "primitive_calls": 594,
+        "total_calls": 594,
+        "exclusive_s": 9e-05,
+        "cumulative_s": 9e-05
+      },
+      {
+        "file": "_contextlib.py",
+        "line": 150,
+        "function": "clone",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 2.61e-05,
+        "cumulative_s": 8.970000000000001e-05
+      },
+      {
+        "file": "_VF.py",
+        "line": 27,
+        "function": "__getattr__",
+        "primitive_calls": 17,
+        "total_calls": 17,
+        "exclusive_s": 5.380000000000001e-05,
+        "cumulative_s": 8.620000000000001e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.getattr>",
+        "primitive_calls": 196,
+        "total_calls": 196,
+        "exclusive_s": 8.54e-05,
+        "cumulative_s": 8.54e-05
+      },
+      {
+        "file": "typing.py",
+        "line": 166,
+        "function": "_type_convert",
+        "primitive_calls": 7,
+        "total_calls": 7,
+        "exclusive_s": 9.4e-06,
+        "cumulative_s": 8.16e-05
+      },
+      {
+        "file": "_jit_internal.py",
+        "line": 106,
+        "function": "is_scripting",
+        "primitive_calls": 896,
+        "total_calls": 896,
+        "exclusive_s": 7.69e-05,
+        "cumulative_s": 7.69e-05
+      },
+      {
+        "file": "typing.py",
+        "line": 1215,
+        "function": "__setattr__",
+        "primitive_calls": 20,
+        "total_calls": 20,
+        "exclusive_s": 4.21e-05,
+        "cumulative_s": 7.69e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.id>",
+        "primitive_calls": 673,
+        "total_calls": 673,
+        "exclusive_s": 7.570000000000001e-05,
+        "cumulative_s": 7.570000000000001e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._get_privateuse1_backend_name>",
+        "primitive_calls": 64,
+        "total_calls": 64,
+        "exclusive_s": 7.52e-05,
+        "cumulative_s": 7.52e-05
+      },
+      {
+        "file": "typing_extensions.py",
+        "line": 3366,
+        "function": "_collect_parameters",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 1.9600000000000002e-05,
+        "cumulative_s": 7.42e-05
+      },
+      {
+        "file": "adam.py",
+        "line": 934,
+        "function": "<genexpr>",
+        "primitive_calls": 240,
+        "total_calls": 240,
+        "exclusive_s": 5.4800000000000004e-05,
+        "cumulative_s": 7.350000000000001e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.is_grad_enabled>",
+        "primitive_calls": 288,
+        "total_calls": 288,
+        "exclusive_s": 7.230000000000001e-05,
+        "cumulative_s": 7.230000000000001e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'values' of 'dict' objects>",
+        "primitive_calls": 96,
+        "total_calls": 96,
+        "exclusive_s": 6.97e-05,
+        "cumulative_s": 6.97e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.sum>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 8.1e-06,
+        "cumulative_s": 6.790000000000001e-05
+      },
+      {
+        "file": "typing.py",
+        "line": 892,
+        "function": "__init__",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 1.27e-05,
+        "cumulative_s": 6.66e-05
+      },
+      {
+        "file": "typing.py",
+        "line": 1174,
+        "function": "__init__",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 9.9e-06,
+        "cumulative_s": 6.0100000000000004e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.iter>",
+        "primitive_calls": 80,
+        "total_calls": 80,
+        "exclusive_s": 5.9800000000000003e-05,
+        "cumulative_s": 5.9800000000000003e-05
+      },
+      {
+        "file": "decorators.py",
+        "line": 70,
+        "function": "disable",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 1.4900000000000001e-05,
+        "cumulative_s": 5.3e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.compile>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 5.2300000000000004e-05,
+        "cumulative_s": 5.2300000000000004e-05
+      },
+      {
+        "file": "eval_frame.py",
+        "line": 148,
+        "function": "_maybe_set_eval_frame",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 4.11e-05,
+        "cumulative_s": 5.1000000000000006e-05
+      },
+      {
+        "file": "module.py",
+        "line": 2767,
+        "function": "children",
+        "primitive_calls": 33,
+        "total_calls": 33,
+        "exclusive_s": 1.46e-05,
+        "cumulative_s": 5.02e-05
+      },
+      {
+        "file": "statistics.py",
+        "line": 287,
+        "function": "_exact_ratio",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 7.7e-06,
+        "cumulative_s": 4.6800000000000006e-05
+      },
+      {
+        "file": "_pytree.py",
+        "line": 751,
+        "function": "_tuple_flatten",
+        "primitive_calls": 64,
+        "total_calls": 64,
+        "exclusive_s": 4.3400000000000005e-05,
+        "cumulative_s": 4.3400000000000005e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method __new__ of type object at 0x00007FF9055C18F0>",
+        "primitive_calls": 91,
+        "total_calls": 91,
+        "exclusive_s": 4.32e-05,
+        "cumulative_s": 4.32e-05
+      },
+      {
+        "file": "typing.py",
+        "line": 345,
+        "function": "_remove_dups_flatten",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 2.29e-05,
+        "cumulative_s": 4.0900000000000005e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'get' of 'dict' objects>",
+        "primitive_calls": 105,
+        "total_calls": 105,
+        "exclusive_s": 4.0100000000000006e-05,
+        "cumulative_s": 4.0100000000000006e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'as_integer_ratio' of 'float' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 3.91e-05,
+        "cumulative_s": 3.91e-05
+      },
+      {
+        "file": "module.py",
+        "line": 2776,
+        "function": "named_children",
+        "primitive_calls": 33,
+        "total_calls": 33,
+        "exclusive_s": 2.9100000000000003e-05,
+        "cumulative_s": 3.5600000000000005e-05
+      },
+      {
+        "file": "typing.py",
+        "line": 1161,
+        "function": "_is_dunder",
+        "primitive_calls": 20,
+        "total_calls": 20,
+        "exclusive_s": 1.83e-05,
+        "cumulative_s": 3.48e-05
+      },
+      {
+        "file": "_foreach_utils.py",
+        "line": 14,
+        "function": "_get_fused_kernels_supported_devices",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 1.88e-05,
+        "cumulative_s": 3.47e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._are_functorch_transforms_active>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 3.3600000000000004e-05,
+        "cumulative_s": 3.3600000000000004e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._dynamo.eval_frame.set_eval_frame>",
+        "primitive_calls": 64,
+        "total_calls": 64,
+        "exclusive_s": 2.86e-05,
+        "cumulative_s": 2.86e-05
+      },
+      {
+        "file": "parameter.py",
+        "line": 21,
+        "function": "__instancecheck__",
+        "primitive_calls": 17,
+        "total_calls": 17,
+        "exclusive_s": 2.2000000000000003e-05,
+        "cumulative_s": 2.8400000000000003e-05
+      },
+      {
+        "file": "fractions.py",
+        "line": 627,
+        "function": "reverse",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 4.9000000000000005e-06,
+        "cumulative_s": 2.79e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.issubclass>",
+        "primitive_calls": 225,
+        "total_calls": 225,
+        "exclusive_s": 2.7700000000000002e-05,
+        "cumulative_s": 2.7700000000000002e-05
+      },
+      {
+        "file": "eval_frame.py",
+        "line": 201,
+        "function": "_callback_from_stance",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 2.7000000000000002e-05,
+        "cumulative_s": 2.7000000000000002e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'values' of 'collections.OrderedDict' objects>",
+        "primitive_calls": 64,
+        "total_calls": 64,
+        "exclusive_s": 2.65e-05,
+        "cumulative_s": 2.65e-05
+      },
+      {
+        "file": "__init__.py",
+        "line": 1776,
+        "function": "getEffectiveLevel",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 2.57e-05,
+        "cumulative_s": 2.57e-05
+      },
+      {
+        "file": "eval_frame.py",
+        "line": 1003,
+        "function": "__init__",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 8.400000000000001e-06,
+        "cumulative_s": 2.54e-05
+      },
+      {
+        "file": "typing_extensions.py",
+        "line": 3281,
+        "function": "_has_generic_or_protocol_as_origin",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 1.88e-05,
+        "cumulative_s": 2.51e-05
+      },
+      {
+        "file": "fractions.py",
+        "line": 613,
+        "function": "forward",
+        "primitive_calls": 4,
+        "total_calls": 4,
+        "exclusive_s": 5.500000000000001e-06,
+        "cumulative_s": 2.2100000000000002e-05
+      },
+      {
+        "file": "statistics.py",
+        "line": 203,
+        "function": "<genexpr>",
+        "primitive_calls": 5,
+        "total_calls": 5,
+        "exclusive_s": 9.800000000000001e-06,
+        "cumulative_s": 2.2000000000000003e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'numel' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 2.19e-05,
+        "cumulative_s": 2.19e-05
+      },
+      {
+        "file": "overrides.py",
+        "line": 1969,
+        "function": "is_tensor_like",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 2.0300000000000002e-05,
+        "cumulative_s": 2.0300000000000002e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.hasattr>",
+        "primitive_calls": 22,
+        "total_calls": 22,
+        "exclusive_s": 1.97e-05,
+        "cumulative_s": 1.97e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 1.94e-05,
+        "cumulative_s": 1.94e-05
+      },
+      {
+        "file": "<frozen abc>",
+        "line": 117,
+        "function": "__instancecheck__",
+        "primitive_calls": 2,
+        "total_calls": 2,
+        "exclusive_s": 2.5e-06,
+        "cumulative_s": 1.93e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._has_torch_function>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 1.7500000000000002e-05,
+        "cumulative_s": 1.7500000000000002e-05
+      },
+      {
+        "file": "eval_frame.py",
+        "line": 591,
+        "function": "__init__",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 1.3500000000000001e-05,
+        "cumulative_s": 1.7e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _abc._abc_instancecheck>",
+        "primitive_calls": 2,
+        "total_calls": 2,
+        "exclusive_s": 3.7e-06,
+        "cumulative_s": 1.6800000000000002e-05
+      },
+      {
+        "file": "optimizer.py",
+        "line": 230,
+        "function": "_to_scalar",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 9.3e-06,
+        "cumulative_s": 1.65e-05
+      },
+      {
+        "file": "__init__.py",
+        "line": 233,
+        "function": "_tensor_or_tensors_to_tuple",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 1.63e-05,
+        "cumulative_s": 1.63e-05
+      },
+      {
+        "file": "_reduction.py",
+        "line": 8,
+        "function": "get_enum",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 1.5700000000000002e-05,
+        "cumulative_s": 1.5700000000000002e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'dim' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 1.55e-05,
+        "cumulative_s": 1.55e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._has_torch_function_variadic>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 1.54e-05,
+        "cumulative_s": 1.54e-05
+      },
+      {
+        "file": "fractions.py",
+        "line": 186,
+        "function": "__new__",
+        "primitive_calls": 6,
+        "total_calls": 6,
+        "exclusive_s": 1.29e-05,
+        "cumulative_s": 1.5e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'keys' of 'dict' objects>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 1.4700000000000002e-05,
+        "cumulative_s": 1.4700000000000002e-05
+      },
+      {
+        "file": "parameter.py",
+        "line": 233,
+        "function": "__instancecheck__",
+        "primitive_calls": 17,
+        "total_calls": 17,
+        "exclusive_s": 1e-05,
+        "cumulative_s": 1.4000000000000001e-05
+      },
+      {
+        "file": "typing.py",
+        "line": 962,
+        "function": "__eq__",
+        "primitive_calls": 17,
+        "total_calls": 17,
+        "exclusive_s": 6.900000000000001e-06,
+        "cumulative_s": 1.39e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method '__exit__' of 'torch._C.DisableTorchFunctionSubclass' objects>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 1.3300000000000001e-05,
+        "cumulative_s": 1.3300000000000001e-05
+      },
+      {
+        "file": "<frozen abc>",
+        "line": 121,
+        "function": "__subclasscheck__",
+        "primitive_calls": 2,
+        "total_calls": 3,
+        "exclusive_s": 1.8000000000000001e-06,
+        "cumulative_s": 1.3100000000000002e-05
+      },
+      {
+        "file": "typing_extensions.py",
+        "line": 3303,
+        "function": "_is_unpacked_typevartuple",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 4.800000000000001e-06,
+        "cumulative_s": 1.29e-05
+      },
+      {
+        "file": "typing.py",
+        "line": 317,
+        "function": "_deduplicate",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 5.8e-06,
+        "cumulative_s": 1.2600000000000001e-05
+      },
+      {
+        "file": "fractions.py",
+        "line": 710,
+        "function": "_add",
+        "primitive_calls": 4,
+        "total_calls": 4,
+        "exclusive_s": 8.000000000000001e-06,
+        "cumulative_s": 1.18e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'startswith' of 'str' objects>",
+        "primitive_calls": 21,
+        "total_calls": 21,
+        "exclusive_s": 1.1700000000000001e-05,
+        "cumulative_s": 1.1700000000000001e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _abc._abc_subclasscheck>",
+        "primitive_calls": 2,
+        "total_calls": 3,
+        "exclusive_s": 1.13e-05,
+        "cumulative_s": 1.15e-05
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._has_torch_function_unary>",
+        "primitive_calls": 17,
+        "total_calls": 17,
+        "exclusive_s": 1.1200000000000001e-05,
+        "cumulative_s": 1.1200000000000001e-05
+      },
+      {
+        "file": "decorators.py",
+        "line": 287,
+        "function": "graph_break",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 9.800000000000001e-06,
+        "cumulative_s": 9.800000000000001e-06
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'extend' of 'list' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 9.600000000000001e-06,
+        "cumulative_s": 9.600000000000001e-06
+      },
+      {
+        "file": "__init__.py",
+        "line": 39,
+        "function": "is_built",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 8.1e-06,
+        "cumulative_s": 8.1e-06
+      },
+      {
+        "file": "eval_frame.py",
+        "line": 1008,
+        "function": "__call__",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 6e-06,
+        "cumulative_s": 8.1e-06
+      },
+      {
+        "file": "typing.py",
+        "line": 2344,
+        "function": "get_origin",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 5.4e-06,
+        "cumulative_s": 8.1e-06
+      },
+      {
+        "file": "typing.py",
+        "line": 2187,
+        "function": "cast",
+        "primitive_calls": 64,
+        "total_calls": 64,
+        "exclusive_s": 7.7e-06,
+        "cumulative_s": 7.7e-06
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method fromkeys>",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 6e-06,
+        "cumulative_s": 6.8e-06
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'endswith' of 'str' objects>",
+        "primitive_calls": 14,
+        "total_calls": 14,
+        "exclusive_s": 6.200000000000001e-06,
+        "cumulative_s": 6.200000000000001e-06
+      },
+      {
+        "file": "eval_frame.py",
+        "line": 511,
+        "function": "innermost_fn",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 5e-06,
+        "cumulative_s": 6.1e-06
+      },
+      {
+        "file": "statistics.py",
+        "line": 333,
+        "function": "_convert",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 2.3e-06,
+        "cumulative_s": 6e-06
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _functools.reduce>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 3.4e-06,
+        "cumulative_s": 4.2000000000000004e-06
+      },
+      {
+        "file": "_utils_internal.py",
+        "line": 179,
+        "function": "justknobs_check",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 3.7e-06,
+        "cumulative_s": 3.7e-06
+      },
+      {
+        "file": "numbers.py",
+        "line": 308,
+        "function": "__float__",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 3e-06,
+        "cumulative_s": 3.6000000000000003e-06
+      },
+      {
+        "file": "__init__.py",
+        "line": 129,
+        "function": "annotate",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 3.6000000000000003e-06,
+        "cumulative_s": 3.6000000000000003e-06
+      },
+      {
+        "file": "fractions.py",
+        "line": 317,
+        "function": "_from_coprime_ints",
+        "primitive_calls": 5,
+        "total_calls": 5,
+        "exclusive_s": 2.5e-06,
+        "cumulative_s": 3.3e-06
+      },
+      {
+        "file": "typing.py",
+        "line": 971,
+        "function": "__hash__",
+        "primitive_calls": 2,
+        "total_calls": 2,
+        "exclusive_s": 2.5e-06,
+        "cumulative_s": 3.3e-06
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<function _ParameterMeta.__instancecheck__ at 0x0000022A92524D60>",
+        "primitive_calls": 34,
+        "total_calls": 34,
+        "exclusive_s": 3.1000000000000004e-06,
+        "cumulative_s": 3.1000000000000004e-06
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method sys._getframe>",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 3.1000000000000004e-06,
+        "cumulative_s": 3.1000000000000004e-06
+      },
+      {
+        "file": "typing.py",
+        "line": 1273,
+        "function": "<genexpr>",
+        "primitive_calls": 9,
+        "total_calls": 9,
+        "exclusive_s": 2.9e-06,
+        "cumulative_s": 2.9e-06
+      },
+      {
+        "file": "fractions.py",
+        "line": 758,
+        "function": "_div",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 1.7e-06,
+        "cumulative_s": 2.6e-06
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method math.gcd>",
+        "primitive_calls": 13,
+        "total_calls": 13,
+        "exclusive_s": 2.4000000000000003e-06,
+        "cumulative_s": 2.4000000000000003e-06
+      },
+      {
+        "file": "optimizer.py",
+        "line": 483,
+        "function": "_optimizer_step_code",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 1.5e-06,
+        "cumulative_s": 1.5e-06
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'setdefault' of 'dict' objects>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 1.3e-06,
+        "cumulative_s": 1.3e-06
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.callable>",
+        "primitive_calls": 3,
+        "total_calls": 3,
+        "exclusive_s": 9.000000000000001e-07,
+        "cumulative_s": 9.000000000000001e-07
+      },
+      {
+        "file": "statistics.py",
+        "line": 256,
+        "function": "_coerce",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 8.000000000000001e-07,
+        "cumulative_s": 8.000000000000001e-07
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.hash>",
+        "primitive_calls": 2,
+        "total_calls": 2,
+        "exclusive_s": 8.000000000000001e-07,
+        "cumulative_s": 8.000000000000001e-07
+      },
+      {
+        "file": "typing.py",
+        "line": 494,
+        "function": "__repr__",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 7.000000000000001e-07,
+        "cumulative_s": 7.000000000000001e-07
+      },
+      {
+        "file": "fractions.py",
+        "line": 397,
+        "function": "numerator",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 4.0000000000000003e-07,
+        "cumulative_s": 4.0000000000000003e-07
+      },
+      {
+        "file": "eval_frame.py",
+        "line": 503,
+        "function": "nothing",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 3.0000000000000004e-07,
+        "cumulative_s": 3.0000000000000004e-07
+      },
+      {
+        "file": "fractions.py",
+        "line": 401,
+        "function": "denominator",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 2.0000000000000002e-07,
+        "cumulative_s": 2.0000000000000002e-07
+      }
+    ],
+    "scope": "original update including packing, forward/backward and optimizer on disposable state; cumulative function times overlap"
+  }
+}

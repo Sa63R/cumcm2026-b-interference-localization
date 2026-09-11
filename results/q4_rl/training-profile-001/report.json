@@ -1,0 +1,803 @@
+{
+  "schema": "q4-training-offline-microbenchmark-v1",
+  "affinity": {
+    "method": "SetProcessAffinityMask",
+    "logical_cpus": 1
+  },
+  "source": {
+    "name": "batch-000000.json.gz",
+    "sha256": "6320dbf1e5260db865e863deffb4ec27882a2365d6fa8c9ba8f998e262b8da81",
+    "bytes": 2822994,
+    "decompressed_bytes": 106554238,
+    "episodes": 16
+  },
+  "script_sha256": "a294caecf7ca3fe8de97c79c33831c5b97ebb5910361dc89cb1f385727c754ea",
+  "gzip_read": {
+    "wall_s": 0.17880419999710284,
+    "cpu_s": 0.171875
+  },
+  "json_parse": {
+    "wall_s": 2.7011415000015404,
+    "cpu_s": 2.6875
+  },
+  "compression": [
+    {
+      "level": 1,
+      "wall_s": 13.756266500000493,
+      "cpu_s": 13.25,
+      "compressed_bytes": 4662833,
+      "decoded_sha256": "69a3f53de1a7113e050e74d12be1d0049b76c6067a42bf04df2e0dd570cfb095",
+      "decoded_object_equal": true,
+      "verify": {
+        "wall_s": 3.294557799992617,
+        "cpu_s": 3.25
+      }
+    },
+    {
+      "level": 6,
+      "wall_s": 14.341423099991516,
+      "cpu_s": 13.953125,
+      "compressed_bytes": 2989754,
+      "decoded_sha256": "69a3f53de1a7113e050e74d12be1d0049b76c6067a42bf04df2e0dd570cfb095",
+      "decoded_object_equal": true,
+      "verify": {
+        "wall_s": 3.2788709000014933,
+        "cpu_s": 3.265625
+      }
+    },
+    {
+      "level": 9,
+      "wall_s": 16.93099359999178,
+      "cpu_s": 16.34375,
+      "compressed_bytes": 2822994,
+      "decoded_sha256": "69a3f53de1a7113e050e74d12be1d0049b76c6067a42bf04df2e0dd570cfb095",
+      "decoded_object_equal": true,
+      "verify": {
+        "wall_s": 3.2350138000037987,
+        "cpu_s": 3.15625
+      }
+    }
+  ],
+  "scope": "one local fixed-order microbenchmark; no new scene or retained model update; not strategy evidence",
+  "imitation_profile": {
+    "wall_s": 10.58026940000127,
+    "cpu_s": 10.1875,
+    "settings": {
+      "epochs": 1,
+      "minibatch_size": 128
+    },
+    "result": {
+      "updates": 16,
+      "records": 2048,
+      "imitation_loss": 5.717947006225586
+    },
+    "checkpoint": {
+      "name": "checkpoint-000001.pt",
+      "sha256": "44f68be12b4b19b16cf035e9f4e704bfa544e46e88135a2ab155f506293b3a98"
+    },
+    "profile_total_exclusive_s": 7.417340599999995,
+    "functions_by_cumulative": [
+      {
+        "file": "src/q4_rl/train.py",
+        "line": 269,
+        "function": "imitation_update",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 0.011654000000000001,
+        "cumulative_s": 10.5592146
+      },
+      {
+        "file": "src/q4_rl/train.py",
+        "line": 173,
+        "function": "_tensor_batch",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0001077,
+        "cumulative_s": 6.7895086000000004
+      },
+      {
+        "file": "src/q4_rl/network.py",
+        "line": 83,
+        "function": "pack_observations",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.1530174,
+        "cumulative_s": 6.7894009
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.all>",
+        "primitive_calls": 4160,
+        "total_calls": 4160,
+        "exclusive_s": 1.3142676,
+        "cumulative_s": 5.5368491
+      },
+      {
+        "file": "_tensor.py",
+        "line": 570,
+        "function": "backward",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00012770000000000001,
+        "cumulative_s": 1.9574321000000001
+      },
+      {
+        "file": "__init__.py",
+        "line": 243,
+        "function": "backward",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0002651,
+        "cumulative_s": 1.9572990000000001
+      },
+      {
+        "file": "graph.py",
+        "line": 832,
+        "function": "_engine_run_backward",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00018470000000000002,
+        "cumulative_s": 1.9549148
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'run_backward' of 'torch._C._EngineBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 1.9547026,
+        "cumulative_s": 1.9547026
+      },
+      {
+        "file": "module.py",
+        "line": 1771,
+        "function": "_wrapped_call_impl",
+        "primitive_calls": 16,
+        "total_calls": 272,
+        "exclusive_s": 0.0016870000000000001,
+        "cumulative_s": 1.7247084000000001
+      },
+      {
+        "file": "module.py",
+        "line": 1779,
+        "function": "_call_impl",
+        "primitive_calls": 16,
+        "total_calls": 272,
+        "exclusive_s": 0.0024649000000000003,
+        "cumulative_s": 1.7245176000000002
+      },
+      {
+        "file": "src/q4_rl/network.py",
+        "line": 64,
+        "function": "forward",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0489459,
+        "cumulative_s": 1.7240005
+      },
+      {
+        "file": "container.py",
+        "line": 245,
+        "function": "forward",
+        "primitive_calls": 64,
+        "total_calls": 64,
+        "exclusive_s": 0.024872400000000003,
+        "cumulative_s": 1.4021595
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method math.isfinite>",
+        "primitive_calls": 10428336,
+        "total_calls": 10428336,
+        "exclusive_s": 1.0711065,
+        "cumulative_s": 1.0711065
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.tensor>",
+        "primitive_calls": 4128,
+        "total_calls": 4128,
+        "exclusive_s": 0.7974955,
+        "cumulative_s": 0.7974955
+      },
+      {
+        "file": "activation.py",
+        "line": 426,
+        "function": "forward",
+        "primitive_calls": 80,
+        "total_calls": 80,
+        "exclusive_s": 0.0003242,
+        "cumulative_s": 0.7345764
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.tanh>",
+        "primitive_calls": 80,
+        "total_calls": 80,
+        "exclusive_s": 0.7342522,
+        "cumulative_s": 0.7342522
+      },
+      {
+        "file": "linear.py",
+        "line": 130,
+        "function": "forward",
+        "primitive_calls": 112,
+        "total_calls": 112,
+        "exclusive_s": 0.0005195,
+        "cumulative_s": 0.638695
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._nn.linear>",
+        "primitive_calls": 112,
+        "total_calls": 112,
+        "exclusive_s": 0.6379223,
+        "cumulative_s": 0.6379223
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.any>",
+        "primitive_calls": 2080,
+        "total_calls": 2080,
+        "exclusive_s": 0.0812567,
+        "cumulative_s": 0.29518700000000003
+      },
+      {
+        "file": "src/q4_rl/network.py",
+        "line": 94,
+        "function": "<genexpr>",
+        "primitive_calls": 652539,
+        "total_calls": 652539,
+        "exclusive_s": 0.14752690000000002,
+        "cumulative_s": 0.2125427
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.cat>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.108821,
+        "cumulative_s": 0.108821
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'masked_fill' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0917539,
+        "cumulative_s": 0.0917539
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.len>",
+        "primitive_calls": 659028,
+        "total_calls": 659028,
+        "exclusive_s": 0.067474,
+        "cumulative_s": 0.067474
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'sum' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0339701,
+        "cumulative_s": 0.0339701
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'amax' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.024684,
+        "cumulative_s": 0.024684
+      },
+      {
+        "file": "optimizer.py",
+        "line": 497,
+        "function": "wrapper",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0005064000000000001,
+        "cumulative_s": 0.0240199
+      },
+      {
+        "file": "clip_grad.py",
+        "line": 41,
+        "function": "_no_grad_wrapper",
+        "primitive_calls": 16,
+        "total_calls": 48,
+        "exclusive_s": 0.0005874000000000001,
+        "cumulative_s": 0.0219775
+      },
+      {
+        "file": "clip_grad.py",
+        "line": 185,
+        "function": "clip_grad_norm_",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0004713,
+        "cumulative_s": 0.0211893
+      },
+      {
+        "file": "optimizer.py",
+        "line": 62,
+        "function": "_use_grad",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.000259,
+        "cumulative_s": 0.0211777
+      },
+      {
+        "file": "adam.py",
+        "line": 213,
+        "function": "step",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00024400000000000002,
+        "cumulative_s": 0.020832200000000002
+      },
+      {
+        "file": "optimizer.py",
+        "line": 133,
+        "function": "maybe_fallback",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 8.400000000000001e-05,
+        "cumulative_s": 0.0186831
+      },
+      {
+        "file": "adam.py",
+        "line": 885,
+        "function": "adam",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0001866,
+        "cumulative_s": 0.0185834
+      },
+      {
+        "file": "adam.py",
+        "line": 345,
+        "function": "_single_tensor_adam",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0056905,
+        "cumulative_s": 0.0179196
+      },
+      {
+        "file": "src/q4_rl/network.py",
+        "line": 96,
+        "function": "<genexpr>",
+        "primitive_calls": 22528,
+        "total_calls": 22528,
+        "exclusive_s": 0.009206800000000001,
+        "cumulative_s": 0.0120021
+      },
+      {
+        "file": "clip_grad.py",
+        "line": 49,
+        "function": "_get_total_norm",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0004109,
+        "cumulative_s": 0.0104133
+      },
+      {
+        "file": "functional.py",
+        "line": 3375,
+        "function": "cross_entropy",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 8.400000000000001e-05,
+        "cumulative_s": 0.0088226
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._nn.cross_entropy_loss>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0087153,
+        "cumulative_s": 0.0087153
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'any' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0078615,
+        "cumulative_s": 0.0078615
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._foreach_norm>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.007132100000000001,
+        "cumulative_s": 0.007132100000000001
+      },
+      {
+        "file": "_compile.py",
+        "line": 41,
+        "function": "inner",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 9.080000000000001e-05,
+        "cumulative_s": 0.007011300000000001
+      },
+      {
+        "file": "eval_frame.py",
+        "line": 1039,
+        "function": "_fn",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00013010000000000002,
+        "cumulative_s": 0.006844200000000001
+      },
+      {
+        "file": "optimizer.py",
+        "line": 997,
+        "function": "zero_grad",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.001041,
+        "cumulative_s": 0.0065925
+      },
+      {
+        "file": "clip_grad.py",
+        "line": 120,
+        "function": "_clip_grads_with_norm_",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0008632000000000001,
+        "cumulative_s": 0.0065348
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.zeros>",
+        "primitive_calls": 48,
+        "total_calls": 48,
+        "exclusive_s": 0.0060879,
+        "cumulative_s": 0.0060879
+      },
+      {
+        "file": "profiler.py",
+        "line": 783,
+        "function": "__enter__",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.00030450000000000003,
+        "cumulative_s": 0.0045932
+      },
+      {
+        "file": "_ops.py",
+        "line": 1244,
+        "function": "__call__",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 5.45e-05,
+        "cumulative_s": 0.0042887
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._ops.profiler._record_function_enter_new>",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0042342000000000005,
+        "cumulative_s": 0.0042342000000000005
+      },
+      {
+        "file": "functional.py",
+        "line": 3598,
+        "function": "smooth_l1_loss",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0001493,
+        "cumulative_s": 0.0038048
+      },
+      {
+        "file": "_tensor.py",
+        "line": 1161,
+        "function": "__iter__",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 9.48e-05,
+        "cumulative_s": 0.0034257000000000003
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'unbind' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0032323,
+        "cumulative_s": 0.0032323
+      },
+      {
+        "file": "module.py",
+        "line": 2656,
+        "function": "parameters",
+        "primitive_calls": 240,
+        "total_calls": 240,
+        "exclusive_s": 0.00015590000000000002,
+        "cumulative_s": 0.0030713000000000003
+      },
+      {
+        "file": "module.py",
+        "line": 2681,
+        "function": "named_parameters",
+        "primitive_calls": 240,
+        "total_calls": 240,
+        "exclusive_s": 0.0001598,
+        "cumulative_s": 0.0029154000000000003
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._nn.smooth_l1_loss>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.002908,
+        "cumulative_s": 0.002908
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.randperm>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 0.0027890000000000002,
+        "cumulative_s": 0.0027890000000000002
+      },
+      {
+        "file": "module.py",
+        "line": 2636,
+        "function": "_named_members",
+        "primitive_calls": 240,
+        "total_calls": 240,
+        "exclusive_s": 0.0006254,
+        "cumulative_s": 0.0027556
+      },
+      {
+        "file": "profiler.py",
+        "line": 789,
+        "function": "__exit__",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0003659,
+        "cumulative_s": 0.0026784
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'sqrt' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0025291000000000003,
+        "cumulative_s": 0.0025291000000000003
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'lerp_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0023765,
+        "cumulative_s": 0.0023765
+      },
+      {
+        "file": "_ops.py",
+        "line": 1068,
+        "function": "__call__",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 9.99e-05,
+        "cumulative_s": 0.0022889
+      },
+      {
+        "file": "_tensor.py",
+        "line": 1015,
+        "function": "split",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 1.87e-05,
+        "cumulative_s": 0.0022400000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.split>",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "exclusive_s": 0.0022145000000000003,
+        "cumulative_s": 0.0022145000000000003
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._foreach_mul_>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0019499,
+        "cumulative_s": 0.0019499
+      },
+      {
+        "file": "__init__.py",
+        "line": 89,
+        "function": "_make_grads",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0003458,
+        "cumulative_s": 0.0018865000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.clamp>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0018395000000000002,
+        "cumulative_s": 0.0018395000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'mul_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0018226000000000002,
+        "cumulative_s": 0.0018226000000000002
+      },
+      {
+        "file": "adam.py",
+        "line": 138,
+        "function": "_init_group",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0010395,
+        "cumulative_s": 0.0017623
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch._C._get_tracing_state>",
+        "primitive_calls": 288,
+        "total_calls": 288,
+        "exclusive_s": 0.0017137,
+        "cumulative_s": 0.0017137
+      },
+      {
+        "file": "_ops.py",
+        "line": 1128,
+        "function": "_must_dispatch_in_python",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.0001039,
+        "cumulative_s": 0.0016914
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'all' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.00169,
+        "cumulative_s": 0.00169
+      },
+      {
+        "file": "_pytree.py",
+        "line": 1630,
+        "function": "tree_any",
+        "primitive_calls": 32,
+        "total_calls": 32,
+        "exclusive_s": 0.000109,
+        "cumulative_s": 0.0015875000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'add_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0015837000000000002,
+        "cumulative_s": 0.0015837000000000002
+      },
+      {
+        "file": "module.py",
+        "line": 2823,
+        "function": "named_modules",
+        "primitive_calls": 288,
+        "total_calls": 992,
+        "exclusive_s": 0.0013925,
+        "cumulative_s": 0.0015297000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'expand' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0015228000000000002,
+        "cumulative_s": 0.0015228000000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.max>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0003547,
+        "cumulative_s": 0.001448
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'addcdiv_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0014096,
+        "cumulative_s": 0.0014096
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method torch.ones_like>",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0014051,
+        "cumulative_s": 0.0014051
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'addcmul_' of 'torch._C.TensorBase' objects>",
+        "primitive_calls": 224,
+        "total_calls": 224,
+        "exclusive_s": 0.0013584,
+        "cumulative_s": 0.0013584
+      },
+      {
+        "file": "_pytree.py",
+        "line": 1302,
+        "function": "tree_iter",
+        "primitive_calls": 64,
+        "total_calls": 224,
+        "exclusive_s": 0.00041460000000000005,
+        "cumulative_s": 0.0012808000000000001
+      },
+      {
+        "file": "_tensor.py",
+        "line": 38,
+        "function": "wrapped",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 6.03e-05,
+        "cumulative_s": 0.00119
+      },
+      {
+        "file": "_tensor.py",
+        "line": 1077,
+        "function": "__rdiv__",
+        "primitive_calls": 16,
+        "total_calls": 16,
+        "exclusive_s": 0.0002887,
+        "cumulative_s": 0.0011203
+      }
+    ],
+    "scope": "original update including packing, forward/backward and optimizer on disposable state; cumulative function times overlap"
+  }
+}

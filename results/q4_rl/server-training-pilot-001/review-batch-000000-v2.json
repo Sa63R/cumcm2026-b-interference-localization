@@ -1,0 +1,4811 @@
+{
+  "schema": "q4-local-training-review-v1",
+  "analyzer": {
+    "name": "q4_analyze_training.py",
+    "sha256": "2f7c6e45fb9ce5cdff7701e08a11fc5b56afd0de994b62a3e6360977fe7706a9"
+  },
+  "inputs": [
+    {
+      "kind": "training_batch",
+      "name": "input-000/batch-000000.json.gz",
+      "sha256": "6320dbf1e5260db865e863deffb4ec27882a2365d6fa8c9ba8f998e262b8da81",
+      "bytes": 2822994,
+      "explicit_heuristic_bc_labels": true
+    }
+  ],
+  "checkpoint": {
+    "name": "checkpoint-000001.pt",
+    "sha256": "44f68be12b4b19b16cf035e9f4e704bfa544e46e88135a2ab155f506293b3a98"
+  },
+  "summary": {
+    "attempts": 16,
+    "administratively_interrupted": 0,
+    "available_episode_metrics": 16,
+    "analysis_error_episodes": 0,
+    "aggregation_status": "all_completed_episode_metrics_included",
+    "reported_full_clear": 16,
+    "reported_task_failures": 0,
+    "reported_full_clear_rate": 1.0,
+    "physically_verified_full_clear": 16,
+    "physical_evidence_missing": 0,
+    "mean_actual_time_s": 7729.949831625,
+    "p95_actual_time_s": 8977.89703475,
+    "max_actual_time_s": 9560.91323,
+    "mean_penalized_time_s": 7729.949831625,
+    "p95_penalized_time_s": 8977.89703475,
+    "failed_clear_count": 575,
+    "sum_fallback_cost_s": 87681.108618,
+    "fallback_share_of_total_actual_time": 0.7089398260005231,
+    "mean_lower_bound_s": 1746.5862383992644,
+    "ratio_of_mean_penalized_time_to_mean_bound": 4.425747587882893,
+    "actual_all_clear_ratio_of_sums": 4.425747587882893,
+    "lower_bound_rows_missing": 0,
+    "physical": {
+      "actual_full_clear_rate": 1.0,
+      "actual_task_failures": 0,
+      "actual_distance_m": 469740.986798577,
+      "policy_distance_m": 118455.44340161247,
+      "fallback_distance_m": 351285.54339696455,
+      "channel_switches": 4101.0,
+      "certified_clear_failures": 0,
+      "components_s": {
+        "movement_s": 93948.19730599999,
+        "switching_s": 4101.0,
+        "detection_s": 22840.0,
+        "optical_s": 2364.0,
+        "removal_s": 426.0
+      },
+      "policy_components_s": {
+        "movement_s": 23691.088688000003,
+        "switching_s": 1886.0,
+        "detection_s": 10075.0,
+        "optical_s": 228.0,
+        "removal_s": 118.0
+      },
+      "fallback_components_s": {
+        "movement_s": 70257.108618,
+        "switching_s": 2215.0,
+        "detection_s": 12765.0,
+        "optical_s": 2136.0,
+        "removal_s": 308.0
+      },
+      "failed_clear_phases": {
+        "speculative_clear_before_probe": 20,
+        "guaranteed_clearance": 555
+      },
+      "operations": {
+        "/enter": 16,
+        "/measure": 4568,
+        "/clear": 788,
+        "/exit": 16
+      },
+      "operation_components_s": {
+        "/enter": {},
+        "/measure": {
+          "movement_s": 67972.71366099999,
+          "switching_s": 4101.0,
+          "detection_s": 22840.0
+        },
+        "/clear": {
+          "movement_s": 25975.483644999997,
+          "optical_s": 2364.0,
+          "removal_s": 426.0
+        },
+        "/exit": {}
+      }
+    },
+    "decisions": {
+      "counts": {
+        "measure": 1989,
+        "service": 59
+      },
+      "billed_cost_excluding_fallback_s": {
+        "measure": 28617.146713000002,
+        "service": 7380.941975000001
+      },
+      "proposed_entry_distance_m": {
+        "measure": 83980.73355519207,
+        "service": 33610.53825300542
+      },
+      "proposed_measure_switches": 1876
+    },
+    "compute": {
+      "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+      "wall_time_s": {
+        "available_episodes": 16,
+        "sum": 16.163757329806685,
+        "mean": 1.0102348331129178
+      },
+      "worker_cpu_s": {
+        "available_episodes": 16,
+        "sum": 15.963524868,
+        "mean": 0.99772030425
+      },
+      "policy_wall_s": {
+        "available_episodes": 16,
+        "sum": 9.509129481390119,
+        "mean": 0.5943205925868824
+      },
+      "policy_cpu_s": {
+        "available_episodes": 16,
+        "sum": 9.464005724,
+        "mean": 0.59150035775
+      },
+      "posthoc_bound_wall_s": {
+        "available_episodes": 16,
+        "sum": 6.097210388630629,
+        "mean": 0.3810756492894143
+      },
+      "posthoc_bound_cpu_s": {
+        "available_episodes": 16,
+        "sum": 6.07889352,
+        "mean": 0.379930845
+      }
+    },
+    "recorded_behavior": {
+      "critic_explained_variance": {
+        "count": 0,
+        "value": null,
+        "reason": "fewer_than_two_values"
+      },
+      "mean_sampled_surprisal_nats": null
+    },
+    "checkpoint_diagnostics": {
+      "critic_explained_variance": {
+        "count": 2048,
+        "value": 0.025047433449426282,
+        "target_variance": 2.070343236350935,
+        "reason": null
+      },
+      "states": 2048,
+      "mean_entropy_nats": 5.716317084850743,
+      "mean_entropy_over_log_legal_candidates": 0.9997851794349519,
+      "bc_label_states": 2048,
+      "bc_exact_index_accuracy": 0.56396484375,
+      "bc_feature_equivalent_accuracy": 0.56396484375,
+      "bc_states_with_feature_equivalent_ties": 1571
+    }
+  },
+  "by_batch": {
+    "input-000/batch-000000.json.gz": {
+      "attempts": 16,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 16,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 16,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 16,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 7729.949831625,
+      "p95_actual_time_s": 8977.89703475,
+      "max_actual_time_s": 9560.91323,
+      "mean_penalized_time_s": 7729.949831625,
+      "p95_penalized_time_s": 8977.89703475,
+      "failed_clear_count": 575,
+      "sum_fallback_cost_s": 87681.108618,
+      "fallback_share_of_total_actual_time": 0.7089398260005231,
+      "mean_lower_bound_s": 1746.5862383992644,
+      "ratio_of_mean_penalized_time_to_mean_bound": 4.425747587882893,
+      "actual_all_clear_ratio_of_sums": 4.425747587882893,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 469740.986798577,
+        "policy_distance_m": 118455.44340161247,
+        "fallback_distance_m": 351285.54339696455,
+        "channel_switches": 4101.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 93948.19730599999,
+          "switching_s": 4101.0,
+          "detection_s": 22840.0,
+          "optical_s": 2364.0,
+          "removal_s": 426.0
+        },
+        "policy_components_s": {
+          "movement_s": 23691.088688000003,
+          "switching_s": 1886.0,
+          "detection_s": 10075.0,
+          "optical_s": 228.0,
+          "removal_s": 118.0
+        },
+        "fallback_components_s": {
+          "movement_s": 70257.108618,
+          "switching_s": 2215.0,
+          "detection_s": 12765.0,
+          "optical_s": 2136.0,
+          "removal_s": 308.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 20,
+          "guaranteed_clearance": 555
+        },
+        "operations": {
+          "/enter": 16,
+          "/measure": 4568,
+          "/clear": 788,
+          "/exit": 16
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 67972.71366099999,
+            "switching_s": 4101.0,
+            "detection_s": 22840.0
+          },
+          "/clear": {
+            "movement_s": 25975.483644999997,
+            "optical_s": 2364.0,
+            "removal_s": 426.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 1989,
+          "service": 59
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 28617.146713000002,
+          "service": 7380.941975000001
+        },
+        "proposed_entry_distance_m": {
+          "measure": 83980.73355519207,
+          "service": 33610.53825300542
+        },
+        "proposed_measure_switches": 1876
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 16,
+          "sum": 16.163757329806685,
+          "mean": 1.0102348331129178
+        },
+        "worker_cpu_s": {
+          "available_episodes": 16,
+          "sum": 15.963524868,
+          "mean": 0.99772030425
+        },
+        "policy_wall_s": {
+          "available_episodes": 16,
+          "sum": 9.509129481390119,
+          "mean": 0.5943205925868824
+        },
+        "policy_cpu_s": {
+          "available_episodes": 16,
+          "sum": 9.464005724,
+          "mean": 0.59150035775
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 16,
+          "sum": 6.097210388630629,
+          "mean": 0.3810756492894143
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 16,
+          "sum": 6.07889352,
+          "mean": 0.379930845
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 2048,
+          "value": 0.025047433449426282,
+          "target_variance": 2.070343236350935,
+          "reason": null
+        },
+        "states": 2048,
+        "mean_entropy_nats": 5.716317084850743,
+        "mean_entropy_over_log_legal_candidates": 0.9997851794349519,
+        "bc_label_states": 2048,
+        "bc_exact_index_accuracy": 0.56396484375,
+        "bc_feature_equivalent_accuracy": 0.56396484375,
+        "bc_states_with_feature_equivalent_ties": 1571
+      }
+    }
+  },
+  "episodes": [
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000000,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 8125.759108,
+      "penalized_time_s": 8125.759108,
+      "reported_success": true,
+      "failed_clear_count": 6,
+      "fallback_cost_s": 5502.394957,
+      "fallback_share": 0.6771545752055046,
+      "decisions": 128,
+      "family": "random",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 1.0449385549873114,
+        "worker_cpu_s": 1.0113768520000002,
+        "policy_wall_s": 0.7351293079555035,
+        "policy_cpu_s": 0.7308060949999999,
+        "posthoc_bound_wall_s": 0.2308764886111021,
+        "posthoc_bound_cpu_s": 0.22999147399999975
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 14,
+        "cleared_total": 14,
+        "failed_clear_count": 6,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 2,
+          "guaranteed_clearance": 4
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 267,
+          "/clear": 20,
+          "/exit": 1
+        },
+        "actual_distance_m": 32298.795547180944,
+        "policy_distance_m": 9291.820748716978,
+        "fallback_distance_m": 23006.97479846395,
+        "channel_switches": 243.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 3923.415255,
+            "switching_s": 243.0,
+            "detection_s": 1335.0
+          },
+          "/clear": {
+            "movement_s": 2536.343853,
+            "optical_s": 60.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 6459.759108,
+          "switching_s": 243.0,
+          "detection_s": 1335.0,
+          "optical_s": 60.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 1858.364151,
+          "switching_s": 117.0,
+          "detection_s": 620.0,
+          "optical_s": 18.0,
+          "removal_s": 10.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4601.394957,
+          "switching_s": 126.0,
+          "detection_s": 715.0,
+          "optical_s": 42.0,
+          "removal_s": 18.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 2035.2706414854754,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 3.9924710465382054,
+      "actual_time_over_lower_bound": 3.9924710465382054,
+      "penalized_time_over_lower_bound": 3.9924710465382054,
+      "decision_contributions": {
+        "counts": {
+          "measure": 123,
+          "service": 5
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1635.6014409999998,
+          "service": 987.7627100000003
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4523.007203540328,
+          "service": 4756.822262084525
+        },
+        "proposed_measure_switches": 116,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.6662462875247,
+        "mean_entropy_over_log_legal_candidates": 0.9997936384582984,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.11215369385390939,
+          "target_variance": 0.6749923871440928,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 68,
+        "bc_feature_equivalent_hits": 68,
+        "bc_states_with_feature_equivalent_ties": 94,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000001,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 5359.478262,
+      "penalized_time_s": 5359.478262,
+      "reported_success": true,
+      "failed_clear_count": 0,
+      "fallback_cost_s": 2689.486666,
+      "fallback_share": 0.5018187469980263,
+      "decisions": 128,
+      "family": "minimum_radius",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 1.9540035109966993,
+        "worker_cpu_s": 1.923217464,
+        "policy_wall_s": 0.7112897001206875,
+        "policy_cpu_s": 0.707417148,
+        "posthoc_bound_wall_s": 1.1686724815517664,
+        "posthoc_bound_cpu_s": 1.165217784
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 16,
+        "cleared_total": 16,
+        "failed_clear_count": 0,
+        "failed_clear_phases": {},
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 160,
+          "/clear": 16,
+          "/exit": 1
+        },
+        "actual_distance_m": 21707.391307128408,
+        "policy_distance_m": 9584.957981174153,
+        "fallback_distance_m": 12122.433325954256,
+        "channel_switches": 138.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 2650.729839,
+            "switching_s": 138.0,
+            "detection_s": 800.0
+          },
+          "/clear": {
+            "movement_s": 1690.748423,
+            "optical_s": 48.0,
+            "removal_s": 32.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 4341.478262,
+          "switching_s": 138.0,
+          "detection_s": 800.0,
+          "optical_s": 48.0,
+          "removal_s": 32.0
+        },
+        "policy_components_s": {
+          "movement_s": 1916.991596,
+          "switching_s": 113.0,
+          "detection_s": 600.0,
+          "optical_s": 24.0,
+          "removal_s": 16.0
+        },
+        "fallback_components_s": {
+          "movement_s": 2424.486666,
+          "switching_s": 25.0,
+          "detection_s": 200.0,
+          "optical_s": 24.0,
+          "removal_s": 16.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 2077.850894773038,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 2.579337273661983,
+      "actual_time_over_lower_bound": 2.579337273661983,
+      "penalized_time_over_lower_bound": 2.579337273661983,
+      "decision_contributions": {
+        "counts": {
+          "measure": 120,
+          "service": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1750.8449259999993,
+          "service": 919.1466700000005
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5189.224629504347,
+          "service": 4395.733351669807
+        },
+        "proposed_measure_switches": 113,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.5012070164084435,
+        "mean_entropy_over_log_legal_candidates": 0.9996981617157275,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.08803068498326283,
+          "target_variance": 0.6591926683231082,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 44,
+        "bc_feature_equivalent_hits": 44,
+        "bc_states_with_feature_equivalent_ties": 88,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000002,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 9560.91323,
+      "penalized_time_s": 9560.91323,
+      "reported_success": true,
+      "failed_clear_count": 102,
+      "fallback_cost_s": 7596.831884,
+      "fallback_share": 0.7945717842269342,
+      "decisions": 128,
+      "family": "boundary_outward",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 2.035724790766835,
+        "worker_cpu_s": 2.005056074,
+        "policy_wall_s": 0.7853828966617584,
+        "policy_cpu_s": 0.7818591260000001,
+        "posthoc_bound_wall_s": 1.1757033355534077,
+        "posthoc_bound_cpu_s": 1.1723426139999997
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 16,
+        "cleared_total": 16,
+        "failed_clear_count": 102,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1,
+          "guaranteed_clearance": 101
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 299,
+          "/clear": 118,
+          "/exit": 1
+        },
+        "actual_distance_m": 37099.56617178845,
+        "policy_distance_m": 6020.406723328377,
+        "fallback_distance_m": 31079.159448460086,
+        "channel_switches": 260.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4831.269459,
+            "switching_s": 260.0,
+            "detection_s": 1495.0
+          },
+          "/clear": {
+            "movement_s": 2588.643771,
+            "optical_s": 354.0,
+            "removal_s": 32.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 7419.91323,
+          "switching_s": 260.0,
+          "detection_s": 1495.0,
+          "optical_s": 354.0,
+          "removal_s": 32.0
+        },
+        "policy_components_s": {
+          "movement_s": 1204.081346,
+          "switching_s": 120.0,
+          "detection_s": 640.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "fallback_components_s": {
+          "movement_s": 6215.831884,
+          "switching_s": 140.0,
+          "detection_s": 855.0,
+          "optical_s": 354.0,
+          "removal_s": 32.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 2422.8384235809744,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 3.9461621282482775,
+      "actual_time_over_lower_bound": 3.9461621282482775,
+      "penalized_time_over_lower_bound": 3.9461621282482775,
+      "decision_contributions": {
+        "counts": {
+          "measure": 128
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1964.081346
+        },
+        "proposed_entry_distance_m": {
+          "measure": 6020.406723328377
+        },
+        "proposed_measure_switches": 120,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.8060827031731606,
+        "mean_entropy_over_log_legal_candidates": 0.9998258529036881,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.11471326491114098,
+          "target_variance": 0.32310490543741754,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 82,
+        "bc_feature_equivalent_hits": 82,
+        "bc_states_with_feature_equivalent_ties": 108,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000003,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 5772.611402,
+      "penalized_time_s": 5772.611402,
+      "reported_success": true,
+      "failed_clear_count": 1,
+      "fallback_cost_s": 3975.8769470000007,
+      "fallback_share": 0.6887484138673363,
+      "decisions": 128,
+      "family": "cluster",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 0.741515489295125,
+        "worker_cpu_s": 0.716512764,
+        "policy_wall_s": 0.6610227543860674,
+        "policy_cpu_s": 0.6579455240000001,
+        "posthoc_bound_wall_s": 0.008387012407183647,
+        "posthoc_bound_cpu_s": 0.008359242000000044
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 10,
+        "cleared_total": 10,
+        "failed_clear_count": 1,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 308,
+          "/clear": 11,
+          "/exit": 1
+        },
+        "actual_distance_m": 19463.057034228896,
+        "policy_distance_m": 5178.672269440314,
+        "fallback_distance_m": 14284.38476478858,
+        "channel_switches": 287.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 3522.483876,
+            "switching_s": 287.0,
+            "detection_s": 1540.0
+          },
+          "/clear": {
+            "movement_s": 370.127526,
+            "optical_s": 33.0,
+            "removal_s": 20.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 3892.611402,
+          "switching_s": 287.0,
+          "detection_s": 1540.0,
+          "optical_s": 33.0,
+          "removal_s": 20.0
+        },
+        "policy_components_s": {
+          "movement_s": 1035.734455,
+          "switching_s": 121.0,
+          "detection_s": 640.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "fallback_components_s": {
+          "movement_s": 2856.876947,
+          "switching_s": 166.0,
+          "detection_s": 900.0,
+          "optical_s": 33.0,
+          "removal_s": 20.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 765.9448711108819,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 7.5365886237057,
+      "actual_time_over_lower_bound": 7.5365886237057,
+      "penalized_time_over_lower_bound": 7.5365886237057,
+      "decision_contributions": {
+        "counts": {
+          "measure": 128
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1796.734455
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5178.672269440314
+        },
+        "proposed_measure_switches": 121,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.922431509941816,
+        "mean_entropy_over_log_legal_candidates": 0.9998698597047658,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.0787122259453723,
+          "target_variance": 0.2871357420716661,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 123,
+        "bc_feature_equivalent_hits": 123,
+        "bc_states_with_feature_equivalent_ties": 115,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000004,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 5695.558427,
+      "penalized_time_s": 5695.558427,
+      "reported_success": true,
+      "failed_clear_count": 5,
+      "fallback_cost_s": 3289.9990119999998,
+      "fallback_share": 0.5776429219659377,
+      "decisions": 128,
+      "family": "positive_error",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 2.0000000558793545,
+        "worker_cpu_s": 1.9825595070000002,
+        "policy_wall_s": 0.7750256415456533,
+        "policy_cpu_s": 0.7709063279999999,
+        "posthoc_bound_wall_s": 1.1649601720273495,
+        "posthoc_bound_cpu_s": 1.161694835
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 16,
+        "cleared_total": 16,
+        "failed_clear_count": 5,
+        "failed_clear_phases": {
+          "guaranteed_clearance": 5
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 181,
+          "/clear": 21,
+          "/exit": 1
+        },
+        "actual_distance_m": 22692.79215083108,
+        "policy_distance_m": 8252.797083379985,
+        "fallback_distance_m": 14439.99506745109,
+        "channel_switches": 157.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 2975.907056,
+            "switching_s": 157.0,
+            "detection_s": 905.0
+          },
+          "/clear": {
+            "movement_s": 1562.651371,
+            "optical_s": 63.0,
+            "removal_s": 32.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 4538.558427,
+          "switching_s": 157.0,
+          "detection_s": 905.0,
+          "optical_s": 63.0,
+          "removal_s": 32.0
+        },
+        "policy_components_s": {
+          "movement_s": 1650.559415,
+          "switching_s": 115.0,
+          "detection_s": 620.0,
+          "optical_s": 12.0,
+          "removal_s": 8.0
+        },
+        "fallback_components_s": {
+          "movement_s": 2887.999012,
+          "switching_s": 42.0,
+          "detection_s": 285.0,
+          "optical_s": 51.0,
+          "removal_s": 24.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 1834.4005658809542,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 3.1048608100841704,
+      "actual_time_over_lower_bound": 3.1048608100841704,
+      "penalized_time_over_lower_bound": 3.1048608100841704,
+      "decision_contributions": {
+        "counts": {
+          "measure": 124,
+          "service": 4
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1891.0656550000003,
+          "service": 514.49376
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5780.328283574531,
+          "service": 2472.4687998054533
+        },
+        "proposed_measure_switches": 115,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.597833175212145,
+        "mean_entropy_over_log_legal_candidates": 0.9997076282494961,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.04500047403623564,
+          "target_variance": 0.4904850743278296,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 49,
+        "bc_feature_equivalent_hits": 49,
+        "bc_states_with_feature_equivalent_ties": 81,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000005,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 8501.735114,
+      "penalized_time_s": 8501.735114,
+      "reported_success": true,
+      "failed_clear_count": 1,
+      "fallback_cost_s": 6312.299256999999,
+      "fallback_share": 0.7424718804289013,
+      "decisions": 128,
+      "family": "negative_error",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 0.8622459322214127,
+        "worker_cpu_s": 0.8486420499999998,
+        "policy_wall_s": 0.6952706873416901,
+        "policy_cpu_s": 0.6917186910000002,
+        "posthoc_bound_wall_s": 0.10714221931993961,
+        "posthoc_bound_cpu_s": 0.1067106659999999
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 13,
+        "cleared_total": 13,
+        "failed_clear_count": 1,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 301,
+          "/clear": 14,
+          "/exit": 1
+        },
+        "actual_distance_m": 33258.6755829065,
+        "policy_distance_m": 7092.179280391807,
+        "fallback_distance_m": 26166.49630251469,
+        "channel_switches": 277.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 5229.953776,
+            "switching_s": 277.0,
+            "detection_s": 1505.0
+          },
+          "/clear": {
+            "movement_s": 1421.781338,
+            "optical_s": 42.0,
+            "removal_s": 26.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 6651.735114,
+          "switching_s": 277.0,
+          "detection_s": 1505.0,
+          "optical_s": 42.0,
+          "removal_s": 26.0
+        },
+        "policy_components_s": {
+          "movement_s": 1418.435857,
+          "switching_s": 118.0,
+          "detection_s": 630.0,
+          "optical_s": 15.0,
+          "removal_s": 8.0
+        },
+        "fallback_components_s": {
+          "movement_s": 5233.299257,
+          "switching_s": 159.0,
+          "detection_s": 875.0,
+          "optical_s": 27.0,
+          "removal_s": 18.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 2305.1811764468584,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 3.688098445738801,
+      "actual_time_over_lower_bound": 3.688098445738801,
+      "penalized_time_over_lower_bound": 3.688098445738801,
+      "decision_contributions": {
+        "counts": {
+          "measure": 124,
+          "service": 4
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1668.336559,
+          "service": 521.099298
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4656.682797113012,
+          "service": 2398.8977691990594
+        },
+        "proposed_measure_switches": 117,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.756777886301279,
+        "mean_entropy_over_log_legal_candidates": 0.9998290737409541,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.10515104729704283,
+          "target_variance": 0.3984530509174035,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 68,
+        "bc_feature_equivalent_hits": 68,
+        "bc_states_with_feature_equivalent_ties": 101,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000006,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 7728.160181,
+      "penalized_time_s": 7728.160181,
+      "reported_success": true,
+      "failed_clear_count": 1,
+      "fallback_cost_s": 5319.708871000001,
+      "fallback_share": 0.6883538573745823,
+      "decisions": 128,
+      "family": "alternating_error",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 0.9508927799761295,
+        "worker_cpu_s": 0.9369594610000003,
+        "policy_wall_s": 0.6605336666107178,
+        "policy_cpu_s": 0.656933003,
+        "posthoc_bound_wall_s": 0.23163558542728424,
+        "posthoc_bound_cpu_s": 0.23037398100000006
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 14,
+        "cleared_total": 14,
+        "failed_clear_count": 1,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 248,
+          "/clear": 15,
+          "/exit": 1
+        },
+        "actual_distance_m": 30925.80092914417,
+        "policy_distance_m": 8212.256557444147,
+        "fallback_distance_m": 22713.544371700013,
+        "channel_switches": 230.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4049.333286,
+            "switching_s": 230.0,
+            "detection_s": 1240.0
+          },
+          "/clear": {
+            "movement_s": 2135.826895,
+            "optical_s": 45.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 6185.160181,
+          "switching_s": 230.0,
+          "detection_s": 1240.0,
+          "optical_s": 45.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 1642.45131,
+          "switching_s": 118.0,
+          "detection_s": 620.0,
+          "optical_s": 18.0,
+          "removal_s": 10.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4542.708871,
+          "switching_s": 112.0,
+          "detection_s": 620.0,
+          "optical_s": 27.0,
+          "removal_s": 18.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 2142.022758551038,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 3.607879584915186,
+      "actual_time_over_lower_bound": 3.607879584915186,
+      "penalized_time_over_lower_bound": 3.607879584915186,
+      "decision_contributions": {
+        "counts": {
+          "measure": 123,
+          "service": 5
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1781.5995799999987,
+          "service": 626.8517300000003
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5247.997907507259,
+          "service": 2951.2511846844386
+        },
+        "proposed_measure_switches": 117,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.685741271823645,
+        "mean_entropy_over_log_legal_candidates": 0.9998045427655614,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.10303637385500353,
+          "target_variance": 0.5588746810372346,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 81,
+        "bc_feature_equivalent_hits": 81,
+        "bc_states_with_feature_equivalent_ties": 102,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000007,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 7917.965191,
+      "penalized_time_s": 7917.965191,
+      "reported_success": true,
+      "failed_clear_count": 89,
+      "fallback_cost_s": 4576.505821000001,
+      "fallback_share": 0.5779901414825506,
+      "decisions": 128,
+      "family": "narrow_strip",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 0.9393081907182932,
+        "worker_cpu_s": 0.9248523539999998,
+        "policy_wall_s": 0.6454655956476927,
+        "policy_cpu_s": 0.6420856050000001,
+        "posthoc_bound_wall_s": 0.23355994373559952,
+        "posthoc_bound_cpu_s": 0.23282459700000002
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 14,
+        "cleared_total": 14,
+        "failed_clear_count": 89,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 3,
+          "guaranteed_clearance": 86
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 209,
+          "/clear": 103,
+          "/exit": 1
+        },
+        "actual_distance_m": 31784.825957043173,
+        "policy_distance_m": 12572.296834236122,
+        "fallback_distance_m": 19212.52912280704,
+        "channel_switches": 179.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4858.841338,
+            "switching_s": 179.0,
+            "detection_s": 1045.0
+          },
+          "/clear": {
+            "movement_s": 1498.123853,
+            "optical_s": 309.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 6356.965191,
+          "switching_s": 179.0,
+          "detection_s": 1045.0,
+          "optical_s": 309.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 2514.45937,
+          "switching_s": 111.0,
+          "detection_s": 630.0,
+          "optical_s": 60.0,
+          "removal_s": 26.0
+        },
+        "fallback_components_s": {
+          "movement_s": 3842.505821,
+          "switching_s": 68.0,
+          "detection_s": 415.0,
+          "optical_s": 249.0,
+          "removal_s": 2.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 546.0000044444444,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 14.501767631039746,
+      "actual_time_over_lower_bound": 14.501767631039746,
+      "penalized_time_over_lower_bound": 14.501767631039746,
+      "decision_contributions": {
+        "counts": {
+          "measure": 115,
+          "service": 13
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 2282.301364999999,
+          "service": 1059.1580050000002
+        },
+        "proposed_entry_distance_m": {
+          "measure": 7996.506827689436,
+          "service": 4161.561153041958
+        },
+        "proposed_measure_switches": 108,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.301012329757214,
+        "mean_entropy_over_log_legal_candidates": 0.9996777352377533,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.06349112625343711,
+          "target_variance": 1.0331390648678869,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 63,
+        "bc_feature_equivalent_hits": 63,
+        "bc_states_with_feature_equivalent_ties": 78,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000008,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 8523.846476,
+      "penalized_time_s": 8523.846476,
+      "reported_success": true,
+      "failed_clear_count": 8,
+      "fallback_cost_s": 6019.331172,
+      "fallback_share": 0.7061754559925746,
+      "decisions": 128,
+      "family": "random",
+      "source_mode": "all_directional",
+      "compute": {
+        "wall_time_s": 0.7040226124227047,
+        "worker_cpu_s": 0.7017701030000001,
+        "policy_wall_s": 0.46942005679011345,
+        "policy_cpu_s": 0.4677510439999999,
+        "posthoc_bound_wall_s": 0.2327057532966137,
+        "posthoc_bound_cpu_s": 0.23214091300000028
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 14,
+        "cleared_total": 14,
+        "failed_clear_count": 8,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1,
+          "guaranteed_clearance": 7
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 292,
+          "/clear": 22,
+          "/exit": 1
+        },
+        "actual_distance_m": 33519.23239999795,
+        "policy_distance_m": 8612.576516019995,
+        "fallback_distance_m": 24906.655883977943,
+        "channel_switches": 266.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4403.95162,
+            "switching_s": 266.0,
+            "detection_s": 1460.0
+          },
+          "/clear": {
+            "movement_s": 2299.894856,
+            "optical_s": 66.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 6703.846476,
+          "switching_s": 266.0,
+          "detection_s": 1460.0,
+          "optical_s": 66.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 1722.515304,
+          "switching_s": 119.0,
+          "detection_s": 640.0,
+          "optical_s": 15.0,
+          "removal_s": 8.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4981.331172,
+          "switching_s": 147.0,
+          "detection_s": 820.0,
+          "optical_s": 51.0,
+          "removal_s": 20.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 2027.9542014685073,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 4.2031750371027155,
+      "actual_time_over_lower_bound": 4.2031750371027155,
+      "penalized_time_over_lower_bound": 4.2031750371027155,
+      "decision_contributions": {
+        "counts": {
+          "measure": 124,
+          "service": 4
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1735.733309,
+          "service": 768.7819950000002
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4988.666544074085,
+          "service": 3499.92894570542
+        },
+        "proposed_measure_switches": 118,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.734987020492554,
+        "mean_entropy_over_log_legal_candidates": 0.9997672115590002,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": -0.01051021646239736,
+          "target_variance": 0.5792396534226425,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 80,
+        "bc_feature_equivalent_hits": 80,
+        "bc_states_with_feature_equivalent_ties": 97,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000009,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 8247.312055,
+      "penalized_time_s": 8247.312055,
+      "reported_success": true,
+      "failed_clear_count": 24,
+      "fallback_cost_s": 6286.627526,
+      "fallback_share": 0.7622638120245105,
+      "decisions": 128,
+      "family": "minimum_radius",
+      "source_mode": "all_directional",
+      "compute": {
+        "wall_time_s": 0.51076590269804,
+        "worker_cpu_s": 0.5083872409999999,
+        "policy_wall_s": 0.4880515579134226,
+        "policy_cpu_s": 0.4857615639999997,
+        "posthoc_bound_wall_s": 0.019560864195227623,
+        "posthoc_bound_cpu_s": 0.019495411000000296
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 11,
+        "cleared_total": 11,
+        "failed_clear_count": 24,
+        "failed_clear_phases": {
+          "guaranteed_clearance": 24
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 349,
+          "/clear": 35,
+          "/exit": 1
+        },
+        "actual_distance_m": 30291.560299893034,
+        "policy_distance_m": 6008.422643132985,
+        "fallback_distance_m": 24283.137656760042,
+        "channel_switches": 317.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4636.020163,
+            "switching_s": 317.0,
+            "detection_s": 1745.0
+          },
+          "/clear": {
+            "movement_s": 1422.291892,
+            "optical_s": 105.0,
+            "removal_s": 22.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 6058.312055,
+          "switching_s": 317.0,
+          "detection_s": 1745.0,
+          "optical_s": 105.0,
+          "removal_s": 22.0
+        },
+        "policy_components_s": {
+          "movement_s": 1201.684529,
+          "switching_s": 119.0,
+          "detection_s": 630.0,
+          "optical_s": 6.0,
+          "removal_s": 4.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4856.627526,
+          "switching_s": 198.0,
+          "detection_s": 1115.0,
+          "optical_s": 99.0,
+          "removal_s": 18.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 1934.5336937999275,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 4.263204141355705,
+      "actual_time_over_lower_bound": 4.263204141355705,
+      "penalized_time_over_lower_bound": 4.263204141355705,
+      "decision_contributions": {
+        "counts": {
+          "measure": 126,
+          "service": 2
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1610.1742430000002,
+          "service": 350.51028599999995
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4305.871212949841,
+          "service": 1702.551430183144
+        },
+        "proposed_measure_switches": 119,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.821096308529377,
+        "mean_entropy_over_log_legal_candidates": 0.9998119066295161,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.05567217096006627,
+          "target_variance": 0.34371542892291057,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 62,
+        "bc_feature_equivalent_hits": 62,
+        "bc_states_with_feature_equivalent_ties": 99,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000010,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 8783.558303,
+      "penalized_time_s": 8783.558303,
+      "reported_success": true,
+      "failed_clear_count": 0,
+      "fallback_cost_s": 6986.823848,
+      "fallback_share": 0.7954434418239895,
+      "decisions": 128,
+      "family": "boundary_outward",
+      "source_mode": "all_directional",
+      "compute": {
+        "wall_time_s": 0.6861006077378988,
+        "worker_cpu_s": 0.6834738520000001,
+        "policy_wall_s": 0.45084893703460693,
+        "policy_cpu_s": 0.44884150300000014,
+        "posthoc_bound_wall_s": 0.2322534453123808,
+        "posthoc_bound_cpu_s": 0.23167569999999982
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 14,
+        "cleared_total": 14,
+        "failed_clear_count": 0,
+        "failed_clear_phases": {},
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 404,
+          "/clear": 14,
+          "/exit": 1
+        },
+        "actual_distance_m": 31677.79153220031,
+        "policy_distance_m": 5178.672269440314,
+        "fallback_distance_m": 26499.11926276,
+        "channel_switches": 358.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 5849.822083,
+            "switching_s": 358.0,
+            "detection_s": 2020.0
+          },
+          "/clear": {
+            "movement_s": 485.73622,
+            "optical_s": 42.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 6335.558303,
+          "switching_s": 358.0,
+          "detection_s": 2020.0,
+          "optical_s": 42.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 1035.734455,
+          "switching_s": 121.0,
+          "detection_s": 640.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "fallback_components_s": {
+          "movement_s": 5299.823848,
+          "switching_s": 237.0,
+          "detection_s": 1380.0,
+          "optical_s": 42.0,
+          "removal_s": 28.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 2704.6602309454456,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 3.2475644084616144,
+      "actual_time_over_lower_bound": 3.2475644084616144,
+      "penalized_time_over_lower_bound": 3.2475644084616144,
+      "decision_contributions": {
+        "counts": {
+          "measure": 128
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1796.734455
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5178.672269440314
+        },
+        "proposed_measure_switches": 121,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.925304491072893,
+        "mean_entropy_over_log_legal_candidates": 0.9998722609953737,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.08129632280692645,
+          "target_variance": 0.28713574207166537,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 123,
+        "bc_feature_equivalent_hits": 123,
+        "bc_states_with_feature_equivalent_ties": 115,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000011,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 8449.807988,
+      "penalized_time_s": 8449.807988,
+      "reported_success": true,
+      "failed_clear_count": 127,
+      "fallback_cost_s": 6653.073533000001,
+      "fallback_share": 0.787363871752869,
+      "decisions": 128,
+      "family": "cluster",
+      "source_mode": "all_directional",
+      "compute": {
+        "wall_time_s": 0.48903374932706356,
+        "worker_cpu_s": 0.48675964800000004,
+        "policy_wall_s": 0.4775260929018259,
+        "policy_cpu_s": 0.47532500899999963,
+        "posthoc_bound_wall_s": 0.008572855964303017,
+        "posthoc_bound_cpu_s": 0.008539859999999955
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 10,
+        "cleared_total": 10,
+        "failed_clear_count": 127,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 3,
+          "guaranteed_clearance": 124
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 370,
+          "/clear": 137,
+          "/exit": 1
+        },
+        "actual_distance_m": 29204.039966007418,
+        "policy_distance_m": 5178.672269440314,
+        "fallback_distance_m": 24025.367696567115,
+        "channel_switches": 328.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4334.219934,
+            "switching_s": 328.0,
+            "detection_s": 1850.0
+          },
+          "/clear": {
+            "movement_s": 1506.588054,
+            "optical_s": 411.0,
+            "removal_s": 20.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 5840.807988,
+          "switching_s": 328.0,
+          "detection_s": 1850.0,
+          "optical_s": 411.0,
+          "removal_s": 20.0
+        },
+        "policy_components_s": {
+          "movement_s": 1035.734455,
+          "switching_s": 121.0,
+          "detection_s": 640.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4805.073533,
+          "switching_s": 207.0,
+          "detection_s": 1210.0,
+          "optical_s": 411.0,
+          "removal_s": 20.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 765.9635932840671,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 11.031605238274405,
+      "actual_time_over_lower_bound": 11.031605238274405,
+      "penalized_time_over_lower_bound": 11.031605238274405,
+      "decision_contributions": {
+        "counts": {
+          "measure": 128
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1796.734455
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5178.672269440314
+        },
+        "proposed_measure_switches": 121,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.860408425331116,
+        "mean_entropy_over_log_legal_candidates": 0.9998128560853328,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.11099463517069474,
+          "target_variance": 0.2871357420716658,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 92,
+        "bc_feature_equivalent_hits": 92,
+        "bc_states_with_feature_equivalent_ties": 108,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000012,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 7947.665751,
+      "penalized_time_s": 7947.665751,
+      "reported_success": true,
+      "failed_clear_count": 0,
+      "fallback_cost_s": 6117.544773,
+      "fallback_share": 0.7697284919449804,
+      "decisions": 128,
+      "family": "positive_error",
+      "source_mode": "all_directional",
+      "compute": {
+        "wall_time_s": 0.5397679768502712,
+        "worker_cpu_s": 0.5376108419999999,
+        "policy_wall_s": 0.4914611130952835,
+        "policy_cpu_s": 0.48944515499999985,
+        "posthoc_bound_wall_s": 0.04635528288781643,
+        "posthoc_bound_cpu_s": 0.046233822000000036
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 12,
+        "cleared_total": 12,
+        "failed_clear_count": 0,
+        "failed_clear_phases": {},
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 322,
+          "/clear": 12,
+          "/exit": 1
+        },
+        "actual_distance_m": 29913.32876826936,
+        "policy_distance_m": 5350.604893870288,
+        "fallback_distance_m": 24562.72387439907,
+        "channel_switches": 295.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4342.149947,
+            "switching_s": 295.0,
+            "detection_s": 1610.0
+          },
+          "/clear": {
+            "movement_s": 1640.515804,
+            "optical_s": 36.0,
+            "removal_s": 24.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 5982.665751,
+          "switching_s": 295.0,
+          "detection_s": 1610.0,
+          "optical_s": 36.0,
+          "removal_s": 24.0
+        },
+        "policy_components_s": {
+          "movement_s": 1070.120978,
+          "switching_s": 120.0,
+          "detection_s": 635.0,
+          "optical_s": 3.0,
+          "removal_s": 2.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4912.544773,
+          "switching_s": 175.0,
+          "detection_s": 975.0,
+          "optical_s": 33.0,
+          "removal_s": 22.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 2000.4889510470268,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 3.9728616080785186,
+      "actual_time_over_lower_bound": 3.9728616080785186,
+      "penalized_time_over_lower_bound": 3.9728616080785186,
+      "decision_contributions": {
+        "counts": {
+          "measure": 127,
+          "service": 1
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1688.974552,
+          "service": 141.14642600000002
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4669.872763535575,
+          "service": 680.7321303347125
+        },
+        "proposed_measure_switches": 120,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.799340799450874,
+        "mean_entropy_over_log_legal_candidates": 0.9997775249318249,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": -0.025611875279246687,
+          "target_variance": 0.3261814965857981,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 62,
+        "bc_feature_equivalent_hits": 62,
+        "bc_states_with_feature_equivalent_ties": 102,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000013,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 8245.297097,
+      "penalized_time_s": 8245.297097,
+      "reported_success": true,
+      "failed_clear_count": 65,
+      "fallback_cost_s": 6390.526308,
+      "fallback_share": 0.7750510664224766,
+      "decisions": 128,
+      "family": "negative_error",
+      "source_mode": "all_directional",
+      "compute": {
+        "wall_time_s": 0.5179960317909718,
+        "worker_cpu_s": 0.5160162800000001,
+        "policy_wall_s": 0.49577012099325657,
+        "policy_cpu_s": 0.49386769300000033,
+        "posthoc_bound_wall_s": 0.020304303616285324,
+        "posthoc_bound_cpu_s": 0.020253640000000406
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 11,
+        "cleared_total": 11,
+        "failed_clear_count": 65,
+        "failed_clear_phases": {
+          "guaranteed_clearance": 64,
+          "speculative_clear_before_probe": 1
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 353,
+          "/clear": 76,
+          "/exit": 1
+        },
+        "actual_distance_m": 29541.48551099665,
+        "policy_distance_m": 5473.85394377939,
+        "fallback_distance_m": 24067.631567217257,
+        "channel_switches": 322.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4530.20015,
+            "switching_s": 322.0,
+            "detection_s": 1765.0
+          },
+          "/clear": {
+            "movement_s": 1378.096947,
+            "optical_s": 228.0,
+            "removal_s": 22.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 5908.297097,
+          "switching_s": 322.0,
+          "detection_s": 1765.0,
+          "optical_s": 228.0,
+          "removal_s": 22.0
+        },
+        "policy_components_s": {
+          "movement_s": 1094.770789,
+          "switching_s": 120.0,
+          "detection_s": 635.0,
+          "optical_s": 3.0,
+          "removal_s": 2.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4813.526308,
+          "switching_s": 202.0,
+          "detection_s": 1130.0,
+          "optical_s": 225.0,
+          "removal_s": 20.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 1992.375483624394,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 4.138425294212473,
+      "actual_time_over_lower_bound": 4.138425294212473,
+      "penalized_time_over_lower_bound": 4.138425294212473,
+      "decision_contributions": {
+        "counts": {
+          "measure": 127,
+          "service": 1
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1697.433904,
+          "service": 157.33688499999994
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4712.169516830625,
+          "service": 761.6844269487649
+        },
+        "proposed_measure_switches": 120,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.8753557950258255,
+        "mean_entropy_over_log_legal_candidates": 0.9998325278814134,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.06578441122232503,
+          "target_variance": 0.3050928427081265,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 50,
+        "bc_feature_equivalent_hits": 50,
+        "bc_states_with_feature_equivalent_ties": 105,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000014,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 8689.50825,
+      "penalized_time_s": 8689.50825,
+      "reported_success": true,
+      "failed_clear_count": 142,
+      "fallback_cost_s": 6206.063409,
+      "fallback_share": 0.7142019122888801,
+      "decisions": 128,
+      "family": "alternating_error",
+      "source_mode": "all_directional",
+      "compute": {
+        "wall_time_s": 1.6884771157056093,
+        "worker_cpu_s": 1.6833525569999996,
+        "policy_wall_s": 0.5154100805521011,
+        "policy_cpu_s": 0.5136718139999998,
+        "posthoc_bound_wall_s": 1.1710131727159023,
+        "posthoc_bound_cpu_s": 1.1676470069999998
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 16,
+        "cleared_total": 16,
+        "failed_clear_count": 142,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 4,
+          "guaranteed_clearance": 138
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 248,
+          "/clear": 158,
+          "/exit": 1
+        },
+        "actual_distance_m": 33632.54126583026,
+        "policy_distance_m": 8342.224207072948,
+        "fallback_distance_m": 25290.317058757308,
+        "channel_switches": 217.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 3867.577307,
+            "switching_s": 217.0,
+            "detection_s": 1240.0
+          },
+          "/clear": {
+            "movement_s": 2858.930943,
+            "optical_s": 474.0,
+            "removal_s": 32.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 6726.50825,
+          "switching_s": 217.0,
+          "detection_s": 1240.0,
+          "optical_s": 474.0,
+          "removal_s": 32.0
+        },
+        "policy_components_s": {
+          "movement_s": 1668.444841,
+          "switching_s": 122.0,
+          "detection_s": 655.0,
+          "optical_s": 30.0,
+          "removal_s": 8.0
+        },
+        "fallback_components_s": {
+          "movement_s": 5058.063409,
+          "switching_s": 95.0,
+          "detection_s": 585.0,
+          "optical_s": 444.0,
+          "removal_s": 24.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 1753.8943195007516,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 4.95440811534955,
+      "actual_time_over_lower_bound": 4.95440811534955,
+      "penalized_time_over_lower_bound": 4.95440811534955,
+      "decision_contributions": {
+        "counts": {
+          "measure": 124,
+          "service": 4
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1568.186792,
+          "service": 915.2580489999999
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4145.933963774919,
+          "service": 3931.9259920525806
+        },
+        "proposed_measure_switches": 119,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.722247786819935,
+        "mean_entropy_over_log_legal_candidates": 0.999733224485918,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": -0.0070464765950251085,
+          "target_variance": 0.5900320285995979,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 60,
+        "bc_feature_equivalent_hits": 60,
+        "bc_states_with_feature_equivalent_ties": 95,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    },
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000015,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [],
+      "actual_time_s": 6130.020471,
+      "penalized_time_s": 6130.020471,
+      "reported_success": true,
+      "failed_clear_count": 4,
+      "fallback_cost_s": 3758.0146339999997,
+      "fallback_share": 0.6130509109681568,
+      "decisions": 128,
+      "family": "narrow_strip",
+      "source_mode": "all_directional",
+      "compute": {
+        "wall_time_s": 0.4989640284329653,
+        "worker_cpu_s": 0.49697781900000004,
+        "policy_wall_s": 0.4515212718397379,
+        "policy_cpu_s": 0.44967042200000007,
+        "posthoc_bound_wall_s": 0.04550747200846672,
+        "posthoc_bound_cpu_s": 0.04539197400000017
+      },
+      "physical_audit": {
+        "status": "passed",
+        "actual_all_cleared": true,
+        "source_total": 12,
+        "cleared_total": 12,
+        "failed_clear_count": 4,
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 2,
+          "guaranteed_clearance": 2
+        },
+        "certified_clear_failures": 0,
+        "operations": {
+          "/enter": 1,
+          "/measure": 257,
+          "/clear": 16,
+          "/exit": 1
+        },
+        "actual_distance_m": 22730.102375130442,
+        "policy_distance_m": 8105.0291807443555,
+        "fallback_distance_m": 14625.073194386086,
+        "channel_switches": 227.0,
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 3966.838572,
+            "switching_s": 227.0,
+            "detection_s": 1285.0
+          },
+          "/clear": {
+            "movement_s": 579.181899,
+            "optical_s": 48.0,
+            "removal_s": 24.0
+          },
+          "/exit": {}
+        },
+        "components_s": {
+          "movement_s": 4546.020471,
+          "switching_s": 227.0,
+          "detection_s": 1285.0,
+          "optical_s": 48.0,
+          "removal_s": 24.0
+        },
+        "policy_components_s": {
+          "movement_s": 1621.005837,
+          "switching_s": 111.0,
+          "detection_s": 600.0,
+          "optical_s": 24.0,
+          "removal_s": 16.0
+        },
+        "fallback_components_s": {
+          "movement_s": 2925.014634,
+          "switching_s": 116.0,
+          "detection_s": 685.0,
+          "optical_s": 24.0,
+          "removal_s": 8.0
+        },
+        "scope": "saved physical billing and actual clears; no new continuous coverage certificate proof"
+      },
+      "common_lower_bound_s": 636.0000044444444,
+      "lower_bound_source": "saved_training_diagnostic",
+      "reported_success_time_over_lower_bound": 9.638396899626857,
+      "actual_time_over_lower_bound": 9.638396899626857,
+      "penalized_time_over_lower_bound": 9.638396899626857,
+      "decision_contributions": {
+        "counts": {
+          "measure": 120,
+          "service": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1952.609676,
+          "service": 419.396161
+        },
+        "proposed_entry_distance_m": {
+          "measure": 6208.0483734488,
+          "service": 1896.980807295556
+        },
+        "proposed_measure_switches": 111,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": {
+        "states": 128,
+        "mean_entropy_nats": 5.485000550746918,
+        "mean_entropy_over_log_legal_candidates": 0.9997488656146077,
+        "normalized_entropy_states": 128,
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.0901601374206713,
+          "target_variance": 0.518100552274929,
+          "reason": null
+        },
+        "bc_label_states": 128,
+        "bc_exact_index_hits": 48,
+        "bc_feature_equivalent_hits": 48,
+        "bc_states_with_feature_equivalent_ties": 83,
+        "scope": "the explicitly supplied checkpoint on saved states; not automatically the behavior checkpoint"
+      }
+    }
+  ],
+  "by_stratum": {
+    "random/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 8125.759108,
+      "p95_actual_time_s": 8125.759108,
+      "max_actual_time_s": 8125.759108,
+      "mean_penalized_time_s": 8125.759108,
+      "p95_penalized_time_s": 8125.759108,
+      "failed_clear_count": 6,
+      "sum_fallback_cost_s": 5502.394957,
+      "fallback_share_of_total_actual_time": 0.6771545752055046,
+      "mean_lower_bound_s": 2035.2706414854754,
+      "ratio_of_mean_penalized_time_to_mean_bound": 3.9924710465382054,
+      "actual_all_clear_ratio_of_sums": 3.9924710465382054,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 32298.795547180944,
+        "policy_distance_m": 9291.820748716978,
+        "fallback_distance_m": 23006.97479846395,
+        "channel_switches": 243.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 6459.759108,
+          "switching_s": 243.0,
+          "detection_s": 1335.0,
+          "optical_s": 60.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 1858.364151,
+          "switching_s": 117.0,
+          "detection_s": 620.0,
+          "optical_s": 18.0,
+          "removal_s": 10.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4601.394957,
+          "switching_s": 126.0,
+          "detection_s": 715.0,
+          "optical_s": 42.0,
+          "removal_s": 18.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 2,
+          "guaranteed_clearance": 4
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 267,
+          "/clear": 20,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 3923.415255,
+            "switching_s": 243.0,
+            "detection_s": 1335.0
+          },
+          "/clear": {
+            "movement_s": 2536.343853,
+            "optical_s": 60.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 123,
+          "service": 5
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1635.6014409999998,
+          "service": 987.7627100000003
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4523.007203540328,
+          "service": 4756.822262084525
+        },
+        "proposed_measure_switches": 116
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 1.0449385549873114,
+          "mean": 1.0449385549873114
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 1.0113768520000002,
+          "mean": 1.0113768520000002
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.7351293079555035,
+          "mean": 0.7351293079555035
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.7308060949999999,
+          "mean": 0.7308060949999999
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.2308764886111021,
+          "mean": 0.2308764886111021
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.22999147399999975,
+          "mean": 0.22999147399999975
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.11215369385390939,
+          "target_variance": 0.6749923871440928,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.6662462875247,
+        "mean_entropy_over_log_legal_candidates": 0.9997936384582984,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.53125,
+        "bc_feature_equivalent_accuracy": 0.53125,
+        "bc_states_with_feature_equivalent_ties": 94
+      }
+    },
+    "minimum_radius/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 5359.478262,
+      "p95_actual_time_s": 5359.478262,
+      "max_actual_time_s": 5359.478262,
+      "mean_penalized_time_s": 5359.478262,
+      "p95_penalized_time_s": 5359.478262,
+      "failed_clear_count": 0,
+      "sum_fallback_cost_s": 2689.486666,
+      "fallback_share_of_total_actual_time": 0.5018187469980263,
+      "mean_lower_bound_s": 2077.850894773038,
+      "ratio_of_mean_penalized_time_to_mean_bound": 2.579337273661983,
+      "actual_all_clear_ratio_of_sums": 2.579337273661983,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 21707.391307128408,
+        "policy_distance_m": 9584.957981174153,
+        "fallback_distance_m": 12122.433325954256,
+        "channel_switches": 138.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 4341.478262,
+          "switching_s": 138.0,
+          "detection_s": 800.0,
+          "optical_s": 48.0,
+          "removal_s": 32.0
+        },
+        "policy_components_s": {
+          "movement_s": 1916.991596,
+          "switching_s": 113.0,
+          "detection_s": 600.0,
+          "optical_s": 24.0,
+          "removal_s": 16.0
+        },
+        "fallback_components_s": {
+          "movement_s": 2424.486666,
+          "switching_s": 25.0,
+          "detection_s": 200.0,
+          "optical_s": 24.0,
+          "removal_s": 16.0
+        },
+        "failed_clear_phases": {},
+        "operations": {
+          "/enter": 1,
+          "/measure": 160,
+          "/clear": 16,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 2650.729839,
+            "switching_s": 138.0,
+            "detection_s": 800.0
+          },
+          "/clear": {
+            "movement_s": 1690.748423,
+            "optical_s": 48.0,
+            "removal_s": 32.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 120,
+          "service": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1750.8449259999993,
+          "service": 919.1466700000005
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5189.224629504347,
+          "service": 4395.733351669807
+        },
+        "proposed_measure_switches": 113
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 1.9540035109966993,
+          "mean": 1.9540035109966993
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 1.923217464,
+          "mean": 1.923217464
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.7112897001206875,
+          "mean": 0.7112897001206875
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.707417148,
+          "mean": 0.707417148
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 1.1686724815517664,
+          "mean": 1.1686724815517664
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 1.165217784,
+          "mean": 1.165217784
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.08803068498326283,
+          "target_variance": 0.6591926683231082,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.5012070164084435,
+        "mean_entropy_over_log_legal_candidates": 0.9996981617157275,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.34375,
+        "bc_feature_equivalent_accuracy": 0.34375,
+        "bc_states_with_feature_equivalent_ties": 88
+      }
+    },
+    "boundary_outward/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 9560.91323,
+      "p95_actual_time_s": 9560.91323,
+      "max_actual_time_s": 9560.91323,
+      "mean_penalized_time_s": 9560.91323,
+      "p95_penalized_time_s": 9560.91323,
+      "failed_clear_count": 102,
+      "sum_fallback_cost_s": 7596.831884,
+      "fallback_share_of_total_actual_time": 0.7945717842269342,
+      "mean_lower_bound_s": 2422.8384235809744,
+      "ratio_of_mean_penalized_time_to_mean_bound": 3.9461621282482775,
+      "actual_all_clear_ratio_of_sums": 3.9461621282482775,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 37099.56617178845,
+        "policy_distance_m": 6020.406723328377,
+        "fallback_distance_m": 31079.159448460086,
+        "channel_switches": 260.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 7419.91323,
+          "switching_s": 260.0,
+          "detection_s": 1495.0,
+          "optical_s": 354.0,
+          "removal_s": 32.0
+        },
+        "policy_components_s": {
+          "movement_s": 1204.081346,
+          "switching_s": 120.0,
+          "detection_s": 640.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "fallback_components_s": {
+          "movement_s": 6215.831884,
+          "switching_s": 140.0,
+          "detection_s": 855.0,
+          "optical_s": 354.0,
+          "removal_s": 32.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1,
+          "guaranteed_clearance": 101
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 299,
+          "/clear": 118,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4831.269459,
+            "switching_s": 260.0,
+            "detection_s": 1495.0
+          },
+          "/clear": {
+            "movement_s": 2588.643771,
+            "optical_s": 354.0,
+            "removal_s": 32.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 128
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1964.081346
+        },
+        "proposed_entry_distance_m": {
+          "measure": 6020.406723328377
+        },
+        "proposed_measure_switches": 120
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 2.035724790766835,
+          "mean": 2.035724790766835
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 2.005056074,
+          "mean": 2.005056074
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.7853828966617584,
+          "mean": 0.7853828966617584
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.7818591260000001,
+          "mean": 0.7818591260000001
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 1.1757033355534077,
+          "mean": 1.1757033355534077
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 1.1723426139999997,
+          "mean": 1.1723426139999997
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.11471326491114098,
+          "target_variance": 0.32310490543741754,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.8060827031731606,
+        "mean_entropy_over_log_legal_candidates": 0.9998258529036881,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.640625,
+        "bc_feature_equivalent_accuracy": 0.640625,
+        "bc_states_with_feature_equivalent_ties": 108
+      }
+    },
+    "cluster/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 5772.611402,
+      "p95_actual_time_s": 5772.611402,
+      "max_actual_time_s": 5772.611402,
+      "mean_penalized_time_s": 5772.611402,
+      "p95_penalized_time_s": 5772.611402,
+      "failed_clear_count": 1,
+      "sum_fallback_cost_s": 3975.8769470000007,
+      "fallback_share_of_total_actual_time": 0.6887484138673363,
+      "mean_lower_bound_s": 765.9448711108819,
+      "ratio_of_mean_penalized_time_to_mean_bound": 7.5365886237057,
+      "actual_all_clear_ratio_of_sums": 7.5365886237057,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 19463.057034228896,
+        "policy_distance_m": 5178.672269440314,
+        "fallback_distance_m": 14284.38476478858,
+        "channel_switches": 287.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 3892.611402,
+          "switching_s": 287.0,
+          "detection_s": 1540.0,
+          "optical_s": 33.0,
+          "removal_s": 20.0
+        },
+        "policy_components_s": {
+          "movement_s": 1035.734455,
+          "switching_s": 121.0,
+          "detection_s": 640.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "fallback_components_s": {
+          "movement_s": 2856.876947,
+          "switching_s": 166.0,
+          "detection_s": 900.0,
+          "optical_s": 33.0,
+          "removal_s": 20.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 308,
+          "/clear": 11,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 3522.483876,
+            "switching_s": 287.0,
+            "detection_s": 1540.0
+          },
+          "/clear": {
+            "movement_s": 370.127526,
+            "optical_s": 33.0,
+            "removal_s": 20.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 128
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1796.734455
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5178.672269440314
+        },
+        "proposed_measure_switches": 121
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.741515489295125,
+          "mean": 0.741515489295125
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.716512764,
+          "mean": 0.716512764
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.6610227543860674,
+          "mean": 0.6610227543860674
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.6579455240000001,
+          "mean": 0.6579455240000001
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.008387012407183647,
+          "mean": 0.008387012407183647
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.008359242000000044,
+          "mean": 0.008359242000000044
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.0787122259453723,
+          "target_variance": 0.2871357420716661,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.922431509941816,
+        "mean_entropy_over_log_legal_candidates": 0.9998698597047658,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.9609375,
+        "bc_feature_equivalent_accuracy": 0.9609375,
+        "bc_states_with_feature_equivalent_ties": 115
+      }
+    },
+    "positive_error/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 5695.558427,
+      "p95_actual_time_s": 5695.558427,
+      "max_actual_time_s": 5695.558427,
+      "mean_penalized_time_s": 5695.558427,
+      "p95_penalized_time_s": 5695.558427,
+      "failed_clear_count": 5,
+      "sum_fallback_cost_s": 3289.9990119999998,
+      "fallback_share_of_total_actual_time": 0.5776429219659377,
+      "mean_lower_bound_s": 1834.4005658809542,
+      "ratio_of_mean_penalized_time_to_mean_bound": 3.1048608100841704,
+      "actual_all_clear_ratio_of_sums": 3.1048608100841704,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 22692.79215083108,
+        "policy_distance_m": 8252.797083379985,
+        "fallback_distance_m": 14439.99506745109,
+        "channel_switches": 157.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 4538.558427,
+          "switching_s": 157.0,
+          "detection_s": 905.0,
+          "optical_s": 63.0,
+          "removal_s": 32.0
+        },
+        "policy_components_s": {
+          "movement_s": 1650.559415,
+          "switching_s": 115.0,
+          "detection_s": 620.0,
+          "optical_s": 12.0,
+          "removal_s": 8.0
+        },
+        "fallback_components_s": {
+          "movement_s": 2887.999012,
+          "switching_s": 42.0,
+          "detection_s": 285.0,
+          "optical_s": 51.0,
+          "removal_s": 24.0
+        },
+        "failed_clear_phases": {
+          "guaranteed_clearance": 5
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 181,
+          "/clear": 21,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 2975.907056,
+            "switching_s": 157.0,
+            "detection_s": 905.0
+          },
+          "/clear": {
+            "movement_s": 1562.651371,
+            "optical_s": 63.0,
+            "removal_s": 32.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 124,
+          "service": 4
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1891.0656550000003,
+          "service": 514.49376
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5780.328283574531,
+          "service": 2472.4687998054533
+        },
+        "proposed_measure_switches": 115
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 2.0000000558793545,
+          "mean": 2.0000000558793545
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 1.9825595070000002,
+          "mean": 1.9825595070000002
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.7750256415456533,
+          "mean": 0.7750256415456533
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.7709063279999999,
+          "mean": 0.7709063279999999
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 1.1649601720273495,
+          "mean": 1.1649601720273495
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 1.161694835,
+          "mean": 1.161694835
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.04500047403623564,
+          "target_variance": 0.4904850743278296,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.597833175212145,
+        "mean_entropy_over_log_legal_candidates": 0.9997076282494961,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.3828125,
+        "bc_feature_equivalent_accuracy": 0.3828125,
+        "bc_states_with_feature_equivalent_ties": 81
+      }
+    },
+    "negative_error/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 8501.735114,
+      "p95_actual_time_s": 8501.735114,
+      "max_actual_time_s": 8501.735114,
+      "mean_penalized_time_s": 8501.735114,
+      "p95_penalized_time_s": 8501.735114,
+      "failed_clear_count": 1,
+      "sum_fallback_cost_s": 6312.299256999999,
+      "fallback_share_of_total_actual_time": 0.7424718804289013,
+      "mean_lower_bound_s": 2305.1811764468584,
+      "ratio_of_mean_penalized_time_to_mean_bound": 3.688098445738801,
+      "actual_all_clear_ratio_of_sums": 3.688098445738801,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 33258.6755829065,
+        "policy_distance_m": 7092.179280391807,
+        "fallback_distance_m": 26166.49630251469,
+        "channel_switches": 277.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 6651.735114,
+          "switching_s": 277.0,
+          "detection_s": 1505.0,
+          "optical_s": 42.0,
+          "removal_s": 26.0
+        },
+        "policy_components_s": {
+          "movement_s": 1418.435857,
+          "switching_s": 118.0,
+          "detection_s": 630.0,
+          "optical_s": 15.0,
+          "removal_s": 8.0
+        },
+        "fallback_components_s": {
+          "movement_s": 5233.299257,
+          "switching_s": 159.0,
+          "detection_s": 875.0,
+          "optical_s": 27.0,
+          "removal_s": 18.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 301,
+          "/clear": 14,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 5229.953776,
+            "switching_s": 277.0,
+            "detection_s": 1505.0
+          },
+          "/clear": {
+            "movement_s": 1421.781338,
+            "optical_s": 42.0,
+            "removal_s": 26.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 124,
+          "service": 4
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1668.336559,
+          "service": 521.099298
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4656.682797113012,
+          "service": 2398.8977691990594
+        },
+        "proposed_measure_switches": 117
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.8622459322214127,
+          "mean": 0.8622459322214127
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.8486420499999998,
+          "mean": 0.8486420499999998
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.6952706873416901,
+          "mean": 0.6952706873416901
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.6917186910000002,
+          "mean": 0.6917186910000002
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.10714221931993961,
+          "mean": 0.10714221931993961
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.1067106659999999,
+          "mean": 0.1067106659999999
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.10515104729704283,
+          "target_variance": 0.3984530509174035,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.756777886301279,
+        "mean_entropy_over_log_legal_candidates": 0.9998290737409541,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.53125,
+        "bc_feature_equivalent_accuracy": 0.53125,
+        "bc_states_with_feature_equivalent_ties": 101
+      }
+    },
+    "alternating_error/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 7728.160181,
+      "p95_actual_time_s": 7728.160181,
+      "max_actual_time_s": 7728.160181,
+      "mean_penalized_time_s": 7728.160181,
+      "p95_penalized_time_s": 7728.160181,
+      "failed_clear_count": 1,
+      "sum_fallback_cost_s": 5319.708871000001,
+      "fallback_share_of_total_actual_time": 0.6883538573745823,
+      "mean_lower_bound_s": 2142.022758551038,
+      "ratio_of_mean_penalized_time_to_mean_bound": 3.607879584915186,
+      "actual_all_clear_ratio_of_sums": 3.607879584915186,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 30925.80092914417,
+        "policy_distance_m": 8212.256557444147,
+        "fallback_distance_m": 22713.544371700013,
+        "channel_switches": 230.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 6185.160181,
+          "switching_s": 230.0,
+          "detection_s": 1240.0,
+          "optical_s": 45.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 1642.45131,
+          "switching_s": 118.0,
+          "detection_s": 620.0,
+          "optical_s": 18.0,
+          "removal_s": 10.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4542.708871,
+          "switching_s": 112.0,
+          "detection_s": 620.0,
+          "optical_s": 27.0,
+          "removal_s": 18.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 248,
+          "/clear": 15,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4049.333286,
+            "switching_s": 230.0,
+            "detection_s": 1240.0
+          },
+          "/clear": {
+            "movement_s": 2135.826895,
+            "optical_s": 45.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 123,
+          "service": 5
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1781.5995799999987,
+          "service": 626.8517300000003
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5247.997907507259,
+          "service": 2951.2511846844386
+        },
+        "proposed_measure_switches": 117
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.9508927799761295,
+          "mean": 0.9508927799761295
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.9369594610000003,
+          "mean": 0.9369594610000003
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.6605336666107178,
+          "mean": 0.6605336666107178
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.656933003,
+          "mean": 0.656933003
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.23163558542728424,
+          "mean": 0.23163558542728424
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.23037398100000006,
+          "mean": 0.23037398100000006
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.10303637385500353,
+          "target_variance": 0.5588746810372346,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.685741271823645,
+        "mean_entropy_over_log_legal_candidates": 0.9998045427655614,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.6328125,
+        "bc_feature_equivalent_accuracy": 0.6328125,
+        "bc_states_with_feature_equivalent_ties": 102
+      }
+    },
+    "narrow_strip/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 7917.965191,
+      "p95_actual_time_s": 7917.965191,
+      "max_actual_time_s": 7917.965191,
+      "mean_penalized_time_s": 7917.965191,
+      "p95_penalized_time_s": 7917.965191,
+      "failed_clear_count": 89,
+      "sum_fallback_cost_s": 4576.505821000001,
+      "fallback_share_of_total_actual_time": 0.5779901414825506,
+      "mean_lower_bound_s": 546.0000044444444,
+      "ratio_of_mean_penalized_time_to_mean_bound": 14.501767631039746,
+      "actual_all_clear_ratio_of_sums": 14.501767631039746,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 31784.825957043173,
+        "policy_distance_m": 12572.296834236122,
+        "fallback_distance_m": 19212.52912280704,
+        "channel_switches": 179.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 6356.965191,
+          "switching_s": 179.0,
+          "detection_s": 1045.0,
+          "optical_s": 309.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 2514.45937,
+          "switching_s": 111.0,
+          "detection_s": 630.0,
+          "optical_s": 60.0,
+          "removal_s": 26.0
+        },
+        "fallback_components_s": {
+          "movement_s": 3842.505821,
+          "switching_s": 68.0,
+          "detection_s": 415.0,
+          "optical_s": 249.0,
+          "removal_s": 2.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 3,
+          "guaranteed_clearance": 86
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 209,
+          "/clear": 103,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4858.841338,
+            "switching_s": 179.0,
+            "detection_s": 1045.0
+          },
+          "/clear": {
+            "movement_s": 1498.123853,
+            "optical_s": 309.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 115,
+          "service": 13
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 2282.301364999999,
+          "service": 1059.1580050000002
+        },
+        "proposed_entry_distance_m": {
+          "measure": 7996.506827689436,
+          "service": 4161.561153041958
+        },
+        "proposed_measure_switches": 108
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.9393081907182932,
+          "mean": 0.9393081907182932
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.9248523539999998,
+          "mean": 0.9248523539999998
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.6454655956476927,
+          "mean": 0.6454655956476927
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.6420856050000001,
+          "mean": 0.6420856050000001
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.23355994373559952,
+          "mean": 0.23355994373559952
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.23282459700000002,
+          "mean": 0.23282459700000002
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.06349112625343711,
+          "target_variance": 1.0331390648678869,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.301012329757214,
+        "mean_entropy_over_log_legal_candidates": 0.9996777352377533,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.4921875,
+        "bc_feature_equivalent_accuracy": 0.4921875,
+        "bc_states_with_feature_equivalent_ties": 78
+      }
+    },
+    "random/all_directional": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 8523.846476,
+      "p95_actual_time_s": 8523.846476,
+      "max_actual_time_s": 8523.846476,
+      "mean_penalized_time_s": 8523.846476,
+      "p95_penalized_time_s": 8523.846476,
+      "failed_clear_count": 8,
+      "sum_fallback_cost_s": 6019.331172,
+      "fallback_share_of_total_actual_time": 0.7061754559925746,
+      "mean_lower_bound_s": 2027.9542014685073,
+      "ratio_of_mean_penalized_time_to_mean_bound": 4.2031750371027155,
+      "actual_all_clear_ratio_of_sums": 4.2031750371027155,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 33519.23239999795,
+        "policy_distance_m": 8612.576516019995,
+        "fallback_distance_m": 24906.655883977943,
+        "channel_switches": 266.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 6703.846476,
+          "switching_s": 266.0,
+          "detection_s": 1460.0,
+          "optical_s": 66.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 1722.515304,
+          "switching_s": 119.0,
+          "detection_s": 640.0,
+          "optical_s": 15.0,
+          "removal_s": 8.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4981.331172,
+          "switching_s": 147.0,
+          "detection_s": 820.0,
+          "optical_s": 51.0,
+          "removal_s": 20.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 1,
+          "guaranteed_clearance": 7
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 292,
+          "/clear": 22,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4403.95162,
+            "switching_s": 266.0,
+            "detection_s": 1460.0
+          },
+          "/clear": {
+            "movement_s": 2299.894856,
+            "optical_s": 66.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 124,
+          "service": 4
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1735.733309,
+          "service": 768.7819950000002
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4988.666544074085,
+          "service": 3499.92894570542
+        },
+        "proposed_measure_switches": 118
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.7040226124227047,
+          "mean": 0.7040226124227047
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.7017701030000001,
+          "mean": 0.7017701030000001
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.46942005679011345,
+          "mean": 0.46942005679011345
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.4677510439999999,
+          "mean": 0.4677510439999999
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.2327057532966137,
+          "mean": 0.2327057532966137
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.23214091300000028,
+          "mean": 0.23214091300000028
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": -0.01051021646239736,
+          "target_variance": 0.5792396534226425,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.734987020492554,
+        "mean_entropy_over_log_legal_candidates": 0.9997672115590002,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.625,
+        "bc_feature_equivalent_accuracy": 0.625,
+        "bc_states_with_feature_equivalent_ties": 97
+      }
+    },
+    "minimum_radius/all_directional": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 8247.312055,
+      "p95_actual_time_s": 8247.312055,
+      "max_actual_time_s": 8247.312055,
+      "mean_penalized_time_s": 8247.312055,
+      "p95_penalized_time_s": 8247.312055,
+      "failed_clear_count": 24,
+      "sum_fallback_cost_s": 6286.627526,
+      "fallback_share_of_total_actual_time": 0.7622638120245105,
+      "mean_lower_bound_s": 1934.5336937999275,
+      "ratio_of_mean_penalized_time_to_mean_bound": 4.263204141355705,
+      "actual_all_clear_ratio_of_sums": 4.263204141355705,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 30291.560299893034,
+        "policy_distance_m": 6008.422643132985,
+        "fallback_distance_m": 24283.137656760042,
+        "channel_switches": 317.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 6058.312055,
+          "switching_s": 317.0,
+          "detection_s": 1745.0,
+          "optical_s": 105.0,
+          "removal_s": 22.0
+        },
+        "policy_components_s": {
+          "movement_s": 1201.684529,
+          "switching_s": 119.0,
+          "detection_s": 630.0,
+          "optical_s": 6.0,
+          "removal_s": 4.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4856.627526,
+          "switching_s": 198.0,
+          "detection_s": 1115.0,
+          "optical_s": 99.0,
+          "removal_s": 18.0
+        },
+        "failed_clear_phases": {
+          "guaranteed_clearance": 24
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 349,
+          "/clear": 35,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4636.020163,
+            "switching_s": 317.0,
+            "detection_s": 1745.0
+          },
+          "/clear": {
+            "movement_s": 1422.291892,
+            "optical_s": 105.0,
+            "removal_s": 22.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 126,
+          "service": 2
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1610.1742430000002,
+          "service": 350.51028599999995
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4305.871212949841,
+          "service": 1702.551430183144
+        },
+        "proposed_measure_switches": 119
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.51076590269804,
+          "mean": 0.51076590269804
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.5083872409999999,
+          "mean": 0.5083872409999999
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.4880515579134226,
+          "mean": 0.4880515579134226
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.4857615639999997,
+          "mean": 0.4857615639999997
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.019560864195227623,
+          "mean": 0.019560864195227623
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.019495411000000296,
+          "mean": 0.019495411000000296
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.05567217096006627,
+          "target_variance": 0.34371542892291057,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.821096308529377,
+        "mean_entropy_over_log_legal_candidates": 0.9998119066295161,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.484375,
+        "bc_feature_equivalent_accuracy": 0.484375,
+        "bc_states_with_feature_equivalent_ties": 99
+      }
+    },
+    "boundary_outward/all_directional": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 8783.558303,
+      "p95_actual_time_s": 8783.558303,
+      "max_actual_time_s": 8783.558303,
+      "mean_penalized_time_s": 8783.558303,
+      "p95_penalized_time_s": 8783.558303,
+      "failed_clear_count": 0,
+      "sum_fallback_cost_s": 6986.823848,
+      "fallback_share_of_total_actual_time": 0.7954434418239895,
+      "mean_lower_bound_s": 2704.6602309454456,
+      "ratio_of_mean_penalized_time_to_mean_bound": 3.2475644084616144,
+      "actual_all_clear_ratio_of_sums": 3.2475644084616144,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 31677.79153220031,
+        "policy_distance_m": 5178.672269440314,
+        "fallback_distance_m": 26499.11926276,
+        "channel_switches": 358.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 6335.558303,
+          "switching_s": 358.0,
+          "detection_s": 2020.0,
+          "optical_s": 42.0,
+          "removal_s": 28.0
+        },
+        "policy_components_s": {
+          "movement_s": 1035.734455,
+          "switching_s": 121.0,
+          "detection_s": 640.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "fallback_components_s": {
+          "movement_s": 5299.823848,
+          "switching_s": 237.0,
+          "detection_s": 1380.0,
+          "optical_s": 42.0,
+          "removal_s": 28.0
+        },
+        "failed_clear_phases": {},
+        "operations": {
+          "/enter": 1,
+          "/measure": 404,
+          "/clear": 14,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 5849.822083,
+            "switching_s": 358.0,
+            "detection_s": 2020.0
+          },
+          "/clear": {
+            "movement_s": 485.73622,
+            "optical_s": 42.0,
+            "removal_s": 28.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 128
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1796.734455
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5178.672269440314
+        },
+        "proposed_measure_switches": 121
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.6861006077378988,
+          "mean": 0.6861006077378988
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.6834738520000001,
+          "mean": 0.6834738520000001
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.45084893703460693,
+          "mean": 0.45084893703460693
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.44884150300000014,
+          "mean": 0.44884150300000014
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.2322534453123808,
+          "mean": 0.2322534453123808
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.23167569999999982,
+          "mean": 0.23167569999999982
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.08129632280692645,
+          "target_variance": 0.28713574207166537,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.925304491072893,
+        "mean_entropy_over_log_legal_candidates": 0.9998722609953737,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.9609375,
+        "bc_feature_equivalent_accuracy": 0.9609375,
+        "bc_states_with_feature_equivalent_ties": 115
+      }
+    },
+    "cluster/all_directional": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 8449.807988,
+      "p95_actual_time_s": 8449.807988,
+      "max_actual_time_s": 8449.807988,
+      "mean_penalized_time_s": 8449.807988,
+      "p95_penalized_time_s": 8449.807988,
+      "failed_clear_count": 127,
+      "sum_fallback_cost_s": 6653.073533000001,
+      "fallback_share_of_total_actual_time": 0.787363871752869,
+      "mean_lower_bound_s": 765.9635932840671,
+      "ratio_of_mean_penalized_time_to_mean_bound": 11.031605238274405,
+      "actual_all_clear_ratio_of_sums": 11.031605238274405,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 29204.039966007418,
+        "policy_distance_m": 5178.672269440314,
+        "fallback_distance_m": 24025.367696567115,
+        "channel_switches": 328.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 5840.807988,
+          "switching_s": 328.0,
+          "detection_s": 1850.0,
+          "optical_s": 411.0,
+          "removal_s": 20.0
+        },
+        "policy_components_s": {
+          "movement_s": 1035.734455,
+          "switching_s": 121.0,
+          "detection_s": 640.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4805.073533,
+          "switching_s": 207.0,
+          "detection_s": 1210.0,
+          "optical_s": 411.0,
+          "removal_s": 20.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 3,
+          "guaranteed_clearance": 124
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 370,
+          "/clear": 137,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4334.219934,
+            "switching_s": 328.0,
+            "detection_s": 1850.0
+          },
+          "/clear": {
+            "movement_s": 1506.588054,
+            "optical_s": 411.0,
+            "removal_s": 20.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 128
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1796.734455
+        },
+        "proposed_entry_distance_m": {
+          "measure": 5178.672269440314
+        },
+        "proposed_measure_switches": 121
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.48903374932706356,
+          "mean": 0.48903374932706356
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.48675964800000004,
+          "mean": 0.48675964800000004
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.4775260929018259,
+          "mean": 0.4775260929018259
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.47532500899999963,
+          "mean": 0.47532500899999963
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.008572855964303017,
+          "mean": 0.008572855964303017
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.008539859999999955,
+          "mean": 0.008539859999999955
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.11099463517069474,
+          "target_variance": 0.2871357420716658,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.860408425331116,
+        "mean_entropy_over_log_legal_candidates": 0.9998128560853328,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.71875,
+        "bc_feature_equivalent_accuracy": 0.71875,
+        "bc_states_with_feature_equivalent_ties": 108
+      }
+    },
+    "positive_error/all_directional": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 7947.665751,
+      "p95_actual_time_s": 7947.665751,
+      "max_actual_time_s": 7947.665751,
+      "mean_penalized_time_s": 7947.665751,
+      "p95_penalized_time_s": 7947.665751,
+      "failed_clear_count": 0,
+      "sum_fallback_cost_s": 6117.544773,
+      "fallback_share_of_total_actual_time": 0.7697284919449804,
+      "mean_lower_bound_s": 2000.4889510470268,
+      "ratio_of_mean_penalized_time_to_mean_bound": 3.9728616080785186,
+      "actual_all_clear_ratio_of_sums": 3.9728616080785186,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 29913.32876826936,
+        "policy_distance_m": 5350.604893870288,
+        "fallback_distance_m": 24562.72387439907,
+        "channel_switches": 295.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 5982.665751,
+          "switching_s": 295.0,
+          "detection_s": 1610.0,
+          "optical_s": 36.0,
+          "removal_s": 24.0
+        },
+        "policy_components_s": {
+          "movement_s": 1070.120978,
+          "switching_s": 120.0,
+          "detection_s": 635.0,
+          "optical_s": 3.0,
+          "removal_s": 2.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4912.544773,
+          "switching_s": 175.0,
+          "detection_s": 975.0,
+          "optical_s": 33.0,
+          "removal_s": 22.0
+        },
+        "failed_clear_phases": {},
+        "operations": {
+          "/enter": 1,
+          "/measure": 322,
+          "/clear": 12,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4342.149947,
+            "switching_s": 295.0,
+            "detection_s": 1610.0
+          },
+          "/clear": {
+            "movement_s": 1640.515804,
+            "optical_s": 36.0,
+            "removal_s": 24.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 127,
+          "service": 1
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1688.974552,
+          "service": 141.14642600000002
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4669.872763535575,
+          "service": 680.7321303347125
+        },
+        "proposed_measure_switches": 120
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.5397679768502712,
+          "mean": 0.5397679768502712
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.5376108419999999,
+          "mean": 0.5376108419999999
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.4914611130952835,
+          "mean": 0.4914611130952835
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.48944515499999985,
+          "mean": 0.48944515499999985
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.04635528288781643,
+          "mean": 0.04635528288781643
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.046233822000000036,
+          "mean": 0.046233822000000036
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": -0.025611875279246687,
+          "target_variance": 0.3261814965857981,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.799340799450874,
+        "mean_entropy_over_log_legal_candidates": 0.9997775249318249,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.484375,
+        "bc_feature_equivalent_accuracy": 0.484375,
+        "bc_states_with_feature_equivalent_ties": 102
+      }
+    },
+    "negative_error/all_directional": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 8245.297097,
+      "p95_actual_time_s": 8245.297097,
+      "max_actual_time_s": 8245.297097,
+      "mean_penalized_time_s": 8245.297097,
+      "p95_penalized_time_s": 8245.297097,
+      "failed_clear_count": 65,
+      "sum_fallback_cost_s": 6390.526308,
+      "fallback_share_of_total_actual_time": 0.7750510664224766,
+      "mean_lower_bound_s": 1992.375483624394,
+      "ratio_of_mean_penalized_time_to_mean_bound": 4.138425294212473,
+      "actual_all_clear_ratio_of_sums": 4.138425294212473,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 29541.48551099665,
+        "policy_distance_m": 5473.85394377939,
+        "fallback_distance_m": 24067.631567217257,
+        "channel_switches": 322.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 5908.297097,
+          "switching_s": 322.0,
+          "detection_s": 1765.0,
+          "optical_s": 228.0,
+          "removal_s": 22.0
+        },
+        "policy_components_s": {
+          "movement_s": 1094.770789,
+          "switching_s": 120.0,
+          "detection_s": 635.0,
+          "optical_s": 3.0,
+          "removal_s": 2.0
+        },
+        "fallback_components_s": {
+          "movement_s": 4813.526308,
+          "switching_s": 202.0,
+          "detection_s": 1130.0,
+          "optical_s": 225.0,
+          "removal_s": 20.0
+        },
+        "failed_clear_phases": {
+          "guaranteed_clearance": 64,
+          "speculative_clear_before_probe": 1
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 353,
+          "/clear": 76,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 4530.20015,
+            "switching_s": 322.0,
+            "detection_s": 1765.0
+          },
+          "/clear": {
+            "movement_s": 1378.096947,
+            "optical_s": 228.0,
+            "removal_s": 22.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 127,
+          "service": 1
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1697.433904,
+          "service": 157.33688499999994
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4712.169516830625,
+          "service": 761.6844269487649
+        },
+        "proposed_measure_switches": 120
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.5179960317909718,
+          "mean": 0.5179960317909718
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.5160162800000001,
+          "mean": 0.5160162800000001
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.49577012099325657,
+          "mean": 0.49577012099325657
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.49386769300000033,
+          "mean": 0.49386769300000033
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.020304303616285324,
+          "mean": 0.020304303616285324
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.020253640000000406,
+          "mean": 0.020253640000000406
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.06578441122232503,
+          "target_variance": 0.3050928427081265,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.8753557950258255,
+        "mean_entropy_over_log_legal_candidates": 0.9998325278814134,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.390625,
+        "bc_feature_equivalent_accuracy": 0.390625,
+        "bc_states_with_feature_equivalent_ties": 105
+      }
+    },
+    "alternating_error/all_directional": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 8689.50825,
+      "p95_actual_time_s": 8689.50825,
+      "max_actual_time_s": 8689.50825,
+      "mean_penalized_time_s": 8689.50825,
+      "p95_penalized_time_s": 8689.50825,
+      "failed_clear_count": 142,
+      "sum_fallback_cost_s": 6206.063409,
+      "fallback_share_of_total_actual_time": 0.7142019122888801,
+      "mean_lower_bound_s": 1753.8943195007516,
+      "ratio_of_mean_penalized_time_to_mean_bound": 4.95440811534955,
+      "actual_all_clear_ratio_of_sums": 4.95440811534955,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 33632.54126583026,
+        "policy_distance_m": 8342.224207072948,
+        "fallback_distance_m": 25290.317058757308,
+        "channel_switches": 217.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 6726.50825,
+          "switching_s": 217.0,
+          "detection_s": 1240.0,
+          "optical_s": 474.0,
+          "removal_s": 32.0
+        },
+        "policy_components_s": {
+          "movement_s": 1668.444841,
+          "switching_s": 122.0,
+          "detection_s": 655.0,
+          "optical_s": 30.0,
+          "removal_s": 8.0
+        },
+        "fallback_components_s": {
+          "movement_s": 5058.063409,
+          "switching_s": 95.0,
+          "detection_s": 585.0,
+          "optical_s": 444.0,
+          "removal_s": 24.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 4,
+          "guaranteed_clearance": 138
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 248,
+          "/clear": 158,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 3867.577307,
+            "switching_s": 217.0,
+            "detection_s": 1240.0
+          },
+          "/clear": {
+            "movement_s": 2858.930943,
+            "optical_s": 474.0,
+            "removal_s": 32.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 124,
+          "service": 4
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1568.186792,
+          "service": 915.2580489999999
+        },
+        "proposed_entry_distance_m": {
+          "measure": 4145.933963774919,
+          "service": 3931.9259920525806
+        },
+        "proposed_measure_switches": 119
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 1.6884771157056093,
+          "mean": 1.6884771157056093
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 1.6833525569999996,
+          "mean": 1.6833525569999996
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.5154100805521011,
+          "mean": 0.5154100805521011
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.5136718139999998,
+          "mean": 0.5136718139999998
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 1.1710131727159023,
+          "mean": 1.1710131727159023
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 1.1676470069999998,
+          "mean": 1.1676470069999998
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": -0.0070464765950251085,
+          "target_variance": 0.5900320285995979,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.722247786819935,
+        "mean_entropy_over_log_legal_candidates": 0.999733224485918,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.46875,
+        "bc_feature_equivalent_accuracy": 0.46875,
+        "bc_states_with_feature_equivalent_ties": 95
+      }
+    },
+    "narrow_strip/all_directional": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 1,
+      "physical_evidence_missing": 0,
+      "mean_actual_time_s": 6130.020471,
+      "p95_actual_time_s": 6130.020471,
+      "max_actual_time_s": 6130.020471,
+      "mean_penalized_time_s": 6130.020471,
+      "p95_penalized_time_s": 6130.020471,
+      "failed_clear_count": 4,
+      "sum_fallback_cost_s": 3758.0146339999997,
+      "fallback_share_of_total_actual_time": 0.6130509109681568,
+      "mean_lower_bound_s": 636.0000044444444,
+      "ratio_of_mean_penalized_time_to_mean_bound": 9.638396899626857,
+      "actual_all_clear_ratio_of_sums": 9.638396899626857,
+      "lower_bound_rows_missing": 0,
+      "physical": {
+        "actual_full_clear_rate": 1.0,
+        "actual_task_failures": 0,
+        "actual_distance_m": 22730.102375130442,
+        "policy_distance_m": 8105.0291807443555,
+        "fallback_distance_m": 14625.073194386086,
+        "channel_switches": 227.0,
+        "certified_clear_failures": 0,
+        "components_s": {
+          "movement_s": 4546.020471,
+          "switching_s": 227.0,
+          "detection_s": 1285.0,
+          "optical_s": 48.0,
+          "removal_s": 24.0
+        },
+        "policy_components_s": {
+          "movement_s": 1621.005837,
+          "switching_s": 111.0,
+          "detection_s": 600.0,
+          "optical_s": 24.0,
+          "removal_s": 16.0
+        },
+        "fallback_components_s": {
+          "movement_s": 2925.014634,
+          "switching_s": 116.0,
+          "detection_s": 685.0,
+          "optical_s": 24.0,
+          "removal_s": 8.0
+        },
+        "failed_clear_phases": {
+          "speculative_clear_before_probe": 2,
+          "guaranteed_clearance": 2
+        },
+        "operations": {
+          "/enter": 1,
+          "/measure": 257,
+          "/clear": 16,
+          "/exit": 1
+        },
+        "operation_components_s": {
+          "/enter": {},
+          "/measure": {
+            "movement_s": 3966.838572,
+            "switching_s": 227.0,
+            "detection_s": 1285.0
+          },
+          "/clear": {
+            "movement_s": 579.181899,
+            "optical_s": 48.0,
+            "removal_s": 24.0
+          },
+          "/exit": {}
+        }
+      },
+      "decisions": {
+        "counts": {
+          "measure": 120,
+          "service": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 1952.609676,
+          "service": 419.396161
+        },
+        "proposed_entry_distance_m": {
+          "measure": 6208.0483734488,
+          "service": 1896.980807295556
+        },
+        "proposed_measure_switches": 111
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.4989640284329653,
+          "mean": 0.4989640284329653
+        },
+        "worker_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.49697781900000004,
+          "mean": 0.49697781900000004
+        },
+        "policy_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.4515212718397379,
+          "mean": 0.4515212718397379
+        },
+        "policy_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.44967042200000007,
+          "mean": 0.44967042200000007
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 1,
+          "sum": 0.04550747200846672,
+          "mean": 0.04550747200846672
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 1,
+          "sum": 0.04539197400000017,
+          "mean": 0.04539197400000017
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 128,
+          "value": 0.0901601374206713,
+          "target_variance": 0.518100552274929,
+          "reason": null
+        },
+        "states": 128,
+        "mean_entropy_nats": 5.485000550746918,
+        "mean_entropy_over_log_legal_candidates": 0.9997488656146077,
+        "bc_label_states": 128,
+        "bc_exact_index_accuracy": 0.375,
+        "bc_feature_equivalent_accuracy": 0.375,
+        "bc_states_with_feature_equivalent_ties": 83
+      }
+    }
+  },
+  "scope": "diagnosis of all episodes in explicitly named training batches; no independent efficacy or model-selection claim",
+  "bc_equivalence": "exact equality of all 16 public candidate features after float32 conversion; no channel identifiers",
+  "limitations": [
+    "Missing raw evidence is reported, not regenerated or fabricated.",
+    "Recorded bounds are checked for consistency but their route DP is not reoptimized.",
+    "Checkpoint entropy is on logged states; it is not necessarily behavior-policy entropy.",
+    "Training trajectories change with the policy and are correlated within batches; these descriptive summaries do not establish independent generalization or paired improvement.",
+    "No database, remote access, training, simulator rollout or case filtering occurred."
+  ],
+  "analysis_wall_s": 9.54193469999882,
+  "analysis_cpu_s": 9.234375
+}

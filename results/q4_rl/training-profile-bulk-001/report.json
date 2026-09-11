@@ -1,0 +1,57 @@
+{
+  "schema": "q4-training-offline-microbenchmark-v1",
+  "affinity": {
+    "method": "SetProcessAffinityMask",
+    "logical_cpus": 1
+  },
+  "source": {
+    "name": "batch-000000.json.gz",
+    "sha256": "6320dbf1e5260db865e863deffb4ec27882a2365d6fa8c9ba8f998e262b8da81",
+    "bytes": 2822994,
+    "decompressed_bytes": 106554238,
+    "episodes": 16
+  },
+  "script_sha256": "1621ce20ef578b818ff3dd9831c73c399cf00859d04eb7abb88fb2ed6e30556a",
+  "gzip_read": {
+    "wall_s": 0.11005879999720491,
+    "cpu_s": 0.09375
+  },
+  "json_parse": {
+    "wall_s": 1.6330223999975715,
+    "cpu_s": 1.34375
+  },
+  "compression": [],
+  "scope": "one local fixed-order microbenchmark; no new scene or retained model update; not strategy evidence",
+  "bulk_serialization": {
+    "encode": {
+      "wall_s": 1.8874688000069,
+      "cpu_s": 1.59375
+    },
+    "bytes": 106554238,
+    "decoded_sha256": "69a3f53de1a7113e050e74d12be1d0049b76c6067a42bf04df2e0dd570cfb095",
+    "byte_identical_to_original": true,
+    "memory_tradeoff": "holds one additional full JSON string then UTF-8 byte buffer before writing",
+    "compression": [
+      {
+        "level": 6,
+        "wall_s": 0.7085263000044506,
+        "cpu_s": 0.703125,
+        "compressed_bytes": 2989740,
+        "encode_plus_write_wall_s": 2.5959951000113506,
+        "encode_plus_write_cpu_s": 2.296875,
+        "decoded_object_equal": true,
+        "byte_identical_to_original": true
+      },
+      {
+        "level": 9,
+        "wall_s": 1.9908075999992434,
+        "cpu_s": 1.78125,
+        "compressed_bytes": 2822981,
+        "encode_plus_write_wall_s": 3.8782764000061434,
+        "encode_plus_write_cpu_s": 3.375,
+        "decoded_object_equal": true,
+        "byte_identical_to_original": true
+      }
+    ]
+  }
+}

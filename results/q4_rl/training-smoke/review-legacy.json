@@ -1,0 +1,630 @@
+{
+  "schema": "q4-local-training-review-v1",
+  "analyzer": {
+    "name": "q4_analyze_training.py",
+    "sha256": "fbb6d3f44e91eed1ba23a0a0c97f0d8aebfded0799857ae50fbb9a842d66547b"
+  },
+  "inputs": [
+    {
+      "kind": "supplemental_bounds",
+      "name": "posthoc_bounds.json",
+      "sha256": "9681fbc7f29eebf5f1ef11c12afa7bc116447ebdf61dc2801020c88ecac15e2f"
+    },
+    {
+      "kind": "training_batch",
+      "name": "input-000/batch-000000.json.gz",
+      "sha256": "d608895d8b9918305e645dbff089d037129a083482f4e04b8199814472fb5733",
+      "bytes": 7885,
+      "explicit_heuristic_bc_labels": false
+    },
+    {
+      "kind": "training_batch",
+      "name": "input-001/batch-000001.json.gz",
+      "sha256": "fd63f4507bd8b74f621474aab686dce458c8561c197a455fe10263ce66f1bfb6",
+      "bytes": 11543,
+      "explicit_heuristic_bc_labels": false
+    }
+  ],
+  "checkpoint": null,
+  "summary": {
+    "attempts": 2,
+    "administratively_interrupted": 0,
+    "available_episode_metrics": 2,
+    "analysis_error_episodes": 0,
+    "aggregation_status": "all_completed_episode_metrics_included",
+    "reported_full_clear": 2,
+    "reported_task_failures": 0,
+    "reported_full_clear_rate": 1.0,
+    "physically_verified_full_clear": 0,
+    "physical_evidence_missing": 2,
+    "mean_actual_time_s": 8207.0063135,
+    "p95_actual_time_s": 9013.42896695,
+    "max_actual_time_s": 9103.031484,
+    "mean_penalized_time_s": 8207.0063135,
+    "p95_penalized_time_s": 9013.42896695,
+    "failed_clear_count": 5,
+    "sum_fallback_cost_s": 13597.368278999998,
+    "fallback_share_of_total_actual_time": 0.8284000133296594,
+    "mean_lower_bound_s": 2056.5607681292568,
+    "ratio_of_mean_penalized_time_to_mean_bound": 3.990646150935513,
+    "actual_all_clear_ratio_of_sums": 3.990646150935513,
+    "lower_bound_rows_missing": 0,
+    "physical": null,
+    "decisions": {
+      "counts": {
+        "measure": 16
+      },
+      "billed_cost_excluding_fallback_s": {
+        "measure": 2816.6443479999994
+      },
+      "proposed_entry_distance_m": {
+        "measure": 13608.221743661223
+      },
+      "proposed_measure_switches": 15
+    },
+    "compute": {
+      "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+      "wall_time_s": {
+        "available_episodes": 2,
+        "sum": 0.4775078999809921,
+        "mean": 0.23875394999049604
+      },
+      "worker_cpu_s": {
+        "available_episodes": 0,
+        "sum": 0,
+        "mean": null
+      },
+      "policy_wall_s": {
+        "available_episodes": 0,
+        "sum": 0,
+        "mean": null
+      },
+      "policy_cpu_s": {
+        "available_episodes": 0,
+        "sum": 0,
+        "mean": null
+      },
+      "posthoc_bound_wall_s": {
+        "available_episodes": 0,
+        "sum": 0,
+        "mean": null
+      },
+      "posthoc_bound_cpu_s": {
+        "available_episodes": 0,
+        "sum": 0,
+        "mean": null
+      }
+    },
+    "recorded_behavior": {
+      "critic_explained_variance": {
+        "count": 8,
+        "value": -0.0009719518541255745,
+        "target_variance": 0.7562139761654931,
+        "reason": null
+      },
+      "mean_sampled_surprisal_nats": 6.051994502544403
+    },
+    "checkpoint_diagnostics": {
+      "critic_explained_variance": {
+        "count": 0,
+        "value": null,
+        "reason": "fewer_than_two_values"
+      },
+      "states": 0,
+      "mean_entropy_nats": null,
+      "mean_entropy_over_log_legal_candidates": null,
+      "bc_label_states": 0,
+      "bc_exact_index_accuracy": null,
+      "bc_feature_equivalent_accuracy": null,
+      "bc_states_with_feature_equivalent_ties": 0
+    }
+  },
+  "by_batch": {
+    "input-000/batch-000000.json.gz": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 0,
+      "physical_evidence_missing": 1,
+      "mean_actual_time_s": 7310.981143,
+      "p95_actual_time_s": 7310.981143,
+      "max_actual_time_s": 7310.981143,
+      "mean_penalized_time_s": 7310.981143,
+      "p95_penalized_time_s": 7310.981143,
+      "failed_clear_count": 5,
+      "sum_fallback_cost_s": 7263.981143,
+      "fallback_share_of_total_actual_time": 0.9935713142900114,
+      "mean_lower_bound_s": 2035.2706414854754,
+      "ratio_of_mean_penalized_time_to_mean_bound": 3.5921419952601297,
+      "actual_all_clear_ratio_of_sums": 3.5921419952601297,
+      "lower_bound_rows_missing": 0,
+      "physical": null,
+      "decisions": {
+        "counts": {
+          "measure": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 47.0
+        },
+        "proposed_entry_distance_m": {
+          "measure": 0.0
+        },
+        "proposed_measure_switches": 7
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.3553756999899633,
+          "mean": 0.3553756999899633
+        },
+        "worker_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "policy_wall_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "policy_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "states": 0,
+        "mean_entropy_nats": null,
+        "mean_entropy_over_log_legal_candidates": null,
+        "bc_label_states": 0,
+        "bc_exact_index_accuracy": null,
+        "bc_feature_equivalent_accuracy": null,
+        "bc_states_with_feature_equivalent_ties": 0
+      }
+    },
+    "input-001/batch-000001.json.gz": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 0,
+      "physical_evidence_missing": 1,
+      "mean_actual_time_s": 9103.031484,
+      "p95_actual_time_s": 9103.031484,
+      "max_actual_time_s": 9103.031484,
+      "mean_penalized_time_s": 9103.031484,
+      "p95_penalized_time_s": 9103.031484,
+      "failed_clear_count": 0,
+      "sum_fallback_cost_s": 6333.387135999999,
+      "fallback_share_of_total_actual_time": 0.6957448347983765,
+      "mean_lower_bound_s": 2077.850894773038,
+      "ratio_of_mean_penalized_time_to_mean_bound": 4.380983980563396,
+      "actual_all_clear_ratio_of_sums": 4.380983980563396,
+      "lower_bound_rows_missing": 0,
+      "physical": null,
+      "decisions": {
+        "counts": {
+          "measure": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 2769.6443479999994
+        },
+        "proposed_entry_distance_m": {
+          "measure": 13608.221743661223
+        },
+        "proposed_measure_switches": 8
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.12213219999102876,
+          "mean": 0.12213219999102876
+        },
+        "worker_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "policy_wall_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "policy_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 8,
+          "value": -0.0009719518541255745,
+          "target_variance": 0.7562139761654931,
+          "reason": null
+        },
+        "mean_sampled_surprisal_nats": 6.051994502544403
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "states": 0,
+        "mean_entropy_nats": null,
+        "mean_entropy_over_log_legal_candidates": null,
+        "bc_label_states": 0,
+        "bc_exact_index_accuracy": null,
+        "bc_feature_equivalent_accuracy": null,
+        "bc_states_with_feature_equivalent_ties": 0
+      }
+    }
+  },
+  "episodes": [
+    {
+      "batch": "input-000/batch-000000.json.gz",
+      "seed": 8000000,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [
+        "Actual all-clear and physical ledger cannot be independently verified without legacy missing fields"
+      ],
+      "actual_time_s": 7310.981143,
+      "penalized_time_s": 7310.981143,
+      "reported_success": true,
+      "failed_clear_count": 5,
+      "fallback_cost_s": 7263.981143,
+      "fallback_share": 0.9935713142900114,
+      "decisions": 8,
+      "family": "random",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 0.3553756999899633
+      },
+      "physical_audit": {
+        "status": "missing_evidence",
+        "missing": [
+          "observation_history",
+          "evaluation"
+        ]
+      },
+      "common_lower_bound_s": 2035.2706414854754,
+      "lower_bound_source": "explicit_report_only_supplement",
+      "actual_time_over_lower_bound": 3.5921419952601297,
+      "penalized_time_over_lower_bound": 3.5921419952601297,
+      "decision_contributions": {
+        "counts": {
+          "measure": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 47.0
+        },
+        "proposed_entry_distance_m": {
+          "measure": 0.0
+        },
+        "proposed_measure_switches": 7,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": null
+    },
+    {
+      "batch": "input-001/batch-000001.json.gz",
+      "seed": 8000001,
+      "administrative_skip": null,
+      "checks": {
+        "transition_billing_and_return": "passed",
+        "public_action_features": "passed"
+      },
+      "errors": [],
+      "warnings": [
+        "Actual all-clear and physical ledger cannot be independently verified without legacy missing fields"
+      ],
+      "actual_time_s": 9103.031484,
+      "penalized_time_s": 9103.031484,
+      "reported_success": true,
+      "failed_clear_count": 0,
+      "fallback_cost_s": 6333.387135999999,
+      "fallback_share": 0.6957448347983765,
+      "decisions": 8,
+      "family": "minimum_radius",
+      "source_mode": "mixed",
+      "compute": {
+        "wall_time_s": 0.12213219999102876
+      },
+      "physical_audit": {
+        "status": "missing_evidence",
+        "missing": [
+          "observation_history",
+          "evaluation"
+        ]
+      },
+      "common_lower_bound_s": 2077.850894773038,
+      "lower_bound_source": "explicit_report_only_supplement",
+      "actual_time_over_lower_bound": 4.380983980563396,
+      "penalized_time_over_lower_bound": 4.380983980563396,
+      "decision_contributions": {
+        "counts": {
+          "measure": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 2769.6443479999994
+        },
+        "proposed_entry_distance_m": {
+          "measure": 13608.221743661223
+        },
+        "proposed_measure_switches": 8,
+        "distance_scope": "candidate entry distance; service internals may travel further, actual distance is in physical_audit"
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 8,
+          "value": -0.0009719518541255745,
+          "target_variance": 0.7562139761654931,
+          "reason": null
+        },
+        "mean_sampled_surprisal_nats": 6.051994502544403,
+        "exact_entropy": null,
+        "entropy_scope": "a chosen-action log-probability does not determine exact policy entropy"
+      },
+      "checkpoint_diagnostics": null
+    }
+  ],
+  "by_stratum": {
+    "random/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 0,
+      "physical_evidence_missing": 1,
+      "mean_actual_time_s": 7310.981143,
+      "p95_actual_time_s": 7310.981143,
+      "max_actual_time_s": 7310.981143,
+      "mean_penalized_time_s": 7310.981143,
+      "p95_penalized_time_s": 7310.981143,
+      "failed_clear_count": 5,
+      "sum_fallback_cost_s": 7263.981143,
+      "fallback_share_of_total_actual_time": 0.9935713142900114,
+      "mean_lower_bound_s": 2035.2706414854754,
+      "ratio_of_mean_penalized_time_to_mean_bound": 3.5921419952601297,
+      "actual_all_clear_ratio_of_sums": 3.5921419952601297,
+      "lower_bound_rows_missing": 0,
+      "physical": null,
+      "decisions": {
+        "counts": {
+          "measure": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 47.0
+        },
+        "proposed_entry_distance_m": {
+          "measure": 0.0
+        },
+        "proposed_measure_switches": 7
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.3553756999899633,
+          "mean": 0.3553756999899633
+        },
+        "worker_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "policy_wall_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "policy_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "mean_sampled_surprisal_nats": null
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "states": 0,
+        "mean_entropy_nats": null,
+        "mean_entropy_over_log_legal_candidates": null,
+        "bc_label_states": 0,
+        "bc_exact_index_accuracy": null,
+        "bc_feature_equivalent_accuracy": null,
+        "bc_states_with_feature_equivalent_ties": 0
+      }
+    },
+    "minimum_radius/mixed": {
+      "attempts": 1,
+      "administratively_interrupted": 0,
+      "available_episode_metrics": 1,
+      "analysis_error_episodes": 0,
+      "aggregation_status": "all_completed_episode_metrics_included",
+      "reported_full_clear": 1,
+      "reported_task_failures": 0,
+      "reported_full_clear_rate": 1.0,
+      "physically_verified_full_clear": 0,
+      "physical_evidence_missing": 1,
+      "mean_actual_time_s": 9103.031484,
+      "p95_actual_time_s": 9103.031484,
+      "max_actual_time_s": 9103.031484,
+      "mean_penalized_time_s": 9103.031484,
+      "p95_penalized_time_s": 9103.031484,
+      "failed_clear_count": 0,
+      "sum_fallback_cost_s": 6333.387135999999,
+      "fallback_share_of_total_actual_time": 0.6957448347983765,
+      "mean_lower_bound_s": 2077.850894773038,
+      "ratio_of_mean_penalized_time_to_mean_bound": 4.380983980563396,
+      "actual_all_clear_ratio_of_sums": 4.380983980563396,
+      "lower_bound_rows_missing": 0,
+      "physical": null,
+      "decisions": {
+        "counts": {
+          "measure": 8
+        },
+        "billed_cost_excluding_fallback_s": {
+          "measure": 2769.6443479999994
+        },
+        "proposed_entry_distance_m": {
+          "measure": 13608.221743661223
+        },
+        "proposed_measure_switches": 8
+      },
+      "compute": {
+        "scope": "sum of per-episode worker times, not elapsed batch makespan or PPO optimizer CPU; posthoc bound included",
+        "wall_time_s": {
+          "available_episodes": 1,
+          "sum": 0.12213219999102876,
+          "mean": 0.12213219999102876
+        },
+        "worker_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "policy_wall_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "policy_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "posthoc_bound_wall_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        },
+        "posthoc_bound_cpu_s": {
+          "available_episodes": 0,
+          "sum": 0,
+          "mean": null
+        }
+      },
+      "recorded_behavior": {
+        "critic_explained_variance": {
+          "count": 8,
+          "value": -0.0009719518541255745,
+          "target_variance": 0.7562139761654931,
+          "reason": null
+        },
+        "mean_sampled_surprisal_nats": 6.051994502544403
+      },
+      "checkpoint_diagnostics": {
+        "critic_explained_variance": {
+          "count": 0,
+          "value": null,
+          "reason": "fewer_than_two_values"
+        },
+        "states": 0,
+        "mean_entropy_nats": null,
+        "mean_entropy_over_log_legal_candidates": null,
+        "bc_label_states": 0,
+        "bc_exact_index_accuracy": null,
+        "bc_feature_equivalent_accuracy": null,
+        "bc_states_with_feature_equivalent_ties": 0
+      }
+    }
+  },
+  "scope": "diagnosis of all episodes in explicitly named training batches; no independent efficacy or model-selection claim",
+  "bc_equivalence": "exact equality of all 16 public candidate features after float32 conversion; no channel identifiers",
+  "limitations": [
+    "Missing raw evidence is reported, not regenerated or fabricated.",
+    "Recorded bounds are checked for consistency but their route DP is not reoptimized.",
+    "Checkpoint entropy is on logged states; it is not necessarily behavior-policy entropy.",
+    "Training trajectories change with the policy and are correlated within batches; these descriptive summaries do not establish independent generalization or paired improvement.",
+    "No database, remote access, training, simulator rollout or case filtering occurred."
+  ],
+  "analysis_wall_s": 0.06977250000636559,
+  "analysis_cpu_s": 0.078125
+}

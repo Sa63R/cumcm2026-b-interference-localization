@@ -1,0 +1,74 @@
+{
+  "r8": {
+    "entrypoint": "strategies.q4_clear_before_probe:run_q4_clear_before_probe",
+    "kwargs": {
+      "config": "center_once",
+      "max_expansions": 200
+    }
+  },
+  "heuristic_128": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_decisions": 128,
+      "record_transitions": false
+    }
+  },
+  "heuristic_full": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_decisions": 2048,
+      "record_transitions": false
+    }
+  },
+  "random_128": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_decisions": 128,
+      "record_transitions": false
+    },
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "checkpoint": "runs/train-v1b/training/random.pt",
+        "deterministic": true
+      }
+    },
+    "artifact_files": [
+      "runs/train-v1b/training/random.pt"
+    ]
+  },
+  "warmstart_128": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_decisions": 128,
+      "record_transitions": false
+    },
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "checkpoint": "runs/train-v1b/training/warmstart.pt",
+        "deterministic": true
+      }
+    },
+    "artifact_files": [
+      "runs/train-v1b/training/warmstart.pt"
+    ]
+  },
+  "ppo_128": {
+    "entrypoint": "q4_rl.controller:run_q4_rl",
+    "kwargs": {
+      "max_decisions": 128,
+      "record_transitions": false
+    },
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "checkpoint": "runs/train-v1b/training/checkpoint-000060.pt",
+        "deterministic": true
+      }
+    },
+    "artifact_files": [
+      "runs/train-v1b/training/checkpoint-000060.pt"
+    ]
+  }
+}
