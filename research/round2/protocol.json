@@ -22,10 +22,22 @@
         "cap_only": "experiments/state_search_candidate_derived_silence_cap_only_v1.json",
         "derived_silence": "experiments/state_search_candidate_derived_silence_combined_v1.json"
       },
-      "pilot_seeds": [216101, 216116],
-      "confirmation_seeds": [216201, 216264],
-      "final_seeds": [217001, 217256],
-      "stress_seeds": [218001, 218028],
+      "pilot_seeds": [
+        216101,
+        216116
+      ],
+      "confirmation_seeds": [
+        216201,
+        216264
+      ],
+      "final_seeds": [
+        217001,
+        217256
+      ],
+      "stress_seeds": [
+        218001,
+        218028
+      ],
       "model_gate_receipt": "research/round2/diagnoses/DERIVED_SILENCE_MODEL_GATE.json",
       "scope": "Only observed proof of redundant negative queries and the public 16-source cap inside a scan; separate and combined ablations. Preserve inferred-versus-physical distinction. Candidate 760af82; no new cases until source-bound gate passes.",
       "basis": "Read-only 32 earlier opened baseline histories; same-channel prior real no_signal and affine distance comparison on the current outer polygon. Frozen-trajectory billing potential is not a measured candidate result."
@@ -37,12 +49,27 @@
         "coupled_root": "experiments/state_search_candidate_coupled_root_r2.json",
         "coupled_tree": "experiments/state_search_candidate_coupled_tree_r2.json"
       },
-      "pilot_seeds": [213101, 213116],
-      "confirmation_seeds": [213201, 213264],
-      "final_seeds": [219001, 219256],
-      "stress_seeds": [220001, 220028],
+      "pilot_seeds": [
+        213101,
+        213116
+      ],
+      "confirmation_seeds": [
+        213201,
+        213264
+      ],
+      "final_seeds": [
+        219001,
+        219256
+      ],
+      "stress_seeds": [
+        220001,
+        220028
+      ],
       "model_gate_receipt": "research/round2/diagnoses/COUPLED_TREE_MODEL_GATE.json",
-      "comparison_pair": ["coupled_root", "coupled_tree"],
+      "comparison_pair": [
+        "coupled_root",
+        "coupled_tree"
+      ],
       "scope": "Common root predictive worlds generate the macro observation and evaluate the fixed child; conditional training never sees the evaluating representative. Same candidates/triggers/K/caps as observation_tree; not full POMCPOW. Candidate 149c612 frozen before new cases.",
       "basis": "Pre-pilot model smoke shows absolute continuation estimates differ strongly without child-action changes. Independent exact artificial-model audit verifies legality of coupled evaluation, but does not guarantee variance reduction or unbiasedness of the finite root approximation."
     },
@@ -53,10 +80,22 @@
         "root_mc": "experiments/state_search_candidate_root_mc_r2.json",
         "observation_tree": "experiments/state_search_candidate_observation_tree_r2.json"
       },
-      "pilot_seeds": [212101, 212116],
-      "confirmation_seeds": [212201, 212264],
-      "final_seeds": [214001, 214256],
-      "stress_seeds": [215001, 215028],
+      "pilot_seeds": [
+        212101,
+        212116
+      ],
+      "confirmation_seeds": [
+        212201,
+        212264
+      ],
+      "final_seeds": [
+        214001,
+        214256
+      ],
+      "stress_seeds": [
+        215001,
+        215028
+      ],
       "scope": "Three arms: protected v1, finite predictive root MC with complete v1 tail, and depth-two conditional task decisions with the same model/candidates/compute caps. Not full POMCPOW. No held-out cases opened before source freeze and implementation checks.",
       "model_gate": "Likelihood and clone tests plus actual observation-only smoke must pass; complete depth-two calculation must contain at least two distinct full observations for a common first task and an internal alternative comparison. Fallback is not evidence that the tree was tested.",
       "model_gate_receipt": "research/round2/diagnoses/OBSERVATION_TREE_MODEL_GATE.json",
@@ -66,28 +105,52 @@
     "certified_tail": {
       "branch": "research/q3-r2-certified-tail",
       "directory": "q3-r2-certified-tail",
-      "pilot_seeds": [206101, 206132],
-      "confirmation_seeds": [206133, 206196],
+      "pilot_seeds": [
+        206101,
+        206132
+      ],
+      "confirmation_seeds": [
+        206133,
+        206196
+      ],
       "pilot_size_reason": "Predeclared 32 pairs: legal complete-discovery and 2..4 remaining already-certified targets occurs in about 9/48 opened development baselines. Fixed-size batch, no stopping by wins; optimize only fully deterministic clearance suffix with executable baseline incumbent."
     },
     "terminal_project": {
       "branch": "research/q3-r2-terminal-project",
       "directory": "q3-r2-terminal-project",
-      "pilot_seeds": [204101, 204116],
-      "confirmation_seeds": [205117, 205180],
+      "pilot_seeds": [
+        204101,
+        204116
+      ],
+      "confirmation_seeds": [
+        205117,
+        205180
+      ],
       "ablation_scope": "Uses same development cases as terminal_cover; not independent from that pilot. New geometry uses continuously projected final cover, no source-truth input."
     },
     "terminal_cover": {
       "branch": "research/q3-r2-terminal-cover",
       "directory": "q3-r2-terminal-cover",
-      "pilot_seeds": [204101, 204116],
-      "confirmation_seeds": [204117, 204180]
+      "pilot_seeds": [
+        204101,
+        204116
+      ],
+      "confirmation_seeds": [
+        204117,
+        204180
+      ]
     },
     "negative_hull": {
       "branch": "research/q3-r2-negative-hull",
       "directory": "q3-r2-negative-hull",
-      "pilot_seeds": [203101, 203116],
-      "confirmation_seeds": [203117, 203180]
+      "pilot_seeds": [
+        203101,
+        203116
+      ],
+      "confirmation_seeds": [
+        203117,
+        203180
+      ]
     },
     "feedback": {
       "branch": "research/q3-r2-feedback",
@@ -117,6 +180,29 @@
         201117,
         201180
       ]
+    },
+    "current_probe": {
+      "branch": "research/q3-r2-current-probe",
+      "directory": "q3-r2-current-probe",
+      "pilot_seeds": [
+        221101,
+        221116
+      ],
+      "confirmation_seeds": [
+        221201,
+        221264
+      ],
+      "final_seeds": [
+        222001,
+        222256
+      ],
+      "stress_seeds": [
+        223001,
+        223028
+      ],
+      "model_gate_receipt": "research/round2/diagnoses/CURRENT_PROBE_MODEL_GATE.json",
+      "scope": "Only add original current position to the main-channel radius candidate set if the original observed-point deduplication and <=1000m all-vertex reception checks accept it; original 23 candidates, scores, fallback and all physical rules retained. No new cases before source-bound gate.",
+      "basis": "Public-prefix geometry of 32 already-opened baseline histories; current-position candidate missing at some fresh receivable main-channel states. Score reduction and retrospective segment chord are not actual whole-game savings."
     }
   },
   "reserved_final_seeds": [
