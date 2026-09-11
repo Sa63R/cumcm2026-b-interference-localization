@@ -1,0 +1,285 @@
+{
+  "primary_passed": true,
+  "secondary_passed": true,
+  "promoted": "compact_combo",
+  "decision_rule": "Fixed-sequence 95% paired mean-saving bootstrap gates; secondary success only if primary succeeds. Stress all-clear and no >5% aggregate p95 increase versus reference. Report every loss. Bootstrap is approximate, not a finite-sample formal coverage guarantee.",
+  "comparisons": {
+    "confirmation": {
+      "primary": {
+        "candidate": "compact_range",
+        "reference": "compact_baseline",
+        "pairs": 64,
+        "all_clear": true,
+        "mean_saved_s": 318.71875,
+        "saving_ci95_s": [
+          287.53125,
+          350.71875
+        ],
+        "mean_reduction_fraction": 0.044860536590279,
+        "p95_ratio": 0.9441787853222477,
+        "wins": 64,
+        "losses": 0,
+        "loss_rows": []
+      },
+      "secondary": {
+        "candidate": "compact_combo",
+        "reference": "compact_range",
+        "pairs": 64,
+        "all_clear": true,
+        "mean_saved_s": 78.97785865625004,
+        "saving_ci95_s": [
+          28.594947250000004,
+          139.77836075000005
+        ],
+        "mean_reduction_fraction": 0.011638457253974277,
+        "p95_ratio": 1.0,
+        "wins": 20,
+        "losses": 8,
+        "loss_rows": [
+          {
+            "seed": 610103,
+            "case_id": "q4-random-610103",
+            "candidate_time_s": 6165.495252,
+            "reference_time_s": 6123.838327,
+            "lower_bound_s": 1698.7275728751706,
+            "candidate_ratio": 3.6294785287817692,
+            "reference_ratio": 3.6049561005447956
+          },
+          {
+            "seed": 610123,
+            "case_id": "q4-random-610123",
+            "candidate_time_s": 6586.810469,
+            "reference_time_s": 6575.127914,
+            "lower_bound_s": 1927.68332814812,
+            "candidate_ratio": 3.4169567028043937,
+            "reference_ratio": 3.410896290894714
+          },
+          {
+            "seed": 610131,
+            "case_id": "q4-random-610131",
+            "candidate_time_s": 7052.76322,
+            "reference_time_s": 7025.856927,
+            "lower_bound_s": 2082.57381081151,
+            "candidate_ratio": 3.3865609868837114,
+            "reference_ratio": 3.3736412560869837
+          },
+          {
+            "seed": 610138,
+            "case_id": "q4-random-610138",
+            "candidate_time_s": 7163.479507,
+            "reference_time_s": 7153.793544,
+            "lower_bound_s": 2261.7460720617028,
+            "candidate_ratio": 3.1672341981653602,
+            "reference_ratio": 3.1629516824932224
+          },
+          {
+            "seed": 610149,
+            "case_id": "q4-random-610149",
+            "candidate_time_s": 6104.081611,
+            "reference_time_s": 6036.78149,
+            "lower_bound_s": 1930.9146789408926,
+            "candidate_ratio": 3.161238390060865,
+            "reference_ratio": 3.126384379299026
+          },
+          {
+            "seed": 610156,
+            "case_id": "q4-random-610156",
+            "candidate_time_s": 6809.760009,
+            "reference_time_s": 6763.821371,
+            "lower_bound_s": 1782.4939356527138,
+            "candidate_ratio": 3.820355218491333,
+            "reference_ratio": 3.794583103882047
+          },
+          {
+            "seed": 610158,
+            "case_id": "q4-random-610158",
+            "candidate_time_s": 7111.305803,
+            "reference_time_s": 6911.507055,
+            "lower_bound_s": 1834.5556704134342,
+            "candidate_ratio": 3.8763096250970683,
+            "reference_ratio": 3.7674011023292784
+          },
+          {
+            "seed": 610159,
+            "case_id": "q4-random-610159",
+            "candidate_time_s": 6404.987835,
+            "reference_time_s": 6364.365735,
+            "lower_bound_s": 2235.964301075243,
+            "candidate_ratio": 2.8645304542294947,
+            "reference_ratio": 2.846362856481863
+          }
+        ]
+      },
+      "combined_vs_original": {
+        "candidate": "compact_combo",
+        "reference": "compact_baseline",
+        "pairs": 64,
+        "all_clear": true,
+        "mean_saved_s": 397.69660865625,
+        "saving_ci95_s": [
+          334.74500829687497,
+          467.19590984375003
+        ],
+        "mean_reduction_fraction": 0.05597688640675702,
+        "p95_ratio": 0.9441787853222477,
+        "wins": 64,
+        "losses": 0,
+        "loss_rows": []
+      }
+    },
+    "stress": {
+      "primary": {
+        "candidate": "compact_range",
+        "reference": "compact_baseline",
+        "pairs": 42,
+        "all_clear": true,
+        "mean_saved_s": 342.45238095238096,
+        "saving_ci95_s": [
+          299.8095238095238,
+          384.54761904761904
+        ],
+        "mean_reduction_fraction": 0.04209417994769782,
+        "p95_ratio": 0.9691464642628302,
+        "wins": 41,
+        "losses": 0,
+        "loss_rows": []
+      },
+      "secondary": {
+        "candidate": "compact_combo",
+        "reference": "compact_range",
+        "pairs": 42,
+        "all_clear": true,
+        "mean_saved_s": 238.31572533333323,
+        "saving_ci95_s": [
+          76.22608642857126,
+          464.7573558333333
+        ],
+        "mean_reduction_fraction": 0.03058100484871973,
+        "p95_ratio": 1.0,
+        "wins": 16,
+        "losses": 8,
+        "loss_rows": [
+          {
+            "seed": 610205,
+            "case_id": "q4-state-stress-positive_error-610205",
+            "candidate_time_s": 7804.389599,
+            "reference_time_s": 7802.778912,
+            "lower_bound_s": 2217.03170394266,
+            "candidate_ratio": 3.5201975619568535,
+            "reference_ratio": 3.5194710558824767
+          },
+          {
+            "seed": 610208,
+            "case_id": "q4-state-stress-narrow_strip-610208",
+            "candidate_time_s": 7045.839896,
+            "reference_time_s": 7026.10946,
+            "lower_bound_s": 501.00000444444436,
+            "candidate_ratio": 14.063552561866913,
+            "reference_ratio": 14.024170454431845
+          },
+          {
+            "seed": 610210,
+            "case_id": "q4-state-stress-boundary_outward-610210",
+            "candidate_time_s": 9091.941939,
+            "reference_time_s": 9081.102933,
+            "lower_bound_s": 2422.838423580975,
+            "candidate_ratio": 3.752599368785821,
+            "reference_ratio": 3.748125687877302
+          },
+          {
+            "seed": 610215,
+            "case_id": "q4-state-stress-narrow_strip-610215",
+            "candidate_time_s": 7429.87824,
+            "reference_time_s": 7364.509383,
+            "lower_bound_s": 726.0000044444444,
+            "candidate_ratio": 10.233992003465003,
+            "reference_ratio": 10.143952256082326
+          },
+          {
+            "seed": 610221,
+            "case_id": "q4-state-stress-alternating_error-610221",
+            "candidate_time_s": 7174.747773,
+            "reference_time_s": 7146.863878,
+            "lower_bound_s": 2145.660363409511,
+            "candidate_ratio": 3.343841315873094,
+            "reference_ratio": 3.3308458318367986
+          },
+          {
+            "seed": 610225,
+            "case_id": "q4-state-stress-cluster-610225",
+            "candidate_time_s": 7514.301274,
+            "reference_time_s": 7484.894976,
+            "lower_bound_s": 295.97270443008057,
+            "candidate_ratio": 25.388494146679495,
+            "reference_ratio": 25.28913938335216
+          },
+          {
+            "seed": 610236,
+            "case_id": "q4-state-stress-narrow_strip-610236",
+            "candidate_time_s": 5505.335226,
+            "reference_time_s": 5493.808388,
+            "lower_bound_s": 636.0000044444444,
+            "candidate_ratio": 8.656187401773675,
+            "reference_ratio": 8.63806344278083
+          },
+          {
+            "seed": 610240,
+            "case_id": "q4-state-stress-positive_error-610240",
+            "candidate_time_s": 7579.659191,
+            "reference_time_s": 7555.133333,
+            "lower_bound_s": 2521.7389888990124,
+            "candidate_ratio": 3.0057270892691665,
+            "reference_ratio": 2.9960013174474334
+          }
+        ]
+      },
+      "combined_vs_original": {
+        "candidate": "compact_combo",
+        "reference": "compact_baseline",
+        "pairs": 42,
+        "all_clear": true,
+        "mean_saved_s": 580.7681062857142,
+        "saving_ci95_s": [
+          414.0959124761905,
+          802.3324467142858
+        ],
+        "mean_reduction_fraction": 0.07138790247533422,
+        "p95_ratio": 0.9691464642628302,
+        "wins": 41,
+        "losses": 1,
+        "loss_rows": [
+          {
+            "seed": 610236,
+            "case_id": "q4-state-stress-narrow_strip-610236",
+            "candidate_time_s": 5505.335226,
+            "reference_time_s": 5493.808388,
+            "lower_bound_s": 636.0000044444444,
+            "candidate_ratio": 8.656187401773675,
+            "reference_ratio": 8.63806344278083
+          }
+        ]
+      }
+    }
+  },
+  "selection_sha256": "b8fa747b254fe51bc194d8cf1f9236ffd4ced84cc995ddc700a8e6da4db5c229",
+  "evidence_sha256": {
+    "results/q4_round2/confirmation/summary.json": "b246660d4510e06a109ea903c5df45ac56e37269cc5db3000c4317a735973de4",
+    "results/q4_round2/confirmation/independent_audit.json": "6d6182a16327264ad3357e0b8e8f6bf774480e1342b6c8f2530285edc84ebf18",
+    "results/q4_round2/confirmation/manifest.json": "98e5b3a4569bce9b182e65e5d644dea243b7127d4cf3c4e366350234fd75514f",
+    "results/q4_round2/confirmation/freeze.json": "9b58ad473fe420418643065a0e782c4228ca06705b32a08f5148aeb97e47db39",
+    "results/q4_round2/confirmation/source.zip": "e9ea636f09b24e31f1a9b7aa8a2b720d65bffc18adf0a588df4d392c0375b44c",
+    "results/q4_round2/stress/summary.json": "b810c45649471f6c87dd1a2572897cdb40cc9677a8278c0990f2e36b29794bc0",
+    "results/q4_round2/stress/independent_audit.json": "b48572b2992b8f913d3dd20e53395b4355e250aee5646df0c1b87ed1fc2ed5e7",
+    "results/q4_round2/stress/manifest.json": "c88901806b7c4c95935901e478191265d0c83a5cc80836d164d93c200a7fa227",
+    "results/q4_round2/stress/freeze.json": "55b91251d394707485ea1f1acd0b42453db6c0a8cd12a57e55718797c0ca1613",
+    "results/q4_round2/stress/source.zip": "e9ea636f09b24e31f1a9b7aa8a2b720d65bffc18adf0a588df4d392c0375b44c"
+  },
+  "spec": {
+    "entrypoint": "strategies.q4_range_scheduling:run_q4_range_scheduling",
+    "kwargs": {
+      "config": "onroute",
+      "max_expansions": 200
+    }
+  },
+  "scope": "Audited local synthetic validation; no official practice performance claim"
+}
