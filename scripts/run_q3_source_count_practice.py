@@ -51,8 +51,12 @@ def main():
     parser.add_argument("--output", type=Path)
     parser.add_argument("--minimum-per-count", type=int, default=3)
     parser.add_argument("--maximum-runs", type=int, default=90)
+    parser.add_argument("--fixed-runs", type=int, help="Run exactly this many cases regardless of source-count groups")
     parser.add_argument("--preflight-only", action="store_true")
     args = parser.parse_args()
+    if args.fixed_runs is not None and not 1 <= args.fixed_runs <= 200:
+        raise ValueError("fixed-runs must be in [1,200]")
+    run_limit = args.fixed_runs if args.fixed_runs is not None else args.maximum_runs
     source = args.strategy_root.resolve(strict=True)
     spec_path = source / SPEC_NAME
     if (subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=source, text=True).strip() != COMMIT
@@ -90,11 +94,15 @@ def main():
     output = args.output.resolve()
     protocol = {"created_at_utc": datetime.now(timezone.utc).isoformat(), "problem": 3,
         "mode": "practice", "source_commit": COMMIT, "spec": spec, "spec_sha256": sha(spec_path),
-        "runner_sha256": sha(Path(__file__)), "minimum_per_source_count": args.minimum_per_count,
-        "maximum_runs": args.maximum_runs,
+        "runner_sha256": sha(Path(__file__)),
+        "minimum_per_source_count": args.minimum_per_count if args.fixed_runs is None else None,
+        "maximum_runs": run_limit, "fixed_runs": args.fixed_runs,
         "per_source_time_definition": "Full task billed virtual time divided by official terminal source count; includes discovery, localization and clearance.",
         "lower_bound_kind": "historical_conditional_all_clear_containing_region_bound",
-        "stopping_rule": "Every N=10..16 has minimum completed runs, or maximum/error/STOP; retain all sampled cases.",
+        "stopping_rule": ("Exactly fixed_runs cases regardless of source count, or error/STOP; retain all sampled cases."
+                          if args.fixed_runs is not None else
+                          "Every N=10..16 has minimum completed runs, or maximum/error/STOP; retain all sampled cases."),
+        "pooled_per_source_definition": "sum(actual_time_s)/sum(source_count); pooled lower bound uses the same source denominator",
         "count_visibility": "Source count is read only from the matching completed official practice result."}
     rows, failures, status, started_runs = [], [], "running", 0
 
@@ -111,7 +119,7 @@ def main():
         output.mkdir(parents=True, exist_ok=False)
         save(output / "protocol.json", protocol)
         try:
-            for index in range(1, args.maximum_runs + 1):
+            for index in range(1, run_limit + 1):
                 if (output / "STOP").exists():
                     status = "stop_requested"
                     break
@@ -146,11 +154,11 @@ def main():
                 snapshot()
                 print(json.dumps({"completed_runs": len(rows), "latest": row,
                       "counts": {g["source_count"]:g["runs"] for g in groups(rows)}}), flush=True)
-                if all(g["runs"] >= args.minimum_per_count for g in groups(rows)):
+                if args.fixed_runs is None and all(g["runs"] >= args.minimum_per_count for g in groups(rows)):
                     status = "source_counts_covered"
                     break
             else:
-                status = "maximum_runs"
+                status = "fixed_count_completed" if args.fixed_runs is not None else "maximum_runs"
         except Exception as exc:
             status = "error"
             failures.append({"run": started_runs, "kind": type(exc).__name__, "message": str(exc)})
@@ -158,7 +166,7 @@ def main():
         finally:
             snapshot()
     print(json.dumps({"status": status, "groups": groups(rows)}), flush=True)
-    return 0 if status in {"source_counts_covered", "stop_requested"} else 1
+    return 0 if status in {"source_counts_covered", "fixed_count_completed", "stop_requested"} else 1
 
 
 if __name__ == "__main__":
