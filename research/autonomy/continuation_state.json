@@ -1,0 +1,41 @@
+{
+  "scope": "Operational continuation note; recorded PIDs are not proof of current liveness",
+  "live_job": {
+    "name": "current-r1",
+    "package_subdirectory": "q3a-r1/package",
+    "source_commit": "38c4730b71263b7c4bfe098ad2acee1c7bf32191",
+    "pid": 1530317,
+    "start_ticks": "2343624315",
+    "cpu_slots": 50
+  },
+  "provisional_candidate": {
+    "job": "range-r1/block-01",
+    "model_sha256": "4d3b9367ca50ee6b191f109bf79f039717fa056cfdf5091c1f148cf30da8af05",
+    "mean_time_s": 3068.2903829375,
+    "mean_lower_bound_s": 1702.2884780352904,
+    "ratio_of_sums": 1.802450302946767,
+    "status": "Development-only small mean improvement; no strict upgrade or independent confirmation"
+  },
+  "ready_unrun": [
+    "current-r1 later endpoint",
+    "targets-r1",
+    "cert-r1 in q3cc-r1b/package, source fdaf43779604af7ff2d5353611d22878891ca323",
+    "range-r2",
+    "base-r2"
+  ],
+  "failed_archives": [
+    "archive/q3-rl-cost-to-go-r1-failed-20260912",
+    "archive/q3-rl-cost-choice-v2-r1-failed-20260912"
+  ],
+  "remaining_quota_last_observed": {
+    "utc": "2026-09-11T19:35:10Z",
+    "percent": 9
+  },
+  "next_priority": "Complete current scan experiment while quota permits; preserve quota for frozen independent comparison. Do not start further implementation or use reset credits. Stop work at <=1%.",
+  "sealed_splits": [
+    "confirmation 5400001..5400128",
+    "final 5500001..5500256",
+    "stress 5600001..5600056"
+  ],
+  "constraints": "Q3 port 42122, 50 CPU default/60 maximum, no GPU, transfers only object storage, no formal tests, validation database never used for training"
+}
