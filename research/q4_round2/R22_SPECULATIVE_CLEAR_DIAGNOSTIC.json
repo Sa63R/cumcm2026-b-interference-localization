@@ -1,0 +1,1604 @@
+{
+  "checked_local": "2026-09-12T05:47:21.999183+08:00",
+  "source_tree": "D:\\jwt\\2026数模国赛\\q4-r12-joint-continuation",
+  "input_sha256": {
+    "development/manifest.json": "d65960507431a133bb66597a6262642d062cb4fef0c25e8b0850d893786416fe",
+    "development/freeze.json": "3dd486c9353134c730e55b0a41115fc82ec6298ac73a02908f9cd417c9c79884",
+    "development/source.zip": "eb8b89c8754c30038b77c6ee839a57d869f928da765e963b88875ed6b489fd8d",
+    "development/independent_audit.json": "03fb1e25caa406050cc79957c35d52532c3e169561fef183b5287ff07d69c745",
+    "development-stress/manifest.json": "2cb3d04a115e414aa8d0188c1e23e65f111e7f2491a43ce352e84d9022d60127",
+    "development-stress/freeze.json": "255c5bb36142d694e58a3ad225b87c0819111cb829d569fdf3cc0e111d104e12",
+    "development-stress/source.zip": "eb8b89c8754c30038b77c6ee839a57d869f928da765e963b88875ed6b489fd8d",
+    "development-stress/independent_audit.json": "cd9a9883142d726f421425439af2440aa7b335ade72d26e0baee1a0ca62fc40f"
+  },
+  "script_sha256": "dcaecaffc3ab97da31c132991c4e7c9eec10f64ac41dba13672af73efbc88b5d",
+  "source_sha256": {
+    "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+    "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+    "src/strategies/q4_clear_before_probe.py": "641e8b0e4e6cce7b6445e88117d08ac23bd073487dfb46b87e903330f678ac69",
+    "experiments/diagnose_q4_joint_visibility.py": "7b91e93afcfdd7462a871f4d0aa2a00e76539861cf0bd5392123d8814677127f",
+    "experiments/audit_q4_joint_continuation.py": "5a04f00ee3796312b0ef0862fedf1bfefe1f9d57101e43eacbf11c7708db99e8"
+  },
+  "all": {
+    "cases": 38,
+    "counts": {
+      "eligible_exact_center_radius_40_120": 14,
+      "near_equal_but_not_exact_excluded": 5,
+      "actual_active_measurements": 247,
+      "exact_canonical_center_active_measurements": 67,
+      "active_with_canonical_radius_40_120": 40
+    },
+    "feedback": {
+      "direction": 7,
+      "near": 2,
+      "no_signal": 5
+    },
+    "thresholds": {
+      "60": {
+        "exact_center_events": 10,
+        "feedback": {
+          "direction": 4,
+          "near": 2,
+          "no_signal": 4
+        },
+        "cases_with_any": 6,
+        "already_r8_attempted": 0,
+        "already_observed_round6": 0,
+        "early_service_events": 0,
+        "first_fresh_formal_unattempted_source_events": 10,
+        "first_event_feedback": {
+          "direction": 4,
+          "near": 2,
+          "no_signal": 4
+        },
+        "first_events_with_later_original_r8": 1,
+        "later_original_r8_results": {
+          "success": 1
+        },
+        "first_event_prefixes": [
+          [
+            621002,
+            15,
+            316
+          ],
+          [
+            621006,
+            1,
+            102
+          ],
+          [
+            621006,
+            5,
+            104
+          ],
+          [
+            621008,
+            20,
+            177
+          ],
+          [
+            621008,
+            1,
+            183
+          ],
+          [
+            621008,
+            6,
+            190
+          ],
+          [
+            621008,
+            7,
+            201
+          ],
+          [
+            621010,
+            14,
+            274
+          ],
+          [
+            621016,
+            16,
+            211
+          ],
+          [
+            621024,
+            9,
+            120
+          ]
+        ],
+        "max_first_events_in_one_case": 4,
+        "frozen_trace_direct_all_fail_added_s": 30.0,
+        "frozen_trace_mean_direct_all_fail_added_s": 0.7894736842105263,
+        "frozen_trace_mean_direct_all_fail_added_s_per_observed_clear": 0.053229665071770335,
+        "warning": "Opportunity counts on the old trace only; added time can change scheduling and later observations. Not an overall regret bound."
+      },
+      "80": {
+        "exact_center_events": 12,
+        "feedback": {
+          "direction": 6,
+          "near": 2,
+          "no_signal": 4
+        },
+        "cases_with_any": 6,
+        "already_r8_attempted": 0,
+        "already_observed_round6": 0,
+        "early_service_events": 0,
+        "first_fresh_formal_unattempted_source_events": 12,
+        "first_event_feedback": {
+          "direction": 6,
+          "near": 2,
+          "no_signal": 4
+        },
+        "first_events_with_later_original_r8": 3,
+        "later_original_r8_results": {
+          "success": 3
+        },
+        "first_event_prefixes": [
+          [
+            621002,
+            15,
+            316
+          ],
+          [
+            621006,
+            1,
+            102
+          ],
+          [
+            621006,
+            5,
+            104
+          ],
+          [
+            621008,
+            20,
+            177
+          ],
+          [
+            621008,
+            1,
+            183
+          ],
+          [
+            621008,
+            6,
+            190
+          ],
+          [
+            621008,
+            7,
+            201
+          ],
+          [
+            621010,
+            14,
+            274
+          ],
+          [
+            621016,
+            16,
+            211
+          ],
+          [
+            621024,
+            7,
+            113
+          ],
+          [
+            621024,
+            11,
+            117
+          ],
+          [
+            621024,
+            9,
+            120
+          ]
+        ],
+        "max_first_events_in_one_case": 4,
+        "frozen_trace_direct_all_fail_added_s": 36.0,
+        "frozen_trace_mean_direct_all_fail_added_s": 0.9473684210526315,
+        "frozen_trace_mean_direct_all_fail_added_s_per_observed_clear": 0.06309808612440192,
+        "warning": "Opportunity counts on the old trace only; added time can change scheduling and later observations. Not an overall regret bound."
+      },
+      "120": {
+        "exact_center_events": 14,
+        "feedback": {
+          "direction": 7,
+          "near": 2,
+          "no_signal": 5
+        },
+        "cases_with_any": 6,
+        "already_r8_attempted": 0,
+        "already_observed_round6": 0,
+        "early_service_events": 0,
+        "first_fresh_formal_unattempted_source_events": 13,
+        "first_event_feedback": {
+          "direction": 6,
+          "near": 2,
+          "no_signal": 5
+        },
+        "first_events_with_later_original_r8": 3,
+        "later_original_r8_results": {
+          "success": 3
+        },
+        "first_event_prefixes": [
+          [
+            621002,
+            15,
+            316
+          ],
+          [
+            621006,
+            1,
+            101
+          ],
+          [
+            621006,
+            5,
+            104
+          ],
+          [
+            621008,
+            20,
+            177
+          ],
+          [
+            621008,
+            1,
+            183
+          ],
+          [
+            621008,
+            6,
+            190
+          ],
+          [
+            621008,
+            3,
+            194
+          ],
+          [
+            621008,
+            7,
+            201
+          ],
+          [
+            621010,
+            14,
+            274
+          ],
+          [
+            621016,
+            16,
+            211
+          ],
+          [
+            621024,
+            7,
+            113
+          ],
+          [
+            621024,
+            11,
+            117
+          ],
+          [
+            621024,
+            9,
+            120
+          ]
+        ],
+        "max_first_events_in_one_case": 5,
+        "frozen_trace_direct_all_fail_added_s": 39.0,
+        "frozen_trace_mean_direct_all_fail_added_s": 1.0263157894736843,
+        "frozen_trace_mean_direct_all_fail_added_s_per_observed_clear": 0.06803229665071771,
+        "warning": "Opportunity counts on the old trace only; added time can change scheduling and later observations. Not an overall regret bound."
+      }
+    }
+  },
+  "by_stage": {
+    "development": {
+      "cases": 24,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 14,
+        "near_equal_but_not_exact_excluded": 1,
+        "actual_active_measurements": 95,
+        "exact_canonical_center_active_measurements": 43,
+        "active_with_canonical_radius_40_120": 33
+      },
+      "feedback": {
+        "direction": 7,
+        "near": 2,
+        "no_signal": 5
+      },
+      "thresholds": {
+        "60": {
+          "exact_center_events": 10,
+          "feedback": {
+            "direction": 4,
+            "near": 2,
+            "no_signal": 4
+          },
+          "cases_with_any": 6,
+          "already_r8_attempted": 0,
+          "already_observed_round6": 0,
+          "early_service_events": 0,
+          "first_fresh_formal_unattempted_source_events": 10,
+          "first_event_feedback": {
+            "direction": 4,
+            "near": 2,
+            "no_signal": 4
+          },
+          "first_events_with_later_original_r8": 1,
+          "later_original_r8_results": {
+            "success": 1
+          },
+          "first_event_prefixes": [
+            [
+              621002,
+              15,
+              316
+            ],
+            [
+              621006,
+              1,
+              102
+            ],
+            [
+              621006,
+              5,
+              104
+            ],
+            [
+              621008,
+              20,
+              177
+            ],
+            [
+              621008,
+              1,
+              183
+            ],
+            [
+              621008,
+              6,
+              190
+            ],
+            [
+              621008,
+              7,
+              201
+            ],
+            [
+              621010,
+              14,
+              274
+            ],
+            [
+              621016,
+              16,
+              211
+            ],
+            [
+              621024,
+              9,
+              120
+            ]
+          ],
+          "max_first_events_in_one_case": 4,
+          "frozen_trace_direct_all_fail_added_s": 30.0,
+          "frozen_trace_mean_direct_all_fail_added_s": 1.25,
+          "frozen_trace_mean_direct_all_fail_added_s_per_observed_clear": 0.08428030303030302,
+          "warning": "Opportunity counts on the old trace only; added time can change scheduling and later observations. Not an overall regret bound."
+        },
+        "80": {
+          "exact_center_events": 12,
+          "feedback": {
+            "direction": 6,
+            "near": 2,
+            "no_signal": 4
+          },
+          "cases_with_any": 6,
+          "already_r8_attempted": 0,
+          "already_observed_round6": 0,
+          "early_service_events": 0,
+          "first_fresh_formal_unattempted_source_events": 12,
+          "first_event_feedback": {
+            "direction": 6,
+            "near": 2,
+            "no_signal": 4
+          },
+          "first_events_with_later_original_r8": 3,
+          "later_original_r8_results": {
+            "success": 3
+          },
+          "first_event_prefixes": [
+            [
+              621002,
+              15,
+              316
+            ],
+            [
+              621006,
+              1,
+              102
+            ],
+            [
+              621006,
+              5,
+              104
+            ],
+            [
+              621008,
+              20,
+              177
+            ],
+            [
+              621008,
+              1,
+              183
+            ],
+            [
+              621008,
+              6,
+              190
+            ],
+            [
+              621008,
+              7,
+              201
+            ],
+            [
+              621010,
+              14,
+              274
+            ],
+            [
+              621016,
+              16,
+              211
+            ],
+            [
+              621024,
+              7,
+              113
+            ],
+            [
+              621024,
+              11,
+              117
+            ],
+            [
+              621024,
+              9,
+              120
+            ]
+          ],
+          "max_first_events_in_one_case": 4,
+          "frozen_trace_direct_all_fail_added_s": 36.0,
+          "frozen_trace_mean_direct_all_fail_added_s": 1.5,
+          "frozen_trace_mean_direct_all_fail_added_s_per_observed_clear": 0.09990530303030302,
+          "warning": "Opportunity counts on the old trace only; added time can change scheduling and later observations. Not an overall regret bound."
+        },
+        "120": {
+          "exact_center_events": 14,
+          "feedback": {
+            "direction": 7,
+            "near": 2,
+            "no_signal": 5
+          },
+          "cases_with_any": 6,
+          "already_r8_attempted": 0,
+          "already_observed_round6": 0,
+          "early_service_events": 0,
+          "first_fresh_formal_unattempted_source_events": 13,
+          "first_event_feedback": {
+            "direction": 6,
+            "near": 2,
+            "no_signal": 5
+          },
+          "first_events_with_later_original_r8": 3,
+          "later_original_r8_results": {
+            "success": 3
+          },
+          "first_event_prefixes": [
+            [
+              621002,
+              15,
+              316
+            ],
+            [
+              621006,
+              1,
+              101
+            ],
+            [
+              621006,
+              5,
+              104
+            ],
+            [
+              621008,
+              20,
+              177
+            ],
+            [
+              621008,
+              1,
+              183
+            ],
+            [
+              621008,
+              6,
+              190
+            ],
+            [
+              621008,
+              3,
+              194
+            ],
+            [
+              621008,
+              7,
+              201
+            ],
+            [
+              621010,
+              14,
+              274
+            ],
+            [
+              621016,
+              16,
+              211
+            ],
+            [
+              621024,
+              7,
+              113
+            ],
+            [
+              621024,
+              11,
+              117
+            ],
+            [
+              621024,
+              9,
+              120
+            ]
+          ],
+          "max_first_events_in_one_case": 5,
+          "frozen_trace_direct_all_fail_added_s": 39.0,
+          "frozen_trace_mean_direct_all_fail_added_s": 1.625,
+          "frozen_trace_mean_direct_all_fail_added_s_per_observed_clear": 0.10771780303030302,
+          "warning": "Opportunity counts on the old trace only; added time can change scheduling and later observations. Not an overall regret bound."
+        }
+      }
+    },
+    "development-stress": {
+      "cases": 14,
+      "counts": {
+        "actual_active_measurements": 152,
+        "exact_canonical_center_active_measurements": 24,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 4,
+        "active_with_canonical_radius_40_120": 7
+      },
+      "feedback": {},
+      "thresholds": {
+        "60": {
+          "exact_center_events": 0,
+          "feedback": {},
+          "cases_with_any": 0,
+          "already_r8_attempted": 0,
+          "already_observed_round6": 0,
+          "early_service_events": 0,
+          "first_fresh_formal_unattempted_source_events": 0,
+          "first_event_feedback": {},
+          "first_events_with_later_original_r8": 0,
+          "later_original_r8_results": {},
+          "first_event_prefixes": [],
+          "max_first_events_in_one_case": 0,
+          "frozen_trace_direct_all_fail_added_s": 0.0,
+          "frozen_trace_mean_direct_all_fail_added_s": 0.0,
+          "frozen_trace_mean_direct_all_fail_added_s_per_observed_clear": 0.0,
+          "warning": "Opportunity counts on the old trace only; added time can change scheduling and later observations. Not an overall regret bound."
+        },
+        "80": {
+          "exact_center_events": 0,
+          "feedback": {},
+          "cases_with_any": 0,
+          "already_r8_attempted": 0,
+          "already_observed_round6": 0,
+          "early_service_events": 0,
+          "first_fresh_formal_unattempted_source_events": 0,
+          "first_event_feedback": {},
+          "first_events_with_later_original_r8": 0,
+          "later_original_r8_results": {},
+          "first_event_prefixes": [],
+          "max_first_events_in_one_case": 0,
+          "frozen_trace_direct_all_fail_added_s": 0.0,
+          "frozen_trace_mean_direct_all_fail_added_s": 0.0,
+          "frozen_trace_mean_direct_all_fail_added_s_per_observed_clear": 0.0,
+          "warning": "Opportunity counts on the old trace only; added time can change scheduling and later observations. Not an overall regret bound."
+        },
+        "120": {
+          "exact_center_events": 0,
+          "feedback": {},
+          "cases_with_any": 0,
+          "already_r8_attempted": 0,
+          "already_observed_round6": 0,
+          "early_service_events": 0,
+          "first_fresh_formal_unattempted_source_events": 0,
+          "first_event_feedback": {},
+          "first_events_with_later_original_r8": 0,
+          "later_original_r8_results": {},
+          "first_event_prefixes": [],
+          "max_first_events_in_one_case": 0,
+          "frozen_trace_direct_all_fail_added_s": 0.0,
+          "frozen_trace_mean_direct_all_fail_added_s": 0.0,
+          "frozen_trace_mean_direct_all_fail_added_s_per_observed_clear": 0.0,
+          "warning": "Opportunity counts on the old trace only; added time can change scheduling and later observations. Not an overall regret bound."
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "seed": 621001,
+      "stage": "development",
+      "actual_successful_clears": 13,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "4fc604df6325d617eb68dae844276529389cd805789b901b268f9cceb0976e6b"
+    },
+    {
+      "seed": 621002,
+      "stage": "development",
+      "actual_successful_clears": 11,
+      "counts": {
+        "actual_active_measurements": 4,
+        "exact_canonical_center_active_measurements": 3,
+        "active_with_canonical_radius_40_120": 1,
+        "eligible_exact_center_radius_40_120": 1,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [
+        {
+          "seed": 621002,
+          "stage": "development",
+          "prefix": 316,
+          "channel": 15,
+          "position": [
+            -11.274345076251244,
+            -1583.965033898593
+          ],
+          "canonical_center": [
+            -11.274345076251244,
+            -1583.965033898593
+          ],
+          "radius_m": 46.32543445288524,
+          "positive_count": 2,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 6,
+          "early_service": false,
+          "original_incoming_distance_m": 1077.7931427034493,
+          "actual_measure_fee_s": 6.0,
+          "actual_observed_feedback": "direction",
+          "actual_bearing_deg": 43.49,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        }
+      ],
+      "near_equal_exclusions": [],
+      "record_sha256": "cdcb0b9b4f5009dce297236e9c57e23ad90727706bd8b2a2f8ad17ccd4eef97f"
+    },
+    {
+      "seed": 621003,
+      "stage": "development",
+      "actual_successful_clears": 14,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "f6f525e6f62449e2f886496bb3975ee954d75cb67bf5904e36a34f232601a9c8"
+    },
+    {
+      "seed": 621004,
+      "stage": "development",
+      "actual_successful_clears": 15,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "da050e0befc2360264ea982126be161dbb9760218582b871c18fb33a6c9402ff"
+    },
+    {
+      "seed": 621005,
+      "stage": "development",
+      "actual_successful_clears": 10,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "a1f45742f1f5b5c311fe7356e27ebe037aae6050a8f100bb44263cf239fa4175"
+    },
+    {
+      "seed": 621006,
+      "stage": "development",
+      "actual_successful_clears": 16,
+      "counts": {
+        "actual_active_measurements": 12,
+        "exact_canonical_center_active_measurements": 9,
+        "active_with_canonical_radius_40_120": 3,
+        "eligible_exact_center_radius_40_120": 3,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [
+        {
+          "seed": 621006,
+          "stage": "development",
+          "prefix": 101,
+          "channel": 1,
+          "position": [
+            1682.6361087135238,
+            -207.9563798081188
+          ],
+          "canonical_center": [
+            1682.6361087135238,
+            -207.9563798081188
+          ],
+          "radius_m": 105.58210622958686,
+          "positive_count": 3,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 9,
+          "early_service": false,
+          "original_incoming_distance_m": 105.58210622958357,
+          "actual_measure_fee_s": 5.0,
+          "actual_observed_feedback": "direction",
+          "actual_bearing_deg": 350.4,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": [
+            {
+              "prefix": 103,
+              "result": "success"
+            }
+          ]
+        },
+        {
+          "seed": 621006,
+          "stage": "development",
+          "prefix": 102,
+          "channel": 1,
+          "position": [
+            1731.0686051820326,
+            -217.02464978738544
+          ],
+          "canonical_center": [
+            1731.0686051820326,
+            -217.02464978738544
+          ],
+          "radius_m": 49.274133524487844,
+          "positive_count": 4,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 9,
+          "early_service": false,
+          "original_incoming_distance_m": 49.27413352448714,
+          "actual_measure_fee_s": 5.0,
+          "actual_observed_feedback": "direction",
+          "actual_bearing_deg": 169.97,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": [
+            {
+              "prefix": 103,
+              "result": "success"
+            }
+          ]
+        },
+        {
+          "seed": 621006,
+          "stage": "development",
+          "prefix": 104,
+          "channel": 5,
+          "position": [
+            1663.6394020937757,
+            542.2542775325435
+          ],
+          "canonical_center": [
+            1663.6394020937757,
+            542.2542775325435
+          ],
+          "radius_m": 41.03160655765552,
+          "positive_count": 2,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 10,
+          "early_service": false,
+          "original_incoming_distance_m": 755.9808602186403,
+          "actual_measure_fee_s": 6.0,
+          "actual_observed_feedback": "near",
+          "actual_bearing_deg": null,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        }
+      ],
+      "near_equal_exclusions": [],
+      "record_sha256": "6e3798d48b3d2085271c1d0cdd2261d0dedb2a49a8f2a16b0fdb4833e7926738"
+    },
+    {
+      "seed": 621007,
+      "stage": "development",
+      "actual_successful_clears": 12,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "5f5ae42e28a791accdd8ab98b9c3f67918f16029948749a01a00b027bd0f39e2"
+    },
+    {
+      "seed": 621008,
+      "stage": "development",
+      "actual_successful_clears": 16,
+      "counts": {
+        "actual_active_measurements": 29,
+        "exact_canonical_center_active_measurements": 12,
+        "active_with_canonical_radius_40_120": 15,
+        "eligible_exact_center_radius_40_120": 5,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [
+        {
+          "seed": 621008,
+          "stage": "development",
+          "prefix": 177,
+          "channel": 20,
+          "position": [
+            -1076.6434091144063,
+            687.2877836569909
+          ],
+          "canonical_center": [
+            -1076.6434091144063,
+            687.2877836569909
+          ],
+          "radius_m": 55.15126870186224,
+          "positive_count": 2,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 11,
+          "early_service": false,
+          "original_incoming_distance_m": 1288.9829055249522,
+          "actual_measure_fee_s": 6.0,
+          "actual_observed_feedback": "no_signal",
+          "actual_bearing_deg": null,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        },
+        {
+          "seed": 621008,
+          "stage": "development",
+          "prefix": 183,
+          "channel": 1,
+          "position": [
+            -1405.1874894605999,
+            645.5458002096907
+          ],
+          "canonical_center": [
+            -1405.1874894605999,
+            645.5458002096907
+          ],
+          "radius_m": 49.943799555190665,
+          "positive_count": 2,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 12,
+          "early_service": false,
+          "original_incoming_distance_m": 321.0637691887441,
+          "actual_measure_fee_s": 6.0,
+          "actual_observed_feedback": "no_signal",
+          "actual_bearing_deg": null,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        },
+        {
+          "seed": 621008,
+          "stage": "development",
+          "prefix": 190,
+          "channel": 6,
+          "position": [
+            -1659.1896965572778,
+            419.65595063810173
+          ],
+          "canonical_center": [
+            -1659.1896965572778,
+            419.65595063810173
+          ],
+          "radius_m": 42.61600109691418,
+          "positive_count": 2,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 13,
+          "early_service": false,
+          "original_incoming_distance_m": 346.2570444237055,
+          "actual_measure_fee_s": 6.0,
+          "actual_observed_feedback": "direction",
+          "actual_bearing_deg": 166.01,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        },
+        {
+          "seed": 621008,
+          "stage": "development",
+          "prefix": 194,
+          "channel": 3,
+          "position": [
+            -1641.6050269578536,
+            22.271825611595204
+          ],
+          "canonical_center": [
+            -1641.6050269578536,
+            22.271825611595204
+          ],
+          "radius_m": 80.12425224769149,
+          "positive_count": 3,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 14,
+          "early_service": false,
+          "original_incoming_distance_m": 80.12425224769075,
+          "actual_measure_fee_s": 5.0,
+          "actual_observed_feedback": "no_signal",
+          "actual_bearing_deg": null,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        },
+        {
+          "seed": 621008,
+          "stage": "development",
+          "prefix": 201,
+          "channel": 7,
+          "position": [
+            -1390.284181609649,
+            131.78990131347348
+          ],
+          "canonical_center": [
+            -1390.284181609649,
+            131.78990131347348
+          ],
+          "radius_m": 58.36583275353786,
+          "positive_count": 2,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 15,
+          "early_service": false,
+          "original_incoming_distance_m": 58.36583275353789,
+          "actual_measure_fee_s": 5.0,
+          "actual_observed_feedback": "near",
+          "actual_bearing_deg": null,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        }
+      ],
+      "near_equal_exclusions": [],
+      "record_sha256": "09fa7a42baefcecdedb9eb1fdd996049a16181f657f6e72cf6a507d083244e0e"
+    },
+    {
+      "seed": 621009,
+      "stage": "development",
+      "actual_successful_clears": 13,
+      "counts": {
+        "actual_active_measurements": 3,
+        "exact_canonical_center_active_measurements": 1,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "7099a92c1bdea6b3a31c20a948c72b65f315ddcc422a0bf5dd6e17b793044ba8"
+    },
+    {
+      "seed": 621010,
+      "stage": "development",
+      "actual_successful_clears": 12,
+      "counts": {
+        "actual_active_measurements": 2,
+        "exact_canonical_center_active_measurements": 1,
+        "active_with_canonical_radius_40_120": 2,
+        "eligible_exact_center_radius_40_120": 1,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [
+        {
+          "seed": 621010,
+          "stage": "development",
+          "prefix": 274,
+          "channel": 14,
+          "position": [
+            -629.292630340488,
+            1616.0465586155474
+          ],
+          "canonical_center": [
+            -629.292630340488,
+            1616.0465586155474
+          ],
+          "radius_m": 44.87273642174795,
+          "positive_count": 2,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 11,
+          "early_service": false,
+          "original_incoming_distance_m": 3108.09883470074,
+          "actual_measure_fee_s": 6.0,
+          "actual_observed_feedback": "no_signal",
+          "actual_bearing_deg": null,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        }
+      ],
+      "near_equal_exclusions": [],
+      "record_sha256": "957745b77b46bb98d7489664b637b8b1345d2ab15121308d56655e18ac6e15c6"
+    },
+    {
+      "seed": 621011,
+      "stage": "development",
+      "actual_successful_clears": 12,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "67795c43526527ef1e2abbbd0b8f07ff59767e6516fe68bd5f25da28ba772b23"
+    },
+    {
+      "seed": 621012,
+      "stage": "development",
+      "actual_successful_clears": 12,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "4fa0db6d5c2f43cecd55840db00bfcae8db9a03e5a52b1c60b394b22d789bb22"
+    },
+    {
+      "seed": 621013,
+      "stage": "development",
+      "actual_successful_clears": 10,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "21055462d1c770d386c93a269fcd4fc3844a7979dae1d9614553ff2b942a3d90"
+    },
+    {
+      "seed": 621014,
+      "stage": "development",
+      "actual_successful_clears": 13,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "4f7283f02db225471d157d97ec5885f062c66448ff67bb39678c3f1fd2fcae47"
+    },
+    {
+      "seed": 621015,
+      "stage": "development",
+      "actual_successful_clears": 10,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "43f20858c8def85bb118de852ed6b6d6379210ccea7f8846bbe20a94aa30e623"
+    },
+    {
+      "seed": 621016,
+      "stage": "development",
+      "actual_successful_clears": 16,
+      "counts": {
+        "actual_active_measurements": 5,
+        "exact_canonical_center_active_measurements": 3,
+        "active_with_canonical_radius_40_120": 1,
+        "eligible_exact_center_radius_40_120": 1,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [
+        {
+          "seed": 621016,
+          "stage": "development",
+          "prefix": 211,
+          "channel": 16,
+          "position": [
+            -1039.1123511991084,
+            789.5258846450049
+          ],
+          "canonical_center": [
+            -1039.1123511991084,
+            789.5258846450049
+          ],
+          "radius_m": 44.24899985189475,
+          "positive_count": 2,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 13,
+          "early_service": false,
+          "original_incoming_distance_m": 268.10176609970483,
+          "actual_measure_fee_s": 6.0,
+          "actual_observed_feedback": "direction",
+          "actual_bearing_deg": 233.46,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        }
+      ],
+      "near_equal_exclusions": [],
+      "record_sha256": "00e2babd4d2b0097bef9c1968867ad4759b7dc43cd551ec0100869d7bf02ff0a"
+    },
+    {
+      "seed": 621017,
+      "stage": "development",
+      "actual_successful_clears": 13,
+      "counts": {
+        "actual_active_measurements": 4,
+        "exact_canonical_center_active_measurements": 1,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "482ebf0516b1b4f189bdc5773ff1394368156909d97f6a90e676f07115a04cc7"
+    },
+    {
+      "seed": 621018,
+      "stage": "development",
+      "actual_successful_clears": 11,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "4251717a641b319ecb0138c3284413d996f960e5db337cd6cec580c5a76d47d3"
+    },
+    {
+      "seed": 621019,
+      "stage": "development",
+      "actual_successful_clears": 12,
+      "counts": {
+        "actual_active_measurements": 2,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "2c75fbca398daf06bc73f1dfef8182d3fe654fb4998781dd5a34ed71fa3af6ac"
+    },
+    {
+      "seed": 621020,
+      "stage": "development",
+      "actual_successful_clears": 10,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "3ef940b6d9fbaa875f3fa264ef769498bd0806b4d85bf52b62c495b7901131e9"
+    },
+    {
+      "seed": 621021,
+      "stage": "development",
+      "actual_successful_clears": 12,
+      "counts": {
+        "actual_active_measurements": 10,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "6d40714cb1e8af020b630f2dd6f9ce4470274e3c057dda47eeae2687a23ea9e4"
+    },
+    {
+      "seed": 621022,
+      "stage": "development",
+      "actual_successful_clears": 12,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "94342d7e616cd383d2ff7bc180c1e8c760b87f2c09a0909dd810bbbe5fdabbc6"
+    },
+    {
+      "seed": 621023,
+      "stage": "development",
+      "actual_successful_clears": 10,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "5d654bf770bc446db397cdca1a231229d756eb7c61a901e4067ff60a1982d53b"
+    },
+    {
+      "seed": 621024,
+      "stage": "development",
+      "actual_successful_clears": 16,
+      "counts": {
+        "actual_active_measurements": 24,
+        "exact_canonical_center_active_measurements": 13,
+        "active_with_canonical_radius_40_120": 11,
+        "eligible_exact_center_radius_40_120": 3,
+        "near_equal_but_not_exact_excluded": 1
+      },
+      "events": [
+        {
+          "seed": 621024,
+          "stage": "development",
+          "prefix": 113,
+          "channel": 7,
+          "position": [
+            -537.7867195922101,
+            -1176.2083073500846
+          ],
+          "canonical_center": [
+            -537.7867195922101,
+            -1176.2083073500846
+          ],
+          "radius_m": 78.17164276361716,
+          "positive_count": 3,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 8,
+          "early_service": false,
+          "original_incoming_distance_m": 78.17164276361716,
+          "actual_measure_fee_s": 5.0,
+          "actual_observed_feedback": "direction",
+          "actual_bearing_deg": 288.03,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": [
+            {
+              "prefix": 114,
+              "result": "success"
+            }
+          ]
+        },
+        {
+          "seed": 621024,
+          "stage": "development",
+          "prefix": 117,
+          "channel": 11,
+          "position": [
+            -898.4738824509324,
+            -1356.0476608906456
+          ],
+          "canonical_center": [
+            -898.4738824509324,
+            -1356.0476608906456
+          ],
+          "radius_m": 79.46515725448566,
+          "positive_count": 3,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 9,
+          "early_service": false,
+          "original_incoming_distance_m": 79.46515725448566,
+          "actual_measure_fee_s": 5.0,
+          "actual_observed_feedback": "direction",
+          "actual_bearing_deg": 85.76,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": [
+            {
+              "prefix": 118,
+              "result": "success"
+            }
+          ]
+        },
+        {
+          "seed": 621024,
+          "stage": "development",
+          "prefix": 120,
+          "channel": 9,
+          "position": [
+            -1607.8722601654285,
+            534.088966106116
+          ],
+          "canonical_center": [
+            -1607.8722601654285,
+            534.088966106116
+          ],
+          "radius_m": 46.01356350221034,
+          "positive_count": 2,
+          "previously_observed_exact": false,
+          "previously_observed_round6": false,
+          "previously_attempted_r8": false,
+          "resolver_id": 11,
+          "early_service": false,
+          "original_incoming_distance_m": 519.9180054619004,
+          "actual_measure_fee_s": 6.0,
+          "actual_observed_feedback": "no_signal",
+          "actual_bearing_deg": null,
+          "hypothetical_clear_result": null,
+          "later_original_r8_actions": []
+        }
+      ],
+      "near_equal_exclusions": [
+        {
+          "prefix": 104,
+          "channel": 4,
+          "radius_m": 107.03316371886456,
+          "center_offset_m": 2.2737367544323206e-13
+        }
+      ],
+      "record_sha256": "bd386d861d2087170711c63423827fcfc235b136973a4a32e2151db0b2944dc9"
+    },
+    {
+      "seed": 621031,
+      "stage": "development-stress",
+      "actual_successful_clears": 10,
+      "counts": {
+        "actual_active_measurements": 1,
+        "exact_canonical_center_active_measurements": 1,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "cf8700780ebdc4ffa531ccd9fd2fa40fb6513a07c18753161c71bb439b2f556c"
+    },
+    {
+      "seed": 621032,
+      "stage": "development-stress",
+      "actual_successful_clears": 12,
+      "counts": {
+        "actual_active_measurements": 51,
+        "exact_canonical_center_active_measurements": 3,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "95efce33b8c627f7ea7ab10ff95571f97186944488b8daf4a0de386b9397e211"
+    },
+    {
+      "seed": 621033,
+      "stage": "development-stress",
+      "actual_successful_clears": 11,
+      "counts": {
+        "actual_active_measurements": 1,
+        "exact_canonical_center_active_measurements": 1,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "1253494e8aaad29532e377df16b90b09df5632722c05916d9bbbfb8ac667228f"
+    },
+    {
+      "seed": 621034,
+      "stage": "development-stress",
+      "actual_successful_clears": 12,
+      "counts": {
+        "actual_active_measurements": 3,
+        "exact_canonical_center_active_measurements": 3,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "62638830326ed63d8ae1f2d3b9e94c0a66ca18328deaab04b0dbd9be402e2a30"
+    },
+    {
+      "seed": 621035,
+      "stage": "development-stress",
+      "actual_successful_clears": 16,
+      "counts": {
+        "actual_active_measurements": 25,
+        "exact_canonical_center_active_measurements": 5,
+        "active_with_canonical_radius_40_120": 4,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 1
+      },
+      "events": [],
+      "near_equal_exclusions": [
+        {
+          "prefix": 285,
+          "channel": 5,
+          "radius_m": 89.26006854848778,
+          "center_offset_m": 2.157056083093525e-12
+        }
+      ],
+      "record_sha256": "0a8ee848384812b6451c5e923fd4f56336715ec5acb975a06bb029cf7ec67dca"
+    },
+    {
+      "seed": 621036,
+      "stage": "development-stress",
+      "actual_successful_clears": 12,
+      "counts": {
+        "actual_active_measurements": 9,
+        "exact_canonical_center_active_measurements": 2,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "e42e7eb8aaa664f9a846bc8497c8a48a29bff1c24709ed1c1df4a744a64709c8"
+    },
+    {
+      "seed": 621037,
+      "stage": "development-stress",
+      "actual_successful_clears": 14,
+      "counts": {
+        "actual_active_measurements": 5,
+        "exact_canonical_center_active_measurements": 1,
+        "active_with_canonical_radius_40_120": 1,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 1
+      },
+      "events": [],
+      "near_equal_exclusions": [
+        {
+          "prefix": 267,
+          "channel": 3,
+          "radius_m": 61.49285575551109,
+          "center_offset_m": 6.481805134432792e-12
+        }
+      ],
+      "record_sha256": "598caeef37a6013d6580ad52972a79879503eee998dfba84928510decf26677d"
+    },
+    {
+      "seed": 621038,
+      "stage": "development-stress",
+      "actual_successful_clears": 14,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "f591f4934da41c0020bfc639d264ae8d6ff6c29cef235618bf99cd7b3fcc74a0"
+    },
+    {
+      "seed": 621039,
+      "stage": "development-stress",
+      "actual_successful_clears": 13,
+      "counts": {
+        "actual_active_measurements": 33,
+        "exact_canonical_center_active_measurements": 2,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "fde98648c3cca4f49e96e6cff0e1975c8e07b91f378968c82bddec0bd48615f7"
+    },
+    {
+      "seed": 621040,
+      "stage": "development-stress",
+      "actual_successful_clears": 11,
+      "counts": {
+        "actual_active_measurements": 7,
+        "exact_canonical_center_active_measurements": 1,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "6d1fed29214fbfd039c1db49ad458b37b3af18bf6093c56f2359dce502b6fb8e"
+    },
+    {
+      "seed": 621041,
+      "stage": "development-stress",
+      "actual_successful_clears": 10,
+      "counts": {
+        "actual_active_measurements": 4,
+        "active_with_canonical_radius_40_120": 1,
+        "exact_canonical_center_active_measurements": 1,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 1
+      },
+      "events": [],
+      "near_equal_exclusions": [
+        {
+          "prefix": 337,
+          "channel": 5,
+          "radius_m": 63.90364006625523,
+          "center_offset_m": 4.51323859153472e-12
+        }
+      ],
+      "record_sha256": "5df9ec62d7e14d86d8caaef02b167641110e4494d100157951f906becac93223"
+    },
+    {
+      "seed": 621042,
+      "stage": "development-stress",
+      "actual_successful_clears": 14,
+      "counts": {
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "9a314cf609d51c9592ad186a80a816e038b0bb1b80a68838fce8f5f4b946f9ed"
+    },
+    {
+      "seed": 621043,
+      "stage": "development-stress",
+      "actual_successful_clears": 10,
+      "counts": {
+        "actual_active_measurements": 10,
+        "active_with_canonical_radius_40_120": 1,
+        "exact_canonical_center_active_measurements": 1,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 1
+      },
+      "events": [],
+      "near_equal_exclusions": [
+        {
+          "prefix": 327,
+          "channel": 15,
+          "radius_m": 68.04269617375778,
+          "center_offset_m": 6.535156621432304e-11
+        }
+      ],
+      "record_sha256": "67467c817dc3829bd3275572155f554c9e2c740ebad018f6db8e0e567de3f443"
+    },
+    {
+      "seed": 621044,
+      "stage": "development-stress",
+      "actual_successful_clears": 10,
+      "counts": {
+        "actual_active_measurements": 3,
+        "exact_canonical_center_active_measurements": 3,
+        "eligible_exact_center_radius_40_120": 0,
+        "near_equal_but_not_exact_excluded": 0
+      },
+      "events": [],
+      "near_equal_exclusions": [],
+      "record_sha256": "5e3ea77a319d27f505196f8f9a016efe7cde559a3a6781d21da6f35e7dc1271a"
+    }
+  ],
+  "elapsed_s": 3.062274800002342,
+  "policy_runs": 0,
+  "new_scenario_seeds": [],
+  "performance_comparison": null,
+  "scope": "Actual prefix opportunities and post-hoc radio categories only. No hypothetical optical outcomes, source truth, or replayed new policy.",
+  "posthoc_r8_check_local": "2026-09-12T05:49:02.184675+08:00"
+}
