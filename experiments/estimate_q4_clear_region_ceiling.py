@@ -18,7 +18,7 @@ from localization import CandidateRegion
 
 def one(record):
     regions, current, previous_shift = {}, (0., 0.), 0.
-    edge_bounds, changed_count = [], 0
+    edge_bounds, changed_count, changed_edges = [], 0, 0
     for action in record['summary']['action_history']:
         channel, point = action['channel'], tuple(action['position'])
         edge_length = math.dist(current, point)
@@ -28,19 +28,22 @@ def one(record):
                 regions.setdefault(channel, CandidateRegion()).observe(point, action['bearing_deg'])
         elif action['phase'] in ('certified_clear', 'near_clear'):
             changed_count += 1
-            radius = (14.99998 if action['phase'] == 'near_clear' else
-                      math.sqrt(max(0., 19.99998**2 - regions[channel].enclosing_disk().radius**2)))
+            radius = (14.99999 if action['phase'] == 'near_clear' else
+                      math.sqrt(max(0., 19.99999**2 - regions[channel].enclosing_disk().radius**2)))
             # Incoming cannot exceed the distance from the modified predecessor
             # to the old center. Include its possible shift, not just old length.
             shift = min(radius, 2. * (edge_length + previous_shift))
         edge_bounds.append(min(edge_length, previous_shift + shift) / 5.)
+        changed_edges += previous_shift + shift > 0.
         current, previous_shift = point, shift
     row = record['row']
     return {'seed': row['seed'], 'time_s': row['virtual_time_s'],
             'historical_lower_bound_s': row['common_lower_bound_s'],
             'time_over_lower_bound': row['time_over_lower_bound'],
             'certified_or_near_clears': changed_count,
-            'fixed_trace_travel_saving_upper_s': sum(edge_bounds)}
+            'continuous_fixed_trace_travel_saving_upper_s': sum(edge_bounds),
+            'changed_edges': changed_edges,
+            'fixed_trace_travel_saving_upper_s': sum(edge_bounds)+changed_edges*1e-6}
 
 
 def main():
@@ -55,7 +58,7 @@ def main():
     if not rows:
         raise ValueError('No incumbent traces')
     result = {'scope': 'Prior completed observations; diagnostic, not new independent evidence. Fixed action order and measurement/optical-grid positions. Ideal MEC contact-point bound evaluated in floating arithmetic, not interval proof. No claim about replanned total time.',
-        'formula': 'rho=sqrt(tau^2-r^2) for true MEC; rho=14.99998 near. delta_i=min(rho_i,2*(old_edge_i+delta_previous)); fixed points delta_i=0. Travel saving <=sum(min(old_edge_i,delta_previous+delta_i))/5.',
+        'formula': 'rho=sqrt(tau^2-r^2) for true MEC; rho=14.99999 near. delta_i=min(rho_i,2*(old_edge_i+delta_previous)); fixed points delta_i=0. Travel saving <=sum(min(old_edge_i,delta_previous+delta_i))/5, plus at most1 microsecond per potentially changed edge for ledger rounding.',
         'records': len(rows), 'mean_time_s': statistics.mean(r['time_s'] for r in rows),
         'mean_lower_bound_s': statistics.mean(r['historical_lower_bound_s'] for r in rows),
         'mean_fixed_trace_gain_upper_s': statistics.mean(r['fixed_trace_travel_saving_upper_s'] for r in rows),

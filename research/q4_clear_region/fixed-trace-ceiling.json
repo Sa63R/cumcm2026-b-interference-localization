@@ -1,10 +1,10 @@
 {
   "scope": "Prior completed observations; diagnostic, not new independent evidence. Fixed action order and measurement/optical-grid positions. Ideal MEC contact-point bound evaluated in floating arithmetic, not interval proof. No claim about replanned total time.",
-  "formula": "rho=sqrt(tau^2-r^2) for true MEC; rho=14.99998 near. delta_i=min(rho_i,2*(old_edge_i+delta_previous)); fixed points delta_i=0. Travel saving <=sum(min(old_edge_i,delta_previous+delta_i))/5.",
+  "formula": "rho=sqrt(tau^2-r^2) for true MEC; rho=14.99999 near. delta_i=min(rho_i,2*(old_edge_i+delta_previous)); fixed points delta_i=0. Travel saving <=sum(min(old_edge_i,delta_previous+delta_i))/5, plus at most1 microsecond per potentially changed edge for ledger rounding.",
   "records": 64,
   "mean_time_s": 6706.96094171875,
   "mean_lower_bound_s": 2079.7610070937453,
-  "mean_fixed_trace_gain_upper_s": 53.72623399157762,
+  "mean_fixed_trace_gain_upper_s": 53.726347786082265,
   "rows": [
     {
       "seed": 610101,
@@ -12,7 +12,9 @@
       "historical_lower_bound_s": 2236.3630939582063,
       "time_over_lower_bound": 2.930871519346622,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 40.75526260440595
+      "continuous_fixed_trace_travel_saving_upper_s": 40.75532324088615,
+      "changed_edges": 19,
+      "fixed_trace_travel_saving_upper_s": 40.75534224088615
     },
     {
       "seed": 610102,
@@ -20,7 +22,9 @@
       "historical_lower_bound_s": 1851.9264607125228,
       "time_over_lower_bound": 3.6551401784040762,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 61.18297039754163
+      "continuous_fixed_trace_travel_saving_upper_s": 61.18307645914342,
+      "changed_edges": 23,
+      "fixed_trace_travel_saving_upper_s": 61.18309945914342
     },
     {
       "seed": 610103,
@@ -28,7 +32,9 @@
       "historical_lower_bound_s": 1698.7275728751706,
       "time_over_lower_bound": 3.6294785287817692,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 53.531280271239446
+      "continuous_fixed_trace_travel_saving_upper_s": 53.53136136292544,
+      "changed_edges": 18,
+      "fixed_trace_travel_saving_upper_s": 53.531379362925435
     },
     {
       "seed": 610104,
@@ -36,7 +42,9 @@
       "historical_lower_bound_s": 2133.5577654684193,
       "time_over_lower_bound": 3.167000484993438,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 42.78372925483109
+      "continuous_fixed_trace_travel_saving_upper_s": 42.78381773851649,
+      "changed_edges": 19,
+      "fixed_trace_travel_saving_upper_s": 42.78383673851649
     },
     {
       "seed": 610105,
@@ -44,7 +52,9 @@
       "historical_lower_bound_s": 2007.2635936645256,
       "time_over_lower_bound": 3.4281340560945037,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 45.02734735886207
+      "continuous_fixed_trace_travel_saving_upper_s": 45.02742893006844,
+      "changed_edges": 21,
+      "fixed_trace_travel_saving_upper_s": 45.027449930068435
     },
     {
       "seed": 610106,
@@ -52,7 +62,9 @@
       "historical_lower_bound_s": 1887.1745143111818,
       "time_over_lower_bound": 3.252927905949745,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 71.0488997493407
+      "continuous_fixed_trace_travel_saving_upper_s": 71.04899622752332,
+      "changed_edges": 22,
+      "fixed_trace_travel_saving_upper_s": 71.04901822752332
     },
     {
       "seed": 610107,
@@ -60,7 +72,9 @@
       "historical_lower_bound_s": 2285.6417116449284,
       "time_over_lower_bound": 3.4523044105286327,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 54.91988768172825
+      "continuous_fixed_trace_travel_saving_upper_s": 54.92001718096725,
+      "changed_edges": 24,
+      "fixed_trace_travel_saving_upper_s": 54.92004118096725
     },
     {
       "seed": 610108,
@@ -68,7 +82,9 @@
       "historical_lower_bound_s": 2044.4547699328957,
       "time_over_lower_bound": 3.1112750379940075,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 43.17968608858869
+      "continuous_fixed_trace_travel_saving_upper_s": 43.1797493680951,
+      "changed_edges": 17,
+      "fixed_trace_travel_saving_upper_s": 43.1797663680951
     },
     {
       "seed": 610109,
@@ -76,7 +92,9 @@
       "historical_lower_bound_s": 1695.195197660792,
       "time_over_lower_bound": 3.8770345332910274,
       "certified_or_near_clears": 13,
-      "fixed_trace_travel_saving_upper_s": 52.40868406562582
+      "continuous_fixed_trace_travel_saving_upper_s": 52.40879071901523,
+      "changed_edges": 21,
+      "fixed_trace_travel_saving_upper_s": 52.408811719015226
     },
     {
       "seed": 610110,
@@ -84,7 +102,9 @@
       "historical_lower_bound_s": 2129.2722888298704,
       "time_over_lower_bound": 2.941854384176648,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 68.86601706297704
+      "continuous_fixed_trace_travel_saving_upper_s": 68.86611478409762,
+      "changed_edges": 26,
+      "fixed_trace_travel_saving_upper_s": 68.86614078409762
     },
     {
       "seed": 610111,
@@ -92,7 +112,9 @@
       "historical_lower_bound_s": 2161.855671074059,
       "time_over_lower_bound": 3.1236062797129573,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 47.37269106523518
+      "continuous_fixed_trace_travel_saving_upper_s": 47.37276382793118,
+      "changed_edges": 18,
+      "fixed_trace_travel_saving_upper_s": 47.37278182793118
     },
     {
       "seed": 610112,
@@ -100,7 +122,9 @@
       "historical_lower_bound_s": 2030.8661192896216,
       "time_over_lower_bound": 3.852871030088875,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 66.42760168912221
+      "continuous_fixed_trace_travel_saving_upper_s": 66.42773675351364,
+      "changed_edges": 22,
+      "fixed_trace_travel_saving_upper_s": 66.42775875351364
     },
     {
       "seed": 610113,
@@ -108,7 +132,9 @@
       "historical_lower_bound_s": 2197.335722634586,
       "time_over_lower_bound": 2.9005141309760103,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 50.66165815202109
+      "continuous_fixed_trace_travel_saving_upper_s": 50.66174202704606,
+      "changed_edges": 21,
+      "fixed_trace_travel_saving_upper_s": 50.66176302704606
     },
     {
       "seed": 610114,
@@ -116,7 +142,9 @@
       "historical_lower_bound_s": 2259.717320043098,
       "time_over_lower_bound": 2.7051437818263984,
       "certified_or_near_clears": 13,
-      "fixed_trace_travel_saving_upper_s": 52.04831868450869
+      "continuous_fixed_trace_travel_saving_upper_s": 52.04843922168024,
+      "changed_edges": 24,
+      "fixed_trace_travel_saving_upper_s": 52.048463221680244
     },
     {
       "seed": 610115,
@@ -124,7 +152,9 @@
       "historical_lower_bound_s": 2166.9161639569816,
       "time_over_lower_bound": 3.152660740932856,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 53.26079585481104
+      "continuous_fixed_trace_travel_saving_upper_s": 53.26086623346606,
+      "changed_edges": 20,
+      "fixed_trace_travel_saving_upper_s": 53.26088623346606
     },
     {
       "seed": 610116,
@@ -132,7 +162,9 @@
       "historical_lower_bound_s": 1909.8689282941882,
       "time_over_lower_bound": 3.1848433428532417,
       "certified_or_near_clears": 13,
-      "fixed_trace_travel_saving_upper_s": 63.81430943452788
+      "continuous_fixed_trace_travel_saving_upper_s": 63.814410044740235,
+      "changed_edges": 20,
+      "fixed_trace_travel_saving_upper_s": 63.814430044740234
     },
     {
       "seed": 610117,
@@ -140,7 +172,9 @@
       "historical_lower_bound_s": 1704.8262451696078,
       "time_over_lower_bound": 3.7037438858596503,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 46.14577455257174
+      "continuous_fixed_trace_travel_saving_upper_s": 46.14585744571477,
+      "changed_edges": 18,
+      "fixed_trace_travel_saving_upper_s": 46.145875445714765
     },
     {
       "seed": 610118,
@@ -148,7 +182,9 @@
       "historical_lower_bound_s": 2318.855475226449,
       "time_over_lower_bound": 3.545537470892668,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 70.17753936809079
+      "continuous_fixed_trace_travel_saving_upper_s": 70.1776191500487,
+      "changed_edges": 23,
+      "fixed_trace_travel_saving_upper_s": 70.1776421500487
     },
     {
       "seed": 610119,
@@ -156,7 +192,9 @@
       "historical_lower_bound_s": 2081.4544911657945,
       "time_over_lower_bound": 3.5313362512591797,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 63.21937278933968
+      "continuous_fixed_trace_travel_saving_upper_s": 63.21947179642927,
+      "changed_edges": 20,
+      "fixed_trace_travel_saving_upper_s": 63.21949179642927
     },
     {
       "seed": 610120,
@@ -164,7 +202,9 @@
       "historical_lower_bound_s": 2209.3267420862894,
       "time_over_lower_bound": 2.568164105795445,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 56.481774198043375
+      "continuous_fixed_trace_travel_saving_upper_s": 56.48186174114442,
+      "changed_edges": 20,
+      "fixed_trace_travel_saving_upper_s": 56.48188174114442
     },
     {
       "seed": 610121,
@@ -172,7 +212,9 @@
       "historical_lower_bound_s": 2133.1066159598245,
       "time_over_lower_bound": 2.9761537948929075,
       "certified_or_near_clears": 13,
-      "fixed_trace_travel_saving_upper_s": 50.71921435950492
+      "continuous_fixed_trace_travel_saving_upper_s": 50.71930544368056,
+      "changed_edges": 21,
+      "fixed_trace_travel_saving_upper_s": 50.71932644368056
     },
     {
       "seed": 610122,
@@ -180,7 +222,9 @@
       "historical_lower_bound_s": 2214.528141146213,
       "time_over_lower_bound": 3.0333834766818977,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 40.918201512440426
+      "continuous_fixed_trace_travel_saving_upper_s": 40.91827137965468,
+      "changed_edges": 16,
+      "fixed_trace_travel_saving_upper_s": 40.918287379654686
     },
     {
       "seed": 610123,
@@ -188,7 +232,9 @@
       "historical_lower_bound_s": 1927.68332814812,
       "time_over_lower_bound": 3.4169567028043937,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 39.16122332679515
+      "continuous_fixed_trace_travel_saving_upper_s": 39.16128613358072,
+      "changed_edges": 15,
+      "fixed_trace_travel_saving_upper_s": 39.161301133580714
     },
     {
       "seed": 610124,
@@ -196,7 +242,9 @@
       "historical_lower_bound_s": 1811.8090934707911,
       "time_over_lower_bound": 3.194613484863443,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 40.14637266769576
+      "continuous_fixed_trace_travel_saving_upper_s": 40.146441437735,
+      "changed_edges": 17,
+      "fixed_trace_travel_saving_upper_s": 40.146458437735
     },
     {
       "seed": 610125,
@@ -204,7 +252,9 @@
       "historical_lower_bound_s": 1993.616403243504,
       "time_over_lower_bound": 3.5480270760673718,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 45.87123497649476
+      "continuous_fixed_trace_travel_saving_upper_s": 45.87130168566991,
+      "changed_edges": 16,
+      "fixed_trace_travel_saving_upper_s": 45.871317685669915
     },
     {
       "seed": 610126,
@@ -212,7 +262,9 @@
       "historical_lower_bound_s": 2259.354732644796,
       "time_over_lower_bound": 2.635161024063953,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 41.66397611297415
+      "continuous_fixed_trace_travel_saving_upper_s": 41.6640841334869,
+      "changed_edges": 21,
+      "fixed_trace_travel_saving_upper_s": 41.6641051334869
     },
     {
       "seed": 610127,
@@ -220,7 +272,9 @@
       "historical_lower_bound_s": 2157.165101914823,
       "time_over_lower_bound": 2.9492193941728275,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 62.192703582085294
+      "continuous_fixed_trace_travel_saving_upper_s": 62.192817387224096,
+      "changed_edges": 24,
+      "fixed_trace_travel_saving_upper_s": 62.1928413872241
     },
     {
       "seed": 610128,
@@ -228,7 +282,9 @@
       "historical_lower_bound_s": 1855.185989805023,
       "time_over_lower_bound": 3.8796842556774855,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 51.08829543737755
+      "continuous_fixed_trace_travel_saving_upper_s": 51.08839607486488,
+      "changed_edges": 22,
+      "fixed_trace_travel_saving_upper_s": 51.08841807486488
     },
     {
       "seed": 610129,
@@ -236,7 +292,9 @@
       "historical_lower_bound_s": 2075.151122109116,
       "time_over_lower_bound": 3.1093686923591286,
       "certified_or_near_clears": 13,
-      "fixed_trace_travel_saving_upper_s": 47.31081463597781
+      "continuous_fixed_trace_travel_saving_upper_s": 47.310942755308005,
+      "changed_edges": 19,
+      "fixed_trace_travel_saving_upper_s": 47.31096175530801
     },
     {
       "seed": 610130,
@@ -244,7 +302,9 @@
       "historical_lower_bound_s": 2203.106079354317,
       "time_over_lower_bound": 2.7505252215435614,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 46.59948314483051
+      "continuous_fixed_trace_travel_saving_upper_s": 46.599567747635085,
+      "changed_edges": 18,
+      "fixed_trace_travel_saving_upper_s": 46.59958574763508
     },
     {
       "seed": 610131,
@@ -252,7 +312,9 @@
       "historical_lower_bound_s": 2082.57381081151,
       "time_over_lower_bound": 3.3865609868837114,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 46.79834411125295
+      "continuous_fixed_trace_travel_saving_upper_s": 46.79840856263578,
+      "changed_edges": 17,
+      "fixed_trace_travel_saving_upper_s": 46.79842556263578
     },
     {
       "seed": 610132,
@@ -260,7 +322,9 @@
       "historical_lower_bound_s": 2164.4497698664786,
       "time_over_lower_bound": 3.0034639650709134,
       "certified_or_near_clears": 13,
-      "fixed_trace_travel_saving_upper_s": 51.18549187080542
+      "continuous_fixed_trace_travel_saving_upper_s": 51.185600768909154,
+      "changed_edges": 21,
+      "fixed_trace_travel_saving_upper_s": 51.18562176890915
     },
     {
       "seed": 610133,
@@ -268,7 +332,9 @@
       "historical_lower_bound_s": 2068.558434410526,
       "time_over_lower_bound": 2.8721728780618525,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 50.4418359400054
+      "continuous_fixed_trace_travel_saving_upper_s": 50.441930216204874,
+      "changed_edges": 20,
+      "fixed_trace_travel_saving_upper_s": 50.44195021620487
     },
     {
       "seed": 610134,
@@ -276,7 +342,9 @@
       "historical_lower_bound_s": 2363.7687296670915,
       "time_over_lower_bound": 2.7647586876743273,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 45.89962731169153
+      "continuous_fixed_trace_travel_saving_upper_s": 45.89972089035605,
+      "changed_edges": 19,
+      "fixed_trace_travel_saving_upper_s": 45.89973989035605
     },
     {
       "seed": 610135,
@@ -284,7 +352,9 @@
       "historical_lower_bound_s": 2411.770034450066,
       "time_over_lower_bound": 2.560617824165052,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 37.916347846116885
+      "continuous_fixed_trace_travel_saving_upper_s": 37.91645417208842,
+      "changed_edges": 19,
+      "fixed_trace_travel_saving_upper_s": 37.91647317208842
     },
     {
       "seed": 610136,
@@ -292,7 +362,9 @@
       "historical_lower_bound_s": 2154.8112177760786,
       "time_over_lower_bound": 3.2479268157064514,
       "certified_or_near_clears": 9,
-      "fixed_trace_travel_saving_upper_s": 48.26094612169142
+      "continuous_fixed_trace_travel_saving_upper_s": 48.26099383286298,
+      "changed_edges": 18,
+      "fixed_trace_travel_saving_upper_s": 48.26101183286298
     },
     {
       "seed": 610137,
@@ -300,7 +372,9 @@
       "historical_lower_bound_s": 2243.8617871298475,
       "time_over_lower_bound": 3.122013502872944,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 77.22347021019736
+      "continuous_fixed_trace_travel_saving_upper_s": 77.22354446604245,
+      "changed_edges": 22,
+      "fixed_trace_travel_saving_upper_s": 77.22356646604246
     },
     {
       "seed": 610138,
@@ -308,7 +382,9 @@
       "historical_lower_bound_s": 2261.7460720617028,
       "time_over_lower_bound": 3.1672341981653602,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 69.22724864423833
+      "continuous_fixed_trace_travel_saving_upper_s": 69.22733224671492,
+      "changed_edges": 24,
+      "fixed_trace_travel_saving_upper_s": 69.22735624671492
     },
     {
       "seed": 610139,
@@ -316,7 +392,9 @@
       "historical_lower_bound_s": 2103.2107395483736,
       "time_over_lower_bound": 3.344566341702161,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 49.333757449289344
+      "continuous_fixed_trace_travel_saving_upper_s": 49.33385238521441,
+      "changed_edges": 17,
+      "fixed_trace_travel_saving_upper_s": 49.33386938521441
     },
     {
       "seed": 610140,
@@ -324,7 +402,9 @@
       "historical_lower_bound_s": 2019.5531482999122,
       "time_over_lower_bound": 3.3917642339674483,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 63.38203449837643
+      "continuous_fixed_trace_travel_saving_upper_s": 63.38214177514009,
+      "changed_edges": 24,
+      "fixed_trace_travel_saving_upper_s": 63.382165775140095
     },
     {
       "seed": 610141,
@@ -332,7 +412,9 @@
       "historical_lower_bound_s": 2351.0578348772337,
       "time_over_lower_bound": 2.9102814722366386,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 67.94916712854358
+      "continuous_fixed_trace_travel_saving_upper_s": 67.94925225990451,
+      "changed_edges": 24,
+      "fixed_trace_travel_saving_upper_s": 67.94927625990451
     },
     {
       "seed": 610142,
@@ -340,7 +422,9 @@
       "historical_lower_bound_s": 2146.981408904311,
       "time_over_lower_bound": 2.7135127359920483,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 49.53902872021888
+      "continuous_fixed_trace_travel_saving_upper_s": 49.539198821187654,
+      "changed_edges": 23,
+      "fixed_trace_travel_saving_upper_s": 49.53922182118765
     },
     {
       "seed": 610143,
@@ -348,7 +432,9 @@
       "historical_lower_bound_s": 2215.7156227908085,
       "time_over_lower_bound": 3.4889640915484312,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 63.818866614324456
+      "continuous_fixed_trace_travel_saving_upper_s": 63.818966869043365,
+      "changed_edges": 23,
+      "fixed_trace_travel_saving_upper_s": 63.818989869043364
     },
     {
       "seed": 610144,
@@ -356,7 +442,9 @@
       "historical_lower_bound_s": 1897.5970395094791,
       "time_over_lower_bound": 3.8173484961130044,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 61.40706726166695
+      "continuous_fixed_trace_travel_saving_upper_s": 61.407169229222056,
+      "changed_edges": 20,
+      "fixed_trace_travel_saving_upper_s": 61.407189229222055
     },
     {
       "seed": 610145,
@@ -364,7 +452,9 @@
       "historical_lower_bound_s": 2179.785442285799,
       "time_over_lower_bound": 3.3077860500064014,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 60.053317468523545
+      "continuous_fixed_trace_travel_saving_upper_s": 60.053433981057054,
+      "changed_edges": 27,
+      "fixed_trace_travel_saving_upper_s": 60.05346098105706
     },
     {
       "seed": 610146,
@@ -372,7 +462,9 @@
       "historical_lower_bound_s": 2236.3266301955323,
       "time_over_lower_bound": 3.386084791798911,
       "certified_or_near_clears": 13,
-      "fixed_trace_travel_saving_upper_s": 39.359472585392204
+      "continuous_fixed_trace_travel_saving_upper_s": 39.35961480823198,
+      "changed_edges": 21,
+      "fixed_trace_travel_saving_upper_s": 39.35963580823198
     },
     {
       "seed": 610147,
@@ -380,7 +472,9 @@
       "historical_lower_bound_s": 1730.6149952828466,
       "time_over_lower_bound": 3.2553256572697395,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 53.90048701938161
+      "continuous_fixed_trace_travel_saving_upper_s": 53.900555572649246,
+      "changed_edges": 21,
+      "fixed_trace_travel_saving_upper_s": 53.90057657264924
     },
     {
       "seed": 610148,
@@ -388,7 +482,9 @@
       "historical_lower_bound_s": 2246.3819030458517,
       "time_over_lower_bound": 3.017607365341047,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 46.79485829030629
+      "continuous_fixed_trace_travel_saving_upper_s": 46.79498082648707,
+      "changed_edges": 18,
+      "fixed_trace_travel_saving_upper_s": 46.79499882648707
     },
     {
       "seed": 610149,
@@ -396,7 +492,9 @@
       "historical_lower_bound_s": 1930.9146789408926,
       "time_over_lower_bound": 3.161238390060865,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 50.537016821385755
+      "continuous_fixed_trace_travel_saving_upper_s": 50.537118675378636,
+      "changed_edges": 19,
+      "fixed_trace_travel_saving_upper_s": 50.53713767537864
     },
     {
       "seed": 610150,
@@ -404,7 +502,9 @@
       "historical_lower_bound_s": 1935.0741977299663,
       "time_over_lower_bound": 2.1898124970975004,
       "certified_or_near_clears": 16,
-      "fixed_trace_travel_saving_upper_s": 69.50602975551726
+      "continuous_fixed_trace_travel_saving_upper_s": 69.50614966467967,
+      "changed_edges": 23,
+      "fixed_trace_travel_saving_upper_s": 69.50617266467967
     },
     {
       "seed": 610151,
@@ -412,7 +512,9 @@
       "historical_lower_bound_s": 2149.737828111335,
       "time_over_lower_bound": 4.060535965759597,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 56.710269133779164
+      "continuous_fixed_trace_travel_saving_upper_s": 56.710351355875275,
+      "changed_edges": 19,
+      "fixed_trace_travel_saving_upper_s": 56.71037035587528
     },
     {
       "seed": 610152,
@@ -420,7 +522,9 @@
       "historical_lower_bound_s": 1815.183689140825,
       "time_over_lower_bound": 4.005107402899311,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 39.858349772103324
+      "continuous_fixed_trace_travel_saving_upper_s": 39.85842811471117,
+      "changed_edges": 16,
+      "fixed_trace_travel_saving_upper_s": 39.85844411471117
     },
     {
       "seed": 610153,
@@ -428,7 +532,9 @@
       "historical_lower_bound_s": 2200.289578048019,
       "time_over_lower_bound": 3.1291653810895523,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 62.805652563100416
+      "continuous_fixed_trace_travel_saving_upper_s": 62.805748364247364,
+      "changed_edges": 25,
+      "fixed_trace_travel_saving_upper_s": 62.805773364247365
     },
     {
       "seed": 610154,
@@ -436,7 +542,9 @@
       "historical_lower_bound_s": 2203.12943744505,
       "time_over_lower_bound": 3.306159434484736,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 61.745629081710206
+      "continuous_fixed_trace_travel_saving_upper_s": 61.74573590100143,
+      "changed_edges": 26,
+      "fixed_trace_travel_saving_upper_s": 61.74576190100143
     },
     {
       "seed": 610155,
@@ -444,7 +552,9 @@
       "historical_lower_bound_s": 2112.120359020067,
       "time_over_lower_bound": 3.259423374524933,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 55.094104271591426
+      "continuous_fixed_trace_travel_saving_upper_s": 55.09418455693842,
+      "changed_edges": 20,
+      "fixed_trace_travel_saving_upper_s": 55.09420455693842
     },
     {
       "seed": 610156,
@@ -452,7 +562,9 @@
       "historical_lower_bound_s": 1782.4939356527138,
       "time_over_lower_bound": 3.820355218491333,
       "certified_or_near_clears": 14,
-      "fixed_trace_travel_saving_upper_s": 65.40977810717372
+      "continuous_fixed_trace_travel_saving_upper_s": 65.4098665017048,
+      "changed_edges": 22,
+      "fixed_trace_travel_saving_upper_s": 65.4098885017048
     },
     {
       "seed": 610157,
@@ -460,7 +572,9 @@
       "historical_lower_bound_s": 2034.9740502635875,
       "time_over_lower_bound": 3.7159593425874493,
       "certified_or_near_clears": 9,
-      "fixed_trace_travel_saving_upper_s": 33.81427744025917
+      "continuous_fixed_trace_travel_saving_upper_s": 33.814346593966384,
+      "changed_edges": 16,
+      "fixed_trace_travel_saving_upper_s": 33.814362593966386
     },
     {
       "seed": 610158,
@@ -468,7 +582,9 @@
       "historical_lower_bound_s": 1834.5556704134342,
       "time_over_lower_bound": 3.8763096250970683,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 61.36783883321594
+      "continuous_fixed_trace_travel_saving_upper_s": 61.367945766079295,
+      "changed_edges": 24,
+      "fixed_trace_travel_saving_upper_s": 61.3679697660793
     },
     {
       "seed": 610159,
@@ -476,7 +592,9 @@
       "historical_lower_bound_s": 2235.964301075243,
       "time_over_lower_bound": 2.8645304542294947,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 48.676085342034916
+      "continuous_fixed_trace_travel_saving_upper_s": 48.67615325795244,
+      "changed_edges": 18,
+      "fixed_trace_travel_saving_upper_s": 48.67617125795244
     },
     {
       "seed": 610160,
@@ -484,7 +602,9 @@
       "historical_lower_bound_s": 2100.353267792887,
       "time_over_lower_bound": 3.5289440055904397,
       "certified_or_near_clears": 12,
-      "fixed_trace_travel_saving_upper_s": 55.49150681486679
+      "continuous_fixed_trace_travel_saving_upper_s": 55.49158489491117,
+      "changed_edges": 21,
+      "fixed_trace_travel_saving_upper_s": 55.49160589491117
     },
     {
       "seed": 610161,
@@ -492,7 +612,9 @@
       "historical_lower_bound_s": 2025.3236099643605,
       "time_over_lower_bound": 3.321976921070107,
       "certified_or_near_clears": 10,
-      "fixed_trace_travel_saving_upper_s": 51.78949130300959
+      "continuous_fixed_trace_travel_saving_upper_s": 51.78954648595559,
+      "changed_edges": 17,
+      "fixed_trace_travel_saving_upper_s": 51.78956348595559
     },
     {
       "seed": 610162,
@@ -500,7 +622,9 @@
       "historical_lower_bound_s": 1944.0905228160323,
       "time_over_lower_bound": 3.5677588129759905,
       "certified_or_near_clears": 11,
-      "fixed_trace_travel_saving_upper_s": 42.52253665718771
+      "continuous_fixed_trace_travel_saving_upper_s": 42.52262211478689,
+      "changed_edges": 19,
+      "fixed_trace_travel_saving_upper_s": 42.52264111478689
     },
     {
       "seed": 610163,
@@ -508,7 +632,9 @@
       "historical_lower_bound_s": 2179.016898429988,
       "time_over_lower_bound": 2.7043333859621908,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 65.57448273945941
+      "continuous_fixed_trace_travel_saving_upper_s": 65.57459215472949,
+      "changed_edges": 24,
+      "fixed_trace_travel_saving_upper_s": 65.57461615472948
     },
     {
       "seed": 610164,
@@ -516,9 +642,11 @@
       "historical_lower_bound_s": 2101.411352446135,
       "time_over_lower_bound": 3.07807619934603,
       "certified_or_near_clears": 15,
-      "fixed_trace_travel_saving_upper_s": 66.09943765296154
+      "continuous_fixed_trace_travel_saving_upper_s": 66.09955779060218,
+      "changed_edges": 24,
+      "fixed_trace_travel_saving_upper_s": 66.09958179060217
     }
   ],
   "mean_time_over_mean_lower_bound": 3.224870991831435,
-  "mean_fixed_trace_gain_upper_fraction": 0.008010518394014912
+  "mean_fixed_trace_gain_upper_fraction": 0.008010535360641918
 }
