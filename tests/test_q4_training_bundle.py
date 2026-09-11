@@ -76,3 +76,36 @@ def test_other_trainers_cannot_accept_thread_option(tmp_path, module):
 def test_thread_count_requires_declared_integer_choice(tmp_path, threads):
     with pytest.raises(ValueError):
         validate_config(threaded_config("q4_rl.micro_train", threads), tmp_path)
+
+
+@pytest.mark.parametrize("module", ["q4_rl.micro_train", "q4_rl.memory_train"])
+def test_gae_is_only_a_declared_finite_actor_estimator(tmp_path, module):
+    value = threaded_config(module, 4)
+    value["jobs"][0]["argv"].extend(["--gae-lambda", ".97"])
+    assert validate_config(value, tmp_path)[1]
+    for bad in ("nan", "inf", "-.1", "1.1"):
+        value["jobs"][0]["argv"][-1] = bad
+        with pytest.raises(ValueError, match="lambda"):
+            validate_config(value, tmp_path)
+
+
+@pytest.mark.parametrize("module", ["q4_rl.train", "q4_rl.scst_train"])
+def test_gae_option_is_not_admitted_for_other_modules(tmp_path, module):
+    value = {"run": "wave", "jobs": [dict(name="one", module=module, argv=[
+        "--output", "runs/wave/one/training", "--workers", "1", "--cpu-budget", "2", "--gae-lambda", ".97"])]}
+    with pytest.raises(ValueError, match="forbidden"):
+        validate_config(value, tmp_path)
+
+
+def test_memory_initialization_has_distinct_whitelist_and_task_path(tmp_path):
+    (tmp_path/"g3.pt").write_bytes(b"test fixture")
+    value = threaded_config("q4_rl.memory_train", 4)
+    value["jobs"][0]["argv"].extend(["--initialize-memory-warmstart", "g3.pt", "--initialize-sha256", "a"*64])
+    assert validate_config(value, tmp_path)[1]
+    value["jobs"][0]["module"] = "q4_rl.micro_train"
+    with pytest.raises(ValueError, match="forbidden"):
+        validate_config(value, tmp_path)
+    value["jobs"][0]["module"] = "q4_rl.memory_train"
+    value["jobs"][0]["argv"][-3] = "../outside.pt"
+    with pytest.raises(ValueError):
+        validate_config(value, tmp_path)

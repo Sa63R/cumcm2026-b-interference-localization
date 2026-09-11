@@ -50,15 +50,18 @@ def pack_observations(records):
 
 
 def validate_checkpoint(saved):
+    from .advantages import checkpoint_objective
     if (not isinstance(saved, dict) or saved.get("version") != CHECKPOINT_VERSION
             or saved.get("controller_entrypoint") != CONTROLLER_ENTRYPOINT
             or saved.get("feature_schema") != feature_schema()
-            or saved.get("device") != "cpu" or saved.get("objective") != OBJECTIVE):
+            or saved.get("device") != "cpu"
+            or saved.get("objective") != checkpoint_objective(OBJECTIVE, saved.get("config", {}))):
         raise ValueError("G3 memory checkpoint version/controller/schema/CPU/objective mismatch")
     if saved.get("config", {}).get("architecture", "mlp") != architecture_name(saved.get("network")):
         raise ValueError("G3 memory training configuration and network architecture differ")
-    if saved.get("config", {}).get("initialization"):
-        raise ValueError("G3 memory does not support cross-schema warmstart initialization")
+    if "initialization" in saved.get("config", {}):
+        from .memory_initialization import validate_initialization_binding
+        validate_initialization_binding(saved["config"]["initialization"])
 
 
 def load_policy(checkpoint, *, deterministic=True):

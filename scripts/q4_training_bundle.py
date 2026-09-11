@@ -16,11 +16,12 @@ from q4_rl.learner_threads import minimum_cpu_budget
 
 
 INITIALIZATION_FLAGS = {"--initialize-micro-warmstart", "--initialize-sha256"}
+MEMORY_INITIALIZATION_FLAGS = {"--initialize-memory-warmstart", "--initialize-sha256"}
 THREADED_MODULES = {"q4_rl.micro_train", "q4_rl.memory_train"}
 MODULE_FLAGS = {
     "q4_rl.train": ALLOWED_FLAGS,
-    "q4_rl.micro_train": ALLOWED_FLAGS | INITIALIZATION_FLAGS | {"--architecture", "--learner-threads"},
-    "q4_rl.memory_train": ALLOWED_FLAGS | {"--learner-threads"},
+    "q4_rl.micro_train": ALLOWED_FLAGS | INITIALIZATION_FLAGS | {"--architecture", "--learner-threads", "--gae-lambda"},
+    "q4_rl.memory_train": ALLOWED_FLAGS | MEMORY_INITIALIZATION_FLAGS | {"--learner-threads", "--gae-lambda"},
     "q4_rl.scst_train": {"--output", "--workers", "--cpu-budget", "--batch-pairs",
         "--minibatch-size", "--learning-rate", "--max-decisions", "--entropy-coefficient",
         "--random-seed", "--scenario-start", "--scenario-end", "--max-batches",
@@ -55,6 +56,10 @@ def validate_config(config, root):
                     raise ValueError("invalid integer option")
                 if flag == "--learner-threads" and int(value) not in (1, 2, 4):
                     raise ValueError("learner threads must be one of 1, 2, 4")
+            elif flag == "--gae-lambda":
+                number = float(value)
+                if not math.isfinite(number) or not 0 <= number <= 1:
+                    raise ValueError("GAE lambda must be finite and inside [0, 1]")
             elif flag in FLOAT_FLAGS:
                 number = float(value)
                 if not math.isfinite(number) or number < 0 or (number == 0 and flag != "--entropy-coefficient"):
@@ -65,7 +70,7 @@ def validate_config(config, root):
                 raise ValueError("deadline needs an explicit timezone")
             elif flag == "--initialize-sha256" and not re.fullmatch(r"[0-9a-f]{64}", value):
                 raise ValueError("initialization needs a lowercase SHA256")
-            elif flag == "--initialize-micro-warmstart":
+            elif flag in {"--initialize-micro-warmstart", "--initialize-memory-warmstart"}:
                 source = _inside(root, value)
                 if source.suffix != ".pt" or not source.is_file():
                     raise ValueError("initialization must be an existing task checkpoint")
@@ -77,7 +82,9 @@ def validate_config(config, root):
         if output != run/name/"training" or (output.exists() and
                 (not output.is_dir() or any(output.iterdir()))):
             raise ValueError("each fresh output must be runs/<run>/<job>/training")
-        if bool(flags.get("--initialize-micro-warmstart")) != bool(flags.get("--initialize-sha256")):
+        initialization_flag = ("--initialize-memory-warmstart" if module == "q4_rl.memory_train"
+                               else "--initialize-micro-warmstart")
+        if bool(flags.get(initialization_flag)) != bool(flags.get("--initialize-sha256")):
             raise ValueError("initialization path and SHA must be specified together")
         budget = int(flags["--cpu-budget"])
         workers = int(flags["--workers"])

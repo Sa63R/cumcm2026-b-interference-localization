@@ -138,11 +138,13 @@ def pack_observations(records):
 
 
 def validate_checkpoint(saved):
+    from .advantages import checkpoint_objective
     if (not isinstance(saved, dict) or saved.get("version") != CHECKPOINT_VERSION or
             saved.get("feature_schema") != feature_schema() or
             saved.get("controller_entrypoint") != CONTROLLER_ENTRYPOINT):
         raise ValueError("micro checkpoint version/controller/public feature semantics mismatch")
-    if saved.get("device") != "cpu" or saved.get("objective") != OBJECTIVE:
+    if (saved.get("device") != "cpu" or
+            saved.get("objective") != checkpoint_objective(OBJECTIVE, saved.get("config", {}))):
         raise ValueError("micro checkpoint CPU/undiscounted objective contract mismatch")
     if saved.get("config", {}).get("architecture", "mlp") != architecture_name(saved.get("network")):
         raise ValueError("checkpoint training configuration and network architecture differ")

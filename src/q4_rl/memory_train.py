@@ -30,6 +30,8 @@ from .train import (TRAIN_START, TRAIN_END, DEFAULT_DEADLINE, TrainingStop,
     summarize_training_metrics, parse_deadline, _configuration, _write_json, _write_batch)
 from .training_journal import EpisodeJournal
 from .learner_threads import learner_update_threads, minimum_cpu_budget, validate_learner_threads
+from .advantages import attach_actor_advantages, validate_gae_lambda, checkpoint_objective
+from .memory_initialization import initialization_binding, load_memory_warmstart, validate_initialization_binding
 
 
 _stop_requested = False
@@ -118,6 +120,8 @@ def rollout(task):
 
 def save_checkpoint(path, model, optimizer, state, config):
     validate_learner_threads(config.get("learner_threads", 1))
+    if "initialization" in config:
+        validate_initialization_binding(config["initialization"])
     metadata = model.metadata()
     if (config.get("architecture", "mlp") != architecture_name(metadata)
             or any(p.device.type != "cpu" for p in model.parameters())):
@@ -127,7 +131,7 @@ def save_checkpoint(path, model, optimizer, state, config):
     saved = {"version": CHECKPOINT_VERSION, "controller_entrypoint": CONTROLLER_ENTRYPOINT,
         "network": metadata, "feature_schema": feature_schema(),
         "model": model.state_dict(), "optimizer": optimizer.state_dict(),
-        "state": state, "config": config, "device": "cpu", "objective": dict(OBJECTIVE),
+        "state": state, "config": config, "device": "cpu", "objective": checkpoint_objective(OBJECTIVE, config),
         "rng": {"python": random.getstate(), "torch": torch.get_rng_state()}}
     temporary = path.with_suffix(path.suffix+".tmp")
     torch.save(saved, temporary)
@@ -155,8 +159,11 @@ def _arguments(argv):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--resume", type=Path)
+    parser.add_argument("--initialize-memory-warmstart", type=Path)
+    parser.add_argument("--initialize-sha256")
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--learner-threads", type=int, choices=(1, 2, 4), default=1)
+    parser.add_argument("--gae-lambda", type=float, default=1.)
     parser.add_argument("--cpu-budget", type=int, default=2)
     parser.add_argument("--hidden", type=int, default=64)
     parser.add_argument("--architecture", choices=("mlp",), default="mlp")
@@ -175,6 +182,23 @@ def _arguments(argv):
     parser.add_argument("--deadline", default=DEFAULT_DEADLINE)
     parser.add_argument("--progress-interval-seconds", type=float, default=1800.)
     args = parser.parse_args(argv)
+    try:
+        validate_gae_lambda(args.gae_lambda)
+    except ValueError as error:
+        parser.error(str(error))
+    if bool(args.initialize_memory_warmstart) != bool(args.initialize_sha256):
+        parser.error("G3 initialization requires both its checkpoint and SHA256")
+    if args.initialize_memory_warmstart:
+        if args.resume:
+            parser.error("resume uses its self-contained initialization binding; omit source initialization flags")
+        if args.warmstart_episodes != 0:
+            parser.error("initialized PPO requires --warmstart-episodes 0; BC must not run again")
+        if args.scenario_start is None or args.scenario_end is None:
+            parser.error("initialized PPO requires an explicit new training seed interval")
+        try:
+            args.initialize_sha256 = initialization_binding(args.initialize_sha256)["sha256"]
+        except ValueError as error:
+            parser.error(str(error))
     args.scenario_start = TRAIN_START if args.scenario_start is None else args.scenario_start
     args.scenario_end = TRAIN_END if args.scenario_end is None else args.scenario_end
     if (args.workers < 1 or not 1 <= args.cpu_budget <= 60
@@ -193,8 +217,12 @@ def _arguments(argv):
 
 def configuration(args):
     result = {**_configuration(args), "controller_entrypoint": CONTROLLER_ENTRYPOINT}
+    if args.initialize_memory_warmstart:
+        result["initialization"] = initialization_binding(args.initialize_sha256)
     if args.learner_threads != 1:
         result["learner_threads"] = args.learner_threads
+    if args.gae_lambda != 1.:
+        result["gae_lambda"] = args.gae_lambda
     return result
 
 
@@ -207,25 +235,37 @@ def main(argv=None):
     if deadline <= time.time():
         parser.error("training deadline has passed; a new explicit deadline is required")
     config = configuration(args)
+    initialization = None
     if args.resume:
         if args.resume.resolve() != (args.output/"latest.pt").resolve():
             parser.error("resume must use this output directory's latest transaction checkpoint")
         model, optimizer, state, previous = restore_checkpoint(args.resume)
+        if "initialization" in previous:
+            config["initialization"] = validate_initialization_binding(previous["initialization"])
         if previous != config:
             parser.error("resume configuration differs; start an explicit new experiment")
     else:
         if args.output.exists() and any(args.output.iterdir()):
             parser.error("new training output must be empty; use --resume")
+        if args.initialize_memory_warmstart:
+            initialization = load_memory_warmstart(args.initialize_memory_warmstart, args.initialize_sha256)
         torch.manual_seed(args.random_seed)
         random.seed(args.random_seed)
         model = make_model(args.architecture, hidden=args.hidden)
+        if initialization is not None:
+            if model.metadata() != initialization["network"]:
+                raise ValueError("G3 initialization network metadata differs from requested architecture/hidden")
+            model.load_state_dict(initialization["model"])
+            torch.manual_seed(args.random_seed)
+            random.seed(args.random_seed)
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
         state = dict(next_seed=args.scenario_start, episodes=0, attempted_episodes=0,
             warmstart_completed=0, ppo_batches=0, batches=0, wall_time_s=0.,
             pending_batch=None, next_attempt=0, stop_reason=None)
     args.output.mkdir(parents=True, exist_ok=True)
     if not args.resume:
-        save_checkpoint(args.output/"random.pt", model, optimizer, state, config)
+        initial_name = "initial.pt" if initialization is not None else "random.pt"
+        save_checkpoint(args.output/initial_name, model, optimizer, state, config)
     save_checkpoint(args.output/"latest.pt", model, optimizer, state, config)
     started, prior_wall = time.perf_counter(), state["wall_time_s"]
     next_review = started+args.progress_interval_seconds
@@ -268,7 +308,11 @@ def main(argv=None):
                 batch.append(row)
                 # Preserve every returned episode once. Rewriting only the small
                 # hash index avoids repeatedly serializing previous trajectories.
-                journal.append(row)
+                try:
+                    if pending["mode"] == "ppo" and args.gae_lambda != 1. and not row.get("administrative_skip"):
+                        attach_actor_advantages(row["records"], args.gae_lambda)
+                finally:
+                    journal.append(row)
             if _stop_requested or any(row.get("administrative_skip") for row in batch):
                 state["stop_reason"] = "deadline_in_reserved_batch"
                 break
@@ -280,15 +324,19 @@ def main(argv=None):
                         minibatch_size=args.minibatch_size, stop_check=lambda: _stop_requested or time.time() >= deadline)
                 state["warmstart_completed"] += len(batch)
             else:
+                advantage_kwargs = ({"actor_advantages": [row["actor_advantage"] for row in records]}
+                                    if args.gae_lambda != 1. else {})
                 with learner_update_threads(args.learner_threads):
                     update = ppo_update(model, optimizer, records, epochs=args.epochs,
                         minibatch_size=args.minibatch_size, entropy_coefficient=args.entropy_coefficient,
-                        stop_check=lambda: _stop_requested or time.time() >= deadline)
+                        stop_check=lambda: _stop_requested or time.time() >= deadline, **advantage_kwargs)
                 state["ppo_batches"] += 1
             update.update(wall_time_s=time.perf_counter()-update_started,
                           cpu_time_s=time.process_time()-update_cpu_started)
             if args.learner_threads != 1:
                 update["learner_threads"] = args.learner_threads
+            if args.gae_lambda != 1.:
+                update["actor_gae_lambda"] = args.gae_lambda
             state["episodes"] += len(batch)
             state["batches"] += 1
             state["pending_batch"] = None

@@ -219,7 +219,7 @@ def summarize_training_metrics(metrics):
 
 def ppo_update(model, optimizer, records, *, epochs=3, minibatch_size=128,
                clip_epsilon=0.2, entropy_coefficient=0.005, value_coefficient=0.5,
-               stop_check=None):
+               stop_check=None, actor_advantages=None):
     if not records:
         return {"updates": 0, "records": 0}
     if epochs < 1 or minibatch_size < 1:
@@ -227,7 +227,14 @@ def ppo_update(model, optimizer, records, *, epochs=3, minibatch_size=128,
     old_log = torch.tensor([r["log_prob"] for r in records], dtype=torch.float32)
     old_value = torch.tensor([r["value"] for r in records], dtype=torch.float32)
     returns = torch.tensor([r["return"] for r in records], dtype=torch.float32)
-    advantages = returns - old_value
+    if actor_advantages is None:
+        advantages = returns - old_value
+    else:
+        if len(actor_advantages) != len(records):
+            raise ValueError("actor advantage count must match the complete batch")
+        advantages = torch.tensor(actor_advantages, dtype=torch.float32)
+        if advantages.ndim != 1 or not bool(torch.isfinite(advantages).all()):
+            raise ValueError("actor advantages must be finite scalars")
     # Training-batch advantage centering is allowed; no observation statistics
     # or validation samples are estimated or retained as normalization state.
     advantages = (advantages - advantages.mean()) / advantages.std(unbiased=False).clamp_min(1e-8)

@@ -31,6 +31,7 @@ from .train import (TRAIN_START, TRAIN_END, DEFAULT_DEADLINE, TrainingStop,
 from .training_journal import EpisodeJournal
 from .micro_initialization import initialization_binding, load_micro_warmstart
 from .learner_threads import learner_update_threads, minimum_cpu_budget, validate_learner_threads
+from .advantages import attach_actor_advantages, validate_gae_lambda, checkpoint_objective
 
 
 _stop_requested = False
@@ -128,7 +129,7 @@ def save_checkpoint(path, model, optimizer, state, config):
     saved = {"version": CHECKPOINT_VERSION, "controller_entrypoint": CONTROLLER_ENTRYPOINT,
         "network": metadata, "feature_schema": feature_schema(),
         "model": model.state_dict(), "optimizer": optimizer.state_dict(),
-        "state": state, "config": config, "device": "cpu", "objective": dict(OBJECTIVE),
+        "state": state, "config": config, "device": "cpu", "objective": checkpoint_objective(OBJECTIVE, config),
         "rng": {"python": random.getstate(), "torch": torch.get_rng_state()}}
     temporary = path.with_suffix(path.suffix+".tmp")
     torch.save(saved, temporary)
@@ -160,6 +161,7 @@ def _arguments(argv):
     parser.add_argument("--initialize-sha256")
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--learner-threads", type=int, choices=(1, 2, 4), default=1)
+    parser.add_argument("--gae-lambda", type=float, default=1.)
     parser.add_argument("--cpu-budget", type=int, default=2)
     parser.add_argument("--hidden", type=int, default=64)
     parser.add_argument("--architecture", choices=("mlp", "induced"), default="mlp")
@@ -178,6 +180,10 @@ def _arguments(argv):
     parser.add_argument("--deadline", default=DEFAULT_DEADLINE)
     parser.add_argument("--progress-interval-seconds", type=float, default=1800.)
     args = parser.parse_args(argv)
+    try:
+        validate_gae_lambda(args.gae_lambda)
+    except ValueError as error:
+        parser.error(str(error))
     if bool(args.initialize_micro_warmstart) != bool(args.initialize_sha256):
         parser.error("micro initialization requires both its checkpoint and SHA256")
     if args.initialize_micro_warmstart:
@@ -214,6 +220,8 @@ def configuration(args):
         result["initialization"] = initialization_binding(args.initialize_sha256)
     if args.learner_threads != 1:
         result["learner_threads"] = args.learner_threads
+    if args.gae_lambda != 1.:
+        result["gae_lambda"] = args.gae_lambda
     return result
 
 
@@ -299,7 +307,11 @@ def main(argv=None):
                 batch.append(row)
                 # Preserve every returned episode once. Rewriting only the small
                 # hash index avoids repeatedly serializing previous trajectories.
-                journal.append(row)
+                try:
+                    if pending["mode"] == "ppo" and args.gae_lambda != 1. and not row.get("administrative_skip"):
+                        attach_actor_advantages(row["records"], args.gae_lambda)
+                finally:
+                    journal.append(row)
             if _stop_requested or any(row.get("administrative_skip") for row in batch):
                 state["stop_reason"] = "deadline_in_reserved_batch"
                 break
@@ -311,15 +323,19 @@ def main(argv=None):
                         minibatch_size=args.minibatch_size, stop_check=lambda: _stop_requested or time.time() >= deadline)
                 state["warmstart_completed"] += len(batch)
             else:
+                advantage_kwargs = ({"actor_advantages": [row["actor_advantage"] for row in records]}
+                                    if args.gae_lambda != 1. else {})
                 with learner_update_threads(args.learner_threads):
                     update = ppo_update(model, optimizer, records, epochs=args.epochs,
                         minibatch_size=args.minibatch_size, entropy_coefficient=args.entropy_coefficient,
-                        stop_check=lambda: _stop_requested or time.time() >= deadline)
+                        stop_check=lambda: _stop_requested or time.time() >= deadline, **advantage_kwargs)
                 state["ppo_batches"] += 1
             update.update(wall_time_s=time.perf_counter()-update_started,
                           cpu_time_s=time.process_time()-update_cpu_started)
             if args.learner_threads != 1:
                 update["learner_threads"] = args.learner_threads
+            if args.gae_lambda != 1.:
+                update["actor_gae_lambda"] = args.gae_lambda
             state["episodes"] += len(batch)
             state["batches"] += 1
             state["pending_batch"] = None
