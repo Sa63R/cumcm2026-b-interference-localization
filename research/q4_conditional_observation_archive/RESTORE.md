@@ -1,6 +1,6 @@
 # 恢复 R17 连续条件观测研究
 
-完整提交 `27e8c71c4d701787a735bfcb073ad3661fa54867`；相对可靠 R12 `81aa6e1a1231a2358cf098fbba3fdd0557b540ef` 的增量包为 `../q4_round2/archives/conditional-observation-rejected.bundle`，SHA256 `dac705471e62fac78c515bea5de1600d9eb20904f7c91789e1a0bf2ae0d11131`（33046481 字节）。R17 工作树、本地和远程分支目前均保留；core 归档尚待 root 审查提交，本文件不授权删除。
+完整提交 `27e8c71c4d701787a735bfcb073ad3661fa54867`；相对可靠 R12 `81aa6e1a1231a2358cf098fbba3fdd0557b540ef` 的增量包为 `../q4_round2/archives/conditional-observation-rejected.bundle`，SHA256 `dac705471e62fac78c515bea5de1600d9eb20904f7c91789e1a0bf2ae0d11131`（33046481 字节）。归档与恢复校验已先在 core 提交并推送 `1f138eda`，随后仅删除本轮新建的 R17 失败实验工作树及其本地/远程分支。删除前核对精确HEAD、已推送bundle、干净工作树，除可再生缓存外没有未归档文件；10个原有核心分支全部保留，其他本地分支引用无变化。源码、全量实验和方法仍可由本包恢复。
 
 已实际新建 bare 仓库，只预置深度1的 R12 基提交，先确认 R17 HEAD 不存在，再从本包导入。170 个新增或修改 Git blob、66 个冻结运行/审计源文件及 204 个原始冻结/控制/实验文件全部逐字节匹配；无删除路径。校验明细见 `RESTORED_BLOBS.json`、`ORIGINAL_EVIDENCE.json` 和 `MANIFEST.json`。
 
