@@ -23,8 +23,9 @@ BASE_SPEC = {"entrypoint": "strategies.q4_cover_search:run_q4_cover_search",
 
 def hashes():
     result = source_hashes()
-    for name in ("run_q4_round2.py", "q4_comparison_bounds.py", "audit_q4_cover.py", "audit_q4_state.py"):
-        p = ROOT / "experiments" / name
+    paths = [ROOT / "experiments" / n for n in ("run_q4_round2.py", "q4_comparison_bounds.py")]
+    paths += sorted((ROOT / "experiments").glob("audit_q4_*.py"))
+    for p in paths:
         result[p.relative_to(ROOT).as_posix()] = hashlib.sha256(p.read_bytes()).hexdigest()
     return result
 
@@ -97,7 +98,22 @@ def audit(directory):
             errors.append("Duplicate key or spec mismatch")
         keys.add(key)
         rows.append(row)
-        audits.append(audit_record(record))
+        item = audit_record(record)
+        parameters = (record.get("summary") or {}).get("strategy_parameters", {})
+        try:
+            if parameters.get("range_skipped_scans"):
+                from experiments.audit_q4_range import audit_range_prefix
+                item["range_prefix"] = audit_range_prefix(record)
+            if parameters.get("optical_cover_log"):
+                from experiments.audit_q4_optical import audit_optical_prefix
+                item["optical_prefix"] = audit_optical_prefix(record)
+            if parameters.get("q4_r2_scheduling"):
+                from experiments.audit_q4_scheduling import audit_scheduling_prefix
+                item["scheduling_prefix"] = audit_scheduling_prefix(record)
+        except (ValueError, AssertionError, KeyError, TypeError) as exc:
+            item["passed"] = False
+            item["errors"].append("Extended prefix: " + str(exc))
+        audits.append(item)
     if keys != {(seed, label) for seed in manifest["seeds"] for label in manifest["specs"]}:
         errors.append("Incomplete matrix")
     try:
@@ -161,7 +177,7 @@ def main():
             with gzip.open(directory/"records"/f"{row['strategy']}-{row['seed']}.json.gz", "wt", encoding="utf-8") as stream:
                 json.dump(record, stream, allow_nan=False)
             rows.append(row)
-            print(json.dumps({k: row[k] for k in ("seed", "strategy", "successful", "virtual_time_s", "common_lower_bound_s", "time_over_lower_bound", "errors")}), flush=True)
+            print(json.dumps({k: row[k] for k in ("seed", "strategy", "successful", "virtual_time_s", "common_lower_bound_s", "time_over_lower_bound", "penalized_time_over_lower_bound", "errors")}), flush=True)
     if hashes() != frozen:
         raise ValueError("Source changed during experiment")
     result = report_rows(sorted(rows, key=lambda r:(r["seed"], r["strategy"])))

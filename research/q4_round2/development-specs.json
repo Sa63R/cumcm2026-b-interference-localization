@@ -1,0 +1,38 @@
+{
+  "compact_baseline": {
+    "entrypoint": "strategies.q4_cover_search:run_q4_cover_search",
+    "kwargs": {
+      "profile": "compact_22",
+      "schedule": "joint",
+      "max_expansions": 200
+    }
+  },
+  "compact_optical": {
+    "entrypoint": "strategies.q4_optical_cover:run_q4_optical_cover",
+    "kwargs": {
+      "optical_mode": "rectangular",
+      "max_expansions": 200
+    }
+  },
+  "compact_cap16": {
+    "entrypoint": "strategies.q4_r2_scheduling:run_q4_r2_scheduling",
+    "kwargs": {
+      "config": "cap16",
+      "max_expansions": 200
+    }
+  },
+  "compact_onroute": {
+    "entrypoint": "strategies.q4_r2_scheduling:run_q4_r2_scheduling",
+    "kwargs": {
+      "config": "onroute",
+      "max_expansions": 200
+    }
+  },
+  "compact_range": {
+    "entrypoint": "strategies.q4_range_pruning:run_q4_range_pruning",
+    "kwargs": {
+      "enabled": true,
+      "max_expansions": 200
+    }
+  }
+}
