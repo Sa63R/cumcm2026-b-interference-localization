@@ -1,6 +1,6 @@
 # 可恢复的试验分支归档
 
-本目录的Git bundle只包含对应试验在共同基准8c624d08c61c0e411f93345d63a932b01ead4868之后的提交及所需新对象。该基准属于受保护核心分支，必须先存在。两个bundle均通过git bundle verify；原始策略配置和每局完整结果另在results/round2中，源码zip不依赖仍保留工作树。
+本目录的Git bundle只包含对应试验在共同基准8c624d08c61c0e411f93345d63a932b01ead4868之后的提交及所需新对象。该基准属于受保护核心分支，必须先存在。各bundle均通过git bundle verify；新观测树两次试验还通过git bundle unbundle验证实际对象包。原始策略配置和每局完整结果另在results/round2中，源码zip不依赖仍保留工作树。
 
 | 文件 | 归档分支最终提交 | 冻结实验源码提交 |
 | --- | --- | --- |
@@ -9,6 +9,8 @@
 | negative_hull.bundle | 3026099cf71e09fa4e3bcdb964a6349929176677 | 同左 |
 | terminal_cover.bundle | b61e83469aa8574a1f4498ad12bcde50bff318dd | 同左 |
 | terminal_project.bundle | 364b352f1289714bd4fe63aeef415b969961186b | 同左 |
+| observation_tree.bundle | a876e595d14fdf067852ddf54078aa99292de9ca | 同左 |
+| coupled_tree.bundle | 149c612071240e8bab66652b6f80ecd65c63d641 | 同左 |
 
 index.json保存每个bundle的SHA256、验证过的分支/工作树及清理状态。这五个未获可靠整局收益的原样候选均已用冻结实现完成严格历史前缀验证，之后清理不会丢失验证依据。末站二维方法的数学机制说明另以文本保存在diagnoses/terminal_projection_method.md。
 
