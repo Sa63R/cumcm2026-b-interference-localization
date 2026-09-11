@@ -18,6 +18,7 @@ INITIALIZATION_FLAGS = {"--initialize-micro-warmstart", "--initialize-sha256"}
 MODULE_FLAGS = {
     "q4_rl.train": ALLOWED_FLAGS,
     "q4_rl.micro_train": ALLOWED_FLAGS | INITIALIZATION_FLAGS | {"--architecture"},
+    "q4_rl.memory_train": ALLOWED_FLAGS,
     "q4_rl.scst_train": {"--output", "--workers", "--cpu-budget", "--batch-pairs",
         "--minibatch-size", "--learning-rate", "--max-decisions", "--entropy-coefficient",
         "--random-seed", "--scenario-start", "--scenario-end", "--max-batches",

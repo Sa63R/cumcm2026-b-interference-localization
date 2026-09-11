@@ -7,16 +7,52 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 import json
+import math
 import os
 from pathlib import Path, PurePosixPath
 import re
 import signal
+import shutil
 import subprocess
 import threading
 import time
 
 BASE = Path("/home/dataset-assist-0/usr/lh/ysh/bwc/shumo")
 REMOTE = "jiangsu10:bucket-c20250204-pool01/lianghao/bwc/shumo/"
+
+
+def disk_guard_snapshot(root, minimum_free_gib):
+    if (isinstance(minimum_free_gib, bool) or not math.isfinite(minimum_free_gib)
+            or minimum_free_gib < 0):
+        raise ValueError("minimum-free-gib must be finite and nonnegative")
+    threshold = math.ceil(minimum_free_gib * 1024**3)
+    result = {"minimum_free_gib": minimum_free_gib, "minimum_free_bytes": threshold,
+              "free_bytes": None, "enabled": threshold > 0, "stop_reason": None}
+    if threshold == 0:
+        return result  # Default retains the old behavior even if disk observation fails.
+    try:
+        result["free_bytes"] = shutil.disk_usage(root).free
+    except OSError as exc:
+        result.update(stop_reason="disk_space_observation_failed", error_type=type(exc).__name__)
+        return result
+    if result["free_bytes"] < threshold:
+        result["stop_reason"] = "disk_free_below_minimum"
+    return result
+
+
+def termination_step(child, *, now, terminate_at, reason):
+    """The same own-child TERM / 90-second grace is used for every stop cause."""
+    if child.poll() is not None:
+        return terminate_at
+    if reason is not None and terminate_at is None:
+        try:
+            child.send_signal(signal.SIGTERM)
+        except ProcessLookupError:
+            pass
+        return now
+    if terminate_at is not None and now - terminate_at > 90:
+        signal_group(child.pid, signal.SIGKILL)
+    return terminate_at
 
 
 def read_number(path, default=None):
@@ -288,6 +324,7 @@ def main():
     parser.add_argument("--cpu-budget", type=int, default=50)
     parser.add_argument("--deadline", default="2026-09-12T02:00:00+00:00")
     parser.add_argument("--sync-seconds", type=int, default=120)
+    parser.add_argument("--minimum-free-gib", type=float, default=0.)
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args()
     root = args.root.resolve()
@@ -311,6 +348,18 @@ def main():
     run.mkdir(parents=True, exist_ok=True)
     lock = (root / ".q4-supervisor.lock").open("a")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    initial_disk = disk_guard_snapshot(root, args.minimum_free_gib)
+    if initial_disk["stop_reason"]:
+        refusal = {"schema": 2, "run": args.run, "server_role": "q4-port-42222",
+            "updated_utc": datetime.now(timezone.utc).isoformat(), "startup_refused": True,
+            "child_pid": None, "child_returncode": None, "termination_requested": False,
+            "stop_reason": initial_disk["stop_reason"]+"_before_launch", "disk_guard": initial_disk}
+        try:
+            save_json(run / "supervisor.json", refusal)
+        finally:
+            print(json.dumps(refusal), flush=True)
+            lock.close()
+        return 1
     allowed = sorted(os.sched_getaffinity(0))
     hierarchy = resolve_cpu_hierarchy()
     quota = quota_cores(hierarchy, len(allowed))
@@ -344,6 +393,7 @@ def main():
 
     sync_thread = threading.Thread(target=synchronize, daemon=True)
     terminate_at = None
+    termination_reason = None
     requested_stop = False
 
     def stop(signum, frame):
@@ -352,10 +402,10 @@ def main():
 
     old_term = signal.signal(signal.SIGTERM, stop)
     old_int = signal.signal(signal.SIGINT, stop)
-    status = {}
+    status = {"disk_guard": initial_disk}
 
     def monitor():
-        nonlocal active, quota, terminate_at, status
+        nonlocal active, quota, terminate_at, termination_reason, status
         prior = None
         while True:
             now = time.time()
@@ -377,6 +427,12 @@ def main():
             prior = (now, scopes, own_cpu)
             active = min(target, active + 2) if target > active else target
             restrict_tree(pids, allowed[:active])
+            disk = disk_guard_snapshot(root, args.minimum_free_gib)
+            reason = disk["stop_reason"] or ("training_deadline" if now >= deadline else
+                                             "requested_stop" if requested_stop else None)
+            if reason is not None and terminate_at is None and child.poll() is None:
+                termination_reason = reason
+            terminate_at = termination_step(child, now=now, terminate_at=terminate_at, reason=reason)
             status = {"schema": 2, "run": args.run, "server_role": "q4-port-42222",
                 "updated_utc": datetime.now(timezone.utc).isoformat(),
                 "supervisor_pid": os.getpid(), "child_pid": child.pid,
@@ -389,6 +445,7 @@ def main():
                 "mount_root_is_hierarchy_root": hierarchy["mount_root_is_hierarchy_root"],
                 "process_count": len(pids), "gpu_enabled": False,
                 "deadline_utc": args.deadline, "termination_requested": terminate_at is not None,
+                "stop_reason": termination_reason, "disk_guard": disk,
                 "sync": dict(sync_status)}
             save_json(run / "supervisor.json", status)
             # Preserve the resource trajectory as well as the latest snapshot.
@@ -397,14 +454,6 @@ def main():
                 stream.write(json.dumps(status, separators=(",", ":")) + "\n")
             if child.poll() is not None:
                 return
-            if (now >= deadline or requested_stop) and terminate_at is None:
-                terminate_at = now
-                try:
-                    child.send_signal(signal.SIGTERM)
-                except ProcessLookupError:
-                    pass
-            elif terminate_at is not None and now - terminate_at > 90:
-                signal_group(child.pid, signal.SIGKILL)
             time.sleep(5)
 
     failed = False

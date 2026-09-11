@@ -1,0 +1,57 @@
+{
+  "batch": 1,
+  "phase": "ppo",
+  "episodes": 1,
+  "next_seed": 8006501,
+  "wall_time_s": 4.4086631999962265,
+  "raw_attempt": "batch-000000-attempt-000000.json.gz",
+  "controller_entrypoint": "q4_rl.memory_controller:run_q4_memory",
+  "full_clear": 1,
+  "full_clear_rate": 1.0,
+  "batch_episodes": 1,
+  "mean_actual_time_s": 91158.395247,
+  "p95_actual_time_s": 91158.395247,
+  "mean_penalized_time_s": 91158.395247,
+  "p95_penalized_time_s": 91158.395247,
+  "mean_common_lower_bound_s": 2030.1754625138033,
+  "ratio_of_mean_penalized_time_to_mean_bound": 44.90173235279175,
+  "all_clear_actual_time_over_mean_bound": 44.90173235279175,
+  "mean_of_penalized_ratios": 44.90173235279175,
+  "failed_clear_count": 48,
+  "mean_penalized_time_bootstrap95_s": [
+    91158.395247,
+    91158.395247
+  ],
+  "uncertainty_scope": "descriptive resampling only; synthetic curriculum batch is not an independent efficacy estimate",
+  "case_ratios": [
+    {
+      "seed": 8006500,
+      "actual_time_over_lower_bound": 44.90173235279175,
+      "penalized_time_over_lower_bound": 44.90173235279175
+    }
+  ],
+  "sum_episode_wall_time_s": 2.9017052999988664,
+  "mean_episode_wall_time_s": 2.9017052999988664,
+  "sum_episode_worker_cpu_s": 2.875,
+  "mean_episode_worker_cpu_s": 2.875,
+  "sum_episode_policy_wall_s": 2.2571262000128627,
+  "mean_episode_policy_wall_s": 2.2571262000128627,
+  "sum_episode_policy_cpu_s": 2.265625,
+  "mean_episode_policy_cpu_s": 2.265625,
+  "sum_episode_posthoc_bound_wall_s": 0.6004908999893814,
+  "mean_episode_posthoc_bound_wall_s": 0.6004908999893814,
+  "sum_episode_posthoc_bound_cpu_s": 0.609375,
+  "mean_episode_posthoc_bound_cpu_s": 0.609375,
+  "update": {
+    "updates": 3,
+    "records": 288,
+    "policy_loss": 0.06962179392576218,
+    "value_loss": 40.70567067464193,
+    "entropy": 4.4600404103597,
+    "gradient_norm": 0.9741102059682211,
+    "approximate_kl": -2.0266200105349224e-05,
+    "wall_time_s": 0.551971599998069,
+    "cpu_time_s": 0.546875
+  },
+  "scope": "Synthetic G3 memory training diagnostics only; independent evaluation required before promotion"
+}

@@ -1,0 +1,33 @@
+# G3 public-memory controller and CPU training
+
+G3 makes the independently tested negative-memory module available to an actor. It does **not** establish an improved strategy. The controller entry is `q4_rl.memory_controller:run_q4_memory`, with schema `q4-micro-g3-negative-v1`: 13 unchanged global features and 58 candidate features, preserving G1's first 50 and appending the eight documented negative-compatibility scores. Its default decision limit is 512.
+
+`Q4MemorySearch` inherits G1 candidate generation, action execution, safe-clear masks, budget limits, optical-grid handling, directional-cover completion and full fallback. It adds only actual-history consumption, extra features and diagnostics. `_Search` appends the consumed action records only after an explicitly accepted reply; the adapter forwards public action, position, channel and result. Negative-memory scores do not suppress any candidate or enter a certificate. The inherited single-decision geometry cache is the unchanged `0e844c01` revision.
+
+`memory_network.py` supplies the same candidate MLP design with dimensions 13/58. Its independent architecture is `q4-g3-negative-candidate-mlp-v1`, checkpoint version `q4-g3-negative-ppo-cpu-v1`, and loader `q4_rl.memory_network:load_policy`. The complete feature list, memory version and bank size are included in the schema contract. G1/G3 checkpoint loaders reject the other schema. This entry does not support migrating G1, attention or SCST weights.
+
+`memory_train.py` is an explicitly derived transaction driver from `micro_train` at `9c8b208c`, with its own rollout/controller/checkpoint wiring. PPO, BC, returns, training partition, statistics, feature packing and episode-journal implementations remain direct shared imports. Default training starts randomly; optional `--warmstart-episodes` generates fresh synthetic G3 heuristic traces. Gamma/lambda remain one and the failure objective remains `max(actual billed time, 360000)`. All fallback and terminal costs remain in the last transition. Truth and the common source-edge lower bound are accessed only after policy termination and reward accounting. Interrupted reservations and raw attempts are retained and replayed without selecting successful cases.
+
+The root's next planned comparison is G1/G3 crossed with hidden 64/128, with matching 256-episode BC, scene interval and resource budgets. The 3600-second wall limit includes both BC and PPO; it is not an extra hour granted after BC. An example configuration for its G3 arm is below; this document does not launch that run. Its deadline remains an explicit launch parameter and does not establish a new global task deadline:
+
+```text
+python -B -m q4_rl.memory_train --output runs/<supervisor-run>/<job>/training --workers 8 --cpu-budget 9 --hidden 64 --warmstart-episodes 256 --max-decisions 512 --batch-episodes 16 --epochs 3 --minibatch-size 128 --learning-rate 0.0003 --entropy-coefficient 0.005 --random-seed 424444 --scenario-start 8012000 --scenario-end 8021999 --max-wall-seconds 3600 --deadline 2026-09-11T20:00:00+00:00
+```
+
+Repeat the same training configuration with `--resume runs/<supervisor-run>/<job>/training/latest.pt` to resume. The outer supervisor must own the combined CPU budget and synchronization. No GPU is used. Training, development and independent confirmation remain separate; this entry has no validation-database or official-simulator dependency.
+
+Validation: **46 tests passed in 6.55 seconds** on one CPU thread, comprising G3, negative-memory, original micro-controller and geometry-cache tests. They verify unchanged candidate/safety method identities, identical G1 physical actions and exact original-feature prefixes under the same scripted choices, accepted-only memory, 13/58 tensor masking, separate loaders, shared BC/PPO updates, full-cost returns, and exact model/RNG replay after interrupted updates or partial worker returns.
+
+One new synthetic **training** scene, seed 8006500 (`mixed/positive_error`, 16 sources), exercised the real G3 controller with a 512-decision limit. It used hidden 64, no BC, one sampled episode, one PPO epoch and minibatches of 128; the episode ended after 288 decisions and produced three optimizer updates. Fourteen parameter tensors changed. Checkpoint reload then ran a deterministic policy on that same used training scene, alongside the current frozen best control R8 from the state-search series (`center_once`, `max_expansions=200`). All three use the identical common lower bound **L = 2030.175463 seconds**.
+
+| Run on the single training scene | Full clear | Failed clears | Actual T, seconds | T/L | Policy CPU, seconds |
+|---|---:|---:|---:|---:|---:|
+| G3 initial sampled training trajectory | 16/16 | 48 | 91158.395247 | 44.90173 | 2.265625 |
+| G3 reloaded after one PPO batch, greedy | 16/16 | 66 | 153603.342829 | 75.66013 | 4.187500 |
+| Frozen R8 control | 16/16 | 95 | 7649.826011 | 3.76806 | 0.078125 |
+
+Both paired evaluation records pass the independent physical and completion audit. Their mean/tail time is the same single T and gives no population estimate; a useful confidence interval is unavailable from one reused training scene. The training module's legacy one-case resampling output is preserved in raw logs but is not interpreted as statistical certainty. Sampled versus greedy behavior also differs, so the two G3 rows do not establish the direction of a training effect. The model is poor and is not recommended.
+
+The reloaded G3 run spent 0.831 wall seconds scoring memory and 0.009 seconds updating it, already inside its reported controller runtime. The PPO update used 0.547 CPU seconds; the initial worker's 2.875 CPU seconds additionally include its post-termination lower-bound calculation. No fallback was needed in these completed episodes; exact transition sums equal full billed time, and tests separately exercise fallback-tail accounting. Windows CPU timings have finite clock resolution.
+
+All initial/trained checkpoints, raw training episode/index, complete reloaded/R8 histories, errors and failures, paired T/L, and checks are retained under `results/q4_rl/g3-smoke-8006500` (about 10 MB). `source.zip` reproduces 69 source/config files checked against its hash manifest; it contains the code used for this smoke. Subsequent review added only a loader guard rejecting inconsistent `config.architecture`, with a tampered-checkpoint test; valid MLP loading and weights are unchanged, and the original source archive is retained. This is a functional artifact, not an independently validated model. Whether the added memory improves necessary-action decisions, long-term travel, BC fit or final reliability remains untested until the paired experiment completes.
