@@ -15,6 +15,9 @@
 
 ## 文件入口
 
+- [首版研究结论](FIRST_VERSION_REPORT.md)：三个方法、理论保证范围、下界及下一版方向。
+- [独立串行运行成本](runtime/README.md)：整局程序实际时间及监督工具拒绝记录。
+- [总交付包复现与演练说明](PACKAGE_REPRODUCTION.md)：在总包布局下执行的离线恢复、报告复算与人工环节。
 - [中文统计解释与七家族表](final-acceptance/statistical-interpretation.md)：门槛解释、P95、最不利案例与每家族结果。
 - [随机集共同报告](report-random/comparison.md)／[完整精度 JSON](report-random/comparison.json)。
 - [压力集共同报告](report-stress/comparison.md)／[完整精度 JSON](report-stress/comparison.json)。

@@ -2,6 +2,8 @@
 
 这里的脚本只负责编排已冻结的策略，不改变原策略、选择规则或测试场景。
 
+`restore_sources.py` 是总交付包的离线恢复入口，应在包含 `source-identities.json`、`checksums.json` 与 `sources/source-history.bundle` 的交付包根目录运行；本源码副本用于保存实现。它拒绝覆盖目录，按原冻结 Git 身份恢复四算法、两个工具及原配置和权重，不执行模拟器。总包布局见最终结果中的 `PACKAGE_REPRODUCTION.md`。
+
 - `run_registered_evaluations.py`：以固定 registry 运行全部扩展选择集，按预定规则写出 selected；随后用相同身份运行两个最终分区并核验档案。它检查真实解释器和安装包、保留失败与原案例、为独立子进程设置截止时间并保存逐任务记录。选择工具使用 `experiments/research_v1_selection.py` 的冻结副本。
 - `serial_runtime_benchmark.py`：单个策略的计时工作进程，只用已经打开的 6000–6015，预热一局后重复两轮，逐局保存记录。指标是整局策略及模拟器接口耗时，排除 Python 启动，不能称为纯网络推理延迟，也不属于独立最终性能证据。
 - `run_serial_benchmarks.py`：外层串行监督器，先核对所选身份和训练进程已经结束，再依次运行基线、状态搜索、强化学习和几何策略。它监督计时进程的硬截止，保留异常与不完整记录，不终止训练进程。其它评估或高负载程序也应在计时前结束。
