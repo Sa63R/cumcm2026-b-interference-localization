@@ -1,0 +1,190 @@
+{
+  "created_utc": "2026-09-11T13:35:25.246584+00:00",
+  "scope": "Previously used synthetic development worlds; no official counterfactual replay or final-test claim",
+  "cases": 48,
+  "local_records": 144,
+  "remote_records": 48,
+  "audit_passed_records": 192,
+  "all_paired_case_hashes_match": true,
+  "common_physics_sources_verified": true,
+  "lower_bounds": {
+    "primary": "L/5 + 5*N",
+    "previous_rl": "primary + 30*(20-N) if N<16, otherwise primary",
+    "route_scope": "L is the cached exact graph-DP lower bound for visiting clearance disks, not the attainable unknown-scene optimum",
+    "ratio_aggregation": "sum(time)/sum(per-case lower bound), not mean of case ratios",
+    "primary_is_main_comparison": true,
+    "cache_misses": 0
+  },
+  "groups": {
+    "rl_trial1": {
+      "runs": 48,
+      "successful_runs": 48,
+      "all_clear_runs": 48,
+      "failed_clear_count": 0,
+      "mean_time_s": 3110.2018135625,
+      "p95_time_s": 3426.49405175,
+      "max_time_s": 3672.953679,
+      "sum_time_s": 149289.687051,
+      "sum_primary_lower_bound_s": 83819.77037540624,
+      "sum_previous_rl_lower_bound_s": 92939.77037540624,
+      "mean_primary_lower_bound_s": 1746.2452161542967,
+      "mean_previous_rl_lower_bound_s": 1936.2452161542967,
+      "mean_program_runtime_s": 0.48218205624956073,
+      "mean_measurement_count": 125,
+      "mean_action_count": 140.08333333333334,
+      "mean_time_breakdown_s": {
+        "movement_s": 2313.2018135625,
+        "switching_s": 106.58333333333333,
+        "detection_s": 625.0,
+        "optical_s": 39.25,
+        "removal_s": 26.166666666666668
+      },
+      "ratios_eligible": true,
+      "total_time_over_primary_lower": 1.781079647228471,
+      "total_time_over_previous_rl_lower": 1.606305744548139
+    },
+    "state_certified_tail": {
+      "runs": 48,
+      "successful_runs": 48,
+      "all_clear_runs": 48,
+      "failed_clear_count": 0,
+      "mean_time_s": 3101.9817328541667,
+      "p95_time_s": 3495.26604725,
+      "max_time_s": 3550.173907,
+      "sum_time_s": 148895.123177,
+      "sum_primary_lower_bound_s": 83819.77037540624,
+      "sum_previous_rl_lower_bound_s": 92939.77037540624,
+      "mean_primary_lower_bound_s": 1746.2452161542967,
+      "mean_previous_rl_lower_bound_s": 1936.2452161542967,
+      "mean_program_runtime_s": 1.080230058332442,
+      "mean_measurement_count": 117.25,
+      "mean_action_count": 132.33333333333334,
+      "mean_time_breakdown_s": {
+        "movement_s": 2343.0650661875,
+        "switching_s": 107.25,
+        "detection_s": 586.25,
+        "optical_s": 39.25,
+        "removal_s": 26.166666666666668
+      },
+      "ratios_eligible": true,
+      "total_time_over_primary_lower": 1.7763723583366875,
+      "total_time_over_previous_rl_lower": 1.6020603728153895
+    },
+    "state_v1": {
+      "runs": 48,
+      "successful_runs": 48,
+      "all_clear_runs": 48,
+      "failed_clear_count": 0,
+      "mean_time_s": 3102.0086703125,
+      "p95_time_s": 3495.26604725,
+      "max_time_s": 3550.173907,
+      "sum_time_s": 148896.416175,
+      "sum_primary_lower_bound_s": 83819.77037540624,
+      "sum_previous_rl_lower_bound_s": 92939.77037540624,
+      "mean_primary_lower_bound_s": 1746.2452161542967,
+      "mean_previous_rl_lower_bound_s": 1936.2452161542967,
+      "mean_program_runtime_s": 1.075482706251023,
+      "mean_measurement_count": 117.25,
+      "mean_action_count": 132.33333333333334,
+      "mean_time_breakdown_s": {
+        "movement_s": 2343.0920036458333,
+        "switching_s": 107.25,
+        "detection_s": 586.25,
+        "optical_s": 39.25,
+        "removal_s": 26.166666666666668
+      },
+      "ratios_eligible": true,
+      "total_time_over_primary_lower": 1.776387784267756,
+      "total_time_over_previous_rl_lower": 1.6020742850296628
+    }
+  },
+  "rl_vs_certified_tail": {
+    "pairs": 48,
+    "pairing": "identical case_sha256, aligned by frozen scenario seed",
+    "baseline": "state_certified_tail",
+    "candidate": "rl_trial1",
+    "positive_savings_means": "candidate faster than baseline",
+    "mean_savings_s": -8.220080708333322,
+    "aggregate_savings_percent": -0.2649944911432453,
+    "wins": 26,
+    "losses": 22,
+    "ties": 0,
+    "bootstrap": {
+      "method": "paired percentile bootstrap over scenarios",
+      "repeats": 20000,
+      "seed": 20260911,
+      "confidence": 0.95,
+      "mean_savings_s_ci": [
+        -58.871835193749995,
+        41.21308691041659
+      ],
+      "aggregate_savings_percent_ci": [
+        -1.918700974907251,
+        1.312542742434792
+      ],
+      "scope": "Development-world uncertainty only; not independent model-selection or final-test evidence"
+    },
+    "mean_component_savings_s": {
+      "movement_s": 29.863252625000012,
+      "switching_s": 0.6666666666666666,
+      "detection_s": -38.75,
+      "optical_s": 0.0,
+      "removal_s": 0.0
+    }
+  },
+  "rl_vs_state_v1": {
+    "pairs": 48,
+    "pairing": "identical case_sha256, aligned by frozen scenario seed",
+    "baseline": "state_v1",
+    "candidate": "rl_trial1",
+    "positive_savings_means": "candidate faster than baseline",
+    "mean_savings_s": -8.193143249999983,
+    "aggregate_savings_percent": -0.26412380237398225,
+    "wins": 26,
+    "losses": 22,
+    "ties": 0,
+    "bootstrap": {
+      "method": "paired percentile bootstrap over scenarios",
+      "repeats": 20000,
+      "seed": 20260911,
+      "confidence": 0.95,
+      "mean_savings_s_ci": [
+        -58.84514765833334,
+        41.23585510468742
+      ],
+      "aggregate_savings_percent_ci": [
+        -1.9184068942830943,
+        1.314094266470578
+      ],
+      "scope": "Development-world uncertainty only; not independent model-selection or final-test evidence"
+    },
+    "mean_component_savings_s": {
+      "movement_s": 29.89019008333335,
+      "switching_s": 0.6666666666666666,
+      "detection_s": -38.75,
+      "optical_s": 0.0,
+      "removal_s": 0.0
+    }
+  },
+  "remote_reproduction": {
+    "pairs": 48,
+    "same_world_hashes": 48,
+    "exact_virtual_time_matches": 0,
+    "exact_history_matches": 0,
+    "local_mean_time_s": 3110.2018135625,
+    "remote_mean_time_s": 3111.7967206458334,
+    "mean_local_minus_remote_s": -1.5949070833333678,
+    "max_absolute_time_difference_s": 146.80135299999984,
+    "mean_absolute_time_difference_s": 25.98091583333334,
+    "note": "Main comparison uses this machine's common frozen engine. Remote acceleration/platform is not trajectory-equivalent. The engine hashes float.hex positions for fixed bearing errors, so one-bit coordinate differences can change later observations; first-divergence evidence is described in the batch README."
+  },
+  "manifest_sha256": "e3b22b0f485c27621a77902e11bf949d5d1382a3c3691893fd6887fb0c7e7665",
+  "cache_sha256": "6a9d838554ad94a8cff414290e9e734a1028454f0f57182486d6c874cea364ec",
+  "source_archive_sha256": {
+    "rl_trial1": "fc3592fb1f8012130c684eef8ca87f8ac7c0c37bb3e11c5804374231873372de",
+    "state_certified_tail": "45d4344049a06cf176cc6ab0dd61abc01716a18a99ab0e1bfeb063b400198b2e",
+    "state_v1": "7d8eee700a2b2576060658e4563b6b9a97dea915539c608f42407d27a1be3e38"
+  },
+  "analysis_source_sha256": "1b40396a5d7abf1c39a9a44fbdedca1e8a14dd8226e37f2fc9042a309950a4f8",
+  "trajectory_audit_source_sha256": "2a80f18de4030e6643f8078b62a2a2429d53c7b19863e9ac31727796f0183829"
+}
