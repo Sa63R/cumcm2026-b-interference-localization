@@ -11,11 +11,13 @@ dependencies = []
 
 [project.optional-dependencies]
 test = ["pytest>=7"]
+practice = ["websocket-client>=1.8,<2"]
 report = ["matplotlib>=3.6", "reportlab>=4", "pypdf>=5"]
 
 [project.scripts]
 b-simulator = "simulator_client.__main__:main"
 b-workflow = "workflow.__main__:main"
+b-practice = "practice_control.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
