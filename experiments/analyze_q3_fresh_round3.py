@@ -15,6 +15,30 @@ from experiments.analyze_q3_fresh_round2 import analyze,paired_comparison,write_
 from experiments.audit_q3_round3_journals import run as audit_journals
 
 
+def development_map_groups(cases):
+    """Group shared geometries, including source-count/radius/error variants.
+
+    This uses case definitions only, never outcomes. Original saved metadata is
+    retained in logs; the analysis corrects a legacy label that included N.
+    """
+    points=[frozenset((s['channel'],s['x'],s['y']) for s in c['sources']) for c in cases]
+    parent=list(range(len(cases)))
+    def root(i):
+        while parent[i]!=i:i=parent[i]
+        return i
+    for i,a in enumerate(points):
+        for j,b in enumerate(points[:i]):
+            if a<=b or b<=a:parent[root(i)]=root(j)
+    members=defaultdict(list)
+    for i in range(len(cases)):members[root(i)].append(i)
+    groups={}
+    for indices in members.values():
+        union=sorted(set().union(*(points[i] for i in indices)))
+        key='development-map-'+hashlib.sha256(json.dumps(union).encode()).hexdigest()[:20]
+        groups.update({cases[i]['case_id']:key for i in indices})
+    return groups
+
+
 def regret(rows,name):
     baseline={r['case_id']:r for r in rows if r['strategy']=='B'}
     selected=[r for r in rows if r['strategy']==name and r['case_id'] in baseline]
@@ -35,6 +59,15 @@ def regret(rows,name):
 def complete_analysis(paths,with_journals=True):
     started=time.process_time()
     result,rows=analyze(paths)
+    definitions=json.loads((ROOT/'research/q3_fresh_round3/development_input.json').read_text(encoding='utf-8'))
+    corrected=development_map_groups(definitions['cases'])
+    changes={}
+    for row in rows:
+        if row['case_id'] in corrected:
+            old=row['original_case_group'];new=corrected[row['case_id']]
+            row['recorded_original_case_group']=old;row['original_case_group']=new
+            if old!=new:changes[row['case_id']]=dict(recorded=old,analysis=new)
+    result['development_grouping_correction']=dict(method='Connected identical/subset channel-position geometries; ignores radius/error variants; definitions only',cases=changes)
     unique=[r for r in rows if r['deduplication_status']=='primary']
     grouped=defaultdict(list)
     for row in unique:grouped[row['suite_group']].append(row)
@@ -42,6 +75,7 @@ def complete_analysis(paths,with_journals=True):
         names=sorted({r['strategy'] for r in items})
         pairs=[('CR',name) for name in names if name not in ('B','CR') and 'CR' in names]
         pairs += [(a,b) for a,b in (('G1','G12'),('G12','G3'),('G3','G3W'),('G3','G3V')) if a in names and b in names]
+        pairs += [(p['baseline'],p['candidate']) for p in result['groups'][group]['paired'].values()]
         for a,b in pairs:
             result['groups'][group]['paired'][f'{a}_vs_{b}']=paired_comparison(items,a,b)
         result['groups'][group]['regret_vs_B']={name:regret(items,name) for name in names if name!='B'}

@@ -14,7 +14,7 @@ import time
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'src'),str(ROOT)]
 from experiments.run_q3_fresh import StressEngine
-from experiments.audit_q3_fresh_choices import assert_same_observation
+from experiments.audit_q3_fresh_choices import assert_same_observation,make_actual_branch
 from experiments.run_q3_fresh_round3 import make_policy
 from simulation.cases import Scenario,Source
 from simulator_client.state import Position
@@ -32,13 +32,29 @@ def proposal(data):
                     data['kind'],tuple(data['original_position']) if data['original_position'] is not None else None,data['anchor'])
 
 
-def replay(path,*,inspect_risks=False,max_risk_decisions=12,anchors=()):
+def actual_continuation(policy,world,choice,timeout_s=10):
+    """Evaluator-only counterfactual; never called by an online controller."""
+    client=make_actual_branch(world,policy.client.state,policy.history)
+    fork=policy.clone(client);fork.movable_tail=False;fork.tail_plan=[]
+    start=client.state.virtual_time_s;before=client.state.snapshot()
+    size=len(fork.history);result=dict(complete=False,remaining_s=None,error=None)
+    try:
+        apply_proposal(fork,choice);answer=fork.run(deadline=time.perf_counter()+timeout_s)
+        if not answer['completion_certified'] or client.state.session!='exited':raise RuntimeError('Uncertified actual branch exit')
+        result.update(complete=True,remaining_s=client.state.virtual_time_s-start)
+    except Exception as exc:result['error']=f'{type(exc).__name__}: {exc}'
+    result.update(before_public_state=before,after_public_state=client.state.snapshot(),
+                  future_action_history=plain(fork.history[size:]),terminal_session=client.state.session)
+    return result
+
+
+def replay(path,*,inspect_risks=False,inspect_actual=False,max_risk_decisions=12,anchors=()):
     raw=gzip.open(path,'rb').read();trace=json.loads(raw);row=trace['row']
     engine=StressEngine(scenario(trace['scenario']),anchors)
     policy,_=make_policy(row['strategy'],engine.client())
     decisions={d['action_index']:d for d in row['planner_stats'].get('decisions',[])}
     directory=path.parent/f"branches-{path.name.split('-')[1]}"/row['strategy']
-    expected=trace['search']['action_history'];risks=[];seen=[];risk_count=0
+    expected=trace['search']['action_history'];risks=[];actual=[];seen=[];risk_count=0
     started=time.perf_counter();cpu=time.process_time();error=None
     policy.client.enter()
     try:
@@ -60,6 +76,15 @@ def replay(path,*,inspect_risks=False,max_risk_decisions=12,anchors=()):
                     if len(matches)!=1:raise ValueError('Ambiguous legacy selected candidate')
                     selected=matches[0]
                 chosen=choices[selected]
+                if inspect_actual and selected:
+                    base=actual_continuation(policy,engine.scenario,choices[0])
+                    alt=actual_continuation(policy,engine.scenario,chosen)
+                    complete=base['complete'] and alt['complete']
+                    actual.append(dict(action_index=index,selected=chosen.label,complete=complete,
+                        baseline=base,candidate=alt,nominal_confirmation=record.get('confirmation'),
+                        actual_delta_s=alt['remaining_s']-base['remaining_s'] if complete else None,
+                        component_delta_s={k:alt['after_public_state']['time_breakdown'][k]-base['after_public_state']['time_breakdown'][k]
+                            for k in base['after_public_state']['time_breakdown']} if complete else None))
                 if (inspect_risks and selected and risk_count<max_risk_decisions and
                         policy.client.state.position.distance_to(Position(*chosen.actions[0].position))>=350):
                     risk_count+=1;planner=Round3Rollout();deadline=time.perf_counter()+10
@@ -86,7 +111,7 @@ def replay(path,*,inspect_risks=False,max_risk_decisions=12,anchors=()):
     except Exception as exc:error=f'{type(exc).__name__}: {exc}'
     return dict(case_id=row['case_id'],strategy=row['strategy'],replay_valid=error is None,replay_error=error,
         trace_sha256=hashlib.sha256(raw).hexdigest(),source_truth_used_only_in_replay_evaluator=True,
-        virtual_time_s=row['virtual_time_s'],physical_lower_bound_s=row['physical_lower_bound_s'],
+        virtual_time_s=row['virtual_time_s'],actual_counterfactuals=actual,physical_lower_bound_s=row['physical_lower_bound_s'],
         guarantee_lower_bound_s=row['guarantee_lower_bound_s'],time_over_physical_lower_bound=row['time_over_physical_lower_bound'],
         time_over_guarantee_lower_bound=row['time_over_guarantee_lower_bound'],risk_diagnostics=risks,
         cpu_s=time.process_time()-cpu,wall_s=time.perf_counter()-started)
@@ -96,6 +121,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--batch',type=Path,required=True)
     p.add_argument('--strategy',required=True);p.add_argument('--out',type=Path,required=True)
     p.add_argument('--risks',action='store_true');p.add_argument('--limit',type=int)
+    p.add_argument('--actual',action='store_true',help='Evaluator-only actual-world B continuation diagnostics')
     a=p.parse_args();manifest=json.loads((a.batch/'results.json').read_text())['manifest']
     assert manifest['status']=='completed'
     paths=sorted(a.batch.glob(f'trace-*-{a.strategy}.json.gz'))
@@ -103,8 +129,8 @@ def main():
     reports=[];a.out.mkdir(parents=True,exist_ok=False)
     for path in paths:
         case=json.loads(gzip.open(path,'rb').read())['row']['case_id']
-        r=replay(path,inspect_risks=a.risks,anchors=manifest.get('metadata',{}).get('anchors',{}).get(case,()))
-        reports.append({k:v for k,v in r.items() if k!='risk_diagnostics'})
+        r=replay(path,inspect_risks=a.risks,inspect_actual=a.actual,anchors=manifest.get('metadata',{}).get('anchors',{}).get(case,()))
+        reports.append({k:v for k,v in r.items() if k not in ('risk_diagnostics','actual_counterfactuals')})
         with gzip.open(a.out/(path.stem+'.replay.json.gz'),'wt',encoding='utf-8',compresslevel=1) as f:json.dump(r,f,ensure_ascii=False)
         (a.out/'summary.json').write_text(json.dumps(dict(status='running',reports=reports),indent=2),encoding='utf-8')
         print(json.dumps({k:r[k] for k in ('case_id','strategy','replay_valid','replay_error')}),flush=True)

@@ -11,7 +11,7 @@ python -m pytest tests/test_q3_fresh.py tests/test_q3_fresh_experiment.py tests/
 先审计已保存的结果，比重新运行带时间截止的规划器更适合核对报告数字：
 
 ```sh
-python -m experiments.analyze_q3_fresh_round3 --batches reference_development stage1_g1 stage1_g12 --out reproduced-stage1
+python -m experiments.analyze_q3_fresh_round3 --batches reference_development stage1_g1 stage1_g12 --out reproduced-stage1/analysis.json
 ```
 
 新运行必须指定一个尚不存在的输出目录，示例：
