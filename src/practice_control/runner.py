@@ -20,6 +20,10 @@ class PracticeOwnershipError(SessionError):
     pass
 
 
+class ControllerBusyError(BridgeError):
+    """Another process currently holds the shared simulator or dataset lock."""
+
+
 def assert_owned(state, problem, case, *, api=False):
     if (not isinstance(state, dict) or state.get("mode") != "practice"
             or state.get("problem_no") != problem or state.get("case_code") != case
@@ -81,7 +85,7 @@ def controller_lock(path):
                 import fcntl
                 fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError as exc:
-            raise BridgeError("Another practice controller holds the simulator lock") from exc
+            raise ControllerBusyError("Another practice controller holds the simulator lock") from exc
         try:
             yield
         finally:

@@ -10,6 +10,7 @@ param(
     [double]$MaxHours = 0,
     [string]$StopFile = '',
     [switch]$Resume,
+    [switch]$Cooperative,
     [switch]$Background,
     [string]$PythonPath = ''
 )
@@ -29,6 +30,7 @@ $runArguments = @('-u', '-m', 'practice_control.collect', '--q3', "$Q3", '--q4',
 if ($MaxHours -gt 0) { $runArguments += @('--max-hours', $MaxHours.ToString([System.Globalization.CultureInfo]::InvariantCulture)) }
 if ($StopFile) { $runArguments += @('--stop-file', [System.IO.Path]::GetFullPath($StopFile)) }
 if ($Resume) { $runArguments += '--resume' }
+if ($Cooperative) { $runArguments += '--cooperative' }
 
 if ($Background) {
     # Start-Process joins ArgumentList; quote each argument for Windows argv,
@@ -46,7 +48,7 @@ if ($Background) {
         -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath
     [pscustomobject]@{
         pid = $process.Id; dataset = $datasetPath; stdout = $stdoutPath; stderr = $stderrPath
-        mode = 'practice'; q3_target = $Q3; q4_target = $Q4
+        mode = 'practice'; q3_target = $Q3; q4_target = $Q4; cooperative = [bool]$Cooperative
     } | ConvertTo-Json -Compress
     return
 }

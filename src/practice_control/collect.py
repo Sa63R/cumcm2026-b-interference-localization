@@ -8,6 +8,7 @@ The collector never retries an uncertain lifecycle mutation or replaces a case.
 from __future__ import annotations
 
 import argparse
+from contextlib import nullcontext
 from datetime import datetime, timezone
 import json
 import math
@@ -17,7 +18,8 @@ import sys
 import time
 from uuid import uuid4
 
-from .bridge import BridgeError, PracticeBridge, PracticeRequestFailed, _require_idle
+from .bridge import BridgeError, PracticeBridge, PracticeRequestFailed, UnsafeSimulatorState, _require_idle
+from .coordination import CollectionStopped, CooperativeTurns
 from .runner import controller_lock, run_once, validate_run
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -50,10 +52,6 @@ def _event(path, payload):
         stream.flush()
         os.fsync(stream.fileno())
     print(json.dumps(payload, ensure_ascii=False, allow_nan=False), flush=True)
-
-
-class CollectionStopped(Exception):
-    """A requested pause was reached before the next start request."""
 
 
 class SpacedPracticeBridge:
@@ -112,7 +110,11 @@ def _is_rejected_start_only(episode, error):
     if (not isinstance(error, PracticeRequestFailed)
             or getattr(error, "error_code", None) != "server_timeout"):
         return False
-    if not episode.is_dir() or {item.name for item in episode.iterdir()} != {"start_error.json"}:
+    return _only_start_error(episode, error)
+
+
+def _only_start_error(episode, error):
+    if episode is None or not episode.is_dir() or {item.name for item in episode.iterdir()} != {"start_error.json"}:
         return False
     evidence = episode / "start_error.json"
     if evidence.is_symlink() or not evidence.is_file():
@@ -130,8 +132,20 @@ def _require_recovery_idle(state):
         raise BridgeError("Practice recovery requires an idle simulator with no open or entered API")
 
 
+def _is_prestart_race(episode, error):
+    return (isinstance(error, UnsafeSimulatorState)
+            and str(error) in {
+                "A formal-test state is present; practice control stopped",
+                "A session is already active; it will not be replaced",
+                "Clear the completed practice case explicitly before starting",
+                "The simulator state changed before practice could start",
+            }
+            and _only_start_error(episode, error))
+
+
 def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226,
             max_actions=20000, max_hours=None, stop_file=None, resume=False,
+            cooperative=False,
             bridge_factory=PracticeBridge, episode_runner=run_once,
             importer=None, statistics=None):
     """Collect until the per-problem targets are met or a safe stop is reached.
@@ -144,6 +158,8 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
             raise ValueError("Each target must be an integer from 0 to 1000000")
     if q3 + q4 == 0:
         raise ValueError("Request at least one practice episode")
+    if type(cooperative) is not bool:
+        raise ValueError("cooperative must be boolean")
     if max_hours is not None and (type(max_hours) not in (int, float)
                                   or not math.isfinite(max_hours) or max_hours <= 0):
         raise ValueError("max_hours must be finite and greater than zero")
@@ -175,14 +191,19 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
             stop_reason = "max_hours"
         return stop_reason is not None
 
-    with controller_lock(simulator_dir / ".practice-control" / "controller.lock"):
-        if not resume and (output.exists() or raw.exists()):
+    simulator_lock = simulator_dir / ".practice-control" / "controller.lock"
+    existed_before_lock = output.exists() or raw.exists()
+    with controller_lock(raw / "collector.lock"), (nullcontext() if cooperative else controller_lock(simulator_lock)):
+        if not resume and (existed_before_lock or output.exists()
+                           or any(item.name != "collector.lock" for item in raw.iterdir())):
             raise ValueError("Output already exists; use --resume to import saved episodes and continue")
         output.parent.mkdir(parents=True, exist_ok=True)
         episodes.mkdir(parents=True, exist_ok=True)
         prior = json.loads(progress_path.read_text(encoding="utf-8")) if progress_path.is_file() else {}
         errors = list(prior.get("errors", []))
         recovery_events = list(prior.get("recovery_events", []))
+        coordination_events = list(prior.get("coordination_events", []))
+        waiting = None
         start_recovery_streak = 0
         collection_started_at = prior.get("collection_started_at", _utc_now())
         recovered = 0
@@ -216,12 +237,24 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
                 "errors": errors, "stop_reason": stop_reason,
                 "recovery_events": recovery_events, "start_recovery_count": len(recovery_events),
                 "consecutive_start_recoveries": start_recovery_streak,
+                "cooperative": cooperative, "waiting": waiting,
+                "coordination_events": coordination_events,
                 "current_episode": str(current_episode) if current_episode else None,
                 "last_episode": last_episode,
             }
             _atomic_json(progress_path, report)
             _event(raw / "events.jsonl", report)
             return counts
+
+        def on_wait(reason, seconds, state):
+            nonlocal waiting
+            waiting = {"reason": reason, "wait_seconds": seconds, "state": state,
+                       "simulator_lock_released": True, "since": _utc_now()}
+            publish("waiting_for_simulator")
+
+        def on_coordination_event(event):
+            coordination_events.append({"at": _utc_now(), **event})
+            publish("waiting_for_simulator")
 
         try:
             # Recover DB imports after a crash between saved registration and
@@ -239,32 +272,77 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
                 publish("paused")
                 return report
             with bridge_factory(debug_port) as native:
-                # Never clear/adopt/abort an existing practice or formal case.
-                _require_idle(native.current_test())
+                if not cooperative:
+                    _require_idle(native.current_test())
                 bridge = SpacedPracticeBridge(native, should_stop=should_stop)
+                turns = CooperativeTurns(native, simulator_lock, should_stop=should_stop,
+                                         on_wait=on_wait, on_event=on_coordination_event) if cooperative else None
+                pending_recovery = None
                 while (problem := _next_problem(counts, targets)) is not None:
                     if should_stop():
                         publish("paused")
                         return report
-                    current_episode = episodes / (
-                        f"p{problem}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')}-{uuid4().hex[:8]}"
-                    )
-                    publish("running")
-                    variant = "efficient" if problem == 3 else "triangular"
                     try:
-                        record = episode_runner(
-                            bridge, problem=problem, robot_id=robot_id,
-                            variant=variant, solver=run_collection_search,
-                            method_label=variant + "+bounded_refinement",
-                            method_metadata={"dataset_refinement": dict(REFINEMENT_CONFIG)},
-                            max_actions=max_actions, output=current_episode, simulator_dir=simulator_dir,
-                        )
+                        with turns.turn() if turns else nullcontext():
+                            waiting = None
+                            if turns and turns.idle_wait_required:
+                                # A foreign session may have ended just now.
+                                # Ordinary own-case yielding keeps last_start.
+                                bridge.last_start = time.monotonic()
+                            if pending_recovery is not None:
+                                _require_recovery_idle(native.current_test())
+                                bridge.last_start = time.monotonic()
+                                pending_recovery.update(status="ready", finished_at=_utc_now())
+                                pending_recovery = None
+                            current_episode = episodes / (
+                                f"p{problem}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')}-{uuid4().hex[:8]}"
+                            )
+                            publish("running")
+                            variant = "efficient" if problem == 3 else "triangular"
+                            try:
+                                record = episode_runner(
+                                    bridge, problem=problem, robot_id=robot_id,
+                                    variant=variant, solver=run_collection_search,
+                                    method_label=variant + "+bounded_refinement",
+                                    method_metadata={"dataset_refinement": dict(REFINEMENT_CONFIG)},
+                                    max_actions=max_actions, output=current_episode, simulator_dir=simulator_dir,
+                                )
+                            except PracticeRequestFailed as exc:
+                                if (cooperative and _is_rejected_start_only(current_episode, exc)
+                                        and start_recovery_streak < 3):
+                                    # Reconcile before releasing this case lock.
+                                    _require_recovery_idle(native.current_test())
+                                raise
+                            start_recovery_streak = 0
+                            _atomic_json(current_episode / "collector-result.json", record)
+                            imported = importer(output, current_episode)
+                            incomplete_streak = 0 if imported.get("complete") is True else incomplete_streak + 1
+                            counts = publish("running", last_episode={**record, "dataset_import": imported})
+                            summary = json.loads((current_episode / "summary.json").read_text(encoding="utf-8"))
+                            error = summary.get("error")
+                            if error and not (isinstance(error, str) and error.startswith("SearchIncomplete:")):
+                                raise BridgeError(f"Solver failure preserved in {current_episode.name}: {error}")
+                            if incomplete_streak >= 3:
+                                raise BridgeError("Three consecutive incomplete episodes preserved; inspect the strategy before resuming")
+                            current_episode = None
+                    except UnsafeSimulatorState as exc:
+                        if not cooperative or not _is_prestart_race(current_episode, exc):
+                            raise
+                        # An explicit guard refusal, with no successful-start
+                        # evidence, can yield. Unknown mutations never enter here.
+                        on_coordination_event({"action": "yield_after_start_race", "error": str(exc),
+                                               "episode": str(current_episode) if current_episode else None})
+                        current_episode = None
+                        turns.wait(10.0, "start_race_lost")
+                        bridge.last_start = time.monotonic()
+                        continue
                     except PracticeRequestFailed as exc:
                         if not _is_rejected_start_only(current_episode, exc) or start_recovery_streak >= 3:
                             raise
                         errors.append({"at": _utc_now(), "type": type(exc).__name__, "error": str(exc),
                                        "episode": str(current_episode), "error_code": exc.error_code})
-                        _require_recovery_idle(native.current_test())
+                        if not cooperative:
+                            _require_recovery_idle(native.current_test())
                         delay = (10, 20, 40)[start_recovery_streak]
                         start_recovery_streak += 1
                         recovery = {"at": _utc_now(), "episode": str(current_episode),
@@ -275,37 +353,30 @@ def collect(*, output, simulator_dir, robot_id, q3=500, q4=500, debug_port=19226
                         publish("recovering")
                         wait_until = time.monotonic() + delay
                         try:
-                            while time.monotonic() < wait_until:
-                                if should_stop():
-                                    raise CollectionStopped("Pause requested during rejected-start recovery")
-                                time.sleep(min(0.5, max(0.0, wait_until - time.monotonic())))
-                            _require_recovery_idle(native.current_test())
+                            if turns:
+                                turns.wait(delay, "rejected_start_backoff")
+                            else:
+                                while time.monotonic() < wait_until:
+                                    if should_stop():
+                                        raise CollectionStopped("Pause requested during rejected-start recovery")
+                                    time.sleep(min(0.5, max(0.0, wait_until - time.monotonic())))
+                                _require_recovery_idle(native.current_test())
                         except CollectionStopped:
                             recovery.update(status="paused", finished_at=_utc_now())
                             raise
                         except Exception:
                             recovery.update(status="aborted", finished_at=_utc_now())
                             raise
-                        recovery.update(status="ready", finished_at=_utc_now())
+                        if turns:
+                            recovery.update(status="waiting_for_simulator")
+                            pending_recovery = recovery
+                        else:
+                            recovery.update(status="ready", finished_at=_utc_now())
                         publish("recovering")
                         current_episode = None
-                        # The rejected attempt and its evidence stay immutable.
-                        # The next loop creates a new practice request and dir.
                         continue
-                    start_recovery_streak = 0
-                    _atomic_json(current_episode / "collector-result.json", record)
-                    imported = importer(output, current_episode)
-                    incomplete_streak = 0 if imported.get("complete") is True else incomplete_streak + 1
-                    counts = publish("running", last_episode={**record, "dataset_import": imported})
-                    # SearchIncomplete is useful labelled training data. Other
-                    # solver failures must be inspected instead of repeating.
-                    summary = json.loads((current_episode / "summary.json").read_text(encoding="utf-8"))
-                    error = summary.get("error")
-                    if error and not (isinstance(error, str) and error.startswith("SearchIncomplete:")):
-                        raise BridgeError(f"Solver failure preserved in {current_episode.name}: {error}")
-                    if incomplete_streak >= 3:
-                        raise BridgeError("Three consecutive incomplete episodes preserved; inspect the strategy before resuming")
-                    current_episode = None
+                    if turns and _next_problem(counts, targets) is not None:
+                        turns.yield_turn()
                 publish("complete")
                 return report
         except CollectionStopped:
@@ -335,6 +406,7 @@ def main(argv=None):
     parser.add_argument("--max-hours", type=float)
     parser.add_argument("--stop-file", type=Path)
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--cooperative", action="store_true", help="Share the simulator by yielding between complete episodes")
     parser.add_argument("--status", action="store_true", help="Read existing progress without connecting to the simulator")
     args = parser.parse_args(argv)
     if args.status:

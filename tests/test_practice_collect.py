@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from practice_control import collect as module
-from practice_control.bridge import BridgeError, MutationOutcomeUnknown, PracticeRequestFailed
+from practice_control.bridge import BridgeError, MutationOutcomeUnknown, PracticeRequestFailed, UnsafeSimulatorState
 from practice_control.runner import controller_lock
 
 
@@ -405,3 +405,142 @@ def test_transport_uncertainty_never_uses_rejected_start_recovery(setup, excepti
     with pytest.raises(type(exception)):
         execute(setup, episode_runner=runner, q3=1, q4=0)
     assert len(setup["bridge"].starts) == 1
+
+
+def test_cooperative_holds_writer_lock_but_yields_simulator_between_episodes(setup, monkeypatch):
+    original_sleep = setup["clock"].sleep
+    yielded = []
+    raw = setup["db"].parent / "training-raw"
+    lock = setup["simulator"] / ".practice-control" / "controller.lock"
+
+    def sleep(seconds):
+        if len(setup["runs"]) == 1:
+            with controller_lock(lock):
+                yielded.append(setup["clock"].now)
+            with pytest.raises(BridgeError):
+                with controller_lock(raw / "collector.lock"):
+                    pytest.fail("Dataset writer lock was released while yielding")
+        original_sleep(seconds)
+
+    monkeypatch.setattr(module.time, "sleep", sleep)
+    result = execute(setup, cooperative=True, q3=1, q4=1)
+    assert result["status"] == "complete"
+    assert setup["bridge"].starts == [(3, 5.0), (4, 10.0)]
+    assert len(yielded) == 10  # Exactly five seconds; no second redundant wait.
+    assert result["cooperative"] is True
+    events = [json.loads(line) for line in (raw / "events.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert any(e["status"] == "waiting_for_simulator" and e["waiting"]["reason"] == "yield_after_episode" for e in events)
+
+
+def test_cooperative_simulator_lock_is_held_through_dataset_import(setup):
+    original_import = setup["store"].import_episode
+
+    def importer(db, episode):
+        with pytest.raises(BridgeError):
+            with controller_lock(setup["simulator"] / ".practice-control" / "controller.lock"):
+                pytest.fail("Another process could acquire the simulator during import")
+        return original_import(db, episode)
+
+    result = execute(setup, cooperative=True, importer=importer, q3=1, q4=0)
+    assert result["status"] == "complete"
+
+
+def test_cooperative_waits_for_other_practice_then_requires_idle_interval(setup, monkeypatch):
+    setup["bridge"].state = {"active": True, "mode": "practice", "problem_no": 4,
+                             "phase": "running", "case_code": "ABCD-EFGH-IJKL-MNOP"}
+    original_sleep = setup["clock"].sleep
+
+    def sleep(seconds):
+        original_sleep(seconds)
+        if setup["clock"].now >= 10:
+            setup["bridge"].state = {"active": False, "mode": "", "case_code": "", "phase": "",
+                                     "api_open": False, "entered": False}
+
+    monkeypatch.setattr(module.time, "sleep", sleep)
+    result = execute(setup, cooperative=True, q3=1, q4=0)
+    assert result["status"] == "complete"
+    assert setup["bridge"].starts == [(3, 15.0)]
+
+
+def test_same_dataset_writer_lock_refuses_a_second_collector_without_simulator_contact(setup):
+    with controller_lock(setup["db"].parent / "training-raw" / "collector.lock"):
+        with pytest.raises(BridgeError):
+            execute(setup, cooperative=True, resume=True)
+    assert setup["bridge"].starts == []
+
+
+def test_cooperative_backoff_releases_simulator_and_rechecks_idle_before_restart(setup, monkeypatch):
+    failed = False
+    original_sleep = setup["clock"].sleep
+    unlocked_waits = []
+
+    def runner(control, **kwargs):
+        nonlocal failed
+        if not failed:
+            failed = True
+            return reject_start(control, kwargs)
+        return setup["runner"](control, **kwargs)
+
+    def sleep(seconds):
+        if failed and 5 <= setup["clock"].now < 15:
+            with controller_lock(setup["simulator"] / ".practice-control" / "controller.lock"):
+                unlocked_waits.append(setup["clock"].now)
+        original_sleep(seconds)
+
+    monkeypatch.setattr(module.time, "sleep", sleep)
+    result = execute(setup, cooperative=True, episode_runner=runner, q3=1, q4=0)
+    assert result["status"] == "complete"
+    assert setup["bridge"].starts == [(3, 5.0), (3, 20.0)]
+    assert len(unlocked_waits) == 20
+    assert result["recovery_events"][0]["status"] == "ready"
+
+
+def test_cooperative_unknown_metadata_before_episode_is_fatal(setup):
+    def invalid_state():
+        raise UnsafeSimulatorState("The simulator returned an unrecognized state")
+
+    setup["bridge"].current_test = invalid_state
+    with pytest.raises(UnsafeSimulatorState):
+        execute(setup, cooperative=True, q3=1, q4=0)
+    assert setup["clock"].now == 0
+    assert setup["bridge"].starts == []
+
+
+@pytest.mark.parametrize("message,extra_file", [
+    ("The simulator returned an unrecognized state", None),
+    ("A session is already active; it will not be replaced", "created.json"),
+])
+def test_cooperative_unknown_or_started_evidence_does_not_become_retry(setup, message, extra_file):
+    def runner(control, **kwargs):
+        error = UnsafeSimulatorState(message)
+        kwargs["output"].mkdir()
+        (kwargs["output"] / "start_error.json").write_text(
+            json.dumps({"type": type(error).__name__, "error": str(error)}), encoding="utf-8")
+        if extra_file:
+            (kwargs["output"] / extra_file).write_text("{}", encoding="utf-8")
+        raise error
+
+    with pytest.raises(UnsafeSimulatorState):
+        execute(setup, cooperative=True, episode_runner=runner, q3=1, q4=0)
+    assert setup["clock"].now == 0
+
+
+def test_cooperative_definite_prestart_guard_race_yields_without_counting_a_case(setup):
+    attempts = []
+
+    def runner(control, **kwargs):
+        attempts.append(kwargs["output"])
+        if len(attempts) == 1:
+            error = UnsafeSimulatorState("The simulator state changed before practice could start")
+            kwargs["output"].mkdir()
+            (kwargs["output"] / "start_error.json").write_text(
+                json.dumps({"type": type(error).__name__, "error": str(error)}), encoding="utf-8")
+            raise error
+        return setup["runner"](control, **kwargs)
+
+    result = execute(setup, cooperative=True, episode_runner=runner, q3=1, q4=0)
+    assert result["status"] == "complete"
+    assert result["counts"] == {"3": 1, "4": 0}
+    assert setup["bridge"].starts == [(3, 15.0)]
+    assert attempts[0] != attempts[1]
+    assert result["coordination_events"][0]["action"] == "yield_after_start_race"
