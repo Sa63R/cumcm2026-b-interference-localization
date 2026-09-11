@@ -1,0 +1,12 @@
+{
+  "name": "rl_trial1_cpu_frozen",
+  "entrypoint": "research_rl:run_rl_search",
+  "kwargs": {
+    "checkpoint": "research/round3/rl_reference/trial1-inference.pt",
+    "device": "cpu",
+    "num_threads": 1,
+    "deterministic": true,
+    "max_decisions": 256,
+    "max_active_probes": 6
+  }
+}
