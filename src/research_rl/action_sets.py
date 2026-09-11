@@ -1,7 +1,7 @@
 """Explicit candidate-set identity, independent of tensor feature dimension."""
 
 ANYPOINT_SCHEMAS = ("anypoint_current", "anypoint_targets")
-ACTION_SCHEMA_NAMES = ("base", "axis_quantiles", *ANYPOINT_SCHEMAS)
+ACTION_SCHEMA_NAMES = ("base", "axis_quantiles", "range_probes", *ANYPOINT_SCHEMAS)
 
 
 def action_schema(name="base"):
@@ -28,6 +28,12 @@ def action_schema(name="base"):
                              "point_pending": "original-cover-ledger-only-zero-elsewhere",
                              "scan_focus": "original-cover-focus-unchanged"},
                 "network": "mlp-flat-only"}
+    if name == "range_probes":
+        return {"version": 1, "name": "range_probes", "extends": "v3-base-probes",
+                "point_rule": "current-to-enclosing-center-midpoint-first-bearing-perpendicular",
+                "offsets_m": [-150.0, -50.0, 50.0, 150.0],
+                "max_extra_per_source": 4, "option_id": 7,
+                "minimum_reception_margin_m": 1e-7}
     raise ValueError("unknown probe candidate family")
 
 
@@ -68,6 +74,9 @@ def controller_for(version, schema):
             from .anypoint_scan import AnyPointCurrentRLSearch, AnyPointTargetsRLSearch
             return (AnyPointCurrentRLSearch if schema["name"] == "anypoint_current"
                     else AnyPointTargetsRLSearch)
+        if schema["name"] == "range_probes":
+            from .range_probes import RangeProbeRLSearch
+            return RangeProbeRLSearch
         from .axis_probes import AxisProbeRLSearch
         return AxisProbeRLSearch
     if version == "v3":
