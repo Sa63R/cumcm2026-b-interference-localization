@@ -49,7 +49,7 @@ def render(data):
         table(lines, ["对照(后者−前者)", "完整配对", "原始组", "平均差", "均值变化%", "组bootstrap95%差区间", "胜/负/平"], comparisons)
         table(lines, ["策略", "移动", "测量", "切换", "清除", "失败清除次数", "真实后清拖尾", "平均/最大策略墙钟", "平均规划墙钟", "规划/改动作数"],
               [[n, number(stats[n]['mean_components']['movement_s']), number(stats[n]['mean_components']['detection_s']),
-                number(stats[n]['mean_components']['switching_s']), number(stats[n]['mean_components']['removal_s']),
+                number(stats[n]['mean_components']['switching_s']), number(stats[n]['mean_components']['optical_s']+stats[n]['mean_components']['removal_s']),
                 stats[n]['failed_clears'], number(stats[n]['mean_confirmation_tail_s']),
                 f"{number(stats[n]['mean_policy_wall_s'])}/{number(stats[n]['max_policy_wall_s'])}",
                 number(stats[n]['mean_planning_wall_s']), f"{stats[n]['planner_calls']}/{stats[n]['planner_overrides']}"] for n in names])

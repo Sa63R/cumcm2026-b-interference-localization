@@ -47,8 +47,8 @@ def main():
         ax.axhline(mean,color='#246BCE',lw=1.4,label='Paired mean and 95% interval')
         ax.axhline(0,color='#333333',lw=1,linestyle='--')
         ax.set_title(title,fontsize=11,fontweight='bold')
-        ax.text(.04,.97,f'Mean {mean:+.1f} s\n95% [{low:+.1f}, {high:+.1f}]',transform=ax.transAxes,
-                va='top',fontsize=9,bbox=dict(facecolor='white',edgecolor='none',alpha=.85))
+        ax.text(.04,.03,f'Mean {mean:+.1f} s\n95% [{low:+.1f}, {high:+.1f}]',transform=ax.transAxes,
+                va='bottom',fontsize=9,bbox=dict(facecolor='white',edgecolor='none',alpha=.85))
         ax.set_xlabel('B / guarantee lower bound'+ ('*' if group=='reconstruction' else ''),fontsize=9)
         ax.grid(alpha=.14)
         ax.spines[['top','right']].set_visible(False)
