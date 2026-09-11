@@ -1,0 +1,76 @@
+{
+  "scope": "Q3 research round2",
+  "started_at": "2026-09-11T18:24:15+08:00",
+  "protected_existing_branches": {
+    "main": "f5838946547317bfe6f942c2e4a02b5bd8d6e6ca",
+    "research/q3-deep-rl": "24097861e48df1dfe35f8ec3774e589c004a3f63",
+    "research/q3-deep-rl-cpu-v2": "24097861e48df1dfe35f8ec3774e589c004a3f63",
+    "research/q3-geometric": "0695811521852923135ad6cfe96e04568e9cb18e",
+    "research/q3-state-modes-v2": "6c26472e2bc5fd9f1048192fc06ea8dc2b507e84",
+    "research/q3-state-search": "8c624d08c61c0e411f93345d63a932b01ead4868",
+    "research/q4-state-search": "d5c719a3656ae8bf819ee602bdee4ac48d8be80e"
+  },
+  "baseline_commit": "8c624d08c61c0e411f93345d63a932b01ead4868",
+  "baseline_spec": "experiments/state_search_candidate_relocating_cover_v1.json",
+  "archive_branch": "research/q3-round2",
+  "created_experiments": {
+    "terminal_project": {
+      "branch": "research/q3-r2-terminal-project",
+      "directory": "q3-r2-terminal-project",
+      "pilot_seeds": [204101, 204116],
+      "confirmation_seeds": [205117, 205180],
+      "ablation_scope": "Uses same development cases as terminal_cover; not independent from that pilot. New geometry uses continuously projected final cover, no source-truth input."
+    },
+    "terminal_cover": {
+      "branch": "research/q3-r2-terminal-cover",
+      "directory": "q3-r2-terminal-cover",
+      "pilot_seeds": [204101, 204116],
+      "confirmation_seeds": [204117, 204180]
+    },
+    "negative_hull": {
+      "branch": "research/q3-r2-negative-hull",
+      "directory": "q3-r2-negative-hull",
+      "pilot_seeds": [203101, 203116],
+      "confirmation_seeds": [203117, 203180]
+    },
+    "feedback": {
+      "branch": "research/q3-r2-feedback",
+      "directory": "q3-r2-feedback",
+      "pilot_seeds": [
+        200101,
+        200116
+      ],
+      "coverage_dev_seeds": [
+        202101,
+        202164
+      ],
+      "coverage_dev_reason": "One fixed 64-pair batch, unchanged policy, because 88 eligible feedback comparisons produced only one intervention in the original 16 cases. Development only, no promotion or repeat-until-significant sampling; confirmation gate remains unchanged.",
+      "confirmation_seeds": [
+        200117,
+        200180
+      ]
+    },
+    "clear_lens": {
+      "branch": "research/q3-r2-clear-lens",
+      "directory": "q3-r2-clear-lens",
+      "pilot_seeds": [
+        200101,
+        200116
+      ],
+      "confirmation_seeds": [
+        201117,
+        201180
+      ]
+    }
+  },
+  "reserved_final_seeds": [
+    210001,
+    210256
+  ],
+  "reserved_stress_seeds": [
+    211001,
+    211028
+  ],
+  "real_database_scope": "validation_only; no distribution fitting; historical exact-prefix replay only; no true interactive counterfactual simulator",
+  "termination_scope": "Exhaust tested evidence-backed mechanisms, not a proof of theoretical optimality; do not terminate goal just for one failed candidate."
+}
