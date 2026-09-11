@@ -1,6 +1,6 @@
 # 恢复R26分组覆盖访问研究
 
-完整HEAD `1fb1769c3056b42aea0a32d41265b590dd000655`，唯一前置提交为可靠R12 `81aa6e1a1231a2358cf098fbba3fdd0557b540ef`。完整增量包为 `../q4_round2/archives/sector-service-rejected.bundle`，SHA256 `5928e874f78ebab520c31649094ba8a0478e9cbc53ac5bbfd46ead85e910923d`，大小83344901字节。当前仅准备归档，状态 **archived_pending_cleanup**；工作树、本地与远程分支均保留，等待root核对并提交推送归档后再处理清理。
+完整HEAD `1fb1769c3056b42aea0a32d41265b590dd000655`，唯一前置提交为可靠R12 `81aa6e1a1231a2358cf098fbba3fdd0557b540ef`。完整增量包为 `../q4_round2/archives/sector-service-rejected.bundle`，SHA256 `5928e874f78ebab520c31649094ba8a0478e9cbc53ac5bbfd46ead85e910923d`，大小83344901字节。归档已随core提交 `3e2226f5246ddd7ae59ef5a8e92a8e3a37d1bcf5` 推送。当前状态 **archived_and_removed**：R26工作树与本地、远程分支已清理，完整bundle、读者副本及独立恢复仓库保留。CLEANUP.json记录确切目标与引用变更；本次清理说明尚待root提交。
 
 已用本轮专用全新bare仓库，仅depth-1取得R12（可达提交数1），确认目标HEAD不存在，再从bundle恢复。HEAD/tree一致；315个新增或修改blob、69个冻结文件、368个原始文件的Git对象和SHA256逐字节核验通过。R12全部49个src文件均不变，明确含44个.py及5个.gitkeep。结果目录全部270个文件、旧烟测全部7个文件均核对，不只比较JSON语义。
 

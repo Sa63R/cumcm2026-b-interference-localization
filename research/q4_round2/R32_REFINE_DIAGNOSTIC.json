@@ -1,0 +1,717 @@
+{
+  "scope": "Refinement of four pinned R30 layouts; no new layout or case",
+  "r30_input_sha256": "6ee1259d4748b2a0b50c0d4b1225ed60455fb537c2e14e8f346966b35c985c6c",
+  "protocol_sha256": "073ea65429f20dadc0e7382e8c5672dcd8bf00cc389cc555122a0fe4bb71a6f8",
+  "script_sha256": "7729f61031caa89817519a5582e67953f1b586c72d274f346398016200e95008",
+  "source_sha256": {
+    "q4-r12-joint-continuation\\src\\planning\\q4_directional_cover.py": "e863b3f0fb83e1deba8d1a24c4b929b8fe1caca9927f8b99e514b1deea6da5c1",
+    "q4-r12-joint-continuation\\src\\simulator_client\\state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42"
+  },
+  "certificate_budget": {
+    "arena_radius": 1800.0,
+    "reception_radius": 1000.0,
+    "max_depth": 20,
+    "max_cells": 800000,
+    "range_margin_m": 1e-05,
+    "orientation_margin_m": 1e-07
+  },
+  "results": [
+    {
+      "r30_index": 4,
+      "r30_proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i7-o13-r999-half0.json.gz",
+      "r30_proof_raw_sha256": "e59714149a81d655c188a469c03191073dc8a7d2e9978a88c2816ba6b0e7c590",
+      "r30_proof_gzip_sha256": "95d715fa7906fa937ebc9ef6669d019938bfb4e419ba2c745fb74c2ca3e0a59d",
+      "inner_count": 7,
+      "outer_count": 13,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1858.8700957095093,
+      "outer_half_step_phase": false,
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          622.8663120568749,
+          781.0496509855618
+        ],
+        [
+          -222.29841302235803,
+          973.9529842696418
+        ],
+        [
+          -900.0678990345166,
+          433.44985537844065
+        ],
+        [
+          -900.0678990345167,
+          -433.4498553784405
+        ],
+        [
+          -222.29841302235826,
+          -973.9529842696418
+        ],
+        [
+          622.8663120568747,
+          -781.0496509855619
+        ],
+        [
+          1055.95857012534,
+          -1529.8200975611242
+        ],
+        [
+          224.06203036271916,
+          -1845.3168398063287
+        ],
+        [
+          -659.1644203158185,
+          -1738.0737325305827
+        ],
+        [
+          -1391.3842460924116,
+          -1232.6588791912109
+        ],
+        [
+          -1804.8547090871305,
+          -444.8567317789967
+        ],
+        [
+          -1804.8547090871302,
+          444.85673177899713
+        ],
+        [
+          -1391.3842460924113,
+          1232.658879191211
+        ],
+        [
+          -659.1644203158177,
+          1738.073732530583
+        ],
+        [
+          224.0620303627188,
+          1845.3168398063287
+        ],
+        [
+          1055.958570125342,
+          1529.820097561123
+        ],
+        [
+          1645.947727152544,
+          863.8600072954267
+        ],
+        [
+          1858.8700957095093,
+          0.0
+        ],
+        [
+          1645.9477271525443,
+          -863.8600072954265
+        ]
+      ],
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        20
+      ],
+      "route_length_m": 17741.96045478833,
+      "pure_movement_s": 3548.3920909576655,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "4f7ae9694d9370cef4468cce1387271117e5a3e312cef9f704542a8e8dee86ad",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 20,
+        "max_cells": 800000,
+        "visited_cells": 1228,
+        "deepest_level": 19,
+        "outside_leaves": 368,
+        "covered_leaves": 549,
+        "counterexample": {
+          "source": [
+            -900.10986328125,
+            -18.896484375
+          ],
+          "normal": [
+            -1.0,
+            1.3545678353783039e-12
+          ],
+          "local_stations": [
+            [
+              -900.0678990345167,
+              -433.4498553784405
+            ],
+            [
+              -900.0678990345166,
+              433.44985537844065
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "max_projection_m": -0.041964246120680455
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 900.3081933970863,
+        "receivable_range_station_count": 3,
+        "max_local_projection_m": -0.041964246120680455,
+        "min_unreachable_distance_margin_m": 0.002684186787746512
+      },
+      "certificate_runtime_s": 0.013581500010332093,
+      "proof_file": "R32_PROOFS/i7-o13-r999-half0.json.gz",
+      "proof_raw_sha256": "05df66416ae0c8e482d7012662615ef7814ee1ffc525bb117c839f6cb304ba77",
+      "proof_gzip_sha256": "00119e286df7b64a1d6112f31f031b7fc914e99ab8ccfad06e51dbef8b21ff06"
+    },
+    {
+      "r30_index": 5,
+      "r30_proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i7-o13-r999-half1.json.gz",
+      "r30_proof_raw_sha256": "b17aaec216c9c8ab89c5373f3be1b1dcbd1f152f93f2bd3c2ace7e43a6aa4ada",
+      "r30_proof_gzip_sha256": "24ec09e778cc9fb89255dba595897cc212f7bcd6229ef250af8ad3baf3c6eec9",
+      "inner_count": 7,
+      "outer_count": 13,
+      "inner_radius_m": 999.0,
+      "outer_radius_m": 1858.8700957095093,
+      "outer_half_step_phase": true,
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          999.0,
+          0.0
+        ],
+        [
+          622.8663120568749,
+          781.0496509855618
+        ],
+        [
+          -222.29841302235803,
+          973.9529842696418
+        ],
+        [
+          -900.0678990345166,
+          433.44985537844065
+        ],
+        [
+          -900.0678990345167,
+          -433.4498553784405
+        ],
+        [
+          -222.29841302235826,
+          -973.9529842696418
+        ],
+        [
+          622.8663120568747,
+          -781.0496509855619
+        ],
+        [
+          1391.3842460924095,
+          -1232.6588791912131
+        ],
+        [
+          659.1644203158178,
+          -1738.073732530583
+        ],
+        [
+          -224.06203036271987,
+          -1845.3168398063287
+        ],
+        [
+          -1055.958570125342,
+          -1529.820097561123
+        ],
+        [
+          -1645.9477271525445,
+          -863.8600072954259
+        ],
+        [
+          -1858.8700957095093,
+          2.2764593127413846e-13
+        ],
+        [
+          -1645.9477271525443,
+          863.8600072954263
+        ],
+        [
+          -1055.9585701253416,
+          1529.8200975611232
+        ],
+        [
+          -224.06203036271899,
+          1845.3168398063287
+        ],
+        [
+          659.1644203158182,
+          1738.0737325305827
+        ],
+        [
+          1391.384246092411,
+          1232.658879191211
+        ],
+        [
+          1804.8547090871302,
+          444.8567317789973
+        ],
+        [
+          1804.8547090871302,
+          -444.85673177899736
+        ]
+      ],
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        20
+      ],
+      "route_length_m": 17768.346785821846,
+      "pure_movement_s": 3553.669357164369,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "inconclusive",
+        "reason": "depth_budget",
+        "station_count": 21,
+        "station_sha256": "fe142ffa26a0496ccb80b19fbf8ad75dda5b1e7eb6d104080c8aeb1de6f2c726",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 20,
+        "max_cells": 800000,
+        "visited_cells": 1748,
+        "deepest_level": 20,
+        "outside_leaves": 488,
+        "covered_leaves": 818,
+        "counterexample": null,
+        "unresolved_cell": {
+          "path": "10222333232222323222",
+          "box": [
+            102.0904541015625,
+            102.09388732910156,
+            -900.0034332275391,
+            -900.0
+          ]
+        },
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": null,
+      "certificate_runtime_s": 0.018649500008905306,
+      "proof_file": "R32_PROOFS/i7-o13-r999-half1.json.gz",
+      "proof_raw_sha256": "faced8e93f969ca2c86d175c2fb33026213e4bf3462ccd6b3171599f0d515e1a",
+      "proof_gzip_sha256": "be40e421f3d1f3a28269ac6d65568e84dfaad153331cb4aa4a19c64826fdeff3"
+    },
+    {
+      "r30_index": 6,
+      "r30_proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o14-r970-half0.json.gz",
+      "r30_proof_raw_sha256": "5131801e5525c7ebf0e6df91b69a766f08e043badb5d116735ff68bfa77b05b1",
+      "r30_proof_gzip_sha256": "7ef888071a86657b3d07ae9bccfda4919abe5a821668145dcca60867229816f9",
+      "inner_count": 6,
+      "outer_count": 14,
+      "inner_radius_m": 970.0,
+      "outer_radius_m": 1851.290353890597,
+      "outer_half_step_phase": false,
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          485.0000000000001,
+          840.0446416709054
+        ],
+        [
+          -484.9999999999998,
+          840.0446416709055
+        ],
+        [
+          -970.0,
+          1.1879073951729327e-13
+        ],
+        [
+          -485.00000000000045,
+          -840.0446416709053
+        ],
+        [
+          485.0000000000001,
+          -840.0446416709054
+        ],
+        [
+          1154.2606559302328,
+          -1447.3970818610492
+        ],
+        [
+          411.9508585720495,
+          -1804.8746395609096
+        ],
+        [
+          -411.9508585720518,
+          -1804.8746395609091
+        ],
+        [
+          -1154.2606559302333,
+          -1447.397081861049
+        ],
+        [
+          -1667.9549743034802,
+          -803.2447809383194
+        ],
+        [
+          -1851.290353890597,
+          2.2671768061844906e-13
+        ],
+        [
+          -1667.95497430348,
+          803.2447809383199
+        ],
+        [
+          -1154.260655930233,
+          1447.3970818610492
+        ],
+        [
+          -411.95085857205135,
+          1804.8746395609091
+        ],
+        [
+          411.9508585720516,
+          1804.8746395609091
+        ],
+        [
+          1154.2606559302333,
+          1447.397081861049
+        ],
+        [
+          1667.9549743034802,
+          803.2447809383196
+        ],
+        [
+          1851.290353890597,
+          0.0
+        ],
+        [
+          1667.9549743034806,
+          -803.2447809383185
+        ]
+      ],
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        20
+      ],
+      "route_length_m": 17434.484909054623,
+      "pure_movement_s": 3486.8969818109244,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 21,
+        "station_sha256": "c9472046a1a893bbe3654466037bfca19dc17632ba9d366c14c2d1397f525f4b",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 20,
+        "max_cells": 800000,
+        "visited_cells": 243,
+        "deepest_level": 18,
+        "outside_leaves": 114,
+        "covered_leaves": 63,
+        "counterexample": {
+          "source": [
+            -1463.04931640625,
+            -1048.53515625
+          ],
+          "normal": [
+            0.7818314824680326,
+            0.62348980185873
+          ],
+          "local_stations": [
+            [
+              -1667.9549743034802,
+              -803.2447809383194
+            ],
+            [
+              -1154.2606559302333,
+              -1447.397081861049
+            ]
+          ],
+          "max_projection_m": -7.265646778942312
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1799.9831321790234,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -7.265646778942312,
+        "min_unreachable_distance_margin_m": 0.02437969890900149
+      },
+      "certificate_runtime_s": 0.002584200003184378,
+      "proof_file": "R32_PROOFS/i6-o14-r970-half0.json.gz",
+      "proof_raw_sha256": "3e70c9af5bdcaf80bbf62903e5b5da848aee5a5a7d641ef49c66dcfaa47740bd",
+      "proof_gzip_sha256": "2fcd7648be854978982516f067385d328f1cfcf0f3c2648400421e28bbe949b9"
+    },
+    {
+      "r30_index": 13,
+      "r30_proof_file": "R30_ASYMMETRIC_COUNT_PROOFS/i6-o15-r970-half1.json.gz",
+      "r30_proof_raw_sha256": "995537eafcddd3a04e161b03ef75685076064e44c965d214a5c9c69d733a90e5",
+      "r30_proof_gzip_sha256": "57674de3fe0467d750a3c5b196db7eabbb88b58169e1eaad1f9f683602a6a0e3",
+      "inner_count": 6,
+      "outer_count": 15,
+      "inner_radius_m": 970.0,
+      "outer_radius_m": 1845.2130707570525,
+      "outer_half_step_phase": true,
+      "ordered_stations": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          485.0000000000001,
+          840.0446416709054
+        ],
+        [
+          -484.9999999999998,
+          840.0446416709055
+        ],
+        [
+          -970.0,
+          1.1879073951729327e-13
+        ],
+        [
+          -485.00000000000045,
+          -840.0446416709053
+        ],
+        [
+          485.0000000000001,
+          -840.0446416709054
+        ],
+        [
+          922.6065353785265,
+          -1598.0013946707002
+        ],
+        [
+          192.87728668762173,
+          -1835.1048004876159
+        ],
+        [
+          -570.2021971067118,
+          -1754.9019148964849
+        ],
+        [
+          -1234.6885408969576,
+          -1371.260545436356
+        ],
+        [
+          -1685.6860191728608,
+          -750.5157701593118
+        ],
+        [
+          -1845.2130707570525,
+          2.2597342808474828e-13
+        ],
+        [
+          -1685.6860191728601,
+          750.515770159313
+        ],
+        [
+          -1234.6885408969567,
+          1371.260545436357
+        ],
+        [
+          -570.2021971067114,
+          1754.901914896485
+        ],
+        [
+          192.87728668762261,
+          1835.1048004876156
+        ],
+        [
+          922.6065353785265,
+          1598.0013946707002
+        ],
+        [
+          1492.808732485238,
+          1084.5890303283031
+        ],
+        [
+          1804.890738003669,
+          383.6413694601286
+        ],
+        [
+          1804.890738003669,
+          -383.6413694601279
+        ],
+        [
+          1492.8087324852384,
+          -1084.5890303283022
+        ]
+      ],
+      "native_station_route_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        21,
+        20
+      ],
+      "route_length_m": 17437.171415640652,
+      "pure_movement_s": 3487.4342831281306,
+      "certificate": {
+        "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+        "passed": false,
+        "status": "counterexample",
+        "reason": "strict_separating_counterexample",
+        "station_count": 22,
+        "station_sha256": "45df82fde4ed5fcca4798c96857fa0d6c6a3d3c0e666433096773f05b194f001",
+        "arena_radius": 1800.0,
+        "reception_radius": 1000.0,
+        "range_margin_m": 1e-05,
+        "orientation_margin_m": 1e-07,
+        "max_depth": 20,
+        "max_cells": 800000,
+        "visited_cells": 295,
+        "deepest_level": 18,
+        "outside_leaves": 134,
+        "covered_leaves": 82,
+        "counterexample": {
+          "source": [
+            -1463.04931640625,
+            -1048.53515625
+          ],
+          "normal": [
+            0.8090169943749428,
+            0.5877852522924796
+          ],
+          "local_stations": [
+            [
+              -1685.6860191728608,
+              -750.5157701593118
+            ],
+            [
+              -1234.6885408969576,
+              -1371.260545436356
+            ]
+          ],
+          "max_projection_m": -4.9454760684259895
+        },
+        "unresolved_cell": null,
+        "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+      },
+      "independent_leaf_verification": null,
+      "independent_counterexample_check": {
+        "passed": true,
+        "source_radius_m": 1799.9831321790234,
+        "receivable_range_station_count": 2,
+        "max_local_projection_m": -4.9454760684259895,
+        "min_unreachable_distance_margin_m": 0.02437969890900149
+      },
+      "certificate_runtime_s": 0.0025382000021636486,
+      "proof_file": "R32_PROOFS/i6-o15-r970-half1.json.gz",
+      "proof_raw_sha256": "9da58880b74df92f4da6dddb3938f45b27ca99edc110a6ad10289200fb43df34",
+      "proof_gzip_sha256": "65624c03a7bd85cd581a556b39fde764911333cb275d7f193a5067720fa06183"
+    }
+  ],
+  "summary": {
+    "attempted": 4,
+    "passed": 0,
+    "counterexamples": 3,
+    "inconclusive": 1
+  }
+}
