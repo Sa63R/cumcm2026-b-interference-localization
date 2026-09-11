@@ -1,11 +1,11 @@
 {
   "scope": "Operational continuation note; recorded PIDs are not proof of current liveness",
   "live_job": {
-    "name": "current-r1",
-    "package_subdirectory": "q3a-r1/package",
-    "source_commit": "38c4730b71263b7c4bfe098ad2acee1c7bf32191",
-    "pid": 1530317,
-    "start_ticks": "2343624315",
+    "name": "cert-r1",
+    "package_subdirectory": "q3cc-r1b/package",
+    "source_commit": "fdaf43779604af7ff2d5353611d22878891ca323",
+    "pid": 2504442,
+    "start_ticks": "2343837583",
     "cpu_slots": 50
   },
   "provisional_candidate": {
@@ -17,9 +17,7 @@
     "status": "Range-probe policy improves mean versus prior RL but does not establish superiority over the best state search. Tail qualification must also pass; do not label an unconditional upgrade."
   },
   "ready_unrun": [
-    "current-r1 later endpoint",
     "targets-r1",
-    "cert-r1 in q3cc-r1b/package, source fdaf43779604af7ff2d5353611d22878891ca323",
     "range-r2",
     "base-r2"
   ],
@@ -28,10 +26,11 @@
     "archive/q3-rl-cost-choice-v2-r1-failed-20260912"
   ],
   "remaining_quota_last_observed": {
-    "utc": "2026-09-11T19:52:32Z",
-    "percent": 4
+    "utc": "2026-09-11T20:04:07Z",
+    "percent": 100,
+    "note": "Usage tool reported an external reset; this agent did not invoke reset redemption."
   },
-  "next_priority": "Finish frozen independent confirmation and current scan endpoint while quota allows; no new implementation. Stop/save at <=1%; no reset.",
+  "next_priority": "Complete certified-count-cap experiment; review and deploy independent objective/policy-search ablations. Final and stress still sealed; 02:00 UTC training cutoff.",
   "sealed_splits": [
     "final 5500001..5500256",
     "stress 5600001..5600056"
@@ -47,5 +46,15 @@
     "status": "complete; all three policies 128/128 safe full clear",
     "launch_repair": "First operational coordinator failed before evaluation due to command quoting. Re-launched with original immutable freeze records; no policy or dataset changes.",
     "evidence": "research/autonomy/range_r1_confirmation.json"
-  }
+  },
+  "stopped_current_scan": {
+    "status": "interrupted after first completed training endpoint",
+    "evidence": "research/autonomy/current_r1_failed_endpoint.json",
+    "ratio_of_sums": 1.9270168779675805
+  },
+  "implementation_in_progress": [
+    "entropy ablation: frozen range parent, matched fresh training, 32-update endpoint",
+    "greedy head search: full deployment cost, fresh proposal/selection/acceptance worlds",
+    "range known current: fill missing optional known-channel measurement candidates"
+  ]
 }
