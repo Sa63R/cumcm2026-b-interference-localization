@@ -1,0 +1,267 @@
+{
+  "scope": "Q3 resumed research round3",
+  "started_at_utc": "2026-09-11T18:03:20.300971+00:00",
+  "status": "active",
+  "protected_existing_branches": {
+    "experiment/q4-r2-routing": "f5421e4b1671cd0660a1a0a0e4d26ca150865a2a",
+    "experiment/q4-r2-scheduling": "34c53d922bf23f63047b9919f1855701751e6d2d",
+    "experiment/q4-r4-observation": "95eb22fd514fa9aa367b83b8201634e1e4e5dde9",
+    "experiment/q4-r7-clear-region": "6024bedbae8af0fdb2f37121ffc79f1787410e2b",
+    "experiment/q4-r8-clear-before-probe": "1188fd553b91f855f6374185e15821ca2ac5bcd3",
+    "experiment/q4-r9-joint-visibility": "bcc03071177c5b8d6ff73d3f667a6b555dfe3d90",
+    "experiment/q4-rl-attention": "b5a5399683605261e40c370f6f219e0aa9dcf0f8",
+    "experiment/q4-rl-feature-cache": "dc48cabce0506c10096ea7db40c900a2bb618da5",
+    "experiment/q4-rl-micro-actions": "d3cafa78c56a61e593b1e6a5a1f75600bab8d6df",
+    "experiment/q4-rl-micro-attention": "c8b9a3c023212af797a326d5924908fabdd7dfb6",
+    "experiment/q4-rl-micro-scst": "a84c26e91ea343689b21d08fc201183ad7478db0",
+    "experiment/q4-rl-negative-memory": "92a16b395cc0478c89ee12d050fce5b7ad141523",
+    "experiment/q4-rl-scan-bundles": "92a16b395cc0478c89ee12d050fce5b7ad141523",
+    "experiment/q4-rl-shared-cover": "85f4eef9df8ca5adff04a996381f87f93fdc2eee",
+    "main": "8e75bb09406d71ca0a6fd43afb70f5bcdbccbbe3",
+    "research/q3-deep-rl": "24097861e48df1dfe35f8ec3774e589c004a3f63",
+    "research/q3-deep-rl-cpu-v2": "35b2dd3758a0e2575718e22bd657aeac61a5804d",
+    "research/q3-geometric": "0695811521852923135ad6cfe96e04568e9cb18e",
+    "research/q3-r2-certified-tail": "eb0b5a822a61f9077bbc403f87549b148349b5bd",
+    "research/q3-r2-current-probe": "5f4c9dc02999643d1168578768e40d24f569a94d",
+    "research/q3-r2-derived-silence": "760af8230a8e5bda6050663b19d871a9701c9829",
+    "research/q3-rl-anypoint-scan": "0dc4387f2930655af2f018e3ecd5d533e4dfc2d0",
+    "research/q3-rl-autonomy": "5d3e8d3f0a91747f1109a03c43fdb32e100fa990",
+    "research/q3-rl-cost-to-go": "e50ba07762c141691b0f8773a889acf2319b8221",
+    "research/q3-rl-range-probes": "9e89e15d9b468891f2b8903d536b93db2b746cb5",
+    "research/q3-rl-recurrent": "6603c7c6d4fbc0a786890b0f15b02db07b1f6b21",
+    "research/q3-round2": "c52053fb088176b1a7b5e87bf69a58ca8d105c3b",
+    "research/q3-state-modes-v2": "6c26472e2bc5fd9f1048192fc06ea8dc2b507e84",
+    "research/q3-state-search": "8c624d08c61c0e411f93345d63a932b01ead4868",
+    "research/q4-cover-search": "1e58ce9fe3f72c8043d8ac35cce8a90e102d81af",
+    "research/q4-deep-rl": "ac7b0929de0bae250115adbda303e1bdbd7b4936",
+    "research/q4-round2": "d167908e9ac95984f19d47ff8670b0d4408d5ab3",
+    "research/q4-state-search": "7dec92247009e058f4e708a3334aedfeed56b65d"
+  },
+  "archive_branch": "research/q3-round3",
+  "previous_archive_commit": "c52053fb088176b1a7b5e87bf69a58ca8d105c3b",
+  "primary_comparator": {
+    "branch": "research/q3-r2-derived-silence",
+    "commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+    "directory": "q3-r2-derived-silence",
+    "spec": "experiments/state_search_candidate_derived_silence_combined_v1.json"
+  },
+  "original_reference": {
+    "branch": "research/q3-state-search",
+    "commit": "8c624d08c61c0e411f93345d63a932b01ead4868",
+    "directory": "q3-state-search",
+    "spec": "experiments/state_search_candidate_relocating_cover_v1.json"
+  },
+  "rl_reference_selection": {
+    "status": "frozen_local_validated_reference",
+    "commit": "2953d0eea1e30a20d51ba8a9dd0752df5772d3c9",
+    "checkpoint_sha256": "9a1761c8474335ca373b66a5cf85120e1410bd5adbab378405df015a82458e69",
+    "basis": "Previously completed same-platform 48-case paired report; later endpoints not promoted. No tuning on this new round.",
+    "directory": "q3-r3-rl-reference",
+    "branch": "research/q3-r3-rl-reference",
+    "spec": "research/round3/rl_reference/spec.json",
+    "checkpoint": "research/round3/rl_reference/trial1-inference.pt",
+    "checkpoint_bytes": 258221,
+    "original_checkpoint_sha256": "3d21ba7931143f281d2e7554261b001867c65fec9c2bd7465a79f91e95b7cef4",
+    "model_tensor_sha256": "4f7a6fea2688b4adb2f3de6d6a7a61e25b9da71af8e01fc6bb25a22c7cb78b64",
+    "export": "Inference-only export, unchanged tensors and inference schema, exact logits/value checked on synthetic inputs; private training metadata excluded.",
+    "validated_policy_source_commit": "4e2ba11b9cebdaf8adb92ec76f0ddfb36ed43851",
+    "evaluation_adapter": "Add only common ObservationOnlyClient/audit helper; all 36 policy src files and two existing helpers identical to validated source."
+  },
+  "limits": {
+    "max_actions": 10000,
+    "virtual_s": 360000,
+    "real_s": 1200,
+    "local_workers": 3,
+    "device": "cpu",
+    "threads_per_worker": 1
+  },
+  "evaluation_design": {
+    "pilot_cases": 32,
+    "confirmation_cases": 96,
+    "final_random_cases": 256,
+    "stress_cases": 28,
+    "paired_same_world": true,
+    "main_contrast": "candidate versus frozen derived-silence baseline; RL and original state displayed side by side",
+    "seed_reservation_base": 926091200000,
+    "trial_block_size": 10000,
+    "stage_offsets": {
+      "pilot": [
+        101,
+        132
+      ],
+      "confirmation": [
+        201,
+        296
+      ],
+      "final": [
+        1001,
+        1256
+      ],
+      "stress": [
+        2001,
+        2028
+      ]
+    },
+    "performance_claims": "Pilot is development only. No same-case reruns become independent tests. Frozen candidate gets new confirmation and final cases. Stress is separate from random."
+  },
+  "expansion_rule": {
+    "safe": "all-clear, accepted certified exit, zero failed clears, physical/public-prefix audits pass",
+    "pilot": "mean paired saving > 0 and (95% bootstrap lower > 0 or mean saving >=15s and P90 regression <=120s)",
+    "confirm_and_final": "95% mean saving lower >0 and P95 and max no worse than main comparator; failures retained with fixed penalty",
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 52173
+  },
+  "official_scope": "Practice only, never formal. Check active collector and practice mode before any session; do not contend with collector. SQLite validation-only, no fitting or counterfactual policy replay.",
+  "created_experiments": {
+    "feedback_envelope": {
+      "candidate_label": "candidate",
+      "hypothesis": "A conservative continuous-feedback one-measurement completion plan can reduce costly additional localization while preserving real clear certificates. Same 23-point family; conservative UB-vs-parent-nominal screening is a heuristic.",
+      "status": "closed_rejected_implementation_archived",
+      "source_commit": "14946fd9f3b476a23ec872b909bbd48bee0aed47",
+      "recipes_sha256": "f64e9b681361037541ebd9eb1e8874e36eaedfb3d5ec735e896994ab16ba8153",
+      "pilot_seeds": [
+        926091220101,
+        926091220132
+      ],
+      "confirmation_seeds": [
+        926091220201,
+        926091220296
+      ],
+      "final_seeds": [
+        926091221001,
+        926091221256
+      ],
+      "stress_seeds": [
+        926091222001,
+        926091222028
+      ],
+      "pilot_result": {
+        "paired_cases": 32,
+        "all_runs_audited": true,
+        "candidate_vs_baseline": {
+          "pairs": 32,
+          "safe": true,
+          "mean_saved_s": -2.942852375000001,
+          "ci95_saved_s": [
+            -6.159509950781307,
+            -0.16367697109378015
+          ],
+          "mean_reduction_fraction": -0.0009618018346483186,
+          "wins": 14,
+          "losses": 17,
+          "ties": 1,
+          "worst_paired_regression_s": 31.19938400000001,
+          "p90_paired_regression_s": 9.611351300000033,
+          "pilot_expansion_gate": false,
+          "pareto_confirmation_gate": false,
+          "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
+        },
+        "confirmation_opened": false,
+        "final_opened": false,
+        "interpretation": "This frozen complete-cost envelope policy shows no improvement and fails the predeclared gate; not a theorem against all robust localization planners."
+      },
+      "closure": {
+        "source_commit": "14946fd9f3b476a23ec872b909bbd48bee0aed47",
+        "bundle": "research/round3/closed_trials/feedback_envelope.bundle",
+        "bundle_sha256": "1ba0d754fd0a34c495e46a5a9607991b55afa9ee5f08debb63760ac7e7b6a4d0",
+        "required_base_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+        "reason": "Gate failed: mean and tail cost worsened; 87/87 planned tails executed safely, 86 already certifiable at parent probe. No implementation failure or hidden incomplete-plan success. Further parameter scanning not justified.",
+        "diagnosis": "research/round3/diagnoses/FEEDBACK_ENVELOPE_PILOT.md",
+        "delete_scope": "Only the newly created research/q3-r3-feedback-envelope branch/worktree after archive push; all start-of-round protected refs retained.",
+        "cleanup": {
+          "new_local_branch_removed": true,
+          "new_remote_branch_removed": true,
+          "new_worktree_removed": true
+        }
+      }
+    },
+    "directed_localization": {
+      "candidate_label": "candidate",
+      "hypothesis": "Direction-dependent first-probe-and-nominal-tail transition costs may improve macro task order. Fixed exits per decision, min-directed-edge envelope MST; retain parent legal relocated station layout.",
+      "status": "pilot_rejected_retained_for_incumbent_ablation",
+      "source_commit": "0d16cc38e66a036e7b6628e1aec1cf4ff04e7c06",
+      "recipes_sha256": "56247081ee5aa97bb5e10d547a886be43076ec6e9c6b4b3b581735eb8ae289ce",
+      "pilot_seeds": [
+        926091210101,
+        926091210132
+      ],
+      "confirmation_seeds": [
+        926091210201,
+        926091210296
+      ],
+      "final_seeds": [
+        926091211001,
+        926091211256
+      ],
+      "stress_seeds": [
+        926091212001,
+        926091212028
+      ],
+      "pilot_result": {
+        "paired_cases": 32,
+        "all_runs_audited": true,
+        "candidate_vs_baseline": {
+          "pairs": 32,
+          "safe": true,
+          "mean_saved_s": -28.19445693749998,
+          "ci95_saved_s": [
+            -79.8768036835937,
+            23.56354948515631
+          ],
+          "mean_reduction_fraction": -0.009203150488954655,
+          "wins": 14,
+          "losses": 16,
+          "ties": 2,
+          "worst_paired_regression_s": 356.92734599999994,
+          "p90_paired_regression_s": 221.27397810000025,
+          "pilot_expansion_gate": false,
+          "pareto_confirmation_gate": false,
+          "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
+        },
+        "confirmation_opened": false,
+        "final_opened": false,
+        "interpretation": "Fails preregistered mean/tail criteria and costs substantially more CPU. Checking bounded-search incumbent omission before concluding this implementation direction."
+      },
+      "diagnosis": "research/round3/diagnoses/DIRECTED_LOCALIZATION_PILOT.md"
+    },
+    "directed_incumbent": {
+      "status": "frozen_before_new_cases",
+      "candidate_label": "candidate",
+      "hypothesis": "18 of 540 completed finite models omitted a cheaper existing parent route. Seed that feasible route as incumbent without changing cost model, probe family or search budgets. Both model error and search error were observed; require new paired episodes.",
+      "parent_trial": "directed_localization",
+      "old_directed_commit": "0d16cc38e66a036e7b6628e1aec1cf4ff04e7c06",
+      "ablation": "Include old_directed on exactly the same new cases as candidate/baseline/original/RL; primary gate remains whole-episode candidate versus derived baseline.",
+      "pilot_seeds": [
+        926091230101,
+        926091230132
+      ],
+      "confirmation_seeds": [
+        926091230201,
+        926091230296
+      ],
+      "final_seeds": [
+        926091231001,
+        926091231256
+      ],
+      "stress_seeds": [
+        926091232001,
+        926091232028
+      ],
+      "source_commit": "1e0515521bee64164cae5c0acd21e4f54c0c2d75",
+      "recipes_sha256": "0b9cf4ed4352f772cb64efecdef1b3bea2d9043fa966d41ecbb70e0c644ee291",
+      "implementation_tests_passed": 156,
+      "review": "Independent pure-code review passed; no change to proxies, weights, family or budgets."
+    }
+  },
+  "logging_scope": "Keep full raw machine records, immutable source/config/model identities and concise decisions; extensive prose optional, do not delay experiments.",
+  "evaluation_python": "../q3-deep-rl/.venv-win/Scripts/python.exe",
+  "protected_version_observations": [
+    {
+      "branch": "research/q3-rl-cost-to-go",
+      "starting_commit": "e50ba07762c141691b0f8773a889acf2319b8221",
+      "observation": "This preexisting branch name became absent during concurrent workspace activity; this round issued no deletion/reset for it. Preserve its known start version without recreating an externally removed working branch.",
+      "preservation_tag": "archive/q3-round3-start/rl-cost-to-go",
+      "tag_pushed": true
+    }
+  ]
+}

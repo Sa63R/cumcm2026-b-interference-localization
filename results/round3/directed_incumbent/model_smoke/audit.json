@@ -1,0 +1,2072 @@
+{
+  "version": "q3-round2-posthoc-original-physical-v1",
+  "created_at_utc": "2026-09-11T19:01:37.143325+00:00",
+  "truth_scope": "post-policy-termination archives only",
+  "sqlite_read": false,
+  "simulator_calls": 0,
+  "new_simulations": 0,
+  "exhaustive_small_graph_oracles": 7,
+  "ratio_aggregation_oracle": true,
+  "dependency_sha256": {
+    "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\theory_v1\\audit_eval_bounds.py": "2b9b565df6babc627af36043bdec8206b1aa51ae9097634ba31aad8cfdf068c2",
+    "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\theory_v1\\certify_bounds.py": "00b8041daa00edbc9ddffb8faef2071204f9f8ae80453d9c06990d064317a484",
+    "D:\\jwt\\2026数模国赛\\q3-geometric\\experiments\\research_v1_physical_audit.py": "fe750407f48c1d05f7b9db02e5c88f6acf26c95cb393365eafc6558b8c2c0a6e",
+    "D:\\jwt\\2026数模国赛\\q3-geometric\\src\\geometry\\__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+    "D:\\jwt\\2026数模国赛\\q3-geometric\\src\\localization\\__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+    "D:\\jwt\\2026数模国赛\\q3-geometric\\src\\localization\\omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+    "D:\\jwt\\2026数模国赛\\q3-geometric\\src\\planning\\disk_cover.py": "8731a6b7b8d396de04e2d6155fa130626b218e085672e6c432eff11311d4e09d"
+  },
+  "observation_extension_sha256": {
+    "D:\\jwt\\2026数模国赛\\q3-round3\\experiments\\round2_derived_silence_audit.py": "0c9c02b7f534949c3da9281812e965e782e9d69a9de7d0f87f936f26f8cba04c"
+  },
+  "script_sha256": "d495c9cf43742da6e781b9747a6aec406701b9a1a8212c8be808876c5f7e4f29",
+  "audit_round": 3,
+  "batches": [
+    {
+      "batch": "directed_incumbent/smoke",
+      "path": "D:\\jwt\\2026数模国赛\\q3-round3\\results\\round3\\directed_incumbent\\model_smoke",
+      "manifest_sha256": "65cef6d2db8c99354e52208211e89b9ec684fa153d5b269fe64fe1e7bb5a18f6",
+      "summary_sha256": "4ed378953298b901d2e1dd88f8420d12a94d7d578b98d18624f30dddeb7196dd",
+      "runner_archive_status": "verified",
+      "runner_archive_path": "D:\\jwt\\2026数模国赛\\q3-round3\\results\\round3\\directed_incumbent\\model_smoke\\runner.py",
+      "frozen_runner_sha256": "a4fabe4168675780ed773ae944e028df8d816873124e90dbd640deef7b711494"
+    }
+  ],
+  "records": 7,
+  "unique_cases": 1,
+  "independent_physical_bound_calculations": 0,
+  "seed_cache_inputs": [
+    {
+      "path": "results\\round3\\directed_localization\\model_smoke\\audit.json",
+      "sha256": "5c64b2234ca74ad481779a2b2c9a367aed646c6d1faadd0d19401a4867f7591c"
+    }
+  ],
+  "physical_cache": {
+    "66725d2eacec18af4b89688899211b16350695540328507da2bed82409cd3ebb": {
+      "source_route_lower_m": 9209.097946015954,
+      "source_route_order_channels": [
+        10,
+        18,
+        19,
+        6,
+        5,
+        7,
+        17,
+        1,
+        8,
+        3,
+        14,
+        16,
+        12,
+        15,
+        11,
+        4
+      ],
+      "physical_clairvoyant_lower_s": 1921.8195892031908,
+      "feasible_clairvoyant_upper_s": 2042.9932094780272,
+      "physical_bracket_width_s": 121.17362027483617,
+      "dp_seconds": 0.5925089000083972,
+      "dp_array_bytes": 8388608
+    }
+  },
+  "physical_cache_sha256": "c58d8f69d488df9e6d096bc8bfe4f62a6798701fa06f7d43a84625fb022f9a99",
+  "all_runner_archives_available_and_verified": true,
+  "all_audits_passed": true,
+  "wall_s": 1.622034200001508,
+  "formula": "LB = min_permutation (max(0,|s_first|-20-eps) + sum max(0,|s_i-s_j|-40-eps))/5 + 5*N; eps=1e-6 m",
+  "lower_scope": "Clairvoyant physical relaxation; not attainable online minimum or continuous disk-route exact optimum",
+  "groups": {
+    "directed_incumbent/smoke:baseline": {
+      "runs": 1,
+      "successful": 1,
+      "audit_passed": 1,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 1,
+      "mean_time_s": 3313.326128,
+      "mean_physical_lower_s": 1921.8195892031908,
+      "mean_case_time_over_lower": 1.724056798366669,
+      "sum_time_over_sum_lower": 1.724056798366669,
+      "maximum_case_time_over_lower": 1.724056798366669
+    },
+    "directed_incumbent/smoke:candidate": {
+      "runs": 1,
+      "successful": 1,
+      "audit_passed": 1,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 1,
+      "mean_time_s": 3281.211971,
+      "mean_physical_lower_s": 1921.8195892031908,
+      "mean_case_time_over_lower": 1.707346511313494,
+      "sum_time_over_sum_lower": 1.707346511313494,
+      "maximum_case_time_over_lower": 1.707346511313494
+    },
+    "directed_incumbent/smoke:disabled": {
+      "runs": 1,
+      "successful": 1,
+      "audit_passed": 1,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 1,
+      "mean_time_s": 3313.326128,
+      "mean_physical_lower_s": 1921.8195892031908,
+      "mean_case_time_over_lower": 1.724056798366669,
+      "sum_time_over_sum_lower": 1.724056798366669,
+      "maximum_case_time_over_lower": 1.724056798366669
+    },
+    "directed_incumbent/smoke:no_incumbent": {
+      "runs": 1,
+      "successful": 1,
+      "audit_passed": 1,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 1,
+      "mean_time_s": 3281.211971,
+      "mean_physical_lower_s": 1921.8195892031908,
+      "mean_case_time_over_lower": 1.707346511313494,
+      "sum_time_over_sum_lower": 1.707346511313494,
+      "maximum_case_time_over_lower": 1.707346511313494
+    },
+    "directed_incumbent/smoke:old_directed": {
+      "runs": 1,
+      "successful": 1,
+      "audit_passed": 1,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 1,
+      "mean_time_s": 3281.211971,
+      "mean_physical_lower_s": 1921.8195892031908,
+      "mean_case_time_over_lower": 1.707346511313494,
+      "sum_time_over_sum_lower": 1.707346511313494,
+      "maximum_case_time_over_lower": 1.707346511313494
+    },
+    "directed_incumbent/smoke:original": {
+      "runs": 1,
+      "successful": 1,
+      "audit_passed": 1,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 1,
+      "mean_time_s": 3361.326128,
+      "mean_physical_lower_s": 1921.8195892031908,
+      "mean_case_time_over_lower": 1.7490331282311706,
+      "sum_time_over_sum_lower": 1.7490331282311706,
+      "maximum_case_time_over_lower": 1.7490331282311706
+    },
+    "directed_incumbent/smoke:rl": {
+      "runs": 1,
+      "successful": 1,
+      "audit_passed": 1,
+      "failed_clears": 0,
+      "ratio_eligible_runs": 1,
+      "mean_time_s": 3653.640527,
+      "mean_physical_lower_s": 1921.8195892031908,
+      "mean_case_time_over_lower": 1.9011360626804947,
+      "sum_time_over_sum_lower": 1.9011360626804947,
+      "maximum_case_time_over_lower": 1.9011360626804947
+    }
+  },
+  "bounds_by_seed": {
+    "200114": {
+      "case_id": "q3-random-200114",
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "source_total": 16,
+      "geometry_key": "66725d2eacec18af4b89688899211b16350695540328507da2bed82409cd3ebb",
+      "source_route_lower_m": 9209.097946015954,
+      "source_route_order_channels": [
+        10,
+        18,
+        19,
+        6,
+        5,
+        7,
+        17,
+        1,
+        8,
+        3,
+        14,
+        16,
+        12,
+        15,
+        11,
+        4
+      ],
+      "physical_clairvoyant_lower_s": 1921.8195892031908,
+      "feasible_clairvoyant_upper_s": 2042.9932094780272,
+      "physical_bracket_width_s": 121.17362027483617,
+      "dp_seconds": 0.5925089000083972,
+      "dp_array_bytes": 8388608
+    }
+  },
+  "rows": [
+    {
+      "batch": "directed_incumbent/smoke",
+      "strategy": "baseline",
+      "seed": 200114,
+      "case_id": "q3-random-200114",
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "source_total": 16,
+      "successful": true,
+      "failed_clear_count": 0,
+      "virtual_time_s": 3313.326128,
+      "program_runtime_s": 1.2518458999984432,
+      "physical_lower_s": 1921.8195892031908,
+      "ratio_eligible": true,
+      "time_over_physical_lower": 1.724056798366669,
+      "movement_rounding_allowance_s": 5.9999999999999995e-05,
+      "machine_physical_lower_s": 1921.8195292031908,
+      "time_over_machine_physical_lower": 1.7240568521924349,
+      "audit_passed": true,
+      "errors": [],
+      "observation_certificate_audit": {
+        "physical_actions": 118,
+        "detected": 16,
+        "cleared": 16,
+        "inferred_silence_verified": 8,
+        "inferred_coverage_credits": 0,
+        "source_cap_actual_clears": true,
+        "terminal_certified": true,
+        "clear_attempts": [
+          {
+            "action_index": 22,
+            "channel": 10,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.85756562013283
+          },
+          {
+            "action_index": 26,
+            "channel": 12,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.88752118156279
+          },
+          {
+            "action_index": 48,
+            "channel": 4,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 18.019224391425265
+          },
+          {
+            "action_index": 52,
+            "channel": 11,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          },
+          {
+            "action_index": 53,
+            "channel": 15,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.572271488386175
+          },
+          {
+            "action_index": 69,
+            "channel": 19,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.85109449282324
+          },
+          {
+            "action_index": 71,
+            "channel": 18,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999714
+          },
+          {
+            "action_index": 83,
+            "channel": 6,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.834278913312215
+          },
+          {
+            "action_index": 86,
+            "channel": 5,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.898128312582735
+          },
+          {
+            "action_index": 98,
+            "channel": 7,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.857568661235792
+          },
+          {
+            "action_index": 101,
+            "channel": 17,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.897045132318382
+          },
+          {
+            "action_index": 110,
+            "channel": 1,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.882260693966415
+          },
+          {
+            "action_index": 112,
+            "channel": 8,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.869030586507765
+          },
+          {
+            "action_index": 114,
+            "channel": 3,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.895143382785403
+          },
+          {
+            "action_index": 116,
+            "channel": 14,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999974
+          },
+          {
+            "action_index": 118,
+            "channel": 16,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999977
+          }
+        ],
+        "absence": [
+          {
+            "channel": 2,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 9,
+            "real_negative_measurements": 5,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 13,
+            "real_negative_measurements": 5,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 20,
+            "real_negative_measurements": 5,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          }
+        ],
+        "successful_clear_without_prefix_certificate": 0,
+        "derived_audit_version": "q3-derived-silence-prefix-audit-v1",
+        "legacy_inferred_silence_verified": 3,
+        "relative_inferred_silence_verified": 5,
+        "relative_certificates": [
+          {
+            "channel": 3,
+            "after_actual_action_count": 55,
+            "witness_action_ordinal": 29,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 61,
+            "witness_action_ordinal": 38,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 3,
+            "after_actual_action_count": 73,
+            "witness_action_ordinal": 29,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 79,
+            "witness_action_ordinal": 38,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 93,
+            "witness_action_ordinal": 38,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          }
+        ],
+        "derived_scan_checks": [
+          {
+            "after_actual_action_count_before": 0,
+            "after_actual_action_count_after": 20,
+            "physical_action_count": 20,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 26,
+            "after_actual_action_count_after": 44,
+            "physical_action_count": 18,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 53,
+            "after_actual_action_count_after": 65,
+            "physical_action_count": 12,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 71,
+            "after_actual_action_count_after": 81,
+            "physical_action_count": 10,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 86,
+            "after_actual_action_count_after": 95,
+            "physical_action_count": 9,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 101,
+            "after_actual_action_count_after": 107,
+            "physical_action_count": 6,
+            "count_skips": 3,
+            "credited_geometric_station": false,
+            "certified_by_count": true,
+            "zero_physical_actions": false
+          }
+        ],
+        "derived_scan_totals": {
+          "relative_silence_skips": 5,
+          "count_cap_skips": 3,
+          "completed_geometric_scans": 5,
+          "count_certified_scans": 1,
+          "no_physical_action_scans": 0
+        },
+        "relative_inferred_coverage_credits": 0,
+        "legacy_without_relative_constraints_passed": true
+      },
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round3\\results\\round3\\directed_incumbent\\model_smoke\\records\\baseline-200114.json.gz",
+      "input_sha256": "49875cb88465c4925e73cda9e5cc2e33b2ed1520a15a2936ce4d2aeea66a6a1f"
+    },
+    {
+      "batch": "directed_incumbent/smoke",
+      "strategy": "candidate",
+      "seed": 200114,
+      "case_id": "q3-random-200114",
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "source_total": 16,
+      "successful": true,
+      "failed_clear_count": 0,
+      "virtual_time_s": 3281.211971,
+      "program_runtime_s": 34.08331710001221,
+      "physical_lower_s": 1921.8195892031908,
+      "ratio_eligible": true,
+      "time_over_physical_lower": 1.707346511313494,
+      "movement_rounding_allowance_s": 5.9499999999999996e-05,
+      "machine_physical_lower_s": 1921.819529703191,
+      "time_over_machine_physical_lower": 1.7073465641733572,
+      "audit_passed": true,
+      "errors": [],
+      "observation_certificate_audit": {
+        "physical_actions": 117,
+        "detected": 16,
+        "cleared": 16,
+        "inferred_silence_verified": 14,
+        "inferred_coverage_credits": 0,
+        "source_cap_actual_clears": true,
+        "terminal_certified": true,
+        "clear_attempts": [
+          {
+            "action_index": 22,
+            "channel": 10,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.85756562013283
+          },
+          {
+            "action_index": 43,
+            "channel": 12,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          },
+          {
+            "action_index": 47,
+            "channel": 16,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000023
+          },
+          {
+            "action_index": 62,
+            "channel": 14,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999974
+          },
+          {
+            "action_index": 65,
+            "channel": 8,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.891836947746167
+          },
+          {
+            "action_index": 67,
+            "channel": 3,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899306879648737
+          },
+          {
+            "action_index": 80,
+            "channel": 1,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.871565369301692
+          },
+          {
+            "action_index": 83,
+            "channel": 17,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999647
+          },
+          {
+            "action_index": 95,
+            "channel": 7,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000023
+          },
+          {
+            "action_index": 97,
+            "channel": 5,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.595160320716673
+          },
+          {
+            "action_index": 105,
+            "channel": 6,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.834278913312215
+          },
+          {
+            "action_index": 108,
+            "channel": 19,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.86446177845971
+          },
+          {
+            "action_index": 110,
+            "channel": 18,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000038
+          },
+          {
+            "action_index": 112,
+            "channel": 15,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.29127374234556
+          },
+          {
+            "action_index": 115,
+            "channel": 11,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.720973402362517
+          },
+          {
+            "action_index": 117,
+            "channel": 4,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          }
+        ],
+        "absence": [
+          {
+            "channel": 2,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 9,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 13,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 20,
+            "real_negative_measurements": 5,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          }
+        ],
+        "successful_clear_without_prefix_certificate": 0,
+        "derived_audit_version": "q3-derived-silence-prefix-audit-v1",
+        "legacy_inferred_silence_verified": 11,
+        "relative_inferred_silence_verified": 3,
+        "relative_certificates": [
+          {
+            "channel": 15,
+            "after_actual_action_count": 57,
+            "witness_action_ordinal": 15,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 3,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 18,
+            "after_actual_action_count": 58,
+            "witness_action_ordinal": 39,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 18,
+            "after_actual_action_count": 75,
+            "witness_action_ordinal": 39,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          }
+        ],
+        "derived_scan_checks": [
+          {
+            "after_actual_action_count_before": 0,
+            "after_actual_action_count_after": 20,
+            "physical_action_count": 20,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 22,
+            "after_actual_action_count_after": 41,
+            "physical_action_count": 19,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 47,
+            "after_actual_action_count_after": 60,
+            "physical_action_count": 13,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 67,
+            "after_actual_action_count_after": 77,
+            "physical_action_count": 10,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 83,
+            "after_actual_action_count_after": 92,
+            "physical_action_count": 9,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 97,
+            "after_actual_action_count_after": 103,
+            "physical_action_count": 6,
+            "count_skips": 1,
+            "credited_geometric_station": false,
+            "certified_by_count": true,
+            "zero_physical_actions": false
+          }
+        ],
+        "derived_scan_totals": {
+          "relative_silence_skips": 3,
+          "count_cap_skips": 1,
+          "completed_geometric_scans": 5,
+          "count_certified_scans": 1,
+          "no_physical_action_scans": 0
+        },
+        "relative_inferred_coverage_credits": 0,
+        "legacy_without_relative_constraints_passed": true
+      },
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round3\\results\\round3\\directed_incumbent\\model_smoke\\records\\candidate-200114.json.gz",
+      "input_sha256": "7ee7f9d7ec71cec0b32d321af685da7f95a762bd2e1493f41c6dd56d800326ad"
+    },
+    {
+      "batch": "directed_incumbent/smoke",
+      "strategy": "disabled",
+      "seed": 200114,
+      "case_id": "q3-random-200114",
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "source_total": 16,
+      "successful": true,
+      "failed_clear_count": 0,
+      "virtual_time_s": 3313.326128,
+      "program_runtime_s": 1.1462580999941565,
+      "physical_lower_s": 1921.8195892031908,
+      "ratio_eligible": true,
+      "time_over_physical_lower": 1.724056798366669,
+      "movement_rounding_allowance_s": 5.9999999999999995e-05,
+      "machine_physical_lower_s": 1921.8195292031908,
+      "time_over_machine_physical_lower": 1.7240568521924349,
+      "audit_passed": true,
+      "errors": [],
+      "observation_certificate_audit": {
+        "physical_actions": 118,
+        "detected": 16,
+        "cleared": 16,
+        "inferred_silence_verified": 8,
+        "inferred_coverage_credits": 0,
+        "source_cap_actual_clears": true,
+        "terminal_certified": true,
+        "clear_attempts": [
+          {
+            "action_index": 22,
+            "channel": 10,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.85756562013283
+          },
+          {
+            "action_index": 26,
+            "channel": 12,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.88752118156279
+          },
+          {
+            "action_index": 48,
+            "channel": 4,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 18.019224391425265
+          },
+          {
+            "action_index": 52,
+            "channel": 11,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          },
+          {
+            "action_index": 53,
+            "channel": 15,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.572271488386175
+          },
+          {
+            "action_index": 69,
+            "channel": 19,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.85109449282324
+          },
+          {
+            "action_index": 71,
+            "channel": 18,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999714
+          },
+          {
+            "action_index": 83,
+            "channel": 6,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.834278913312215
+          },
+          {
+            "action_index": 86,
+            "channel": 5,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.898128312582735
+          },
+          {
+            "action_index": 98,
+            "channel": 7,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.857568661235792
+          },
+          {
+            "action_index": 101,
+            "channel": 17,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.897045132318382
+          },
+          {
+            "action_index": 110,
+            "channel": 1,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.882260693966415
+          },
+          {
+            "action_index": 112,
+            "channel": 8,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.869030586507765
+          },
+          {
+            "action_index": 114,
+            "channel": 3,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.895143382785403
+          },
+          {
+            "action_index": 116,
+            "channel": 14,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999974
+          },
+          {
+            "action_index": 118,
+            "channel": 16,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999977
+          }
+        ],
+        "absence": [
+          {
+            "channel": 2,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 9,
+            "real_negative_measurements": 5,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 13,
+            "real_negative_measurements": 5,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 20,
+            "real_negative_measurements": 5,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          }
+        ],
+        "successful_clear_without_prefix_certificate": 0,
+        "derived_audit_version": "q3-derived-silence-prefix-audit-v1",
+        "legacy_inferred_silence_verified": 3,
+        "relative_inferred_silence_verified": 5,
+        "relative_certificates": [
+          {
+            "channel": 3,
+            "after_actual_action_count": 55,
+            "witness_action_ordinal": 29,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 61,
+            "witness_action_ordinal": 38,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 3,
+            "after_actual_action_count": 73,
+            "witness_action_ordinal": 29,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 79,
+            "witness_action_ordinal": 38,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 14,
+            "after_actual_action_count": 93,
+            "witness_action_ordinal": 38,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          }
+        ],
+        "derived_scan_checks": [
+          {
+            "after_actual_action_count_before": 0,
+            "after_actual_action_count_after": 20,
+            "physical_action_count": 20,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 26,
+            "after_actual_action_count_after": 44,
+            "physical_action_count": 18,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 53,
+            "after_actual_action_count_after": 65,
+            "physical_action_count": 12,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 71,
+            "after_actual_action_count_after": 81,
+            "physical_action_count": 10,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 86,
+            "after_actual_action_count_after": 95,
+            "physical_action_count": 9,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 101,
+            "after_actual_action_count_after": 107,
+            "physical_action_count": 6,
+            "count_skips": 3,
+            "credited_geometric_station": false,
+            "certified_by_count": true,
+            "zero_physical_actions": false
+          }
+        ],
+        "derived_scan_totals": {
+          "relative_silence_skips": 5,
+          "count_cap_skips": 3,
+          "completed_geometric_scans": 5,
+          "count_certified_scans": 1,
+          "no_physical_action_scans": 0
+        },
+        "relative_inferred_coverage_credits": 0,
+        "legacy_without_relative_constraints_passed": true
+      },
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round3\\results\\round3\\directed_incumbent\\model_smoke\\records\\disabled-200114.json.gz",
+      "input_sha256": "f0590a1cf25288dd1328e6effd0ce64d50c9186c3fa3e1f355503e35b43d88c3"
+    },
+    {
+      "batch": "directed_incumbent/smoke",
+      "strategy": "no_incumbent",
+      "seed": 200114,
+      "case_id": "q3-random-200114",
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "source_total": 16,
+      "successful": true,
+      "failed_clear_count": 0,
+      "virtual_time_s": 3281.211971,
+      "program_runtime_s": 33.06038020001142,
+      "physical_lower_s": 1921.8195892031908,
+      "ratio_eligible": true,
+      "time_over_physical_lower": 1.707346511313494,
+      "movement_rounding_allowance_s": 5.9499999999999996e-05,
+      "machine_physical_lower_s": 1921.819529703191,
+      "time_over_machine_physical_lower": 1.7073465641733572,
+      "audit_passed": true,
+      "errors": [],
+      "observation_certificate_audit": {
+        "physical_actions": 117,
+        "detected": 16,
+        "cleared": 16,
+        "inferred_silence_verified": 14,
+        "inferred_coverage_credits": 0,
+        "source_cap_actual_clears": true,
+        "terminal_certified": true,
+        "clear_attempts": [
+          {
+            "action_index": 22,
+            "channel": 10,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.85756562013283
+          },
+          {
+            "action_index": 43,
+            "channel": 12,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          },
+          {
+            "action_index": 47,
+            "channel": 16,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000023
+          },
+          {
+            "action_index": 62,
+            "channel": 14,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999974
+          },
+          {
+            "action_index": 65,
+            "channel": 8,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.891836947746167
+          },
+          {
+            "action_index": 67,
+            "channel": 3,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899306879648737
+          },
+          {
+            "action_index": 80,
+            "channel": 1,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.871565369301692
+          },
+          {
+            "action_index": 83,
+            "channel": 17,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999647
+          },
+          {
+            "action_index": 95,
+            "channel": 7,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000023
+          },
+          {
+            "action_index": 97,
+            "channel": 5,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.595160320716673
+          },
+          {
+            "action_index": 105,
+            "channel": 6,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.834278913312215
+          },
+          {
+            "action_index": 108,
+            "channel": 19,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.86446177845971
+          },
+          {
+            "action_index": 110,
+            "channel": 18,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000038
+          },
+          {
+            "action_index": 112,
+            "channel": 15,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.29127374234556
+          },
+          {
+            "action_index": 115,
+            "channel": 11,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.720973402362517
+          },
+          {
+            "action_index": 117,
+            "channel": 4,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          }
+        ],
+        "absence": [
+          {
+            "channel": 2,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 9,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 13,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 20,
+            "real_negative_measurements": 5,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          }
+        ],
+        "successful_clear_without_prefix_certificate": 0,
+        "derived_audit_version": "q3-derived-silence-prefix-audit-v1",
+        "legacy_inferred_silence_verified": 11,
+        "relative_inferred_silence_verified": 3,
+        "relative_certificates": [
+          {
+            "channel": 15,
+            "after_actual_action_count": 57,
+            "witness_action_ordinal": 15,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 3,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 18,
+            "after_actual_action_count": 58,
+            "witness_action_ordinal": 39,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 18,
+            "after_actual_action_count": 75,
+            "witness_action_ordinal": 39,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          }
+        ],
+        "derived_scan_checks": [
+          {
+            "after_actual_action_count_before": 0,
+            "after_actual_action_count_after": 20,
+            "physical_action_count": 20,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 22,
+            "after_actual_action_count_after": 41,
+            "physical_action_count": 19,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 47,
+            "after_actual_action_count_after": 60,
+            "physical_action_count": 13,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 67,
+            "after_actual_action_count_after": 77,
+            "physical_action_count": 10,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 83,
+            "after_actual_action_count_after": 92,
+            "physical_action_count": 9,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 97,
+            "after_actual_action_count_after": 103,
+            "physical_action_count": 6,
+            "count_skips": 1,
+            "credited_geometric_station": false,
+            "certified_by_count": true,
+            "zero_physical_actions": false
+          }
+        ],
+        "derived_scan_totals": {
+          "relative_silence_skips": 3,
+          "count_cap_skips": 1,
+          "completed_geometric_scans": 5,
+          "count_certified_scans": 1,
+          "no_physical_action_scans": 0
+        },
+        "relative_inferred_coverage_credits": 0,
+        "legacy_without_relative_constraints_passed": true
+      },
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round3\\results\\round3\\directed_incumbent\\model_smoke\\records\\no_incumbent-200114.json.gz",
+      "input_sha256": "0c963e87101090435317b1dd0c7a4e2574bc38458481f63e8530a167468bc6b8"
+    },
+    {
+      "batch": "directed_incumbent/smoke",
+      "strategy": "old_directed",
+      "seed": 200114,
+      "case_id": "q3-random-200114",
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "source_total": 16,
+      "successful": true,
+      "failed_clear_count": 0,
+      "virtual_time_s": 3281.211971,
+      "program_runtime_s": 33.00100559997372,
+      "physical_lower_s": 1921.8195892031908,
+      "ratio_eligible": true,
+      "time_over_physical_lower": 1.707346511313494,
+      "movement_rounding_allowance_s": 5.9499999999999996e-05,
+      "machine_physical_lower_s": 1921.819529703191,
+      "time_over_machine_physical_lower": 1.7073465641733572,
+      "audit_passed": true,
+      "errors": [],
+      "observation_certificate_audit": {
+        "physical_actions": 117,
+        "detected": 16,
+        "cleared": 16,
+        "inferred_silence_verified": 14,
+        "inferred_coverage_credits": 0,
+        "source_cap_actual_clears": true,
+        "terminal_certified": true,
+        "clear_attempts": [
+          {
+            "action_index": 22,
+            "channel": 10,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.85756562013283
+          },
+          {
+            "action_index": 43,
+            "channel": 12,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          },
+          {
+            "action_index": 47,
+            "channel": 16,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000023
+          },
+          {
+            "action_index": 62,
+            "channel": 14,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999974
+          },
+          {
+            "action_index": 65,
+            "channel": 8,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.891836947746167
+          },
+          {
+            "action_index": 67,
+            "channel": 3,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899306879648737
+          },
+          {
+            "action_index": 80,
+            "channel": 1,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.871565369301692
+          },
+          {
+            "action_index": 83,
+            "channel": 17,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999647
+          },
+          {
+            "action_index": 95,
+            "channel": 7,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000023
+          },
+          {
+            "action_index": 97,
+            "channel": 5,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.595160320716673
+          },
+          {
+            "action_index": 105,
+            "channel": 6,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.834278913312215
+          },
+          {
+            "action_index": 108,
+            "channel": 19,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.86446177845971
+          },
+          {
+            "action_index": 110,
+            "channel": 18,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000038
+          },
+          {
+            "action_index": 112,
+            "channel": 15,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.29127374234556
+          },
+          {
+            "action_index": 115,
+            "channel": 11,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.720973402362517
+          },
+          {
+            "action_index": 117,
+            "channel": 4,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          }
+        ],
+        "absence": [
+          {
+            "channel": 2,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 9,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 13,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 20,
+            "real_negative_measurements": 5,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          }
+        ],
+        "successful_clear_without_prefix_certificate": 0,
+        "derived_audit_version": "q3-derived-silence-prefix-audit-v1",
+        "legacy_inferred_silence_verified": 11,
+        "relative_inferred_silence_verified": 3,
+        "relative_certificates": [
+          {
+            "channel": 15,
+            "after_actual_action_count": 57,
+            "witness_action_ordinal": 15,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 3,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 18,
+            "after_actual_action_count": 58,
+            "witness_action_ordinal": 39,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          },
+          {
+            "channel": 18,
+            "after_actual_action_count": 75,
+            "witness_action_ordinal": 39,
+            "exact_binary64_vertex_certificate": true,
+            "vertex_count": 4,
+            "coverage_credits": 0
+          }
+        ],
+        "derived_scan_checks": [
+          {
+            "after_actual_action_count_before": 0,
+            "after_actual_action_count_after": 20,
+            "physical_action_count": 20,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 22,
+            "after_actual_action_count_after": 41,
+            "physical_action_count": 19,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 47,
+            "after_actual_action_count_after": 60,
+            "physical_action_count": 13,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 67,
+            "after_actual_action_count_after": 77,
+            "physical_action_count": 10,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 83,
+            "after_actual_action_count_after": 92,
+            "physical_action_count": 9,
+            "count_skips": 0,
+            "credited_geometric_station": true,
+            "certified_by_count": false,
+            "zero_physical_actions": false
+          },
+          {
+            "after_actual_action_count_before": 97,
+            "after_actual_action_count_after": 103,
+            "physical_action_count": 6,
+            "count_skips": 1,
+            "credited_geometric_station": false,
+            "certified_by_count": true,
+            "zero_physical_actions": false
+          }
+        ],
+        "derived_scan_totals": {
+          "relative_silence_skips": 3,
+          "count_cap_skips": 1,
+          "completed_geometric_scans": 5,
+          "count_certified_scans": 1,
+          "no_physical_action_scans": 0
+        },
+        "relative_inferred_coverage_credits": 0,
+        "legacy_without_relative_constraints_passed": true
+      },
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round3\\results\\round3\\directed_incumbent\\model_smoke\\records\\old_directed-200114.json.gz",
+      "input_sha256": "e02e83703a4285e5db16deaa0f2e56380dfae618584073563ae6e9978439bc61"
+    },
+    {
+      "batch": "directed_incumbent/smoke",
+      "strategy": "original",
+      "seed": 200114,
+      "case_id": "q3-random-200114",
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "source_total": 16,
+      "successful": true,
+      "failed_clear_count": 0,
+      "virtual_time_s": 3361.326128,
+      "program_runtime_s": 1.24717149999924,
+      "physical_lower_s": 1921.8195892031908,
+      "ratio_eligible": true,
+      "time_over_physical_lower": 1.7490331282311706,
+      "movement_rounding_allowance_s": 6.4e-05,
+      "machine_physical_lower_s": 1921.8195252031908,
+      "time_over_machine_physical_lower": 1.7490331864770772,
+      "audit_passed": true,
+      "errors": [],
+      "observation_certificate_audit": {
+        "physical_actions": 126,
+        "detected": 16,
+        "cleared": 16,
+        "inferred_silence_verified": 3,
+        "inferred_coverage_credits": 0,
+        "source_cap_actual_clears": true,
+        "terminal_certified": true,
+        "clear_attempts": [
+          {
+            "action_index": 22,
+            "channel": 10,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.85756562013283
+          },
+          {
+            "action_index": 26,
+            "channel": 12,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.88752118156279
+          },
+          {
+            "action_index": 48,
+            "channel": 4,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 18.019224391425265
+          },
+          {
+            "action_index": 52,
+            "channel": 11,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          },
+          {
+            "action_index": 53,
+            "channel": 15,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.572271488386175
+          },
+          {
+            "action_index": 71,
+            "channel": 19,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.85109449282324
+          },
+          {
+            "action_index": 73,
+            "channel": 18,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999714
+          },
+          {
+            "action_index": 87,
+            "channel": 6,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.834278913312215
+          },
+          {
+            "action_index": 90,
+            "channel": 5,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.898128312582735
+          },
+          {
+            "action_index": 103,
+            "channel": 7,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.857568661235792
+          },
+          {
+            "action_index": 106,
+            "channel": 17,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.897045132318382
+          },
+          {
+            "action_index": 118,
+            "channel": 1,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.882260693966415
+          },
+          {
+            "action_index": 120,
+            "channel": 8,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.869030586507765
+          },
+          {
+            "action_index": 122,
+            "channel": 3,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.895143382785403
+          },
+          {
+            "action_index": 124,
+            "channel": 14,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999974
+          },
+          {
+            "action_index": 126,
+            "channel": 16,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999977
+          }
+        ],
+        "absence": [
+          {
+            "channel": 2,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 9,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 13,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 20,
+            "real_negative_measurements": 6,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          }
+        ],
+        "successful_clear_without_prefix_certificate": 0,
+        "derived_audit_version": "q3-derived-silence-prefix-audit-v1",
+        "legacy_inferred_silence_verified": 3,
+        "relative_inferred_silence_verified": 0,
+        "relative_certificates": [],
+        "derived_scan_checks": [],
+        "derived_scan_totals": {
+          "relative_silence_skips": 0,
+          "count_cap_skips": 0,
+          "completed_geometric_scans": 0,
+          "count_certified_scans": 0,
+          "no_physical_action_scans": 0
+        },
+        "relative_inferred_coverage_credits": 0,
+        "legacy_without_relative_constraints_passed": true
+      },
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round3\\results\\round3\\directed_incumbent\\model_smoke\\records\\original-200114.json.gz",
+      "input_sha256": "5f88b48908bd584b1531fff0a0d38f084165e9032f9fcb95fd1abe072395a034"
+    },
+    {
+      "batch": "directed_incumbent/smoke",
+      "strategy": "rl",
+      "seed": 200114,
+      "case_id": "q3-random-200114",
+      "case_sha256": "70b8d25aa603f3c3a4541e24089928564ec0b771b7ed559c6df29d1746a1c2a7",
+      "source_total": 16,
+      "successful": true,
+      "failed_clear_count": 0,
+      "virtual_time_s": 3653.640527,
+      "program_runtime_s": 3.5332448999979533,
+      "physical_lower_s": 1921.8195892031908,
+      "ratio_eligible": true,
+      "time_over_physical_lower": 1.9011360626804947,
+      "movement_rounding_allowance_s": 7.95e-05,
+      "machine_physical_lower_s": 1921.8195097031908,
+      "time_over_machine_physical_lower": 1.9011361413248817,
+      "audit_passed": true,
+      "errors": [],
+      "observation_certificate_audit": {
+        "physical_actions": 157,
+        "detected": 16,
+        "cleared": 16,
+        "inferred_silence_verified": 0,
+        "inferred_coverage_credits": 0,
+        "source_cap_actual_clears": true,
+        "terminal_certified": true,
+        "clear_attempts": [
+          {
+            "action_index": 26,
+            "channel": 14,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000045
+          },
+          {
+            "action_index": 46,
+            "channel": 16,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 18.066719702130776
+          },
+          {
+            "action_index": 52,
+            "channel": 12,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          },
+          {
+            "action_index": 75,
+            "channel": 4,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.90000000000009
+          },
+          {
+            "action_index": 77,
+            "channel": 11,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.804109342646594
+          },
+          {
+            "action_index": 78,
+            "channel": 15,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 17.728820815060978
+          },
+          {
+            "action_index": 100,
+            "channel": 19,
+            "outcome": "success",
+            "phase": "certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999796
+          },
+          {
+            "action_index": 102,
+            "channel": 18,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.38180850961185
+          },
+          {
+            "action_index": 115,
+            "channel": 6,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.899999999999977
+          },
+          {
+            "action_index": 120,
+            "channel": 5,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.56789175276229
+          },
+          {
+            "action_index": 135,
+            "channel": 7,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 14.902522957885388
+          },
+          {
+            "action_index": 142,
+            "channel": 17,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.900000000000027
+          },
+          {
+            "action_index": 151,
+            "channel": 8,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.313929135793078
+          },
+          {
+            "action_index": 154,
+            "channel": 1,
+            "outcome": "success",
+            "phase": "near_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 5.0
+          },
+          {
+            "action_index": 155,
+            "channel": 3,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.69550914344911
+          },
+          {
+            "action_index": 157,
+            "channel": 10,
+            "outcome": "success",
+            "phase": "rl_certified_clear",
+            "prefix_certified": true,
+            "radius_upper_m": 19.89999999999998
+          }
+        ],
+        "absence": [
+          {
+            "channel": 2,
+            "real_negative_measurements": 7,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 9,
+            "real_negative_measurements": 7,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 13,
+            "real_negative_measurements": 7,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          },
+          {
+            "channel": 20,
+            "real_negative_measurements": 7,
+            "failed_clear_disks": 0,
+            "certified": true,
+            "method": "16_actual_successful_clears"
+          }
+        ],
+        "successful_clear_without_prefix_certificate": 0,
+        "derived_audit_version": "q3-derived-silence-prefix-audit-v1",
+        "legacy_inferred_silence_verified": 0,
+        "relative_inferred_silence_verified": 0,
+        "relative_certificates": [],
+        "derived_scan_checks": [],
+        "derived_scan_totals": {
+          "relative_silence_skips": 0,
+          "count_cap_skips": 0,
+          "completed_geometric_scans": 0,
+          "count_certified_scans": 0,
+          "no_physical_action_scans": 0
+        },
+        "relative_inferred_coverage_credits": 0,
+        "legacy_without_relative_constraints_passed": true
+      },
+      "input_path": "D:\\jwt\\2026数模国赛\\q3-round3\\results\\round3\\directed_incumbent\\model_smoke\\records\\rl-200114.json.gz",
+      "input_sha256": "b03452f9a0dc62125813f0f8f119b2c61dd523ebfa92a3f5e6db4078367fdaa7"
+    }
+  ]
+}
