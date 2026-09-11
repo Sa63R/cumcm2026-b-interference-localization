@@ -86,6 +86,11 @@ def audit_journal(data):
         if branch['proposal_sha256']!=canonical(data['proposals'][ci]):errors.append('candidate_hash_mismatch')
     if d.get('completed') and 'best_index' in d:
         best=d['best_index']
+        screened={i:statistics.mean(evaluated[w,i] for w in range(4))
+                  for i in range(1,len(data['proposals']))
+                  if all((w,i) in evaluated for w in range(4))}
+        if len(screened)!=len(data['proposals'])-1 or best!=min(screened,key=screened.get):
+            errors.append('screening_winner_mismatch')
         if any((i,j) not in evaluated for i in range(12) for j in (0,best)):
             errors.append('decision_missing_complete_pairs')
         else:
@@ -95,6 +100,18 @@ def audit_journal(data):
             if abs(mean-d['confirmation']['mean_s'])>1e-5 or abs(se-d['confirmation']['standard_error_s'])>1e-5:errors.append('confirmation_statistic_mismatch')
             if d['nominal_accept']!=(mean+se < -3):errors.append('independent_acceptance_rule_mismatch')
             if d['selected']!='baseline' and not d['nominal_accept']:errors.append('adopted_without_confirmation')
+    if 'risk_delta_s' in d:
+        best=d['best_index'];count=len(d['risk_worlds'])
+        if len(d['risk_delta_s'])!=count or any((f'risk-{i}',j) not in evaluated for i in range(count) for j in (0,best)):
+            errors.append('risk_missing_complete_pairs')
+        else:
+            deltas=[evaluated[f'risk-{i}',best]-evaluated[f'risk-{i}',0] for i in range(count)]
+            if any(abs(a-b)>1e-5 for a,b in zip(deltas,d['risk_delta_s'])):errors.append('risk_cost_mismatch')
+            loss=max([0.0]+deltas)
+            if abs(loss-d['risk_max_positive_delta_s'])>1e-5:errors.append('risk_max_loss_mismatch')
+            if d.get('risk_mode')=='veto' and d['risk_veto']!=(loss>d['risk_limit_s']):errors.append('risk_veto_rule_mismatch')
+            if d.get('risk_veto') and loss<=d['risk_limit_s']:errors.append('risk_veto_below_threshold')
+            if d.get('risk_veto') and d['selected']!='baseline':errors.append('adopted_after_risk_veto')
     return dict(passed=not errors,errors=sorted(set(errors)),branches=len(data['branches']),
                 full_branches=full,full_branch_actions=actions,incomplete_branches=failures)
 
