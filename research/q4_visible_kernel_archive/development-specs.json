@@ -1,0 +1,18 @@
+{
+  "compact_baseline": {
+    "entrypoint": "strategies.q4_cover_search:run_q4_cover_search",
+    "kwargs": {"profile": "compact_22", "schedule": "joint", "max_expansions": 200}
+  },
+  "compact_clear_before_probe": {
+    "entrypoint": "strategies.q4_clear_before_probe:run_q4_clear_before_probe",
+    "kwargs": {"max_expansions": 200}
+  },
+  "compact_joint_probe": {
+    "entrypoint": "strategies.q4_joint_visibility:run_q4_joint_visibility",
+    "kwargs": {"config": "probe", "max_expansions": 200}
+  },
+  "compact_visible_kernel": {
+    "entrypoint": "strategies.q4_visible_kernel:run_q4_visible_kernel",
+    "kwargs": {"config": "after_silence_once", "max_expansions": 200}
+  }
+}
