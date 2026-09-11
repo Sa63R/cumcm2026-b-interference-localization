@@ -1,0 +1,117 @@
+{
+  "scope": "Supplementary all-directional robustness; no promotion or tuning on these cases",
+  "sets": {
+    "random": {
+      "summaries": {
+        "compact_baseline": {
+          "runs": 16,
+          "successful": 16,
+          "mean_time_s": 7856.398470125,
+          "mean_lower_bound_s": 2042.1759248425983,
+          "mean_time_over_mean_lower_bound": 3.847072318576342,
+          "mean_individual_ratio": 3.8627899900274123,
+          "p95_time_s": 8627.063218750001,
+          "max_time_s": 8814.067111,
+          "mean_runtime_s": 0.10105738125002972,
+          "mean_components_s": {
+            "movement_s": 5668.148470125,
+            "switching_s": 328.9375,
+            "detection_s": 1789.0625,
+            "optical_s": 44.25,
+            "removal_s": 26.0
+          }
+        },
+        "compact_combo": {
+          "runs": 16,
+          "successful": 16,
+          "mean_time_s": 7428.291369875,
+          "mean_lower_bound_s": 2042.1759248425983,
+          "mean_time_over_mean_lower_bound": 3.6374394975043782,
+          "mean_individual_ratio": 3.651355383587108,
+          "p95_time_s": 8009.99613375,
+          "max_time_s": 8432.067111,
+          "mean_runtime_s": 0.08880793749813165,
+          "mean_components_s": {
+            "movement_s": 5636.853869875,
+            "switching_s": 262.25,
+            "detection_s": 1453.125,
+            "optical_s": 50.0625,
+            "removal_s": 26.0
+          }
+        }
+      },
+      "comparison": {
+        "candidate": "compact_combo",
+        "reference": "compact_baseline",
+        "pairs": 16,
+        "all_clear": true,
+        "mean_saved_s": 428.1071002499999,
+        "saving_ci95_s": [
+          356.537335375,
+          506.5112869374999
+        ],
+        "mean_reduction_fraction": 0.05449152074935282,
+        "p95_ratio": 0.9284731003641109,
+        "wins": 16,
+        "losses": 0,
+        "loss_rows": []
+      }
+    },
+    "stress": {
+      "summaries": {
+        "compact_baseline": {
+          "runs": 14,
+          "successful": 14,
+          "mean_time_s": 8932.069218357143,
+          "mean_lower_bound_s": 1601.8658682728383,
+          "mean_time_over_mean_lower_bound": 5.576040663122354,
+          "mean_individual_ratio": 8.49700422973041,
+          "p95_time_s": 13803.338541000001,
+          "max_time_s": 14493.206603,
+          "mean_runtime_s": 0.10422942857361964,
+          "mean_components_s": {
+            "movement_s": 6306.283504071429,
+            "switching_s": 358.64285714285717,
+            "detection_s": 1988.9285714285713,
+            "optical_s": 252.21428571428572,
+            "removal_s": 26.0
+          }
+        },
+        "compact_combo": {
+          "runs": 14,
+          "successful": 14,
+          "mean_time_s": 8163.372442071429,
+          "mean_lower_bound_s": 1601.8658682728383,
+          "mean_time_over_mean_lower_bound": 5.0961647936686045,
+          "mean_individual_ratio": 6.9586408665139095,
+          "p95_time_s": 13465.588541000001,
+          "max_time_s": 14061.206603,
+          "mean_runtime_s": 0.09624469285751859,
+          "mean_components_s": {
+            "movement_s": 5981.158156357143,
+            "switching_s": 283.14285714285717,
+            "detection_s": 1606.0714285714287,
+            "optical_s": 267.0,
+            "removal_s": 26.0
+          }
+        }
+      },
+      "comparison": {
+        "candidate": "compact_combo",
+        "reference": "compact_baseline",
+        "pairs": 14,
+        "all_clear": true,
+        "mean_saved_s": 768.6967762857142,
+        "saving_ci95_s": [
+          391.49828349999996,
+          1228.4008222857142
+        ],
+        "mean_reduction_fraction": 0.08606032460047353,
+        "p95_ratio": 0.9755312818709196,
+        "wins": 14,
+        "losses": 0,
+        "loss_rows": []
+      }
+    }
+  }
+}
