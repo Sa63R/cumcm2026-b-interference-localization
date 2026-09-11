@@ -29,6 +29,7 @@ from .train import (TRAIN_START, TRAIN_END, DEFAULT_DEADLINE, TrainingStop,
     training_case_spec, attach_returns, ppo_update, imitation_update,
     summarize_training_metrics, parse_deadline, _configuration, _write_json, _write_batch)
 from .training_journal import EpisodeJournal
+from .micro_initialization import initialization_binding, load_micro_warmstart
 
 
 _stop_requested = False
@@ -152,6 +153,8 @@ def _arguments(argv):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--resume", type=Path)
+    parser.add_argument("--initialize-micro-warmstart", type=Path)
+    parser.add_argument("--initialize-sha256")
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--cpu-budget", type=int, default=2)
     parser.add_argument("--hidden", type=int, default=64)
@@ -163,14 +166,27 @@ def _arguments(argv):
     parser.add_argument("--warmstart-episodes", type=int, default=0)
     parser.add_argument("--max-decisions", type=int, default=512)
     parser.add_argument("--random-seed", type=int, default=424242)
-    parser.add_argument("--scenario-start", type=int, default=TRAIN_START)
-    parser.add_argument("--scenario-end", type=int, default=TRAIN_END)
+    parser.add_argument("--scenario-start", type=int)
+    parser.add_argument("--scenario-end", type=int)
     parser.add_argument("--entropy-coefficient", type=float, default=.005)
     parser.add_argument("--max-batches", type=int, default=100000)
     parser.add_argument("--max-wall-seconds", type=float, default=1800.)
     parser.add_argument("--deadline", default=DEFAULT_DEADLINE)
     parser.add_argument("--progress-interval-seconds", type=float, default=1800.)
     args = parser.parse_args(argv)
+    if bool(args.initialize_micro_warmstart) != bool(args.initialize_sha256):
+        parser.error("micro initialization requires both its checkpoint and SHA256")
+    if args.initialize_micro_warmstart:
+        if args.warmstart_episodes != 0:
+            parser.error("initialized PPO requires --warmstart-episodes 0; BC must not run again")
+        if args.scenario_start is None or args.scenario_end is None:
+            parser.error("initialized PPO requires an explicit new training seed interval")
+        try:
+            args.initialize_sha256 = initialization_binding(args.initialize_sha256)["sha256"]
+        except ValueError as error:
+            parser.error(str(error))
+    args.scenario_start = TRAIN_START if args.scenario_start is None else args.scenario_start
+    args.scenario_end = TRAIN_END if args.scenario_end is None else args.scenario_end
     if not 1 <= args.workers < args.cpu_budget <= 60:
         parser.error("workers + 1 learner must fit CPU budget (maximum 60)")
     if not TRAIN_START <= args.scenario_start <= args.scenario_end <= TRAIN_END:
@@ -189,6 +205,8 @@ def configuration(args):
     # Preserve the complete legacy MLP configuration shape for existing resume.
     if args.architecture != "mlp":
         result["architecture"] = args.architecture
+    if args.initialize_micro_warmstart:
+        result["initialization"] = initialization_binding(args.initialize_sha256)
     return result
 
 
@@ -201,6 +219,9 @@ def main(argv=None):
     if deadline <= time.time():
         parser.error("training deadline has passed; a new explicit deadline is required")
     config = configuration(args)
+    initialization = None
+    if args.initialize_micro_warmstart:
+        initialization = load_micro_warmstart(args.initialize_micro_warmstart, args.initialize_sha256)
     if args.resume:
         if args.resume.resolve() != (args.output/"latest.pt").resolve():
             parser.error("resume must use this output directory's latest transaction checkpoint")
@@ -213,13 +234,22 @@ def main(argv=None):
         torch.manual_seed(args.random_seed)
         random.seed(args.random_seed)
         model = make_model(args.architecture, hidden=args.hidden)
+        if initialization is not None:
+            if model.metadata() != initialization["network"]:
+                raise ValueError("micro initialization network metadata differs from requested architecture/hidden")
+            model.load_state_dict(initialization["model"])
+            # A new experiment gets a new random stream, independent of the BC
+            # optimizer, its RNG and temporary model construction above.
+            torch.manual_seed(args.random_seed)
+            random.seed(args.random_seed)
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
         state = dict(next_seed=args.scenario_start, episodes=0, attempted_episodes=0,
             warmstart_completed=0, ppo_batches=0, batches=0, wall_time_s=0.,
             pending_batch=None, next_attempt=0, stop_reason=None)
     args.output.mkdir(parents=True, exist_ok=True)
     if not args.resume:
-        save_checkpoint(args.output/"random.pt", model, optimizer, state, config)
+        initial_name = "initial.pt" if initialization is not None else "random.pt"
+        save_checkpoint(args.output/initial_name, model, optimizer, state, config)
     save_checkpoint(args.output/"latest.pt", model, optimizer, state, config)
     started, prior_wall = time.perf_counter(), state["wall_time_s"]
     next_review = started+args.progress_interval_seconds
