@@ -1,0 +1,99 @@
+{
+  "reference_sha256": "0e10fd2e8775b514e4ae07ae16189468a746526029e0e4b13847f007edcdde19",
+  "worker_sha256": "dd62d02db4ef95874d9654902a6b81cb376b108bde4d50c067e689d6fad006f0",
+  "runner_sha256": "c89edb971c579ba65f0c3f8fec38add1ac5c324ad9a1497941f8545aedf6b47f",
+  "state_manifest_sha256": "7e5c9ddfdf0c93e75f89fd83b2fd9e794f2a48d83d578aac1d4b9594f2c40ce9",
+  "state_summary_sha256": "3e0bca94889b4293902a28a42443eaf27af906d3a5ce8166b5b8e4072c5c8972",
+  "cases": [
+    {
+      "case_sha256": "170a9fa5c74b349029343e75f2b9d07d1a1dd594185c90731aa3c3a3c9c2d978",
+      "common_lower_bound_s": 2331.7824874711414,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "6a196dbda944745e6729a191374c9ccbd86f29b179d82e6e31ac0946ee380439",
+      "common_lower_bound_s": 1676.961229656825,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "e3eb43c742723a36055ed3394766dc0b226205a35752217d07cc09391205167d",
+      "common_lower_bound_s": 2088.433557832603,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "ac5cc0a11ecd81415f175b0f87596d08596f707256fb88a99cb3bb1924a7aee0",
+      "common_lower_bound_s": 501.00000444444436,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "67e242da65a73d4a7a65f4632119d447eac65aeb88992d4c95a2afb4d8aac3d9",
+      "common_lower_bound_s": 2181.4590739459486,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "99440eb77f138c6facaf78eed0118d5af4a0c72018199db90c6ad284fba0d9de",
+      "common_lower_bound_s": 2836.298877431684,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "94ca8344182ada11cbb16c1ef605a5dca605a86553d1dd84a259eb518353e194",
+      "common_lower_bound_s": 630.9477035703344,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "064c43b6fdf25d6f679aa0f4d6bca2cedc55cfa93c105439af65546bc1e45446",
+      "common_lower_bound_s": 1986.5676739170444,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "1733ea5331720382a2c51d0b381964d4198d4f53dc63d2bf55c555c48dcefff2",
+      "common_lower_bound_s": 1675.7331602882632,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "c52929839dabff29d5dbb47094941bf226ff2ba18c4132e3d2955deb614242aa",
+      "common_lower_bound_s": 1941.4028270513636,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "f3af25a6da02322ef55799e5235138598dc7c9d4d75bccd4735996e8d8f75fe0",
+      "common_lower_bound_s": 636.0000044444444,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "55ff3413ead904118712d3400e7fcd1490e8557b28469832bcd26629c7e7b8f7",
+      "common_lower_bound_s": 2144.986032895383,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "1484e20fb9dc7f478917b9616fefd6361b698cc7448e90db46ae5056af00d126",
+      "common_lower_bound_s": 2742.5524679256405,
+      "stage": "stress"
+    },
+    {
+      "case_sha256": "d433c4fe740d19b7160bc87a73142edeb7646684de53b21cd4140b976c4c433a",
+      "common_lower_bound_s": 675.942485464859,
+      "stage": "stress"
+    }
+  ],
+  "spec": {
+    "kwargs": {
+      "max_expansions": 200,
+      "record_transitions": false,
+      "max_decisions": 512
+    },
+    "artifact_files": [
+      "runs/train-pair-v2/macro512/training/checkpoint-000055.pt"
+    ],
+    "policy_factory": {
+      "entrypoint": "q4_rl.network:load_policy",
+      "kwargs": {
+        "deterministic": true,
+        "checkpoint": "runs/train-pair-v2/macro512/training/checkpoint-000055.pt"
+      }
+    },
+    "entrypoint": "q4_rl.controller:run_q4_rl"
+  },
+  "reference_arm": false,
+  "role": "Frozen explicit same-case RL comparison; no policy training or checkpoint selection here"
+}
