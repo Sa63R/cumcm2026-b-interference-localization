@@ -1,0 +1,24 @@
+{
+  "compact_baseline": {
+    "entrypoint": "strategies.q4_cover_search:run_q4_cover_search",
+    "kwargs": {
+      "profile": "compact_22",
+      "schedule": "joint",
+      "max_expansions": 200
+    }
+  },
+  "compact_combo": {
+    "entrypoint": "strategies.q4_range_scheduling:run_q4_range_scheduling",
+    "kwargs": {
+      "config": "onroute",
+      "max_expansions": 200
+    }
+  },
+  "compact_observation_d1": {
+    "entrypoint": "strategies.q4_observation_search:run_q4_observation_search",
+    "kwargs": {
+      "depth": 1,
+      "max_expansions": 200
+    }
+  }
+}
