@@ -1,6 +1,6 @@
 # R9 联合可见性：独立验证通过
 
-冻结方案 `strategies.q4_joint_visibility:run_q4_joint_visibility(config="probe", max_expansions=200)` 达到预登记晋级门槛，作为新的通用状态搜索比较基准。策略/审计/选择器冻结500111ef，开发选择e3c6cda0。此前的核心分支与R8均保留。结果来自本地合成环境；本记录建立时尚未做官方演练。
+冻结方案 `strategies.q4_joint_visibility:run_q4_joint_visibility(config="probe", max_expansions=200)` 达到预登记晋级门槛，作为新的通用状态搜索比较基准。策略/审计/选择器冻结500111ef，开发选择e3c6cda0。此前的核心分支与R8均保留。结果来自本地合成环境；主体统计在官方演练前冻结，后续一局官方核验见RUN_PRACTICE.md。
 
 ## 同场景独立结果
 
@@ -65,3 +65,7 @@ Python基础环境使用已有项目.venv-win；RL使用q3-deep-rl/.venv-win的P
 ![独立同场景比较](figures/independent-comparison.png)
 
 晋级只表示本轮可靠改善，优化目标尚未结束。后续优先检验能否在真实新无信号后继续收紧辅助区，以及从已证实可接收区域选择探点；这两条路线还未得到性能结论。
+
+## 后续官方演练核验
+
+13/13全部清除；T=6673.890281秒，历史条件下界=2085.3740759251605秒，T/LB=3.2003324286263504。官方登记和实际观测前缀审计通过，只做演练。此单局不能证明平均增益，也没有同官方case的RL配对；原始材料和去标识观测导出见[演练说明](RUN_PRACTICE.md)。
