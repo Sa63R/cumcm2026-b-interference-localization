@@ -3,11 +3,35 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import lru_cache
 import math
 
 from geometry import (Circle, HalfPlane, Point, bearing_halfplanes, clip_polygon,
                       disk_halfplanes, disk_polygon, distance, minimum_enclosing_circle,
                       point, polygon_area, polygon_diameter)
+
+
+@lru_cache(maxsize=128)
+def _cached_reception_disk(x_hex, y_hex, radius_key, sides):
+    # Reconstruct the identical ordinary scalar inputs, including signed zero.
+    # The original function still performs all arithmetic and normalization.
+    radius = float.fromhex(radius_key[1]) if radius_key[0] == "float" else radius_key[1]
+    return disk_halfplanes((float.fromhex(x_hex), float.fromhex(y_hex)), radius, sides, outer=True)
+
+
+def _reception_disk_halfplanes(center, radius, sides):
+    """Share only immutable circle constraints; observations are never cached.
+
+    Normal observe() positions are tuples of built-in floats. Unusual input
+    types take the original path without invoking their hash/equality methods.
+    Successful ordinary inputs need no changed formulas or clip ordering.
+    """
+    if (type(center) is not tuple or len(center) != 2
+            or any(type(v) is not float for v in center)
+            or type(radius) not in (int, float) or type(sides) is not int):
+        return disk_halfplanes(center, radius, sides, outer=True)
+    radius_key = ("float", radius.hex()) if type(radius) is float else ("int", radius)
+    return _cached_reception_disk(center[0].hex(), center[1].hex(), radius_key, sides)
 
 
 @dataclass(frozen=True)
@@ -73,7 +97,7 @@ class CandidateRegion:
     def observe(self, position, bearing_deg: float) -> "CandidateRegion":
         observation = BearingObservation(point(position), bearing_deg, self.error_deg)
         constraints = bearing_halfplanes(observation.position, observation.bearing_deg, observation.error_deg)
-        constraints += disk_halfplanes(observation.position, self.reception_radius, self.disk_sides, outer=True)
+        constraints += _reception_disk_halfplanes(observation.position, self.reception_radius, self.disk_sides)
         vertices = self.vertices
         for hp in constraints:
             vertices = clip_polygon(vertices, hp)
