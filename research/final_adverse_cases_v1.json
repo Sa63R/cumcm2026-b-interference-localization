@@ -1,0 +1,3161 @@
+{
+  "schema": 1,
+  "scope": "Post-freeze descriptive diagnosis, no new rollout/counterfactual/parameter choice",
+  "script_sha256": "7691ceaf24cf77898bb0f02cac2ada231ab565694957818c601f7593c6db3273",
+  "step_convention": "1-based accepted measure/clear; excludes enter/exit",
+  "sequence_columns": {
+    "first_discoveries": [
+      "channel",
+      "step",
+      "virtual_time_s"
+    ],
+    "clearances": [
+      "channel",
+      "step",
+      "virtual_time_s"
+    ],
+    "first_coverage_site_visits": [
+      "step",
+      "position",
+      "virtual_time_s"
+    ]
+  },
+  "report_sha256": {
+    "random": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991",
+    "stress": "ee52b8b04cee1974910a0a7668a685ddce9845207c61c0a9a12b0844bb6bccdb"
+  },
+  "random_summary": {
+    "state": {
+      "pairs": 256,
+      "wins": 241,
+      "losses": 15,
+      "mean_reduction_fraction": 0.08336565413428254,
+      "mean_seconds_saved": 280.24658748046875
+    },
+    "rl": {
+      "pairs": 256,
+      "wins": 216,
+      "losses": 40,
+      "mean_reduction_fraction": 0.06302490405144678,
+      "mean_seconds_saved": 211.86799851953126
+    },
+    "geo": {
+      "pairs": 256,
+      "wins": 204,
+      "losses": 52,
+      "mean_reduction_fraction": 0.04363791141737927,
+      "mean_seconds_saved": 146.69561327734374
+    }
+  },
+  "cases": [
+    {
+      "split": "random",
+      "method": "state",
+      "seed": 800015,
+      "paired_case": {
+        "case_id": "q3-random-800015",
+        "seed": 800015,
+        "baseline_s": 2919.668405,
+        "candidate_s": 3044.749855,
+        "saved_s": -125.08145000000013,
+        "candidate_successful": true,
+        "failed_clear_count": 0
+      },
+      "record_paths": {
+        "baseline": "../q3-v1-artifacts/final-evaluations-complete-0930/v1-selection/evaluations/final_random/baseline/case-800015.json.gz",
+        "candidate": "../q3-v1-artifacts/final-evaluations-complete-0930/v1-selection/evaluations/final_random/state-future-cover/case-800015.json.gz"
+      },
+      "cost_increase_s": {
+        "movement_s": 152.08145000000013,
+        "switching_s": -2.0,
+        "detection_s": -25.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "baseline": {
+        "input_sha256": "ae54ae9f42147e836b33202836f252e618615df3d408effc5973ce9280d0d3a2",
+        "case_sha256": "bc35261e307e3f32c875998fecb1137c59f32e6a2cd44700bb5fa64e1aff4e5d",
+        "row": {
+          "seed": 800015,
+          "case_id": "q3-random-800015",
+          "strategy": "rollout_frozen",
+          "source_total": 12,
+          "virtual_time_s": 2919.668405,
+          "measurement_count": 129,
+          "successful": true,
+          "failed_clear_count": 0,
+          "movement_s": 2098.668405,
+          "switching_s": 116.0,
+          "detection_s": 645.0,
+          "optical_s": 36.0,
+          "removal_s": 24.0
+        },
+        "component_reconstruction_max_step_residual_us": 0,
+        "phases": {
+          "coverage": {
+            "movement_s": 549.695495,
+            "switching_s": 104.0,
+            "detection_s": 530.0,
+            "actions": 106
+          },
+          "active_localization": {
+            "movement_s": 1545.438836,
+            "switching_s": 12.0,
+            "detection_s": 115.0,
+            "actions": 23
+          },
+          "certified_clear": {
+            "movement_s": 3.534074,
+            "optical_s": 27.0,
+            "removal_s": 18.0,
+            "actions": 9
+          },
+          "near_clear": {
+            "movement_s": 0.0,
+            "optical_s": 9.0,
+            "removal_s": 6.0,
+            "actions": 3
+          }
+        },
+        "first_discoveries": [
+          [
+            5,
+            5,
+            29.0
+          ],
+          [
+            8,
+            8,
+            47.0
+          ],
+          [
+            11,
+            11,
+            65.0
+          ],
+          [
+            13,
+            13,
+            77.0
+          ],
+          [
+            14,
+            14,
+            83.0
+          ],
+          [
+            17,
+            17,
+            101.0
+          ],
+          [
+            19,
+            42,
+            496.574917
+          ],
+          [
+            1,
+            52,
+            839.388544
+          ],
+          [
+            10,
+            98,
+            1693.225061
+          ],
+          [
+            2,
+            107,
+            2011.014157
+          ],
+          [
+            6,
+            110,
+            2029.014157
+          ],
+          [
+            12,
+            114,
+            2053.014157
+          ]
+        ],
+        "clearances": [
+          [
+            8,
+            24,
+            371.706522
+          ],
+          [
+            17,
+            45,
+            609.200445
+          ],
+          [
+            19,
+            51,
+            820.906426
+          ],
+          [
+            5,
+            70,
+            1002.908473
+          ],
+          [
+            1,
+            74,
+            1179.157747
+          ],
+          [
+            11,
+            76,
+            1267.375366
+          ],
+          [
+            13,
+            106,
+            1864.980317
+          ],
+          [
+            10,
+            121,
+            2187.756078
+          ],
+          [
+            2,
+            125,
+            2304.534131
+          ],
+          [
+            12,
+            128,
+            2435.335606
+          ],
+          [
+            14,
+            130,
+            2614.957951
+          ],
+          [
+            6,
+            141,
+            2919.668405
+          ]
+        ],
+        "first_coverage_site_visits": [
+          [
+            1,
+            [
+              0.0,
+              0.0
+            ],
+            5.0
+          ],
+          [
+            25,
+            [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            394.574917
+          ],
+          [
+            52,
+            [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            839.388544
+          ],
+          [
+            77,
+            [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            1338.225061
+          ],
+          [
+            91,
+            [
+              1150.0,
+              0.0
+            ],
+            1651.225061
+          ],
+          [
+            107,
+            [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            2011.014157
+          ],
+          [
+            131,
+            [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            2706.419398
+          ]
+        ],
+        "largest_movement_actions": [
+          {
+            "step": 91,
+            "from_point": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "to_point": [
+              1150.0,
+              0.0
+            ],
+            "channel": 20,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 230.0
+          },
+          {
+            "step": 129,
+            "from_point": [
+              459.40431091537687,
+              -1196.1064765730473
+            ],
+            "to_point": [
+              -241.95783176861084,
+              -728.208491836549
+            ],
+            "channel": 14,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 168.622345
+          },
+          {
+            "step": 140,
+            "from_point": [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            "to_point": [
+              -256.06948533006977,
+              -1692.2352949263854
+            ],
+            "channel": 6,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 153.174258
+          },
+          {
+            "step": 21,
+            "from_point": [
+              0.0,
+              0.0
+            ],
+            "to_point": [
+              -748.1931843077589,
+              -55.19004490943188
+            ],
+            "channel": 8,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 150.045191
+          },
+          {
+            "step": 107,
+            "from_point": [
+              601.0595030045004,
+              -296.245136513708
+            ],
+            "to_point": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "channel": 2,
+            "phase": "coverage",
+            "result": "direction",
+            "movement_s": 140.03384
+          },
+          {
+            "step": 105,
+            "from_point": [
+              1150.0,
+              0.0
+            ],
+            "to_point": [
+              601.0595030045004,
+              -296.245136513708
+            ],
+            "channel": 13,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 124.755256
+          }
+        ],
+        "all_sources_first_detected_s": 2053.014157,
+        "last_clearance_s": 2919.668405,
+        "after_last_clearance": {
+          "total_s": 0.0,
+          "actions": 0,
+          "movement_s": 0.0,
+          "switching_s": 0.0,
+          "detection_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "noncoverage_measure_results": {
+          "direction": 20,
+          "near": 3
+        },
+        "noncoverage_measure_by_channel": {
+          "8": 3,
+          "17": 1,
+          "19": 5,
+          "5": 1,
+          "1": 3,
+          "11": 1,
+          "13": 1,
+          "10": 1,
+          "2": 3,
+          "12": 2,
+          "14": 1,
+          "6": 1
+        },
+        "exact_position_channel_measure_repeats": 0,
+        "noncoverage_no_signal": [],
+        "longest_detection_to_clear_waits": [
+          [
+            14,
+            2531.957951
+          ],
+          [
+            13,
+            1787.980317
+          ],
+          [
+            11,
+            1202.375366
+          ]
+        ],
+        "rl_metrics": {}
+      },
+      "candidate": {
+        "input_sha256": "5e587a6e49d7b9cc7dad4cd1af03eb1f566ee9bc233133165ee5d323f2dc8441",
+        "case_sha256": "bc35261e307e3f32c875998fecb1137c59f32e6a2cd44700bb5fa64e1aff4e5d",
+        "row": {
+          "seed": 800015,
+          "case_id": "q3-random-800015",
+          "strategy": "state_search_relocating_cover_v1",
+          "source_total": 12,
+          "virtual_time_s": 3044.749855,
+          "measurement_count": 124,
+          "successful": true,
+          "failed_clear_count": 0,
+          "movement_s": 2250.749855,
+          "switching_s": 114.0,
+          "detection_s": 620.0,
+          "optical_s": 36.0,
+          "removal_s": 24.0
+        },
+        "component_reconstruction_max_step_residual_us": 0,
+        "phases": {
+          "coverage": {
+            "movement_s": 415.619846,
+            "switching_s": 102.0,
+            "detection_s": 520.0,
+            "actions": 104
+          },
+          "active_localization": {
+            "movement_s": 1607.273204,
+            "switching_s": 11.0,
+            "detection_s": 95.0,
+            "actions": 19
+          },
+          "certified_clear": {
+            "movement_s": 227.856805,
+            "optical_s": 36.0,
+            "removal_s": 24.0,
+            "actions": 12
+          },
+          "shared_cross_bearing": {
+            "movement_s": 0.0,
+            "switching_s": 1.0,
+            "detection_s": 5.0,
+            "actions": 1
+          }
+        },
+        "first_discoveries": [
+          [
+            5,
+            5,
+            29.0
+          ],
+          [
+            8,
+            8,
+            47.0
+          ],
+          [
+            11,
+            11,
+            65.0
+          ],
+          [
+            13,
+            13,
+            77.0
+          ],
+          [
+            14,
+            14,
+            83.0
+          ],
+          [
+            17,
+            17,
+            101.0
+          ],
+          [
+            19,
+            41,
+            491.569182
+          ],
+          [
+            1,
+            48,
+            798.516349
+          ],
+          [
+            10,
+            93,
+            1620.250811
+          ],
+          [
+            2,
+            106,
+            2062.125785
+          ],
+          [
+            6,
+            109,
+            2080.125785
+          ],
+          [
+            12,
+            112,
+            2098.125785
+          ]
+        ],
+        "clearances": [
+          [
+            8,
+            23,
+            371.435049
+          ],
+          [
+            17,
+            44,
+            606.327067
+          ],
+          [
+            19,
+            47,
+            789.357107
+          ],
+          [
+            5,
+            66,
+            963.531836
+          ],
+          [
+            1,
+            69,
+            1119.504932
+          ],
+          [
+            11,
+            71,
+            1204.465581
+          ],
+          [
+            13,
+            101,
+            1787.433029
+          ],
+          [
+            10,
+            105,
+            2025.414924
+          ],
+          [
+            6,
+            120,
+            2391.310883
+          ],
+          [
+            12,
+            123,
+            2602.165382
+          ],
+          [
+            2,
+            126,
+            2701.156691
+          ],
+          [
+            14,
+            128,
+            2911.919475
+          ]
+        ],
+        "first_coverage_site_visits": [
+          [
+            1,
+            [
+              0.0,
+              0.0
+            ],
+            5.0
+          ],
+          [
+            24,
+            [
+              -1099.0384578704834,
+              1.3459339295709308e-13
+            ],
+            389.569182
+          ],
+          [
+            48,
+            [
+              -596.6577108834549,
+              1073.7952608760013
+            ],
+            798.516349
+          ],
+          [
+            72,
+            [
+              557.0101275416475,
+              911.5526173054764
+            ],
+            1282.868178
+          ],
+          [
+            86,
+            [
+              1113.3328546098282,
+              7.028105490303248
+            ],
+            1578.250811
+          ],
+          [
+            106,
+            [
+              815.7252375442062,
+              -1194.656723324441
+            ],
+            2062.125785
+          ],
+          [
+            129,
+            [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            3002.749855
+          ]
+        ],
+        "largest_movement_actions": [
+          {
+            "step": 86,
+            "from_point": [
+              557.0101275416475,
+              911.5526173054764
+            ],
+            "to_point": [
+              1113.3328546098282,
+              7.028105490303248
+            ],
+            "channel": 20,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 212.382633
+          },
+          {
+            "step": 46,
+            "from_point": [
+              -1192.3294467797493,
+              475.6847737980268
+            ],
+            "to_point": [
+              -637.2570731366233,
+              1051.5196388049314
+            ],
+            "channel": 19,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 159.961387
+          },
+          {
+            "step": 103,
+            "from_point": [
+              753.3437962745186,
+              -507.1244550892689
+            ],
+            "to_point": [
+              905.3628899780848,
+              -1214.9354789825372
+            ],
+            "channel": 10,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 144.790366
+          },
+          {
+            "step": 119,
+            "from_point": [
+              271.5673206300372,
+              -1241.4036756702844
+            ],
+            "to_point": [
+              -251.53098309858837,
+              -1634.1385931144598
+            ],
+            "channel": 6,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 130.823935
+          },
+          {
+            "step": 128,
+            "from_point": [
+              348.42871797017835,
+              -935.7169476170475
+            ],
+            "to_point": [
+              -241.24742231855413,
+              -734.1773262521513
+            ],
+            "channel": 14,
+            "phase": "certified_clear",
+            "result": "success",
+            "movement_s": 124.633249
+          },
+          {
+            "step": 21,
+            "from_point": [
+              0.0,
+              0.0
+            ],
+            "to_point": [
+              -574.9423994581773,
+              145.6557623948657
+            ],
+            "channel": 8,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 118.621139
+          }
+        ],
+        "all_sources_first_detected_s": 2098.125785,
+        "last_clearance_s": 2911.919475,
+        "after_last_clearance": {
+          "total_s": 132.83038,
+          "actions": 8,
+          "movement_s": 84.83038,
+          "switching_s": 8.0,
+          "detection_s": 40.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "noncoverage_measure_results": {
+          "direction": 20
+        },
+        "noncoverage_measure_by_channel": {
+          "8": 2,
+          "17": 1,
+          "19": 2,
+          "5": 1,
+          "1": 2,
+          "11": 1,
+          "13": 1,
+          "10": 3,
+          "6": 2,
+          "12": 2,
+          "2": 2,
+          "14": 1
+        },
+        "exact_position_channel_measure_repeats": 0,
+        "noncoverage_no_signal": [],
+        "longest_detection_to_clear_waits": [
+          [
+            14,
+            2828.919475
+          ],
+          [
+            13,
+            1710.433029
+          ],
+          [
+            11,
+            1139.465581
+          ]
+        ],
+        "rl_metrics": {}
+      }
+    },
+    {
+      "split": "random",
+      "method": "rl",
+      "seed": 800081,
+      "paired_case": {
+        "case_id": "q3-random-800081",
+        "seed": 800081,
+        "baseline_s": 3238.72166,
+        "candidate_s": 3604.168383,
+        "saved_s": -365.446723,
+        "candidate_successful": true,
+        "failed_clear_count": 0
+      },
+      "record_paths": {
+        "baseline": "../q3-v1-artifacts/final-evaluations-complete-0930/v1-selection/evaluations/final_random/baseline/case-800081.json.gz",
+        "candidate": "../q3-v1-artifacts/final-evaluations-complete-0930/v1-selection/evaluations/final_random/rl-gae095-u512/case-800081.json.gz"
+      },
+      "cost_increase_s": {
+        "movement_s": 340.446723,
+        "switching_s": 5.0,
+        "detection_s": 20.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "baseline": {
+        "input_sha256": "855fb77c1077576939cbf791437ddd110df6df6d48affa09851311fafa9d8c29",
+        "case_sha256": "08332cd4ba955b7919cf19b53dc2779d47c8dcdceff1e2fa698f8cb945b928bf",
+        "row": {
+          "seed": 800081,
+          "case_id": "q3-random-800081",
+          "strategy": "rollout_frozen",
+          "source_total": 10,
+          "virtual_time_s": 3238.72166,
+          "measurement_count": 136,
+          "successful": true,
+          "failed_clear_count": 0,
+          "movement_s": 2394.72166,
+          "switching_s": 114.0,
+          "detection_s": 680.0,
+          "optical_s": 30.0,
+          "removal_s": 20.0
+        },
+        "component_reconstruction_max_step_residual_us": 0,
+        "phases": {
+          "coverage": {
+            "movement_s": 1041.592934,
+            "switching_s": 104.0,
+            "detection_s": 535.0,
+            "actions": 107
+          },
+          "active_localization": {
+            "movement_s": 1339.562901,
+            "switching_s": 10.0,
+            "detection_s": 145.0,
+            "actions": 29
+          },
+          "certified_clear": {
+            "movement_s": 13.565825,
+            "optical_s": 21.0,
+            "removal_s": 14.0,
+            "actions": 7
+          },
+          "near_clear": {
+            "movement_s": 0.0,
+            "optical_s": 9.0,
+            "removal_s": 6.0,
+            "actions": 3
+          }
+        },
+        "first_discoveries": [
+          [
+            5,
+            5,
+            29.0
+          ],
+          [
+            6,
+            6,
+            35.0
+          ],
+          [
+            4,
+            25,
+            378.0
+          ],
+          [
+            17,
+            38,
+            456.0
+          ],
+          [
+            19,
+            66,
+            1125.406451
+          ],
+          [
+            12,
+            83,
+            1610.955853
+          ],
+          [
+            13,
+            84,
+            1616.955853
+          ],
+          [
+            18,
+            88,
+            1640.955853
+          ],
+          [
+            8,
+            120,
+            2602.830893
+          ],
+          [
+            11,
+            123,
+            2620.830893
+          ]
+        ],
+        "clearances": [
+          [
+            4,
+            44,
+            589.986632
+          ],
+          [
+            5,
+            46,
+            735.350261
+          ],
+          [
+            17,
+            50,
+            921.519564
+          ],
+          [
+            19,
+            73,
+            1333.85912
+          ],
+          [
+            12,
+            95,
+            1806.32916
+          ],
+          [
+            13,
+            97,
+            1929.432643
+          ],
+          [
+            18,
+            100,
+            2031.968996
+          ],
+          [
+            6,
+            102,
+            2123.43788
+          ],
+          [
+            8,
+            131,
+            2802.038717
+          ],
+          [
+            11,
+            136,
+            3064.505359
+          ]
+        ],
+        "first_coverage_site_visits": [
+          [
+            1,
+            [
+              0.0,
+              0.0
+            ],
+            5.0
+          ],
+          [
+            21,
+            [
+              1150.0,
+              0.0
+            ],
+            354.0
+          ],
+          [
+            51,
+            [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            1035.406451
+          ],
+          [
+            74,
+            [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            1556.955853
+          ],
+          [
+            103,
+            [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            2271.830893
+          ],
+          [
+            115,
+            [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            2572.830893
+          ],
+          [
+            137,
+            [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            3184.72166
+          ]
+        ],
+        "largest_movement_actions": [
+          {
+            "step": 21,
+            "from_point": [
+              0.0,
+              0.0
+            ],
+            "to_point": [
+              1150.0,
+              0.0
+            ],
+            "channel": 20,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 230.0
+          },
+          {
+            "step": 115,
+            "from_point": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "to_point": [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            "channel": 20,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 230.0
+          },
+          {
+            "step": 74,
+            "from_point": [
+              196.18901497083672,
+              1759.8286100677803
+            ],
+            "to_point": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "channel": 1,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 217.096733
+          },
+          {
+            "step": 103,
+            "from_point": [
+              -994.594739831286,
+              694.7974246754704
+            ],
+            "to_point": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "channel": 1,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 142.393013
+          },
+          {
+            "step": 45,
+            "from_point": [
+              1333.7812083620597,
+              -108.63453253730718
+            ],
+            "to_point": [
+              1351.254831621413,
+              543.8973035537149
+            ],
+            "channel": 5,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 130.55315
+          },
+          {
+            "step": 137,
+            "from_point": [
+              432.38830227528257,
+              -1548.9174488350088
+            ],
+            "to_point": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "channel": 1,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 114.216301
+          }
+        ],
+        "all_sources_first_detected_s": 2620.830893,
+        "last_clearance_s": 3064.505359,
+        "after_last_clearance": {
+          "total_s": 174.216301,
+          "actions": 10,
+          "movement_s": 114.216301,
+          "switching_s": 10.0,
+          "detection_s": 50.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "noncoverage_measure_results": {
+          "direction": 26,
+          "near": 3
+        },
+        "noncoverage_measure_by_channel": {
+          "4": 3,
+          "5": 1,
+          "17": 3,
+          "19": 5,
+          "12": 5,
+          "13": 1,
+          "18": 2,
+          "6": 1,
+          "8": 4,
+          "11": 4
+        },
+        "exact_position_channel_measure_repeats": 0,
+        "noncoverage_no_signal": [],
+        "longest_detection_to_clear_waits": [
+          [
+            6,
+            2088.43788
+          ],
+          [
+            5,
+            706.350261
+          ],
+          [
+            17,
+            465.51956399999995
+          ]
+        ],
+        "rl_metrics": {}
+      },
+      "candidate": {
+        "input_sha256": "25144ffe0af04069853a9fc9702a39945914fd1658e209138eb349ba17c9c65d",
+        "case_sha256": "08332cd4ba955b7919cf19b53dc2779d47c8dcdceff1e2fa698f8cb945b928bf",
+        "row": {
+          "seed": 800081,
+          "case_id": "q3-random-800081",
+          "strategy": "rl-gae095-u512",
+          "source_total": 10,
+          "virtual_time_s": 3604.168383,
+          "measurement_count": 140,
+          "successful": true,
+          "failed_clear_count": 0,
+          "movement_s": 2735.168383,
+          "switching_s": 119.0,
+          "detection_s": 700.0,
+          "optical_s": 30.0,
+          "removal_s": 20.0
+        },
+        "component_reconstruction_max_step_residual_us": 0,
+        "phases": {
+          "coverage": {
+            "movement_s": 1364.681219,
+            "switching_s": 105.0,
+            "detection_s": 530.0,
+            "actions": 106
+          },
+          "rl_active_localization": {
+            "movement_s": 1264.830197,
+            "switching_s": 14.0,
+            "detection_s": 160.0,
+            "actions": 32
+          },
+          "active_localization": {
+            "movement_s": 17.795342,
+            "switching_s": 0.0,
+            "detection_s": 10.0,
+            "actions": 2
+          },
+          "near_clear": {
+            "movement_s": 0.0,
+            "optical_s": 6.0,
+            "removal_s": 4.0,
+            "actions": 2
+          },
+          "rl_certified_clear": {
+            "movement_s": 87.861625,
+            "optical_s": 24.0,
+            "removal_s": 16.0,
+            "actions": 8
+          }
+        },
+        "first_discoveries": [
+          [
+            6,
+            2,
+            11.0
+          ],
+          [
+            5,
+            11,
+            65.0
+          ],
+          [
+            17,
+            41,
+            650.736685
+          ],
+          [
+            4,
+            45,
+            674.736685
+          ],
+          [
+            11,
+            59,
+            1090.221991
+          ],
+          [
+            8,
+            83,
+            1575.670567
+          ],
+          [
+            13,
+            93,
+            2119.165208
+          ],
+          [
+            18,
+            98,
+            2149.165208
+          ],
+          [
+            12,
+            122,
+            2664.874578
+          ],
+          [
+            19,
+            139,
+            3223.068119
+          ]
+        ],
+        "clearances": [
+          [
+            5,
+            29,
+            459.093496
+          ],
+          [
+            4,
+            51,
+            808.723317
+          ],
+          [
+            11,
+            70,
+            1268.135299
+          ],
+          [
+            8,
+            90,
+            1750.878391
+          ],
+          [
+            18,
+            113,
+            2386.825169
+          ],
+          [
+            13,
+            115,
+            2466.216247
+          ],
+          [
+            6,
+            117,
+            2532.249856
+          ],
+          [
+            12,
+            133,
+            2857.97557
+          ],
+          [
+            17,
+            147,
+            3383.667063
+          ],
+          [
+            19,
+            150,
+            3604.168383
+          ]
+        ],
+        "first_coverage_site_visits": [
+          [
+            1,
+            [
+              0.0,
+              0.0
+            ],
+            5.0
+          ],
+          [
+            30,
+            [
+              1150.0,
+              0.0
+            ],
+            584.736685
+          ],
+          [
+            52,
+            [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            1048.221991
+          ],
+          [
+            71,
+            [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            1503.670567
+          ],
+          [
+            91,
+            [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            2107.165208
+          ],
+          [
+            118,
+            [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            2640.874578
+          ],
+          [
+            134,
+            [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            3193.068119
+          ]
+        ],
+        "largest_movement_actions": [
+          {
+            "step": 91,
+            "from_point": [
+              -451.25755174500944,
+              -1606.0138036005317
+            ],
+            "to_point": [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            "channel": 9,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 350.286817
+          },
+          {
+            "step": 134,
+            "from_point": [
+              -1003.9879466158782,
+              1458.9029807605043
+            ],
+            "to_point": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "channel": 20,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 329.092549
+          },
+          {
+            "step": 52,
+            "from_point": [
+              1333.7812083620597,
+              -108.63453253730718
+            ],
+            "to_point": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "channel": 9,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 233.498674
+          },
+          {
+            "step": 71,
+            "from_point": [
+              431.8043693219697,
+              -1546.8429515071118
+            ],
+            "to_point": [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            "channel": 12,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 229.535268
+          },
+          {
+            "step": 149,
+            "from_point": [
+              1056.73000724761,
+              1234.75853960018
+            ],
+            "to_point": [
+              195.1217791825371,
+              1756.9755324208377
+            ],
+            "channel": 19,
+            "phase": "rl_active_localization",
+            "result": "direction",
+            "movement_s": 201.50229
+          },
+          {
+            "step": 30,
+            "from_point": [
+              1359.376038529519,
+              560.3784376536655
+            ],
+            "to_point": [
+              1150.0,
+              0.0
+            ],
+            "channel": 1,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 119.643189
+          }
+        ],
+        "all_sources_first_detected_s": 3223.068119,
+        "last_clearance_s": 3604.168383,
+        "after_last_clearance": {
+          "total_s": 0.0,
+          "actions": 0,
+          "movement_s": 0.0,
+          "switching_s": 0.0,
+          "detection_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "noncoverage_measure_results": {
+          "direction": 32,
+          "near": 2
+        },
+        "noncoverage_measure_by_channel": {
+          "5": 8,
+          "4": 3,
+          "11": 2,
+          "8": 4,
+          "6": 2,
+          "18": 6,
+          "13": 2,
+          "12": 3,
+          "17": 2,
+          "19": 2
+        },
+        "exact_position_channel_measure_repeats": 0,
+        "noncoverage_no_signal": [],
+        "longest_detection_to_clear_waits": [
+          [
+            17,
+            2732.930378
+          ],
+          [
+            6,
+            2521.249856
+          ],
+          [
+            5,
+            394.093496
+          ]
+        ],
+        "rl_metrics": {
+          "decisions": 148,
+          "action_counts": {
+            "cover": 106,
+            "probe": 32,
+            "fallback": 1,
+            "clear": 9
+          },
+          "fallback_counts": {
+            "source_probe_limit": 1
+          },
+          "fallback_actions": 3,
+          "fallback_virtual_time_s": 32.795342000000005
+        }
+      }
+    },
+    {
+      "split": "random",
+      "method": "geo",
+      "seed": 800102,
+      "paired_case": {
+        "case_id": "q3-random-800102",
+        "seed": 800102,
+        "baseline_s": 3228.666855,
+        "candidate_s": 3496.400979,
+        "saved_s": -267.73412400000007,
+        "candidate_successful": true,
+        "failed_clear_count": 0
+      },
+      "record_paths": {
+        "baseline": "../q3-v1-artifacts/final-evaluations-complete-0930/v1-selection/evaluations/final_random/baseline/case-800102.json.gz",
+        "candidate": "../q3-v1-artifacts/final-evaluations-complete-0930/v1-selection/evaluations/final_random/geo-future-cover/case-800102.json.gz"
+      },
+      "cost_increase_s": {
+        "movement_s": 231.73412400000007,
+        "switching_s": 11.0,
+        "detection_s": 25.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "baseline": {
+        "input_sha256": "e38a1dde3ac2efd6580f448a51c8dc136d00f4899106d7d6ab9167bb2a3efd8a",
+        "case_sha256": "a07a84aa41aa7658dc9ac4ed57b7bc369dddb9c9fc63e0646da84e76b86c7da4",
+        "row": {
+          "seed": 800102,
+          "case_id": "q3-random-800102",
+          "strategy": "rollout_frozen",
+          "source_total": 14,
+          "virtual_time_s": 3228.666855,
+          "measurement_count": 123,
+          "successful": true,
+          "failed_clear_count": 0,
+          "movement_s": 2436.666855,
+          "switching_s": 107.0,
+          "detection_s": 615.0,
+          "optical_s": 42.0,
+          "removal_s": 28.0
+        },
+        "component_reconstruction_max_step_residual_us": 0,
+        "phases": {
+          "coverage": {
+            "movement_s": 708.291625,
+            "switching_s": 95.0,
+            "detection_s": 480.0,
+            "actions": 96
+          },
+          "active_localization": {
+            "movement_s": 1720.258241,
+            "switching_s": 12.0,
+            "detection_s": 135.0,
+            "actions": 27
+          },
+          "near_clear": {
+            "movement_s": 0.0,
+            "optical_s": 12.0,
+            "removal_s": 8.0,
+            "actions": 4
+          },
+          "certified_clear": {
+            "movement_s": 8.116989,
+            "optical_s": 30.0,
+            "removal_s": 20.0,
+            "actions": 10
+          }
+        },
+        "first_discoveries": [
+          [
+            2,
+            2,
+            11.0
+          ],
+          [
+            5,
+            5,
+            29.0
+          ],
+          [
+            6,
+            6,
+            35.0
+          ],
+          [
+            10,
+            10,
+            59.0
+          ],
+          [
+            12,
+            12,
+            71.0
+          ],
+          [
+            14,
+            14,
+            83.0
+          ],
+          [
+            16,
+            16,
+            95.0
+          ],
+          [
+            18,
+            18,
+            107.0
+          ],
+          [
+            11,
+            34,
+            432.40185
+          ],
+          [
+            19,
+            42,
+            480.40185
+          ],
+          [
+            20,
+            43,
+            486.40185
+          ],
+          [
+            8,
+            81,
+            1564.202724
+          ],
+          [
+            7,
+            99,
+            2141.759169
+          ],
+          [
+            15,
+            117,
+            2548.453773
+          ]
+        ],
+        "clearances": [
+          [
+            6,
+            24,
+            310.064922
+          ],
+          [
+            11,
+            49,
+            687.420801
+          ],
+          [
+            5,
+            51,
+            816.321907
+          ],
+          [
+            20,
+            70,
+            1094.850164
+          ],
+          [
+            14,
+            72,
+            1258.840908
+          ],
+          [
+            12,
+            74,
+            1403.419715
+          ],
+          [
+            2,
+            76,
+            1484.254421
+          ],
+          [
+            8,
+            93,
+            1773.422634
+          ],
+          [
+            18,
+            95,
+            1966.679519
+          ],
+          [
+            7,
+            109,
+            2306.869341
+          ],
+          [
+            10,
+            111,
+            2434.31925
+          ],
+          [
+            16,
+            122,
+            2597.57439
+          ],
+          [
+            15,
+            128,
+            2786.49278
+          ],
+          [
+            19,
+            137,
+            3228.666855
+          ]
+        ],
+        "first_coverage_site_visits": [
+          [
+            1,
+            [
+              0.0,
+              0.0
+            ],
+            5.0
+          ],
+          [
+            25,
+            [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            378.40185
+          ],
+          [
+            52,
+            [
+              1150.0,
+              0.0
+            ],
+            928.636557
+          ],
+          [
+            77,
+            [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            1540.202724
+          ],
+          [
+            96,
+            [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            2123.759169
+          ],
+          [
+            112,
+            [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            2518.453773
+          ],
+          [
+            129,
+            [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            3052.970351
+          ]
+        ],
+        "largest_movement_actions": [
+          {
+            "step": 129,
+            "from_point": [
+              -1733.2623612022376,
+              400.4105925366898
+            ],
+            "to_point": [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            "channel": 1,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 260.477571
+          },
+          {
+            "step": 94,
+            "from_point": [
+              1062.65026250295,
+              -1140.2343865440687
+            ],
+            "to_point": [
+              177.08533787238227,
+              -925.2598212621222
+            ],
+            "channel": 18,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 182.256885
+          },
+          {
+            "step": 71,
+            "from_point": [
+              1117.504401747183,
+              299.30920327683214
+            ],
+            "to_point": [
+              1216.927047735458,
+              -451.766920029606
+            ],
+            "channel": 14,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 151.525603
+          },
+          {
+            "step": 96,
+            "from_point": [
+              177.08533787238227,
+              -925.2598212621222
+            ],
+            "to_point": [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            "channel": 1,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 151.07965
+          },
+          {
+            "step": 21,
+            "from_point": [
+              0.0,
+              0.0
+            ],
+            "to_point": [
+              307.28455988422263,
+              684.4179372473892
+            ],
+            "channel": 6,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 150.046888
+          },
+          {
+            "step": 73,
+            "from_point": [
+              1218.6154350180184,
+              -458.89540628813916
+            ],
+            "to_point": [
+              761.2172431408143,
+              -945.296283244503
+            ],
+            "channel": 12,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 133.53635
+          }
+        ],
+        "all_sources_first_detected_s": 2548.453773,
+        "last_clearance_s": 3228.666855,
+        "after_last_clearance": {
+          "total_s": 0.0,
+          "actions": 0,
+          "movement_s": 0.0,
+          "switching_s": 0.0,
+          "detection_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "noncoverage_measure_results": {
+          "direction": 23,
+          "near": 4
+        },
+        "noncoverage_measure_by_channel": {
+          "6": 3,
+          "11": 5,
+          "5": 1,
+          "20": 1,
+          "14": 1,
+          "12": 1,
+          "2": 1,
+          "8": 3,
+          "18": 1,
+          "7": 2,
+          "10": 1,
+          "16": 1,
+          "15": 5,
+          "19": 1
+        },
+        "exact_position_channel_measure_repeats": 0,
+        "noncoverage_no_signal": [],
+        "longest_detection_to_clear_waits": [
+          [
+            19,
+            2748.2650049999997
+          ],
+          [
+            16,
+            2502.57439
+          ],
+          [
+            10,
+            2375.31925
+          ]
+        ],
+        "rl_metrics": {}
+      },
+      "candidate": {
+        "input_sha256": "a18d78712daa026bf2368f44f7730b3e8d0a81327b267d7844396018a4cdc4ad",
+        "case_sha256": "a07a84aa41aa7658dc9ac4ed57b7bc369dddb9c9fc63e0646da84e76b86c7da4",
+        "row": {
+          "seed": 800102,
+          "case_id": "q3-random-800102",
+          "strategy": "geometric_probe_relocation",
+          "source_total": 14,
+          "virtual_time_s": 3496.400979,
+          "measurement_count": 128,
+          "successful": true,
+          "failed_clear_count": 0,
+          "movement_s": 2668.400979,
+          "switching_s": 118.0,
+          "detection_s": 640.0,
+          "optical_s": 42.0,
+          "removal_s": 28.0
+        },
+        "component_reconstruction_max_step_residual_us": 0,
+        "phases": {
+          "coverage": {
+            "movement_s": 677.297453,
+            "switching_s": 102.0,
+            "detection_s": 520.0,
+            "actions": 104
+          },
+          "active_localization": {
+            "movement_s": 1875.982655,
+            "switching_s": 13.0,
+            "detection_s": 105.0,
+            "actions": 21
+          },
+          "geometric_shared_observation": {
+            "movement_s": 0.0,
+            "switching_s": 3.0,
+            "detection_s": 15.0,
+            "actions": 3
+          },
+          "certified_clear": {
+            "movement_s": 115.120871,
+            "optical_s": 36.0,
+            "removal_s": 24.0,
+            "actions": 12
+          },
+          "near_clear": {
+            "movement_s": 0.0,
+            "optical_s": 6.0,
+            "removal_s": 4.0,
+            "actions": 2
+          }
+        },
+        "first_discoveries": [
+          [
+            2,
+            2,
+            11.0
+          ],
+          [
+            5,
+            5,
+            29.0
+          ],
+          [
+            6,
+            6,
+            35.0
+          ],
+          [
+            10,
+            10,
+            59.0
+          ],
+          [
+            12,
+            12,
+            71.0
+          ],
+          [
+            14,
+            14,
+            83.0
+          ],
+          [
+            16,
+            16,
+            95.0
+          ],
+          [
+            18,
+            18,
+            107.0
+          ],
+          [
+            11,
+            36,
+            596.674754
+          ],
+          [
+            20,
+            45,
+            650.674754
+          ],
+          [
+            8,
+            56,
+            984.123952
+          ],
+          [
+            7,
+            76,
+            1352.377326
+          ],
+          [
+            15,
+            98,
+            1801.684846
+          ],
+          [
+            19,
+            119,
+            2357.143343
+          ]
+        ],
+        "clearances": [
+          [
+            5,
+            26,
+            432.262752
+          ],
+          [
+            14,
+            47,
+            752.931908
+          ],
+          [
+            12,
+            49,
+            897.887082
+          ],
+          [
+            2,
+            69,
+            1101.003922
+          ],
+          [
+            18,
+            70,
+            1171.665931
+          ],
+          [
+            7,
+            87,
+            1546.131674
+          ],
+          [
+            10,
+            89,
+            1673.343929
+          ],
+          [
+            16,
+            105,
+            1859.834661
+          ],
+          [
+            15,
+            109,
+            2038.737283
+          ],
+          [
+            19,
+            124,
+            2517.293335
+          ],
+          [
+            6,
+            126,
+            2693.059907
+          ],
+          [
+            11,
+            137,
+            2987.588719
+          ],
+          [
+            20,
+            140,
+            3181.994748
+          ],
+          [
+            8,
+            142,
+            3496.400979
+          ]
+        ],
+        "first_coverage_site_visits": [
+          [
+            1,
+            [
+              0.0,
+              0.0
+            ],
+            5.0
+          ],
+          [
+            27,
+            [
+              1237.9611995048522,
+              -3.4249012171061395
+            ],
+            542.674754
+          ],
+          [
+            50,
+            [
+              549.5192289352418,
+              -951.7952242519121
+            ],
+            948.123952
+          ],
+          [
+            71,
+            [
+              -548.5123683925866,
+              -976.9958609681893
+            ],
+            1322.377326
+          ],
+          [
+            90,
+            [
+              -1125.6411795695612,
+              -13.641863274843065
+            ],
+            1753.684846
+          ],
+          [
+            110,
+            [
+              -574.625133082338,
+              968.0073392398064
+            ],
+            2303.143343
+          ],
+          [
+            127,
+            [
+              527.4184278165353,
+              962.8226552491269
+            ],
+            2749.250116
+          ]
+        ],
+        "largest_movement_actions": [
+          {
+            "step": 141,
+            "from_point": [
+              1117.0416212831299,
+              298.6349987587792
+            ],
+            "to_point": [
+              1168.727041830233,
+              -1114.9149586956455
+            ],
+            "channel": 8,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 282.898912
+          },
+          {
+            "step": 110,
+            "from_point": [
+              -1735.3899028624303,
+              400.5855918654536
+            ],
+            "to_point": [
+              -574.625133082338,
+              968.0073392398064
+            ],
+            "channel": 1,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 258.40606
+          },
+          {
+            "step": 136,
+            "from_point": [
+              527.4184278165353,
+              962.8226552491269
+            ],
+            "to_point": [
+              1414.317999432266,
+              1077.6292917604442
+            ],
+            "channel": 11,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 178.85988
+          },
+          {
+            "step": 138,
+            "from_point": [
+              1416.7114032686854,
+              1077.5973336867535
+            ],
+            "to_point": [
+              1130.1697988329602,
+              268.05853659136267
+            ],
+            "channel": 20,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 171.750884
+          },
+          {
+            "step": 125,
+            "from_point": [
+              -117.21149536257163,
+              1449.3782092681568
+            ],
+            "to_point": [
+              358.7861119942133,
+              776.9744162578246
+            ],
+            "channel": 6,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 164.766572
+          },
+          {
+            "step": 21,
+            "from_point": [
+              0.0,
+              0.0
+            ],
+            "to_point": [
+              754.74763069713,
+              131.42347095241578
+            ],
+            "channel": 5,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 153.220901
+          }
+        ],
+        "all_sources_first_detected_s": 2357.143343,
+        "last_clearance_s": 3496.400979,
+        "after_last_clearance": {
+          "total_s": 0.0,
+          "actions": 0,
+          "movement_s": 0.0,
+          "switching_s": 0.0,
+          "detection_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "noncoverage_measure_results": {
+          "direction": 22,
+          "near": 2
+        },
+        "noncoverage_measure_by_channel": {
+          "5": 4,
+          "14": 2,
+          "12": 1,
+          "2": 1,
+          "8": 2,
+          "7": 1,
+          "10": 1,
+          "16": 1,
+          "15": 4,
+          "19": 3,
+          "6": 1,
+          "11": 1,
+          "20": 2
+        },
+        "exact_position_channel_measure_repeats": 0,
+        "noncoverage_no_signal": [],
+        "longest_detection_to_clear_waits": [
+          [
+            6,
+            2658.059907
+          ],
+          [
+            20,
+            2531.319994
+          ],
+          [
+            8,
+            2512.277027
+          ]
+        ],
+        "rl_metrics": {}
+      }
+    },
+    {
+      "split": "stress",
+      "method": "rl",
+      "seed": 810003,
+      "paired_case": {
+        "case_id": "q3-v1-stress-positive_error-810003",
+        "seed": 810003,
+        "baseline_s": 3416.105877,
+        "candidate_s": 3800.468442,
+        "saved_s": -384.3625649999999,
+        "candidate_successful": true,
+        "failed_clear_count": 0
+      },
+      "record_paths": {
+        "baseline": "../q3-v1-artifacts/final-evaluations-complete-0930/v1-selection/evaluations/final_stress/baseline/case-810003.json.gz",
+        "candidate": "../q3-v1-artifacts/final-evaluations-complete-0930/v1-selection/evaluations/final_stress/rl-gae095-u512/case-810003.json.gz"
+      },
+      "cost_increase_s": {
+        "movement_s": 296.3625649999999,
+        "switching_s": 3.0,
+        "detection_s": 85.0,
+        "optical_s": 0.0,
+        "removal_s": 0.0
+      },
+      "baseline": {
+        "input_sha256": "e03bd19c3ffa13e8ff67d78b1c49212120d9a7d0bf2ff6f1ae6412ce0f98710c",
+        "case_sha256": "cd258cfae08f1468cb9f9047ed25db170e7f030657b00e95f750291a62dce7ff",
+        "row": {
+          "seed": 810003,
+          "case_id": "q3-v1-stress-positive_error-810003",
+          "strategy": "rollout_frozen",
+          "source_total": 13,
+          "virtual_time_s": 3416.105877,
+          "measurement_count": 138,
+          "successful": true,
+          "failed_clear_count": 0,
+          "movement_s": 2548.105877,
+          "switching_s": 113.0,
+          "detection_s": 690.0,
+          "optical_s": 39.0,
+          "removal_s": 26.0
+        },
+        "component_reconstruction_max_step_residual_us": 0,
+        "phases": {
+          "coverage": {
+            "movement_s": 1034.60417,
+            "switching_s": 100.0,
+            "detection_s": 515.0,
+            "actions": 103
+          },
+          "active_localization": {
+            "movement_s": 1500.812746,
+            "switching_s": 13.0,
+            "detection_s": 175.0,
+            "actions": 35
+          },
+          "certified_clear": {
+            "movement_s": 12.688961,
+            "optical_s": 30.0,
+            "removal_s": 20.0,
+            "actions": 10
+          },
+          "near_clear": {
+            "movement_s": 0.0,
+            "optical_s": 9.0,
+            "removal_s": 6.0,
+            "actions": 3
+          }
+        },
+        "first_discoveries": [
+          [
+            2,
+            2,
+            11.0
+          ],
+          [
+            15,
+            15,
+            89.0
+          ],
+          [
+            20,
+            21,
+            354.0
+          ],
+          [
+            1,
+            22,
+            360.0
+          ],
+          [
+            3,
+            24,
+            372.0
+          ],
+          [
+            5,
+            26,
+            384.0
+          ],
+          [
+            11,
+            32,
+            420.0
+          ],
+          [
+            8,
+            49,
+            751.0
+          ],
+          [
+            17,
+            58,
+            805.0
+          ],
+          [
+            13,
+            94,
+            2018.867199
+          ],
+          [
+            14,
+            95,
+            2024.867199
+          ],
+          [
+            18,
+            98,
+            2042.867199
+          ],
+          [
+            10,
+            116,
+            2584.741658
+          ]
+        ],
+        "clearances": [
+          [
+            17,
+            65,
+            985.580281
+          ],
+          [
+            20,
+            67,
+            1117.425511
+          ],
+          [
+            3,
+            70,
+            1205.105884
+          ],
+          [
+            5,
+            74,
+            1338.048074
+          ],
+          [
+            11,
+            80,
+            1615.954551
+          ],
+          [
+            1,
+            85,
+            1773.656305
+          ],
+          [
+            13,
+            101,
+            2151.002277
+          ],
+          [
+            14,
+            106,
+            2258.508666
+          ],
+          [
+            18,
+            109,
+            2387.206845
+          ],
+          [
+            10,
+            124,
+            2796.283333
+          ],
+          [
+            2,
+            136,
+            3055.629402
+          ],
+          [
+            15,
+            138,
+            3113.455021
+          ],
+          [
+            8,
+            151,
+            3416.105877
+          ]
+        ],
+        "first_coverage_site_visits": [
+          [
+            1,
+            [
+              0.0,
+              0.0
+            ],
+            5.0
+          ],
+          [
+            21,
+            [
+              1150.0,
+              0.0
+            ],
+            354.0
+          ],
+          [
+            41,
+            [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            703.0
+          ],
+          [
+            86,
+            [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            1970.867199
+          ],
+          [
+            110,
+            [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            2548.741658
+          ],
+          [
+            125,
+            [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            2918.282573
+          ],
+          [
+            139,
+            [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            3231.314244
+          ]
+        ],
+        "largest_movement_actions": [
+          {
+            "step": 21,
+            "from_point": [
+              0.0,
+              0.0
+            ],
+            "to_point": [
+              1150.0,
+              0.0
+            ],
+            "channel": 20,
+            "phase": "coverage",
+            "result": "direction",
+            "movement_s": 230.0
+          },
+          {
+            "step": 41,
+            "from_point": [
+              1150.0,
+              0.0
+            ],
+            "to_point": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "channel": 19,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 230.0
+          },
+          {
+            "step": 86,
+            "from_point": [
+              1489.907268848493,
+              -718.467787029809
+            ],
+            "to_point": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "channel": 2,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 191.210894
+          },
+          {
+            "step": 75,
+            "from_point": [
+              1614.107516397139,
+              385.8882599808371
+            ],
+            "to_point": [
+              1386.5448594516477,
+              -389.12443968690786
+            ],
+            "channel": 11,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 161.54621
+          },
+          {
+            "step": 110,
+            "from_point": [
+              -64.77156709715939,
+              -1582.822642732992
+            ],
+            "to_point": [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            "channel": 2,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 155.534813
+          },
+          {
+            "step": 121,
+            "from_point": [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            "to_point": [
+              -1166.4379507730844,
+              -534.3665073587597
+            ],
+            "channel": 10,
+            "phase": "active_localization",
+            "result": "direction",
+            "movement_s": 150.045191
+          }
+        ],
+        "all_sources_first_detected_s": 2584.741658,
+        "last_clearance_s": 3416.105877,
+        "after_last_clearance": {
+          "total_s": 0.0,
+          "actions": 0,
+          "movement_s": 0.0,
+          "switching_s": 0.0,
+          "detection_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "noncoverage_measure_results": {
+          "direction": 32,
+          "near": 3
+        },
+        "noncoverage_measure_by_channel": {
+          "17": 4,
+          "20": 1,
+          "3": 2,
+          "5": 3,
+          "11": 5,
+          "1": 4,
+          "13": 1,
+          "14": 4,
+          "18": 2,
+          "10": 3,
+          "2": 1,
+          "15": 1,
+          "8": 4
+        },
+        "exact_position_channel_measure_repeats": 0,
+        "noncoverage_no_signal": [],
+        "longest_detection_to_clear_waits": [
+          [
+            2,
+            3044.629402
+          ],
+          [
+            15,
+            3024.455021
+          ],
+          [
+            8,
+            2665.105877
+          ]
+        ],
+        "rl_metrics": {}
+      },
+      "candidate": {
+        "input_sha256": "400340e97ca6814f75d5d78da219c02259ac082e64510fdc0610a24a8c357e44",
+        "case_sha256": "cd258cfae08f1468cb9f9047ed25db170e7f030657b00e95f750291a62dce7ff",
+        "row": {
+          "seed": 810003,
+          "case_id": "q3-v1-stress-positive_error-810003",
+          "strategy": "rl-gae095-u512",
+          "source_total": 13,
+          "virtual_time_s": 3800.468442,
+          "measurement_count": 155,
+          "successful": true,
+          "failed_clear_count": 0,
+          "movement_s": 2844.468442,
+          "switching_s": 116.0,
+          "detection_s": 775.0,
+          "optical_s": 39.0,
+          "removal_s": 26.0
+        },
+        "component_reconstruction_max_step_residual_us": 0,
+        "phases": {
+          "coverage": {
+            "movement_s": 847.119807,
+            "switching_s": 99.0,
+            "detection_s": 500.0,
+            "actions": 100
+          },
+          "rl_active_localization": {
+            "movement_s": 1718.717382,
+            "switching_s": 17.0,
+            "detection_s": 265.0,
+            "actions": 53
+          },
+          "rl_certified_clear": {
+            "movement_s": 266.379985,
+            "optical_s": 36.0,
+            "removal_s": 24.0,
+            "actions": 12
+          },
+          "active_localization": {
+            "movement_s": 12.251268,
+            "switching_s": 0.0,
+            "detection_s": 10.0,
+            "actions": 2
+          },
+          "certified_clear": {
+            "movement_s": 0.0,
+            "optical_s": 3.0,
+            "removal_s": 2.0,
+            "actions": 1
+          }
+        },
+        "first_discoveries": [
+          [
+            2,
+            3,
+            17.0
+          ],
+          [
+            15,
+            12,
+            71.0
+          ],
+          [
+            10,
+            33,
+            477.807426
+          ],
+          [
+            18,
+            60,
+            903.245849
+          ],
+          [
+            1,
+            80,
+            1351.350419
+          ],
+          [
+            13,
+            85,
+            1381.350419
+          ],
+          [
+            14,
+            86,
+            1387.350419
+          ],
+          [
+            3,
+            107,
+            2153.840824
+          ],
+          [
+            5,
+            108,
+            2159.840824
+          ],
+          [
+            11,
+            113,
+            2189.840824
+          ],
+          [
+            20,
+            118,
+            2219.840824
+          ],
+          [
+            8,
+            142,
+            3112.14002
+          ],
+          [
+            17,
+            146,
+            3136.14002
+          ]
+        ],
+        "clearances": [
+          [
+            2,
+            26,
+            362.987136
+          ],
+          [
+            10,
+            50,
+            716.252292
+          ],
+          [
+            18,
+            73,
+            1133.175
+          ],
+          [
+            13,
+            95,
+            1556.340887
+          ],
+          [
+            14,
+            101,
+            1645.568577
+          ],
+          [
+            1,
+            105,
+            1986.718059
+          ],
+          [
+            11,
+            123,
+            2411.067288
+          ],
+          [
+            5,
+            128,
+            2656.673877
+          ],
+          [
+            20,
+            130,
+            2787.731699
+          ],
+          [
+            3,
+            139,
+            2901.671195
+          ],
+          [
+            17,
+            154,
+            3295.513737
+          ],
+          [
+            8,
+            160,
+            3521.929291
+          ],
+          [
+            15,
+            168,
+            3800.468442
+          ]
+        ],
+        "first_coverage_site_visits": [
+          [
+            1,
+            [
+              0.0,
+              0.0
+            ],
+            5.0
+          ],
+          [
+            27,
+            [
+              -1150.0,
+              1.4083438190194562e-13
+            ],
+            441.807426
+          ],
+          [
+            51,
+            [
+              -575.0000000000005,
+              -995.9292143521042
+            ],
+            849.245849
+          ],
+          [
+            74,
+            [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            1315.350419
+          ],
+          [
+            106,
+            [
+              1150.0,
+              0.0
+            ],
+            2147.840824
+          ],
+          [
+            140,
+            [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            3100.14002
+          ],
+          [
+            161,
+            [
+              -574.9999999999998,
+              995.9292143521045
+            ],
+            3651.468242
+          ]
+        ],
+        "largest_movement_actions": [
+          {
+            "step": 104,
+            "from_point": [
+              683.7499206351545,
+              -1231.2625297410052
+            ],
+            "to_point": [
+              1494.9036142915616,
+              -691.8933207442424
+            ],
+            "channel": 1,
+            "phase": "rl_active_localization",
+            "result": "direction",
+            "movement_s": 194.821914
+          },
+          {
+            "step": 140,
+            "from_point": [
+              1106.2704462010915,
+              193.5216327884021
+            ],
+            "to_point": [
+              575.0000000000001,
+              995.9292143521044
+            ],
+            "channel": 12,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 192.468825
+          },
+          {
+            "step": 156,
+            "from_point": [
+              1009.0368393712421,
+              1150.4933221648826
+            ],
+            "to_point": [
+              98.83475166587596,
+              1012.8799194618803
+            ],
+            "channel": 8,
+            "phase": "rl_active_localization",
+            "result": "direction",
+            "movement_s": 184.109238
+          },
+          {
+            "step": 74,
+            "from_point": [
+              -80.90407966911741,
+              -1583.9209597561885
+            ],
+            "to_point": [
+              575.0000000000001,
+              -995.9292143521044
+            ],
+            "channel": 11,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 176.175419
+          },
+          {
+            "step": 125,
+            "from_point": [
+              1512.6928128202583,
+              -621.0135270708606
+            ],
+            "to_point": [
+              1438.4718021325893,
+              253.91971932205138
+            ],
+            "channel": 5,
+            "phase": "rl_active_localization",
+            "result": "direction",
+            "movement_s": 175.615141
+          },
+          {
+            "step": 106,
+            "from_point": [
+              1493.8234476879165,
+              -695.2425767737102
+            ],
+            "to_point": [
+              1150.0,
+              0.0
+            ],
+            "channel": 4,
+            "phase": "coverage",
+            "result": "no_signal",
+            "movement_s": 155.122765
+          }
+        ],
+        "all_sources_first_detected_s": 3136.14002,
+        "last_clearance_s": 3800.468442,
+        "after_last_clearance": {
+          "total_s": 0.0,
+          "actions": 0,
+          "movement_s": 0.0,
+          "switching_s": 0.0,
+          "detection_s": 0.0,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        },
+        "noncoverage_measure_results": {
+          "direction": 53,
+          "no_signal": 2
+        },
+        "noncoverage_measure_by_channel": {
+          "15": 3,
+          "2": 3,
+          "10": 4,
+          "18": 5,
+          "14": 6,
+          "13": 4,
+          "1": 3,
+          "11": 4,
+          "5": 4,
+          "20": 1,
+          "3": 8,
+          "17": 5,
+          "8": 5
+        },
+        "exact_position_channel_measure_repeats": 0,
+        "noncoverage_no_signal": [
+          [
+            102,
+            1,
+            [
+              232.68085061618814,
+              -1661.162080394334
+            ]
+          ],
+          [
+            124,
+            5,
+            [
+              1512.6928128202583,
+              -621.0135270708606
+            ]
+          ]
+        ],
+        "longest_detection_to_clear_waits": [
+          [
+            15,
+            3729.468442
+          ],
+          [
+            3,
+            747.830371
+          ],
+          [
+            1,
+            635.3676399999999
+          ]
+        ],
+        "rl_metrics": {
+          "decisions": 166,
+          "action_counts": {
+            "cover": 100,
+            "probe": 53,
+            "clear": 12,
+            "fallback": 1
+          },
+          "fallback_counts": {
+            "source_probe_limit": 1
+          },
+          "fallback_actions": 3,
+          "fallback_virtual_time_s": 27.251267999999982
+        }
+      }
+    }
+  ]
+}
