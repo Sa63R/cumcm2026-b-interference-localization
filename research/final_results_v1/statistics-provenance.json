@@ -1,0 +1,160 @@
+{
+  "scope": "Compact provenance for immutable final statistics; full raw archives and frozen registry remain in the complete delivery archive.",
+  "registry_file_sha256": "25ef13c9a0b4200268bb5850a3041642f1612a6a4e48087f0469c0f0f57662e2",
+  "registry_payload_sha256": "b99a33d323e6b86d64a4d0289d909d65d6531dba590f2bc4db69c8c8d38502f0",
+  "selection_file_sha256": "aa22f122171bc2dfff82203362438a15706131d69ee2beca9e4abeb1a9f4d305",
+  "selection_payload_sha256": "a6dbba1c5c501135720a12029a24814192fa667e26217929bb197fcce45e0621",
+  "final_identity_audit_file_sha256": "4d0d93e5f6f1032736832a56e5c4564bad6bd6948634a6c23135a4c9ba9885f4",
+  "final_identity_payload_sha256": "7f8f4917932c977c089f1350b589241a8e6b95283a23c4f47e3af06983503d0e",
+  "statistics_status_sha256": "9570dea6a83f07c02ae41c0779fb6a60655379a3218f7bf095cf67c62b8cfa7f",
+  "selected": {
+    "state": "state-future-cover",
+    "rl": "rl-gae095-u512",
+    "geo": "geo-future-cover"
+  },
+  "sources": {
+    "baseline": {
+      "git_commit": "2f0a486fcdaecd0b03da2bea06ca8f845a9fdbae",
+      "source_dir": "/home/volleyball/q3-research-v1/registered-baseline-2f0a486",
+      "spec_path": "/home/volleyball/q3-research-v1/registered-baseline-2f0a486/research/v1_baseline_rollout.json",
+      "spec_sha256": "a67d76e7183e63ad2c4bd508eddd917380f26ca5f4bf7b380afe8fc486ec40c4",
+      "checkpoint_sha256": {},
+      "freeze_file_sha256": "4f749ad8613f064920da860b6a17d7b9bf387124c448d621c00d73f39743b9b9"
+    },
+    "state-future-cover": {
+      "git_commit": "8aa620649b609876b612d307b5be71ab588acc08",
+      "source_dir": "/home/volleyball/q3-research-v1/state-8aa6206-git",
+      "spec_path": "/home/volleyball/q3-research-v1/state-8aa6206-git/experiments/state_search_candidate_relocating_cover_v1.json",
+      "spec_sha256": "5ab0150835cc85488446c3af5426c81fce81eda4ba6a845e456def8badad0523",
+      "checkpoint_sha256": {},
+      "freeze_file_sha256": "9496e9ccedec26c5a3d0e9a18142e715a0681a6b64f205c0a0f390071a9936d8"
+    },
+    "rl-gae095-u512": {
+      "git_commit": "de7d65b60ec05e4d1098f7b5a2c9c7a99c392adb",
+      "source_dir": "/home/volleyball/q3-research-v1/rl-de7d65b-git",
+      "spec_path": "/home/volleyball/q3-research-v1/rl-de7d65b-git/research/v1-candidate-rl-gae095-u512.json",
+      "spec_sha256": "91f1342e944a7b984594de5ca0374a77350b4691d51dbde40bfe907e1e34cb50",
+      "checkpoint_sha256": {
+        "checkpoint": "8985b7fc8d1709c5a54bb1aaf8f21df66f56782119eb901163f723a03281734f"
+      },
+      "freeze_file_sha256": "93dc2def82a83aea8d87ecf6a0112ef0177fe17d7503cc00de75735efd6132ae"
+    },
+    "geo-future-cover": {
+      "git_commit": "3c4f86fdb7409cdcf904d82ba166cb8564de8c7f",
+      "source_dir": "/home/volleyball/q3-research-v1/geo-3c4f86f-git",
+      "spec_path": "/home/volleyball/q3-research-v1/geo-3c4f86f-git/research/v1_geometric_probe_relocation.json",
+      "spec_sha256": "795f9c8035d9ab680fc44ef663d86d0ef85a986c3cdda499fa5753c127aad275",
+      "checkpoint_sha256": {},
+      "freeze_file_sha256": "1ee40ad1440005c412d6a9c1f4cae4113af6e0905c04f50f6a035cf00c00777e"
+    }
+  },
+  "environment": {
+    "system": "Linux",
+    "release": null,
+    "machine": null,
+    "python_version": "3.11.14",
+    "python_executable": "/home/volleyball/miniconda3/envs/volleyball/bin/python"
+  },
+  "package_versions": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.4.3",
+    "scipy": "1.17.0",
+    "torch": "2.9.1"
+  },
+  "environment_file_sha256": "cdbe3ab9b8b5430460eeef1dfb0eda1402d198f5ed1c851bb04dc7f07af5298c",
+  "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a",
+  "protocol": {
+    "schema_version": 1,
+    "name": "q3-independent-research-v1",
+    "created_at": "2026-09-11T00:43:00+08:00",
+    "experiment_freeze_target": "2026-09-11T14:00:00+08:00",
+    "hard_deadline": "2026-09-11T16:00:00+08:00",
+    "baseline_commit": "6c28dbed7f306bf297ad3b97f370e9ada33217b9",
+    "problem": 3,
+    "primary_reference": "rollout_frozen",
+    "secondary_reference": "efficient_frozen",
+    "rollout_config": {
+      "particles": 4,
+      "candidates": 5,
+      "seed": 9102026,
+      "min_gain_s": 10,
+      "uncertainty_penalty": 0.5,
+      "max_searches": 24,
+      "max_candidate_evaluations": 480,
+      "max_planning_s": 60
+    },
+    "partitions": {
+      "train": {
+        "seed_start": 100001,
+        "seed_stop_exclusive": 200000
+      },
+      "validation": {
+        "seed_start": 6000,
+        "seed_stop_exclusive": 6048
+      },
+      "validation_extended": {
+        "seed_start": 6048,
+        "seed_stop_exclusive": 6096
+      },
+      "final_random": {
+        "seed_start": 800000,
+        "seed_stop_exclusive": 800256
+      },
+      "final_stress": {
+        "seed_start": 810000,
+        "seed_stop_exclusive": 810028
+      },
+      "future_reserved": {
+        "seed_start": 900000,
+        "seed_stop_exclusive": 901000
+      }
+    },
+    "research_distribution": "Existing random_scenario(3, seed): uniform N in 10..16, exclusive sampled channels, uniform area in radius-1800 disk, uniform reception radius in 1000..1500; this is an assumption, not the official generator law.",
+    "final_stress_families": [
+      "minimum_radius",
+      "boundary",
+      "cluster",
+      "positive_error",
+      "negative_error",
+      "alternating_error",
+      "narrow_strip"
+    ],
+    "limits": {
+      "max_actions": 10000,
+      "real_seconds_per_case": 1200,
+      "virtual_seconds_per_case": 360000
+    },
+    "acceptance": {
+      "all_final_cases_successful": true,
+      "no_failed_clears": true,
+      "minimum_mean_total_time_reduction_fraction": 0.05,
+      "paired_saving_bootstrap_ci95_lower_seconds_strictly_above": 0,
+      "maximum_p95_total_time_ratio": 1.05,
+      "bootstrap_resamples": 10000,
+      "bootstrap_seed": 20260911,
+      "confidence_scope": "Per predeclared branch contrast, not a simultaneous guarantee for a post-hoc selected winner. Report both branches."
+    },
+    "failure_policy": "Retain every attempted case. Failed runs receive 360000 seconds for penalty summaries, never treat their truncated raw time as a speed win. Performance acceptance requires complete success over the frozen final suite. Missing cases invalidate completion.",
+    "final_access_policy": "Do not run final or future-reserved seeds during development or training. Freeze selected code/config/checkpoints before opening final evaluation. Further tuning after viewing final results requires a new independent test partition.",
+    "official_policy": "Practice only. No formal tests without explicit user instruction. Official practice cases differ and are not causal paired comparisons."
+  },
+  "rule_sha256": "1160c240b63670f58f29c4271e9e0baa4e32b89e82c8ebe7af5e334677bc4b84",
+  "report_tool_commit": "d5c082bb3955a24ecfc0609008a8b54a751a8234",
+  "report_tool_sha256": "2f54ca130151243ec03309277e35b1f5a316c616966ba1996df8d8d077da61a7",
+  "statistics_script_sha256": "00e6d88c4b1a34a11c87c7507dbc2fc3c88f0c0d47a7b4d1af0860231cbefed5",
+  "archive_counts": {
+    "final_random": {
+      "baseline": 256,
+      "state-future-cover": 256,
+      "rl-gae095-u512": 256,
+      "geo-future-cover": 256
+    },
+    "final_stress": {
+      "baseline": 28,
+      "state-future-cover": 28,
+      "rl-gae095-u512": 28,
+      "geo-future-cover": 28
+    }
+  },
+  "final_identity_and_archive_checks_passed": true
+}

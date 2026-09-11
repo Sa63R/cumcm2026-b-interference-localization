@@ -1,0 +1,1261 @@
+{
+  "schema_version": 1,
+  "split": "final_stress",
+  "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a",
+  "baseline": "rollout_frozen",
+  "inputs": {
+    "baseline": {
+      "directory": "/home/volleyball/q3-research-v1/v1-selection/evaluations/final_stress/baseline",
+      "manifest": {
+        "identity": {
+          "source_sha256": {
+            "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+            "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+            "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+            "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+            "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+            "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+            "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+            "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+            "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+            "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+            "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+            "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+            "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+            "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+            "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+            "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+            "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+            "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+            "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+            "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+            "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+            "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+            "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+            "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+            "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+            "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+          },
+          "spec_sha256": "a67d76e7183e63ad2c4bd508eddd917380f26ca5f4bf7b380afe8fc486ec40c4",
+          "checkpoint_sha256": {},
+          "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+        },
+        "strategy": "rollout_frozen",
+        "split": "final_stress",
+        "seeds": [
+          810000,
+          810001,
+          810002,
+          810003,
+          810004,
+          810005,
+          810006,
+          810007,
+          810008,
+          810009,
+          810010,
+          810011,
+          810012,
+          810013,
+          810014,
+          810015,
+          810016,
+          810017,
+          810018,
+          810019,
+          810020,
+          810021,
+          810022,
+          810023,
+          810024,
+          810025,
+          810026,
+          810027
+        ]
+      },
+      "rows_sha256": "517d6a5e899b309d2c0a47116c15c3782d065465691b5b27bef5295edf1408f1"
+    },
+    "state": {
+      "directory": "/home/volleyball/q3-research-v1/v1-selection/evaluations/final_stress/state-future-cover",
+      "manifest": {
+        "identity": {
+          "source_sha256": {
+            "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+            "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+            "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+            "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+            "src/planning/binned_probe_tree.py": "9ca8bd363ca76e88bb0c19ff540c8e16448762494a1cff6c4a758340c6f5acc1",
+            "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+            "src/planning/coverage_relocation.py": "0206daefa72878b1e7276386abc417c2e62b4fa427e890fca9279f07aff70648",
+            "src/planning/disk_cover.py": "8731a6b7b8d396de04e2d6155fa130626b218e085672e6c432eff11311d4e09d",
+            "src/planning/probe_candidates.py": "2b79f97f5dd25025c18cc0e78a740135b4fcfb8ab19df6a35305b80ec8516f71",
+            "src/planning/probe_tree.py": "11f5d9da1758f121712a372e63370fd1c4a724ecc34a0e69f51d703b9c78475e",
+            "src/planning/radius_probe.py": "e76e927f27e48d13311b8b19c0ff54e8f6e3f7a50788b105e948da8edcb812d4",
+            "src/planning/region_travel.py": "6fb090ce623e8d35e71937b6caf6722fa533bd576940162ea44fa5b1b8b5d667",
+            "src/planning/ring_layout.py": "335e070f3c7028b89f854b4967bb583829d70c5d708928d529b3d6325932502f",
+            "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+            "src/planning/shared_observation.py": "eb669cf127fb2f884921eeac226ccc9c516e9b662f238b83612be2e3565fd1d9",
+            "src/planning/silence_certificate.py": "ebb0ca8630e81cbb556a51b5b932b9c769ae621f4fc540e0436c8e8141cf688a",
+            "src/planning/state_route.py": "ea39eff80cf81378cc8dbd242c2519947aa13e89eebf370cf28ed1c419200261",
+            "src/planning/unknown_mass.py": "1aab85d8e515b5426e7102754d14b0bf5a9db533acf3683cd64bcd1226383161",
+            "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+            "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+            "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+            "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+            "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+            "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+            "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+            "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+            "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+            "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+            "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+            "src/strategies/binned_state_search.py": "ab613456a0428fb5f9d027492894a851ba6ddfd8f2e41edc8518ee3548e644f6",
+            "src/strategies/discovery_state_search.py": "dffd046f62fb661b87f2a6ec321044c30f47e12db7d7fae3fc8f60ac5cd07055",
+            "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+            "src/strategies/inferred_region_state_search.py": "f511ed8d49f8cc97130d60eba15a6eeb835844a3456a6ecabe737cce4a9b6d50",
+            "src/strategies/inferred_state_search.py": "ddb41c926abee1e66ff4e83b0db02df4916c14b6b313868b613b2e731119d0e8",
+            "src/strategies/layout_state_search.py": "8ac73709135fef73be66f13260eca0c7ec46d832ce05300eed8dc9015d86a813",
+            "src/strategies/pruned_state_search.py": "f5ec628008e8f2aab6bdf933210e5ef1668c0c5cdecd77338e4c93add0a3c73b",
+            "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+            "src/strategies/recourse_state_search.py": "9807e48819722bf009e983bde05428e9d23b94908655e9c3a21d5ca7797e2041",
+            "src/strategies/refined_state_search.py": "d2dd58f6d6ee325692737626ec1d26aa93bf6ae02dd752f7b53c41aa66cda683",
+            "src/strategies/region_state_search.py": "c44c721fd58c028418a8a1f615ea7e80aaab212f6caebb169355deaabb190096",
+            "src/strategies/relocating_state_search.py": "1454a7286d0180d97ad6c3e2f218160ad628d152735005f1320335bdfdac8d6d",
+            "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+            "src/strategies/search.py": "68733b0298516dff6aaacd7d1780f24195400c25b241ab730e185e4b1ecb82b6",
+            "src/strategies/sharing_state_search.py": "36d2e6cd1a5725f52af81e755becdc49627118f97d7bda7aa8e7d47e5cd72ae8",
+            "src/strategies/state_search.py": "dc4221a690a2f077a0e669320dc384186d21e6cccecf64f49e6891c37d216f4d",
+            "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+            "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+            "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+            "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+            "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+          },
+          "spec_sha256": "5ab0150835cc85488446c3af5426c81fce81eda4ba6a845e456def8badad0523",
+          "checkpoint_sha256": {},
+          "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+        },
+        "strategy": "state_search_relocating_cover_v1",
+        "split": "final_stress",
+        "seeds": [
+          810000,
+          810001,
+          810002,
+          810003,
+          810004,
+          810005,
+          810006,
+          810007,
+          810008,
+          810009,
+          810010,
+          810011,
+          810012,
+          810013,
+          810014,
+          810015,
+          810016,
+          810017,
+          810018,
+          810019,
+          810020,
+          810021,
+          810022,
+          810023,
+          810024,
+          810025,
+          810026,
+          810027
+        ]
+      },
+      "rows_sha256": "a102eaa799be6ec33905b184dc171d3acfea5940f2325c5a27e032d32aaabea9"
+    },
+    "rl": {
+      "directory": "/home/volleyball/q3-research-v1/v1-selection/evaluations/final_stress/rl-gae095-u512",
+      "manifest": {
+        "identity": {
+          "source_sha256": {
+            "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+            "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+            "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+            "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+            "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+            "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+            "src/research_rl/__init__.py": "dcecc1dc3fe3b888b4a8a22e1fb8b19cc275b07b89ef3a597dada1a3b4b29f40",
+            "src/research_rl/action_sets.py": "3197a49f89c6e23ed78bc18112003a71338914bf0b54510a14f09eb10fae8628",
+            "src/research_rl/axis_probes.py": "4f586a46b2d90f938681f3f6ed08bc1e20646792a34ffecd6b24f5144994dedf",
+            "src/research_rl/controller.py": "f0103793cff8da2ebd2140837b11362f3542b834aa56574ddd296064305f2a9c",
+            "src/research_rl/distributions.py": "e408ab20b00444669dc804bdfab005b2ffee4adf3b3b25740884f8b6da33b429",
+            "src/research_rl/joint_scan.py": "190a61032cedfb55d170a591f8b4d53efd8aa9138a78ad2790c396db5504fbd1",
+            "src/research_rl/network.py": "cba53bd707290ca4e7d7e266c2ab58345250e4526fa9631d1dcf26ecd19e21d0",
+            "src/research_rl/portable_checkpoint.py": "8feb7f31ae6f5207a6e7c4ea8cde0f4c5c395bb78369c7cb1a18d25581ee9ef1",
+            "src/research_rl/route_debt.py": "737639ea75780850f4a8829694c10c9de9f0e4b56c5b1c7ea0db5ffccb63c305",
+            "src/research_rl/train.py": "e0ef89e6cc3b696ed2c241cb78ffe7d451c348d62f15b4a646216ee40412fa1f",
+            "src/research_rl/train_paired.py": "93966c314a091466d2f515b823c586fa9b15cc95ca7719acd8b4ad18e0bda0a6",
+            "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+            "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+            "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+            "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+            "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+            "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+            "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+            "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+            "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+            "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+            "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+            "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+            "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+            "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+            "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+            "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+            "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+            "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+            "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+            "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+          },
+          "spec_sha256": "91f1342e944a7b984594de5ca0374a77350b4691d51dbde40bfe907e1e34cb50",
+          "checkpoint_sha256": {
+            "checkpoint": "8985b7fc8d1709c5a54bb1aaf8f21df66f56782119eb901163f723a03281734f"
+          },
+          "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+        },
+        "strategy": "rl-gae095-u512",
+        "split": "final_stress",
+        "seeds": [
+          810000,
+          810001,
+          810002,
+          810003,
+          810004,
+          810005,
+          810006,
+          810007,
+          810008,
+          810009,
+          810010,
+          810011,
+          810012,
+          810013,
+          810014,
+          810015,
+          810016,
+          810017,
+          810018,
+          810019,
+          810020,
+          810021,
+          810022,
+          810023,
+          810024,
+          810025,
+          810026,
+          810027
+        ]
+      },
+      "rows_sha256": "0fbb04324f06919036931a989c43bb806cd50c68ca21ec9dc5e8c073736d2078"
+    },
+    "geo": {
+      "directory": "/home/volleyball/q3-research-v1/v1-selection/evaluations/final_stress/geo-future-cover",
+      "manifest": {
+        "identity": {
+          "source_sha256": {
+            "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+            "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+            "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+            "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+            "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+            "src/planning/coverage_relocation.py": "0206daefa72878b1e7276386abc417c2e62b4fa427e890fca9279f07aff70648",
+            "src/planning/disk_cover.py": "8731a6b7b8d396de04e2d6155fa130626b218e085672e6c432eff11311d4e09d",
+            "src/planning/disk_waypoint.py": "7115775985a312bf079c2b8dd574c9518195c9e64cdfeb6bcedade92bfe3b263",
+            "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+            "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+            "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+            "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+            "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+            "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+            "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+            "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+            "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+            "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+            "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+            "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+            "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+            "src/strategies/geometric_centroid.py": "78a4e1b245a3d45d4bfa7a1df61f7837740996726e52fc77dd5eebe0da22d957",
+            "src/strategies/geometric_joint.py": "8d3f6dc07c47df8e3f0657d54c1698e8200515506f486549f47b889e7c08bd3f",
+            "src/strategies/geometric_preempt.py": "5c9e6b7042fc7948152e3ba80e700c6691d574b82755faf59ca3ce57b477d57e",
+            "src/strategies/geometric_probe_cost.py": "c072a602ca7a03ee91db1a036aae2c0a18cf5a108c50821abb707db40e14b319",
+            "src/strategies/geometric_relocation.py": "0d7a5b29f66ecf2cb5e591edf143dd41c3bd7827eb325395f20bcb33f2a976ef",
+            "src/strategies/geometric_route_clear.py": "97ed668cb81145f717a6cccdce5083774d50e926b1e1ee396473efe16974439e",
+            "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+            "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+            "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+            "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+            "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+            "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+            "experiments/research_v1_eval.py": "b1c93f0ffcb23970b7ea8c5981e36d62e680514b14d020fe06b32e05d18d796a",
+            "experiments/run_q3_comparison.py": "67d7ff850dc004f98411cc01928bee421474fc72543288eff7a0c47a2bbf39b3"
+          },
+          "spec_sha256": "795f9c8035d9ab680fc44ef663d86d0ef85a986c3cdda499fa5753c127aad275",
+          "checkpoint_sha256": {},
+          "protocol_sha256": "a8b6db5884a025d5295da19021267c3e4524eb9eb3b76cd337f9a743b653d87a"
+        },
+        "strategy": "geometric_probe_relocation",
+        "split": "final_stress",
+        "seeds": [
+          810000,
+          810001,
+          810002,
+          810003,
+          810004,
+          810005,
+          810006,
+          810007,
+          810008,
+          810009,
+          810010,
+          810011,
+          810012,
+          810013,
+          810014,
+          810015,
+          810016,
+          810017,
+          810018,
+          810019,
+          810020,
+          810021,
+          810022,
+          810023,
+          810024,
+          810025,
+          810026,
+          810027
+        ]
+      },
+      "rows_sha256": "aa719544ce50c5b9d183006217308eff9d3225fdd3ac673eb1f203a5fdd9b37f"
+    }
+  },
+  "methods": {
+    "baseline": {
+      "strategy": "rollout_frozen",
+      "runs": 28,
+      "expected_runs": 28,
+      "complete": true,
+      "successful_runs": 28,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3627.4004981785715,
+      "penalized_mean_total_time_s": 3627.4004981785715,
+      "raw_p95_total_time_s": 4881.47127115,
+      "raw_max_total_time_s": 4969.496645,
+      "mean_time_per_source_s": 285.733239102923,
+      "mean_program_runtime_s": 6.219172913714179,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "penalized_p95_total_time_s": 4881.47127115,
+      "mean_components_s": {
+        "movement_s": 2768.1504981785715,
+        "switching_s": 109.25,
+        "detection_s": 685.0,
+        "optical_s": 39.0,
+        "removal_s": 26.0
+      },
+      "mean_measurement_count": 137,
+      "failure_case_ids": []
+    },
+    "state": {
+      "strategy": "state_search_relocating_cover_v1",
+      "runs": 28,
+      "expected_runs": 28,
+      "complete": true,
+      "successful_runs": 28,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3046.3358260714285,
+      "penalized_mean_total_time_s": 3046.3358260714285,
+      "raw_p95_total_time_s": 4489.2594953,
+      "raw_max_total_time_s": 4611.189413,
+      "mean_time_per_source_s": 240.4656303954984,
+      "mean_program_runtime_s": 0.5126956207497122,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "penalized_p95_total_time_s": 4489.2594953,
+      "mean_components_s": {
+        "movement_s": 2308.657254642857,
+        "switching_s": 103.75,
+        "detection_s": 568.9285714285714,
+        "optical_s": 39.0,
+        "removal_s": 26.0
+      },
+      "mean_measurement_count": 113.78571428571429,
+      "failure_case_ids": []
+    },
+    "rl": {
+      "strategy": "rl-gae095-u512",
+      "runs": 28,
+      "expected_runs": 28,
+      "complete": true,
+      "successful_runs": 28,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3164.366973892857,
+      "penalized_mean_total_time_s": 3164.366973892857,
+      "raw_p95_total_time_s": 4687.368519,
+      "raw_max_total_time_s": 4769.930785,
+      "mean_time_per_source_s": 250.20385832594414,
+      "mean_program_runtime_s": 0.21323167803568918,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "penalized_p95_total_time_s": 4687.368519,
+      "mean_components_s": {
+        "movement_s": 2366.0455453214286,
+        "switching_s": 105.28571428571429,
+        "detection_s": 628.0357142857143,
+        "optical_s": 39.0,
+        "removal_s": 26.0
+      },
+      "mean_measurement_count": 125.60714285714286,
+      "failure_case_ids": []
+    },
+    "geo": {
+      "strategy": "geometric_probe_relocation",
+      "runs": 28,
+      "expected_runs": 28,
+      "complete": true,
+      "successful_runs": 28,
+      "failed_clear_count": 0,
+      "raw_mean_total_time_s": 3254.1512870714287,
+      "penalized_mean_total_time_s": 3254.1512870714287,
+      "raw_p95_total_time_s": 4396.5193967,
+      "raw_max_total_time_s": 4755.570644,
+      "mean_time_per_source_s": 256.82276716489434,
+      "mean_program_runtime_s": 2.2583551895356453,
+      "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+      "penalized_p95_total_time_s": 4396.5193967,
+      "mean_components_s": {
+        "movement_s": 2502.6155727857144,
+        "switching_s": 106.53571428571429,
+        "detection_s": 580.0,
+        "optical_s": 39.0,
+        "removal_s": 26.0
+      },
+      "mean_measurement_count": 116,
+      "failure_case_ids": []
+    }
+  },
+  "comparisons": {
+    "state": {
+      "pairs": 28,
+      "all_pairs_successful_no_candidate_failed_clear": true,
+      "mean_seconds_saved": 581.0646721071429,
+      "saving_ci95_s": [
+        500.65166313928563,
+        661.8222426625
+      ],
+      "mean_reduction_fraction": 0.1601876253804655,
+      "p95_time_ratio": 0.9196529582857504,
+      "worst_paired_regression_s": -151.04273799999964,
+      "wins": 28,
+      "losses": 0,
+      "ties": 0,
+      "performance_target_met_on_supplied_cases": true,
+      "scope": "This comparison alone does not establish completeness of the full final test suite.",
+      "baseline_all_successful_no_failed_clear": true,
+      "paired_cases": [
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810013",
+          "seed": 810013,
+          "baseline_s": 2542.51619,
+          "candidate_s": 2391.473452,
+          "saved_s": 151.04273799999964,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810000",
+          "seed": 810000,
+          "baseline_s": 3266.263554,
+          "candidate_s": 2990.747504,
+          "saved_s": 275.5160500000002,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810022",
+          "seed": 810022,
+          "baseline_s": 4532.25778,
+          "candidate_s": 4252.692223,
+          "saved_s": 279.5655569999999,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810001",
+          "seed": 810001,
+          "baseline_s": 4733.126275,
+          "candidate_s": 4377.688437,
+          "saved_s": 355.43783799999983,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810015",
+          "seed": 810015,
+          "baseline_s": 4969.496645,
+          "candidate_s": 4611.189413,
+          "saved_s": 358.3072320000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810008",
+          "seed": 810008,
+          "baseline_s": 4961.349346,
+          "candidate_s": 4549.336219,
+          "saved_s": 412.01312700000017,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810012",
+          "seed": 810012,
+          "baseline_s": 3530.816561,
+          "candidate_s": 3103.554663,
+          "saved_s": 427.2618980000002,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810018",
+          "seed": 810018,
+          "baseline_s": 3815.66658,
+          "candidate_s": 3360.945224,
+          "saved_s": 454.721356,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810025",
+          "seed": 810025,
+          "baseline_s": 3739.229519,
+          "candidate_s": 3273.266048,
+          "saved_s": 465.963471,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810006",
+          "seed": 810006,
+          "baseline_s": 2894.328218,
+          "candidate_s": 2421.677917,
+          "saved_s": 472.6503010000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810019",
+          "seed": 810019,
+          "baseline_s": 4031.364601,
+          "candidate_s": 3544.565915,
+          "saved_s": 486.7986860000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810011",
+          "seed": 810011,
+          "baseline_s": 3687.308192,
+          "candidate_s": 3177.906858,
+          "saved_s": 509.40133400000013,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810004",
+          "seed": 810004,
+          "baseline_s": 3442.335489,
+          "candidate_s": 2924.670089,
+          "saved_s": 517.6653999999999,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810009",
+          "seed": 810009,
+          "baseline_s": 2552.126304,
+          "candidate_s": 2033.612259,
+          "saved_s": 518.5140449999999,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810003",
+          "seed": 810003,
+          "baseline_s": 3416.105877,
+          "candidate_s": 2876.555821,
+          "saved_s": 539.550056,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810026",
+          "seed": 810026,
+          "baseline_s": 3569.306074,
+          "candidate_s": 3004.406469,
+          "saved_s": 564.8996050000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810016",
+          "seed": 810016,
+          "baseline_s": 1213.839721,
+          "candidate_s": 646.17734,
+          "saved_s": 567.6623810000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810002",
+          "seed": 810002,
+          "baseline_s": 2798.178176,
+          "candidate_s": 2211.609472,
+          "saved_s": 586.5687039999998,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810021",
+          "seed": 810021,
+          "baseline_s": 3777.351572,
+          "candidate_s": 3182.448302,
+          "saved_s": 594.9032700000002,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810014",
+          "seed": 810014,
+          "baseline_s": 3741.999398,
+          "candidate_s": 3011.359831,
+          "saved_s": 730.6395669999997,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810024",
+          "seed": 810024,
+          "baseline_s": 4159.996403,
+          "candidate_s": 3365.94715,
+          "saved_s": 794.0492530000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810007",
+          "seed": 810007,
+          "baseline_s": 4154.132028,
+          "candidate_s": 3351.32984,
+          "saved_s": 802.8021880000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810020",
+          "seed": 810020,
+          "baseline_s": 3214.032039,
+          "candidate_s": 2406.964018,
+          "saved_s": 807.068021,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810027",
+          "seed": 810027,
+          "baseline_s": 3280.024294,
+          "candidate_s": 2462.154215,
+          "saved_s": 817.8700789999998,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810023",
+          "seed": 810023,
+          "baseline_s": 2966.081092,
+          "candidate_s": 2066.736017,
+          "saved_s": 899.3450749999997,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810010",
+          "seed": 810010,
+          "baseline_s": 4191.981853,
+          "candidate_s": 3252.394033,
+          "saved_s": 939.5878200000002,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810017",
+          "seed": 810017,
+          "baseline_s": 4068.853511,
+          "candidate_s": 3110.530371,
+          "saved_s": 958.32314,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810005",
+          "seed": 810005,
+          "baseline_s": 4317.146657,
+          "candidate_s": 3335.46403,
+          "saved_s": 981.6826270000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        }
+      ]
+    },
+    "rl": {
+      "pairs": 28,
+      "all_pairs_successful_no_candidate_failed_clear": true,
+      "mean_seconds_saved": 463.03352428571435,
+      "saving_ci95_s": [
+        323.06174225714295,
+        590.4833061687501
+      ],
+      "mean_reduction_fraction": 0.12764885612113075,
+      "p95_time_ratio": 0.9602368340673912,
+      "worst_paired_regression_s": 384.3625649999999,
+      "wins": 25,
+      "losses": 3,
+      "ties": 0,
+      "performance_target_met_on_supplied_cases": true,
+      "scope": "This comparison alone does not establish completeness of the full final test suite.",
+      "baseline_all_successful_no_failed_clear": true,
+      "paired_cases": [
+        {
+          "case_id": "q3-v1-stress-positive_error-810003",
+          "seed": 810003,
+          "baseline_s": 3416.105877,
+          "candidate_s": 3800.468442,
+          "saved_s": -384.3625649999999,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810022",
+          "seed": 810022,
+          "baseline_s": 4532.25778,
+          "candidate_s": 4655.365526,
+          "saved_s": -123.10774599999968,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810026",
+          "seed": 810026,
+          "baseline_s": 3569.306074,
+          "candidate_s": 3593.892691,
+          "saved_s": -24.586616999999933,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810012",
+          "seed": 810012,
+          "baseline_s": 3530.816561,
+          "candidate_s": 3496.888935,
+          "saved_s": 33.927626000000146,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810001",
+          "seed": 810001,
+          "baseline_s": 4733.126275,
+          "candidate_s": 4672.87309,
+          "saved_s": 60.253184999999576,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810000",
+          "seed": 810000,
+          "baseline_s": 3266.263554,
+          "candidate_s": 3185.351606,
+          "saved_s": 80.91194799999994,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810013",
+          "seed": 810013,
+          "baseline_s": 2542.51619,
+          "candidate_s": 2367.737866,
+          "saved_s": 174.77832399999988,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810008",
+          "seed": 810008,
+          "baseline_s": 4961.349346,
+          "candidate_s": 4769.930785,
+          "saved_s": 191.4185610000004,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810025",
+          "seed": 810025,
+          "baseline_s": 3739.229519,
+          "candidate_s": 3498.384636,
+          "saved_s": 240.8448830000002,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810015",
+          "seed": 810015,
+          "baseline_s": 4969.496645,
+          "candidate_s": 4695.17375,
+          "saved_s": 274.32289500000024,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810016",
+          "seed": 810016,
+          "baseline_s": 1213.839721,
+          "candidate_s": 846.16992,
+          "saved_s": 367.669801,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810009",
+          "seed": 810009,
+          "baseline_s": 2552.126304,
+          "candidate_s": 2109.345491,
+          "saved_s": 442.78081299999985,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810018",
+          "seed": 810018,
+          "baseline_s": 3815.66658,
+          "candidate_s": 3340.940183,
+          "saved_s": 474.7263969999999,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810007",
+          "seed": 810007,
+          "baseline_s": 4154.132028,
+          "candidate_s": 3649.996162,
+          "saved_s": 504.1358660000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810004",
+          "seed": 810004,
+          "baseline_s": 3442.335489,
+          "candidate_s": 2833.604944,
+          "saved_s": 608.7305449999999,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810021",
+          "seed": 810021,
+          "baseline_s": 3777.351572,
+          "candidate_s": 3164.567677,
+          "saved_s": 612.783895,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810002",
+          "seed": 810002,
+          "baseline_s": 2798.178176,
+          "candidate_s": 2175.157897,
+          "saved_s": 623.0202789999998,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810010",
+          "seed": 810010,
+          "baseline_s": 4191.981853,
+          "candidate_s": 3554.056457,
+          "saved_s": 637.9253960000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810006",
+          "seed": 810006,
+          "baseline_s": 2894.328218,
+          "candidate_s": 2238.7067,
+          "saved_s": 655.6215179999999,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810014",
+          "seed": 810014,
+          "baseline_s": 3741.999398,
+          "candidate_s": 3064.773684,
+          "saved_s": 677.2257140000002,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810011",
+          "seed": 810011,
+          "baseline_s": 3687.308192,
+          "candidate_s": 3007.626649,
+          "saved_s": 679.6815430000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810024",
+          "seed": 810024,
+          "baseline_s": 4159.996403,
+          "candidate_s": 3461.802002,
+          "saved_s": 698.1944010000002,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810017",
+          "seed": 810017,
+          "baseline_s": 4068.853511,
+          "candidate_s": 3287.392303,
+          "saved_s": 781.4612079999997,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810023",
+          "seed": 810023,
+          "baseline_s": 2966.081092,
+          "candidate_s": 2172.83083,
+          "saved_s": 793.250262,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810019",
+          "seed": 810019,
+          "baseline_s": 4031.364601,
+          "candidate_s": 3177.210352,
+          "saved_s": 854.1542490000002,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810020",
+          "seed": 810020,
+          "baseline_s": 3214.032039,
+          "candidate_s": 2240.234619,
+          "saved_s": 973.7974200000003,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810027",
+          "seed": 810027,
+          "baseline_s": 3280.024294,
+          "candidate_s": 2276.234257,
+          "saved_s": 1003.7900369999998,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810005",
+          "seed": 810005,
+          "baseline_s": 4317.146657,
+          "candidate_s": 3265.557815,
+          "saved_s": 1051.588842,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        }
+      ]
+    },
+    "geo": {
+      "pairs": 28,
+      "all_pairs_successful_no_candidate_failed_clear": true,
+      "mean_seconds_saved": 373.24921110714286,
+      "saving_ci95_s": [
+        264.98910527857134,
+        476.4730320678571
+      ],
+      "mean_reduction_fraction": 0.10289716045817454,
+      "p95_time_ratio": 0.9006545675448064,
+      "worst_paired_regression_s": 430.24948799999993,
+      "wins": 26,
+      "losses": 2,
+      "ties": 0,
+      "performance_target_met_on_supplied_cases": true,
+      "scope": "This comparison alone does not establish completeness of the full final test suite.",
+      "baseline_all_successful_no_failed_clear": true,
+      "paired_cases": [
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810000",
+          "seed": 810000,
+          "baseline_s": 3266.263554,
+          "candidate_s": 3696.513042,
+          "saved_s": -430.24948799999993,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810026",
+          "seed": 810026,
+          "baseline_s": 3569.306074,
+          "candidate_s": 3744.058187,
+          "saved_s": -174.752113,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810006",
+          "seed": 810006,
+          "baseline_s": 2894.328218,
+          "candidate_s": 2709.549047,
+          "saved_s": 184.77917100000013,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810009",
+          "seed": 810009,
+          "baseline_s": 2552.126304,
+          "candidate_s": 2358.318706,
+          "saved_s": 193.80759799999987,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810015",
+          "seed": 810015,
+          "baseline_s": 4969.496645,
+          "candidate_s": 4755.570644,
+          "saved_s": 213.92600099999981,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810016",
+          "seed": 810016,
+          "baseline_s": 1213.839721,
+          "candidate_s": 992.056014,
+          "saved_s": 221.78370700000005,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810011",
+          "seed": 810011,
+          "baseline_s": 3687.308192,
+          "candidate_s": 3444.168311,
+          "saved_s": 243.13988100000006,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810022",
+          "seed": 810022,
+          "baseline_s": 4532.25778,
+          "candidate_s": 4282.498359,
+          "saved_s": 249.75942099999975,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810025",
+          "seed": 810025,
+          "baseline_s": 3739.229519,
+          "candidate_s": 3478.758079,
+          "saved_s": 260.4714399999998,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810013",
+          "seed": 810013,
+          "baseline_s": 2542.51619,
+          "candidate_s": 2277.346453,
+          "saved_s": 265.1697369999997,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810012",
+          "seed": 810012,
+          "baseline_s": 3530.816561,
+          "candidate_s": 3257.421537,
+          "saved_s": 273.3950239999999,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810018",
+          "seed": 810018,
+          "baseline_s": 3815.66658,
+          "candidate_s": 3536.000868,
+          "saved_s": 279.665712,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810021",
+          "seed": 810021,
+          "baseline_s": 3777.351572,
+          "candidate_s": 3488.630461,
+          "saved_s": 288.72111099999984,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810017",
+          "seed": 810017,
+          "baseline_s": 4068.853511,
+          "candidate_s": 3769.782889,
+          "saved_s": 299.07062199999973,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810019",
+          "seed": 810019,
+          "baseline_s": 4031.364601,
+          "candidate_s": 3711.794095,
+          "saved_s": 319.570506,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810007",
+          "seed": 810007,
+          "baseline_s": 4154.132028,
+          "candidate_s": 3803.689661,
+          "saved_s": 350.4423670000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810001",
+          "seed": 810001,
+          "baseline_s": 4733.126275,
+          "candidate_s": 4365.971387,
+          "saved_s": 367.154888,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810003",
+          "seed": 810003,
+          "baseline_s": 3416.105877,
+          "candidate_s": 3008.242238,
+          "saved_s": 407.86363900000015,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810024",
+          "seed": 810024,
+          "baseline_s": 4159.996403,
+          "candidate_s": 3725.030585,
+          "saved_s": 434.9658180000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-negative_error-810004",
+          "seed": 810004,
+          "baseline_s": 3442.335489,
+          "candidate_s": 2962.797797,
+          "saved_s": 479.5376919999999,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-minimum_radius-810014",
+          "seed": 810014,
+          "baseline_s": 3741.999398,
+          "candidate_s": 3221.108194,
+          "saved_s": 520.891204,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-boundary-810008",
+          "seed": 810008,
+          "baseline_s": 4961.349346,
+          "candidate_s": 4412.968325,
+          "saved_s": 548.3810210000001,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-positive_error-810010",
+          "seed": 810010,
+          "baseline_s": 4191.981853,
+          "candidate_s": 3593.81571,
+          "saved_s": 598.1661430000004,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-alternating_error-810005",
+          "seed": 810005,
+          "baseline_s": 4317.146657,
+          "candidate_s": 3634.38626,
+          "saved_s": 682.760397,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810002",
+          "seed": 810002,
+          "baseline_s": 2798.178176,
+          "candidate_s": 2036.939242,
+          "saved_s": 761.238934,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810020",
+          "seed": 810020,
+          "baseline_s": 3214.032039,
+          "candidate_s": 2444.268846,
+          "saved_s": 769.7631930000002,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-narrow_strip-810027",
+          "seed": 810027,
+          "baseline_s": 3280.024294,
+          "candidate_s": 2390.931649,
+          "saved_s": 889.0926449999997,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        },
+        {
+          "case_id": "q3-v1-stress-cluster-810023",
+          "seed": 810023,
+          "baseline_s": 2966.081092,
+          "candidate_s": 2013.619452,
+          "saved_s": 952.46164,
+          "candidate_successful": true,
+          "failed_clear_count": 0
+        }
+      ]
+    }
+  },
+  "final_suite_acceptance": null,
+  "evidence_scope": "A single partition report is not full final-suite acceptance.",
+  "runtime_scope": "Recorded wall time may include concurrent load; use a serial benchmark for speed claims."
+}

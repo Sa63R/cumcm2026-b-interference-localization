@@ -1,0 +1,121 @@
+{
+  "kind": "final_statistics_delivery",
+  "status": "completed",
+  "steps": [
+    {
+      "label": "report-random",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/evaluation-tools-0830-git/experiments/research_v1_report.py",
+        "--baseline",
+        "/home/volleyball/q3-research-v1/v1-selection/evaluations/final_random/baseline",
+        "--candidate",
+        "state=/home/volleyball/q3-research-v1/v1-selection/evaluations/final_random/state-future-cover",
+        "--candidate",
+        "rl=/home/volleyball/q3-research-v1/v1-selection/evaluations/final_random/rl-gae095-u512",
+        "--candidate",
+        "geo=/home/volleyball/q3-research-v1/v1-selection/evaluations/final_random/geo-future-cover",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/report-random",
+        "--figures"
+      ],
+      "log": "/home/volleyball/q3-research-v1/v1-selection/statistics-report-random.log",
+      "started_epoch": 1789090170.4928083,
+      "pid": 1091302,
+      "returncode": 0,
+      "elapsed_wall_s": 1.0343575477600098
+    },
+    {
+      "label": "report-stress",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/evaluation-tools-0830-git/experiments/research_v1_report.py",
+        "--baseline",
+        "/home/volleyball/q3-research-v1/v1-selection/evaluations/final_stress/baseline",
+        "--candidate",
+        "state=/home/volleyball/q3-research-v1/v1-selection/evaluations/final_stress/state-future-cover",
+        "--candidate",
+        "rl=/home/volleyball/q3-research-v1/v1-selection/evaluations/final_stress/rl-gae095-u512",
+        "--candidate",
+        "geo=/home/volleyball/q3-research-v1/v1-selection/evaluations/final_stress/geo-future-cover",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/report-stress",
+        "--figures"
+      ],
+      "log": "/home/volleyball/q3-research-v1/v1-selection/statistics-report-stress.log",
+      "started_epoch": 1789090171.5276105,
+      "pid": 1091364,
+      "returncode": 0,
+      "elapsed_wall_s": 0.6148908138275146
+    },
+    {
+      "label": "final-acceptance",
+      "command": [
+        "/home/volleyball/miniconda3/envs/volleyball/bin/python",
+        "/home/volleyball/q3-research-v1/evaluation-tools-0830-git/experiments/research_v1_report.py",
+        "--final-random-report",
+        "/home/volleyball/q3-research-v1/v1-selection/report-random/comparison.json",
+        "--final-stress-report",
+        "/home/volleyball/q3-research-v1/v1-selection/report-stress/comparison.json",
+        "--output",
+        "/home/volleyball/q3-research-v1/v1-selection/final-acceptance"
+      ],
+      "log": "/home/volleyball/q3-research-v1/v1-selection/statistics-final-acceptance.log",
+      "started_epoch": 1789090172.142994,
+      "pid": 1091369,
+      "returncode": 0,
+      "elapsed_wall_s": 0.07071852684020996
+    }
+  ],
+  "started_utc": "2026-09-11T01:17:50.461507+00:00",
+  "source_sha256": "00e6d88c4b1a34a11c87c7507dbc2fc3c88f0c0d47a7b4d1af0860231cbefed5",
+  "methods": {
+    "baseline": "baseline",
+    "state": "state-future-cover",
+    "rl": "rl-gae095-u512",
+    "geo": "geo-future-cover"
+  },
+  "audit_sha256": "4d0d93e5f6f1032736832a56e5c4564bad6bd6948634a6c23135a4c9ba9885f4",
+  "report_tool_commit": "d5c082bb3955a24ecfc0609008a8b54a751a8234",
+  "report_tool_sha256": "2f54ca130151243ec03309277e35b1f5a316c616966ba1996df8d8d077da61a7",
+  "finished_utc": "2026-09-11T01:29:32.217313+00:00",
+  "statistical_acceptance": {
+    "state": {
+      "baseline_complete_and_successful": true,
+      "all_final_cases_complete": true,
+      "all_final_cases_reliable": true,
+      "random_performance_target": true,
+      "stress_p95_guard": true,
+      "first_version_practical_target_met": true
+    },
+    "rl": {
+      "baseline_complete_and_successful": true,
+      "all_final_cases_complete": true,
+      "all_final_cases_reliable": true,
+      "random_performance_target": true,
+      "stress_p95_guard": true,
+      "first_version_practical_target_met": true
+    },
+    "geo": {
+      "baseline_complete_and_successful": true,
+      "all_final_cases_complete": true,
+      "all_final_cases_reliable": true,
+      "random_performance_target": false,
+      "stress_p95_guard": true,
+      "first_version_practical_target_met": false
+    }
+  },
+  "output_sha256": {
+    "report-random/comparison.json": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991",
+    "report-random/comparison.md": "b326407ddcf7c9c1640a36b51c3abfbe1d1af63169239e02def18f681cd322d6",
+    "report-random/comparison.png": "3c72d619361311468f10857dccfd72517149c853d982f46310b35dfca89bbcfe",
+    "report-random/comparison.svg": "b0d81d251aa5f809f55503a175c0aa2be71add950232247f3237b2a0ae658fdd",
+    "report-stress/comparison.json": "ee52b8b04cee1974910a0a7668a685ddce9845207c61c0a9a12b0844bb6bccdb",
+    "report-stress/comparison.md": "3b6fb50b9424e29c5e067f5d8db087d3a5c3c45efa817547728a2bb6a960fe52",
+    "report-stress/comparison.png": "348aec04f6e09c0873f5bd16e031609058bd340da173ab4a3574023a25dd9550",
+    "report-stress/comparison.svg": "1d8c4fbd827bed44efc15dc5610935c0586375a0101058d9a1f9c0f4e0f3fc59",
+    "final-acceptance/final_acceptance.json": "287dc4b995cc5f99a5c1cd3256ca09aee38a05ced1bbd10fe6b37f4bd2456666",
+    "final-acceptance/statistical-interpretation.md": "c92256d01adf1bd8b5bcdcd38abc0bc2c6d919eb626793b23ff7559a5c309c02",
+    "final-acceptance/stress-families.json": "9b88fd0099250d5e159d554f5e888c75005f93b541768570a522658ed569c4da"
+  }
+}
