@@ -1,0 +1,415 @@
+{
+  "name": "candidate-08",
+  "points": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      998.8848300097762,
+      0.0
+    ],
+    [
+      622.7945047424902,
+      780.9596074613693
+    ],
+    [
+      -222.27278528856968,
+      973.840701831527
+    ],
+    [
+      -899.9641344588084,
+      433.3998849924483
+    ],
+    [
+      -899.9641344588085,
+      -433.39988499244805
+    ],
+    [
+      -223.76708767015703,
+      -974.0738783779505
+    ],
+    [
+      623.3556171453698,
+      -778.9903911494594
+    ],
+    [
+      1429.430573247835,
+      -1183.8501753567268
+    ],
+    [
+      715.53530561887,
+      -1712.5367814562983
+    ],
+    [
+      -162.2804773921583,
+      -1848.901849229742
+    ],
+    [
+      -1002.9197587244007,
+      -1561.7057850273773
+    ],
+    [
+      -1613.8022098262109,
+      -916.7417460701924
+    ],
+    [
+      -1854.982023081767,
+      -61.763221024017476
+    ],
+    [
+      -1671.207809806054,
+      807.3645136312585
+    ],
+    [
+      -1104.5800275411812,
+      1491.5347680107595
+    ],
+    [
+      -284.90627259900083,
+      1834.0123819815205
+    ],
+    [
+      600.0360759028187,
+      1756.339861485508
+    ],
+    [
+      1347.517390633916,
+      1276.3110449130136
+    ],
+    [
+      1786.2987105157636,
+      503.89474916643724
+    ],
+    [
+      1815.8605230515677,
+      -383.95776102414425
+    ]
+  ],
+  "context": {
+    "iteration": 8,
+    "kind": "continuous_counterexample_constraint_generation",
+    "bounds": [
+      [
+        970.0,
+        1020.0
+      ],
+      [
+        1854.3700957095093,
+        1873.8700957095093
+      ],
+      [
+        10.846153846153847,
+        16.846153846153847
+      ],
+      [
+        -10.0,
+        10.0
+      ],
+      [
+        -10.0,
+        10.0
+      ],
+      [
+        -10.0,
+        10.0
+      ],
+      [
+        -10.0,
+        10.0
+      ]
+    ],
+    "parameters": [
+      998.8848300097762,
+      1856.009968030287,
+      15.753161573425249,
+      -1.4943023815870973,
+      -0.23317654642350405,
+      0.5611124028798375,
+      1.969216311910003
+    ],
+    "local_native_indices": [
+      6,
+      7
+    ],
+    "working_set_file": "candidate-08-working-set.json",
+    "working_set_sha256": "326e5a825c72279e73947e1159c5336aaf2ed48937ce5ccb8cb50a17f7ec0826",
+    "working_margin_m": 2.371518767460923,
+    "optimization_runs": [
+      {
+        "evaluations": 453,
+        "status": "simplex_tolerance",
+        "objective": -2.7462243827399107
+      },
+      {
+        "evaluations": 172,
+        "status": "simplex_tolerance",
+        "objective": -2.371518767460923
+      },
+      {
+        "evaluations": 152,
+        "status": "simplex_tolerance",
+        "objective": -2.371518767460923
+      }
+    ],
+    "optimizer_wall_s": 0.3422687999845948,
+    "objective_calls": 784,
+    "note": "Finite support constraints are proposal evidence, never full coverage"
+  },
+  "identity": {
+    "input_sha256": "6ee1259d4748b2a0b50c0d4b1225ed60455fb537c2e14e8f346966b35c985c6c",
+    "station_sha256": "fe142ffa26a0496ccb80b19fbf8ad75dda5b1e7eb6d104080c8aeb1de6f2c726",
+    "source_sha256": "e863b3f0fb83e1deba8d1a24c4b929b8fe1caca9927f8b99e514b1deea6da5c1",
+    "script_sha256": "a99b880dbd5ce4ac51421a6fb9fffaf7339284088ec9d86d08339e93535c15fc",
+    "protocol_sha256": "f8d04325e41290de203d7759173a436db700de3b4830dc0502a72d486d684184"
+  },
+  "certificate_summary": {
+    "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+    "passed": false,
+    "status": "counterexample",
+    "reason": "strict_separating_counterexample",
+    "station_count": 21,
+    "station_sha256": "f9794609183d61c6c1679f6bba1bfeace1ce81d636bb719fbfffa52d98733387",
+    "arena_radius": 1800.0,
+    "reception_radius": 1000.0,
+    "range_margin_m": 1e-05,
+    "orientation_margin_m": 1e-07,
+    "max_depth": 24,
+    "max_cells": 800000,
+    "visited_cells": 2513,
+    "deepest_level": 20,
+    "outside_leaves": 808,
+    "covered_leaves": 1068,
+    "counterexample": {
+      "source": [
+        401.2138366699219,
+        -1754.7157287597656
+      ],
+      "normal": [
+        -0.15350471037681365,
+        0.9881479159984757
+      ],
+      "local_stations": [
+        [
+          -162.2804773921583,
+          -1848.901849229742
+        ],
+        [
+          715.53530561887,
+          -1712.5367814562983
+        ]
+      ],
+      "max_projection_m": -6.570787179292132
+    },
+    "unresolved_cell": null,
+    "runtime_s": 0.02976699999999255,
+    "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic"
+  },
+  "proof_file": "proofs/candidate-08.json.gz",
+  "proof_raw_sha256": "426add0fc1464124d72f4ead020b1041bbbf0f2e93de820b27841d131bc7a2f9",
+  "proof_gzip_sha256": "1e1f39dffb6a076396bff41eb656e636cd0d8bb8a7206a4c2997b85081a8bee5",
+  "independent_leaf_verification": null,
+  "independent_counterexample": {
+    "passed": true,
+    "source": [
+      401.2138366699219,
+      -1754.7157287597656
+    ],
+    "normal": [
+      -0.15350471037681365,
+      0.9881479159984757
+    ],
+    "stations": [
+      {
+        "position": [
+          0.0,
+          0.0
+        ],
+        "distance_m": 1799.9999531923088,
+        "projection_m": 1795.5069043408957,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          998.8848300097762,
+          0.0
+        ],
+        "distance_m": 1853.709228826561,
+        "projection_m": 1642.1733778104522,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          622.7945047424902,
+          780.9596074613693
+        ],
+        "distance_m": 2545.3383671299284,
+        "projection_m": 2471.608622858068,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          -222.27278528856968,
+          973.840701831527
+        ],
+        "distance_m": 2798.8847355120406,
+        "projection_m": 2791.925483900581,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          -899.9641344588084,
+          433.3998849924483
+        ],
+        "distance_m": 2545.763942650007,
+        "projection_m": 2361.9188312997817,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          -899.9641344588085,
+          -433.39988499244805
+        ],
+        "distance_m": 1854.4378316733128,
+        "projection_m": 1505.3924450012482,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          -223.76708767015703,
+          -974.0738783779505
+        ],
+        "distance_m": 1000.0014271772435,
+        "projection_m": 867.3271333778416,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          623.3556171453698,
+          -778.9903911494594
+        ],
+        "distance_m": 1000.693212272147,
+        "projection_m": 930.0611492720599,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          1429.430573247835,
+          -1183.8501753567268
+        ],
+        "distance_m": 1176.0600058845175,
+        "projection_m": 406.26349455754433,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          715.53530561887,
+          -1712.5367814562983
+        ],
+        "distance_m": 317.1388488310021,
+        "projection_m": -6.570787179292132,
+        "exclusion": "behind"
+      },
+      {
+        "position": [
+          -162.2804773921583,
+          -1848.901849229742
+        ],
+        "distance_m": 571.3115325892513,
+        "projection_m": -6.570787179307715,
+        "exclusion": "behind"
+      },
+      {
+        "position": [
+          -1002.9197587244007,
+          -1561.7057850273773
+        ],
+        "distance_m": 1417.3369366860397,
+        "projection_m": 406.26349455750216,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          -1613.8022098262109,
+          -916.7417460701924
+        ],
+        "distance_m": 2182.313007636973,
+        "projection_m": 1137.3566992776655,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          -1854.982023081767,
+          -61.763221024017476
+        ],
+        "distance_m": 2820.7282660705587,
+        "projection_m": 2019.2241844080222,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          -1671.207809806054,
+          807.3645136312585
+        ],
+        "distance_m": 3295.328003284748,
+        "projection_m": 2849.8407367604937,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          -1104.5800275411812,
+          1491.5347680107595
+        ],
+        "distance_m": 3578.48535686241,
+        "projection_m": 3438.92211420572,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          -284.90627259900083,
+          1834.0123819815205
+        ],
+        "distance_m": 3653.728268107512,
+        "projection_m": 3651.516872371183,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          600.0360759028187,
+          1756.339861485508
+        ],
+        "distance_m": 3516.6804859990007,
+        "projection_m": 3438.9221142057495,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          1347.517390633916,
+          1276.3110449130136
+        ],
+        "distance_m": 3175.313168644331,
+        "projection_m": 2849.840736760548,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          1786.2987105157636,
+          503.89474916643724
+        ],
+        "distance_m": 2649.4870067155607,
+        "projection_m": 2019.224184408087,
+        "exclusion": "range"
+      },
+      {
+        "position": [
+          1815.8605230515677,
+          -383.95776102414425
+        ],
+        "distance_m": 1969.823000526002,
+        "projection_m": 1137.3566992777264,
+        "exclusion": "range"
+      }
+    ]
+  },
+  "route_length_m": 17763.32669252907
+}
