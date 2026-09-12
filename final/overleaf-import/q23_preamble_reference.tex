@@ -1,0 +1,38 @@
+% REFERENCE ONLY: reconcile this preamble with the existing project before use.
+% Does not include a documentclass or begin/end document.
+\usepackage[a4paper,top=23mm,bottom=23mm,left=23mm,right=23mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx,xcolor,longtable,booktabs,array,calc,multirow}
+\usepackage{caption,float,placeins,fancyhdr,enumitem,fvextra,needspace}
+\usepackage[hidelinks,unicode]{hyperref}
+\usepackage{microtype}
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{DejaVuSansMono.ttf}[BoldFont=DejaVuSansMono-Bold.ttf,ItalicFont=DejaVuSansMono-Oblique.ttf,BoldItalicFont=DejaVuSansMono-BoldOblique.ttf]
+\linespread{1.18}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1.5pt}
+\clubpenalty=10000\widowpenalty=10000\displaywidowpenalty=10000
+\raggedbottom
+\setlength{\emergencystretch}{2em}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\LTpre}{7pt}\setlength{\LTpost}{7pt}
+\setlength{\LTleft}{\fill}\setlength{\LTright}{\fill}
+\renewcommand{\topfraction}{0.92}\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.06}\renewcommand{\floatpagefraction}{0.65}
+\makeatletter
+\setlength{\@fptop}{0pt}\setlength{\@fpsep}{14pt}\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+\captionsetup{font=small,labelformat=empty,skip=6pt,justification=justified}
+\setlist{nosep,leftmargin=2em}
+\ctexset{section={format=\Large\bfseries,beforeskip=16pt,afterskip=9pt},subsection={format=\large\bfseries,beforeskip=12pt,afterskip=6pt}}
+\setcounter{secnumdepth}{-1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[C]{\small 全向干扰源的主动定位与状态搜索}
+\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\headheight}{15pt}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\pandocbounded}[1]{#1}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,breaklines=true,breakanywhere=true}
+\AtBeginEnvironment{longtable}{\small}
