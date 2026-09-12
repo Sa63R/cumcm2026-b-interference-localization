@@ -1,0 +1,5900 @@
+{
+  "kind": "r39_actual_veto_feedback_v1",
+  "script_sha256": "d98e50b1db9725ffad9e26add39280a9c943a10e0b3e64de102855b9b987d8ee",
+  "input_sha256": {
+    "results/q4_cover_feedback/development/independent_audit.json": "8a38f8e08f11c7f8a8ddf282df41e8548f115f777bebd0c06f211dca0a59d3d8",
+    "results/q4_cover_feedback/development/records/compact_cover_feedback-6390026.json.gz": "06d7a29366c998045f5e4a317db59f37ac5b0ae3ab3d59d1de63070eb7f9281e",
+    "results/q4_cover_feedback/development/records/compact_cover_feedback-6390027.json.gz": "5e725a4e5c2a27e2074e8f8f57cf434efe661a1d905cef0c7def5bcb25b022cf",
+    "results/q4_cover_feedback/development/records/compact_cover_feedback-6390028.json.gz": "4ebe691c560041ea7ef7ffb641876195218dcb5454ff85861ccdac087c64178d",
+    "results/q4_cover_feedback/development/records/compact_cover_feedback-6390045.json.gz": "bb5a53343cb14163e9d85e92cdd5e16e355aae3e6dcad72f8f7276a435e56a4b",
+    "results/q4_cover_feedback/development/records/compact_cover_feedback-6390048.json.gz": "93414d5e747eb783e98c88da31ca12b6f6133cf1ef140acdc30677c9d5b100b5",
+    "results/q4_cover_feedback/development/records/compact_cover_feedback-6390054.json.gz": "c7d288bc3e5d6a512b301d0a4eeec5cc1adf7c9a1c6c9d73720c1d2ec6251eb5",
+    "results/q4_cover_feedback/development/records/compact_cover_feedback-6390056.json.gz": "c23f663b2f488e0b683ed410e4247e10bfd4c0ce52007114809e9d2998084b4a",
+    "results/q4_cover_feedback/development-stress/independent_audit.json": "4803fb0a65a03218d60afe73260abe0aad9f16515c57b55ba5069290e5d92ec0",
+    "results/q4_cover_feedback/development-stress/records/compact_cover_feedback-6391016.json.gz": "d541d00891a87e715abdb1b04b002e074f572881fe058588806c5f58ab404ea3",
+    "results/q4_cover_feedback/development-stress/records/compact_cover_feedback-6391022.json.gz": "5a8b4b5a3bb958140bb80ef2df9ecd9666d4b82c9cf593fa147c259a82eb0ecb",
+    "results/q4_cover_feedback/development-stress/records/compact_cover_feedback-6391026.json.gz": "1c9b27534405e851ace9213a3a07326a8050c161265532b2c17baad8bf682ca8",
+    "results/q4_cover_feedback/development-stress/records/compact_cover_feedback-6391036.json.gz": "b92cc2287d322632925683ae41a2c7fd1e863ad9e309d4d4ab5b0f6dee327e1d",
+    "results/q4_cover_feedback/development-stress/records/compact_cover_feedback-6391064.json.gz": "5d7895d18785424a9564ab7ff520098448a920a0da0d82b06bed391685cd98ba",
+    "results/q4_cover_feedback/development-stress/records/compact_cover_feedback-6391065.json.gz": "28a44f74d4663485bf1f2aacd77ce50dc6f821e88130d5e4b0b029787734a187"
+  },
+  "prefix_reconstruction_source_sha256": {
+    "experiments/audit_q4_cover_feedback.py": "128e496f92ba746df1cccf84df230ba59b5fd668456e34a65606e19633e875fc",
+    "experiments/audit_q4_joint_continuation.py": "5a04f00ee3796312b0ef0862fedf1bfefe1f9d57101e43eacbf11c7708db99e8",
+    "experiments/audit_q4_clear_before_probe.py": "68c7ef07dca4cc9f7a60351332911c25054c5e0392220830637bfd89518e62c4",
+    "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+    "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa"
+  },
+  "summary": {
+    "cases": 13,
+    "completed_veto_blocks": 13,
+    "known_nonready_source_events": 65,
+    "known_nonready_geometry_changed": 18,
+    "blocks_with_known_geometry_change": 11,
+    "known_nonready_became_ready": 13,
+    "blocks_with_known_new_ready": 9,
+    "newly_discovered_sources": 5,
+    "blocks_discovering_new_source": 4,
+    "new_sources_ready_immediately": 0,
+    "deferred_sources_later_cleared": 13,
+    "further_cover_count_distribution": {
+      "0": 9,
+      "2": 1,
+      "9": 1,
+      "13": 1,
+      "15": 1
+    },
+    "q_end_to_clear_s": {
+      "count": 13,
+      "min": 27.12759299999925,
+      "mean": 1047.961905076923,
+      "max": 4616.196596
+    },
+    "per_event_waits_not_additive_loss": true
+  },
+  "by_split": {
+    "development": {
+      "cases": 7,
+      "completed_veto_blocks": 7,
+      "known_nonready_source_events": 32,
+      "known_nonready_geometry_changed": 10,
+      "blocks_with_known_geometry_change": 7,
+      "known_nonready_became_ready": 7,
+      "blocks_with_known_new_ready": 6,
+      "newly_discovered_sources": 3,
+      "blocks_discovering_new_source": 2,
+      "new_sources_ready_immediately": 0,
+      "deferred_sources_later_cleared": 7,
+      "further_cover_count_distribution": {
+        "0": 4,
+        "9": 1,
+        "13": 1,
+        "15": 1
+      },
+      "q_end_to_clear_s": {
+        "count": 7,
+        "min": 27.12759299999925,
+        "mean": 1772.1934625714284,
+        "max": 4616.196596
+      },
+      "per_event_waits_not_additive_loss": true
+    },
+    "development-stress": {
+      "cases": 6,
+      "completed_veto_blocks": 6,
+      "known_nonready_source_events": 33,
+      "known_nonready_geometry_changed": 8,
+      "blocks_with_known_geometry_change": 4,
+      "known_nonready_became_ready": 6,
+      "blocks_with_known_new_ready": 3,
+      "newly_discovered_sources": 2,
+      "blocks_discovering_new_source": 2,
+      "new_sources_ready_immediately": 0,
+      "deferred_sources_later_cleared": 6,
+      "further_cover_count_distribution": {
+        "0": 5,
+        "2": 1
+      },
+      "q_end_to_clear_s": {
+        "count": 6,
+        "min": 55.80435599999964,
+        "mean": 203.02508799999995,
+        "max": 723.7011289999998
+      },
+      "per_event_waits_not_additive_loss": true
+    }
+  },
+  "events": [
+    {
+      "split": "development",
+      "seed": 6390026,
+      "event_id": 16,
+      "channel": 1,
+      "next_cover": [
+        1667.9549743034802,
+        803.2447809383196
+      ],
+      "after_actual_action_count": 188,
+      "end_actual_action_count": 196,
+      "prefix_time_s": 3631.131644,
+      "q_finished_time_s": 3842.911987,
+      "actual_q_block_time_s": 211.7803429999999,
+      "known_count_before": 13,
+      "known_count_after": 13,
+      "known_nonready_before": [
+        6,
+        8,
+        16
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 6,
+          "before": {
+            "channel": 6,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 38.74846962226762,
+            "target": [
+              785.9175405125054,
+              467.18834108355225
+            ],
+            "vertices": [
+              [
+                786.6110531845782,
+                444.164626501529
+              ],
+              [
+                807.9039916583255,
+                435.28160411343487
+              ],
+              [
+                788.3067463253061,
+                487.90671482424614
+              ],
+              [
+                763.9310893666852,
+                499.0950780536697
+              ]
+            ]
+          },
+          "after": {
+            "channel": 6,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 18.848194974797636,
+            "target": [
+              785.8031266570165,
+              468.4920815366339
+            ],
+            "vertices": [
+              [
+                800.107295884913,
+                456.2183210490049
+              ],
+              [
+                788.6662358405322,
+                486.9413661123905
+              ],
+              [
+                771.49895742912,
+                480.765842024263
+              ],
+              [
+                784.2519820944984,
+                449.8782529103793
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 191,
+              "result": "direction",
+              "bearing_deg": 200.79
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 8,
+          "before": {
+            "channel": 8,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 608.3491093370737,
+            "target": [
+              -1311.6601487743405,
+              -1.612993578872846
+            ],
+            "vertices": [
+              [
+                -873.9398018653474,
+                420.8672269440308
+              ],
+              [
+                -1760.359869410434,
+                -376.5689200288468
+              ],
+              [
+                -1756.7929472597064,
+                -394.5010486225386
+              ],
+              [
+                -1749.380495683334,
+                -424.0932141017765
+              ]
+            ]
+          },
+          "after": {
+            "channel": 8,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 608.3491093370737,
+            "target": [
+              -1311.6601487743405,
+              -1.612993578872846
+            ],
+            "vertices": [
+              [
+                -873.9398018653474,
+                420.8672269440308
+              ],
+              [
+                -1760.359869410434,
+                -376.5689200288468
+              ],
+              [
+                -1756.7929472597064,
+                -394.5010486225386
+              ],
+              [
+                -1749.380495683334,
+                -424.0932141017765
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 16,
+          "before": {
+            "channel": 16,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 55.20489871022724,
+            "target": [
+              -1100.5088594761414,
+              -678.9650476008699
+            ],
+            "vertices": [
+              [
+                -1077.806035737652,
+                -670.1788507735189
+              ],
+              [
+                -1146.386186250404,
+                -648.2591568035982
+              ],
+              [
+                -1118.8672758667217,
+                -691.5969383874352
+              ],
+              [
+                -1054.631532701879,
+                -709.6709383981416
+              ]
+            ]
+          },
+          "after": {
+            "channel": 16,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 55.20489871022724,
+            "target": [
+              -1100.5088594761414,
+              -678.9650476008699
+            ],
+            "vertices": [
+              [
+                -1077.806035737652,
+                -670.1788507735189
+              ],
+              [
+                -1146.386186250404,
+                -648.2591568035982
+              ],
+              [
+                -1118.8672758667217,
+                -691.5969383874352
+              ],
+              [
+                -1054.631532701879,
+                -709.6709383981416
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        6
+      ],
+      "known_nonready_became_ready": [
+        6
+      ],
+      "newly_discovered_sources": [],
+      "newly_discovered_count": 0,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 7,
+        "direction": 1
+      },
+      "deferred_source_clear_action_index": 196,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 3903.622574,
+      "elapsed_prefix_to_clear_s": 272.49092999999993,
+      "elapsed_q_end_to_clear_s": 60.71058700000003,
+      "accepted_actions_after_q_through_clear": 1,
+      "further_completed_cover_count": 0,
+      "further_completed_covers": [],
+      "completed_covers_from_veto_through_clear": 1,
+      "observed_followup_time_s": 60.71058700000003,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development",
+      "seed": 6390027,
+      "event_id": 2,
+      "channel": 4,
+      "next_cover": [
+        -411.9508585720518,
+        -1804.8746395609091
+      ],
+      "after_actual_action_count": 143,
+      "end_actual_action_count": 152,
+      "prefix_time_s": 2320.446052,
+      "q_finished_time_s": 2549.704123,
+      "actual_q_block_time_s": 229.2580710000002,
+      "known_count_before": 12,
+      "known_count_after": 12,
+      "known_nonready_before": [
+        2,
+        5,
+        9,
+        12,
+        13,
+        16,
+        20
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 2,
+          "before": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 593.1065118371444,
+            "target": [
+              321.0061881608057,
+              1279.1882689969927
+            ],
+            "vertices": [
+              [
+                44.18751979606575,
+                1800.0
+              ],
+              [
+                37.22726851863815,
+                1800.0
+              ],
+              [
+                604.7851078029732,
+                758.3765379939855
+              ],
+              [
+                84.74390948450011,
+                1798.0075923365844
+              ]
+            ]
+          },
+          "after": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 593.1065118371444,
+            "target": [
+              321.0061881608057,
+              1279.1882689969927
+            ],
+            "vertices": [
+              [
+                44.18751979606575,
+                1800.0
+              ],
+              [
+                37.22726851863815,
+                1800.0
+              ],
+              [
+                604.7851078029732,
+                758.3765379939855
+              ],
+              [
+                84.74390948450011,
+                1798.0075923365844
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 5,
+          "before": {
+            "channel": 5,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 58.7129760422641,
+            "target": [
+              1045.9115199554162,
+              1154.6222978943613
+            ],
+            "vertices": [
+              [
+                1054.1985070755265,
+                1177.9748642463649
+              ],
+              [
+                996.0254499078576,
+                1123.6611355946425
+              ],
+              [
+                1030.4352034031083,
+                1128.7147144508556
+              ],
+              [
+                1095.797590002975,
+                1185.58346019408
+              ]
+            ]
+          },
+          "after": {
+            "channel": 5,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 58.7129760422641,
+            "target": [
+              1045.9115199554162,
+              1154.6222978943613
+            ],
+            "vertices": [
+              [
+                1054.1985070755265,
+                1177.9748642463649
+              ],
+              [
+                996.0254499078576,
+                1123.6611355946425
+              ],
+              [
+                1030.4352034031083,
+                1128.7147144508556
+              ],
+              [
+                1095.797590002975,
+                1185.58346019408
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 9,
+          "before": {
+            "channel": 9,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 67.82823779241141,
+            "target": [
+              -414.69587172576144,
+              1102.2793843296654
+            ],
+            "vertices": [
+              [
+                -377.16502525273927,
+                1069.3979625758564
+              ],
+              [
+                -358.9560189596136,
+                1063.6304690068253
+              ],
+              [
+                -439.30296716861454,
+                1129.8516065662177
+              ],
+              [
+                -470.43572449190924,
+                1140.9282996525055
+              ]
+            ]
+          },
+          "after": {
+            "channel": 9,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 67.82823779241141,
+            "target": [
+              -414.69587172576144,
+              1102.2793843296654
+            ],
+            "vertices": [
+              [
+                -377.16502525273927,
+                1069.3979625758564
+              ],
+              [
+                -358.9560189596136,
+                1063.6304690068253
+              ],
+              [
+                -439.30296716861454,
+                1129.8516065662177
+              ],
+              [
+                -470.43572449190924,
+                1140.9282996525055
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 12,
+          "before": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 662.4043213620469,
+            "target": [
+              384.0809226712456,
+              1226.514554868664
+            ],
+            "vertices": [
+              [
+                963.2858394818381,
+                1521.1945728142398
+              ],
+              [
+                938.3103772189846,
+                1536.1642888026374
+              ],
+              [
+                -215.84530593763043,
+                945.6800748163662
+              ],
+              [
+                984.0071512801217,
+                1507.3490349209617
+              ]
+            ]
+          },
+          "after": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 662.4043213620469,
+            "target": [
+              384.0809226712456,
+              1226.514554868664
+            ],
+            "vertices": [
+              [
+                963.2858394818381,
+                1521.1945728142398
+              ],
+              [
+                938.3103772189846,
+                1536.1642888026374
+              ],
+              [
+                -215.84530593763043,
+                945.6800748163662
+              ],
+              [
+                984.0071512801217,
+                1507.3490349209617
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 13,
+          "before": {
+            "channel": 13,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 26.743853133639114,
+            "target": [
+              531.1391783383053,
+              -1440.1785526916324
+            ],
+            "vertices": [
+              [
+                543.7980161717466,
+                -1429.1603920735974
+              ],
+              [
+                521.7591667024817,
+                -1415.1336118423217
+              ],
+              [
+                517.4317249885439,
+                -1449.364816205969
+              ],
+              [
+                540.519189974129,
+                -1465.2234935409429
+              ]
+            ]
+          },
+          "after": {
+            "channel": 13,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 19.08771036195885,
+            "target": [
+              534.1327137639042,
+              -1443.0355526581618
+            ],
+            "vertices": [
+              [
+                535.8880446970946,
+                -1462.0423803834035
+              ],
+              [
+                540.9757241710178,
+                -1460.2021724725441
+              ],
+              [
+                543.7980161717466,
+                -1429.1603920735974
+              ],
+              [
+                535.710731426444,
+                -1424.0131830077019
+              ],
+              [
+                519.8297659274582,
+                -1430.3956804258198
+              ],
+              [
+                517.4317249885439,
+                -1449.364816205969
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 148,
+              "result": "direction",
+              "bearing_deg": 20.89
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 16,
+          "before": {
+            "channel": 16,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 3,
+            "radius_m": 29.56471000085899,
+            "target": [
+              1044.4961326785437,
+              309.5760502514019
+            ],
+            "vertices": [
+              [
+                1040.1629356445585,
+                328.660815051107
+              ],
+              [
+                1017.4333676771187,
+                321.4789418291881
+              ],
+              [
+                1046.4942161915885,
+                290.7103282347586
+              ],
+              [
+                1071.5588976799688,
+                297.6731586736157
+              ]
+            ]
+          },
+          "after": {
+            "channel": 16,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 3,
+            "radius_m": 29.56471000085899,
+            "target": [
+              1044.4961326785437,
+              309.5760502514019
+            ],
+            "vertices": [
+              [
+                1040.1629356445585,
+                328.660815051107
+              ],
+              [
+                1017.4333676771187,
+                321.4789418291881
+              ],
+              [
+                1046.4942161915885,
+                290.7103282347586
+              ],
+              [
+                1071.5588976799688,
+                297.6731586736157
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 20,
+          "before": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 528.5443874688581,
+            "target": [
+              1132.4073544957514,
+              727.1686172094
+            ],
+            "vertices": [
+              [
+                1646.0733267770572,
+                729.6541233891841
+              ],
+              [
+                1644.28963151591,
+                733.4254301588809
+              ],
+              [
+                604.7851078029751,
+                758.3765379939888
+              ],
+              [
+                1660.029601188528,
+                695.9606964248112
+              ]
+            ]
+          },
+          "after": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 528.5443874688581,
+            "target": [
+              1132.4073544957514,
+              727.1686172094
+            ],
+            "vertices": [
+              [
+                1646.0733267770572,
+                729.6541233891841
+              ],
+              [
+                1644.28963151591,
+                733.4254301588809
+              ],
+              [
+                604.7851078029751,
+                758.3765379939888
+              ],
+              [
+                1660.029601188528,
+                695.9606964248112
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        13
+      ],
+      "known_nonready_became_ready": [
+        13
+      ],
+      "newly_discovered_sources": [],
+      "newly_discovered_count": 0,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 8,
+        "direction": 1
+      },
+      "deferred_source_clear_action_index": 278,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 6656.887196,
+      "elapsed_prefix_to_clear_s": 4336.441144,
+      "elapsed_q_end_to_clear_s": 4107.183073,
+      "accepted_actions_after_q_through_clear": 127,
+      "further_completed_cover_count": 13,
+      "further_completed_covers": [
+        {
+          "start": 152,
+          "end": 160,
+          "point": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "measurements": 8
+        },
+        {
+          "start": 163,
+          "end": 171,
+          "point": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "measurements": 8
+        },
+        {
+          "start": 171,
+          "end": 181,
+          "point": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "measurements": 10
+        },
+        {
+          "start": 181,
+          "end": 193,
+          "point": [
+            1851.290353890597,
+            0.0
+          ],
+          "measurements": 12
+        },
+        {
+          "start": 194,
+          "end": 206,
+          "point": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "measurements": 12
+        },
+        {
+          "start": 206,
+          "end": 218,
+          "point": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "measurements": 12
+        },
+        {
+          "start": 219,
+          "end": 230,
+          "point": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "measurements": 11
+        },
+        {
+          "start": 232,
+          "end": 241,
+          "point": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "measurements": 9
+        },
+        {
+          "start": 242,
+          "end": 250,
+          "point": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "measurements": 8
+        },
+        {
+          "start": 250,
+          "end": 257,
+          "point": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "measurements": 7
+        },
+        {
+          "start": 257,
+          "end": 264,
+          "point": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "measurements": 7
+        },
+        {
+          "start": 264,
+          "end": 271,
+          "point": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "measurements": 7
+        },
+        {
+          "start": 271,
+          "end": 278,
+          "point": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "measurements": 7
+        }
+      ],
+      "completed_covers_from_veto_through_clear": 14,
+      "observed_followup_time_s": 4107.183073,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development",
+      "seed": 6390028,
+      "event_id": 11,
+      "channel": 4,
+      "next_cover": [
+        1851.290353890597,
+        0.0
+      ],
+      "after_actual_action_count": 171,
+      "end_actual_action_count": 180,
+      "prefix_time_s": 2927.903783,
+      "q_finished_time_s": 3145.684126,
+      "actual_q_block_time_s": 217.7803429999999,
+      "known_count_before": 12,
+      "known_count_after": 12,
+      "known_nonready_before": [
+        10,
+        13,
+        14,
+        15
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 10,
+          "before": {
+            "channel": 10,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 20.49850441948319,
+            "target": [
+              -1346.197606279387,
+              -291.92204136433384
+            ],
+            "vertices": [
+              [
+                -1335.3226540704025,
+                -303.219332407646
+              ],
+              [
+                -1325.977756484195,
+                -288.5536058676325
+              ],
+              [
+                -1355.7850320212729,
+                -279.82887706901164
+              ],
+              [
+                -1366.4174560745791,
+                -295.2904768610352
+              ]
+            ]
+          },
+          "after": {
+            "channel": 10,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 20.49850441948319,
+            "target": [
+              -1346.197606279387,
+              -291.92204136433384
+            ],
+            "vertices": [
+              [
+                -1335.3226540704025,
+                -303.219332407646
+              ],
+              [
+                -1325.977756484195,
+                -288.5536058676325
+              ],
+              [
+                -1355.7850320212729,
+                -279.82887706901164
+              ],
+              [
+                -1366.4174560745791,
+                -295.2904768610352
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 13,
+          "before": {
+            "channel": 13,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 4,
+            "radius_m": 21.447883769122594,
+            "target": [
+              -1239.1019066591416,
+              -423.96687152905577
+            ],
+            "vertices": [
+              [
+                -1253.4228641558452,
+                -417.0587424739016
+              ],
+              [
+                -1259.5221198355127,
+                -430.5263388858882
+              ],
+              [
+                -1229.6617237105827,
+                -429.7783146758641
+              ],
+              [
+                -1222.7801145013568,
+                -427.3731276629071
+              ],
+              [
+                -1218.6816934827705,
+                -417.40740417222327
+              ]
+            ]
+          },
+          "after": {
+            "channel": 13,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 4,
+            "radius_m": 21.447883769122594,
+            "target": [
+              -1239.1019066591416,
+              -423.96687152905577
+            ],
+            "vertices": [
+              [
+                -1253.4228641558452,
+                -417.0587424739016
+              ],
+              [
+                -1259.5221198355127,
+                -430.5263388858882
+              ],
+              [
+                -1229.6617237105827,
+                -429.7783146758641
+              ],
+              [
+                -1222.7801145013568,
+                -427.3731276629071
+              ],
+              [
+                -1218.6816934827705,
+                -417.40740417222327
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 14,
+          "before": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 701.4911613479654,
+            "target": [
+              -985.3312723172951,
+              -1248.3682975087954
+            ],
+            "vertices": [
+              [
+                -1463.4473563019876,
+                -735.0507937312026
+              ],
+              [
+                -1498.6487760948896,
+                -770.2522135241047
+              ],
+              [
+                -1500.5618157178835,
+                -772.3629274849199
+              ],
+              [
+                -487.663158001478,
+                -1733.064012085648
+              ],
+              [
+                -480.35123532967134,
+                -1735.282059578934
+              ]
+            ]
+          },
+          "after": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 701.4911613479654,
+            "target": [
+              -985.3312723172951,
+              -1248.3682975087954
+            ],
+            "vertices": [
+              [
+                -1463.4473563019876,
+                -735.0507937312026
+              ],
+              [
+                -1498.6487760948896,
+                -770.2522135241047
+              ],
+              [
+                -1500.5618157178835,
+                -772.3629274849199
+              ],
+              [
+                -487.663158001478,
+                -1733.064012085648
+              ],
+              [
+                -480.35123532967134,
+                -1735.282059578934
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 15,
+          "before": {
+            "channel": 15,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 4,
+            "radius_m": 25.218903224358762,
+            "target": [
+              907.1665297927079,
+              976.6666662282532
+            ],
+            "vertices": [
+              [
+                891.2259402201872,
+                957.1246426912697
+              ],
+              [
+                923.8803442902076,
+                979.7820301320476
+              ],
+              [
+                923.1071193652286,
+                996.2086897652366
+              ],
+              [
+                890.0424269206643,
+                971.5046270045398
+              ]
+            ]
+          },
+          "after": {
+            "channel": 15,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 5,
+            "radius_m": 23.114803466084368,
+            "target": [
+              908.9721047805423,
+              977.9194715761939
+            ],
+            "vertices": [
+              [
+                894.8370901958559,
+                959.6302533871514
+              ],
+              [
+                923.8803442902076,
+                979.7820301320476
+              ],
+              [
+                923.1071193652286,
+                996.2086897652366
+              ],
+              [
+                890.0424269206643,
+                971.5046270045398
+              ],
+              [
+                890.6761246530508,
+                963.8050401433305
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 177,
+              "result": "direction",
+              "bearing_deg": 133.9
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        15
+      ],
+      "known_nonready_became_ready": [],
+      "newly_discovered_sources": [],
+      "newly_discovered_count": 0,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 8,
+        "direction": 1
+      },
+      "deferred_source_clear_action_index": 268,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 6317.17135,
+      "elapsed_prefix_to_clear_s": 3389.2675669999994,
+      "elapsed_q_end_to_clear_s": 3171.4872239999995,
+      "accepted_actions_after_q_through_clear": 89,
+      "further_completed_cover_count": 9,
+      "further_completed_covers": [
+        {
+          "start": 180,
+          "end": 189,
+          "point": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "measurements": 9
+        },
+        {
+          "start": 190,
+          "end": 198,
+          "point": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "measurements": 8
+        },
+        {
+          "start": 198,
+          "end": 206,
+          "point": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "measurements": 8
+        },
+        {
+          "start": 206,
+          "end": 214,
+          "point": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "measurements": 8
+        },
+        {
+          "start": 214,
+          "end": 222,
+          "point": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "measurements": 8
+        },
+        {
+          "start": 224,
+          "end": 234,
+          "point": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "measurements": 10
+        },
+        {
+          "start": 234,
+          "end": 244,
+          "point": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "measurements": 10
+        },
+        {
+          "start": 244,
+          "end": 253,
+          "point": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "measurements": 9
+        },
+        {
+          "start": 257,
+          "end": 266,
+          "point": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "measurements": 9
+        }
+      ],
+      "completed_covers_from_veto_through_clear": 10,
+      "observed_followup_time_s": 3171.4872239999995,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development",
+      "seed": 6390045,
+      "event_id": 18,
+      "channel": 6,
+      "next_cover": [
+        -1667.95497430348,
+        803.2447809383199
+      ],
+      "after_actual_action_count": 238,
+      "end_actual_action_count": 247,
+      "prefix_time_s": 4501.584245,
+      "q_finished_time_s": 4719.364588,
+      "actual_q_block_time_s": 217.78034300000036,
+      "known_count_before": 12,
+      "known_count_after": 12,
+      "known_nonready_before": [
+        4,
+        17
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 4,
+          "before": {
+            "channel": 4,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 20.9839769345978,
+            "target": [
+              -1396.8560921820092,
+              222.16026227417453
+            ],
+            "vertices": [
+              [
+                -1403.9289748574924,
+                208.40368622806383
+              ],
+              [
+                -1376.030400318678,
+                219.58774475133612
+              ],
+              [
+                -1388.3565879658422,
+                235.31074013303567
+              ],
+              [
+                -1417.6817840453405,
+                224.73277979701294
+              ]
+            ]
+          },
+          "after": {
+            "channel": 4,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 15.49677184087159,
+            "target": [
+              -1396.327097646158,
+              222.2387471062613
+            ],
+            "vertices": [
+              [
+                -1381.623070510116,
+                217.34573949635868
+              ],
+              [
+                -1390.0960276935843,
+                234.68330274448152
+              ],
+              [
+                -1411.0311247822,
+                227.1317547161639
+              ],
+              [
+                -1402.8686944539918,
+                208.82873439915704
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 241,
+              "result": "direction",
+              "bearing_deg": 295.04
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 17,
+          "before": {
+            "channel": 17,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 22.908216293105017,
+            "target": [
+              282.2800053933664,
+              -1536.9295756581973
+            ],
+            "vertices": [
+              [
+                285.94328633217873,
+                -1520.992478578988
+              ],
+              [
+                260.0149741365016,
+                -1531.539329201632
+              ],
+              [
+                276.97679186137947,
+                -1552.422009058349
+              ],
+              [
+                304.54503665023117,
+                -1542.3198221147627
+              ]
+            ]
+          },
+          "after": {
+            "channel": 17,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 22.908216293105017,
+            "target": [
+              282.2800053933664,
+              -1536.9295756581973
+            ],
+            "vertices": [
+              [
+                285.94328633217873,
+                -1520.992478578988
+              ],
+              [
+                260.0149741365016,
+                -1531.539329201632
+              ],
+              [
+                276.97679186137947,
+                -1552.422009058349
+              ],
+              [
+                304.54503665023117,
+                -1542.3198221147627
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        4
+      ],
+      "known_nonready_became_ready": [
+        4
+      ],
+      "newly_discovered_sources": [],
+      "newly_discovered_count": 0,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 8,
+        "direction": 1
+      },
+      "deferred_source_clear_action_index": 247,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 4746.492181,
+      "elapsed_prefix_to_clear_s": 244.9079359999996,
+      "elapsed_q_end_to_clear_s": 27.12759299999925,
+      "accepted_actions_after_q_through_clear": 1,
+      "further_completed_cover_count": 0,
+      "further_completed_covers": [],
+      "completed_covers_from_veto_through_clear": 1,
+      "observed_followup_time_s": 27.12759299999925,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development",
+      "seed": 6390048,
+      "event_id": 3,
+      "channel": 10,
+      "next_cover": [
+        604.7851078029714,
+        -758.376537993989
+      ],
+      "after_actual_action_count": 105,
+      "end_actual_action_count": 121,
+      "prefix_time_s": 1491.387564,
+      "q_finished_time_s": 1754.734455,
+      "actual_q_block_time_s": 263.3468909999999,
+      "known_count_before": 7,
+      "known_count_after": 9,
+      "known_nonready_before": [
+        2,
+        12,
+        15,
+        17
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 2,
+          "before": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 42.9819390273966,
+            "target": [
+              1153.7651581132156,
+              -98.43691002882358
+            ],
+            "vertices": [
+              [
+                1179.9386030987102,
+                -106.80757289022903
+              ],
+              [
+                1117.656625983845,
+                -75.12122882459857
+              ],
+              [
+                1123.8558487669832,
+                -85.19595156233959
+              ],
+              [
+                1189.8736902425862,
+                -121.75259123304858
+              ]
+            ]
+          },
+          "after": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 42.9819390273966,
+            "target": [
+              1153.7651581132156,
+              -98.43691002882358
+            ],
+            "vertices": [
+              [
+                1179.9386030987102,
+                -106.80757289022903
+              ],
+              [
+                1117.656625983845,
+                -75.12122882459857
+              ],
+              [
+                1123.8558487669832,
+                -85.19595156233959
+              ],
+              [
+                1189.8736902425862,
+                -121.75259123304858
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 107,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 12,
+          "before": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 3,
+            "radius_m": 34.029884646269714,
+            "target": [
+              -897.1764964383657,
+              -741.5104956744458
+            ],
+            "vertices": [
+              [
+                -889.1865785598562,
+                -708.4318883680144
+              ],
+              [
+                -900.0931551216693,
+                -717.1213657123864
+              ],
+              [
+                -905.1664143168751,
+                -774.5891029808771
+              ],
+              [
+                -892.1014777418461,
+                -763.4088853522863
+              ]
+            ]
+          },
+          "after": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 3,
+            "radius_m": 34.029884646269714,
+            "target": [
+              -897.1764964383657,
+              -741.5104956744458
+            ],
+            "vertices": [
+              [
+                -889.1865785598562,
+                -708.4318883680144
+              ],
+              [
+                -900.0931551216693,
+                -717.1213657123864
+              ],
+              [
+                -905.1664143168751,
+                -774.5891029808771
+              ],
+              [
+                -892.1014777418461,
+                -763.4088853522863
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 115,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 15,
+          "before": {
+            "channel": 15,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 36.40277737325943,
+            "target": [
+              109.46865437143833,
+              -893.2733780029341
+            ],
+            "vertices": [
+              [
+                122.64498186664646,
+                -877.665460928336
+              ],
+              [
+                89.82825750979197,
+                -862.6234675364398
+              ],
+              [
+                94.39886988094679,
+                -906.5151960600698
+              ],
+              [
+                129.1090512330847,
+                -923.9232884694285
+              ]
+            ]
+          },
+          "after": {
+            "channel": 15,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 18.730573922856628,
+            "target": [
+              108.87706414451549,
+              -894.6317499964921
+            ],
+            "vertices": [
+              [
+                123.35525840808418,
+                -882.7483039329143
+              ],
+              [
+                92.74733965305194,
+                -890.6555014447912
+              ],
+              [
+                94.39886988094679,
+                -906.5151960600698
+              ],
+              [
+                98.1551584656096,
+                -908.3990761278413
+              ],
+              [
+                125.79593306089411,
+                -900.2141293709551
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 118,
+              "result": "direction",
+              "bearing_deg": 195.49
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 17,
+          "before": {
+            "channel": 17,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 37.09868984465969,
+            "target": [
+              -1717.5246073018616,
+              -44.15482026945432
+            ],
+            "vertices": [
+              [
+                -1714.350912541563,
+                -62.48819002090606
+              ],
+              [
+                -1680.444300075705,
+                -42.98708562318302
+              ],
+              [
+                -1717.4442073123737,
+                -25.651125059446883
+              ],
+              [
+                -1754.604914528018,
+                -45.32255491572562
+              ]
+            ]
+          },
+          "after": {
+            "channel": 17,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 37.09868984465969,
+            "target": [
+              -1717.5246073018616,
+              -44.15482026945432
+            ],
+            "vertices": [
+              [
+                -1714.350912541563,
+                -62.48819002090606
+              ],
+              [
+                -1680.444300075705,
+                -42.98708562318302
+              ],
+              [
+                -1717.4442073123737,
+                -25.651125059446883
+              ],
+              [
+                -1754.604914528018,
+                -45.32255491572562
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        15
+      ],
+      "known_nonready_became_ready": [
+        15
+      ],
+      "newly_discovered_sources": [
+        {
+          "channel": 9,
+          "after": {
+            "channel": 9,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 460.80383014537597,
+            "target": [
+              627.6567442523445,
+              -1218.6124102625176
+            ],
+            "vertices": [
+              [
+                681.8666010848316,
+                -1665.8675666277268
+              ],
+              [
+                604.7851078029711,
+                -758.376537993986
+              ],
+              [
+                650.528380701718,
+                -1678.8482825310493
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 113,
+              "result": "direction",
+              "bearing_deg": 273.85
+            }
+          ]
+        },
+        {
+          "channel": 16,
+          "after": {
+            "channel": 16,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 514.9284675766385,
+            "target": [
+              488.0321312644287,
+              -1259.8943035718619
+            ],
+            "vertices": [
+              [
+                604.7851078029701,
+                -758.3765379939953
+              ],
+              [
+                371.27915472588734,
+                -1761.4120691497285
+              ],
+              [
+                394.50104862253846,
+                -1756.7929472597064
+              ],
+              [
+                409.74276296540984,
+                -1752.9750965658563
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 119,
+              "result": "direction",
+              "bearing_deg": 257.9
+            }
+          ]
+        }
+      ],
+      "newly_discovered_count": 2,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 13,
+        "direction": 3
+      },
+      "deferred_source_clear_action_index": 308,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 6370.931051,
+      "elapsed_prefix_to_clear_s": 4879.543486999999,
+      "elapsed_q_end_to_clear_s": 4616.196596,
+      "accepted_actions_after_q_through_clear": 188,
+      "further_completed_cover_count": 15,
+      "further_completed_covers": [
+        {
+          "start": 122,
+          "end": 136,
+          "point": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "measurements": 14
+        },
+        {
+          "start": 136,
+          "end": 149,
+          "point": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "measurements": 13
+        },
+        {
+          "start": 149,
+          "end": 161,
+          "point": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "measurements": 12
+        },
+        {
+          "start": 163,
+          "end": 175,
+          "point": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "measurements": 12
+        },
+        {
+          "start": 175,
+          "end": 187,
+          "point": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "measurements": 12
+        },
+        {
+          "start": 187,
+          "end": 199,
+          "point": [
+            1851.290353890597,
+            0.0
+          ],
+          "measurements": 12
+        },
+        {
+          "start": 199,
+          "end": 211,
+          "point": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "measurements": 12
+        },
+        {
+          "start": 211,
+          "end": 222,
+          "point": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "measurements": 11
+        },
+        {
+          "start": 222,
+          "end": 233,
+          "point": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "measurements": 11
+        },
+        {
+          "start": 233,
+          "end": 244,
+          "point": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "measurements": 11
+        },
+        {
+          "start": 244,
+          "end": 255,
+          "point": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "measurements": 11
+        },
+        {
+          "start": 255,
+          "end": 267,
+          "point": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "measurements": 12
+        },
+        {
+          "start": 267,
+          "end": 278,
+          "point": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "measurements": 11
+        },
+        {
+          "start": 279,
+          "end": 289,
+          "point": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "measurements": 10
+        },
+        {
+          "start": 289,
+          "end": 299,
+          "point": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "measurements": 10
+        }
+      ],
+      "completed_covers_from_veto_through_clear": 16,
+      "observed_followup_time_s": 4616.196596,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development",
+      "seed": 6390054,
+      "event_id": 2,
+      "channel": 13,
+      "next_cover": [
+        -411.9508585720518,
+        -1804.8746395609091
+      ],
+      "after_actual_action_count": 135,
+      "end_actual_action_count": 148,
+      "prefix_time_s": 2161.874401,
+      "q_finished_time_s": 2416.132472,
+      "actual_q_block_time_s": 254.25807099999975,
+      "known_count_before": 9,
+      "known_count_after": 9,
+      "known_nonready_before": [
+        1,
+        4,
+        11,
+        18,
+        20
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 1,
+          "before": {
+            "channel": 1,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2445228504456,
+            "target": [
+              -402.96683095983377,
+              -1004.8632070188318
+            ],
+            "vertices": [
+              [
+                52.34940223746048,
+                -1601.1466730432676
+              ],
+              [
+                93.03142491111528,
+                -1567.7597998669885
+              ],
+              [
+                -873.9398018653469,
+                -420.8672269440307
+              ]
+            ]
+          },
+          "after": {
+            "channel": 1,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2445228504456,
+            "target": [
+              -402.96683095983377,
+              -1004.8632070188318
+            ],
+            "vertices": [
+              [
+                52.34940223746048,
+                -1601.1466730432676
+              ],
+              [
+                93.03142491111528,
+                -1567.7597998669885
+              ],
+              [
+                -873.9398018653469,
+                -420.8672269440307
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 135,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 4,
+          "before": {
+            "channel": 4,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 36.777710936575005,
+            "target": [
+              -1136.4694439315838,
+              1278.6395199329263
+            ],
+            "vertices": [
+              [
+                -1147.5395744680202,
+                1263.6714485489888
+              ],
+              [
+                -1111.711460457222,
+                1251.4431548078312
+              ],
+              [
+                -1123.1274793420773,
+                1291.3212064391842
+              ],
+              [
+                -1161.2274274059455,
+                1305.8358850580216
+              ]
+            ]
+          },
+          "after": {
+            "channel": 4,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 36.777710936575005,
+            "target": [
+              -1136.4694439315838,
+              1278.6395199329263
+            ],
+            "vertices": [
+              [
+                -1147.5395744680202,
+                1263.6714485489888
+              ],
+              [
+                -1111.711460457222,
+                1251.4431548078312
+              ],
+              [
+                -1123.1274793420773,
+                1291.3212064391842
+              ],
+              [
+                -1161.2274274059455,
+                1305.8358850580216
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 11,
+          "before": {
+            "channel": 11,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 41.028734002571184,
+            "target": [
+              1667.1469502736854,
+              -501.2337224441337
+            ],
+            "vertices": [
+              [
+                1664.050825289834,
+                -481.56991070679345
+              ],
+              [
+                1627.3756940077317,
+                -491.1538321232247
+              ],
+              [
+                1666.4884538875447,
+                -520.3766678243264
+              ],
+              [
+                1706.9182065396394,
+                -511.3136127650428
+              ]
+            ]
+          },
+          "after": {
+            "channel": 11,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 41.028734002571184,
+            "target": [
+              1667.1469502736854,
+              -501.2337224441337
+            ],
+            "vertices": [
+              [
+                1664.050825289834,
+                -481.56991070679345
+              ],
+              [
+                1627.3756940077317,
+                -491.1538321232247
+              ],
+              [
+                1666.4884538875447,
+                -520.3766678243264
+              ],
+              [
+                1706.9182065396394,
+                -511.3136127650428
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 18,
+          "before": {
+            "channel": 18,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 24.804280509381833,
+            "target": [
+              -814.5522742973451,
+              -1268.75350515627
+            ],
+            "vertices": [
+              [
+                -828.0326657175223,
+                -1289.5749215045137
+              ],
+              [
+                -798.847419385825,
+                -1273.1801762480886
+              ],
+              [
+                -801.0718828771678,
+                -1247.9320888080263
+              ],
+              [
+                -829.4585368429886,
+                -1262.5929461062756
+              ]
+            ]
+          },
+          "after": {
+            "channel": 18,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 11.940607966509868,
+            "target": [
+              -826.9079178559558,
+              -1277.6874044863227
+            ],
+            "vertices": [
+              [
+                -816.1707507713229,
+                -1282.911517961981
+              ],
+              [
+                -829.2793016058348,
+                -1265.984641662071
+              ],
+              [
+                -828.0326657175223,
+                -1289.5749215045137
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 147,
+              "result": "direction",
+              "bearing_deg": 128.76
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 20,
+          "before": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 675.0867569069572,
+            "target": [
+              1092.735148500411,
+              663.8359832622306
+            ],
+            "vertices": [
+              [
+                1241.5469112441726,
+                1304.0375010273983
+              ],
+              [
+                1215.4702970008225,
+                1327.6719665244632
+              ],
+              [
+                969.9999999999995,
+                -2.0463630789890885e-12
+              ],
+              [
+                1255.6232223316078,
+                1289.961189939963
+              ]
+            ]
+          },
+          "after": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 675.0867569069572,
+            "target": [
+              1092.735148500411,
+              663.8359832622306
+            ],
+            "vertices": [
+              [
+                1241.5469112441726,
+                1304.0375010273983
+              ],
+              [
+                1215.4702970008225,
+                1327.6719665244632
+              ],
+              [
+                969.9999999999995,
+                -2.0463630789890885e-12
+              ],
+              [
+                1255.6232223316078,
+                1289.961189939963
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        18
+      ],
+      "known_nonready_became_ready": [
+        18
+      ],
+      "newly_discovered_sources": [],
+      "newly_discovered_count": 0,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 12,
+        "direction": 1
+      },
+      "deferred_source_clear_action_index": 148,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 2585.899585,
+      "elapsed_prefix_to_clear_s": 424.0251840000001,
+      "elapsed_q_end_to_clear_s": 169.76711300000034,
+      "accepted_actions_after_q_through_clear": 1,
+      "further_completed_cover_count": 0,
+      "further_completed_covers": [],
+      "completed_covers_from_veto_through_clear": 1,
+      "observed_followup_time_s": 169.76711300000034,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development",
+      "seed": 6390056,
+      "event_id": 0,
+      "channel": 8,
+      "next_cover": [
+        -873.9398018653465,
+        420.8672269440315
+      ],
+      "after_actual_action_count": 40,
+      "end_actual_action_count": 58,
+      "prefix_time_s": 432.0,
+      "q_finished_time_s": 707.346891,
+      "actual_q_block_time_s": 275.346891,
+      "known_count_before": 8,
+      "known_count_after": 9,
+      "known_nonready_before": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        17,
+        18
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 1,
+          "before": {
+            "channel": 1,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2305246920698,
+            "target": [
+              713.182152786842,
+              -232.8455649697055
+            ],
+            "vertices": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1421.1588052956076,
+                -480.6210681650276
+              ],
+              [
+                1424.7213703294167,
+                -470.66436590571027
+              ],
+              [
+                1436.9304367874804,
+                -430.4164676499071
+              ]
+            ]
+          },
+          "after": {
+            "channel": 1,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2305246920698,
+            "target": [
+              713.182152786842,
+              -232.8455649697055
+            ],
+            "vertices": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1421.1588052956076,
+                -480.6210681650276
+              ],
+              [
+                1424.7213703294167,
+                -470.66436590571027
+              ],
+              [
+                1436.9304367874804,
+                -430.4164676499071
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 41,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 2,
+          "before": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 45.35214423063632,
+            "target": [
+              -209.49228544891193,
+              -1188.502643207657
+            ],
+            "vertices": [
+              [
+                -188.1412292666029,
+                -1184.5316201261296
+              ],
+              [
+                -223.35397109852656,
+                -1145.3208107168084
+              ],
+              [
+                -231.77133849867644,
+                -1188.4836253622136
+              ],
+              [
+                -195.6305997992973,
+                -1231.6844756985056
+              ]
+            ]
+          },
+          "after": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 45.35214423063632,
+            "target": [
+              -209.49228544891193,
+              -1188.502643207657
+            ],
+            "vertices": [
+              [
+                -188.1412292666029,
+                -1184.5316201261296
+              ],
+              [
+                -223.35397109852656,
+                -1145.3208107168084
+              ],
+              [
+                -231.77133849867644,
+                -1188.4836253622136
+              ],
+              [
+                -195.6305997992973,
+                -1231.6844756985056
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 4,
+          "before": {
+            "channel": 4,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2522816751147,
+            "target": [
+              206.15238263761177,
+              721.373468663459
+            ],
+            "vertices": [
+              [
+                397.0452581482797,
+                1446.887269995939
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                447.45256413075543,
+                1431.7625934184002
+              ],
+              [
+                400.1896658576699,
+                1446.0996368672118
+              ]
+            ]
+          },
+          "after": {
+            "channel": 4,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 33.00328577177465,
+            "target": [
+              205.91838932283105,
+              700.0159115688234
+            ],
+            "vertices": [
+              [
+                212.8503563498947,
+                681.0804153275584
+              ],
+              [
+                226.76428967966243,
+                725.6023398081553
+              ],
+              [
+                196.84170906941162,
+                717.3181324090065
+              ],
+              [
+                185.0724889659997,
+                674.4294833294915
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 43,
+              "result": "direction",
+              "bearing_deg": 14.47
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": false
+        },
+        {
+          "channel": 5,
+          "before": {
+            "channel": 5,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 30.93580638449611,
+            "target": [
+              -1113.0234334740724,
+              141.62171170508446
+            ],
+            "vertices": [
+              [
+                -1134.223376504444,
+                164.1513928428197
+              ],
+              [
+                -1115.3158664082282,
+                121.6544912406676
+              ],
+              [
+                -1091.8234904437006,
+                119.09203056734923
+              ],
+              [
+                -1108.5037744164179,
+                160.42910268942498
+              ]
+            ]
+          },
+          "after": {
+            "channel": 5,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 14.695361080985663,
+            "target": [
+              -1114.5830279879947,
+              147.05015230783616
+            ],
+            "vertices": [
+              [
+                -1113.4013719562954,
+                161.13791144298122
+              ],
+              [
+                -1126.541549931048,
+                146.88556427241747
+              ],
+              [
+                -1120.6622815595717,
+                133.67120192624733
+              ],
+              [
+                -1105.043036417462,
+                151.85270336118626
+              ],
+              [
+                -1108.5037744164179,
+                160.42910268942498
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 44,
+              "result": "direction",
+              "bearing_deg": 228.33
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 6,
+          "before": {
+            "channel": 6,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2612572981975,
+            "target": [
+              -208.6245190057692,
+              720.6717451602243
+            ],
+            "vertices": [
+              [
+                -401.09835733182456,
+                1445.823988322105
+              ],
+              [
+                -451.4613719825537,
+                1430.5465348513383
+              ],
+              [
+                0.0,
+                -2.2737367544323206e-13
+              ]
+            ]
+          },
+          "after": {
+            "channel": 6,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 28.376473958529846,
+            "target": [
+              -275.8115135230495,
+              931.9278932947595
+            ],
+            "vertices": [
+              [
+                -294.5145962085808,
+                933.2289786369755
+              ],
+              [
+                -285.71142749413036,
+                905.3343606658605
+              ],
+              [
+                -257.5833163522488,
+                928.5007803348929
+              ],
+              [
+                -265.9115995519686,
+                958.5214259236586
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 45,
+              "result": "direction",
+              "bearing_deg": 40.48
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": false
+        },
+        {
+          "channel": 17,
+          "before": {
+            "channel": 17,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2559676967434,
+            "target": [
+              310.15763884004446,
+              -683.1443889352706
+            ],
+            "vertices": [
+              [
+                605.8367834840425,
+                -1372.6424881350083
+              ],
+              [
+                608.0451028243187,
+                -1371.7277723142151
+              ],
+              [
+                653.4619856156853,
+                -1350.2471865231141
+              ],
+              [
+                0.0,
+                -2.2737367544323206e-13
+              ]
+            ]
+          },
+          "after": {
+            "channel": 17,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2559676967434,
+            "target": [
+              310.15763884004446,
+              -683.1443889352706
+            ],
+            "vertices": [
+              [
+                605.8367834840425,
+                -1372.6424881350083
+              ],
+              [
+                608.0451028243187,
+                -1371.7277723142151
+              ],
+              [
+                653.4619856156853,
+                -1350.2471865231141
+              ],
+              [
+                0.0,
+                -2.2737367544323206e-13
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 55,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 18,
+          "before": {
+            "channel": 18,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2533901209955,
+            "target": [
+              -364.20238714118966,
+              655.9243634663266
+            ],
+            "vertices": [
+              [
+                -742.1257395000921,
+                1303.9918544704062
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                -695.7813935069001,
+                1328.9292014322752
+              ],
+              [
+                -739.5700330114657,
+                1305.52368598895
+              ]
+            ]
+          },
+          "after": {
+            "channel": 18,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 2,
+            "radius_m": 17.113876497989633,
+            "target": [
+              -348.0195195325853,
+              636.8354133891796
+            ],
+            "vertices": [
+              [
+                -331.36436204990576,
+                632.8996163904022
+              ],
+              [
+                -340.86787366566364,
+                651.0511424590657
+              ],
+              [
+                -364.6746770152649,
+                640.771210387957
+              ],
+              [
+                -354.9493803799121,
+                623.6828560568553
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 56,
+              "result": "direction",
+              "bearing_deg": 22.35
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        4,
+        5,
+        6,
+        18
+      ],
+      "known_nonready_became_ready": [
+        5,
+        18
+      ],
+      "newly_discovered_sources": [
+        {
+          "channel": 19,
+          "after": {
+            "channel": 19,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 708.1311927189472,
+            "target": [
+              -636.9200942142571,
+              1088.1538552279715
+            ],
+            "vertices": [
+              [
+                -399.9003865631673,
+                1755.4404835119126
+              ],
+              [
+                -456.4784902098884,
+                1741.2684063160568
+              ],
+              [
+                -873.9398018653469,
+                420.86722694403034
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 40,
+              "result": "direction",
+              "bearing_deg": 71.45
+            }
+          ]
+        }
+      ],
+      "newly_discovered_count": 1,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "direction": 5,
+        "no_signal": 13
+      },
+      "deferred_source_clear_action_index": 59,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 960.228943,
+      "elapsed_prefix_to_clear_s": 528.228943,
+      "elapsed_q_end_to_clear_s": 252.88205199999993,
+      "accepted_actions_after_q_through_clear": 2,
+      "further_completed_cover_count": 0,
+      "further_completed_covers": [],
+      "completed_covers_from_veto_through_clear": 1,
+      "observed_followup_time_s": 252.88205199999993,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development-stress",
+      "seed": 6391016,
+      "event_id": 14,
+      "channel": 10,
+      "next_cover": [
+        1154.2606559302333,
+        1447.397081861049
+      ],
+      "after_actual_action_count": 178,
+      "end_actual_action_count": 187,
+      "prefix_time_s": 3721.235806,
+      "q_finished_time_s": 3939.016149,
+      "actual_q_block_time_s": 217.7803429999999,
+      "known_count_before": 14,
+      "known_count_after": 14,
+      "known_nonready_before": [
+        2,
+        9,
+        14,
+        16,
+        19,
+        20
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 2,
+          "before": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 436.14195464466104,
+            "target": [
+              710.6297336813783,
+              1181.4802129649388
+            ],
+            "vertices": [
+              [
+                844.066204596235,
+                1589.8357395024807
+              ],
+              [
+                816.4743595597859,
+                1604.5838879358914
+              ],
+              [
+                604.7851078029707,
+                758.3765379939862
+              ]
+            ]
+          },
+          "after": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 2,
+            "radius_m": 16.410851383103758,
+            "target": [
+              782.1344064397058,
+              1417.191696803347
+            ],
+            "vertices": [
+              [
+                767.6608454561059,
+                1409.4565771809796
+              ],
+              [
+                792.8677884248393,
+                1411.9303604363374
+              ],
+              [
+                796.6079674233056,
+                1424.9268164257146
+              ],
+              [
+                771.1304887804695,
+                1423.3261414521319
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 179,
+              "result": "direction",
+              "bearing_deg": 184.6
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 9,
+          "before": {
+            "channel": 9,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 20.36099505426067,
+            "target": [
+              -980.8714576319649,
+              1030.5438698871121
+            ],
+            "vertices": [
+              [
+                -989.0994563415621,
+                1017.4807539441342
+              ],
+              [
+                -967.2081558636729,
+                1015.4480325672346
+              ],
+              [
+                -971.4799003086728,
+                1042.6801766401322
+              ],
+              [
+                -994.5347594002569,
+                1045.63970720699
+              ]
+            ]
+          },
+          "after": {
+            "channel": 9,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 20.36099505426067,
+            "target": [
+              -980.8714576319649,
+              1030.5438698871121
+            ],
+            "vertices": [
+              [
+                -989.0994563415621,
+                1017.4807539441342
+              ],
+              [
+                -967.2081558636729,
+                1015.4480325672346
+              ],
+              [
+                -971.4799003086728,
+                1042.6801766401322
+              ],
+              [
+                -994.5347594002569,
+                1045.63970720699
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 14,
+          "before": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 421.98987419425487,
+            "target": [
+              -1198.4068163235033,
+              -690.6756968835244
+            ],
+            "vertices": [
+              [
+                -1522.873830781663,
+                -960.4841668230197
+              ],
+              [
+                -873.9398018653437,
+                -420.8672269440292
+              ],
+              [
+                -1538.1998676860344,
+                -934.9142190270229
+              ]
+            ]
+          },
+          "after": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 421.98987419425487,
+            "target": [
+              -1198.4068163235033,
+              -690.6756968835244
+            ],
+            "vertices": [
+              [
+                -1522.873830781663,
+                -960.4841668230197
+              ],
+              [
+                -873.9398018653437,
+                -420.8672269440292
+              ],
+              [
+                -1538.1998676860344,
+                -934.9142190270229
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 16,
+          "before": {
+            "channel": 16,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 24.80491797993643,
+            "target": [
+              -1158.7762316435142,
+              -741.964425168032
+            ],
+            "vertices": [
+              [
+                -1153.3563469732553,
+                -725.5298872928729
+              ],
+              [
+                -1180.0807112589243,
+                -754.6688773131639
+              ],
+              [
+                -1162.2097109187525,
+                -758.2090513792873
+              ],
+              [
+                -1137.4717520281042,
+                -729.2599730229001
+              ]
+            ]
+          },
+          "after": {
+            "channel": 16,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 24.80491797993643,
+            "target": [
+              -1158.7762316435142,
+              -741.964425168032
+            ],
+            "vertices": [
+              [
+                -1153.3563469732553,
+                -725.5298872928729
+              ],
+              [
+                -1180.0807112589243,
+                -754.6688773131639
+              ],
+              [
+                -1162.2097109187525,
+                -758.2090513792873
+              ],
+              [
+                -1137.4717520281042,
+                -729.2599730229001
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 19,
+          "before": {
+            "channel": 19,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 417.36755175092907,
+            "target": [
+              909.4564801531243,
+              1043.6326126441818
+            ],
+            "vertices": [
+              [
+                1214.1278525032792,
+                1328.8886872943767
+              ],
+              [
+                1192.410818467654,
+                1348.5718596120582
+              ],
+              [
+                604.7851078029694,
+                758.3765379939866
+              ]
+            ]
+          },
+          "after": {
+            "channel": 19,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 2,
+            "radius_m": 19.07704740279255,
+            "target": [
+              1173.7354292054772,
+              1310.4321001272
+            ],
+            "vertices": [
+              [
+                1173.42864607083,
+                1329.5066806394077
+              ],
+              [
+                1169.6828778909196,
+                1325.7445327014825
+              ],
+              [
+                1174.0422123401245,
+                1291.3575196149927
+              ],
+              [
+                1178.892949874509,
+                1295.8991420770683
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 186,
+              "result": "direction",
+              "bearing_deg": 278.23
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 20,
+          "before": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 30.32642574854468,
+            "target": [
+              548.1441309460349,
+              1499.0632928661853
+            ],
+            "vertices": [
+              [
+                533.6938571329684,
+                1508.3477207242197
+              ],
+              [
+                537.2570162237142,
+                1470.7584729284958
+              ],
+              [
+                561.3979816393453,
+                1487.5900495633164
+              ],
+              [
+                559.0312456683557,
+                1527.3681128038745
+              ]
+            ]
+          },
+          "after": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 15.94122161764183,
+            "target": [
+              547.864233412201,
+              1515.519589715479
+            ],
+            "vertices": [
+              [
+                533.6938571329684,
+                1508.3477207242197
+              ],
+              [
+                533.7089944615532,
+                1508.18803074669
+              ],
+              [
+                560.3275823418732,
+                1505.5804006077092
+              ],
+              [
+                559.061089339312,
+                1526.866526042536
+              ],
+              [
+                558.4684760051499,
+                1526.945650179924
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 178,
+              "result": "direction",
+              "bearing_deg": 173.4
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        2,
+        19,
+        20
+      ],
+      "known_nonready_became_ready": [
+        2,
+        19,
+        20
+      ],
+      "newly_discovered_sources": [],
+      "newly_discovered_count": 0,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "direction": 3,
+        "no_signal": 6
+      },
+      "deferred_source_clear_action_index": 188,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 4027.54819,
+      "elapsed_prefix_to_clear_s": 306.31238399999984,
+      "elapsed_q_end_to_clear_s": 88.53204099999994,
+      "accepted_actions_after_q_through_clear": 2,
+      "further_completed_cover_count": 0,
+      "further_completed_covers": [],
+      "completed_covers_from_veto_through_clear": 1,
+      "observed_followup_time_s": 88.53204099999994,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development-stress",
+      "seed": 6391022,
+      "event_id": 11,
+      "channel": 2,
+      "next_cover": [
+        1667.9549743034806,
+        -803.2447809383185
+      ],
+      "after_actual_action_count": 160,
+      "end_actual_action_count": 168,
+      "prefix_time_s": 3084.028113,
+      "q_finished_time_s": 3287.257915,
+      "actual_q_block_time_s": 203.2298020000003,
+      "known_count_before": 13,
+      "known_count_after": 13,
+      "known_nonready_before": [
+        4,
+        10,
+        16,
+        18
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 4,
+          "before": {
+            "channel": 4,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 421.4395847838212,
+            "target": [
+              -404.05527654954943,
+              1322.7587543847267
+            ],
+            "vertices": [
+              [
+                -564.797239086853,
+                1709.6656443952998
+              ],
+              [
+                -592.2652471614749,
+                1699.8374339530865
+              ],
+              [
+                -215.84530593762395,
+                945.6800748163671
+              ],
+              [
+                -564.3210444583965,
+                1709.8100964565936
+              ]
+            ]
+          },
+          "after": {
+            "channel": 4,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 421.4395847838212,
+            "target": [
+              -404.05527654954943,
+              1322.7587543847267
+            ],
+            "vertices": [
+              [
+                -564.797239086853,
+                1709.6656443952998
+              ],
+              [
+                -592.2652471614749,
+                1699.8374339530865
+              ],
+              [
+                -215.84530593762395,
+                945.6800748163671
+              ],
+              [
+                -564.3210444583965,
+                1709.8100964565936
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 10,
+          "before": {
+            "channel": 10,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 31.360154896013885,
+            "target": [
+              -1602.7417304499968,
+              -193.973134987511
+            ],
+            "vertices": [
+              [
+                -1594.6857610241293,
+                -209.76493923057672
+              ],
+              [
+                -1571.6826738254358,
+                -189.63789373767284
+              ],
+              [
+                -1608.277394020089,
+                -177.51054268969688
+              ],
+              [
+                -1633.8007870745578,
+                -198.30837623734917
+              ]
+            ]
+          },
+          "after": {
+            "channel": 10,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 31.360154896013885,
+            "target": [
+              -1602.7417304499968,
+              -193.973134987511
+            ],
+            "vertices": [
+              [
+                -1594.6857610241293,
+                -209.76493923057672
+              ],
+              [
+                -1571.6826738254358,
+                -189.63789373767284
+              ],
+              [
+                -1608.277394020089,
+                -177.51054268969688
+              ],
+              [
+                -1633.8007870745578,
+                -198.30837623734917
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 16,
+          "before": {
+            "channel": 16,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 501.9264350312502,
+            "target": [
+              -656.0450344963552,
+              1186.8321951885491
+            ],
+            "vertices": [
+              [
+                -1065.587207880499,
+                1450.721508103328
+              ],
+              [
+                -1096.2447630550869,
+                1427.98431556073
+              ],
+              [
+                -215.8453059376236,
+                945.6800748163682
+              ]
+            ]
+          },
+          "after": {
+            "channel": 16,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 501.9264350312502,
+            "target": [
+              -656.0450344963552,
+              1186.8321951885491
+            ],
+            "vertices": [
+              [
+                -1065.587207880499,
+                1450.721508103328
+              ],
+              [
+                -1096.2447630550869,
+                1427.98431556073
+              ],
+              [
+                -215.8453059376236,
+                945.6800748163682
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 18,
+          "before": {
+            "channel": 18,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 434.4956842781717,
+            "target": [
+              1367.9276102569697,
+              -174.4709622015452
+            ],
+            "vertices": [
+              [
+                1771.900974757607,
+                -318.54786533421867
+              ],
+              [
+                969.9999999999991,
+                4.547473508864641e-13
+              ],
+              [
+                1765.8552205139404,
+                -348.94192440309087
+              ]
+            ]
+          },
+          "after": {
+            "channel": 18,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 434.4956842781717,
+            "target": [
+              1367.9276102569697,
+              -174.4709622015452
+            ],
+            "vertices": [
+              [
+                1771.900974757607,
+                -318.54786533421867
+              ],
+              [
+                969.9999999999991,
+                4.547473508864641e-13
+              ],
+              [
+                1765.8552205139404,
+                -348.94192440309087
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 160,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [],
+      "known_nonready_became_ready": [],
+      "newly_discovered_sources": [],
+      "newly_discovered_count": 0,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 8
+      },
+      "deferred_source_clear_action_index": 168,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 3343.062271,
+      "elapsed_prefix_to_clear_s": 259.03415799999993,
+      "elapsed_q_end_to_clear_s": 55.80435599999964,
+      "accepted_actions_after_q_through_clear": 1,
+      "further_completed_cover_count": 0,
+      "further_completed_covers": [],
+      "completed_covers_from_veto_through_clear": 1,
+      "observed_followup_time_s": 55.80435599999964,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development-stress",
+      "seed": 6391026,
+      "event_id": 2,
+      "channel": 12,
+      "next_cover": [
+        1851.290353890597,
+        0.0
+      ],
+      "after_actual_action_count": 189,
+      "end_actual_action_count": 200,
+      "prefix_time_s": 3264.282689,
+      "q_finished_time_s": 3494.063032,
+      "actual_q_block_time_s": 229.7803429999999,
+      "known_count_before": 11,
+      "known_count_after": 12,
+      "known_nonready_before": [
+        3,
+        9,
+        10,
+        14,
+        15,
+        19,
+        20
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 3,
+          "before": {
+            "channel": 3,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 73.33822566786165,
+            "target": [
+              1012.3947211706698,
+              59.84298589619033
+            ],
+            "vertices": [
+              [
+                1054.7894423413386,
+                119.68597179237906
+              ],
+              [
+                970.000000000001,
+                1.5916157281026244e-12
+              ],
+              [
+                1041.5266699234119,
+                93.80723609540671
+              ]
+            ]
+          },
+          "after": {
+            "channel": 3,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 17.97792511715552,
+            "target": [
+              1029.4857907914209,
+              80.39095117194893
+            ],
+            "vertices": [
+              [
+                1017.4748769379075,
+                67.01396571477164
+              ],
+              [
+                1020.888024492173,
+                66.73965016234638
+              ],
+              [
+                1041.4967046449342,
+                93.76793662912623
+              ],
+              [
+                1036.8125112283165,
+                94.31033054868479
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 192,
+              "result": "direction",
+              "bearing_deg": 174.4
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 9,
+          "before": {
+            "channel": 9,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 484.0712182792117,
+            "target": [
+              -1045.5603996386699,
+              873.4943524968953
+            ],
+            "vertices": [
+              [
+                -1241.5469112441726,
+                1304.0375010273983
+              ],
+              [
+                -1243.7937171020042,
+                1301.7906951695668
+              ],
+              [
+                -873.9398018653467,
+                420.86722694403215
+              ],
+              [
+                -1217.1809974119933,
+                1326.1214780497585
+              ]
+            ]
+          },
+          "after": {
+            "channel": 9,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 484.0712182792117,
+            "target": [
+              -1045.5603996386699,
+              873.4943524968953
+            ],
+            "vertices": [
+              [
+                -1241.5469112441726,
+                1304.0375010273983
+              ],
+              [
+                -1243.7937171020042,
+                1301.7906951695668
+              ],
+              [
+                -873.9398018653467,
+                420.86722694403215
+              ],
+              [
+                -1217.1809974119933,
+                1326.1214780497585
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 10,
+          "before": {
+            "channel": 10,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 28.369588521950625,
+            "target": [
+              -123.5552440616708,
+              981.789658889475
+            ],
+            "vertices": [
+              [
+                -139.28023960818882,
+                971.944671434313
+              ],
+              [
+                -103.5385587594128,
+                961.6857820888389
+              ],
+              [
+                -106.57118760835105,
+                989.8534143344561
+              ],
+              [
+                -143.5719293639288,
+                1001.8935356901113
+              ]
+            ]
+          },
+          "after": {
+            "channel": 10,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 28.369588521950625,
+            "target": [
+              -123.5552440616708,
+              981.789658889475
+            ],
+            "vertices": [
+              [
+                -139.28023960818882,
+                971.944671434313
+              ],
+              [
+                -103.5385587594128,
+                961.6857820888389
+              ],
+              [
+                -106.57118760835105,
+                989.8534143344561
+              ],
+              [
+                -143.5719293639288,
+                1001.8935356901113
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 14,
+          "before": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 608.0376768175539,
+            "target": [
+              292.735447441918,
+              1278.9298816003798
+            ],
+            "vertices": [
+              [
+                801.3162008214637,
+                1612.1796883843926
+              ],
+              [
+                757.0405412327842,
+                1633.1205157991928
+              ],
+              [
+                -215.8453059376277,
+                945.680074816367
+              ]
+            ]
+          },
+          "after": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 608.0376768175539,
+            "target": [
+              292.735447441918,
+              1278.9298816003798
+            ],
+            "vertices": [
+              [
+                801.3162008214637,
+                1612.1796883843926
+              ],
+              [
+                757.0405412327842,
+                1633.1205157991928
+              ],
+              [
+                -215.8453059376277,
+                945.680074816367
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 15,
+          "before": {
+            "channel": 15,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 27.16123649949596,
+            "target": [
+              -35.046343919926585,
+              202.82690334543452
+            ],
+            "vertices": [
+              [
+                -19.350866877045974,
+                197.48590232555932
+              ],
+              [
+                -27.614550640886733,
+                228.9516275897049
+              ],
+              [
+                -50.02759480797994,
+                210.18813880280527
+              ],
+              [
+                -42.478137198966444,
+                176.70217910116412
+              ]
+            ]
+          },
+          "after": {
+            "channel": 15,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 27.16123649949596,
+            "target": [
+              -35.046343919926585,
+              202.82690334543452
+            ],
+            "vertices": [
+              [
+                -19.350866877045974,
+                197.48590232555932
+              ],
+              [
+                -27.614550640886733,
+                228.9516275897049
+              ],
+              [
+                -50.02759480797994,
+                210.18813880280527
+              ],
+              [
+                -42.478137198966444,
+                176.70217910116412
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 19,
+          "before": {
+            "channel": 19,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 29.334537668014935,
+            "target": [
+              1490.6327208926339,
+              548.9248526732827
+            ],
+            "vertices": [
+              [
+                1487.2472243731008,
+                565.5652905670871
+              ],
+              [
+                1463.006570461731,
+                539.0602233054195
+              ],
+              [
+                1491.705652547661,
+                531.7262457810966
+              ],
+              [
+                1518.2588713235368,
+                558.7894820411457
+              ]
+            ]
+          },
+          "after": {
+            "channel": 19,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 29.334537668014935,
+            "target": [
+              1490.6327208926339,
+              548.9248526732827
+            ],
+            "vertices": [
+              [
+                1487.2472243731008,
+                565.5652905670871
+              ],
+              [
+                1463.006570461731,
+                539.0602233054195
+              ],
+              [
+                1491.705652547661,
+                531.7262457810966
+              ],
+              [
+                1518.2588713235368,
+                558.7894820411457
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 189,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 20,
+          "before": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 450.14550847766617,
+            "target": [
+              -1321.7848524651706,
+              -375.4162703439882
+            ],
+            "vertices": [
+              [
+                -1769.6299030649932,
+                -329.9653137439452
+              ],
+              [
+                -1763.25122948567,
+                -362.0330713366576
+              ],
+              [
+                -873.939801865348,
+                -420.86722694403113
+              ]
+            ]
+          },
+          "after": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 450.14550847766617,
+            "target": [
+              -1321.7848524651706,
+              -375.4162703439882
+            ],
+            "vertices": [
+              [
+                -1769.6299030649932,
+                -329.9653137439452
+              ],
+              [
+                -1763.25122948567,
+                -362.0330713366576
+              ],
+              [
+                -873.939801865348,
+                -420.86722694403113
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        3
+      ],
+      "known_nonready_became_ready": [
+        3
+      ],
+      "newly_discovered_sources": [
+        {
+          "channel": 1,
+          "after": {
+            "channel": 1,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 347.95560779686315,
+            "target": [
+              1684.9574813183474,
+              -529.3116386261242
+            ],
+            "vertices": [
+              [
+                1657.3416676567138,
+                -702.4499420120746
+              ],
+              [
+                1783.0142143870562,
+                -247.28484201865055
+              ],
+              [
+                1787.001373681288,
+                -220.40559740377878
+              ],
+              [
+                1789.2711481477131,
+                -197.36019050472134
+              ],
+              [
+                1580.6438144889817,
+                -861.2630867475273
+              ],
+              [
+                1608.288128467338,
+                -809.5442129598321
+              ],
+              [
+                1646.073326777057,
+                -729.6541233891851
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 190,
+              "result": "direction",
+              "bearing_deg": 253.56
+            }
+          ]
+        }
+      ],
+      "newly_discovered_count": 1,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 9,
+        "direction": 2
+      },
+      "deferred_source_clear_action_index": 200,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 3560.074586,
+      "elapsed_prefix_to_clear_s": 295.79189700000006,
+      "elapsed_q_end_to_clear_s": 66.01155400000016,
+      "accepted_actions_after_q_through_clear": 1,
+      "further_completed_cover_count": 0,
+      "further_completed_covers": [],
+      "completed_covers_from_veto_through_clear": 1,
+      "observed_followup_time_s": 66.01155400000016,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development-stress",
+      "seed": 6391036,
+      "event_id": 13,
+      "channel": 18,
+      "next_cover": [
+        1851.290353890597,
+        0.0
+      ],
+      "after_actual_action_count": 170,
+      "end_actual_action_count": 181,
+      "prefix_time_s": 3005.407846,
+      "q_finished_time_s": 3235.188189,
+      "actual_q_block_time_s": 229.7803429999999,
+      "known_count_before": 11,
+      "known_count_after": 11,
+      "known_nonready_before": [
+        1,
+        9,
+        12,
+        19
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 1,
+          "before": {
+            "channel": 1,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 514.6700944896073,
+            "target": [
+              1176.2997726045141,
+              -1261.800894766315
+            ],
+            "vertices": [
+              [
+                931.0991276386951,
+                -1540.4865454640865
+              ],
+              [
+                1540.9644160896817,
+                -930.3018486665803
+              ],
+              [
+                1552.675018997531,
+                -910.7638880782207
+              ],
+              [
+                799.9245262114971,
+                -1612.8379014544091
+              ],
+              [
+                809.5442129598314,
+                -1608.2881284673385
+              ],
+              [
+                887.4840396137597,
+                -1566.6284231867394
+              ]
+            ]
+          },
+          "after": {
+            "channel": 1,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 514.6700944896073,
+            "target": [
+              1176.2997726045141,
+              -1261.800894766315
+            ],
+            "vertices": [
+              [
+                931.0991276386951,
+                -1540.4865454640865
+              ],
+              [
+                1540.9644160896817,
+                -930.3018486665803
+              ],
+              [
+                1552.675018997531,
+                -910.7638880782207
+              ],
+              [
+                799.9245262114971,
+                -1612.8379014544091
+              ],
+              [
+                809.5442129598314,
+                -1608.2881284673385
+              ],
+              [
+                887.4840396137597,
+                -1566.6284231867394
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 171,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 9,
+          "before": {
+            "channel": 9,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 22.554050508799868,
+            "target": [
+              -1185.6041243289442,
+              -471.79019600102333
+            ],
+            "vertices": [
+              [
+                -1168.5768802877353,
+                -473.960441605026
+              ],
+              [
+                -1164.9095337984525,
+                -462.82252533753564
+              ],
+              [
+                -1201.639633667186,
+                -468.11868549061376
+              ],
+              [
+                -1206.2987148594357,
+                -480.7578666645111
+              ]
+            ]
+          },
+          "after": {
+            "channel": 9,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 22.554050508799868,
+            "target": [
+              -1185.6041243289442,
+              -471.79019600102333
+            ],
+            "vertices": [
+              [
+                -1168.5768802877353,
+                -473.960441605026
+              ],
+              [
+                -1164.9095337984525,
+                -462.82252533753564
+              ],
+              [
+                -1201.639633667186,
+                -468.11868549061376
+              ],
+              [
+                -1206.2987148594357,
+                -480.7578666645111
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 12,
+          "before": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 27.456245395870663,
+            "target": [
+              498.36885424985,
+              1473.3145808741738
+            ],
+            "vertices": [
+              [
+                483.7541144031415,
+                1481.241710907139
+              ],
+              [
+                489.4278584861124,
+                1447.3549197440454
+              ],
+              [
+                512.0257504566321,
+                1463.4292502614499
+              ],
+              [
+                507.3098500135876,
+                1499.2742420043019
+              ]
+            ]
+          },
+          "after": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 27.456245395870663,
+            "target": [
+              498.36885424985,
+              1473.3145808741738
+            ],
+            "vertices": [
+              [
+                483.7541144031415,
+                1481.241710907139
+              ],
+              [
+                489.4278584861124,
+                1447.3549197440454
+              ],
+              [
+                512.0257504566321,
+                1463.4292502614499
+              ],
+              [
+                507.3098500135876,
+                1499.2742420043019
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 19,
+          "before": {
+            "channel": 19,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 438.1402754232446,
+            "target": [
+              999.6329713753033,
+              948.2766843349688
+            ],
+            "vertices": [
+              [
+                1394.4808349476314,
+                1138.1768306759468
+              ],
+              [
+                1374.5707458989536,
+                1162.4373443765314
+              ],
+              [
+                604.7851078029753,
+                758.3765379939907
+              ]
+            ]
+          },
+          "after": {
+            "channel": 19,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 438.1402754232446,
+            "target": [
+              999.6329713753033,
+              948.2766843349688
+            ],
+            "vertices": [
+              [
+                1394.4808349476314,
+                1138.1768306759468
+              ],
+              [
+                1374.5707458989536,
+                1162.4373443765314
+              ],
+              [
+                604.7851078029753,
+                758.3765379939907
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 179,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [],
+      "known_nonready_became_ready": [],
+      "newly_discovered_sources": [],
+      "newly_discovered_count": 0,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 11
+      },
+      "deferred_source_clear_action_index": 181,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 3367.157443,
+      "elapsed_prefix_to_clear_s": 361.749597,
+      "elapsed_q_end_to_clear_s": 131.9692540000001,
+      "accepted_actions_after_q_through_clear": 1,
+      "further_completed_cover_count": 0,
+      "further_completed_covers": [],
+      "completed_covers_from_veto_through_clear": 1,
+      "observed_followup_time_s": 131.9692540000001,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development-stress",
+      "seed": 6391064,
+      "event_id": 1,
+      "channel": 5,
+      "next_cover": [
+        604.7851078029715,
+        758.3765379939889
+      ],
+      "after_actual_action_count": 80,
+      "end_actual_action_count": 95,
+      "prefix_time_s": 1009.515467,
+      "q_finished_time_s": 1266.862358,
+      "actual_q_block_time_s": 257.34689100000014,
+      "known_count_before": 8,
+      "known_count_after": 9,
+      "known_nonready_before": [
+        7,
+        8,
+        11,
+        12,
+        14,
+        20
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 7,
+          "before": {
+            "channel": 7,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2259540309757,
+            "target": [
+              490.0272192521235,
+              -568.0777292710227
+            ],
+            "vertices": [
+              [
+                1007.0959565779216,
+                -1111.646455189988
+              ],
+              [
+                1.1368683772161603e-12,
+                -1.1368683772161603e-12
+              ],
+              [
+                967.5784588736158,
+                -1146.3942304197128
+              ],
+              [
+                980.0544385042458,
+                -1136.1554585420442
+              ]
+            ]
+          },
+          "after": {
+            "channel": 7,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.2259540309757,
+            "target": [
+              490.0272192521235,
+              -568.0777292710227
+            ],
+            "vertices": [
+              [
+                1007.0959565779216,
+                -1111.646455189988
+              ],
+              [
+                1.1368683772161603e-12,
+                -1.1368683772161603e-12
+              ],
+              [
+                967.5784588736158,
+                -1146.3942304197128
+              ],
+              [
+                980.0544385042458,
+                -1136.1554585420442
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 85,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 8,
+          "before": {
+            "channel": 8,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 548.8085523274035,
+            "target": [
+              180.16342083018827,
+              1325.6378559334748
+            ],
+            "vertices": [
+              [
+                564.7972390868532,
+                1709.6656443952998
+              ],
+              [
+                535.1793018995276,
+                1718.6501474163656
+              ],
+              [
+                -215.84530593762565,
+                945.680074816368
+              ],
+              [
+                576.1721475980022,
+                1705.5956370505814
+              ]
+            ]
+          },
+          "after": {
+            "channel": 8,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 36.46188865651661,
+            "target": [
+              478.6553655959724,
+              1636.6260188108622
+            ],
+            "vertices": [
+              [
+                461.32796283466257,
+                1642.6408205276339
+              ],
+              [
+                467.95883175576296,
+                1601.768401448147
+              ],
+              [
+                494.89764400094884,
+                1627.615335201737
+              ],
+              [
+                489.3518994361819,
+                1671.4836361735775
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 86,
+              "result": "direction",
+              "bearing_deg": 98.21
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": false
+        },
+        {
+          "channel": 11,
+          "before": {
+            "channel": 11,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 415.3186685588615,
+            "target": [
+              -296.44335056378986,
+              1353.103137069777
+            ],
+            "vertices": [
+              [
+                -363.1311936840951,
+                1763.0327993698684
+              ],
+              [
+                -391.7051074348748,
+                1757.3490945403987
+              ],
+              [
+                -215.84530593762514,
+                945.6800748163696
+              ]
+            ]
+          },
+          "after": {
+            "channel": 11,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 415.3186685588615,
+            "target": [
+              -296.44335056378986,
+              1353.103137069777
+            ],
+            "vertices": [
+              [
+                -363.1311936840951,
+                1763.0327993698684
+              ],
+              [
+                -391.7051074348748,
+                1757.3490945403987
+              ],
+              [
+                -215.84530593762514,
+                945.6800748163696
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 89,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 12,
+          "before": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.225954030974,
+            "target": [
+              -330.59084310392745,
+              -938.1784399624368
+            ],
+            "vertices": [
+              [
+                194.95838100703918,
+                -1473.2893876312878
+              ],
+              [
+                212.7581156574882,
+                -1455.4896529808389
+              ],
+              [
+                231.20146399265292,
+                -1435.1405539097575
+              ],
+              [
+                -873.939801865343,
+                -420.86722694403466
+              ]
+            ]
+          },
+          "after": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 750.225954030974,
+            "target": [
+              -330.59084310392745,
+              -938.1784399624368
+            ],
+            "vertices": [
+              [
+                194.95838100703918,
+                -1473.2893876312878
+              ],
+              [
+                212.7581156574882,
+                -1455.4896529808389
+              ],
+              [
+                231.20146399265292,
+                -1435.1405539097575
+              ],
+              [
+                -873.939801865343,
+                -420.86722694403466
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 14,
+          "before": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 432.55383911297105,
+            "target": [
+              -1305.7610965544727,
+              446.0305570967565
+            ],
+            "vertices": [
+              [
+                -873.9398018653446,
+                420.86722694403136
+              ],
+              [
+                -1729.0573005612835,
+                500.8715157679699
+              ],
+              [
+                -1735.319564240652,
+                480.22759902921155
+              ],
+              [
+                -1737.582391243601,
+                471.19388724948163
+              ]
+            ]
+          },
+          "after": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 432.55383911297105,
+            "target": [
+              -1305.7610965544727,
+              446.0305570967565
+            ],
+            "vertices": [
+              [
+                -873.9398018653446,
+                420.86722694403136
+              ],
+              [
+                -1729.0573005612835,
+                500.8715157679699
+              ],
+              [
+                -1735.319564240652,
+                480.22759902921155
+              ],
+              [
+                -1737.582391243601,
+                471.19388724948163
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 20,
+          "before": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 454.9196045128501,
+            "target": [
+              -1106.5711672561654,
+              811.8077523523511
+            ],
+            "vertices": [
+              [
+                -1339.2025326469832,
+                1202.7482777606692
+              ],
+              [
+                -1361.3939984712501,
+                1178.2637683112905
+              ],
+              [
+                -873.9398018653476,
+                420.86722694403306
+              ]
+            ]
+          },
+          "after": {
+            "channel": 20,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 454.9196045128501,
+            "target": [
+              -1106.5711672561654,
+              811.8077523523511
+            ],
+            "vertices": [
+              [
+                -1339.2025326469832,
+                1202.7482777606692
+              ],
+              [
+                -1361.3939984712501,
+                1178.2637683112905
+              ],
+              [
+                -873.9398018653476,
+                420.86722694403306
+              ]
+            ]
+          },
+          "actual_feedback": [],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        8
+      ],
+      "known_nonready_became_ready": [],
+      "newly_discovered_sources": [
+        {
+          "channel": 17,
+          "after": {
+            "channel": 17,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 437.9778473219528,
+            "target": [
+              703.4204065038257,
+              1185.1032334267525
+            ],
+            "vertices": [
+              [
+                809.5442129598314,
+                1608.2881284673385
+              ],
+              [
+                802.0557052046794,
+                1611.8299288595144
+              ],
+              [
+                604.7851078029719,
+                758.3765379939907
+              ],
+              [
+                829.9833129070496,
+                1597.3632019367392
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 93,
+              "result": "direction",
+              "bearing_deg": 75.98
+            }
+          ]
+        }
+      ],
+      "newly_discovered_count": 1,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 13,
+        "direction": 2
+      },
+      "deferred_source_clear_action_index": 122,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 1990.563487,
+      "elapsed_prefix_to_clear_s": 981.04802,
+      "elapsed_q_end_to_clear_s": 723.7011289999998,
+      "accepted_actions_after_q_through_clear": 28,
+      "further_completed_cover_count": 2,
+      "further_completed_covers": [
+        {
+          "start": 95,
+          "end": 108,
+          "point": [
+            970.0,
+            0.0
+          ],
+          "measurements": 13
+        },
+        {
+          "start": 108,
+          "end": 121,
+          "point": [
+            604.7851078029714,
+            -758.376537993989
+          ],
+          "measurements": 13
+        }
+      ],
+      "completed_covers_from_veto_through_clear": 3,
+      "observed_followup_time_s": 723.7011289999998,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    },
+    {
+      "split": "development-stress",
+      "seed": 6391065,
+      "event_id": 5,
+      "channel": 13,
+      "next_cover": [
+        970.0,
+        0.0
+      ],
+      "after_actual_action_count": 94,
+      "end_actual_action_count": 109,
+      "prefix_time_s": 1351.441584,
+      "q_finished_time_s": 1608.788475,
+      "actual_q_block_time_s": 257.34689100000014,
+      "known_count_before": 11,
+      "known_count_after": 11,
+      "known_nonready_before": [
+        2,
+        3,
+        8,
+        10,
+        12,
+        14
+      ],
+      "known_nonready_updates": [
+        {
+          "channel": 2,
+          "before": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 417.167356749507,
+            "target": [
+              820.1724274067606,
+              1115.6396148592937
+            ],
+            "vertices": [
+              [
+                1036.7669993887298,
+                1472.0960314749227
+              ],
+              [
+                1035.5597470105504,
+                1472.9026917245994
+              ],
+              [
+                604.7851078029709,
+                758.376537993988
+              ],
+              [
+                1059.1464053700172,
+                1455.4983328036571
+              ]
+            ]
+          },
+          "after": {
+            "channel": 2,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 417.167356749507,
+            "target": [
+              820.1724274067606,
+              1115.6396148592937
+            ],
+            "vertices": [
+              [
+                1036.7669993887298,
+                1472.0960314749227
+              ],
+              [
+                1035.5597470105504,
+                1472.9026917245994
+              ],
+              [
+                604.7851078029709,
+                758.376537993988
+              ],
+              [
+                1059.1464053700172,
+                1455.4983328036571
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 96,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 3,
+          "before": {
+            "channel": 3,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 31.08008640502286,
+            "target": [
+              806.0625046395587,
+              -226.9212297633716
+            ],
+            "vertices": [
+              [
+                789.4969554860983,
+                -236.78534195864137
+              ],
+              [
+                828.4587293859269,
+                -248.47072832027203
+              ],
+              [
+                821.0612579638096,
+                -215.17165699355206
+              ],
+              [
+                783.6662798931907,
+                -205.37173120647117
+              ]
+            ]
+          },
+          "after": {
+            "channel": 3,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 18.10602419585287,
+            "target": [
+              806.7935054043282,
+              -226.43488386961894
+            ],
+            "vertices": [
+              [
+                803.1196629592015,
+                -240.87105429104074
+              ],
+              [
+                820.945705292238,
+                -215.1413746491217
+              ],
+              [
+                811.3655532773103,
+                -212.63074932938096
+              ],
+              [
+                792.6413055164186,
+                -237.72839309011616
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 97,
+              "result": "direction",
+              "bearing_deg": 234.28
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 8,
+          "before": {
+            "channel": 8,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 20.190110501544947,
+            "target": [
+              852.408528100284,
+              240.16902874980013
+            ],
+            "vertices": [
+              [
+                869.0366830738344,
+                228.71717194663572
+              ],
+              [
+                854.7591730623603,
+                257.3346622819747
+              ],
+              [
+                835.7803731267335,
+                251.62088555296452
+              ],
+              [
+                848.6646064210495,
+                223.35555275442357
+              ]
+            ]
+          },
+          "after": {
+            "channel": 8,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": true,
+            "positive_bearing_count": 3,
+            "radius_m": 16.003897196152053,
+            "target": [
+              861.8243125379336,
+              243.00375434824144
+            ],
+            "vertices": [
+              [
+                854.6119420020326,
+                257.2903367498472
+              ],
+              [
+                867.5962799986387,
+                228.33807987349476
+              ],
+              [
+                869.0366830738344,
+                228.71717194663572
+              ],
+              [
+                854.7591730623603,
+                257.3346622819747
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 99,
+              "result": "direction",
+              "bearing_deg": 113.15
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": true
+        },
+        {
+          "channel": 10,
+          "before": {
+            "channel": 10,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 578.05033606055,
+            "target": [
+              1167.7121049264301,
+              627.0167765398897
+            ],
+            "vertices": [
+              [
+                1730.6391020498909,
+                495.65701508579014
+              ],
+              [
+                1717.3079040034308,
+                539.604085440831
+              ],
+              [
+                604.7851078029694,
+                758.3765379939894
+              ]
+            ]
+          },
+          "after": {
+            "channel": 10,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 2,
+            "radius_m": 26.9978378164304,
+            "target": [
+              1442.959006037672,
+              578.630852810254
+            ],
+            "vertices": [
+              [
+                1438.2321815693217,
+                594.4830330484389
+              ],
+              [
+                1417.8776944876804,
+                568.6403043921472
+              ],
+              [
+                1445.650533818019,
+                562.159475496076
+              ],
+              [
+                1468.0403175876636,
+                588.6214012283608
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 101,
+              "result": "direction",
+              "bearing_deg": 50.77
+            }
+          ],
+          "geometry_changed": true,
+          "became_ready": false
+        },
+        {
+          "channel": 12,
+          "before": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 423.9139398876082,
+            "target": [
+              766.8390463605745,
+              1150.0926972585835
+            ],
+            "vertices": [
+              [
+                954.5615611359483,
+                1526.4237040177868
+              ],
+              [
+                928.8929849181764,
+                1541.8088565231758
+              ],
+              [
+                604.7851078029724,
+                758.376537993991
+              ]
+            ]
+          },
+          "after": {
+            "channel": 12,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 423.9139398876082,
+            "target": [
+              766.8390463605745,
+              1150.0926972585835
+            ],
+            "vertices": [
+              [
+                954.5615611359483,
+                1526.4237040177868
+              ],
+              [
+                928.8929849181764,
+                1541.8088565231758
+              ],
+              [
+                604.7851078029724,
+                758.376537993991
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 103,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        },
+        {
+          "channel": 14,
+          "before": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 472.4631970413136,
+            "target": [
+              594.0249581120522,
+              1230.7171902113544
+            ],
+            "vertices": [
+              [
+                616.2643004506568,
+                1691.250435380085
+              ],
+              [
+                583.264808421133,
+                1703.0578424287219
+              ],
+              [
+                604.7851078029715,
+                758.3765379939869
+              ]
+            ]
+          },
+          "after": {
+            "channel": 14,
+            "known": true,
+            "cleared": false,
+            "near_point": null,
+            "ready": false,
+            "positive_bearing_count": 1,
+            "radius_m": 472.4631970413136,
+            "target": [
+              594.0249581120522,
+              1230.7171902113544
+            ],
+            "vertices": [
+              [
+                616.2643004506568,
+                1691.250435380085
+              ],
+              [
+                583.264808421133,
+                1703.0578424287219
+              ],
+              [
+                604.7851078029715,
+                758.3765379939869
+              ]
+            ]
+          },
+          "actual_feedback": [
+            {
+              "action_index": 104,
+              "result": "no_signal",
+              "bearing_deg": null
+            }
+          ],
+          "geometry_changed": false,
+          "became_ready": false
+        }
+      ],
+      "known_nonready_geometry_changed": [
+        3,
+        8,
+        10
+      ],
+      "known_nonready_became_ready": [
+        3,
+        8
+      ],
+      "newly_discovered_sources": [],
+      "newly_discovered_count": 0,
+      "new_sources_already_ready_after_q": [],
+      "actual_q_feedback_counts": {
+        "no_signal": 12,
+        "direction": 3
+      },
+      "deferred_source_clear_action_index": 110,
+      "deferred_source_cleared": true,
+      "deferred_source_clear_time_s": 1760.920669,
+      "elapsed_prefix_to_clear_s": 409.47908500000017,
+      "elapsed_q_end_to_clear_s": 152.13219400000003,
+      "accepted_actions_after_q_through_clear": 2,
+      "further_completed_cover_count": 0,
+      "further_completed_covers": [],
+      "completed_covers_from_veto_through_clear": 1,
+      "observed_followup_time_s": 152.13219400000003,
+      "source_uncleared_at_observed_end": false,
+      "scope": "Elapsed waiting is actual chronology, not extra loss relative to a nonexistent counterfactual."
+    }
+  ],
+  "observation_reader": "Only summary/history/spec top-level fields decoded; row/evaluation subtrees lexically skipped.",
+  "limitations": [
+    "Selected intervention events are not independent performance samples or a calibration set.",
+    "C/near means canonical actual geometry only, not auxiliary joint regions or hidden source positions.",
+    "Later waiting time includes real coverage and other services; it is not an extra cost, saving or regret.",
+    "New discoveries show a part of the real future omitted by the all-known proxy, not the sign of its causal impact."
+  ]
+}

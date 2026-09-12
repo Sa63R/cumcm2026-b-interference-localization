@@ -1,0 +1,15 @@
+{
+  "scope": "Diagnostic reader/legacy audit interface error, not a strategy or geometry failure",
+  "exception": "KeyError: 'row'",
+  "location": "archived R15 prefix audit -> R8 checker -> audit_q4_scheduling.py line102",
+  "cause": "The observation-only reader intentionally omits row. The legacy scheduling cap16 checker asks row.successful.",
+  "completed_prefixes_before_error": 5,
+  "preserved_proofs": 8,
+  "proof_statuses": {"counterexample": 7, "inconclusive": 1},
+  "last_printed_prefix_record": "results/q4_opportunistic_discovery/development/records/compact_opportunistic_bounded-624001.json.gz",
+  "repair": "Pass a separate minimal audit view with successful claim from summary.completion_certified_under_model; legacy checker still verifies real cap16 clear completion. Continue to skip original row/evaluation lexically. Reuse existing proofs only after exact geometry/options checks.",
+  "original_script": "run_diagnostic-first-attempt.py",
+  "original_freeze_preserved": true,
+  "new_scenarios_or_policy_runs": 0,
+  "budget_or_candidate_rule_changed": false
+}
