@@ -1,0 +1,366 @@
+{
+  "status": "archived_pending_cleanup",
+  "archive_kind": "pushed_git_tag",
+  "archive_tag": "archive/q4-r38-continuous-cover21-rejected-20260912",
+  "archived_head": "cc204db85877dccdf6f4bfccbe93034c653657ea",
+  "base": "81aa6e1a1231a2358cf098fbba3fdd0557b540ef",
+  "source_branch": "experiment/q4-r38-continuous-cover21",
+  "source_worktree": "q4-r38-continuous-cover21",
+  "restoration_repository": "q3-v1-artifacts/archive-checks-20260912/continuous-cover21-tag-r38.git",
+  "path_basis": "workspace root",
+  "remote_tag_verified": true,
+  "target_absent_before_fetch": true,
+  "fresh_bare_restore": true,
+  "restored_tree": "d359e819db14786e93e002f67ee1edd9c141f071",
+  "full_tree_identity_verified": true,
+  "restored_changed_blobs": 49,
+  "restore_mode": "remote_full_shallow_tag",
+  "required_evidence_complete_offline": true,
+  "unrelated_inherited_blobs_missing": 0,
+  "frozen_runtime_files": null,
+  "base_src_files_unchanged": 49,
+  "base_python_files": 44,
+  "base_gitkeep_files": 5,
+  "strict_original_files": 47,
+  "strict_original_scope": "All committed files under this round research/results paths; full Git tree identity covers inherited content.",
+  "copied_original_sha256": {
+    "working-bytes/research/q4_continuous_cover21/optimization-console.txt": "604faa7972af6961af33d35e99426f9282bfe8b156b1e11ea5279252f8aaf7dd",
+    "PROTOCOL.md": "f8d04325e41290de203d7759173a436db700de3b4830dc0502a72d486d684184",
+    "RESULTS.md": "9c241c1b5dafc44f2ccb61b000c245ce2e520ed89672e063ab40d410949c5db5",
+    "independent-record-audit.json": "9048a2a90cb970ba04fa90fa59628a9d2aca367f8c1c0b70a7155696a6cc4864",
+    "initial.json": "042c5450347104d0d9a7362f05c9573dcff9ada611bc7aac05c39465ee24c71d",
+    "input.json": "8e21571aa9488015762492237d752da3d9437b7390519243be8b94a302e5d1a7",
+    "metrics.json": "3fc6d2f697ab16506c47d8e6dbf5f9b1f469e9847865bdc86b38585c4bc2b26e",
+    "optimization-summary.json": "89db802c2a7822429ad916446a4878d183234860d3284261705c5d58b5f58b5d"
+  },
+  "source_owner_release": "Root explicitly released the completed rounds; only R36 read-only follow-up was committed before archive.",
+  "working_byte_overrides": {
+    "research/q4_continuous_cover21/optimization-console.txt": {
+      "git_blob_sha256": "eed980c7b091ee9936134d43cc6a90f632ddc9e345e1eef9b10e1d5248112c91",
+      "working_sha256": "604faa7972af6961af33d35e99426f9282bfe8b156b1e11ea5279252f8aaf7dd",
+      "reason": "Existing Git text normalization: 12 CRLF lines are LF in the archived Git blob; exact working bytes saved separately.",
+      "archive_file": "working-bytes/research/q4_continuous_cover21/optimization-console.txt"
+    }
+  },
+  "prepared_at_utc": "2026-09-12T02:28:17.784871+00:00",
+  "lifecycle": {
+    "worktree_retained": true,
+    "local_branch_retained": true,
+    "remote_branch_retained": true,
+    "local_archive_tag_retained": true,
+    "remote_archive_tag_retained": true,
+    "restoration_repository_retained": true
+  },
+  "records": 0,
+  "old_smoke_records": 0,
+  "independent_opened": false,
+  "selection_passed": null,
+  "metrics": {
+    "scope": "public geometry only; no task T/N or T/LB",
+    "initial_status": "inconclusive",
+    "optimization_candidates": 12,
+    "certified": 0,
+    "strict_counterexamples": 10,
+    "optimization_unknown": 2,
+    "all_certifier_wall_s": 0.3776193000085186,
+    "optimizer_wall_s": 2.4046123000443913,
+    "objective_calls": 7921,
+    "all_fields_audited": true,
+    "records": [
+      {
+        "name": "initial",
+        "status": "inconclusive",
+        "parameters": null,
+        "local_native_indices": null,
+        "working_margin_m": null,
+        "route_length_m": 17768.346785821846,
+        "counterexample_source": null,
+        "unresolved_cell": {
+          "path": "102223332322223232222322",
+          "box": [
+            102.09131240844727,
+            102.09152698516846,
+            -900.0002145767212,
+            -900.0
+          ]
+        },
+        "visited_cells": 1761
+      },
+      {
+        "name": "candidate-01",
+        "status": "counterexample",
+        "parameters": [
+          1020.0,
+          1855.405399007108,
+          14.818843483763388
+        ],
+        "local_native_indices": [],
+        "working_margin_m": 18.83562236306038,
+        "route_length_m": 17862.45593357925,
+        "counterexample_source": [
+          -7.03125,
+          -28.125
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 2407
+      },
+      {
+        "name": "candidate-02",
+        "status": "counterexample",
+        "parameters": [
+          1008.6909607271392,
+          1855.052701153342,
+          14.199909339784778
+        ],
+        "local_native_indices": [],
+        "working_margin_m": 8.64653005232698,
+        "route_length_m": 17796.080818926835,
+        "counterexample_source": [
+          -7.03125,
+          -7.03125
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 2666
+      },
+      {
+        "name": "candidate-03",
+        "status": "counterexample",
+        "parameters": [
+          972.2109637496272,
+          1854.4452101080842,
+          16.82045529105941
+        ],
+        "local_native_indices": [],
+        "working_margin_m": 22.289004369085262,
+        "route_length_m": 17617.39454655264,
+        "counterexample_source": [
+          -1139.0625,
+          -1392.1875
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 78
+      },
+      {
+        "name": "candidate-04",
+        "status": "counterexample",
+        "parameters": [
+          994.3160562104888,
+          1857.7710534306323,
+          15.454166423917554
+        ],
+        "local_native_indices": [],
+        "working_margin_m": 8.923693000102162,
+        "route_length_m": 17746.94721979834,
+        "counterexample_source": [
+          -1125.0,
+          -1404.931640625
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 60
+      },
+      {
+        "name": "candidate-05",
+        "status": "counterexample",
+        "parameters": [
+          999.8745226615268,
+          1857.4834367652415,
+          15.071101150127756
+        ],
+        "local_native_indices": [],
+        "working_margin_m": 3.3654744184857464,
+        "route_length_m": 17771.735650679144,
+        "counterexample_source": [
+          123.046875,
+          -896.484375
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 2643
+      },
+      {
+        "name": "candidate-06",
+        "status": "counterexample",
+        "parameters": [
+          1004.2078559948602,
+          1855.4534290428426,
+          15.711101150127757
+        ],
+        "local_native_indices": [],
+        "working_margin_m": 3.2841923117686633,
+        "route_length_m": 17785.63534468456,
+        "counterexample_source": [
+          -3.515625,
+          -3.515625
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 2406
+      },
+      {
+        "name": "candidate-07",
+        "status": "counterexample",
+        "parameters": [
+          1000.9719671402086,
+          1855.4878607299283,
+          15.651109683636363,
+          -1.1491615169937255,
+          1.1555463726099706,
+          1.7275800187417687,
+          0.12215615530421076
+        ],
+        "local_native_indices": [
+          5,
+          6
+        ],
+        "working_margin_m": 2.652149838119385,
+        "route_length_m": 17768.30567294691,
+        "counterexample_source": [
+          -0.54931640625,
+          -2.30712890625
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 2413
+      },
+      {
+        "name": "candidate-08",
+        "status": "counterexample",
+        "parameters": [
+          998.8848300097762,
+          1856.009968030287,
+          15.753161573425249,
+          -1.4943023815870973,
+          -0.23317654642350405,
+          0.5611124028798375,
+          1.969216311910003
+        ],
+        "local_native_indices": [
+          6,
+          7
+        ],
+        "working_margin_m": 2.371518767460923,
+        "route_length_m": 17763.32669252907,
+        "counterexample_source": [
+          401.2138366699219,
+          -1754.7157287597656
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 2513
+      },
+      {
+        "name": "candidate-09",
+        "status": "inconclusive",
+        "parameters": [
+          999.6595666172063,
+          1856.6439860913201,
+          15.973044161956853,
+          0.6146754240760721,
+          -0.6898490235517141,
+          -0.719032288266451,
+          -0.4523094806001602
+        ],
+        "local_native_indices": [
+          18,
+          17
+        ],
+        "working_margin_m": 1.834679592096677,
+        "route_length_m": 17772.13043836856,
+        "counterexample_source": null,
+        "unresolved_cell": {
+          "path": "120010010333133232223333",
+          "box": [
+            133.51457118988037,
+            133.51478576660156,
+            -893.4084177017212,
+            -893.408203125
+          ]
+        },
+        "visited_cells": 2901
+      },
+      {
+        "name": "candidate-10",
+        "status": "inconclusive",
+        "parameters": [
+          999.1436743331589,
+          1855.549032417596,
+          16.537135119700867,
+          -0.6207363233749987,
+          0.9571530235653736,
+          0.693395832446889,
+          -0.8474588988799425
+        ],
+        "local_native_indices": [
+          6,
+          7
+        ],
+        "working_margin_m": 1.8403118624667059,
+        "route_length_m": 17764.487640483367,
+        "counterexample_source": null,
+        "unresolved_cell": {
+          "path": "120010102030330033333012",
+          "box": [
+            143.09563636779785,
+            143.09585094451904,
+            -890.4983282089233,
+            -890.4981136322021
+          ]
+        },
+        "visited_cells": 3899
+      },
+      {
+        "name": "candidate-11",
+        "status": "counterexample",
+        "parameters": [
+          999.605024325769,
+          1856.6313985563966,
+          16.417186846892754,
+          0.9750490549083857,
+          0.2304869656076356,
+          0.5579455183718309,
+          -2.4435150225710682
+        ],
+        "local_native_indices": [
+          6,
+          7
+        ],
+        "working_margin_m": 0.024293935006511447,
+        "route_length_m": 17772.54065323603,
+        "counterexample_source": [
+          -0.439453125,
+          -2.63671875
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 1913
+      },
+      {
+        "name": "candidate-12",
+        "status": "counterexample",
+        "parameters": [
+          999.6048349589672,
+          1857.1617467419105,
+          16.270681958869904,
+          1.6746961437283296,
+          -1.8571750209077358,
+          1.1529608560413873,
+          -0.25181189668466075
+        ],
+        "local_native_indices": [
+          6,
+          5
+        ],
+        "working_margin_m": 1.839222193838566,
+        "route_length_m": 17777.34506150551,
+        "counterexample_source": [
+          139.9932861328125,
+          -893.1060791015625
+        ],
+        "unresolved_cell": null,
+        "visited_cells": 2967
+      }
+    ]
+  },
+  "geometry_proofs": 13,
+  "working_sets": 12,
+  "synthetic_tests_reported": 6,
+  "certified_layouts": 0,
+  "selection_scope": "Not applicable: public geometry only; no performance selector or task cases.",
+  "strict_counterexamples": 10,
+  "inconclusive_layouts": 3
+}
