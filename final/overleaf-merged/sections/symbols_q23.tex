@@ -1,0 +1,41 @@
+% 第二、三问原有符号说明；供与第一问符号表合并。
+\section{符号说明}\label{sec:symbols-q23}
+
+本文针对全向干扰源，将第二问的主动检测点选择作为第三问多源搜索的局部模块。
+先建立可保证接收和可靠清除的几何条件，再研究覆盖任务、已知源处理及测量费用的联合调度。
+下文的源位置可行域由观测构造，所有实验表中的用时均为题目动作计费时间，程序计算耗时单独说明。
+
+\Needspace{38mm}
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering\small
+\captionof{table}{主要符号与含义}
+\label{tab:q23-symbols}
+\vspace{4pt}
+\begin{tabular}{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+符号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+含义
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+符号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+含义
+\end{minipage} \\
+\midrule
+\(\Omega\) & 半径1800 m目标圆域 & \(f\) & 测向频道，1至20 \\
+\(p\) & 源坐标 & \(x_t\) & 当前机器人位置 \\
+\(R_f\) & 固定但未知的接收半径 & \(\bar\varepsilon\) & 含舍入余量的测角误差界 \\
+\(\widehat C_f\) & 源位置的凸外包区域 & \(Q_f\) & 保证再次接收的测点域 \\
+\(z(C),\rho(C)\) & 最小包围圆的圆心与半径 & \(v\) & 移速，5 m/s \\
+\(\mathcal D_t,\mathcal K_t\) & 已发现及已清除频道集合 & \(M,j\) & 任务位掩码与最后任务 \\
+\(L,T\) & 实际路长与计费用时 & \(U_t,L_t\) & 冻结规划问题的上界与下界 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\end{center}

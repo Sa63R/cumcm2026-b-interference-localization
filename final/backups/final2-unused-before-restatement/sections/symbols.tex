@@ -1,0 +1,37 @@
+% 各问正文沿用自己的数学记号；此表汇总含义，方便手动修改时对照。
+\section*{符号说明}
+\addcontentsline{toc}{section}{符号说明}
+
+第一问用检测点 $S_i$、候选源位置 $X$ 和定位域 $P$ 描述交会几何；
+第二、三问分别用 $x_t$、$p$ 和 $\widehat C_f$ 表示检测位置、源位置及其凸外包区域。
+表\ref{tab:symbols}汇总主要记号，各问的局部参数在使用处定义。
+
+\begin{center}
+\small
+\captionof{table}{主要符号与含义}\label{tab:symbols}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.22\linewidth}X@{}}
+\toprule
+符号 & 含义 \\
+\midrule
+$\Omega$ & 半径为1800 m的目标圆域 \\
+$S_i=(x_i,y_i)$ & 第一问中第 $i$ 个检测点的位置 \\
+$X,\ P$ & 第一问中的候选源位置与定位区域 \\
+$v_1,\ldots,v_h$ & 定位区域的顶点 \\
+$D,\ C_0$ & 定位区域的直径与最远顶点对的中点 \\
+$\theta_i,\ \varepsilon$ & 示向度与题面测角误差界，$\varepsilon=1^\circ$ \\
+$\varphi_i,\ \delta$ & 第一问采用的弧度角，$\varphi_i=\pi\theta_i/180$、$\delta=\pi\varepsilon/180$ \\
+$\bar\varepsilon$ & 第二、三问包含舍入余量的计算误差界，取 $1.005^\circ$ \\
+$f,\ p,\ x_t$ & 测向频道、源位置与当前机器人位置 \\
+$R_f$ & 固定但未知的接收半径，$1000\le R_f\le1500$ m \\
+$\widehat C_f,\ Q_f$ & 源位置凸外包区域与保证再次接收的测点域 \\
+$z(C),\ \rho(C)$ & 区域 $C$ 的最小包围圆圆心与半径 \\
+$v,\ L,\ T$ & 移动速度（5 m/s）、实际路长与动作计费用时 \\
+$\mathcal D_t,\ \mathcal K_t$ & 已发现和已清除的频道集合 \\
+$M,\ j$ & 已完成任务集合（位掩码存储）与最后一个任务 \\
+$U_t,\ L_t$ & 当前冻结规划问题的上界与下界 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+第二问的主动检测点选择构成第三问多源搜索的局部定位模块。
+实验中的耗时采用题目动作计费口径，程序计算时间另行报告。

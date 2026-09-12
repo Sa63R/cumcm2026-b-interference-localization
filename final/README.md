@@ -1,9 +1,17 @@
-# 第二问与第三问论文材料
+# 论文工作稿与第二、三问研究材料
 
-本目录为2026年B题第二问与第三问的独立论文稿。统一符号后完成了单源主动定位、发现覆盖、状态压缩A*、清除及终止证明、PPO对照、实验比较、消融、行为诊断与真实轨迹分析。第一问和第四问尚未合并。
+当前手改入口已按用户要求转到本目录同级的 `../final2/main.tex`。其中第一节为新增“问题重述”，后续为符号说明和一、二、三问模型；全部正文仍在同一文件。`../final2/main.pdf`为22页编译稿。版式参考用户指定的2025 B060展示论文，第四问模型尚未合并。
+
+`overleaf-single/`为新增问题重述前的本地快照；Overleaf停留在此前上传阶段。本次后续修改只在 `final2` 本地完成，不再遥控浏览器。
+
+本目录同时保留第二、三问的独立研究稿与辅助材料，包含单源主动定位、发现覆盖、状态压缩A*、清除及终止证明、PPO对照、实验比较、消融、行为诊断与真实轨迹分析。
 
 ## 阅读与编辑
 
+- `overleaf-single/`：当前单文件工作稿和阅读PDF；只需修改 `main.tex`，`figures/`存放配图。
+- `overleaf-single-upload.zip`：当前单文件稿的完整可编译上传包。
+- `backups/overleaf-before-single-20260912.zip`：清理前完整在线项目，36个文件，含原来全部旧稿；完整性及来源核验见 `backup_manifest.json`。
+- `overleaf-merged/`与`overleaf-merged-upload.zip`：保留的上一版分文件工作稿。
 - `第二问与第三问论文稿.pdf`：排版阅读版。
 - `第二问与第三问论文稿.tex`：可直接编辑、XeLaTeX编译的源稿。
 - `第二问与第三问论文稿.md`：便于移植到其他论文格式的正文。
@@ -29,7 +37,9 @@
 
 已验证环境：Windows，Python 3.12，Matplotlib 3.11.2，NumPy 2.5.3，pypandoc_binary 1.17（Pandoc 3.9），TeX Live 2026，XeLaTeX，字体SimSun/SimHei、Times New Roman、Microsoft YaHei、Consolas、FangSong。
 
-最简单的正文重编译：在本目录运行两次 `xelatex 第二问与第三问论文稿.tex`。`figures/`中的PDF与源稿一同保留。编译只涉及已有正文与图形，不运行实验。
+当前单文件稿：运行 `python scripts/build_single.py`，或在 `overleaf-single/` 中运行两次 `xelatex main.tex`。此脚本只编译、核对引用并打包，不重新生成或覆盖正文，适合手改后的重编译。
+
+旧二三问独立稿：在本目录运行两次 `xelatex 第二问与第三问论文稿.tex`。`figures/`中的PDF与源稿一同保留。编译只涉及已有正文与图形，不运行实验。
 
 自动构建脚本：
 

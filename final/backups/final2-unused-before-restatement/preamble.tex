@@ -1,0 +1,53 @@
+% 全局排版设置：字体、页边距、公式/图表编号及交叉引用。
+\usepackage[a4paper,top=23mm,bottom=23mm,left=23mm,right=23mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx,xcolor,tabularx,booktabs,array,calc}
+\usepackage{caption,float,placeins,fancyhdr,enumitem,needspace}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{bookmark,microtype}
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{Latin Modern Mono}
+\input{figures/q1_case}
+
+\linespread{1.18}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1.5pt}
+\setlength{\emergencystretch}{2em}
+\clubpenalty=10000\widowpenalty=10000\displaywidowpenalty=10000
+\raggedbottom
+
+% 每问为一个一级节；章节和公式均自动编号，手改时不用维护数字。
+\setcounter{secnumdepth}{2}
+\ctexset{
+  section={name={问题,},number=\chinese{section},format=\Large\bfseries,beforeskip=16pt,afterskip=9pt},
+  subsection={format=\large\bfseries,beforeskip=12pt,afterskip=6pt}
+}
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thesection-\arabic{equation}}
+\newcounter{algorithm}[section]
+\renewcommand{\thealgorithm}{\thesection-\arabic{algorithm}}
+\setlist[enumerate]{label=\arabic*.,leftmargin=2.2em,itemsep=2pt,topsep=5pt,parsep=0pt}
+\setlist[itemize]{leftmargin=2em,itemsep=2pt,topsep=4pt,parsep=0pt}
+
+% 图、表在全篇连续编号。使用 \label 与 \ref，避免写死编号。
+\captionsetup{font=small,labelfont=bf,labelsep=quad,skip=6pt,justification=justified,hypcap=false}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.65}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{14pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[C]{\small 无线电干扰源的主动定位与搜索清除}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\headheight}{15pt}
+\hypersetup{pdftitle={无线电干扰源的主动定位与搜索清除},pdfauthor={}}
+\XeTeXgenerateactualtext=1
