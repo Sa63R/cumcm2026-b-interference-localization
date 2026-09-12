@@ -29,3 +29,13 @@ results/q4_joint_visibility/** -text whitespace=cr-at-eol
 research/q4_joint_visibility/** -text whitespace=cr-at-eol
 results/q4_joint_continuation/** -text whitespace=cr-at-eol
 research/q4_joint_continuation/** -text whitespace=cr-at-eol
+
+# R37 preserve exact source and experiment bytes
+.gitattributes -text
+experiments/*anchor_first_hit*.py -text whitespace=cr-at-eol
+experiments/run_q4_per_source.py -text
+experiments/audit_q4_per_source.py -text
+tests/*anchor_first_hit*.py -text whitespace=cr-at-eol
+tests/test_q4_per_source.py -text
+research/q4_anchor_first_hit/** -text whitespace=cr-at-eol
+results/q4_anchor_first_hit/** -text whitespace=cr-at-eol

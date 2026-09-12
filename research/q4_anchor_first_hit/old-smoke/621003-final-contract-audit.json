@@ -1,0 +1,1132 @@
+{
+  "passed": true,
+  "generic": {
+    "case_id": "q4-random-621003",
+    "strategy": "compact_anchor_first_hit",
+    "successful": true,
+    "virtual_time_s": 6525.183884,
+    "common_lower_bound_s": 2341.0547037229894,
+    "time_over_lower_bound": 2.7872838142666945,
+    "physical": {
+      "source_total": 14,
+      "cleared_total": 14,
+      "measurement_count": 250,
+      "failed_clear_count": 0,
+      "all_cleared": true,
+      "virtual_time_s": 6525.183884,
+      "time_breakdown_s": {
+        "movement_s": 4976.183884,
+        "switching_s": 229.0,
+        "detection_s": 1250.0,
+        "optical_s": 42.0,
+        "removal_s": 28.0
+      }
+    },
+    "geometric_certificate": {
+      "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+      "passed": true,
+      "status": "certified",
+      "reason": null,
+      "station_count": 22,
+      "stations": [
+        [
+          -1851.290353890597,
+          2.2671768061844906e-13
+        ],
+        [
+          -1667.9549743034802,
+          -803.2447809383194
+        ],
+        [
+          -1667.95497430348,
+          803.2447809383199
+        ],
+        [
+          -1154.2606559302333,
+          -1447.397081861049
+        ],
+        [
+          -1154.260655930233,
+          1447.3970818610492
+        ],
+        [
+          -873.9398018653466,
+          -420.86722694403124
+        ],
+        [
+          -873.9398018653465,
+          420.8672269440315
+        ],
+        [
+          -411.9508585720518,
+          -1804.8746395609091
+        ],
+        [
+          -411.95085857205135,
+          1804.8746395609091
+        ],
+        [
+          -215.84530593762514,
+          -945.6800748163689
+        ],
+        [
+          -215.84530593762491,
+          945.6800748163689
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          411.9508585720495,
+          -1804.8746395609096
+        ],
+        [
+          411.9508585720516,
+          1804.8746395609091
+        ],
+        [
+          604.7851078029714,
+          -758.376537993989
+        ],
+        [
+          604.7851078029715,
+          758.3765379939889
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          1154.2606559302328,
+          -1447.3970818610492
+        ],
+        [
+          1154.2606559302333,
+          1447.397081861049
+        ],
+        [
+          1667.9549743034802,
+          803.2447809383196
+        ],
+        [
+          1667.9549743034806,
+          -803.2447809383185
+        ],
+        [
+          1851.290353890597,
+          0.0
+        ]
+      ],
+      "station_sha256": "cdfb754c6ba3a86b6cabf43a83cc6d96ea3709ee93844d306542ba0355b3c291",
+      "arena_radius": 1800.0,
+      "reception_radius": 1000.0,
+      "range_margin_m": 1e-05,
+      "orientation_margin_m": 1e-07,
+      "max_depth": 16,
+      "max_cells": 200000,
+      "visited_cells": 5989,
+      "deepest_level": 11,
+      "outside_leaves": 1532,
+      "covered_leaves": 2960,
+      "counterexample": null,
+      "unresolved_cell": null,
+      "runtime_s": 0.07144629998947494,
+      "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic",
+      "leaf_witness_sha256": "bcb7ae7c4f0a1edb53734e0fae9b53e093ad1921d3ac90f84d199f111a98c329"
+    },
+    "observations": {
+      "detected": 14,
+      "cleared": 14,
+      "terminal_certified": true,
+      "source_cap_actual_clears": false,
+      "triangle_station_count": 22,
+      "triangle_count": null,
+      "absence": [
+        {
+          "channel": 5,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 7,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 11,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 12,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 16,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 18,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        }
+      ],
+      "clear_attempts": [
+        {
+          "action_index": 61,
+          "channel": 10,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 18.072365137360354
+        },
+        {
+          "action_index": 62,
+          "channel": 1,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.21019089404269
+        },
+        {
+          "action_index": 63,
+          "channel": 4,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.020912528633726
+        },
+        {
+          "action_index": 64,
+          "channel": 19,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 8.76689283763902
+        },
+        {
+          "action_index": 165,
+          "channel": 8,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 16.328060190771588
+        },
+        {
+          "action_index": 166,
+          "channel": 6,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 15.802781126139434
+        },
+        {
+          "action_index": 193,
+          "channel": 3,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 9.7962239127061
+        },
+        {
+          "action_index": 210,
+          "channel": 15,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 8.483641792693515
+        },
+        {
+          "action_index": 238,
+          "channel": 20,
+          "phase": "speculative_clear_before_probe",
+          "result": "success",
+          "prefix_certified": false,
+          "radius_upper_m": 20.401310238791602
+        },
+        {
+          "action_index": 239,
+          "channel": 17,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 16.493334162649873
+        },
+        {
+          "action_index": 261,
+          "channel": 9,
+          "phase": "speculative_clear_before_probe",
+          "result": "success",
+          "prefix_certified": false,
+          "radius_upper_m": 26.564714077323377
+        },
+        {
+          "action_index": 262,
+          "channel": 2,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "action_index": 263,
+          "channel": 13,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "action_index": 264,
+          "channel": 14,
+          "phase": "speculative_clear_before_probe",
+          "result": "success",
+          "prefix_certified": false,
+          "radius_upper_m": 23.956943832619665
+        }
+      ],
+      "successful_clear_without_prefix_certificate": 3,
+      "legal_failed_optical_attempts": 0,
+      "hull_events": [],
+      "pair_events": [],
+      "certified_scans_skipped": [
+        {
+          "channel": 8,
+          "after_actual_action_count": 121,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "radius_upper_m": 16.328060190771588
+        },
+        {
+          "channel": 8,
+          "after_actual_action_count": 133,
+          "position": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "radius_upper_m": 16.328060190771588
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 133,
+          "position": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 144,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 8,
+          "after_actual_action_count": 144,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "radius_upper_m": 16.328060190771588
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 144,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 154,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 8,
+          "after_actual_action_count": 154,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "radius_upper_m": 16.328060190771588
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 154,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 166,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 166,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 175,
+          "position": [
+            1851.290353890597,
+            0.0
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 175,
+          "position": [
+            1851.290353890597,
+            0.0
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 184,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 3,
+          "after_actual_action_count": 184,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "radius_upper_m": 9.7962239127061
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 184,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 193,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 193,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 201,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 201,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 210,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 210,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 219,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 219,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 228,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 228,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 239,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 239,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 246,
+          "position": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 246,
+          "position": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "radius_upper_m": 15.152810386329557
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 253,
+          "position": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "radius_upper_m": 19.88053982653717
+        },
+        {
+          "channel": 13,
+          "after_actual_action_count": 253,
+          "position": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "radius_upper_m": 15.152810386329557
+        }
+      ],
+      "inferred_coverage_credits": 0
+    },
+    "passed": true,
+    "errors": []
+  },
+  "prefix": {
+    "anchor_probe_actions": 0,
+    "anchor_decisions": 3,
+    "scored_decisions": 0,
+    "parent_fallback_decisions": 3,
+    "passed": true,
+    "r12": {
+      "passed": true,
+      "epochs": 14,
+      "refined_epochs": 0,
+      "fallback_epochs": 0,
+      "probe_decisions": 0,
+      "executed_probes": 0,
+      "auxiliary_clear_attempts": 0,
+      "auxiliary_clear_successes": 0,
+      "optical_epochs": 0,
+      "optical_attempts": 0,
+      "terminal_clear_events": 0,
+      "canonical_fallbacks": 0,
+      "decision_wall_s": 0.0932828999357298,
+      "continuation_events": 0,
+      "continuation_calls": 0,
+      "continuation_applied": 0,
+      "continuation_wall_s": 0,
+      "boundary": "Actual-prefix and full optical strip coverage; generic physical, coverage/scheduling and inherited R8 audits remain separate requirements"
+    },
+    "r8": {
+      "passed": true,
+      "events": 3,
+      "attempts": 3,
+      "successes": 3,
+      "failures": 0,
+      "skipped_budget": 0,
+      "failed_then_measured": 0,
+      "terminal_interruptions": 0,
+      "decision_wall_s": 6.609997944906354e-05,
+      "boundary": "Actual prefixes and costs; remaining real time is a logged wall-clock snapshot, not a guaranteed future allowance"
+    },
+    "range": {
+      "passed": true,
+      "range_skips_verified": 40,
+      "events": [
+        {
+          "channel": 17,
+          "after_actual_action_count": 94,
+          "position": [
+            604.7851078029715,
+            758.3765379939889
+          ],
+          "distance_lower_bound_m": 1516.75307588795,
+          "independent_region_distance_m": 1516.7530759879792
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 94,
+          "position": [
+            604.7851078029715,
+            758.3765379939889
+          ],
+          "distance_lower_bound_m": 1516.7530758879452,
+          "independent_region_distance_m": 1516.7530759879746
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 107,
+          "position": [
+            970.0,
+            0.0
+          ],
+          "distance_lower_bound_m": 1891.3601495327098,
+          "independent_region_distance_m": 1891.360149632739
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 108,
+          "position": [
+            970.0,
+            0.0
+          ],
+          "distance_lower_bound_m": 1891.3601495327043,
+          "independent_region_distance_m": 1891.3601496327337
+        },
+        {
+          "channel": 3,
+          "after_actual_action_count": 110,
+          "position": [
+            604.7851078029714,
+            -758.376537993989
+          ],
+          "distance_lower_bound_m": 1873.6983113475783,
+          "independent_region_distance_m": 1873.6983114476075
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 121,
+          "position": [
+            604.7851078029714,
+            -758.376537993989
+          ],
+          "distance_lower_bound_m": 1891.3601495327096,
+          "independent_region_distance_m": 1891.3601496327387
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 121,
+          "position": [
+            604.7851078029714,
+            -758.376537993989
+          ],
+          "distance_lower_bound_m": 1891.3601495327046,
+          "independent_region_distance_m": 1891.360149632734
+        },
+        {
+          "channel": 3,
+          "after_actual_action_count": 123,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "distance_lower_bound_m": 2488.7294287461837,
+          "independent_region_distance_m": 2488.7294288462126
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 132,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "distance_lower_bound_m": 1516.7530758879493,
+          "independent_region_distance_m": 1516.7530759879785
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 133,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "distance_lower_bound_m": 1516.7530758879454,
+          "independent_region_distance_m": 1516.7530759879746
+        },
+        {
+          "channel": 3,
+          "after_actual_action_count": 135,
+          "position": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "distance_lower_bound_m": 3291.133222945567,
+          "independent_region_distance_m": 3291.133223045596
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 144,
+          "position": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2273.18293139452,
+          "independent_region_distance_m": 2273.1829314945494
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 144,
+          "position": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2273.1829313945177,
+          "independent_region_distance_m": 2273.1829314945467
+        },
+        {
+          "channel": 3,
+          "after_actual_action_count": 145,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "distance_lower_bound_m": 2913.167393420543,
+          "independent_region_distance_m": 2913.167393520572
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 153,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "distance_lower_bound_m": 2570.494436173472,
+          "independent_region_distance_m": 2570.494436273501
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 154,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "distance_lower_bound_m": 2570.494436173468,
+          "independent_region_distance_m": 2570.4944362734973
+        },
+        {
+          "channel": 3,
+          "after_actual_action_count": 155,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "distance_lower_bound_m": 2389.7430746042733,
+          "independent_region_distance_m": 2389.743074704302
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 164,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "distance_lower_bound_m": 2757.5366949517575,
+          "independent_region_distance_m": 2757.5366950517864
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 164,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "distance_lower_bound_m": 2757.5366949517525,
+          "independent_region_distance_m": 2757.5366950517814
+        },
+        {
+          "channel": 3,
+          "after_actual_action_count": 167,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "distance_lower_bound_m": 1747.6546950354737,
+          "independent_region_distance_m": 1747.6546951355028
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 174,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "distance_lower_bound_m": 2821.290353790569,
+          "independent_region_distance_m": 2821.2903538905985
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 175,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "distance_lower_bound_m": 2821.290353790564,
+          "independent_region_distance_m": 2821.290353890593
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 182,
+          "position": [
+            1851.290353890597,
+            0.0
+          ],
+          "distance_lower_bound_m": 1589.1007556477937,
+          "independent_region_distance_m": 1589.1007557478229
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 184,
+          "position": [
+            1851.290353890597,
+            0.0
+          ],
+          "distance_lower_bound_m": 2757.536694951758,
+          "independent_region_distance_m": 2757.536695051787
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 184,
+          "position": [
+            1851.290353890597,
+            0.0
+          ],
+          "distance_lower_bound_m": 2757.5366949517525,
+          "independent_region_distance_m": 2757.5366950517814
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 190,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "distance_lower_bound_m": 2182.745515785011,
+          "independent_region_distance_m": 2182.74551588504
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 191,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "distance_lower_bound_m": 2570.4944361734733,
+          "independent_region_distance_m": 2570.4944362735023
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 192,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "distance_lower_bound_m": 2570.494436173469,
+          "independent_region_distance_m": 2570.4944362734977
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 199,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "distance_lower_bound_m": 2673.6563426779057,
+          "independent_region_distance_m": 2673.6563427779347
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 201,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "distance_lower_bound_m": 2273.1829313945213,
+          "independent_region_distance_m": 2273.1829314945503
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 201,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "distance_lower_bound_m": 2273.1829313945177,
+          "independent_region_distance_m": 2273.1829314945467
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 207,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 3032.6028416399354,
+          "independent_region_distance_m": 3032.6028417399643
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 208,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 1889.1774158084384,
+          "independent_region_distance_m": 1889.1774159084678
+        },
+        {
+          "channel": 20,
+          "after_actual_action_count": 209,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 1889.1774158084363,
+          "independent_region_distance_m": 1889.1774159084655
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 216,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 3242.781491147983,
+          "independent_region_distance_m": 3242.781491248012
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 225,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "distance_lower_bound_m": 3293.0318963923937,
+          "independent_region_distance_m": 3293.0318964924227
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 234,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "distance_lower_bound_m": 3180.709474333702,
+          "independent_region_distance_m": 3180.7094744337314
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 244,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "distance_lower_bound_m": 2911.7371296835304,
+          "independent_region_distance_m": 2911.73712978356
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 252,
+          "position": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "distance_lower_bound_m": 2500.5048870211976,
+          "independent_region_distance_m": 2500.5048871212266
+        },
+        {
+          "channel": 14,
+          "after_actual_action_count": 259,
+          "position": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "distance_lower_bound_m": 1968.3443949879947,
+          "independent_region_distance_m": 1968.3443950880242
+        }
+      ],
+      "inferred_observation_count": 0,
+      "inferred_absence_credits": 0,
+      "arithmetic_scope": "Positive-only convex geometry with conservative float margins; no interval claim"
+    },
+    "scheduling": {
+      "passed": true,
+      "early_services": 1,
+      "early_service_cost_s": 18.23987500000021,
+      "discovery_stops": 0,
+      "budget_interrupted_services": 0,
+      "boundary": "Checks observed service interval and gates; the omitted next action is not recorded, so exact budget-expiry choice is not independently reconstructed"
+    },
+    "source_contract_files": 56,
+    "boundary": "Real wire and complete inherited safety audit, with explicit new-probe ownership. Pinned continuous radio integration is a model assumption; candidates, shared routes, first-hit costs and all actual choices independently replayed. No source truth is used for ranking; no actual actions are removed."
+  },
+  "input_sha256": "c9c63327b8c01a780294f640e2db7ccf6d92235f909be45f44aca8ae2753cbf8",
+  "final_source_sha256": {
+    "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+    "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+    "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+    "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+    "src/planning/chain_route.py": "0502c7fe525bc64578bda3ecbe5fcfe6f6408a0ad728e3e670223d6d215f29ef",
+    "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+    "src/planning/directional_probe_pair.py": "635d46a7a9571ab8f4a9f9f066b0ad5da0d5febcaf297c3520495bff55926f06",
+    "src/planning/joint_visibility_region.py": "c2df945c3a3dc295827fd7afbbb78793b43184cf61e1d1070f47020293953d7a",
+    "src/planning/positive_hull_probe.py": "b03d5906660ee7565f19acaf8a7f86706957818977e526288bd845c40d9ffb5f",
+    "src/planning/q4_anchor_first_hit.py": "fb1d6a672e68517ce1785d79219d0853b3d47cfecd1caaa46e89327ef6488d37",
+    "src/planning/q4_conditional_belief.py": "8453de4fc80b94c5428eade327a20c601825808a4facc9515ddecbd6e36ba038",
+    "src/planning/q4_directional_cover.py": "e863b3f0fb83e1deba8d1a24c4b929b8fe1caca9927f8b99e514b1deea6da5c1",
+    "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+    "src/practice_control/__init__.py": "45694c74e155e7267239f23656085ae352a59ce7cb5968b0dac6a36abcc9f62d",
+    "src/practice_control/__main__.py": "78cb1245f7f355e1e4e7f855314211848687da00c3f4923d57ea8c1441276c46",
+    "src/practice_control/branch_worker.py": "6e376f01d02606b251404038fe08c73e732297081d1e322656f24926a38c079b",
+    "src/practice_control/bridge.py": "fc28f4a2f96f335bcac64170b9c0a96cbf30f5e50d81a0bd679daacde4714779",
+    "src/practice_control/runner.py": "15c28002cb80b899f7c19b6af2326fd687d0ae7131c05b910bed9ad83f574440",
+    "src/practice_control/runtime.py": "a9e62e85d19fe9081bf5085871715ef809ce9c25c79c58c35358b68b83c43865",
+    "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+    "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+    "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+    "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+    "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+    "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+    "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+    "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+    "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+    "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+    "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+    "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+    "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+    "src/strategies/q4_anchor_first_hit.py": "9894dacd466864aaee0841d07209e0f3c4946899da4892a52de40055356e425e",
+    "src/strategies/q4_clear_before_probe.py": "641e8b0e4e6cce7b6445e88117d08ac23bd073487dfb46b87e903330f678ac69",
+    "src/strategies/q4_cover_search.py": "2bab5ee2f935967670bb7c1107b99a7bba20208372e15aab328a67b15d651404",
+    "src/strategies/q4_joint_continuation.py": "277480e9c22b0bd983a2971ad04fc97f8ff9e3232ed8198445b9d04dc95e024e",
+    "src/strategies/q4_joint_visibility.py": "eb922aae8052b48c9d54cd4b269a088498a3feeddbae254344b6ed73e31ff0e6",
+    "src/strategies/q4_optical_cover.py": "87f8805167a91c364856d3da0f57ea032f4b3ac23b9d9c28c18c0a642136bfa6",
+    "src/strategies/q4_r2_scheduling.py": "48d0f20ed0a073d26f177078f54dd1b40a532038aa74bb0de098c81f84509a44",
+    "src/strategies/q4_range_pruning.py": "c8bd010f186ccd991ffa3cb6727ff1d2cc038c2955bc29f27bb9ab851c37a1d2",
+    "src/strategies/q4_range_scheduling.py": "ad238a4e9c75537223d83ba4b180dc2d316ed71b487497f0f0e5a9bc2d72d76d",
+    "src/strategies/q4_state_search.py": "8d105d02f3cb97ef99a1ccef98b63e5510da3c9c5000f77ee6401fbb39b9de59",
+    "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+    "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+    "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+    "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+    "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+    "experiments/run_q4_state_study.py": "6caa3c63496830f68ac68c19f78e74c4b202f420cd49c4433f7700ed93169bab",
+    "experiments/run_study.py": "863a39fb70bc1af59f7a8a34d6505c677c9c4355e71d160a8e017495b37d9a29",
+    "experiments/run_q4_round2.py": "8c62bf9e4cdf92bde23d34ca4c490952b8f48a5212918def65e02a1119e6c653",
+    "experiments/q4_comparison_bounds.py": "973da2a119eaad526e643aaebc6cf99b9a624af53f850d4dfe85abf1705e8804",
+    "experiments/audit_q4_anchor_first_hit.py": "8545499d05f0f33f8bc95cd4e1acf9e1e7fbc4a1239c3b029f0c15ecb82238d6",
+    "experiments/audit_q4_clear_before_probe.py": "68c7ef07dca4cc9f7a60351332911c25054c5e0392220830637bfd89518e62c4",
+    "experiments/audit_q4_clear_before_probe_batch.py": "0772d47a0ad8a9789932501baddd34989799919cbb7ed1afa51f156db3c2e393",
+    "experiments/audit_q4_cover.py": "96cf68e18fed8bd2bbb72f7cd11858181b2306ab5b4837f530cdd7bd09f2f09c",
+    "experiments/audit_q4_joint_continuation.py": "5a04f00ee3796312b0ef0862fedf1bfefe1f9d57101e43eacbf11c7708db99e8",
+    "experiments/audit_q4_joint_continuation_batch.py": "67fbf4d8b8e92f8ba41dd221f4d8ab2cf62912637f30466bd1c6b26f85838e18",
+    "experiments/audit_q4_joint_visibility.py": "1f5dd8a08676c94128a38ff26012bcb9fa590a0d779156f4cfc9f200721b970e",
+    "experiments/audit_q4_joint_visibility_prefix.py": "398047b0ac94f3b1600dcf861e052fef4da2e430828b21c2bdd567b66b9a7ab4",
+    "experiments/audit_q4_joint_visibility_prefix_batch.py": "3fd448c74bd57887d9745f03bef1d751c8c52ff3c590651c228948622669a196",
+    "experiments/audit_q4_optical.py": "0e773d944c0512c292854c3cc2de679a98ceb8c8b70e4d6caec0d32ed086d16a",
+    "experiments/audit_q4_per_source.py": "e2f2e5f2a52e286ffb483137a8ff9fc13e8294a407848719abd19b6397b34518",
+    "experiments/audit_q4_range.py": "8995a087ec085cbef445ba455f68dc81d426c1e51b3406e81184c8888cdd3578",
+    "experiments/audit_q4_scheduling.py": "836d82d30280d24b612ca96367ca7e9b33b0b1b76f441bbfbcf2d674606ff5be",
+    "experiments/audit_q4_state.py": "5288f280acf48f524bdda630ca38b125c323caa47b36fbb4a3d098fee2b8a164",
+    "experiments/run_q4_per_source.py": "0c5b751864591dde658fb18b825f08797da90c19e0e4128a054e19abfe1ffae5",
+    "experiments/q4_anchor_first_hit_release.py": "56dc0938905c908435aacdcc3f8bdbc3442d5714ca9855b2dedf7a6f3d4dbed6",
+    "research/q4_anchor_first_hit/PROTOCOL.md": "4849373b5a2ba88d14dd760d4204cda073814d8a742a9b348af773a5512edb0b",
+    "research/q4_anchor_first_hit/spec.json": "5137bd3cc5ee6fdddf60f0e1662442731823222defd9ae494f96c539562a5535"
+  }
+}
