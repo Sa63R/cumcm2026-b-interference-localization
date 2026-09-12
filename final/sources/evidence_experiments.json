@@ -1,0 +1,3399 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-09-12",
+  "purpose": "Q3论文实验段落及绘图结构化证据",
+  "no_new_experiments": true,
+  "source_policy": "只读既有报告、comparison JSON和gzip轨迹；无新增实验、模型运行、远程连接或正式测试",
+  "entries": [
+    {
+      "id": "E01",
+      "claim": "首版四种冻结方法同场景比较",
+      "source": {
+        "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-random\\comparison.json",
+        "sha256": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991",
+        "selector": "$.methods; $.comparisons"
+      },
+      "stage": "final_random",
+      "case_count": 256,
+      "methods": {
+        "baseline": {
+          "strategy": "rollout_frozen",
+          "runs": 256,
+          "expected_runs": 256,
+          "complete": true,
+          "successful_runs": 256,
+          "failed_clear_count": 0,
+          "raw_mean_total_time_s": 3361.655233089844,
+          "penalized_mean_total_time_s": 3361.655233089844,
+          "raw_p95_total_time_s": 3843.9074375,
+          "raw_max_total_time_s": 4144.106828,
+          "mean_time_per_source_s": 265.90428117025124,
+          "mean_program_runtime_s": 5.894292383402345,
+          "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+          "penalized_p95_total_time_s": 3843.9074375,
+          "mean_components_s": {
+            "movement_s": 2540.315389339844,
+            "switching_s": 112.21875,
+            "detection_s": 644.94140625,
+            "optical_s": 38.5078125,
+            "removal_s": 25.671875
+          },
+          "mean_measurement_count": 128.98828125,
+          "failure_case_ids": []
+        },
+        "state": {
+          "strategy": "state_search_relocating_cover_v1",
+          "runs": 256,
+          "expected_runs": 256,
+          "complete": true,
+          "successful_runs": 256,
+          "failed_clear_count": 0,
+          "raw_mean_total_time_s": 3081.408645609375,
+          "penalized_mean_total_time_s": 3081.408645609375,
+          "raw_p95_total_time_s": 3520.78801575,
+          "raw_max_total_time_s": 3939.107932,
+          "mean_time_per_source_s": 243.97708162221332,
+          "mean_program_runtime_s": 0.6209824389180625,
+          "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+          "penalized_p95_total_time_s": 3520.78801575,
+          "mean_components_s": {
+            "movement_s": 2327.631301859375,
+            "switching_s": 107.0390625,
+            "detection_s": 582.55859375,
+            "optical_s": 38.5078125,
+            "removal_s": 25.671875
+          },
+          "mean_measurement_count": 116.51171875,
+          "failure_case_ids": []
+        },
+        "rl": {
+          "strategy": "rl-gae095-u512",
+          "runs": 256,
+          "expected_runs": 256,
+          "complete": true,
+          "successful_runs": 256,
+          "failed_clear_count": 0,
+          "raw_mean_total_time_s": 3149.7872345703126,
+          "penalized_mean_total_time_s": 3149.7872345703126,
+          "raw_p95_total_time_s": 3624.6095025,
+          "raw_max_total_time_s": 4052.357134,
+          "mean_time_per_source_s": 249.3807350655343,
+          "mean_program_runtime_s": 0.18600763785156005,
+          "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+          "penalized_p95_total_time_s": 3624.6095025,
+          "mean_components_s": {
+            "movement_s": 2371.0762970703126,
+            "switching_s": 105.234375,
+            "detection_s": 609.296875,
+            "optical_s": 38.5078125,
+            "removal_s": 25.671875
+          },
+          "mean_measurement_count": 121.859375,
+          "failure_case_ids": []
+        },
+        "geo": {
+          "strategy": "geometric_probe_relocation",
+          "runs": 256,
+          "expected_runs": 256,
+          "complete": true,
+          "successful_runs": 256,
+          "failed_clear_count": 0,
+          "raw_mean_total_time_s": 3214.9596198125,
+          "penalized_mean_total_time_s": 3214.9596198125,
+          "raw_p95_total_time_s": 3604.86529925,
+          "raw_max_total_time_s": 3941.962915,
+          "mean_time_per_source_s": 254.4083370396982,
+          "mean_program_runtime_s": 2.251578142972633,
+          "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+          "penalized_p95_total_time_s": 3604.86529925,
+          "mean_components_s": {
+            "movement_s": 2428.8268073125,
+            "switching_s": 113.33984375,
+            "detection_s": 608.61328125,
+            "optical_s": 38.5078125,
+            "removal_s": 25.671875
+          },
+          "mean_measurement_count": 121.72265625,
+          "failure_case_ids": []
+        }
+      },
+      "paired_comparisons": {
+        "state": {
+          "pairs": 256,
+          "mean_seconds_saved": 280.24658748046875,
+          "saving_ci95_s": [
+            259.4746846794924,
+            301.1738465120117
+          ],
+          "mean_reduction_fraction": 0.08336565413428254,
+          "p95_time_ratio": 0.9159398536505472,
+          "worst_paired_regression_s": 125.08145000000013,
+          "wins": 241,
+          "losses": 15,
+          "ties": 0
+        },
+        "rl": {
+          "pairs": 256,
+          "mean_seconds_saved": 211.86799851953126,
+          "saving_ci95_s": [
+            187.03592282246103,
+            237.12162095820298
+          ],
+          "mean_reduction_fraction": 0.06302490405144678,
+          "p95_time_ratio": 0.9429492154622154,
+          "worst_paired_regression_s": 365.446723,
+          "wins": 216,
+          "losses": 40,
+          "ties": 0
+        },
+        "geo": {
+          "pairs": 256,
+          "mean_seconds_saved": 146.69561327734374,
+          "saving_ci95_s": [
+            125.78905762978518,
+            167.34766431894536
+          ],
+          "mean_reduction_fraction": 0.04363791141737927,
+          "p95_time_ratio": 0.9378127225650709,
+          "worst_paired_regression_s": 267.73412400000007,
+          "wins": 204,
+          "losses": 52,
+          "ties": 0
+        }
+      },
+      "trace_root": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random",
+      "trace_method_directories": [
+        "baseline",
+        "state-future-cover",
+        "rl-gae095-u512",
+        "geo-future-cover"
+      ],
+      "trace_pattern": "case-{seed}.json.gz",
+      "limitations": "随机256局与固定结构压力28局分开；saving_ci95_s是配对节省CI，不能画成均时柱的误差条；统计不代表跨训练种子不确定性"
+    },
+    {
+      "id": "E02",
+      "claim": "首版四种冻结方法同场景比较",
+      "source": {
+        "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-stress\\comparison.json",
+        "sha256": "ee52b8b04cee1974910a0a7668a685ddce9845207c61c0a9a12b0844bb6bccdb",
+        "selector": "$.methods; $.comparisons"
+      },
+      "stage": "final_stress",
+      "case_count": 28,
+      "methods": {
+        "baseline": {
+          "strategy": "rollout_frozen",
+          "runs": 28,
+          "expected_runs": 28,
+          "complete": true,
+          "successful_runs": 28,
+          "failed_clear_count": 0,
+          "raw_mean_total_time_s": 3627.4004981785715,
+          "penalized_mean_total_time_s": 3627.4004981785715,
+          "raw_p95_total_time_s": 4881.47127115,
+          "raw_max_total_time_s": 4969.496645,
+          "mean_time_per_source_s": 285.733239102923,
+          "mean_program_runtime_s": 6.219172913714179,
+          "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+          "penalized_p95_total_time_s": 4881.47127115,
+          "mean_components_s": {
+            "movement_s": 2768.1504981785715,
+            "switching_s": 109.25,
+            "detection_s": 685.0,
+            "optical_s": 39.0,
+            "removal_s": 26.0
+          },
+          "mean_measurement_count": 137,
+          "failure_case_ids": []
+        },
+        "state": {
+          "strategy": "state_search_relocating_cover_v1",
+          "runs": 28,
+          "expected_runs": 28,
+          "complete": true,
+          "successful_runs": 28,
+          "failed_clear_count": 0,
+          "raw_mean_total_time_s": 3046.3358260714285,
+          "penalized_mean_total_time_s": 3046.3358260714285,
+          "raw_p95_total_time_s": 4489.2594953,
+          "raw_max_total_time_s": 4611.189413,
+          "mean_time_per_source_s": 240.4656303954984,
+          "mean_program_runtime_s": 0.5126956207497122,
+          "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+          "penalized_p95_total_time_s": 4489.2594953,
+          "mean_components_s": {
+            "movement_s": 2308.657254642857,
+            "switching_s": 103.75,
+            "detection_s": 568.9285714285714,
+            "optical_s": 39.0,
+            "removal_s": 26.0
+          },
+          "mean_measurement_count": 113.78571428571429,
+          "failure_case_ids": []
+        },
+        "rl": {
+          "strategy": "rl-gae095-u512",
+          "runs": 28,
+          "expected_runs": 28,
+          "complete": true,
+          "successful_runs": 28,
+          "failed_clear_count": 0,
+          "raw_mean_total_time_s": 3164.366973892857,
+          "penalized_mean_total_time_s": 3164.366973892857,
+          "raw_p95_total_time_s": 4687.368519,
+          "raw_max_total_time_s": 4769.930785,
+          "mean_time_per_source_s": 250.20385832594414,
+          "mean_program_runtime_s": 0.21323167803568918,
+          "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+          "penalized_p95_total_time_s": 4687.368519,
+          "mean_components_s": {
+            "movement_s": 2366.0455453214286,
+            "switching_s": 105.28571428571429,
+            "detection_s": 628.0357142857143,
+            "optical_s": 39.0,
+            "removal_s": 26.0
+          },
+          "mean_measurement_count": 125.60714285714286,
+          "failure_case_ids": []
+        },
+        "geo": {
+          "strategy": "geometric_probe_relocation",
+          "runs": 28,
+          "expected_runs": 28,
+          "complete": true,
+          "successful_runs": 28,
+          "failed_clear_count": 0,
+          "raw_mean_total_time_s": 3254.1512870714287,
+          "penalized_mean_total_time_s": 3254.1512870714287,
+          "raw_p95_total_time_s": 4396.5193967,
+          "raw_max_total_time_s": 4755.570644,
+          "mean_time_per_source_s": 256.82276716489434,
+          "mean_program_runtime_s": 2.2583551895356453,
+          "raw_time_caveat": "Failed early termination can reduce raw time. Qualification requires every case successful.",
+          "penalized_p95_total_time_s": 4396.5193967,
+          "mean_components_s": {
+            "movement_s": 2502.6155727857144,
+            "switching_s": 106.53571428571429,
+            "detection_s": 580.0,
+            "optical_s": 39.0,
+            "removal_s": 26.0
+          },
+          "mean_measurement_count": 116,
+          "failure_case_ids": []
+        }
+      },
+      "paired_comparisons": {
+        "state": {
+          "pairs": 28,
+          "mean_seconds_saved": 581.0646721071429,
+          "saving_ci95_s": [
+            500.65166313928563,
+            661.8222426625
+          ],
+          "mean_reduction_fraction": 0.1601876253804655,
+          "p95_time_ratio": 0.9196529582857504,
+          "worst_paired_regression_s": -151.04273799999964,
+          "wins": 28,
+          "losses": 0,
+          "ties": 0
+        },
+        "rl": {
+          "pairs": 28,
+          "mean_seconds_saved": 463.03352428571435,
+          "saving_ci95_s": [
+            323.06174225714295,
+            590.4833061687501
+          ],
+          "mean_reduction_fraction": 0.12764885612113075,
+          "p95_time_ratio": 0.9602368340673912,
+          "worst_paired_regression_s": 384.3625649999999,
+          "wins": 25,
+          "losses": 3,
+          "ties": 0
+        },
+        "geo": {
+          "pairs": 28,
+          "mean_seconds_saved": 373.24921110714286,
+          "saving_ci95_s": [
+            264.98910527857134,
+            476.4730320678571
+          ],
+          "mean_reduction_fraction": 0.10289716045817454,
+          "p95_time_ratio": 0.9006545675448064,
+          "worst_paired_regression_s": 430.24948799999993,
+          "wins": 26,
+          "losses": 2,
+          "ties": 0
+        }
+      },
+      "trace_root": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_stress",
+      "trace_method_directories": [
+        "baseline",
+        "state-future-cover",
+        "rl-gae095-u512",
+        "geo-future-cover"
+      ],
+      "trace_pattern": "case-{seed}.json.gz",
+      "limitations": "随机256局与固定结构压力28局分开；saving_ci95_s是配对节省CI，不能画成均时柱的误差条；统计不代表跨训练种子不确定性"
+    },
+    {
+      "id": "E03",
+      "claim": "首版冻结、候选筛选与分布合同",
+      "source": {
+        "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\FIRST_VERSION_REPORT.md",
+        "sha256": "c557ed9b3f84f5ed6621ddce3b6d18848f5fb2cec9f0d16960d714049cf7fec6",
+        "selector": "公平性、复现和证据范围"
+      },
+      "baseline": "rollout_frozen已有前瞻决策，不是最初朴素策略",
+      "development_seeds": [
+        6000,
+        6047
+      ],
+      "selection_seeds": [
+        6048,
+        6095
+      ],
+      "final_random_seeds": [
+        800000,
+        800255
+      ],
+      "stress_seeds": [
+        810000,
+        810027
+      ],
+      "source_count": [
+        10,
+        16
+      ],
+      "domain_radius_m": 1800,
+      "reception_radius_m": [
+        1000,
+        1500
+      ],
+      "all_runs": 1136,
+      "successful_clears_audited": 14600,
+      "limitations": "按面积均匀源位置、均匀接收半径为研究分布；四方法为系统比较；安全结果仅覆盖所测记录"
+    },
+    {
+      "id": "E04",
+      "claim": "同Linux CPU单线程串行计时",
+      "source": {
+        "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\README.md",
+        "sha256": "933498d46e8caba90c74899f421bcaa547ce4f1962fb7491a2a94269f1ef9e72",
+        "selector": "whole file"
+      },
+      "stage": "opened_development_runtime",
+      "seed_range": [
+        6000,
+        6015
+      ],
+      "rows": [
+        {
+          "method": "baseline",
+          "mean_program_runtime_s": 5.844822217749652,
+          "p95_program_runtime_s": 6.6576400068515795,
+          "timed_cases": 32,
+          "repeats": 2,
+          "all_successful": true,
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\baseline.json",
+            "sha256": "7cf921734b56d44def59ba81d3f5a6c607e6515002010c2b43eaa89c89fdc0bb",
+            "selector": "$.mean_program_runtime_s; $.p95_program_runtime_s; $.rows"
+          }
+        },
+        {
+          "method": "state-future-cover",
+          "mean_program_runtime_s": 0.591681866031422,
+          "p95_program_runtime_s": 0.7698401832978561,
+          "timed_cases": 32,
+          "repeats": 2,
+          "all_successful": true,
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\state-future-cover.json",
+            "sha256": "db56e901b43316a5253796b5f2ef00b2937d99e6d3b06aa6a98d452e63d6334d",
+            "selector": "$.mean_program_runtime_s; $.p95_program_runtime_s; $.rows"
+          }
+        },
+        {
+          "method": "rl-gae095-u512",
+          "mean_program_runtime_s": 0.17016169996782082,
+          "p95_program_runtime_s": 0.19636658880153846,
+          "timed_cases": 32,
+          "repeats": 2,
+          "all_successful": true,
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\rl-gae095-u512.json",
+            "sha256": "2696a371797d6926b4c9b8fc50c69c4464c8f97e92ac0fac3a48570b88901141",
+            "selector": "$.mean_program_runtime_s; $.p95_program_runtime_s; $.rows"
+          }
+        },
+        {
+          "method": "geo-future-cover",
+          "mean_program_runtime_s": 2.0980691298436795,
+          "p95_program_runtime_s": 2.679628016999413,
+          "timed_cases": 32,
+          "repeats": 2,
+          "all_successful": true,
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\geo-future-cover.json",
+            "sha256": "e13aae79919eaddaaf82fd1e9fed71ed3a505c2c87bb4c42d113e334936e93cc",
+            "selector": "$.mean_program_runtime_s; $.p95_program_runtime_s; $.rows"
+          }
+        }
+      ],
+      "limitations": "排除Python启动和预热；策略+仿真接口，非纯网络延迟；每方法32局不是新增泛化测试"
+    },
+    {
+      "id": "E05",
+      "claim": "inferred_silence_confirmation",
+      "sources": [
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\inferred_silence_confirmation\\paired_summary.json",
+          "sha256": "d7a3fc436428f96731cda28b739747cdd12fa406c1c72ee2415d4d327aeb322b",
+          "selector": "$.overall; $.pair"
+        },
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\state_search_v1\\INFERRED_SILENCE.md",
+          "sha256": "6620fa1192c9030747a8addb1c64553787f9c3aad20c3f804f2d6d56c06a650d",
+          "selector": "独立64局确认"
+        }
+      ],
+      "stage": "frozen_confirmation_synthetic_training_distribution",
+      "seed_range": [
+        109017,
+        109080
+      ],
+      "overall": {
+        "axis_v1": {
+          "n": 64,
+          "mean_s": 3132.566716078125,
+          "mean_wall_s": 0.6209750218749832,
+          "p95_s": 3479.2444944,
+          "successes": 64,
+          "failed_clears": 0,
+          "time_breakdown": {
+            "movement_s": 2369.394841078125,
+            "switching_s": 108.640625,
+            "detection_s": 587.890625,
+            "optical_s": 39.984375,
+            "removal_s": 26.65625
+          }
+        },
+        "inferred_silence": {
+          "n": 64,
+          "mean_s": 3119.316716078125,
+          "mean_wall_s": 0.6291548937496145,
+          "p95_s": 3477.4444944,
+          "successes": 64,
+          "failed_clears": 0,
+          "time_breakdown": {
+            "movement_s": 2369.394841078125,
+            "switching_s": 106.40625,
+            "detection_s": 576.875,
+            "optical_s": 39.984375,
+            "removal_s": 26.65625
+          }
+        }
+      },
+      "pair": {
+        "n": 64,
+        "mean_saved_s": 13.25,
+        "relative_mean_saved": 0.004229758278409017,
+        "paired_bootstrap_95ci_saved_s": [
+          9.75,
+          16.96875
+        ],
+        "wins": 37,
+        "losses": 0,
+        "ties": 27,
+        "max_regression_s": -0.0,
+        "p95_ratio": 1.0
+      },
+      "trace_root": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\inferred_silence_confirmation",
+      "limitations": "各自独立64局与各自参照，不跨组直接相减均值；移站可有逐局退化"
+    },
+    {
+      "id": "E06",
+      "claim": "coverage_relocation_confirmation",
+      "sources": [
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\coverage_relocation_confirmation\\paired_summary.json",
+          "sha256": "bc3218d853bbdbe3c318849ad3da7646d4a09a6257963614213bc77352129e31",
+          "selector": "$.overall; $.pair"
+        },
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\state_search_v1\\COVERAGE_RELOCATION.md",
+          "sha256": "0f823abf0ed0411ecbc362deef68c8bd8e986c1fb41e7a5185c1eaf79fa54088",
+          "selector": "独立64局确认"
+        }
+      ],
+      "stage": "frozen_confirmation_synthetic_training_distribution",
+      "seed_range": [
+        114017,
+        114080
+      ],
+      "overall": {
+        "axis_inferred": {
+          "n": 64,
+          "mean_s": 3100.1996885625,
+          "mean_wall_s": 0.46230125468764527,
+          "p95_s": 3512.3873845,
+          "successes": 64,
+          "failed_clears": 0,
+          "time_breakdown": {
+            "movement_s": 2336.8715635625,
+            "switching_s": 108.5625,
+            "detection_s": 590.390625,
+            "optical_s": 38.625,
+            "removal_s": 25.75
+          }
+        },
+        "relocating_cover": {
+          "n": 64,
+          "mean_s": 3073.604982578125,
+          "mean_wall_s": 0.9215859734375726,
+          "p95_s": 3483.6638218999997,
+          "successes": 64,
+          "failed_clears": 0,
+          "time_breakdown": {
+            "movement_s": 2317.308107578125,
+            "switching_s": 107.234375,
+            "detection_s": 584.6875,
+            "optical_s": 38.625,
+            "removal_s": 25.75
+          }
+        }
+      },
+      "pair": {
+        "n": 64,
+        "mean_saved_s": 26.594705984375047,
+        "relative_mean_saved": 0.008578384831948189,
+        "paired_bootstrap_95ci_saved_s": [
+          3.11248907812503,
+          53.16556703125005
+        ],
+        "wins": 44,
+        "losses": 20,
+        "ties": 0,
+        "max_regression_s": 215.28621699999985,
+        "p95_ratio": 1.0413747975164378
+      },
+      "trace_root": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\coverage_relocation_confirmation",
+      "limitations": "各自独立64局与各自参照，不跨组直接相减均值；移站可有逐局退化"
+    },
+    {
+      "id": "E07",
+      "claim": "相对无信号证书与16源上限最终消融",
+      "sources": [
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\derived_silence\\final\\summary.json",
+          "sha256": "55188ac754782402916dfbbb6ae31a125ac4e6577ff5590f90ee5c3cce392cf9",
+          "selector": "$.averages; $.comparisons"
+        },
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\derived_silence\\stress\\summary.json",
+          "sha256": "c5dfbacd20111480786db44a06a8a8a46ec49db2ba8f06df45ab0f253d64fcf6",
+          "selector": "$.averages; $.comparisons"
+        },
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-round2\\research\\round2\\DERIVED_SILENCE_VALIDATION.md",
+          "sha256": "f5e06370c809b7b61f14db5fcb04a0b26794efd6a7a85aa3ed0ad6f08d72af69",
+          "selector": "whole file"
+        }
+      ],
+      "source_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+      "stage": "independent_final_random_round2",
+      "seed_range": [
+        217001,
+        217256
+      ],
+      "averages": {
+        "baseline": {
+          "runs": 256,
+          "successful": 256,
+          "failed_clears": 0,
+          "mean_s": 3122.2580525234375,
+          "p95_s": 3514.0048055,
+          "max_s": 3794.768013,
+          "mean_runtime_s": 1.0142072570319556,
+          "p95_runtime_s": 1.3101000000024214,
+          "max_runtime_s": 1.7461074000020744,
+          "mean_cpu_s": 1.0020751953125,
+          "mean_measurements": 116.46484375,
+          "mean_movement_s": 2368.0002400234375
+        },
+        "relative_only": {
+          "runs": 256,
+          "successful": 256,
+          "failed_clears": 0,
+          "mean_s": 3109.1525837734375,
+          "p95_s": 3506.51031825,
+          "max_s": 3794.768013,
+          "mean_runtime_s": 1.0152790324211765,
+          "p95_runtime_s": 1.3513888499983295,
+          "max_runtime_s": 1.671878499997547,
+          "mean_cpu_s": 1.00506591796875,
+          "mean_measurements": 114.28125,
+          "mean_movement_s": 2368.0002400234375
+        },
+        "cap_only": {
+          "runs": 256,
+          "successful": 256,
+          "failed_clears": 0,
+          "mean_s": 3120.5353962734375,
+          "p95_s": 3514.0048055,
+          "max_s": 3769.768013,
+          "mean_runtime_s": 1.0075035257806348,
+          "p95_runtime_s": 1.3180127249943325,
+          "max_runtime_s": 1.528635900001973,
+          "mean_cpu_s": 0.996337890625,
+          "mean_measurements": 116.18359375,
+          "mean_movement_s": 2368.0002400234375
+        },
+        "derived_silence": {
+          "runs": 256,
+          "successful": 256,
+          "failed_clears": 0,
+          "mean_s": 3107.4299275234375,
+          "p95_s": 3505.5696045,
+          "max_s": 3769.768013,
+          "mean_runtime_s": 1.0134175058591381,
+          "p95_runtime_s": 1.304489600006491,
+          "max_runtime_s": 1.7744744999945397,
+          "mean_cpu_s": 1.0020751953125,
+          "mean_measurements": 114,
+          "mean_movement_s": 2368.0002400234375
+        }
+      },
+      "comparisons": {
+        "relative_only": {
+          "pairs": 256,
+          "safe": true,
+          "mean_saved_s": 13.10546875,
+          "ci95_saved_s": [
+            11.51953125,
+            14.7421875
+          ],
+          "mean_reduction_fraction": 0.004197432924997356,
+          "wins": 183,
+          "losses": 0,
+          "ties": 73,
+          "worst_paired_regression_s": -0.0,
+          "p90_paired_regression_s": 0.0,
+          "pilot_expansion_gate": true,
+          "pareto_confirmation_gate": true,
+          "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
+        },
+        "cap_only": {
+          "pairs": 256,
+          "safe": true,
+          "mean_saved_s": 1.72265625,
+          "ci95_saved_s": [
+            1.125,
+            2.39453125
+          ],
+          "mean_reduction_fraction": 0.0005517341042992054,
+          "wins": 30,
+          "losses": 0,
+          "ties": 226,
+          "worst_paired_regression_s": -0.0,
+          "p90_paired_regression_s": 0.0,
+          "pilot_expansion_gate": true,
+          "pareto_confirmation_gate": true,
+          "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
+        },
+        "derived_silence": {
+          "pairs": 256,
+          "safe": true,
+          "mean_saved_s": 14.828125,
+          "ci95_saved_s": [
+            13.0271484375,
+            16.6953125
+          ],
+          "mean_reduction_fraction": 0.004749167029296561,
+          "wins": 190,
+          "losses": 0,
+          "ties": 66,
+          "worst_paired_regression_s": -0.0,
+          "p90_paired_regression_s": 0.0,
+          "pilot_expansion_gate": true,
+          "pareto_confirmation_gate": true,
+          "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
+        }
+      },
+      "stress_seed_range": [
+        218001,
+        218028
+      ],
+      "stress_averages": {
+        "baseline": {
+          "runs": 28,
+          "successful": 28,
+          "failed_clears": 0,
+          "mean_s": 2993.2949319285713,
+          "p95_s": 4404.8412892999995,
+          "max_s": 4587.549542,
+          "mean_runtime_s": 0.7428940535724645,
+          "p95_runtime_s": 1.1429900150011234,
+          "max_runtime_s": 1.2573905999888666,
+          "mean_cpu_s": 0.7338169642857143,
+          "mean_measurements": 112.89285714285714,
+          "mean_movement_s": 2260.3663605
+        },
+        "relative_only": {
+          "runs": 28,
+          "successful": 28,
+          "failed_clears": 0,
+          "mean_s": 2987.1163605,
+          "p95_s": 4404.8412892999995,
+          "max_s": 4587.549542,
+          "mean_runtime_s": 0.7537686178579212,
+          "p95_runtime_s": 1.2020737399980133,
+          "max_runtime_s": 1.2989680000027874,
+          "mean_cpu_s": 0.7466517857142857,
+          "mean_measurements": 111.85714285714286,
+          "mean_movement_s": 2260.3663605
+        },
+        "cap_only": {
+          "runs": 28,
+          "successful": 28,
+          "failed_clears": 0,
+          "mean_s": 2992.4020747857144,
+          "p95_s": 4404.8412892999995,
+          "max_s": 4568.549542,
+          "mean_runtime_s": 0.7355916535717759,
+          "p95_runtime_s": 1.0711667999938073,
+          "max_runtime_s": 1.1016557000111789,
+          "mean_cpu_s": 0.7282366071428571,
+          "mean_measurements": 112.75,
+          "mean_movement_s": 2260.3663605
+        },
+        "derived_silence": {
+          "runs": 28,
+          "successful": 28,
+          "failed_clears": 0,
+          "mean_s": 2986.223503357143,
+          "p95_s": 4404.8412892999995,
+          "max_s": 4568.549542,
+          "mean_runtime_s": 0.7184143357143122,
+          "p95_runtime_s": 1.0474450900001102,
+          "max_runtime_s": 1.099650099989958,
+          "mean_cpu_s": 0.7120535714285714,
+          "mean_measurements": 111.71428571428571,
+          "mean_movement_s": 2260.3663605
+        }
+      },
+      "stress_comparisons": {
+        "relative_only": {
+          "pairs": 28,
+          "safe": true,
+          "mean_saved_s": 6.178571428571429,
+          "ci95_saved_s": [
+            2.7857142857142856,
+            10.035714285714286
+          ],
+          "mean_reduction_fraction": 0.0020641372030087905,
+          "wins": 12,
+          "losses": 0,
+          "ties": 16,
+          "worst_paired_regression_s": -0.0,
+          "p90_paired_regression_s": 0.0,
+          "pilot_expansion_gate": true,
+          "pareto_confirmation_gate": true,
+          "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
+        },
+        "cap_only": {
+          "pairs": 28,
+          "safe": true,
+          "mean_saved_s": 0.8928571428571429,
+          "ci95_saved_s": [
+            0.0,
+            2.4642857142857144
+          ],
+          "mean_reduction_fraction": 0.0002982857229781489,
+          "wins": 2,
+          "losses": 0,
+          "ties": 26,
+          "worst_paired_regression_s": -0.0,
+          "p90_paired_regression_s": 0.0,
+          "pilot_expansion_gate": false,
+          "pareto_confirmation_gate": false,
+          "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
+        },
+        "derived_silence": {
+          "pairs": 28,
+          "safe": true,
+          "mean_saved_s": 7.071428571428571,
+          "ci95_saved_s": [
+            3.642857142857143,
+            10.964285714285714
+          ],
+          "mean_reduction_fraction": 0.0023624229259869393,
+          "wins": 13,
+          "losses": 0,
+          "ties": 15,
+          "worst_paired_regression_s": -0.0,
+          "p90_paired_regression_s": 0.0,
+          "pilot_expansion_gate": true,
+          "pareto_confirmation_gate": true,
+          "gate_scope": "Only supplied cases; no promotion until final independent and certificate audits"
+        }
+      },
+      "query_count_saved": 631,
+      "total_savings_s": 3796,
+      "total_detection_saved_s": 3155,
+      "total_switching_saved_s": 641,
+      "pure_deletion_cases": 252,
+      "station_reordering_cases": 4,
+      "trace_root": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\derived_silence\\final\\records",
+      "limitations": "与E01不同场景/版本；baseline为原v1；不能把各模块收益机械相加"
+    },
+    {
+      "id": "E08",
+      "claim": "首版所选PPO模型及真实继承链",
+      "source": {
+        "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_last_ablation_results.md",
+        "sha256": "115a0eaeae865bd7634c7352bbbfd188f84fdc5d241a194ba19f123fcf7b0d61",
+        "selector": "lines 32-65"
+      },
+      "source_commit": "de7d65b60ec05e4d1098f7b5a2c9c7a99c392adb",
+      "checkpoint_sha256": "8985b7fc8d1709c5a54bb1aaf8f21df66f56782119eb901163f723a03281734f",
+      "parameters": 62882,
+      "hidden": 96,
+      "candidate_features": 60,
+      "global_context": 12,
+      "total_policy_episodes": 57344,
+      "actual_behavior_cloning_episodes": 0,
+      "training_chain": [
+        {
+          "trial": "joint-cold-mlp-001",
+          "updates": 512,
+          "episodes": 16384,
+          "seeds": [
+            160001,
+            176384
+          ],
+          "training_seed": 9112032,
+          "lambda": 1
+        },
+        {
+          "trial": "cold-finetune-ppo-001",
+          "updates": 384,
+          "episodes": 12288,
+          "seeds": [
+            140001,
+            152288
+          ],
+          "training_seed": 9112034,
+          "lambda": 1
+        },
+        {
+          "trial": "cold-finetune-ppo-002",
+          "updates": 384,
+          "episodes": 12288,
+          "seeds": [
+            120001,
+            132288
+          ],
+          "training_seed": 9112035,
+          "lambda": 1
+        },
+        {
+          "trial": "cold-gae095-001",
+          "updates": 512,
+          "episodes": 16384,
+          "seeds": [
+            180001,
+            196384
+          ],
+          "training_seed": 9112037,
+          "lambda": 0.95
+        }
+      ],
+      "limitations": "每阶段optimizer重建；有限候选和几何兜底仍固定；不是同一个optimizer连续1792更新"
+    },
+    {
+      "id": "E09",
+      "claim": "GAE有界对照及其他RL负结果",
+      "sources": [
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_last_ablation_results.md",
+          "sha256": "115a0eaeae865bd7634c7352bbbfd188f84fdc5d241a194ba19f123fcf7b0d61",
+          "selector": "lines 5-18"
+        },
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_training_audit\\README.md",
+          "sha256": "ed18ce26ec3b2093d6e3279f4a7bedaa32d2bbb4a4812fd1854af906e069d411",
+          "selector": "动作集初始化与后续学习；v3/v4覆盖负债表示"
+        }
+      ],
+      "stage": "reused_development",
+      "case_count": 48,
+      "seed_range": [
+        6000,
+        6047
+      ],
+      "rows": [
+        {
+          "name": "GAE0.95 vs matched lambda1",
+          "baseline": "cold-route-v3-001 u512",
+          "candidate": "cold-gae095-001 u512",
+          "mean_saved_s": 62.377,
+          "ci95_saved_s": [
+            19.88,
+            104.957
+          ],
+          "candidate_mean_s": 3114.041,
+          "episodes_per_arm": 16384
+        },
+        {
+          "name": "GAE0.95 vs parent",
+          "baseline": "best002",
+          "candidate": "cold-gae095-001 u512",
+          "mean_saved_s": 48.204,
+          "ci95_saved_s": [
+            -4.726,
+            100.606
+          ],
+          "candidate_mean_s": 3114.041
+        },
+        {
+          "name": "strong attention vs parent",
+          "baseline": "best002",
+          "candidate": "cold-strong-attention-001 u512",
+          "mean_saved_s": -25.981,
+          "ci95_saved_s": [
+            -71.425,
+            19.108
+          ],
+          "candidate_mean_s": 3188.226
+        },
+        {
+          "name": "axis training vs own initialization",
+          "baseline": "axis initialized",
+          "candidate": "cold-probes-axis_quantiles-001 u512",
+          "mean_saved_s": -15.725,
+          "ci95_saved_s": [
+            -70.468,
+            36.384
+          ],
+          "candidate_mean_s": 3149.841
+        },
+        {
+          "name": "v4 coverage debt vs parent",
+          "baseline": "best002",
+          "candidate": "cold-route-v4-001 u512",
+          "mean_saved_s": 2.015,
+          "ci95_saved_s": [
+            -40.678,
+            44.6
+          ],
+          "candidate_mean_s": 3160.23
+        }
+      ],
+      "complete_training_trials": 18,
+      "fixed_validation_endpoints": 53,
+      "all_policy_samples": 359168,
+      "additional_paired_baseline_samples": 11968,
+      "curve_data": {
+        "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_training_audit\\training_curves.json.gz",
+        "sha256": "a5b7500d4166f207beb806dac4919d29dfbdf4a8b9c838f1084db65f9c512373",
+        "selector": "gzip JSON actual per-update scalars"
+      },
+      "audit_index": {
+        "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_training_audit\\audit.json",
+        "sha256": "18352c14f73330b95066c14c1cf923e8b4ae65ed1518392abb3a27cd50cd29fb",
+        "selector": "trials and fixed validation endpoints"
+      },
+      "limitations": "同训练seed的场景CI不等于跨训练seed不确定性；训练曲线与固定验证分开；不能插值虚构未评端点"
+    },
+    {
+      "id": "E10",
+      "claim": "核数扩容不可单独作因果结论",
+      "source": {
+        "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\research\\cpu_v2\\README_OPERATOR.md",
+        "sha256": "7a947ea75b5d959a81fe083725ede16c6c80c0fce444a488b9c91e694bc230d0",
+        "selector": "lines 7 and 99"
+      },
+      "old_episodes_per_update": 32,
+      "new_episodes_per_update": 128,
+      "continuation_seeds": 3,
+      "unsupported_claim": "8核改96核单独导致策略改善",
+      "limitations": "CPU槽不等于物理核；采样量、批量、继承继续训练同时变化"
+    },
+    {
+      "id": "E11",
+      "claim": "后期trial1与状态尾段同48开发场景比较",
+      "sources": [
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\comparison.json",
+          "sha256": "73f0caad170ddf296eb70074740a0da67b56182231d03594bd79c5efe418e684",
+          "selector": "$.groups; $.rl_vs_certified_tail"
+        },
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\README.md",
+          "sha256": "e7100546cc7f3c66a53ad74bda4b24e1d5cdd23184924678b266be3cb3d85a32",
+          "selector": "lines 7-40"
+        }
+      ],
+      "stage": "opened_development_round2",
+      "seed_range": [
+        2100001,
+        2100048
+      ],
+      "groups": {
+        "rl_trial1": {
+          "runs": 48,
+          "successful_runs": 48,
+          "all_clear_runs": 48,
+          "failed_clear_count": 0,
+          "mean_time_s": 3110.2018135625,
+          "p95_time_s": 3426.49405175,
+          "max_time_s": 3672.953679,
+          "sum_time_s": 149289.687051,
+          "sum_primary_lower_bound_s": 83819.77037540624,
+          "sum_previous_rl_lower_bound_s": 92939.77037540624,
+          "mean_primary_lower_bound_s": 1746.2452161542967,
+          "mean_previous_rl_lower_bound_s": 1936.2452161542967,
+          "mean_program_runtime_s": 0.48218205624956073,
+          "mean_measurement_count": 125,
+          "mean_action_count": 140.08333333333334,
+          "mean_time_breakdown_s": {
+            "movement_s": 2313.2018135625,
+            "switching_s": 106.58333333333333,
+            "detection_s": 625.0,
+            "optical_s": 39.25,
+            "removal_s": 26.166666666666668
+          },
+          "ratios_eligible": true,
+          "total_time_over_primary_lower": 1.781079647228471,
+          "total_time_over_previous_rl_lower": 1.606305744548139
+        },
+        "state_certified_tail": {
+          "runs": 48,
+          "successful_runs": 48,
+          "all_clear_runs": 48,
+          "failed_clear_count": 0,
+          "mean_time_s": 3101.9817328541667,
+          "p95_time_s": 3495.26604725,
+          "max_time_s": 3550.173907,
+          "sum_time_s": 148895.123177,
+          "sum_primary_lower_bound_s": 83819.77037540624,
+          "sum_previous_rl_lower_bound_s": 92939.77037540624,
+          "mean_primary_lower_bound_s": 1746.2452161542967,
+          "mean_previous_rl_lower_bound_s": 1936.2452161542967,
+          "mean_program_runtime_s": 1.080230058332442,
+          "mean_measurement_count": 117.25,
+          "mean_action_count": 132.33333333333334,
+          "mean_time_breakdown_s": {
+            "movement_s": 2343.0650661875,
+            "switching_s": 107.25,
+            "detection_s": 586.25,
+            "optical_s": 39.25,
+            "removal_s": 26.166666666666668
+          },
+          "ratios_eligible": true,
+          "total_time_over_primary_lower": 1.7763723583366875,
+          "total_time_over_previous_rl_lower": 1.6020603728153895
+        },
+        "state_v1": {
+          "runs": 48,
+          "successful_runs": 48,
+          "all_clear_runs": 48,
+          "failed_clear_count": 0,
+          "mean_time_s": 3102.0086703125,
+          "p95_time_s": 3495.26604725,
+          "max_time_s": 3550.173907,
+          "sum_time_s": 148896.416175,
+          "sum_primary_lower_bound_s": 83819.77037540624,
+          "sum_previous_rl_lower_bound_s": 92939.77037540624,
+          "mean_primary_lower_bound_s": 1746.2452161542967,
+          "mean_previous_rl_lower_bound_s": 1936.2452161542967,
+          "mean_program_runtime_s": 1.075482706251023,
+          "mean_measurement_count": 117.25,
+          "mean_action_count": 132.33333333333334,
+          "mean_time_breakdown_s": {
+            "movement_s": 2343.0920036458333,
+            "switching_s": 107.25,
+            "detection_s": 586.25,
+            "optical_s": 39.25,
+            "removal_s": 26.166666666666668
+          },
+          "ratios_eligible": true,
+          "total_time_over_primary_lower": 1.776387784267756,
+          "total_time_over_previous_rl_lower": 1.6020742850296628
+        }
+      },
+      "comparison": {
+        "pairs": 48,
+        "pairing": "identical case_sha256, aligned by frozen scenario seed",
+        "baseline": "state_certified_tail",
+        "candidate": "rl_trial1",
+        "positive_savings_means": "candidate faster than baseline",
+        "mean_savings_s": -8.220080708333322,
+        "aggregate_savings_percent": -0.2649944911432453,
+        "wins": 26,
+        "losses": 22,
+        "ties": 0,
+        "bootstrap": {
+          "method": "paired percentile bootstrap over scenarios",
+          "repeats": 20000,
+          "seed": 20260911,
+          "confidence": 0.95,
+          "mean_savings_s_ci": [
+            -58.871835193749995,
+            41.21308691041659
+          ],
+          "aggregate_savings_percent_ci": [
+            -1.918700974907251,
+            1.312542742434792
+          ],
+          "scope": "Development-world uncertainty only; not independent model-selection or final-test evidence"
+        },
+        "mean_component_savings_s": {
+          "movement_s": 29.863252625000012,
+          "switching_s": 0.6666666666666666,
+          "detection_s": -38.75,
+          "optical_s": 0.0,
+          "removal_s": 0.0
+        }
+      },
+      "rl_checkpoint_sha256": "3d21ba7931143f281d2e7554261b001867c65fec9c2bd7465a79f91e95b7cef4",
+      "rl_source_commit": "4e2ba11b9cebdaf8adb92ec76f0ddfb36ed43851",
+      "primary_lower_bound": "L_source/5+5N，真值先知物理松弛",
+      "trace_root": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911",
+      "limitations": "CI跨零；不是E01同一模型或分布；不混用不同分母的1.6和1.8倍"
+    },
+    {
+      "id": "E12",
+      "claim": "trial1的48局原点先20扫行为",
+      "sources": [
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\src\\research_rl\\joint_scan.py",
+          "sha256": "190a61032cedfb55d170a591f8b4d53efd8aa9138a78ad2790c396db5504fbd1",
+          "selector": "lines 1-6 and 68-71"
+        },
+        {
+          "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_last_ablation_results.md",
+          "sha256": "115a0eaeae865bd7634c7352bbbfd188f84fdc5d241a194ba19f123fcf7b0d61",
+          "selector": "lines 48-63"
+        }
+      ],
+      "stage": "read_only_posthoc_behavior_audit",
+      "runs": 48,
+      "full_20_origin_cases": 48,
+      "per_case": [
+        {
+          "seed": 2100001,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            5,
+            12,
+            13,
+            14,
+            15,
+            4,
+            3,
+            2,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100001.json.gz",
+            "sha256": "d4789082821237d75eee597462a91de9b933c064d6c37bc83a87dd8953484bf9",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100002,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            11,
+            12,
+            8,
+            9,
+            10,
+            13,
+            14,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100002.json.gz",
+            "sha256": "5927e35b60f9f992f9dbdc159af3759c2cdaed46da8d0c29c6a9910cd56223ac",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100003,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100003.json.gz",
+            "sha256": "aef155afa90f9fd10b6eafa61d99ff2e0285fda70f2fd055d4add2c0d1f3db71",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100004,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            9,
+            20,
+            8,
+            7,
+            10,
+            11,
+            12,
+            13,
+            6,
+            5,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100004.json.gz",
+            "sha256": "d4cf5ebab80af248faf49353aabd55c4959a9c123792d49f8e2f097c65133494",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100005,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            9,
+            10,
+            7,
+            11,
+            12,
+            13,
+            14,
+            15,
+            6,
+            16,
+            5,
+            4,
+            2,
+            3,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100005.json.gz",
+            "sha256": "104c21bbd3f9abfd90920109d9059e5d8f19e82a99f96a6ba3e96cfbf39fc27a",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100006,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            5,
+            12,
+            13,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100006.json.gz",
+            "sha256": "86e7ce8b3970a3e75fdaa09bad408313bc481147b537d4ba132fc4758ac7a73d",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100007,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            9,
+            8,
+            7,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            5,
+            4,
+            3,
+            2,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100007.json.gz",
+            "sha256": "c8171b698095d0f3d3addcfbd3c8ef2ac8ce37737a2c9165ba132f5a06bb6aeb",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100008,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            5,
+            12,
+            13,
+            14,
+            15,
+            16,
+            4,
+            2,
+            3,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100008.json.gz",
+            "sha256": "df64d58afc97d0e5acb0950b2ecd385a8f5ba92723c908b574363812b6dd70ec",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100009,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100009.json.gz",
+            "sha256": "0dbd91c52fd360b5fcb47610c82da87d592c6bb68d117aa5cc8300b2d0d2f874",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100010,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100010.json.gz",
+            "sha256": "2150cbd9548daec48f331d0df2ca222797bb3c85de182a90fc9ea0bd000b7904",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100011,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            20,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            5,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100011.json.gz",
+            "sha256": "f00b0ea22037175d351fbd1f5c92c41518944c4ce1895ff87b2bf5122d0debaa",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100012,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            5,
+            12,
+            13,
+            2,
+            4,
+            14,
+            3,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100012.json.gz",
+            "sha256": "a45f3451365f6d17ddd8222466bc5cbe989c4e726e5808ee117e0c163fb85040",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100013,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100013.json.gz",
+            "sha256": "2691fa28dbf2f28ffda9a45dc8b07adf52a5c1006e9f1f3ed8688f9eaad42743",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100014,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            10,
+            8,
+            7,
+            9,
+            11,
+            12,
+            13,
+            6,
+            5,
+            4,
+            3,
+            2,
+            20,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100014.json.gz",
+            "sha256": "fbca144301957d4cb75d33fc1e4303089ee42fbc31cf187e6df112dea6999bad",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100015,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            5,
+            12,
+            13,
+            4,
+            14,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100015.json.gz",
+            "sha256": "532f2e1825726826e47ee180fd17a6d2756d6100011a5316b300bffbbf96e70a",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100016,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100016.json.gz",
+            "sha256": "0b43d5efe324a01214c635e00c8de5782c0ec28f11b6be23aef52e5cc07af655",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100017,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            6,
+            7,
+            5,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100017.json.gz",
+            "sha256": "ac3eda1a10457a8ad06d332d21eeaa9ca87a21fe7727cc2b2467ebe5a5e5f582",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100018,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            11,
+            10,
+            8,
+            9,
+            7,
+            12,
+            13,
+            6,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100018.json.gz",
+            "sha256": "428e89951612ae9404d4905bd63b2165a4c132084e11604b0aa4c78eaf3f538d",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100019,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            9,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100019.json.gz",
+            "sha256": "ef1178d1cf5947eba23ccc18d6a4887c899e60fc96cbf0460e88d897a5f4b695",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100020,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            20,
+            19,
+            7,
+            9,
+            10,
+            11,
+            12,
+            6,
+            5,
+            4,
+            3,
+            2,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100020.json.gz",
+            "sha256": "d9bab6524847f20a9c762ad0d73bbcab7be147960f85345ba41ace9fcadbda63",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100021,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            6,
+            9,
+            10,
+            11,
+            12,
+            13,
+            5,
+            4,
+            3,
+            2,
+            20,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100021.json.gz",
+            "sha256": "9962641a439232df1c020338c63f5533fde48d0acea51164706a189bf4bb6636",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100022,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            12,
+            13,
+            14,
+            15,
+            5,
+            4,
+            3,
+            2,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100022.json.gz",
+            "sha256": "8d5f3af67c7c16012da188d84270daf53381ace0198458b29df29cd8474a2a0a",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100023,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            9,
+            7,
+            10,
+            11,
+            12,
+            13,
+            14,
+            6,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100023.json.gz",
+            "sha256": "97aa393e0d67856f7a2c3c8407f4cd459cbae05bf5b60018b87b8f5f70d59161",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100024,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100024.json.gz",
+            "sha256": "ec7b2eb5f31caa55cb8f761d4a18d8cc3f2fd1e79a88dc828592b04d47b26512",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100025,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            6,
+            5,
+            15,
+            4,
+            3,
+            2,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100025.json.gz",
+            "sha256": "999f1d42258b1e3d71ecd2d0e56970e8da8a82b6b8d45664160ec958eae87211",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100026,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            6,
+            5,
+            4,
+            14,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100026.json.gz",
+            "sha256": "817c23295f5bc64784243c5d8daabfa54aa51206172da01881e26091fa8be599",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100027,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            6,
+            7,
+            20,
+            9,
+            10,
+            11,
+            12,
+            13,
+            5,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100027.json.gz",
+            "sha256": "703a22e5aee78b3a1f71c05ebfa66893ded609ba470a46e58dbec66572e82ad7",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100028,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            9,
+            7,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            5,
+            4,
+            2,
+            3,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100028.json.gz",
+            "sha256": "d461d51234bf3950ffcbc7946345b23322031012bbfe34540d161da9a4ca16b1",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100029,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            20,
+            11,
+            12,
+            13,
+            6,
+            5,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100029.json.gz",
+            "sha256": "0fd5b0e8cce41c5b9bfa301ba2dc0dd290119a3f99293865080ea04e52c9207a",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100030,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            6,
+            7,
+            5,
+            9,
+            10,
+            11,
+            12,
+            13,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100030.json.gz",
+            "sha256": "938ccca334e8d4d0f8aacafaa66a4ce77c8c41ce95dff1267b179f2a8b5dbe47",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100031,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            11,
+            10,
+            9,
+            12,
+            7,
+            13,
+            14,
+            6,
+            5,
+            4,
+            3,
+            2,
+            20,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100031.json.gz",
+            "sha256": "e8abe898938e68ae5b5b2c481c0e8b7823160a03c61268a022d36aab00d758c9",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100032,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            5,
+            12,
+            13,
+            14,
+            15,
+            16,
+            4,
+            2,
+            3,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100032.json.gz",
+            "sha256": "f99e49e59669bbdee6a6bbb02e1338667b013fabfaa4954bb5e6aece98f43bec",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100033,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            6,
+            7,
+            5,
+            9,
+            10,
+            11,
+            12,
+            13,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100033.json.gz",
+            "sha256": "c8511ac7bf821235e12bca56bd43283ba0a02aa72b7fa97b1974bbfafdd9ac0d",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100034,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            5,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100034.json.gz",
+            "sha256": "560e26f6dc8b381ad33f118dab930f97eab0eba7cd58c8d3f90c32f49b63e985",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100035,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            11,
+            10,
+            9,
+            12,
+            8,
+            7,
+            13,
+            6,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100035.json.gz",
+            "sha256": "32283c904d8a52d99b8507c40993dfdd2df36b3e09202e8e2eb496bb50863a86",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100036,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            12,
+            13,
+            14,
+            15,
+            5,
+            4,
+            3,
+            2,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100036.json.gz",
+            "sha256": "c2b7dcdd86b40a944626ffdf182f59a83123f0187b0cfb56056637dc47241ed0",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100037,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            6,
+            20,
+            9,
+            10,
+            11,
+            12,
+            13,
+            5,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100037.json.gz",
+            "sha256": "d65f57aa28e23187f30e57dddf8e4e913f8b2519d89bb390cbc1f8b852b532f4",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100038,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            9,
+            8,
+            7,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100038.json.gz",
+            "sha256": "ed9a71fc609debb6324c933c600866d0d0e528e97e3d231f4b2675f25adaa502",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100039,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            12,
+            13,
+            14,
+            5,
+            15,
+            4,
+            3,
+            2,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100039.json.gz",
+            "sha256": "a81eaf2505bad27871ff06339002ec518de653672e958740f493e9567f391261",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100040,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            9,
+            7,
+            10,
+            11,
+            12,
+            13,
+            14,
+            6,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100040.json.gz",
+            "sha256": "5d892eafbbe2ac2f7736b321817c15877d16abf91fc2907a0e5c94c8458b280f",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100041,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            6,
+            9,
+            7,
+            10,
+            13,
+            12,
+            11,
+            5,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100041.json.gz",
+            "sha256": "a222630702d523882af9a922cc97b5036fe8b29dd617f05b577a7718ed9353ab",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100042,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            9,
+            20,
+            19,
+            7,
+            8,
+            10,
+            11,
+            12,
+            13,
+            6,
+            5,
+            4,
+            2,
+            3,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100042.json.gz",
+            "sha256": "5dec846d53aa6df65d6df283bfbc0ee2250c5872d3ea2e299a18f018d94cca8f",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100043,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            10,
+            6,
+            11,
+            12,
+            13,
+            14,
+            5,
+            15,
+            4,
+            3,
+            2,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100043.json.gz",
+            "sha256": "0f882469bc9883bcc6a6cd0e100fa32d158b3cfdaf91656c4ead64c455468fa3",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100044,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            6,
+            20,
+            9,
+            12,
+            13,
+            11,
+            5,
+            4,
+            2,
+            3,
+            10,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100044.json.gz",
+            "sha256": "a283aca4937721aa14f27cc8ef5d6d25685fd7f154ead15db69b4b5170858178",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100045,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            6,
+            20,
+            9,
+            10,
+            11,
+            12,
+            5,
+            4,
+            3,
+            2,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100045.json.gz",
+            "sha256": "8e158bb6410d2a1f38b3ac73ca2949d76d174f5090753718b32d874de0dc17ba",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100046,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            11,
+            10,
+            12,
+            13,
+            6,
+            5,
+            4,
+            3,
+            2,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100046.json.gz",
+            "sha256": "bdb8164e605821853f8f23ded343450ee16631a478128bb06f0d12f8d28d6e61",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100047,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            6,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            3,
+            2,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100047.json.gz",
+            "sha256": "13db79994b4b68701251af7a92180071aa1165a7e917a72c769238c02d9d39cf",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        },
+        {
+          "seed": 2100048,
+          "initial_origin_measurements": 20,
+          "unique_channels": 20,
+          "channel_order": [
+            1,
+            8,
+            7,
+            9,
+            6,
+            20,
+            10,
+            11,
+            12,
+            13,
+            14,
+            5,
+            4,
+            2,
+            3,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "source": {
+            "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100048.json.gz",
+            "sha256": "af97cbfc68a0bcf5adb0e0f2aff28bd9837e2bd44602ba1f5ed0247ca2f016bc",
+            "selector": "$.summary.action_history: initial measure at [0,0] prefix"
+          }
+        }
+      ],
+      "computation": "仅解压既有gz JSON；统计action_history中action=measure且position=[0,0]的初始连续前缀；不加载模型或执行环境",
+      "limitations": "七点候选已预设；支持该候选空间中的行为选择，非七点/状态压缩全局最优证明；v1/v2硬规则轨迹不能作学习证据"
+    },
+    {
+      "id": "E13",
+      "claim": "固定50新局官方演练",
+      "sources": [
+        {
+          "path": "D:\\jwt\\2026数模国赛\\cumcm2026-b-interference-localization\\results\\q3_source_count_practice\\derived-fixed50-20260912\\summary.json",
+          "sha256": "78c165c67b0c68a11f283eeba1463481d943707aec031b19d161686833903ae3",
+          "selector": "$.protocol; $.pooled; $.rows"
+        },
+        {
+          "path": "D:\\jwt\\2026数模国赛\\cumcm2026-b-interference-localization\\results\\q3_source_count_practice\\derived-fixed50-20260912\\RESULTS.md",
+          "sha256": "89400c389bbbbdb5bfbedfb9e9f3fbf6e72dbc62f1753ad69236148e4bcfd2e3",
+          "selector": "whole file"
+        }
+      ],
+      "stage": "official_practice_fixed50",
+      "source_commit": "760af8230a8e5bda6050663b19d871a9701c9829",
+      "mode": "practice",
+      "status": "fixed_count_completed",
+      "stopping_rule": "Exactly fixed_runs cases regardless of source count, or error/STOP; retain all sampled cases.",
+      "attempted_runs": 50,
+      "completed_runs": 50,
+      "failures": [],
+      "pooled": {
+        "runs": 50,
+        "total_sources": 657,
+        "source_count_min": 10,
+        "source_count_max": 16,
+        "total_actual_time_s": 148843.568139,
+        "total_lower_bound_s": 90883.6999086099,
+        "mean_actual_time_s": 2976.8713627800003,
+        "mean_lower_bound_s": 1817.6739981721978,
+        "mean_time_per_source_s": 226.55033202283107,
+        "mean_lower_bound_per_source_s": 138.3313545032114,
+        "min_time_per_source_s": 186.554691875,
+        "max_time_per_source_s": 293.4995862,
+        "sum_time_over_sum_lower_bound": 1.6377366710276202,
+        "episode_equal_weight_mean_time_per_source_s": 229.84341780638502,
+        "mean_program_wall_time_s": 2.0231600000022443
+      },
+      "lower_bound_kind": "historical_conditional_all_clear_containing_region_bound",
+      "read_only_recomputed": {
+        "row_count": 50,
+        "all_clear": 50,
+        "sum_time_s": 148843.56813899992,
+        "sum_sources": 657.0,
+        "sum_time_matches": true,
+        "sum_sources_match": true
+      },
+      "public_numeric_rows": [
+        {
+          "run": 1,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 3013.425353,
+          "program_wall_time_s": 1.9060000000172295,
+          "lower_bound_s": 1935.2859966720396,
+          "time_over_lower_bound": 1.5570956221364454,
+          "time_per_source_s": 231.80195023076925,
+          "summary_sha256": "2471e6a2e6a62fde2fd1bcbcbaef85e8e4a92aaea75b1475101d644e641f9617",
+          "lower_bounds_sha256": "f31dc629ac38f30eca967ae46df24bd009b7106f6cf35f94379b3d3897ae8385"
+        },
+        {
+          "run": 2,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 2803.486042,
+          "program_wall_time_s": 2.547000000020489,
+          "lower_bound_s": 1713.211277736004,
+          "time_over_lower_bound": 1.6363924744324507,
+          "time_per_source_s": 200.249003,
+          "summary_sha256": "26dc7d326a2edcc6fe2f5e572534d71d88744f608070eb2e09e23724415143c4",
+          "lower_bounds_sha256": "aaff09a45a44b3f895da152dd0213bb834faf06c6fc8b98de87137710c426fa5"
+        },
+        {
+          "run": 3,
+          "source_count": 10,
+          "all_clear": true,
+          "actual_time_s": 2757.606085,
+          "program_wall_time_s": 1.9690000000118744,
+          "lower_bound_s": 1723.9004977914424,
+          "time_over_lower_bound": 1.5996318166465402,
+          "time_per_source_s": 275.7606085,
+          "summary_sha256": "543bf5b12baf24c2583a1b2511a5aab96fe6cdea969fd6b482e1c8b621c650e4",
+          "lower_bounds_sha256": "c662f71739f80311af92b8fff2fa5b57b5cdbcd9858795d2b796f8c9e0ec70df"
+        },
+        {
+          "run": 4,
+          "source_count": 15,
+          "all_clear": true,
+          "actual_time_s": 3291.116772,
+          "program_wall_time_s": 1.8429999999934807,
+          "lower_bound_s": 1973.3623818785036,
+          "time_over_lower_bound": 1.6677711109842308,
+          "time_per_source_s": 219.4077848,
+          "summary_sha256": "086725ad1d939c9645f456172c418e1f1195d80be3ac02d74cc87dbb483abfe1",
+          "lower_bounds_sha256": "885f86d0451cbfcfe815d95be52395b5e8bbe8e5a5db242026927ebd2b931b7f"
+        },
+        {
+          "run": 5,
+          "source_count": 10,
+          "all_clear": true,
+          "actual_time_s": 2934.995862,
+          "program_wall_time_s": 2.3910000000032596,
+          "lower_bound_s": 1790.0242161212004,
+          "time_over_lower_bound": 1.6396403107662065,
+          "time_per_source_s": 293.4995862,
+          "summary_sha256": "89908f1fc4e3c2c24fd1fa9b1e941c60738c86e45c535501f42a47efe46ec6f1",
+          "lower_bounds_sha256": "e2a5f447abcda47942936dd8c6d0ea9618fc13a234e8a55f7a161cd402189b88"
+        },
+        {
+          "run": 6,
+          "source_count": 16,
+          "all_clear": true,
+          "actual_time_s": 3023.195946,
+          "program_wall_time_s": 2.35999999998603,
+          "lower_bound_s": 1800.487664855979,
+          "time_over_lower_bound": 1.679098393735358,
+          "time_per_source_s": 188.949746625,
+          "summary_sha256": "836612c65f23eb4ac3eb9ab09a68c80c53b909ef842308e92fc5353d2883a1c1",
+          "lower_bounds_sha256": "696f36091ffe72e05b097003ba3ddf4f3a40d386983a8cedf82174f9503024d1"
+        },
+        {
+          "run": 7,
+          "source_count": 11,
+          "all_clear": true,
+          "actual_time_s": 3039.353566,
+          "program_wall_time_s": 1.875,
+          "lower_bound_s": 1850.8316923468742,
+          "time_over_lower_bound": 1.6421555663692289,
+          "time_per_source_s": 276.3048696363636,
+          "summary_sha256": "7995047c8e3eb2555d2fd5a82399b0c2313b6ae848084647173d74c0086b69e5",
+          "lower_bounds_sha256": "1253346ff430e5ab70581018226c817c5840098eaec298ed9192c3b929ebdfcc"
+        },
+        {
+          "run": 8,
+          "source_count": 11,
+          "all_clear": true,
+          "actual_time_s": 3100.044032,
+          "program_wall_time_s": 2.312000000005355,
+          "lower_bound_s": 1926.0185755794723,
+          "time_over_lower_bound": 1.6095608169652798,
+          "time_per_source_s": 281.8221847272727,
+          "summary_sha256": "31742fa4cd081c1d402108585c0b6d1214778ce07e552a6483934426f4dc5161",
+          "lower_bounds_sha256": "bd83537bd6ea3d05ae30db1501333b3dacfe82afba0f7b007e18ef89baa0ba36"
+        },
+        {
+          "run": 9,
+          "source_count": 16,
+          "all_clear": true,
+          "actual_time_s": 3381.647104,
+          "program_wall_time_s": 2.687999999994645,
+          "lower_bound_s": 2072.62112398961,
+          "time_over_lower_bound": 1.6315799664777284,
+          "time_per_source_s": 211.352944,
+          "summary_sha256": "3e85d73fcc853b75bf5bd09983e57c2dac57703f0b280f9126971d942ea9040e",
+          "lower_bounds_sha256": "cc30a663f23ec7d96f82f90bd37212f6adc0d26af3a77128a5f6692f54109bfd"
+        },
+        {
+          "run": 10,
+          "source_count": 10,
+          "all_clear": true,
+          "actual_time_s": 2712.738314,
+          "program_wall_time_s": 1.5780000000086147,
+          "lower_bound_s": 1441.2642108981775,
+          "time_over_lower_bound": 1.8821936279882066,
+          "time_per_source_s": 271.2738314,
+          "summary_sha256": "68bd59240f64522f3b1e56470f284c26ab2d3d864f41a6fdf115bf76e62b622f",
+          "lower_bounds_sha256": "be74422187bb1b4bf6de9071ed8a0195b04b08d8e371180d446644623526a63c"
+        },
+        {
+          "run": 11,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 2998.331193,
+          "program_wall_time_s": 2.2030000000086147,
+          "lower_bound_s": 1990.439289518215,
+          "time_over_lower_bound": 1.5063665637979569,
+          "time_per_source_s": 230.640861,
+          "summary_sha256": "c20a878e23b6d6513314a71e249481685c8f845913800ec93bb0e677b2b3fd8f",
+          "lower_bounds_sha256": "5ff85e09cc20c881a9926f72b049b1f26cfc09055da39cdfa7f2a86ba4f75324"
+        },
+        {
+          "run": 12,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 2935.772429,
+          "program_wall_time_s": 2.0309999999881256,
+          "lower_bound_s": 1822.8452327866441,
+          "time_over_lower_bound": 1.6105439870569742,
+          "time_per_source_s": 225.8286483846154,
+          "summary_sha256": "da4227ede4d2d41468eda7e9f9feab0b3e455957e952a3737669656fda9d513a",
+          "lower_bounds_sha256": "f2d8a2d987bf7e09e4d82967fcdd6a8e44c2a4dc5dc0f18599ef8bdeb323397e"
+        },
+        {
+          "run": 13,
+          "source_count": 11,
+          "all_clear": true,
+          "actual_time_s": 2810.996463,
+          "program_wall_time_s": 1.75,
+          "lower_bound_s": 1849.5110504625136,
+          "time_over_lower_bound": 1.519859241877492,
+          "time_per_source_s": 255.545133,
+          "summary_sha256": "416b97f1a6509194335e7d640558c75ff30b8f31219109da0a89d23e28141a7d",
+          "lower_bounds_sha256": "5bba1340b9d598d917a116c9d7ffdb60009646e9109487283eebe74a0f98542b"
+        },
+        {
+          "run": 14,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 3202.425402,
+          "program_wall_time_s": 2.0940000000118744,
+          "lower_bound_s": 1853.5671850689125,
+          "time_over_lower_bound": 1.7277093745490208,
+          "time_per_source_s": 228.74467157142857,
+          "summary_sha256": "0027b4e1162db893782dcddee8f010bf89b3e4853250ca4edbb7f1a6efba11b0",
+          "lower_bounds_sha256": "cc836d25a1109742ab1fd5b705770c3083b04a198b26359c5b20d21e30a17d0d"
+        },
+        {
+          "run": 15,
+          "source_count": 12,
+          "all_clear": true,
+          "actual_time_s": 2788.482511,
+          "program_wall_time_s": 2.062000000005355,
+          "lower_bound_s": 1906.82034821142,
+          "time_over_lower_bound": 1.4623729569571517,
+          "time_per_source_s": 232.37354258333335,
+          "summary_sha256": "c4575824d7bdfc5d6ccbc525e3b37ccaf1e0e1358255a14d824acc00fa8003ab",
+          "lower_bounds_sha256": "d841dcc959bc69f0bb2d5a8535955a33e99bc5246cea3cc82fa458ad782eb0a8"
+        },
+        {
+          "run": 16,
+          "source_count": 12,
+          "all_clear": true,
+          "actual_time_s": 3137.997864,
+          "program_wall_time_s": 2.547000000020489,
+          "lower_bound_s": 2078.395339395993,
+          "time_over_lower_bound": 1.5098176003954766,
+          "time_per_source_s": 261.499822,
+          "summary_sha256": "512f9b8939c6e512d30fe9b382766fe777e7ca691e39bebb8885ac6bb38fb281",
+          "lower_bounds_sha256": "c887cbc688b6527c54cc07e97d9064ed41e6228f9ec7110319f1b8bad68df255"
+        },
+        {
+          "run": 17,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 3025.275947,
+          "program_wall_time_s": 2.5320000000065193,
+          "lower_bound_s": 1888.9213215341501,
+          "time_over_lower_bound": 1.6015891781786453,
+          "time_per_source_s": 216.0911390714286,
+          "summary_sha256": "6b9df8508001cff1e59613adda920ec2217413145397715b890ba05d779f5cbd",
+          "lower_bounds_sha256": "6dd252ea3212965f13889285910d27d8be0a280d62880f8fa39dccad237dc7b0"
+        },
+        {
+          "run": 18,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 2929.151209,
+          "program_wall_time_s": 2.062999999994645,
+          "lower_bound_s": 1869.273751213769,
+          "time_over_lower_bound": 1.5669995938786518,
+          "time_per_source_s": 209.22508635714286,
+          "summary_sha256": "06bfcf7f2405b7ccd2c244c6b2594b39e0edd6029948e7c7f9fcea15673e4aee",
+          "lower_bounds_sha256": "ab77313d59c499135c0c97121b60607831935698a0e9c150824ac04a342df9cc"
+        },
+        {
+          "run": 19,
+          "source_count": 12,
+          "all_clear": true,
+          "actual_time_s": 2790.323845,
+          "program_wall_time_s": 1.6559999999881256,
+          "lower_bound_s": 1890.6656806753263,
+          "time_over_lower_bound": 1.4758420134877177,
+          "time_per_source_s": 232.52698708333332,
+          "summary_sha256": "1f9f8e31dcc75963b465856fd7a23a6cae36241eb0933662215f6d617f28f833",
+          "lower_bounds_sha256": "9e68bc1a767f9bf4aad4d49207d785436d147732283ace619b840bd1e5fa4bd8"
+        },
+        {
+          "run": 20,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 3053.273403,
+          "program_wall_time_s": 1.8910000000032596,
+          "lower_bound_s": 1823.0064523724593,
+          "time_over_lower_bound": 1.6748560593553974,
+          "time_per_source_s": 234.86718484615386,
+          "summary_sha256": "07828761cfa3ecb990262014173d15006ed112dbe5d2de8a6d149452975bf03d",
+          "lower_bounds_sha256": "f338c0c442d8983ac3c8728fe1cce917b6283a05b5c6ccf604b1ea31b07293df"
+        },
+        {
+          "run": 21,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 2813.280275,
+          "program_wall_time_s": 2.01500000001397,
+          "lower_bound_s": 1625.035894967404,
+          "time_over_lower_bound": 1.7312111589119272,
+          "time_per_source_s": 200.94859107142858,
+          "summary_sha256": "882b44fb7b8e7c5ef96e8f2bf5e1ef5ddb5f8381b07fd3f8ff61840d7a9cbb8d",
+          "lower_bounds_sha256": "79d10109be10e43fffefe7a678d8f11ac47e21163cd4ce0abc1ff66daff63f68"
+        },
+        {
+          "run": 22,
+          "source_count": 15,
+          "all_clear": true,
+          "actual_time_s": 3062.8819,
+          "program_wall_time_s": 1.8440000000118744,
+          "lower_bound_s": 1682.3423100484983,
+          "time_over_lower_bound": 1.8206056411383384,
+          "time_per_source_s": 204.19212666666667,
+          "summary_sha256": "3c627f0379364605f383dbdfebdb12b27b17d70bd2fdac6f48b2ee0eee2eaf82",
+          "lower_bounds_sha256": "19029ecfedf1eb662aec55507cb2f0ee7b0405a5fbb4bc982359ac80b115e4ff"
+        },
+        {
+          "run": 23,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 3053.279823,
+          "program_wall_time_s": 2.2810000000172295,
+          "lower_bound_s": 1884.1740584530094,
+          "time_over_lower_bound": 1.6204871356242312,
+          "time_per_source_s": 218.09141592857142,
+          "summary_sha256": "6b2cffa280795f480c1e71453e244ff6027601a389c504e2803bd746fedd89b5",
+          "lower_bounds_sha256": "3a64f5e81b1e6620db607a65b1d05b37414b05609c0a7a1270987bbd1571998c"
+        },
+        {
+          "run": 24,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 2916.642799,
+          "program_wall_time_s": 2.2660000000032596,
+          "lower_bound_s": 1644.1833059627631,
+          "time_over_lower_bound": 1.7739158331206504,
+          "time_per_source_s": 208.33162850000002,
+          "summary_sha256": "467f0713075c6c1db30aa161cdb80dbdd1ea30f73e6e821ef1b107175fbf3fb4",
+          "lower_bounds_sha256": "425d246c70fe454799d82caf7a0130b42f82922a06f953b5616976f1cb22150c"
+        },
+        {
+          "run": 25,
+          "source_count": 15,
+          "all_clear": true,
+          "actual_time_s": 3050.019412,
+          "program_wall_time_s": 2.187000000005355,
+          "lower_bound_s": 1704.8930169283726,
+          "time_over_lower_bound": 1.7889799428559334,
+          "time_per_source_s": 203.33462746666666,
+          "summary_sha256": "39dc11f2bcddedc02d9982571f7718e30e0572eef78caa9bba85bfd173d2387d",
+          "lower_bounds_sha256": "f9b51bde679f467d6a2e9c4e0742c20795f51a5e5eb6c28f4a9804e09bd25489"
+        },
+        {
+          "run": 26,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 3059.994398,
+          "program_wall_time_s": 2.3439999999827705,
+          "lower_bound_s": 1975.7753146174837,
+          "time_over_lower_bound": 1.5487562656345994,
+          "time_per_source_s": 235.38418446153844,
+          "summary_sha256": "21263a6adad13f2554f4aa3b6e9285b4e189d1c847f8a22c5f0f369099c97e99",
+          "lower_bounds_sha256": "1768225471080fc3dd2ae6f3c290bf6e9abc44794993dda4150a08c20c332cbc"
+        },
+        {
+          "run": 27,
+          "source_count": 10,
+          "all_clear": true,
+          "actual_time_s": 2603.168284,
+          "program_wall_time_s": 1.5780000000086147,
+          "lower_bound_s": 1597.2021590553784,
+          "time_over_lower_bound": 1.629830181008253,
+          "time_per_source_s": 260.31682839999996,
+          "summary_sha256": "e38e55aedf0a324bd16ddc59129a7c935b7b332d930afafdb9871d89e2808ecc",
+          "lower_bounds_sha256": "d481bde149d8fc9139106d33b2852831fb87e51f67db4522a5da9a61086b4480"
+        },
+        {
+          "run": 28,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 2949.13054,
+          "program_wall_time_s": 2.5309999999881256,
+          "lower_bound_s": 1867.3325574940259,
+          "time_over_lower_bound": 1.5793279714234487,
+          "time_per_source_s": 210.65218142857142,
+          "summary_sha256": "623b489faa17ca6fb88c93193ad3e9006852b6217c17cbdcebcc58c7bb7adce5",
+          "lower_bounds_sha256": "1649021b1937c11eaf758dd3f36a52b96969c7d43576be61b1b1cbbdc35a2536"
+        },
+        {
+          "run": 29,
+          "source_count": 16,
+          "all_clear": true,
+          "actual_time_s": 2984.87507,
+          "program_wall_time_s": 2.0469999999913853,
+          "lower_bound_s": 1687.8223469645084,
+          "time_over_lower_bound": 1.7684770410631174,
+          "time_per_source_s": 186.554691875,
+          "summary_sha256": "6f35859f4f8d1b1cb1ed504c1f58f8cfe995bd5238f24462f0ee6079641f30c7",
+          "lower_bounds_sha256": "4223bc41cb8428190f8eaf1a48b86a3d72bd076ad816b1864d3f603a18908eed"
+        },
+        {
+          "run": 30,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 3376.650556,
+          "program_wall_time_s": 2.75,
+          "lower_bound_s": 2138.775182921763,
+          "time_over_lower_bound": 1.5787776962079696,
+          "time_per_source_s": 241.18932542857144,
+          "summary_sha256": "6dfa7d02113da4aea8c51f50fde15c85e91e50b2ab89c1ad131b2e536c45cfbf",
+          "lower_bounds_sha256": "33b10380c37475e143f48c0b9ccc76b1380061fa5e1af7f5de50401aef739899"
+        },
+        {
+          "run": 31,
+          "source_count": 14,
+          "all_clear": true,
+          "actual_time_s": 3163.231728,
+          "program_wall_time_s": 2.0469999999913853,
+          "lower_bound_s": 2163.789655287602,
+          "time_over_lower_bound": 1.4618942836102786,
+          "time_per_source_s": 225.94512342857143,
+          "summary_sha256": "16b3dbc3b0b69e3a3e817bbd4036b05369196bcff8e73d7d4bdc2010f6021cd4",
+          "lower_bounds_sha256": "60467735812d56773361c2d8a3a0163d4f778efdad64648930e96fba6568ccff"
+        },
+        {
+          "run": 32,
+          "source_count": 16,
+          "all_clear": true,
+          "actual_time_s": 3270.19592,
+          "program_wall_time_s": 2.0469999999913853,
+          "lower_bound_s": 1982.088022351747,
+          "time_over_lower_bound": 1.6498742150310324,
+          "time_per_source_s": 204.387245,
+          "summary_sha256": "6a7bd62719daec58b6ff0efe9fcfdf261aac1dd59f9295e227c84396e6b1e680",
+          "lower_bounds_sha256": "1a801029ba9f894390afcc22f55411d77e0c694625d84055c7e4849b53f6ea5e"
+        },
+        {
+          "run": 33,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 2901.396763,
+          "program_wall_time_s": 1.937999999994645,
+          "lower_bound_s": 1768.2521059823694,
+          "time_over_lower_bound": 1.6408275455654562,
+          "time_per_source_s": 223.1843663846154,
+          "summary_sha256": "0122cfe60cc589266caea773a2499c09690cf943792dca1210c0375ce2b61cf8",
+          "lower_bounds_sha256": "96b474bca126c424cc23953258fc7d827a5e9493c55766ec841bdf52ea754af6"
+        },
+        {
+          "run": 34,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 2831.396287,
+          "program_wall_time_s": 2.125,
+          "lower_bound_s": 1727.201628705012,
+          "time_over_lower_bound": 1.6392969065938585,
+          "time_per_source_s": 217.79971438461538,
+          "summary_sha256": "a2691b966e49946a84be81c758ff52bfc267ca03325fec11e28e041a46d7401a",
+          "lower_bounds_sha256": "d4dd79e8044abbfa9735fb5c562640b29208bf31bffb91f15f7883df5bd7cbdf"
+        },
+        {
+          "run": 35,
+          "source_count": 12,
+          "all_clear": true,
+          "actual_time_s": 3008.465642,
+          "program_wall_time_s": 1.764999999984866,
+          "lower_bound_s": 1881.4245332631235,
+          "time_over_lower_bound": 1.5990360435994464,
+          "time_per_source_s": 250.7054701666667,
+          "summary_sha256": "56c7300210868716dfdffbe2a81b40003323589ba9c1d11e561316c3197ebc43",
+          "lower_bounds_sha256": "33fabecf83701b672cefc6021d7e78576564dc042178ee2ea2fd78805a2d1354"
+        },
+        {
+          "run": 36,
+          "source_count": 15,
+          "all_clear": true,
+          "actual_time_s": 3174.873007,
+          "program_wall_time_s": 1.937000000005355,
+          "lower_bound_s": 2083.467019741341,
+          "time_over_lower_bound": 1.523841259265124,
+          "time_per_source_s": 211.65820046666667,
+          "summary_sha256": "8f1219555224ce7c23c25c8fa48773ccaeeaa798625ec15efd09c40f11d67133",
+          "lower_bounds_sha256": "408998068cdafcbdb89e97d4a02a1c282f89ba493ba8cffa86c8ca409178ffeb"
+        },
+        {
+          "run": 37,
+          "source_count": 10,
+          "all_clear": true,
+          "actual_time_s": 2885.113187,
+          "program_wall_time_s": 1.625,
+          "lower_bound_s": 1734.5589016659483,
+          "time_over_lower_bound": 1.6633123177477616,
+          "time_per_source_s": 288.5113187,
+          "summary_sha256": "82346a9c00f42dadbfc868ad0df50fe883e3a657045dc8c779190697c15c4431",
+          "lower_bounds_sha256": "359450b53872aa30f3d40580cfa46b6465ea1c2ad0fc3cca549466cadec7a9c1"
+        },
+        {
+          "run": 38,
+          "source_count": 16,
+          "all_clear": true,
+          "actual_time_s": 3040.182046,
+          "program_wall_time_s": 1.9070000000065193,
+          "lower_bound_s": 1753.7630870098587,
+          "time_over_lower_bound": 1.7335192355904054,
+          "time_per_source_s": 190.011377875,
+          "summary_sha256": "4919d361cbc751e25c6aa7df2c46922e34f1f513c862cc6e112697cfff1ce8f9",
+          "lower_bounds_sha256": "4782bed325a94ad8d87b3b2457b5c4c43dafe7056447134bd2d833c9a2c52049"
+        },
+        {
+          "run": 39,
+          "source_count": 16,
+          "all_clear": true,
+          "actual_time_s": 3008.394617,
+          "program_wall_time_s": 2.062999999994645,
+          "lower_bound_s": 1617.2297990144825,
+          "time_over_lower_bound": 1.8602146824361474,
+          "time_per_source_s": 188.0246635625,
+          "summary_sha256": "c47113d364b9a3db74cacdfdeb76f0ca4fcbfff5b7b05e6ecb57dd82313e4358",
+          "lower_bounds_sha256": "c3e1f1deabd3e2bf6cae50b4d1f70ae97ff9973e2df2e2a2e53619b9afa97d3b"
+        },
+        {
+          "run": 40,
+          "source_count": 11,
+          "all_clear": true,
+          "actual_time_s": 2607.36987,
+          "program_wall_time_s": 1.5309999999881256,
+          "lower_bound_s": 1618.520997831995,
+          "time_over_lower_bound": 1.6109583215123966,
+          "time_per_source_s": 237.03362454545456,
+          "summary_sha256": "9625bac4fb69981b1cbca1b5b3af3b836c174c718281081fac0d7451e751a674",
+          "lower_bounds_sha256": "034b9778498052dc07df4f72e7c8da541710c51a6b0668ea425a8498a59d024c"
+        },
+        {
+          "run": 41,
+          "source_count": 11,
+          "all_clear": true,
+          "actual_time_s": 2654.808382,
+          "program_wall_time_s": 1.797000000020489,
+          "lower_bound_s": 1655.2353848881803,
+          "time_over_lower_bound": 1.603885710901079,
+          "time_per_source_s": 241.34621654545455,
+          "summary_sha256": "f13f909759706ddf09591b06ea2ed2e12379ef28ab9e2f2ee36c6b3cb01da472",
+          "lower_bounds_sha256": "118cc1870056228d1b1f532ad9a71bc556a0a94fc65b17c0d3542d5ef0a3af89"
+        },
+        {
+          "run": 42,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 2612.391156,
+          "program_wall_time_s": 1.6719999999913853,
+          "lower_bound_s": 1465.0070144858296,
+          "time_over_lower_bound": 1.7831936162550495,
+          "time_per_source_s": 200.95316584615387,
+          "summary_sha256": "2f1ed4c4e3659376e0ce83e4c586928f30ff9ee79a40bff7cc60ca463cc6edad",
+          "lower_bounds_sha256": "fbbb2ea9eabb3082415845861905343c07e968640007927e227c621c042d259c"
+        },
+        {
+          "run": 43,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 3056.140411,
+          "program_wall_time_s": 2.0780000000086147,
+          "lower_bound_s": 1806.1510376873334,
+          "time_over_lower_bound": 1.6920735571002976,
+          "time_per_source_s": 235.0877239230769,
+          "summary_sha256": "5b6a049ee66ef35d1bf2d5c7307f8de948c8da7236c9337c55a24ed7f8d630d5",
+          "lower_bounds_sha256": "f668871186b4d10f54bb857ae8ad4bebf55ccd65f4a2a8311991ca9a562eaa81"
+        },
+        {
+          "run": 44,
+          "source_count": 11,
+          "all_clear": true,
+          "actual_time_s": 3183.961744,
+          "program_wall_time_s": 1.4539999999979045,
+          "lower_bound_s": 1872.2008273299095,
+          "time_over_lower_bound": 1.7006518197841491,
+          "time_per_source_s": 289.45106763636363,
+          "summary_sha256": "27b4e91436c8545ea24aa852f1b8219345c07d0cecf94a94a433c8c6d9674413",
+          "lower_bounds_sha256": "97eba43296520e914bbb4ac9432b0888ac102cb0e325e0ccb1798fbde759e8f5"
+        },
+        {
+          "run": 45,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 2562.587266,
+          "program_wall_time_s": 1.6560000000172295,
+          "lower_bound_s": 1570.0359858296574,
+          "time_over_lower_bound": 1.6321837773965713,
+          "time_per_source_s": 197.1220973846154,
+          "summary_sha256": "7ac52e2793e28779f8ef1186cf846b6a14d40c8401dcd6078b174640d7612a3f",
+          "lower_bounds_sha256": "2b88ae8e74259c6c1fc826a39de2bec4aa8e2f8c36447c2592190413946a47ff"
+        },
+        {
+          "run": 46,
+          "source_count": 15,
+          "all_clear": true,
+          "actual_time_s": 3067.870853,
+          "program_wall_time_s": 1.797000000020489,
+          "lower_bound_s": 1982.0470590724822,
+          "time_over_lower_bound": 1.5478294720386907,
+          "time_per_source_s": 204.52472353333332,
+          "summary_sha256": "30fe31e41df706791c8561a1f29cab72f3668d91973dc2d11835a8694eddc0bf",
+          "lower_bounds_sha256": "3ccd15d507fe9e13f57500dc874cfc35db77f355a373555a6e4a3d2735407f72"
+        },
+        {
+          "run": 47,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 3184.290252,
+          "program_wall_time_s": 1.937999999994645,
+          "lower_bound_s": 1912.5876344064743,
+          "time_over_lower_bound": 1.6649120776043123,
+          "time_per_source_s": 244.945404,
+          "summary_sha256": "670e5751544120740760d72f2dcbd0e511edbfe248761d0ccef4b419f8baae7c",
+          "lower_bounds_sha256": "75238f99a0443216660b33532b386ba0f9df0112a3cb30e6818a4ce833ad5383"
+        },
+        {
+          "run": 48,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 2678.57645,
+          "program_wall_time_s": 1.937000000005355,
+          "lower_bound_s": 1666.9918206968316,
+          "time_over_lower_bound": 1.6068323891837144,
+          "time_per_source_s": 206.04434230769232,
+          "summary_sha256": "8a7407236bde423c517281a8a0cf4953e8065afc626cad4c431964c77728eca1",
+          "lower_bounds_sha256": "721bb1afa8492415bd03cf3938231ad33a1efbc28255c062d03cf8d4a74b8cdf"
+        },
+        {
+          "run": 49,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 3237.013328,
+          "program_wall_time_s": 2.0160000000032596,
+          "lower_bound_s": 1979.4733743210916,
+          "time_over_lower_bound": 1.6352901584797583,
+          "time_per_source_s": 249.00102523076924,
+          "summary_sha256": "cd8808c1ef7b6cbd18914df6de1b1a77a04f06937e1827744a167061ac441bc1",
+          "lower_bounds_sha256": "e39359a02d0730a2fdc5c5f994694bceece3cb7fe90dd07501ef7ad70966f9d3"
+        },
+        {
+          "run": 50,
+          "source_count": 13,
+          "all_clear": true,
+          "actual_time_s": 3115.746831,
+          "program_wall_time_s": 1.687000000005355,
+          "lower_bound_s": 1635.6845825167186,
+          "time_over_lower_bound": 1.9048579807520154,
+          "time_per_source_s": 239.67283315384614,
+          "summary_sha256": "503a04eb2d9c020a5e4734a7434ec4988494884bc493f55619ab1e76ca1eac50",
+          "lower_bounds_sha256": "973fc90f49d71df0d8384bb9a7e63e9e752b069188064b12952ce9408983e5ad"
+        }
+      ],
+      "limitations": "不含此前40局；无多方法同局官方配对；观测条件区域下界不等于真值物理LB；仅作真实执行补充；不公开原始身份字段"
+    }
+  ],
+  "plot_groups": {
+    "main_four_methods": [
+      "E01",
+      "E02"
+    ],
+    "cost_components": "E01.methods.*.mean_components_s",
+    "runtime": "E04.rows",
+    "state_ablations": [
+      "E05",
+      "E06",
+      "E07"
+    ],
+    "rl_ablations": "E09.rows",
+    "later_rl_state": "E11",
+    "origin_scan": "E12",
+    "official": "E13",
+    "notes": "配对节省CI按各自baseline/stage展示；不跨分布排列绝对均时"
+  }
+}
