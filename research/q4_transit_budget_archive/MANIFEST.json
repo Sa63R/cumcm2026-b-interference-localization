@@ -1,5 +1,5 @@
 {
-  "status": "archived_pending_cleanup",
+  "status": "archived_and_removed",
   "archive_kind": "pushed_git_tag",
   "archive_tag": "archive/q4-r33-transit-budget-rejected-20260912",
   "archived_head": "524345e3a0fc10d5c54fdc3afe67767f9bb148e4",
@@ -75,9 +75,18 @@
   "restoration_repository": "q3-v1-artifacts/archive-checks-20260912/transit-budget-tag-r33.git",
   "source_worktree": "q4-r33-transit-budget",
   "lifecycle": {
-    "worktree_retained": true,
-    "local_branch_retained": true,
-    "remote_branch_retained": true
+    "worktree_retained": false,
+    "local_branch_retained": false,
+    "remote_branch_retained": false,
+    "local_archive_tag_retained": true,
+    "remote_archive_tag_retained": true,
+    "restoration_repository_retained": true,
+    "cleanup_report": "research/q4_transit_budget_archive/CLEANUP.json",
+    "completed_at_utc": "2026-09-12T00:00:34.8938363Z",
+    "archive_commit_before_cleanup": "a241ef19b2f6fe227658c9b737a3dd19834b31c5",
+    "protected_core_branches_present": 10,
+    "foreign_ref_changes": {},
+    "foreign_remote_ref_changes": {}
   },
   "source_owner_release": "state_search_v1 explicitly confirmed final pushed HEAD, clean tree and no active owned sessions before archive began.",
   "prepared_at_utc": "2026-09-11T23:58:04.001939+00:00",

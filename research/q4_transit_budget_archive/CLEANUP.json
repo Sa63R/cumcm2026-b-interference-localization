@@ -1,0 +1,85 @@
+{
+  "status": "archived_and_removed",
+  "archive_commit": "a241ef19b2f6fe227658c9b737a3dd19834b31c5",
+  "workspace_relative_target": "q4-r33-transit-budget",
+  "path_basis": "workspace root",
+  "absolute_target_verified_as_exact_workspace_child": true,
+  "target_reparse_point": false,
+  "expected_target_head": "524345e3a0fc10d5c54fdc3afe67767f9bb148e4",
+  "archive_tag": "archive/q4-r33-transit-budget-rejected-20260912",
+  "restoration_repository": "q3-v1-artifacts/archive-checks-20260912/transit-budget-tag-r33.git",
+  "restored_head": "524345e3a0fc10d5c54fdc3afe67767f9bb148e4",
+  "source_owner_released": true,
+  "ignored_files": [
+    ".pytest_cache/.gitignore",
+    ".pytest_cache/CACHEDIR.TAG",
+    ".pytest_cache/README.md",
+    ".pytest_cache/v/cache/lastfailed",
+    ".pytest_cache/v/cache/nodeids"
+  ],
+  "worktree_removed": true,
+  "remote_branch_removed": true,
+  "local_branch_removed": true,
+  "commands": [
+    {
+      "args_workspace_relative": [
+        "worktree",
+        "remove",
+        "--force",
+        "q4-r33-transit-budget"
+      ],
+      "used_validated_absolute_target": true,
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "args": [
+        "push",
+        "origin",
+        "--force-with-lease=refs/heads/experiment/q4-r33-transit-budget:524345e3a0fc10d5c54fdc3afe67767f9bb148e4",
+        ":refs/heads/experiment/q4-r33-transit-budget"
+      ],
+      "exit_code": 0,
+      "output": "To https://github.com/Sa63R/cumcm2026-b-interference-localization.git\n - [deleted]           experiment/q4-r33-transit-budget"
+    },
+    {
+      "args": [
+        "branch",
+        "-D",
+        "experiment/q4-r33-transit-budget"
+      ],
+      "exit_code": 0,
+      "output": "Deleted branch experiment/q4-r33-transit-budget (was 524345e3)."
+    }
+  ],
+  "archive_tag_preserved_local_and_remote": true,
+  "recorded_at_utc": "2026-09-12T00:00:34.8938363Z",
+  "ref_changes": {
+    "refs/heads/experiment/q4-r33-transit-budget": {
+      "before": "524345e3a0fc10d5c54fdc3afe67767f9bb148e4",
+      "after": null
+    },
+    "refs/remotes/origin/experiment/q4-r33-transit-budget": {
+      "before": "524345e3a0fc10d5c54fdc3afe67767f9bb148e4",
+      "after": null
+    }
+  },
+  "remote_ref_changes": {
+    "refs/heads/experiment/q4-r33-transit-budget": {
+      "before": "524345e3a0fc10d5c54fdc3afe67767f9bb148e4",
+      "after": null
+    }
+  },
+  "foreign_ref_changes": {},
+  "foreign_remote_ref_changes": {},
+  "protected_core_branches_present": 10,
+  "protected_core_branches_unchanged": true,
+  "archive_reader_bytes_unchanged": true,
+  "refs_snapshot_sha256": {
+    "CLEANUP_REFS_AFTER.txt": "e703f8cf7d3feea5320dc8034b2c0b55d222bfc571e9bcc8b58de5220fdd16fd",
+    "CLEANUP_REFS_BEFORE.txt": "4326952fd108d18acd3f24af8309f5ffe4263d28851805fdec4b785bc76d864c",
+    "CLEANUP_REMOTE_REFS_AFTER.txt": "1e64491840a7be62fecc26c14fa805c3184bfdf688e9c69da80f81b04ba3c968",
+    "CLEANUP_REMOTE_REFS_BEFORE.txt": "fa00bdfd3ff7405b98a1e6954162ef6a0c458fb12c42a8cf7aa4ff64b972d577"
+  },
+  "comparison_scope": "Immediate snapshots around only the R33 deletions; the subsequent lifecycle commit intentionally advances core. Concurrent unrelated refs are never overwritten."
+}
