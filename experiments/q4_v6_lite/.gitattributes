@@ -1,0 +1,10 @@
+# Frozen source and evidence hashes require exact bytes on every checkout.
+* -text
+
+# The exported CSV uses CRLF. These unmodified upstream files end in a blank line.
+paired_records.csv whitespace=cr-at-eol
+reference/source_v6/q4_fast_local.py whitespace=-blank-at-eof
+reference/source_v6/q4_fast_solver.py whitespace=-blank-at-eof
+reference/source_v6/q4_v3_solver.py whitespace=-blank-at-eof
+source_v6_lite/q4_fast_local.py whitespace=-blank-at-eof
+source_v6_lite/q4_v3_solver.py whitespace=-blank-at-eof
