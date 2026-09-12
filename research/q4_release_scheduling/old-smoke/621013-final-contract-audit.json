@@ -1,0 +1,1009 @@
+{
+  "passed": true,
+  "generic": {
+    "case_id": "q4-random-621013",
+    "strategy": "compact_release_scheduling",
+    "successful": true,
+    "virtual_time_s": 6589.615103,
+    "common_lower_bound_s": 1975.3478940933496,
+    "time_over_lower_bound": 3.3359263564175965,
+    "physical": {
+      "source_total": 10,
+      "cleared_total": 10,
+      "measurement_count": 306,
+      "failed_clear_count": 0,
+      "all_cleared": true,
+      "virtual_time_s": 6589.615103,
+      "time_breakdown_s": {
+        "movement_s": 4722.615103,
+        "switching_s": 287.0,
+        "detection_s": 1530.0,
+        "optical_s": 30.0,
+        "removal_s": 20.0
+      }
+    },
+    "geometric_certificate": {
+      "kind": "q4-local-convex-hull-dyadic-certificate-v1",
+      "passed": true,
+      "status": "certified",
+      "reason": null,
+      "station_count": 22,
+      "stations": [
+        [
+          -1851.290353890597,
+          2.2671768061844906e-13
+        ],
+        [
+          -1667.9549743034802,
+          -803.2447809383194
+        ],
+        [
+          -1667.95497430348,
+          803.2447809383199
+        ],
+        [
+          -1154.2606559302333,
+          -1447.397081861049
+        ],
+        [
+          -1154.260655930233,
+          1447.3970818610492
+        ],
+        [
+          -873.9398018653466,
+          -420.86722694403124
+        ],
+        [
+          -873.9398018653465,
+          420.8672269440315
+        ],
+        [
+          -411.9508585720518,
+          -1804.8746395609091
+        ],
+        [
+          -411.95085857205135,
+          1804.8746395609091
+        ],
+        [
+          -215.84530593762514,
+          -945.6800748163689
+        ],
+        [
+          -215.84530593762491,
+          945.6800748163689
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          411.9508585720495,
+          -1804.8746395609096
+        ],
+        [
+          411.9508585720516,
+          1804.8746395609091
+        ],
+        [
+          604.7851078029714,
+          -758.376537993989
+        ],
+        [
+          604.7851078029715,
+          758.3765379939889
+        ],
+        [
+          970.0,
+          0.0
+        ],
+        [
+          1154.2606559302328,
+          -1447.3970818610492
+        ],
+        [
+          1154.2606559302333,
+          1447.397081861049
+        ],
+        [
+          1667.9549743034802,
+          803.2447809383196
+        ],
+        [
+          1667.9549743034806,
+          -803.2447809383185
+        ],
+        [
+          1851.290353890597,
+          0.0
+        ]
+      ],
+      "station_sha256": "cdfb754c6ba3a86b6cabf43a83cc6d96ea3709ee93844d306542ba0355b3c291",
+      "arena_radius": 1800.0,
+      "reception_radius": 1000.0,
+      "range_margin_m": 1e-05,
+      "orientation_margin_m": 1e-07,
+      "max_depth": 16,
+      "max_cells": 200000,
+      "visited_cells": 5989,
+      "deepest_level": 11,
+      "outside_leaves": 1532,
+      "covered_leaves": 2960,
+      "counterexample": null,
+      "unresolved_cell": null,
+      "runtime_s": 0.1508093000156805,
+      "arithmetic_scope": "real convexity theorem with conservative float margins; not interval arithmetic",
+      "leaf_witness_sha256": "bcb7ae7c4f0a1edb53734e0fae9b53e093ad1921d3ac90f84d199f111a98c329"
+    },
+    "observations": {
+      "detected": 10,
+      "cleared": 10,
+      "terminal_certified": true,
+      "source_cap_actual_clears": false,
+      "triangle_station_count": 22,
+      "triangle_count": null,
+      "absence": [
+        {
+          "channel": 1,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 3,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 6,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 7,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 9,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 11,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 12,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 13,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 14,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        },
+        {
+          "channel": 15,
+          "certified": true,
+          "method": "independently_certified_cover_actually_negative",
+          "missing_station_count": 0,
+          "actual_distinct_negative_stations": 22
+        }
+      ],
+      "clear_attempts": [
+        {
+          "action_index": 80,
+          "channel": 8,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.021853218193684
+        },
+        {
+          "action_index": 115,
+          "channel": 5,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 18.01827177120028
+        },
+        {
+          "action_index": 132,
+          "channel": 20,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.70713716000701
+        },
+        {
+          "action_index": 190,
+          "channel": 19,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 16.969031396353174
+        },
+        {
+          "action_index": 203,
+          "channel": 4,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.55403974633678
+        },
+        {
+          "action_index": 247,
+          "channel": 18,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 16.221183223300358
+        },
+        {
+          "action_index": 313,
+          "channel": 16,
+          "phase": "speculative_clear_before_probe",
+          "result": "success",
+          "prefix_certified": false,
+          "radius_upper_m": 20.81102097232955
+        },
+        {
+          "action_index": 314,
+          "channel": 10,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "action_index": 315,
+          "channel": 17,
+          "phase": "certified_clear",
+          "result": "success",
+          "prefix_certified": true,
+          "radius_upper_m": 19.536082985155566
+        },
+        {
+          "action_index": 316,
+          "channel": 2,
+          "phase": "speculative_clear_before_probe",
+          "result": "success",
+          "prefix_certified": false,
+          "radius_upper_m": 20.77853456545585
+        }
+      ],
+      "successful_clear_without_prefix_certificate": 2,
+      "legal_failed_optical_attempts": 0,
+      "hull_events": [],
+      "pair_events": [],
+      "certified_scans_skipped": [
+        {
+          "channel": 10,
+          "after_actual_action_count": 148,
+          "position": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 162,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 176,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 190,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 203,
+          "position": [
+            1851.290353890597,
+            0.0
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 214,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 225,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 236,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 236,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 16.221183223300358
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 247,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 257,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 268,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 279,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 290,
+          "position": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 290,
+          "position": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "radius_upper_m": 19.536082985155566
+        },
+        {
+          "channel": 10,
+          "after_actual_action_count": 301,
+          "position": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "radius_upper_m": 17.03910650896851
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 301,
+          "position": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "radius_upper_m": 19.536082985155566
+        }
+      ],
+      "inferred_coverage_credits": 0
+    },
+    "passed": true,
+    "errors": []
+  },
+  "prefix": {
+    "forecast_scheduled_macros": 20,
+    "known_source_macros": 10,
+    "source_service_actions": 10,
+    "broad_service_actions": 0,
+    "completed_scans": 22,
+    "chain_decisions": 31,
+    "original_astar_expanded": 2574,
+    "passed": true,
+    "r12": {
+      "passed": true,
+      "epochs": 10,
+      "refined_epochs": 0,
+      "fallback_epochs": 0,
+      "probe_decisions": 0,
+      "executed_probes": 0,
+      "auxiliary_clear_attempts": 0,
+      "auxiliary_clear_successes": 0,
+      "optical_epochs": 0,
+      "optical_attempts": 0,
+      "terminal_clear_events": 0,
+      "canonical_fallbacks": 0,
+      "decision_wall_s": 0.05687259999103844,
+      "continuation_events": 0,
+      "continuation_calls": 0,
+      "continuation_applied": 0,
+      "continuation_wall_s": 0,
+      "boundary": "Actual-prefix and full optical strip coverage; generic physical, coverage/scheduling and inherited R8 audits remain separate requirements"
+    },
+    "r8": {
+      "passed": true,
+      "events": 2,
+      "attempts": 2,
+      "successes": 2,
+      "failures": 0,
+      "skipped_budget": 0,
+      "failed_then_measured": 0,
+      "terminal_interruptions": 0,
+      "decision_wall_s": 4.9900030717253685e-05,
+      "boundary": "Actual prefixes and costs; remaining real time is a logged wall-clock snapshot, not a guaranteed future allowance"
+    },
+    "range": {
+      "passed": true,
+      "range_skips_verified": 41,
+      "events": [
+        {
+          "channel": 16,
+          "after_actual_action_count": 76,
+          "position": [
+            -215.84530593762491,
+            945.6800748163689
+          ],
+          "distance_lower_bound_m": 1738.2350931353842,
+          "independent_region_distance_m": 1738.2350932353988
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 95,
+          "position": [
+            604.7851078029715,
+            758.3765379939889
+          ],
+          "distance_lower_bound_m": 1891.0442356608455,
+          "independent_region_distance_m": 1891.0442357608601
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 113,
+          "position": [
+            970.0,
+            0.0
+          ],
+          "distance_lower_bound_m": 1659.1571553330534,
+          "independent_region_distance_m": 1659.157155433068
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 113,
+          "position": [
+            970.0,
+            0.0
+          ],
+          "distance_lower_bound_m": 1739.2971614523647,
+          "independent_region_distance_m": 1739.2971615523938
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 113,
+          "position": [
+            970.0,
+            0.0
+          ],
+          "distance_lower_bound_m": 1695.3010522797022,
+          "independent_region_distance_m": 1695.3010523797313
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 130,
+          "position": [
+            604.7851078029714,
+            -758.376537993989
+          ],
+          "distance_lower_bound_m": 1516.7530758879484,
+          "independent_region_distance_m": 1516.7530759879776
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 130,
+          "position": [
+            604.7851078029714,
+            -758.376537993989
+          ],
+          "distance_lower_bound_m": 2261.206694686472,
+          "independent_region_distance_m": 2261.206694786501
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 147,
+          "position": [
+            -215.84530593762514,
+            -945.6800748163689
+          ],
+          "distance_lower_bound_m": 2403.3240952488686,
+          "independent_region_distance_m": 2403.3240953488976
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 162,
+          "position": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "distance_lower_bound_m": 1939.1400992522615,
+          "independent_region_distance_m": 1939.1400993522907
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 162,
+          "position": [
+            -411.9508585720518,
+            -1804.8746395609091
+          ],
+          "distance_lower_bound_m": 3281.1963833195477,
+          "independent_region_distance_m": 3281.1963834195767
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 175,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "distance_lower_bound_m": 2246.1145021180896,
+          "independent_region_distance_m": 2246.1145022181186
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 175,
+          "position": [
+            411.9508585720495,
+            -1804.8746395609096
+          ],
+          "distance_lower_bound_m": 3262.248012502629,
+          "independent_region_distance_m": 3262.248012602658
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 189,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "distance_lower_bound_m": 1769.996815898313,
+          "independent_region_distance_m": 1769.996815998342
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 189,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "distance_lower_bound_m": 2476.2326318211017,
+          "independent_region_distance_m": 2476.2326319211306
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 189,
+          "position": [
+            1154.2606559302328,
+            -1447.3970818610492
+          ],
+          "distance_lower_bound_m": 3082.3778296423475,
+          "independent_region_distance_m": 3082.3778297423764
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 202,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "distance_lower_bound_m": 2157.071663069847,
+          "independent_region_distance_m": 2157.071663169876
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 202,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "distance_lower_bound_m": 2608.6631806931096,
+          "independent_region_distance_m": 2608.6631807931385
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 202,
+          "position": [
+            1667.9549743034806,
+            -803.2447809383185
+          ],
+          "distance_lower_bound_m": 2751.118520750336,
+          "independent_region_distance_m": 2751.118520850365
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 214,
+          "position": [
+            1851.290353890597,
+            0.0
+          ],
+          "distance_lower_bound_m": 2470.0633685323123,
+          "independent_region_distance_m": 2470.0633686323417
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 214,
+          "position": [
+            1851.290353890597,
+            0.0
+          ],
+          "distance_lower_bound_m": 2623.891607681857,
+          "independent_region_distance_m": 2623.891607781886
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 214,
+          "position": [
+            1851.290353890597,
+            0.0
+          ],
+          "distance_lower_bound_m": 2286.4377752308037,
+          "independent_region_distance_m": 2286.4377753308327
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 225,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "distance_lower_bound_m": 2681.5683361566475,
+          "independent_region_distance_m": 2681.5683362566765
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 225,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "distance_lower_bound_m": 2516.7385861842276,
+          "independent_region_distance_m": 2516.738586284257
+        },
+        {
+          "channel": 18,
+          "after_actual_action_count": 225,
+          "position": [
+            1667.9549743034802,
+            803.2447809383196
+          ],
+          "distance_lower_bound_m": 1710.5708351150295,
+          "independent_region_distance_m": 1710.5708352150587
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 227,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "distance_lower_bound_m": 1635.0109361498123,
+          "independent_region_distance_m": 1635.0109362498415
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 235,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "distance_lower_bound_m": 2771.8340255312864,
+          "independent_region_distance_m": 2771.8340256313163
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 235,
+          "position": [
+            1154.2606559302333,
+            1447.397081861049
+          ],
+          "distance_lower_bound_m": 2304.1781702958647,
+          "independent_region_distance_m": 2304.1781703958936
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 237,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2302.6523355708755,
+          "independent_region_distance_m": 2302.6523356709044
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 246,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2733.1054844726805,
+          "independent_region_distance_m": 2733.1054845727094
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 246,
+          "position": [
+            411.9508585720516,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2000.5594026275055,
+          "independent_region_distance_m": 2000.5594027275347
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 249,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2846.9932939497266,
+          "independent_region_distance_m": 2846.9932940497556
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 257,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 2573.8314875358265,
+          "independent_region_distance_m": 2573.8314876358554
+        },
+        {
+          "channel": 17,
+          "after_actual_action_count": 257,
+          "position": [
+            -411.95085857205135,
+            1804.8746395609091
+          ],
+          "distance_lower_bound_m": 1646.5042098486065,
+          "independent_region_distance_m": 1646.504209948636
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 259,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "distance_lower_bound_m": 3249.12560429998,
+          "independent_region_distance_m": 3249.1256044000093
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 267,
+          "position": [
+            -1154.260655930233,
+            1447.3970818610492
+          ],
+          "distance_lower_bound_m": 2305.364657436038,
+          "independent_region_distance_m": 2305.364657536067
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 270,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "distance_lower_bound_m": 3488.742950260852,
+          "independent_region_distance_m": 3488.742950360881
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 279,
+          "position": [
+            -1667.95497430348,
+            803.2447809383199
+          ],
+          "distance_lower_bound_m": 1949.2564843288055,
+          "independent_region_distance_m": 1949.2564844288347
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 281,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "distance_lower_bound_m": 3553.748417559614,
+          "independent_region_distance_m": 3553.748417659643
+        },
+        {
+          "channel": 16,
+          "after_actual_action_count": 289,
+          "position": [
+            -1851.290353890597,
+            2.2671768061844906e-13
+          ],
+          "distance_lower_bound_m": 1541.3888416677569,
+          "independent_region_distance_m": 1541.388841767786
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 291,
+          "position": [
+            -1667.9549743034802,
+            -803.2447809383194
+          ],
+          "distance_lower_bound_m": 3439.5724639348014,
+          "independent_region_distance_m": 3439.5724640348303
+        },
+        {
+          "channel": 2,
+          "after_actual_action_count": 303,
+          "position": [
+            -1154.2606559302333,
+            -1447.397081861049
+          ],
+          "distance_lower_bound_m": 3152.7460945831776,
+          "independent_region_distance_m": 3152.7460946832066
+        }
+      ],
+      "inferred_observation_count": 0,
+      "inferred_absence_credits": 0,
+      "arithmetic_scope": "Positive-only convex geometry with conservative float margins; no interval claim"
+    },
+    "scheduling": {
+      "passed": true,
+      "early_services": 0,
+      "early_service_cost_s": 0,
+      "discovery_stops": 0,
+      "budget_interrupted_services": 0,
+      "boundary": "Checks observed service interval and gates; the omitted next action is not recorded, so exact budget-expiry choice is not independently reconstructed"
+    },
+    "source_contract_files": 57,
+    "reused_matrix_audit_sha256": "107b943dddfaabb3735bce3be43c31798f5beda14883abbd6a6f4ea180a50d30",
+    "boundary": "Prefix-frozen optimistic release proxy; actual ready source guard remains mandatory. Forecast-mixed executed macros are exposure counts, not causal changes or saved time. Only <=4-source optimum is independently enumerated. No actual history is modified; only legacy range/scheduling receive accepted-wire views; generic retains rejected requests."
+  },
+  "input_sha256": "12f61813dfb07591a15b7258afd21b7db58da9d3280c962f5b9a92238866b5c3",
+  "final_source_sha256": {
+    "src/geometry/__init__.py": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+    "src/localization/__init__.py": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+    "src/localization/omni.py": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+    "src/planning/__init__.py": "070acfaf1e3aa79d2d4c9c8616f733b512e264729118f720929783a18b227027",
+    "src/planning/chain_route.py": "0502c7fe525bc64578bda3ecbe5fcfe6f6408a0ad728e3e670223d6d215f29ef",
+    "src/planning/coverage.py": "4c097ba0d009d0954a96089fb867db5bb4d00020d2cb0b408d8d4c297b427000",
+    "src/planning/directional_probe_pair.py": "635d46a7a9571ab8f4a9f9f066b0ad5da0d5febcaf297c3520495bff55926f06",
+    "src/planning/joint_visibility_region.py": "c2df945c3a3dc295827fd7afbbb78793b43184cf61e1d1070f47020293953d7a",
+    "src/planning/matrix_chain_route.py": "14f36e6307a6874239f6d564366519d9e46713f3bf6af8f05cf26334ec43fe40",
+    "src/planning/positive_hull_probe.py": "b03d5906660ee7565f19acaf8a7f86706957818977e526288bd845c40d9ffb5f",
+    "src/planning/q4_directional_cover.py": "e863b3f0fb83e1deba8d1a24c4b929b8fe1caca9927f8b99e514b1deea6da5c1",
+    "src/planning/release_chain_route.py": "f0ea8c4438465e9876f7f967fd15de543a751a7e3261579d74160ed27b94593d",
+    "src/planning/routing.py": "e9cd4d242de519247a1fd7320add95c0c3d603f21a77899bb88d296d13ae4684",
+    "src/practice_control/__init__.py": "45694c74e155e7267239f23656085ae352a59ce7cb5968b0dac6a36abcc9f62d",
+    "src/practice_control/__main__.py": "78cb1245f7f355e1e4e7f855314211848687da00c3f4923d57ea8c1441276c46",
+    "src/practice_control/branch_worker.py": "6e376f01d02606b251404038fe08c73e732297081d1e322656f24926a38c079b",
+    "src/practice_control/bridge.py": "fc28f4a2f96f335bcac64170b9c0a96cbf30f5e50d81a0bd679daacde4714779",
+    "src/practice_control/runner.py": "15c28002cb80b899f7c19b6af2326fd687d0ae7131c05b910bed9ad83f574440",
+    "src/practice_control/runtime.py": "a9e62e85d19fe9081bf5085871715ef809ce9c25c79c58c35358b68b83c43865",
+    "src/simulation/__init__.py": "2e01c860eb9cd4ea7fbab3cda9f13eaa4a454bef0ac17541301751dec0925cb6",
+    "src/simulation/cases.py": "4d5588d9c11ccda5f251a819b292d9d69f1d5f5f9580be20534aa3bb9b6eec39",
+    "src/simulation/engine.py": "3ef36f508f773564baed47569e014309cfb1cbcebb1ba1ad268a4b0f3e125622",
+    "src/simulation/q3_branch.py": "d16b7adf3c317f5c21ca3880916a1736884f396d7b7e964b71b8d8ce89ffe790",
+    "src/simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+    "src/simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+    "src/simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+    "src/simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+    "src/simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+    "src/simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+    "src/strategies/__init__.py": "7eec10fe0201db03e7fc867e474dadf5a9a19cd1d3985bb2e22cdca88f9873a1",
+    "src/strategies/efficient.py": "2349996a10685d62c441f2ebf8ff176d18f37ced660eb260e4daf38cf6b1f37a",
+    "src/strategies/q3_belief.py": "35a5222a2c2cd89857f3d8c9d00a12217fe2667a20a2586dc4a1e28295ff465e",
+    "src/strategies/q4_clear_before_probe.py": "641e8b0e4e6cce7b6445e88117d08ac23bd073487dfb46b87e903330f678ac69",
+    "src/strategies/q4_cover_search.py": "2bab5ee2f935967670bb7c1107b99a7bba20208372e15aab328a67b15d651404",
+    "src/strategies/q4_joint_continuation.py": "277480e9c22b0bd983a2971ad04fc97f8ff9e3232ed8198445b9d04dc95e024e",
+    "src/strategies/q4_joint_visibility.py": "eb922aae8052b48c9d54cd4b269a088498a3feeddbae254344b6ed73e31ff0e6",
+    "src/strategies/q4_known_source.py": "1591f7888ae3c82e78e9aab797631ae2f1fc05f4d57de03e143806d5ae25d5a8",
+    "src/strategies/q4_optical_cover.py": "87f8805167a91c364856d3da0f57ea032f4b3ac23b9d9c28c18c0a642136bfa6",
+    "src/strategies/q4_r2_scheduling.py": "48d0f20ed0a073d26f177078f54dd1b40a532038aa74bb0de098c81f84509a44",
+    "src/strategies/q4_range_pruning.py": "c8bd010f186ccd991ffa3cb6727ff1d2cc038c2955bc29f27bb9ab851c37a1d2",
+    "src/strategies/q4_range_scheduling.py": "ad238a4e9c75537223d83ba4b180dc2d316ed71b487497f0f0e5a9bc2d72d76d",
+    "src/strategies/q4_release_scheduling.py": "87a5124ca6021e0ce2df7c1ce49cacf1116699a2bed21ad5e2b592ee4ace2fe2",
+    "src/strategies/q4_state_search.py": "8d105d02f3cb97ef99a1ccef98b63e5510da3c9c5000f77ee6401fbb39b9de59",
+    "src/strategies/rollout.py": "f2c7afa93373735a576e364515483e43ab01e8c2ea5e119ddb67f0dfda23838d",
+    "src/strategies/search.py": "3c30ea448db217b2429d89c69d7db1f8e7fafc14c334043c6c1813ba94c44de5",
+    "src/workflow/__init__.py": "3755f953a7f53ae76381142ab9e08347340462faf3bcb4694b4f76156c734d8c",
+    "src/workflow/__main__.py": "c353609048133fb2d11f9c774263dbb374de42910c816e062bddaa5166120ad6",
+    "src/workflow/evidence.py": "a4c5f37fe120c58be082fd3708020dd844140aceaed01835d8f1c52132ebca80",
+    "experiments/run_q4_state_study.py": "6caa3c63496830f68ac68c19f78e74c4b202f420cd49c4433f7700ed93169bab",
+    "experiments/run_study.py": "863a39fb70bc1af59f7a8a34d6505c677c9c4355e71d160a8e017495b37d9a29",
+    "experiments/run_q4_round2.py": "8c62bf9e4cdf92bde23d34ca4c490952b8f48a5212918def65e02a1119e6c653",
+    "experiments/q4_comparison_bounds.py": "973da2a119eaad526e643aaebc6cf99b9a624af53f850d4dfe85abf1705e8804",
+    "experiments/audit_q4_clear_before_probe.py": "68c7ef07dca4cc9f7a60351332911c25054c5e0392220830637bfd89518e62c4",
+    "experiments/audit_q4_clear_before_probe_batch.py": "0772d47a0ad8a9789932501baddd34989799919cbb7ed1afa51f156db3c2e393",
+    "experiments/audit_q4_cover.py": "96cf68e18fed8bd2bbb72f7cd11858181b2306ab5b4837f530cdd7bd09f2f09c",
+    "experiments/audit_q4_joint_continuation.py": "5a04f00ee3796312b0ef0862fedf1bfefe1f9d57101e43eacbf11c7708db99e8",
+    "experiments/audit_q4_joint_continuation_batch.py": "67fbf4d8b8e92f8ba41dd221f4d8ab2cf62912637f30466bd1c6b26f85838e18",
+    "experiments/audit_q4_joint_visibility.py": "1f5dd8a08676c94128a38ff26012bcb9fa590a0d779156f4cfc9f200721b970e",
+    "experiments/audit_q4_joint_visibility_prefix.py": "398047b0ac94f3b1600dcf861e052fef4da2e430828b21c2bdd567b66b9a7ab4",
+    "experiments/audit_q4_joint_visibility_prefix_batch.py": "3fd448c74bd57887d9745f03bef1d751c8c52ff3c590651c228948622669a196",
+    "experiments/audit_q4_known_source.py": "107b943dddfaabb3735bce3be43c31798f5beda14883abbd6a6f4ea180a50d30",
+    "experiments/audit_q4_optical.py": "0e773d944c0512c292854c3cc2de679a98ceb8c8b70e4d6caec0d32ed086d16a",
+    "experiments/audit_q4_per_source.py": "3b1e4050460d261533d1e41ac8fec21e2ba0dd3331e09d3b32c3fcfc9d576704",
+    "experiments/audit_q4_range.py": "8995a087ec085cbef445ba455f68dc81d426c1e51b3406e81184c8888cdd3578",
+    "experiments/audit_q4_release_scheduling.py": "3b602399762aeb14699278ee3c46accb09eeaa0653fbb9b102449390f776abce",
+    "experiments/audit_q4_scheduling.py": "836d82d30280d24b612ca96367ca7e9b33b0b1b76f441bbfbcf2d674606ff5be",
+    "experiments/audit_q4_state.py": "5288f280acf48f524bdda630ca38b125c323caa47b36fbb4a3d098fee2b8a164",
+    "experiments/run_q4_per_source.py": "9e20423140b7f16c277be38a6124f0612a5cc829f1e5e373e5fe98d33ac0d794",
+    "experiments/q4_release_scheduling_release.py": "81ef84badbb98c27f20cbb003d485fc4a2f76010cc7f667ed3a19e41a7a47e35",
+    "research/q4_release_scheduling/PROTOCOL.md": "300665849a6e03bd12c47f1bcb26819e8ee1b9d515c85c0832521729778b53da",
+    "research/q4_release_scheduling/spec.json": "8d419635b12dab547ad8fc23dcbc380277c8e68efc22747d3eb711d5bdf756a9"
+  }
+}
