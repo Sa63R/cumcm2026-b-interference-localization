@@ -14,13 +14,25 @@ def figure(name,caption,width='100%'):
     return f'\n\n![{caption}](figures/{name}.pdf){{width={width}}}\n\n'
 
 q2=clean(source('q2_methods.md'))
-q2=q2.replace('## 问题二：','# 问题二 ').replace('### 2.','## 2.')
+q2=q2.replace('## 问题二：','# 问题二　').replace('### 2.','## 2.')
 q2=q2.split('FIG:q2_geometry')[0]
 q2+=figure('fig01_q2_geometry','图1 首测可行域及横向交会的解析示意。半角采用1.005°，蓝色测点域由三角外包构造，属于充分保证接收域；示意源p仅用于解释交会几何，不作为规划输入。右图展示另一比例下的局部几何，不能作为算法性能比较。')
+q2_example=clean(source('q2_example.md').split('<!-- EVIDENCE')[0])
+q2_example=q2_example.replace('## 第二问数值实例：由既有主动测量反馈重建定位区域','## 2.5 真实观测算例')
+q2_example=q2_example.replace('在首版独立随机案例 seed 800035 的状态搜索记录中','在场景800035的状态搜索轨迹中')
+q2_example=re.sub(r'\| 观测.*?(?=\n\n)', '''Table: 表2 频道20的两次有效测量与区域收缩
+
+| 观测 | 检测点坐标 / m | 示向度 | 外包圆半径 / m |
+|:----------|:-------------------------:|----------:|----------:|
+| 原点首测 | (0.000, 0.000) | 125.00° | 750.226 |
+| 主动再测 | (-170.646, 568.027) | 148.14° | 65.012 |''',q2_example,flags=re.S)
+q2_example=q2_example.replace('**','').replace('593.105694','593.106').replace('960.426723','960.427')
+q2_example=q2_example.replace('这里只使用已记录的坐标与示向度调用几何更新，不重新运行策略或模拟器，也未使用真实源坐标选择实例。','算例仅由既有坐标和示向度重建，未使用真实源坐标选择实例；原始动作及重建数值见辅助材料。')
+q2+='\n\n'+q2_example+'\n'
 q2+='\n以上构造同时给出了第二检测点的候选区域与可执行选择规则。其理论保证在于真实源保留、候选点可接收以及清除条件可靠；选点效率仍须由实际后续测量检验。本稿已有实验主要评估完整第三问，尚不把整局节省量当成第二检测点单独优越性的证据。\n'
 
 q3=clean(source('q3_methods.md'))
-q3=q3.replace('## 问题三：','# 问题三 ').replace('### 3.','## 3.')
+q3=q3.replace('## 问题三：','# 问题三　').replace('### 3.','## 3.')
 q3=q3.split('FIG:framework')[0]
 q3=q3.replace('将不同访问顺序压缩成相同的','借鉴子集动态规划[1]，将不同访问顺序压缩成相同的')
 q3=q3.replace('为优先探索有希望的前缀','采用A*启发式图搜索[2]，为优先探索有希望的前缀')
@@ -57,6 +69,28 @@ exp=exp.replace('每次继承仅迁移权重并重建优化器，不能写成同
 exp=exp.replace('本批固定跑满 50 局，不包含此前按源数组织的 40 局。','本批预定跑满50局。')
 exp=exp.replace('；若先计算每局 T/N 再等权平均，则为 229.84 s/源','')
 exp=exp.replace('官方表中下界采用历史观测条件下的区域路线松弛，并含空频道必要动作项，与合成配对的纯先知物理下界不同；本文主比较采用实际耗时，不混用下界比值。','本文统一报告可直接核验的实际耗时；各历史报告的下界口径在辅助证据索引中保留，不用于跨批次排名。')
+exp=exp.replace('基线已经包含前瞻决策，不能称为最初的朴素策略；','以前瞻策略作为较强参照；')
+exp=exp.replace('该结果与首版独立测试属于不同模型、不同场景；它提示继续优化应关注信息获取与行程的联合代价，不能写成“RL 最终必然不如状态搜索”。','该结果与首版独立测试属于不同模型、不同场景；它提示进一步优化应关注信息获取与行程的联合代价，现有结果尚不足以判定两个方法族的最终优劣。')
+exp=exp.replace('区间描述冻结策略面对场景抽样的变动，并不涵盖重新训练网络的随机性；这一范围与强化学习评估中的不确定性要求一致[5]。','按场景报告配对区间，有助于避免仅依赖点估计进行比较[5]。该区间描述冻结策略面对场景抽样的变动，并不涵盖重新训练网络的随机性。')
+exp=exp.replace('实际继承链依次采样','选定模型在四个训练阶段依次采样')
+exp=exp.replace('四阶段实际行为克隆均为零','四阶段均未使用行为克隆')
+exp=exp.replace('全研究的 18 个完整日志试验、53 个开发端点用于记录探索成本与失败方向，不能全部计为所选模型的独立训练样本。','另有18项训练试验、53次开发评估用于比较候选配置，其总采样量与选定模型的训练量分别记录。')
+exp=exp.replace('端点','模型').replace('父模型','基础模型')
+exp=exp.replace('对后续 trial-1 模型重新进行同机、同引擎、同 48 个开发场景配对','将后续继续训练模型记为RL-2，已确认的状态搜索尾段精化版记为SS-2，并在同机、同引擎、同48个开发场景配对')
+exp=exp.replace('已确认的状态搜索尾段版为','SS-2为')
+exp=exp.replace('后期 trial-1 的 48 条既有轨迹中','后期RL-2的48条既有轨迹中')
+exp=exp.replace('v3 已取消初始全扫硬规则','该模型所属的自由扫描版本已取消初始全扫硬规则')
+exp=exp.replace('早期 v1/v2 的原点扫描本来固定，其轨迹不得作为自主学习的证据。','更早版本的原点扫描由程序固定，因此本项行为分析仅采用解除限制后的模型轨迹。')
+exp=exp.replace('表中“284/284”是256个随机场景与28个压力场景全部全清，两种分布的时间统计仍分别计算。','随机集与压力集分别统计全清比例，两种分布的时间统计也分别计算。')
+stats=json.loads((OUT/'data/four_methods.json').read_text(encoding='utf-8'))
+table=['Table: 表2 首版四方法在256个随机场景上的统一比较','','| 方法 | 均时 / s | P95 / s | 节省 | 节省95%区间 / s | 全清 |','|:---------------------|----------:|----------:|--------:|:--------------------:|:----------:|']
+for key,lab in [('baseline','前瞻基线'),('state','状态搜索'),('rl','PPO'),('geo','几何法')]:
+    m=stats['random']['methods'][key];cmp=stats['random']['comparisons'].get(key)
+    saving=f"{100*cmp['mean_reduction_fraction']:.2f}%" if cmp else '—'
+    ci='[{:.2f}, {:.2f}]'.format(*cmp['saving_ci95_s']) if cmp else '—'
+    table.append(f"| {lab} | {m['raw_mean_total_time_s']:.2f} | {m['raw_p95_total_time_s']:.2f} | {saving} | {ci} | 256/256 |")
+exp=re.sub(r'\| 首版冻结方案.*?(?=\n\n)', '\n'.join(table), exp,flags=re.S)
+exp=exp.replace('压力集上状态搜索为', '28个压力场景中，基线、状态搜索、PPO和几何法均时分别为3627.40、3046.34、3164.37和3254.15 s，均为28/28局全清。状态搜索相对基线为')
 
 trajectory=r'''
 ## 3.13 同场景轨迹与退化机制
@@ -78,6 +112,8 @@ intro=r'''
 # 符号说明
 
 本文针对全向干扰源，将第二问的主动检测点选择作为第三问多源搜索的局部模块。先建立可保证接收和可靠清除的几何条件，再研究覆盖任务、已知源处理及测量费用的联合调度。下文的源位置可行域由观测构造，所有实验表中的用时均为题目动作计费时间，程序计算耗时单独说明。
+
+Table: 表1 主要符号与含义
 
 | 符号 | 含义 | 符号 | 含义 |
 |---|---|---|---|
@@ -108,6 +144,8 @@ refs=r'''
 
 各批次的代码、权重身份与来源SHA256见辅助材料 `sources/evidence_experiments.json`。下表仅用于定位证据，原始研究目录保留完整动作记录；本轮论文整理未重新运行策略或训练模型。
 
+Table: 表3 已有实验的来源和用途
+
 | 证据 | 实验批次与样本 | 用途与边界 |
 |---|---|---|
 | E01至E03 | 首版256随机与28压力 | 四方法完整方案对比，分布分开 |
@@ -128,18 +166,23 @@ refs=r'''
 '''+figure('fig07_trajectory_state_worst','图7 状态搜索最大退化场景800015。状态搜索虽减少检测，却因移动增长而较基线慢125.08 s；此例为事后诊断选择。')+figure('fig08_trajectory_rl_worst','图8 PPO最大退化场景800081。该例主要额外代价来自移动，PPO较基线慢365.45 s；此例不表示总体发生频率。')
 
 content='\n\n'.join([intro,q2,q3,methods,exp,trajectory,refs])
+content=content.replace('表2 首版四方法','表3 首版四方法').replace('表3 已有实验','表4 已有实验')
 content=content.replace('x∈A','x 属于 A').replace('`sources/evidence_experiments.json`','结构化实验证据索引')
 (OUT/'第二问与第三问论文稿.md').write_text('# 全向干扰源的主动定位与状态搜索\n\n'+content,encoding='utf-8')
 body=pypandoc.convert_text(content,'latex',format='markdown+tex_math_dollars+implicit_figures',extra_args=['--wrap=none','--syntax-highlighting=none'])
 body=body.replace('\r\n','\n').replace('\r','\n')
 body=body.replace(r'\def\LTcaptype{none}', '')
+body=re.sub(r'(\\textbf\{算法[12][^\n]*\}\n\n\\begin\{verbatim\}.*?\\end\{verbatim\})',
+    lambda m:'\\par\\noindent\\begin{minipage}{\\linewidth}\n'+m.group(1)+'\n\\end{minipage}\\par\n',body,flags=re.S)
+body=re.sub(r'(\\begin\{longtable\}.*?)(\\caption\{([^}]+)\}\\tabularnewline)',
+    lambda m:'\\Needspace{'+('62mm' if m.group(3).startswith('表3') else '38mm')+'}\n\\begin{center}\\small '+m.group(3)+'\\end{center}\n\\nopagebreak\n'+m.group(1),body,flags=re.S)
 # Keep citations as prose labels instead of ordered lists; preserve explicit equation tags.
 body=body.replace('width=1\\linewidth','width=\\linewidth')
 preamble=r'''\documentclass[UTF8,zihao=-4,fontset=windows]{ctexart}
 \usepackage[a4paper,top=23mm,bottom=23mm,left=23mm,right=23mm]{geometry}
 \usepackage{amsmath,amssymb,mathtools,bm}
 \usepackage{graphicx,xcolor,longtable,booktabs,array,calc,multirow}
-\usepackage{caption,float,placeins,fancyhdr,enumitem,fvextra}
+\usepackage{caption,float,placeins,fancyhdr,enumitem,fvextra,needspace}
 \usepackage[hidelinks,unicode]{hyperref}
 \usepackage{microtype}
 \setmainfont{Times New Roman}
@@ -150,11 +193,13 @@ preamble=r'''\documentclass[UTF8,zihao=-4,fontset=windows]{ctexart}
 \linespread{1.18}
 \setlength{\parindent}{2em}
 \setlength{\parskip}{1.5pt}
+\clubpenalty=10000\widowpenalty=10000\displaywidowpenalty=10000
+\raggedbottom
 \setlength{\emergencystretch}{2em}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.25}
 \setlength{\LTpre}{7pt}\setlength{\LTpost}{7pt}
-\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\LTleft}{\fill}\setlength{\LTright}{\fill}
 \renewcommand{\topfraction}{0.92}\renewcommand{\bottomfraction}{0.85}
 \renewcommand{\textfraction}{0.06}\renewcommand{\floatpagefraction}{0.65}
 \makeatletter
@@ -182,7 +227,9 @@ preamble=r'''\documentclass[UTF8,zihao=-4,fontset=windows]{ctexart}
 # Before new major sections flush floats; preserve connected prose within each problem.
 body=body.replace('\\section{参考文献}', '\\FloatBarrier\n\\section{参考文献}')
 body=body.replace('\\begin{figure}', '\\begin{figure}[!htbp]')
+body=body.replace('\\subsection{3.9 ', '\\Needspace{82mm}\n\\subsection{3.9 ')
 body=body.replace('\\section{附录B', '\\clearpage\n\\section{附录B')
+body=body.replace('\\section{附录A', '\\clearpage\n\\section{附录A')
 tex=preamble+body+'\n\\FloatBarrier\n\\end{document}\n'
 (OUT/'第二问与第三问论文稿.tex').write_text(tex,encoding='utf-8')
 cmd=['xelatex','-interaction=nonstopmode','-halt-on-error','-file-line-error',f'-output-directory={QA}',str(OUT/'第二问与第三问论文稿.tex')]

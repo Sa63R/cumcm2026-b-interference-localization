@@ -22,6 +22,6 @@ $$
 \tag{3-16}
 $$
 
-终止状态的后续价值取零。有限候选减轻了连续动作探索的难度，也限定了学习策略能够发现的动作范围。因此，我们将强化学习视为检验“在相同任务结构下，学习调度能否改善人工规划”的独立方向，并通过等预算配置比较和跨场景评估判断效果。
+其中 $H$ 为该条终止轨迹的动作步数，$\lambda$ 为GAE系数，首版最终模型取0.95；终止状态的后续价值取零。有限候选减轻了连续动作探索的难度，也限定了学习策略能够发现的动作范围。因此，我们将强化学习视为检验“在相同任务结构下，学习调度能否改善人工规划”的独立方向，并通过等预算配置比较和跨场景评估判断效果。
 
 <!-- EVIDENCE: q3-deep-rl/research/rl_algorithm_basis.md; q3-deep-rl/src/research_rl/train.py:80,107,123; q3-state-search/research/final_results_v1/FIRST_VERSION_REPORT.md; 公式仅给真实PPO clipped policy项，训练还含value/entropy，不声称该式是全部优化损失。 -->

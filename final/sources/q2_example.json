@@ -1,0 +1,202 @@
+{
+  "kind": "read_only_reconstruction_of_two_recorded_bearing_observations",
+  "case_seed": 800035,
+  "case_id": "q3-random-800035",
+  "case_sha256": "a81add5e02ff69a9b54346c1a4a962314c0e6030a138e4e4bea7640ded87d091",
+  "channel": 20,
+  "selection_rule": "Scan summary.action_history in chronological order; choose the first event that is a channel's second direction result and has phase active_localization. No ranking by radius reduction or hidden truth.",
+  "archive_path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\state-future-cover\\case-800035.json.gz",
+  "archive_sha256": "39928e7a0d8ebb4e8f30a814824c0b62e0732acd18dbbbd1ab721b096356e277",
+  "strategy_spec": {
+    "name": "state_search_relocating_cover_v1",
+    "entrypoint": "strategies.relocating_state_search:run_relocating_state_search",
+    "kwargs": {
+      "config": {
+        "ring_radius": 1150.0,
+        "max_expansions": 100,
+        "max_total_expansions": 60000,
+        "scan_source_s": 0.0,
+        "skip_certified_scans": true,
+        "stop_discovery_at_16": true,
+        "opportunistic_measurements": true,
+        "opportunistic_min_radius": 60.0,
+        "replace_coverage": false,
+        "coverage_replacement_gain_s": 0.0,
+        "active_probe_search": true,
+        "probe_uncertainty_weight": 0.5
+      },
+      "enabled": true
+    }
+  },
+  "source_manifest_path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-random\\comparison.json",
+  "source_manifest_sha256": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991",
+  "geometry_source_hashes": {
+    "src/geometry/__init__.py": {
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\geometry\\__init__.py",
+      "sha256": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+      "matches_frozen_evaluation_manifest": true
+    },
+    "src/localization/__init__.py": {
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\localization\\__init__.py",
+      "sha256": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+      "matches_frozen_evaluation_manifest": true
+    },
+    "src/localization/omni.py": {
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\localization\\omni.py",
+      "sha256": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+      "matches_frozen_evaluation_manifest": true
+    },
+    "src/simulator_client/state.py": {
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\simulator_client\\state.py",
+      "sha256": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+      "matches_frozen_evaluation_manifest": true
+    }
+  },
+  "geometry_parameters": {
+    "prior_radius_m": 1800,
+    "max_reception_radius_m": 1500,
+    "min_reception_radius_m": 1000,
+    "disk_polygon_sides": 128,
+    "circular_approximation": "circumscribed",
+    "bearing_error_deg": 1.005,
+    "official_bearing_error_deg": 1.0,
+    "clear_radius_threshold_m": 19.9,
+    "ignored_near_exclusion_radius_m": 5
+  },
+  "observations": [
+    {
+      "summary_action_index_zero_based": 19,
+      "summary_action_ordinal_one_based": 20,
+      "raw_history_index_field": 20,
+      "raw_history_list_ordinal_one_based": 21,
+      "action": {
+        "action": "measure",
+        "position": [
+          0.0,
+          0.0
+        ],
+        "channel": 20,
+        "phase": "coverage",
+        "virtual_time_s": 119.0,
+        "result": "direction",
+        "bearing_deg": 125.0
+      },
+      "outer_region_vertices_m": [
+        [
+          -838.6884988035072,
+          1243.640922036027
+        ],
+        [
+          -863.9724994906065,
+          1226.7466928957701
+        ],
+        [
+          -881.8255191253907,
+          1213.5059911310273
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "outer_mec_center_m": [
+        -431.98624974530327,
+        613.3733464478851
+      ],
+      "outer_mec_radius_m": 750.2259540309765,
+      "satisfies_19_9_m": false
+    },
+    {
+      "summary_action_index_zero_based": 20,
+      "summary_action_ordinal_one_based": 21,
+      "raw_history_index_field": 21,
+      "raw_history_list_ordinal_one_based": 22,
+      "action": {
+        "action": "measure",
+        "position": [
+          -170.64635069700768,
+          568.0265722722411
+        ],
+        "channel": 20,
+        "phase": "active_localization",
+        "virtual_time_s": 242.621139,
+        "result": "direction",
+        "bearing_deg": 148.14
+      },
+      "outer_region_vertices_m": [
+        [
+          -598.5283668776086,
+          823.6524610766785
+        ],
+        [
+          -526.3936860845192,
+          780.5576564481639
+        ],
+        [
+          -547.073080527291,
+          811.2218913919422
+        ],
+        [
+          -627.0364239025614,
+          862.8832354702306
+        ]
+      ],
+      "outer_mec_center_m": [
+        -576.7150549935403,
+        821.7204459591973
+      ],
+      "outer_mec_radius_m": 65.01242503712217,
+      "satisfies_19_9_m": false
+    }
+  ],
+  "distance_between_measurement_points_m": 593.1056936276684,
+  "movement_time_between_points_s": 118.62113872553368,
+  "radius_reduction_fraction": 0.9133428739864179,
+  "max_second_point_distance_to_first_region_vertices_m": 960.4267227523205,
+  "second_point_has_guaranteed_reception": true,
+  "prefix_check": {
+    "same_channel_actual_measurements_through_second": 2,
+    "same_channel_prior_negative_observations": 0,
+    "same_channel_prior_inferred_constraints": [],
+    "two_observation_reconstruction_uses_all_source_region_constraints_at_that_prefix": true,
+    "second_observation_phase": "active_localization",
+    "second_observation_is_not_shared_cross_bearing": true
+  },
+  "recorded_probe_selection": {
+    "channel": 20,
+    "index": 0,
+    "candidates": 13,
+    "proposed_candidates": 23,
+    "hypotheses": 5,
+    "score_s": 251.8463659112477,
+    "position": [
+      -170.64635069700768,
+      568.0265722722411
+    ],
+    "score_kind": "finite_nominal_observation_surrogate_exact_pruning",
+    "evaluated_candidates": 2,
+    "pruned_candidates": 11,
+    "geometry_updates": 23,
+    "runtime_s": 0.01218627499838476,
+    "long_axis_width_m": 1500.4519080619496,
+    "axis": [
+      0.5758081914178442,
+      -0.8175848131515845
+    ],
+    "extra_points_proposed": 14,
+    "family": "axis_quantile",
+    "old_best_position": [
+      -472.9438519597538,
+      584.6945246303342
+    ],
+    "old_best_score_s": 261.2251549662342,
+    "score_improvement_s": 9.378789054986498,
+    "changed_point": true,
+    "baseline_candidates": 5,
+    "baseline_geometry_updates": 22,
+    "total_geometry_updates": 45,
+    "total_runtime_s": 0.023886936000053538
+  },
+  "scope": "Only archived observed coordinates and bearings supplied to frozen-version geometry modules. No strategy entrypoint, simulator, remote machine, hidden source coordinate or ground_truth read for selection/reconstruction. This is one descriptive example, not a new experiment or an independent superiority test.",
+  "reconstruction_recipe": "Set sys.path to q3-state-search/src; construct localization.omni.OmniCandidateRegion(); sequentially call observe(position,bearing_deg) on the two stored action records; after each call compute enclosing_disk(). Run Python with -B to avoid writing import caches."
+}

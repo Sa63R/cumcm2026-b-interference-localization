@@ -100,8 +100,8 @@ J(x)&=\frac{\|x-x_0\|}{v}
 P_k(x)&=\begin{cases}
 0,&\|x-p^{(k)}\|\le5,\\
 6\,\mathbf1_{\{r_k(x)>r_c\}}
-+\lambda\dfrac{(r_k(x)-r_c)_+}{v},&\text{其他情形},
-\end{cases}\qquad\lambda=0.5.
++\kappa\dfrac{(r_k(x)-r_c)_+}{v},&\text{其他情形},
+\end{cases}\qquad\kappa=0.5.
 \end{aligned}
 \tag{2-8}
 $$

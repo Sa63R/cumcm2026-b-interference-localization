@@ -2,7 +2,7 @@
 \usepackage[a4paper,top=23mm,bottom=23mm,left=23mm,right=23mm]{geometry}
 \usepackage{amsmath,amssymb,mathtools,bm}
 \usepackage{graphicx,xcolor,longtable,booktabs,array,calc,multirow}
-\usepackage{caption,float,placeins,fancyhdr,enumitem,fvextra}
+\usepackage{caption,float,placeins,fancyhdr,enumitem,fvextra,needspace}
 \usepackage[hidelinks,unicode]{hyperref}
 \usepackage{microtype}
 \setmainfont{Times New Roman}
@@ -13,11 +13,13 @@
 \linespread{1.18}
 \setlength{\parindent}{2em}
 \setlength{\parskip}{1.5pt}
+\clubpenalty=10000\widowpenalty=10000\displaywidowpenalty=10000
+\raggedbottom
 \setlength{\emergencystretch}{2em}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.25}
 \setlength{\LTpre}{7pt}\setlength{\LTpost}{7pt}
-\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\LTleft}{\fill}\setlength{\LTright}{\fill}
 \renewcommand{\topfraction}{0.92}\renewcommand{\bottomfraction}{0.85}
 \renewcommand{\textfraction}{0.06}\renewcommand{\floatpagefraction}{0.65}
 \makeatletter
@@ -45,12 +47,27 @@
 
 本文针对全向干扰源，将第二问的主动检测点选择作为第三问多源搜索的局部模块。先建立可保证接收和可靠清除的几何条件，再研究覆盖任务、已知源处理及测量费用的联合调度。下文的源位置可行域由观测构造，所有实验表中的用时均为题目动作计费时间，程序计算耗时单独说明。
 
-{ % do not increment counter
+\Needspace{38mm}
+\begin{center}\small 表1 主要符号与含义\end{center}
+\nopagebreak
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+符号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+含义
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+符号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+含义
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 符号
@@ -73,9 +90,8 @@
 \(\mathcal D_t,\mathcal K_t\) & 已发现及已清除频道集合 & \(M,j\) & 任务位掩码与最后任务 \\
 \(L,T\) & 实际路长与计费用时 & \(U_t,L_t\) & 冻结规划问题的上界与下界 \\
 \end{longtable}
-}
 
-\section{问题二 保证接收条件下的主动交会定位}\label{ux95eeux9898ux4e8c-ux4fddux8bc1ux63a5ux6536ux6761ux4ef6ux4e0bux7684ux4e3bux52a8ux4ea4ux4f1aux5b9aux4f4d}
+\section{问题二　保证接收条件下的主动交会定位}\label{ux95eeux9898ux4e8c-ux4fddux8bc1ux63a5ux6536ux6761ux4ef6ux4e0bux7684ux4e3bux52a8ux4ea4ux4f1aux5b9aux4f4d}
 
 一次示向度只能确定干扰源所在的狭长角域，沿示向方向移动虽然能够接近部分可能位置，却未必明显改善交会精度。第二检测点的选择需要同时回答两个问题：到达该点后能否再次接收到信号，以及新增观测能否以较小移动代价缩小定位区域。为此，先由首测信息构造保证接收的候选域，再在其中选择兼顾接近距离与残余不确定性的检测点。本节建立的单源模块将在第三问中反复调用。
 
@@ -171,8 +187,8 @@ J(x)&=\frac{\|x-x_0\|}{v}
 P_k(x)&=\begin{cases}
 0,&\|x-p^{(k)}\|\le5,\\
 6\,\mathbf1_{\{r_k(x)>r_c\}}
-+\lambda\dfrac{(r_k(x)-r_c)_+}{v},&\text{其他情形},
-\end{cases}\qquad\lambda=0.5.
++\kappa\dfrac{(r_k(x)-r_c)_+}{v},&\text{其他情形},
+\end{cases}\qquad\kappa=0.5.
 \end{aligned}
 \tag{2-8}
 \]
@@ -181,6 +197,7 @@ P_k(x)&=\begin{cases}
 
 等权名义点不代表已知的真实源后验分布，式(2-8)是有限代理目标，也不是所有误差下的最坏残余半径。因此，本节得到的是可执行的主动选点策略；有限候选的最小分值不等于连续候选域的全局最优。执行第二次检测后，只用真实反馈更新 \(\widehat C_f\)，再计算实际残余半径。若得到近场反馈，可在原位置清除；否则，是否达到20 m清除要求须由更新区域重新判定。
 
+\par\noindent\begin{minipage}{\linewidth}
 \textbf{算法1：单源主动检测点选择}
 
 \begin{verbatim}
@@ -191,6 +208,8 @@ P_k(x)&=\begin{cases}
 4. 返回分值最小的 x；基础集合无新点时尝试圆心与偏移回退。
 5. 执行真实测量，以真实反馈更新区域或触发近场清除。
 \end{verbatim}
+\end{minipage}\par
+
 
 \begin{figure}[!htbp]
 \centering
@@ -198,9 +217,36 @@ P_k(x)&=\begin{cases}
 \caption{图1 首测可行域及横向交会的解析示意。半角采用1.005°，蓝色测点域由三角外包构造，属于充分保证接收域；示意源p仅用于解释交会几何，不作为规划输入。右图展示另一比例下的局部几何，不能作为算法性能比较。}
 \end{figure}
 
+\subsection{2.5 真实观测算例}\label{ux771fux5b9eux89c2ux6d4bux7b97ux4f8b}
+
+在场景800035的状态搜索轨迹中，按动作发生时间选择首个``同频道第二次有效示向来自主动定位''的实例，得到频道 20。首测位于原点，第二测点由长轴分位候选策略实际选择；此前该频道没有负观测或推断约束，因此使用这两次示向即可重建当时的全部源区域信息。
+
+\Needspace{38mm}
+\begin{center}\small 表2 频道20的两次有效测量与区域收缩\end{center}
+\nopagebreak
+\begin{longtable}[]{@{}lcrr@{}}
+
+\toprule\noalign{}
+观测 & 检测点坐标 / m & 示向度 & 外包圆半径 / m \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+观测 & 检测点坐标 / m & 示向度 & 外包圆半径 / m \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+原点首测 & (0.000, 0.000) & 125.00° & 750.226 \\
+主动再测 & (-170.646, 568.027) & 148.14° & 65.012 \\
+\end{longtable}
+
+两检测点相距 593.106 m。第二点到首测外包区域各顶点的最大距离为 960.427 m，小于1000 m，满足保证再接收条件。第二次观测将外包最小包围圆半径由750.226 m缩小至65.012 m，降幅约 91.33\%，但尚未达到19.9 m可靠清除门限，因此仍需后续观测或光学覆盖。该例说明一次实际横向探测如何缩小可行域，不用于证明该选点优于所有其他候选。
+
+重建沿用原评估版本的128边外切圆近似和1.005°计算半角；题面误差界仍为1°，额外0.005°用于舍入余量。算例仅由既有坐标和示向度重建，未使用真实源坐标选择实例；原始动作及重建数值见辅助材料。
+
 以上构造同时给出了第二检测点的候选区域与可执行选择规则。其理论保证在于真实源保留、候选点可接收以及清除条件可靠；选点效率仍须由实际后续测量检验。本稿已有实验主要评估完整第三问，尚不把整局节省量当成第二检测点单独优越性的证据。
 
-\section{问题三 基于状态压缩与覆盖约束的多源搜索}\label{ux95eeux9898ux4e09-ux57faux4e8eux72b6ux6001ux538bux7f29ux4e0eux8986ux76d6ux7ea6ux675fux7684ux591aux6e90ux641cux7d22}
+\section{问题三　基于状态压缩与覆盖约束的多源搜索}\label{ux95eeux9898ux4e09-ux57faux4e8eux72b6ux6001ux538bux7f29ux4e0eux8986ux76d6ux7ea6ux675fux7684ux591aux6e90ux641cux7d22}
 
 第二问解决已发现单源的后续测点选择，第三问还需确定何时继续发现未知源、何时处理已知源，以及怎样确认任务完成。由于新观测不断改变可行域和任务集合，一次性规划所有真实源的最短路线并不可行。本文采用滚动规划：以合法观测维护源区域，将当前覆盖任务与定位清除任务合并为有限路线问题；每完成一个任务，再根据新信息重新规划。以下先给出状态搜索第一版的方法主体，再单列利用历史负观测的扫描精化，使不同版本的实验结果能够对应到明确算法。
 
@@ -285,7 +331,7 @@ E_i=\Omega\setminus\bigcup_{x\in G_i}B(x,r_s),
 
 每完成一次覆盖扫描或一个源的处理，构造两类当前任务：尚未执行的覆盖站，以及已发现但未清除的源。源任务以近场点或可行域包围圆心作为代表位置 \(y_i\)。这些位置来自观测估计，实际定位仍由第二问模块完成，故源任务的代表点与最终清除点可以不同。
 
-在本轮规划内冻结任务集合、位置和服务费用。设有 \(n\) 个任务，\(M\) 为已完成任务的位掩码，\(j\) 为最后任务；起始状态 \((0,-1)\) 对应当前位置，约定 \(y_{-1}=x_t\)。借鉴子集动态规划{[}1{]}，将不同访问顺序压缩成相同的 \((M,j)\)，定义 \(g(M,j)\) 为到达该状态的最小前缀费用。转移为
+在本轮规划内冻结任务集合、位置和服务费用。设有 \(n\) 个任务，\(M\) 为已完成任务集合，程序以位掩码编码，\(j\) 为最后任务；起始状态 \((\varnothing,-1)\) 对应当前位置，约定 \(y_{-1}=x_t\)。借鉴子集动态规划{[}1{]}，将不同访问顺序压缩成相同的 \((M,j)\)，定义 \(g(M,j)\) 为到达该状态的最小前缀费用。转移为
 
 \[
 g(M\cup\{i\},i)=\min_j\left[g(M,j)+\Delta(M,j,i)\right],
@@ -371,6 +417,7 @@ x\in B(z_f,r_c-r_f)
 
 七点覆盖及逐站合法移动保证最终不会遗漏源，单源的有限光学网格保证能够结束局部清除。因此，在源静止、反馈符合规则、保守区域包含真值且时间与动作预算足够时，算法能够有限步完成任务。程序在每次动作前核查剩余预算；发生超时、反馈矛盾或未确认请求时保留未完成状态，不将中止当作成功。
 
+\par\noindent\begin{minipage}{\linewidth}
 \textbf{算法2：多源滚动搜索与清除}
 
 \begin{verbatim}
@@ -386,6 +433,8 @@ x\in B(z_f,r_c-r_f)
 7. 按实际反馈更新信息状态；检查完整覆盖及全部已知源清除条件。
 8. 未完成且预算允许则返回步骤2；否则记录完成或中止原因并退出。
 \end{verbatim}
+\end{minipage}\par
+
 
 \subsection{3.7 对照方法及学习模型}\label{ux5bf9ux7167ux65b9ux6cd5ux53caux5b66ux4e60ux6a21ux578b}
 
@@ -411,13 +460,13 @@ x\in B(z_f,r_c-r_f)
 \tag{3-16}
 \]
 
-终止状态的后续价值取零。有限候选减轻了连续动作探索的难度，也限定了学习策略能够发现的动作范围。因此，我们将强化学习视为检验``在相同任务结构下，学习调度能否改善人工规划''的独立方向，并通过等预算配置比较和跨场景评估判断效果。
+其中 \(H\) 为该条终止轨迹的动作步数，\(\lambda\) 为GAE系数，首版最终模型取0.95；终止状态的后续价值取零。有限候选减轻了连续动作探索的难度，也限定了学习策略能够发现的动作范围。因此，我们将强化学习视为检验``在相同任务结构下，学习调度能否改善人工规划''的独立方向，并通过等预算配置比较和跨场景评估判断效果。
 
 \subsection{3.8 实验设计与评价指标}\label{ux5b9eux9a8cux8bbeux8ba1ux4e0eux8bc4ux4ef7ux6307ux6807}
 
-为检验几何规则、显式路线规划与学习调度在第三问中的作用，我们比较冻结的前瞻 rollout 基线、状态搜索、PPO 强化学习和几何探测四种方法。基线已经包含前瞻决策，不能称为最初的朴素策略；状态搜索与几何法均包含经覆盖条件认证的未来站点移动，PPO 则在固定七个覆盖点及合法定位候选中选择动作。因此，主实验比较的是四套可执行方案的综合效果，单个模块的贡献另由消融实验分析。
+为检验几何规则、显式路线规划与学习调度在第三问中的作用，我们比较冻结的前瞻 rollout 基线、状态搜索、PPO 强化学习和几何探测四种方法。以前瞻策略作为较强参照；状态搜索与几何法均包含经覆盖条件认证的未来站点移动，PPO 则在固定七个覆盖点及合法定位候选中选择动作。因此，主实验比较的是四套可执行方案的综合效果，单个模块的贡献另由消融实验分析。
 
-首版实验在同一 Linux 主机、相同场景生成规则和逐场景噪声场上进行。先用开发集诊断，以独立的 48 局筛选候选，冻结算法、参数和模型后，才运行 256 个随机场景及 28 个压力场景。研究分布将源数设为 10---16，源在半径 1800 m 圆域内按面积均匀分布，接收半径在 1000---1500 m 间均匀抽样；压力集包含七类结构、每类四局，单独报告。以全清局数占总场景数的比例和失败清除次数检查可行性，以整局平均耗时、P95 及逐场景差值衡量效率。平均节省的 95\% 区间由 10000 次配对 bootstrap 给出，正值表示候选较参照节省时间。区间描述冻结策略面对场景抽样的变动，并不涵盖重新训练网络的随机性；这一范围与强化学习评估中的不确定性要求一致{[}5{]}。
+首版实验在同一 Linux 主机、相同场景生成规则和逐场景噪声场上进行。先用开发集诊断，以独立的 48 局筛选候选，冻结算法、参数和模型后，才运行 256 个随机场景及 28 个压力场景。研究分布将源数设为 10---16，源在半径 1800 m 圆域内按面积均匀分布，接收半径在 1000---1500 m 间均匀抽样；压力集包含七类结构、每类四局，单独报告。以全清局数占总场景数的比例和失败清除次数检查可行性，以整局平均耗时、P95 及逐场景差值衡量效率。平均节省的 95\% 区间由 10000 次配对 bootstrap 给出，正值表示候选较参照节省时间。按场景报告配对区间，有助于避免仅依赖点估计进行比较{[}5{]}。该区间描述冻结策略面对场景抽样的变动，并不涵盖重新训练网络的随机性。
 
 为便于区分指标，令第 \(i\) 个场景的基线与候选耗时分别为 \(T_i^{(b)}\) 和 \(T_i^{(m)}\)，定义
 
@@ -428,44 +477,63 @@ G_m=\frac{\overline\Delta_m}{\overline T_b}.
 \tag{3-17}
 \]
 
-全清失败或超时必须计入失败记录，不能只对成功子集报告速度优势。表中``284/284''是256个随机场景与28个压力场景全部全清，两种分布的时间统计仍分别计算。
+全清失败或超时必须计入失败记录，不能只对成功子集报告速度优势。随机集与压力集分别统计全清比例，两种分布的时间统计也分别计算。
 
+\Needspace{82mm}
 \subsection{3.9 四种方法的独立比较}\label{ux56dbux79cdux65b9ux6cd5ux7684ux72ecux7acbux6bd4ux8f83}
 
-{ % do not increment counter
+\Needspace{62mm}
+\begin{center}\small 表3 首版四方法在256个随机场景上的统一比较\end{center}
+\nopagebreak
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1304}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2529}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1264}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1264}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1034}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2529}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1379}}@{}}
+
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-首版冻结方案
+方法
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-随机集均时/s
+均时 / s
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-相对基线节省
+P95 / s
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-平均节省的95\%区间/s
+节省
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+节省95\%区间 / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+全清
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-压力集均时/s
+均时 / s
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-全清局数
+P95 / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+节省
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+节省95\%区间 / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+全清
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-前瞻 rollout 基线 & 3361.66 & --- & --- & 3627.40 & 284/284 \\
-状态搜索与覆盖移站 & 3081.41 & 8.34\% & {[}259.47, 301.17{]} & 3046.34 & 284/284 \\
-PPO，GAE λ=0.95 & 3149.79 & 6.30\% & {[}187.04, 237.12{]} & 3164.37 & 284/284 \\
-几何探测与覆盖移站 & 3214.96 & 4.36\% & {[}125.79, 167.35{]} & 3254.15 & 284/284 \\
+前瞻基线 & 3361.66 & 3843.91 & --- & --- & 256/256 \\
+状态搜索 & 3081.41 & 3520.79 & 8.34\% & {[}259.47, 301.17{]} & 256/256 \\
+PPO & 3149.79 & 3624.61 & 6.30\% & {[}187.04, 237.12{]} & 256/256 \\
+几何法 & 3214.96 & 3604.87 & 4.36\% & {[}125.79, 167.35{]} & 256/256 \\
 \end{longtable}
-}
 
-四种方法共 1136 次评估均完整清除、正常结束，失败清除次数为零。状态搜索的随机集均时最低，比基线平均节省 280.25 s；PPO 与几何法也有正向平均改善。几何法未达到预先设置的平均节省 5\% 门槛，但这不等于没有改善。压力集上状态搜索为 28 胜 0 负，PPO 为 25 胜 3 负，几何法为 26 胜 2 负；这些针对固定困难类型的结果不与随机集混合计算总体均值。
+四种方法共 1136 次评估均完整清除、正常结束，失败清除次数为零。状态搜索的随机集均时最低，比基线平均节省 280.25 s；PPO 与几何法也有正向平均改善。几何法未达到预先设置的平均节省 5\% 门槛，但这不等于没有改善。28个压力场景中，基线、状态搜索、PPO和几何法均时分别为3627.40、3046.34、3164.37和3254.15 s，均为28/28局全清。状态搜索相对基线为 28 胜 0 负，PPO 为 25 胜 3 负，几何法为 26 胜 2 负；这些针对固定困难类型的结果不与随机集混合计算总体均值。
 
 费用分解显示，状态搜索相较基线少用移动时间 212.68 s、测量时间 62.38 s、换频时间 5.18 s；光学检查与移除费用相同。由此可见，联合安排覆盖与清除任务的主要收益体现在行程缩短，同时减少了部分测量。该分解说明实际费用来源，不能把全部路线收益归因于某一个模块。首版状态搜索、PPO 和几何法相对基线的最坏单局仍分别慢 125.08、365.45 和 267.73 s，平均改善不代表逐局不劣。
 
@@ -499,17 +567,17 @@ PPO，GAE λ=0.95 & 3149.79 & 6.30\% & {[}187.04, 237.12{]} & 3164.37 & 284/284 
 
 \subsection{3.11 强化学习的训练与探索结果}\label{ux5f3aux5316ux5b66ux4e60ux7684ux8badux7ec3ux4e0eux63a2ux7d22ux7ed3ux679c}
 
-首版选定的 PPO 模型包含 62882 个参数，以 60 维候选特征和 12 维全局上下文输入策略与价值网络。实际继承链依次采样 16384、12288、12288、16384 条训练轨迹，合计 57344 条；四阶段实际行为克隆均为零。全研究的 18 个完整日志试验、53 个开发端点用于记录探索成本与失败方向，不能全部计为所选模型的独立训练样本。
+首版选定的 PPO 模型包含 62882 个参数，以 60 维候选特征和 12 维全局上下文输入策略与价值网络。选定模型在四个训练阶段依次采样 16384、12288、12288、16384 条训练轨迹，合计 57344 条；四阶段均未使用行为克隆。另有18项训练试验、53次开发评估用于比较候选配置，其总采样量与选定模型的训练量分别记录。
 
-在相同父模型、训练种子和新增 16384 条轨迹下，GAE λ=0.95 端点相较 λ=1 控制组节省 62.38 s，区间为 {[}19.88,104.96{]} s；相较未追加训练的父模型则节省 48.20 s，区间为 {[}−4.73,100.61{]} s，仍跨零。该对照同时改变优势估计与价值网络的 λ-return 目标，反映这一训练配置的综合影响。强注意力端点相较父模型反而平均多用 25.98 s，扩展长轴探点后的追加训练、加入覆盖负债特征也未形成稳定收益。它们属于开发集上的机制探索，说明更大的网络、更多动作候选和更久训练并不自动带来改善；尚不能由此判定这些方法族无效。
+在相同基础模型、训练种子和新增 16384 条轨迹下，GAE λ=0.95 模型相较 λ=1 控制组节省 62.38 s，区间为 {[}19.88,104.96{]} s；相较未追加训练的基础模型则节省 48.20 s，区间为 {[}−4.73,100.61{]} s，仍跨零。该对照同时改变优势估计与价值网络的 λ-return 目标，反映这一训练配置的综合影响。强注意力模型相较基础模型反而平均多用 25.98 s，扩展长轴探点后的追加训练、加入覆盖负债特征也未形成稳定收益。它们属于开发集上的机制探索，说明更大的网络、更多动作候选和更久训练并不自动带来改善；尚不能由此判定这些方法族无效。
 
-后续纯 CPU 训练扩大了并行采样，批量也由 32 增为 128，并从同一父模型进行不同种子的继续训练。因此，现有记录不能将变化单独归因于``从 8 核增加到更多 CPU 核''；核心数、采样预算、更新批量和优化过程同时变化，且逻辑 CPU 槽不等于物理核心。
+后续纯 CPU 训练扩大了并行采样，批量也由 32 增为 128，并从同一基础模型进行不同种子的继续训练。因此，现有记录不能将变化单独归因于``从 8 核增加到更多 CPU 核''；核心数、采样预算、更新批量和优化过程同时变化，且逻辑 CPU 槽不等于物理核心。
 
-对后续 trial-1 模型重新进行同机、同引擎、同 48 个开发场景配对，RL 均时为 3110.20 s，已确认的状态搜索尾段版为 3101.98 s。RL 平均慢 8.22 s，按``状态用时减 RL 用时''计算的区间为 {[}−58.87,41.21{]} s，尚不能判断平均性能具有可靠差异。RL 每局移动省 29.86 s，但测量多 7.75 次、耗时多 38.75 s，抵消路线收益。该结果与首版独立测试属于不同模型、不同场景；它提示继续优化应关注信息获取与行程的联合代价，不能写成``RL 最终必然不如状态搜索''。
+将后续继续训练模型记为RL-2，已确认的状态搜索尾段精化版记为SS-2，并在同机、同引擎、同48个开发场景配对，RL 均时为 3110.20 s，SS-2为 3101.98 s。RL 平均慢 8.22 s，按``状态用时减 RL 用时''计算的区间为 {[}−58.87,41.21{]} s，尚不能判断平均性能具有可靠差异。RL 每局移动省 29.86 s，但测量多 7.75 次、耗时多 38.75 s，抵消路线收益。该结果与首版独立测试属于不同模型、不同场景；它提示进一步优化应关注信息获取与行程的联合代价，现有结果尚不足以判定两个方法族的最终优劣。
 
 \subsection{3.12 学习行为与官方演练验证}\label{ux5b66ux4e60ux884cux4e3aux4e0eux5b98ux65b9ux6f14ux7ec3ux9a8cux8bc1}
 
-后期 trial-1 的 48 条既有轨迹中，48/48 局均先在原点连续测量全部 20 个频道。v3 已取消初始全扫硬规则，每次可选择覆盖点---频道对，出现正反馈后还可选择定位、清除或中断扫描；因此，这一行为确由已训练策略选择。不过，七个覆盖点、几何候选和可靠退出机制仍是预设的。该现象支持在当前分布和候选空间内采用原点集中扫描的经验合理性，不能证明七点布局或状态压缩全局最优。早期 v1/v2 的原点扫描本来固定，其轨迹不得作为自主学习的证据。
+后期RL-2的48条既有轨迹中，48/48 局均先在原点连续测量全部 20 个频道。该模型所属的自由扫描版本已取消初始全扫硬规则，每次可选择覆盖点---频道对，出现正反馈后还可选择定位、清除或中断扫描；因此，这一行为确由已训练策略选择。不过，七个覆盖点、几何候选和可靠退出机制仍是预设的。该现象支持在当前分布和候选空间内采用原点集中扫描的经验合理性，不能证明七点布局或状态压缩全局最优。更早版本的原点扫描由程序固定，因此本项行为分析仅采用解除限制后的模型轨迹。
 
 最后，以冻结的相对无信号组合版进行的既有 50 局官方演练均已完成，全清 657 个源；本批预定跑满50局。平均整局计费用时 2976.87 s，总时间除总源数为 226.55 s/源。这批数据可作为真实接口兼容性与执行效果的补充，但未让各方案在同一官方场景配对，不能据此声称优于 RL 或将其均时与合成测试直接排名。本文统一报告可直接核验的实际耗时；各历史报告的下界口径在辅助证据索引中保留，不用于跨批次排名。
 
@@ -546,12 +614,20 @@ PPO，GAE λ=0.95 & 3149.79 & 6.30\% & {[}187.04, 237.12{]} & 3164.37 & 284/284 
 
 {[}5{]} Agarwal R, Schwarzer M, Castro P S, et al.~Deep Reinforcement Learning at the Edge of the Statistical Precipice. Advances in Neural Information Processing Systems, 2021, 34:29304--29320.
 
+\clearpage
 \section{附录A 实验来源与复核口径}\label{ux9644ux5f55a-ux5b9eux9a8cux6765ux6e90ux4e0eux590dux6838ux53e3ux5f84}
 
 各批次的代码、权重身份与来源SHA256见辅助材料 结构化实验证据索引。下表仅用于定位证据，原始研究目录保留完整动作记录；本轮论文整理未重新运行策略或训练模型。
 
-{ % do not increment counter
+\Needspace{38mm}
+\begin{center}\small 表4 已有实验的来源和用途\end{center}
+\nopagebreak
 \begin{longtable}[]{@{}lll@{}}
+
+\toprule\noalign{}
+证据 & 实验批次与样本 & 用途与边界 \\
+\midrule\noalign{}
+\endfirsthead
 \toprule\noalign{}
 证据 & 实验批次与样本 & 用途与边界 \\
 \midrule\noalign{}
@@ -566,7 +642,6 @@ E08至E10 & 训练链及开发端点 & PPO预算、GAE与失败探索 \\
 E11、E12 & 后期48开发场景 & RL配对结果与原点全扫诊断 \\
 E13 & 既有50局官方演练 & 冻结组合版的接口与执行验证 \\
 \end{longtable}
-}
 
 图1、图2为解析或算法示意；图3至图8来源于既有数值记录。图6按基线中位耗时选取，图7和图8为事后最大退化例，不混入新增独立测试结论。上述随机评估沿用其原始冻结与数据分割记录；不将已经用于开发的场景重新称为未见测试。
 

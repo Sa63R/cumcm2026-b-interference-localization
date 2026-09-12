@@ -1,0 +1,2476 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-09-12T01:01:00.525842+00:00",
+  "script": "D:\\jwt\\2026数模国赛\\final\\scripts\\validate_data.py",
+  "script_sha256": "dc23ad88fdbc586eb3c9f6f6e75e8f7b704adc2185b05fec43b489176094f9b8",
+  "scope": "Existing file/hash, numeric-copy and arithmetic validation only; no simulation, strategy, remote call or geometric reconstruction.",
+  "geometry_limit": "Q2 checks archived actions, source identity and stored-vertex/circle arithmetic; it does not independently reconstruct the feasible polygon or prove circle minimality.",
+  "status": "passed",
+  "check_count": 432,
+  "failed_count": 0,
+  "input_artifacts": [
+    {
+      "path": "D:\\jwt\\2026数模国赛\\final\\sources\\evidence_experiments.json",
+      "sha256": "c822afc16212b7e2c69db5fe11c67885da7f45ea98ca850776b320782462690a"
+    },
+    {
+      "path": "D:\\jwt\\2026数模国赛\\final\\data\\four_methods.json",
+      "sha256": "caa725a76e917a8d8863798dd3492767da22c5bb3a114fed8a4675c581ac9b2e"
+    },
+    {
+      "path": "D:\\jwt\\2026数模国赛\\final\\data\\four_methods.csv",
+      "sha256": "afa8afb24243cd01073caeef2208fd9cdd6df3b55591d777d8f1ecff61f1f157"
+    },
+    {
+      "path": "D:\\jwt\\2026数模国赛\\final\\data\\trajectory_median.json",
+      "sha256": "ffb18f892b3a11ecc8f6e0dfdda933325d2f92ddcba8241d467e0d082572fe9b"
+    },
+    {
+      "path": "D:\\jwt\\2026数模国赛\\final\\data\\trajectory_state_worst.json",
+      "sha256": "8e56471c010c2410472a325edd199092ba224e6355b39f9b7de34c595acf54d2"
+    },
+    {
+      "path": "D:\\jwt\\2026数模国赛\\final\\data\\trajectory_rl_worst.json",
+      "sha256": "1c113528deb49cf88f225a3ea696ca457df8e85e85096aa4f35eecf856740838"
+    },
+    {
+      "path": "D:\\jwt\\2026数模国赛\\final\\sources\\q2_example.json",
+      "sha256": "6a54756db1a9fdc96a5655ed5cc6e43577a42cad50036c843461fddc2657b997"
+    }
+  ],
+  "evidence_unique_reference_count": 79,
+  "unique_files_hashed": 100,
+  "checks": [
+    {
+      "check": "evidence:$.entries[0].trace_root:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random"
+    },
+    {
+      "check": "evidence:$.entries[0].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-random\\comparison.json"
+    },
+    {
+      "check": "evidence:$.entries[0].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-random\\comparison.json",
+      "actual_sha256": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991",
+      "expected_sha256": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991"
+    },
+    {
+      "check": "evidence:$.entries[1].trace_root:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_stress"
+    },
+    {
+      "check": "evidence:$.entries[1].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-stress\\comparison.json"
+    },
+    {
+      "check": "evidence:$.entries[1].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-stress\\comparison.json",
+      "actual_sha256": "ee52b8b04cee1974910a0a7668a685ddce9845207c61c0a9a12b0844bb6bccdb",
+      "expected_sha256": "ee52b8b04cee1974910a0a7668a685ddce9845207c61c0a9a12b0844bb6bccdb"
+    },
+    {
+      "check": "evidence:$.entries[2].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\FIRST_VERSION_REPORT.md"
+    },
+    {
+      "check": "evidence:$.entries[2].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\FIRST_VERSION_REPORT.md",
+      "actual_sha256": "c557ed9b3f84f5ed6621ddce3b6d18848f5fb2cec9f0d16960d714049cf7fec6",
+      "expected_sha256": "c557ed9b3f84f5ed6621ddce3b6d18848f5fb2cec9f0d16960d714049cf7fec6"
+    },
+    {
+      "check": "evidence:$.entries[3].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\README.md"
+    },
+    {
+      "check": "evidence:$.entries[3].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\README.md",
+      "actual_sha256": "933498d46e8caba90c74899f421bcaa547ce4f1962fb7491a2a94269f1ef9e72",
+      "expected_sha256": "933498d46e8caba90c74899f421bcaa547ce4f1962fb7491a2a94269f1ef9e72"
+    },
+    {
+      "check": "evidence:$.entries[3].rows[0].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\baseline.json"
+    },
+    {
+      "check": "evidence:$.entries[3].rows[0].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\baseline.json",
+      "actual_sha256": "7cf921734b56d44def59ba81d3f5a6c607e6515002010c2b43eaa89c89fdc0bb",
+      "expected_sha256": "7cf921734b56d44def59ba81d3f5a6c607e6515002010c2b43eaa89c89fdc0bb"
+    },
+    {
+      "check": "evidence:$.entries[3].rows[1].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\state-future-cover.json"
+    },
+    {
+      "check": "evidence:$.entries[3].rows[1].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\state-future-cover.json",
+      "actual_sha256": "db56e901b43316a5253796b5f2ef00b2937d99e6d3b06aa6a98d452e63d6334d",
+      "expected_sha256": "db56e901b43316a5253796b5f2ef00b2937d99e6d3b06aa6a98d452e63d6334d"
+    },
+    {
+      "check": "evidence:$.entries[3].rows[2].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\rl-gae095-u512.json"
+    },
+    {
+      "check": "evidence:$.entries[3].rows[2].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\rl-gae095-u512.json",
+      "actual_sha256": "2696a371797d6926b4c9b8fc50c69c4464c8f97e92ac0fac3a48570b88901141",
+      "expected_sha256": "2696a371797d6926b4c9b8fc50c69c4464c8f97e92ac0fac3a48570b88901141"
+    },
+    {
+      "check": "evidence:$.entries[3].rows[3].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\geo-future-cover.json"
+    },
+    {
+      "check": "evidence:$.entries[3].rows[3].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\runtime\\benchmarks\\geo-future-cover.json",
+      "actual_sha256": "e13aae79919eaddaaf82fd1e9fed71ed3a505c2c87bb4c42d113e334936e93cc",
+      "expected_sha256": "e13aae79919eaddaaf82fd1e9fed71ed3a505c2c87bb4c42d113e334936e93cc"
+    },
+    {
+      "check": "evidence:$.entries[4].trace_root:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\inferred_silence_confirmation"
+    },
+    {
+      "check": "evidence:$.entries[4].sources[0].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\inferred_silence_confirmation\\paired_summary.json"
+    },
+    {
+      "check": "evidence:$.entries[4].sources[0].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\inferred_silence_confirmation\\paired_summary.json",
+      "actual_sha256": "d7a3fc436428f96731cda28b739747cdd12fa406c1c72ee2415d4d327aeb322b",
+      "expected_sha256": "d7a3fc436428f96731cda28b739747cdd12fa406c1c72ee2415d4d327aeb322b"
+    },
+    {
+      "check": "evidence:$.entries[4].sources[1].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\state_search_v1\\INFERRED_SILENCE.md"
+    },
+    {
+      "check": "evidence:$.entries[4].sources[1].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\state_search_v1\\INFERRED_SILENCE.md",
+      "actual_sha256": "6620fa1192c9030747a8addb1c64553787f9c3aad20c3f804f2d6d56c06a650d",
+      "expected_sha256": "6620fa1192c9030747a8addb1c64553787f9c3aad20c3f804f2d6d56c06a650d"
+    },
+    {
+      "check": "evidence:$.entries[5].trace_root:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\coverage_relocation_confirmation"
+    },
+    {
+      "check": "evidence:$.entries[5].sources[0].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\coverage_relocation_confirmation\\paired_summary.json"
+    },
+    {
+      "check": "evidence:$.entries[5].sources[0].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\results\\state_search\\coverage_relocation_confirmation\\paired_summary.json",
+      "actual_sha256": "bc3218d853bbdbe3c318849ad3da7646d4a09a6257963614213bc77352129e31",
+      "expected_sha256": "bc3218d853bbdbe3c318849ad3da7646d4a09a6257963614213bc77352129e31"
+    },
+    {
+      "check": "evidence:$.entries[5].sources[1].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\state_search_v1\\COVERAGE_RELOCATION.md"
+    },
+    {
+      "check": "evidence:$.entries[5].sources[1].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\state_search_v1\\COVERAGE_RELOCATION.md",
+      "actual_sha256": "0f823abf0ed0411ecbc362deef68c8bd8e986c1fb41e7a5185c1eaf79fa54088",
+      "expected_sha256": "0f823abf0ed0411ecbc362deef68c8bd8e986c1fb41e7a5185c1eaf79fa54088"
+    },
+    {
+      "check": "evidence:$.entries[6].trace_root:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\derived_silence\\final\\records"
+    },
+    {
+      "check": "evidence:$.entries[6].sources[0].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\derived_silence\\final\\summary.json"
+    },
+    {
+      "check": "evidence:$.entries[6].sources[0].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\derived_silence\\final\\summary.json",
+      "actual_sha256": "55188ac754782402916dfbbb6ae31a125ac4e6577ff5590f90ee5c3cce392cf9",
+      "expected_sha256": "55188ac754782402916dfbbb6ae31a125ac4e6577ff5590f90ee5c3cce392cf9"
+    },
+    {
+      "check": "evidence:$.entries[6].sources[1].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\derived_silence\\stress\\summary.json"
+    },
+    {
+      "check": "evidence:$.entries[6].sources[1].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\results\\round2\\derived_silence\\stress\\summary.json",
+      "actual_sha256": "c5dfbacd20111480786db44a06a8a8a46ec49db2ba8f06df45ab0f253d64fcf6",
+      "expected_sha256": "c5dfbacd20111480786db44a06a8a8a46ec49db2ba8f06df45ab0f253d64fcf6"
+    },
+    {
+      "check": "evidence:$.entries[6].sources[2].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\research\\round2\\DERIVED_SILENCE_VALIDATION.md"
+    },
+    {
+      "check": "evidence:$.entries[6].sources[2].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-round2\\research\\round2\\DERIVED_SILENCE_VALIDATION.md",
+      "actual_sha256": "f5e06370c809b7b61f14db5fcb04a0b26794efd6a7a85aa3ed0ad6f08d72af69",
+      "expected_sha256": "f5e06370c809b7b61f14db5fcb04a0b26794efd6a7a85aa3ed0ad6f08d72af69"
+    },
+    {
+      "check": "evidence:$.entries[7].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_last_ablation_results.md"
+    },
+    {
+      "check": "evidence:$.entries[7].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_last_ablation_results.md",
+      "actual_sha256": "115a0eaeae865bd7634c7352bbbfd188f84fdc5d241a194ba19f123fcf7b0d61",
+      "expected_sha256": "115a0eaeae865bd7634c7352bbbfd188f84fdc5d241a194ba19f123fcf7b0d61"
+    },
+    {
+      "check": "evidence:$.entries[8].sources[1].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_training_audit\\README.md"
+    },
+    {
+      "check": "evidence:$.entries[8].sources[1].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_training_audit\\README.md",
+      "actual_sha256": "ed18ce26ec3b2093d6e3279f4a7bedaa32d2bbb4a4812fd1854af906e069d411",
+      "expected_sha256": "ed18ce26ec3b2093d6e3279f4a7bedaa32d2bbb4a4812fd1854af906e069d411"
+    },
+    {
+      "check": "evidence:$.entries[8].curve_data.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_training_audit\\training_curves.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[8].curve_data.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_training_audit\\training_curves.json.gz",
+      "actual_sha256": "a5b7500d4166f207beb806dac4919d29dfbdf4a8b9c838f1084db65f9c512373",
+      "expected_sha256": "a5b7500d4166f207beb806dac4919d29dfbdf4a8b9c838f1084db65f9c512373"
+    },
+    {
+      "check": "evidence:$.entries[8].audit_index.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_training_audit\\audit.json"
+    },
+    {
+      "check": "evidence:$.entries[8].audit_index.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\research\\rl_training_audit\\audit.json",
+      "actual_sha256": "18352c14f73330b95066c14c1cf923e8b4ae65ed1518392abb3a27cd50cd29fb",
+      "expected_sha256": "18352c14f73330b95066c14c1cf923e8b4ae65ed1518392abb3a27cd50cd29fb"
+    },
+    {
+      "check": "evidence:$.entries[9].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\research\\cpu_v2\\README_OPERATOR.md"
+    },
+    {
+      "check": "evidence:$.entries[9].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\research\\cpu_v2\\README_OPERATOR.md",
+      "actual_sha256": "7a947ea75b5d959a81fe083725ede16c6c80c0fce444a488b9c91e694bc230d0",
+      "expected_sha256": "7a947ea75b5d959a81fe083725ede16c6c80c0fce444a488b9c91e694bc230d0"
+    },
+    {
+      "check": "evidence:$.entries[10].trace_root:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911"
+    },
+    {
+      "check": "evidence:$.entries[10].sources[0].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\comparison.json"
+    },
+    {
+      "check": "evidence:$.entries[10].sources[0].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\comparison.json",
+      "actual_sha256": "73f0caad170ddf296eb70074740a0da67b56182231d03594bd79c5efe418e684",
+      "expected_sha256": "73f0caad170ddf296eb70074740a0da67b56182231d03594bd79c5efe418e684"
+    },
+    {
+      "check": "evidence:$.entries[10].sources[1].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\README.md"
+    },
+    {
+      "check": "evidence:$.entries[10].sources[1].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\README.md",
+      "actual_sha256": "e7100546cc7f3c66a53ad74bda4b24e1d5cdd23184924678b266be3cb3d85a32",
+      "expected_sha256": "e7100546cc7f3c66a53ad74bda4b24e1d5cdd23184924678b266be3cb3d85a32"
+    },
+    {
+      "check": "evidence:$.entries[11].sources[0].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\src\\research_rl\\joint_scan.py"
+    },
+    {
+      "check": "evidence:$.entries[11].sources[0].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl\\src\\research_rl\\joint_scan.py",
+      "actual_sha256": "190a61032cedfb55d170a591f8b4d53efd8aa9138a78ad2790c396db5504fbd1",
+      "expected_sha256": "190a61032cedfb55d170a591f8b4d53efd8aa9138a78ad2790c396db5504fbd1"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[0].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100001.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[0].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100001.json.gz",
+      "actual_sha256": "d4789082821237d75eee597462a91de9b933c064d6c37bc83a87dd8953484bf9",
+      "expected_sha256": "d4789082821237d75eee597462a91de9b933c064d6c37bc83a87dd8953484bf9"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[1].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100002.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[1].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100002.json.gz",
+      "actual_sha256": "5927e35b60f9f992f9dbdc159af3759c2cdaed46da8d0c29c6a9910cd56223ac",
+      "expected_sha256": "5927e35b60f9f992f9dbdc159af3759c2cdaed46da8d0c29c6a9910cd56223ac"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[2].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100003.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[2].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100003.json.gz",
+      "actual_sha256": "aef155afa90f9fd10b6eafa61d99ff2e0285fda70f2fd055d4add2c0d1f3db71",
+      "expected_sha256": "aef155afa90f9fd10b6eafa61d99ff2e0285fda70f2fd055d4add2c0d1f3db71"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[3].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100004.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[3].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100004.json.gz",
+      "actual_sha256": "d4cf5ebab80af248faf49353aabd55c4959a9c123792d49f8e2f097c65133494",
+      "expected_sha256": "d4cf5ebab80af248faf49353aabd55c4959a9c123792d49f8e2f097c65133494"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[4].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100005.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[4].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100005.json.gz",
+      "actual_sha256": "104c21bbd3f9abfd90920109d9059e5d8f19e82a99f96a6ba3e96cfbf39fc27a",
+      "expected_sha256": "104c21bbd3f9abfd90920109d9059e5d8f19e82a99f96a6ba3e96cfbf39fc27a"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[5].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100006.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[5].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100006.json.gz",
+      "actual_sha256": "86e7ce8b3970a3e75fdaa09bad408313bc481147b537d4ba132fc4758ac7a73d",
+      "expected_sha256": "86e7ce8b3970a3e75fdaa09bad408313bc481147b537d4ba132fc4758ac7a73d"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[6].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100007.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[6].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100007.json.gz",
+      "actual_sha256": "c8171b698095d0f3d3addcfbd3c8ef2ac8ce37737a2c9165ba132f5a06bb6aeb",
+      "expected_sha256": "c8171b698095d0f3d3addcfbd3c8ef2ac8ce37737a2c9165ba132f5a06bb6aeb"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[7].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100008.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[7].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100008.json.gz",
+      "actual_sha256": "df64d58afc97d0e5acb0950b2ecd385a8f5ba92723c908b574363812b6dd70ec",
+      "expected_sha256": "df64d58afc97d0e5acb0950b2ecd385a8f5ba92723c908b574363812b6dd70ec"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[8].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100009.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[8].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100009.json.gz",
+      "actual_sha256": "0dbd91c52fd360b5fcb47610c82da87d592c6bb68d117aa5cc8300b2d0d2f874",
+      "expected_sha256": "0dbd91c52fd360b5fcb47610c82da87d592c6bb68d117aa5cc8300b2d0d2f874"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[9].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100010.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[9].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100010.json.gz",
+      "actual_sha256": "2150cbd9548daec48f331d0df2ca222797bb3c85de182a90fc9ea0bd000b7904",
+      "expected_sha256": "2150cbd9548daec48f331d0df2ca222797bb3c85de182a90fc9ea0bd000b7904"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[10].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100011.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[10].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100011.json.gz",
+      "actual_sha256": "f00b0ea22037175d351fbd1f5c92c41518944c4ce1895ff87b2bf5122d0debaa",
+      "expected_sha256": "f00b0ea22037175d351fbd1f5c92c41518944c4ce1895ff87b2bf5122d0debaa"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[11].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100012.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[11].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100012.json.gz",
+      "actual_sha256": "a45f3451365f6d17ddd8222466bc5cbe989c4e726e5808ee117e0c163fb85040",
+      "expected_sha256": "a45f3451365f6d17ddd8222466bc5cbe989c4e726e5808ee117e0c163fb85040"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[12].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100013.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[12].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100013.json.gz",
+      "actual_sha256": "2691fa28dbf2f28ffda9a45dc8b07adf52a5c1006e9f1f3ed8688f9eaad42743",
+      "expected_sha256": "2691fa28dbf2f28ffda9a45dc8b07adf52a5c1006e9f1f3ed8688f9eaad42743"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[13].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100014.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[13].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100014.json.gz",
+      "actual_sha256": "fbca144301957d4cb75d33fc1e4303089ee42fbc31cf187e6df112dea6999bad",
+      "expected_sha256": "fbca144301957d4cb75d33fc1e4303089ee42fbc31cf187e6df112dea6999bad"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[14].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100015.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[14].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100015.json.gz",
+      "actual_sha256": "532f2e1825726826e47ee180fd17a6d2756d6100011a5316b300bffbbf96e70a",
+      "expected_sha256": "532f2e1825726826e47ee180fd17a6d2756d6100011a5316b300bffbbf96e70a"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[15].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100016.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[15].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100016.json.gz",
+      "actual_sha256": "0b43d5efe324a01214c635e00c8de5782c0ec28f11b6be23aef52e5cc07af655",
+      "expected_sha256": "0b43d5efe324a01214c635e00c8de5782c0ec28f11b6be23aef52e5cc07af655"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[16].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100017.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[16].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100017.json.gz",
+      "actual_sha256": "ac3eda1a10457a8ad06d332d21eeaa9ca87a21fe7727cc2b2467ebe5a5e5f582",
+      "expected_sha256": "ac3eda1a10457a8ad06d332d21eeaa9ca87a21fe7727cc2b2467ebe5a5e5f582"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[17].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100018.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[17].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100018.json.gz",
+      "actual_sha256": "428e89951612ae9404d4905bd63b2165a4c132084e11604b0aa4c78eaf3f538d",
+      "expected_sha256": "428e89951612ae9404d4905bd63b2165a4c132084e11604b0aa4c78eaf3f538d"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[18].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100019.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[18].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100019.json.gz",
+      "actual_sha256": "ef1178d1cf5947eba23ccc18d6a4887c899e60fc96cbf0460e88d897a5f4b695",
+      "expected_sha256": "ef1178d1cf5947eba23ccc18d6a4887c899e60fc96cbf0460e88d897a5f4b695"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[19].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100020.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[19].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100020.json.gz",
+      "actual_sha256": "d9bab6524847f20a9c762ad0d73bbcab7be147960f85345ba41ace9fcadbda63",
+      "expected_sha256": "d9bab6524847f20a9c762ad0d73bbcab7be147960f85345ba41ace9fcadbda63"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[20].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100021.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[20].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100021.json.gz",
+      "actual_sha256": "9962641a439232df1c020338c63f5533fde48d0acea51164706a189bf4bb6636",
+      "expected_sha256": "9962641a439232df1c020338c63f5533fde48d0acea51164706a189bf4bb6636"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[21].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100022.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[21].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100022.json.gz",
+      "actual_sha256": "8d5f3af67c7c16012da188d84270daf53381ace0198458b29df29cd8474a2a0a",
+      "expected_sha256": "8d5f3af67c7c16012da188d84270daf53381ace0198458b29df29cd8474a2a0a"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[22].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100023.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[22].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100023.json.gz",
+      "actual_sha256": "97aa393e0d67856f7a2c3c8407f4cd459cbae05bf5b60018b87b8f5f70d59161",
+      "expected_sha256": "97aa393e0d67856f7a2c3c8407f4cd459cbae05bf5b60018b87b8f5f70d59161"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[23].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100024.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[23].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100024.json.gz",
+      "actual_sha256": "ec7b2eb5f31caa55cb8f761d4a18d8cc3f2fd1e79a88dc828592b04d47b26512",
+      "expected_sha256": "ec7b2eb5f31caa55cb8f761d4a18d8cc3f2fd1e79a88dc828592b04d47b26512"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[24].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100025.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[24].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100025.json.gz",
+      "actual_sha256": "999f1d42258b1e3d71ecd2d0e56970e8da8a82b6b8d45664160ec958eae87211",
+      "expected_sha256": "999f1d42258b1e3d71ecd2d0e56970e8da8a82b6b8d45664160ec958eae87211"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[25].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100026.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[25].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100026.json.gz",
+      "actual_sha256": "817c23295f5bc64784243c5d8daabfa54aa51206172da01881e26091fa8be599",
+      "expected_sha256": "817c23295f5bc64784243c5d8daabfa54aa51206172da01881e26091fa8be599"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[26].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100027.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[26].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100027.json.gz",
+      "actual_sha256": "703a22e5aee78b3a1f71c05ebfa66893ded609ba470a46e58dbec66572e82ad7",
+      "expected_sha256": "703a22e5aee78b3a1f71c05ebfa66893ded609ba470a46e58dbec66572e82ad7"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[27].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100028.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[27].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100028.json.gz",
+      "actual_sha256": "d461d51234bf3950ffcbc7946345b23322031012bbfe34540d161da9a4ca16b1",
+      "expected_sha256": "d461d51234bf3950ffcbc7946345b23322031012bbfe34540d161da9a4ca16b1"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[28].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100029.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[28].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100029.json.gz",
+      "actual_sha256": "0fd5b0e8cce41c5b9bfa301ba2dc0dd290119a3f99293865080ea04e52c9207a",
+      "expected_sha256": "0fd5b0e8cce41c5b9bfa301ba2dc0dd290119a3f99293865080ea04e52c9207a"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[29].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100030.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[29].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100030.json.gz",
+      "actual_sha256": "938ccca334e8d4d0f8aacafaa66a4ce77c8c41ce95dff1267b179f2a8b5dbe47",
+      "expected_sha256": "938ccca334e8d4d0f8aacafaa66a4ce77c8c41ce95dff1267b179f2a8b5dbe47"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[30].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100031.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[30].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100031.json.gz",
+      "actual_sha256": "e8abe898938e68ae5b5b2c481c0e8b7823160a03c61268a022d36aab00d758c9",
+      "expected_sha256": "e8abe898938e68ae5b5b2c481c0e8b7823160a03c61268a022d36aab00d758c9"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[31].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100032.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[31].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100032.json.gz",
+      "actual_sha256": "f99e49e59669bbdee6a6bbb02e1338667b013fabfaa4954bb5e6aece98f43bec",
+      "expected_sha256": "f99e49e59669bbdee6a6bbb02e1338667b013fabfaa4954bb5e6aece98f43bec"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[32].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100033.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[32].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100033.json.gz",
+      "actual_sha256": "c8511ac7bf821235e12bca56bd43283ba0a02aa72b7fa97b1974bbfafdd9ac0d",
+      "expected_sha256": "c8511ac7bf821235e12bca56bd43283ba0a02aa72b7fa97b1974bbfafdd9ac0d"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[33].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100034.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[33].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100034.json.gz",
+      "actual_sha256": "560e26f6dc8b381ad33f118dab930f97eab0eba7cd58c8d3f90c32f49b63e985",
+      "expected_sha256": "560e26f6dc8b381ad33f118dab930f97eab0eba7cd58c8d3f90c32f49b63e985"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[34].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100035.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[34].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100035.json.gz",
+      "actual_sha256": "32283c904d8a52d99b8507c40993dfdd2df36b3e09202e8e2eb496bb50863a86",
+      "expected_sha256": "32283c904d8a52d99b8507c40993dfdd2df36b3e09202e8e2eb496bb50863a86"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[35].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100036.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[35].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100036.json.gz",
+      "actual_sha256": "c2b7dcdd86b40a944626ffdf182f59a83123f0187b0cfb56056637dc47241ed0",
+      "expected_sha256": "c2b7dcdd86b40a944626ffdf182f59a83123f0187b0cfb56056637dc47241ed0"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[36].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100037.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[36].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100037.json.gz",
+      "actual_sha256": "d65f57aa28e23187f30e57dddf8e4e913f8b2519d89bb390cbc1f8b852b532f4",
+      "expected_sha256": "d65f57aa28e23187f30e57dddf8e4e913f8b2519d89bb390cbc1f8b852b532f4"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[37].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100038.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[37].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100038.json.gz",
+      "actual_sha256": "ed9a71fc609debb6324c933c600866d0d0e528e97e3d231f4b2675f25adaa502",
+      "expected_sha256": "ed9a71fc609debb6324c933c600866d0d0e528e97e3d231f4b2675f25adaa502"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[38].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100039.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[38].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100039.json.gz",
+      "actual_sha256": "a81eaf2505bad27871ff06339002ec518de653672e958740f493e9567f391261",
+      "expected_sha256": "a81eaf2505bad27871ff06339002ec518de653672e958740f493e9567f391261"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[39].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100040.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[39].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100040.json.gz",
+      "actual_sha256": "5d892eafbbe2ac2f7736b321817c15877d16abf91fc2907a0e5c94c8458b280f",
+      "expected_sha256": "5d892eafbbe2ac2f7736b321817c15877d16abf91fc2907a0e5c94c8458b280f"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[40].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100041.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[40].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100041.json.gz",
+      "actual_sha256": "a222630702d523882af9a922cc97b5036fe8b29dd617f05b577a7718ed9353ab",
+      "expected_sha256": "a222630702d523882af9a922cc97b5036fe8b29dd617f05b577a7718ed9353ab"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[41].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100042.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[41].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100042.json.gz",
+      "actual_sha256": "5dec846d53aa6df65d6df283bfbc0ee2250c5872d3ea2e299a18f018d94cca8f",
+      "expected_sha256": "5dec846d53aa6df65d6df283bfbc0ee2250c5872d3ea2e299a18f018d94cca8f"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[42].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100043.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[42].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100043.json.gz",
+      "actual_sha256": "0f882469bc9883bcc6a6cd0e100fa32d158b3cfdaf91656c4ead64c455468fa3",
+      "expected_sha256": "0f882469bc9883bcc6a6cd0e100fa32d158b3cfdaf91656c4ead64c455468fa3"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[43].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100044.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[43].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100044.json.gz",
+      "actual_sha256": "a283aca4937721aa14f27cc8ef5d6d25685fd7f154ead15db69b4b5170858178",
+      "expected_sha256": "a283aca4937721aa14f27cc8ef5d6d25685fd7f154ead15db69b4b5170858178"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[44].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100045.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[44].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100045.json.gz",
+      "actual_sha256": "8e158bb6410d2a1f38b3ac73ca2949d76d174f5090753718b32d874de0dc17ba",
+      "expected_sha256": "8e158bb6410d2a1f38b3ac73ca2949d76d174f5090753718b32d874de0dc17ba"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[45].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100046.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[45].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100046.json.gz",
+      "actual_sha256": "bdb8164e605821853f8f23ded343450ee16631a478128bb06f0d12f8d28d6e61",
+      "expected_sha256": "bdb8164e605821853f8f23ded343450ee16631a478128bb06f0d12f8d28d6e61"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[46].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100047.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[46].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100047.json.gz",
+      "actual_sha256": "13db79994b4b68701251af7a92180071aa1165a7e917a72c769238c02d9d39cf",
+      "expected_sha256": "13db79994b4b68701251af7a92180071aa1165a7e917a72c769238c02d9d39cf"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[47].source.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100048.json.gz"
+    },
+    {
+      "check": "evidence:$.entries[11].per_case[47].source.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-deep-rl-cpu-v2\\results\\paired_rl_state_20260911\\rl_trial1\\case-2100048.json.gz",
+      "actual_sha256": "af97cbfc68a0bcf5adb0e0f2aff28bd9837e2bd44602ba1f5ed0247ca2f016bc",
+      "expected_sha256": "af97cbfc68a0bcf5adb0e0f2aff28bd9837e2bd44602ba1f5ed0247ca2f016bc"
+    },
+    {
+      "check": "evidence:$.entries[12].sources[0].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\cumcm2026-b-interference-localization\\results\\q3_source_count_practice\\derived-fixed50-20260912\\summary.json"
+    },
+    {
+      "check": "evidence:$.entries[12].sources[0].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\cumcm2026-b-interference-localization\\results\\q3_source_count_practice\\derived-fixed50-20260912\\summary.json",
+      "actual_sha256": "78c165c67b0c68a11f283eeba1463481d943707aec031b19d161686833903ae3",
+      "expected_sha256": "78c165c67b0c68a11f283eeba1463481d943707aec031b19d161686833903ae3"
+    },
+    {
+      "check": "evidence:$.entries[12].sources[1].path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\cumcm2026-b-interference-localization\\results\\q3_source_count_practice\\derived-fixed50-20260912\\RESULTS.md"
+    },
+    {
+      "check": "evidence:$.entries[12].sources[1].path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\cumcm2026-b-interference-localization\\results\\q3_source_count_practice\\derived-fixed50-20260912\\RESULTS.md",
+      "actual_sha256": "89400c389bbbbdb5bfbedfb9e9f3fbf6e72dbc62f1753ad69236148e4bcfd2e3",
+      "expected_sha256": "89400c389bbbbdb5bfbedfb9e9f3fbf6e72dbc62f1753ad69236148e4bcfd2e3"
+    },
+    {
+      "check": "evidence:ids",
+      "passed": true
+    },
+    {
+      "check": "four_methods:$.random.source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-random\\comparison.json"
+    },
+    {
+      "check": "four_methods:$.random.source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-random\\comparison.json",
+      "actual_sha256": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991",
+      "expected_sha256": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991"
+    },
+    {
+      "check": "four_methods:$.stress.source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-stress\\comparison.json"
+    },
+    {
+      "check": "four_methods:$.stress.source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-stress\\comparison.json",
+      "actual_sha256": "ee52b8b04cee1974910a0a7668a685ddce9845207c61c0a9a12b0844bb6bccdb",
+      "expected_sha256": "ee52b8b04cee1974910a0a7668a685ddce9845207c61c0a9a12b0844bb6bccdb"
+    },
+    {
+      "check": "four:random:all_method_values",
+      "passed": true
+    },
+    {
+      "check": "four:random:all_comparisons",
+      "passed": true
+    },
+    {
+      "check": "four:random:protocol",
+      "passed": true
+    },
+    {
+      "check": "four:random:baseline:sample_count",
+      "passed": true
+    },
+    {
+      "check": "four:random:baseline:all_successful",
+      "passed": true
+    },
+    {
+      "check": "four:random:baseline:failed_clears",
+      "passed": true
+    },
+    {
+      "check": "four:random:baseline:component_sum",
+      "passed": true,
+      "actual": 3361.655233089844,
+      "expected": 3361.655233089844,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "four:random:state:sample_count",
+      "passed": true
+    },
+    {
+      "check": "four:random:state:all_successful",
+      "passed": true
+    },
+    {
+      "check": "four:random:state:failed_clears",
+      "passed": true
+    },
+    {
+      "check": "four:random:state:component_sum",
+      "passed": true,
+      "actual": 3081.408645609375,
+      "expected": 3081.408645609375,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "four:random:rl:sample_count",
+      "passed": true
+    },
+    {
+      "check": "four:random:rl:all_successful",
+      "passed": true
+    },
+    {
+      "check": "four:random:rl:failed_clears",
+      "passed": true
+    },
+    {
+      "check": "four:random:rl:component_sum",
+      "passed": true,
+      "actual": 3149.7872345703126,
+      "expected": 3149.7872345703126,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "four:random:geo:sample_count",
+      "passed": true
+    },
+    {
+      "check": "four:random:geo:all_successful",
+      "passed": true
+    },
+    {
+      "check": "four:random:geo:failed_clears",
+      "passed": true
+    },
+    {
+      "check": "four:random:geo:component_sum",
+      "passed": true,
+      "actual": 3214.9596198125,
+      "expected": 3214.9596198125,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "four:stress:all_method_values",
+      "passed": true
+    },
+    {
+      "check": "four:stress:all_comparisons",
+      "passed": true
+    },
+    {
+      "check": "four:stress:protocol",
+      "passed": true
+    },
+    {
+      "check": "four:stress:baseline:sample_count",
+      "passed": true
+    },
+    {
+      "check": "four:stress:baseline:all_successful",
+      "passed": true
+    },
+    {
+      "check": "four:stress:baseline:failed_clears",
+      "passed": true
+    },
+    {
+      "check": "four:stress:baseline:component_sum",
+      "passed": true,
+      "actual": 3627.4004981785715,
+      "expected": 3627.4004981785715,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "four:stress:state:sample_count",
+      "passed": true
+    },
+    {
+      "check": "four:stress:state:all_successful",
+      "passed": true
+    },
+    {
+      "check": "four:stress:state:failed_clears",
+      "passed": true
+    },
+    {
+      "check": "four:stress:state:component_sum",
+      "passed": true,
+      "actual": 3046.3358260714285,
+      "expected": 3046.3358260714285,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "four:stress:rl:sample_count",
+      "passed": true
+    },
+    {
+      "check": "four:stress:rl:all_successful",
+      "passed": true
+    },
+    {
+      "check": "four:stress:rl:failed_clears",
+      "passed": true
+    },
+    {
+      "check": "four:stress:rl:component_sum",
+      "passed": true,
+      "actual": 3164.366973892857,
+      "expected": 3164.366973892857,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "four:stress:geo:sample_count",
+      "passed": true
+    },
+    {
+      "check": "four:stress:geo:all_successful",
+      "passed": true
+    },
+    {
+      "check": "four:stress:geo:failed_clears",
+      "passed": true
+    },
+    {
+      "check": "four:stress:geo:component_sum",
+      "passed": true,
+      "actual": 3254.1512870714287,
+      "expected": 3254.1512870714287,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "four_csv:row_count",
+      "passed": true
+    },
+    {
+      "check": "four_csv:unique_keys",
+      "passed": true
+    },
+    {
+      "check": "csv:random:baseline:n",
+      "passed": true,
+      "actual": 256.0,
+      "expected": 256,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:baseline:success",
+      "passed": true,
+      "actual": 256.0,
+      "expected": 256,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:baseline:mean_s",
+      "passed": true,
+      "actual": 3361.655233089844,
+      "expected": 3361.655233089844,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:baseline:p95_s",
+      "passed": true,
+      "actual": 3843.9074375,
+      "expected": 3843.9074375,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:baseline:movement_s",
+      "passed": true,
+      "actual": 2540.315389339844,
+      "expected": 2540.315389339844,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:baseline:switching_s",
+      "passed": true,
+      "actual": 112.21875,
+      "expected": 112.21875,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:baseline:detection_s",
+      "passed": true,
+      "actual": 644.94140625,
+      "expected": 644.94140625,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:baseline:optical_s",
+      "passed": true,
+      "actual": 38.5078125,
+      "expected": 38.5078125,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:baseline:removal_s",
+      "passed": true,
+      "actual": 25.671875,
+      "expected": 25.671875,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:baseline:baseline_no_ci",
+      "passed": true
+    },
+    {
+      "check": "csv:random:state:n",
+      "passed": true,
+      "actual": 256.0,
+      "expected": 256,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:success",
+      "passed": true,
+      "actual": 256.0,
+      "expected": 256,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:mean_s",
+      "passed": true,
+      "actual": 3081.408645609375,
+      "expected": 3081.408645609375,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:p95_s",
+      "passed": true,
+      "actual": 3520.78801575,
+      "expected": 3520.78801575,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:movement_s",
+      "passed": true,
+      "actual": 2327.631301859375,
+      "expected": 2327.631301859375,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:switching_s",
+      "passed": true,
+      "actual": 107.0390625,
+      "expected": 107.0390625,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:detection_s",
+      "passed": true,
+      "actual": 582.55859375,
+      "expected": 582.55859375,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:optical_s",
+      "passed": true,
+      "actual": 38.5078125,
+      "expected": 38.5078125,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:removal_s",
+      "passed": true,
+      "actual": 25.671875,
+      "expected": 25.671875,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:saving_s",
+      "passed": true,
+      "actual": 280.24658748046875,
+      "expected": 280.24658748046875,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:ci_low_s",
+      "passed": true,
+      "actual": 259.4746846794924,
+      "expected": 259.4746846794924,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:state:ci_high_s",
+      "passed": true,
+      "actual": 301.1738465120117,
+      "expected": 301.1738465120117,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:n",
+      "passed": true,
+      "actual": 256.0,
+      "expected": 256,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:success",
+      "passed": true,
+      "actual": 256.0,
+      "expected": 256,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:mean_s",
+      "passed": true,
+      "actual": 3149.7872345703126,
+      "expected": 3149.7872345703126,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:p95_s",
+      "passed": true,
+      "actual": 3624.6095025,
+      "expected": 3624.6095025,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:movement_s",
+      "passed": true,
+      "actual": 2371.0762970703126,
+      "expected": 2371.0762970703126,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:switching_s",
+      "passed": true,
+      "actual": 105.234375,
+      "expected": 105.234375,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:detection_s",
+      "passed": true,
+      "actual": 609.296875,
+      "expected": 609.296875,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:optical_s",
+      "passed": true,
+      "actual": 38.5078125,
+      "expected": 38.5078125,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:removal_s",
+      "passed": true,
+      "actual": 25.671875,
+      "expected": 25.671875,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:saving_s",
+      "passed": true,
+      "actual": 211.86799851953126,
+      "expected": 211.86799851953126,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:ci_low_s",
+      "passed": true,
+      "actual": 187.03592282246103,
+      "expected": 187.03592282246103,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:rl:ci_high_s",
+      "passed": true,
+      "actual": 237.12162095820298,
+      "expected": 237.12162095820298,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:n",
+      "passed": true,
+      "actual": 256.0,
+      "expected": 256,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:success",
+      "passed": true,
+      "actual": 256.0,
+      "expected": 256,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:mean_s",
+      "passed": true,
+      "actual": 3214.9596198125,
+      "expected": 3214.9596198125,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:p95_s",
+      "passed": true,
+      "actual": 3604.86529925,
+      "expected": 3604.86529925,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:movement_s",
+      "passed": true,
+      "actual": 2428.8268073125,
+      "expected": 2428.8268073125,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:switching_s",
+      "passed": true,
+      "actual": 113.33984375,
+      "expected": 113.33984375,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:detection_s",
+      "passed": true,
+      "actual": 608.61328125,
+      "expected": 608.61328125,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:optical_s",
+      "passed": true,
+      "actual": 38.5078125,
+      "expected": 38.5078125,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:removal_s",
+      "passed": true,
+      "actual": 25.671875,
+      "expected": 25.671875,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:saving_s",
+      "passed": true,
+      "actual": 146.69561327734374,
+      "expected": 146.69561327734374,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:ci_low_s",
+      "passed": true,
+      "actual": 125.78905762978518,
+      "expected": 125.78905762978518,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:random:geo:ci_high_s",
+      "passed": true,
+      "actual": 167.34766431894536,
+      "expected": 167.34766431894536,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:n",
+      "passed": true,
+      "actual": 28.0,
+      "expected": 28,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:success",
+      "passed": true,
+      "actual": 28.0,
+      "expected": 28,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:mean_s",
+      "passed": true,
+      "actual": 3627.4004981785715,
+      "expected": 3627.4004981785715,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:p95_s",
+      "passed": true,
+      "actual": 4881.47127115,
+      "expected": 4881.47127115,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:movement_s",
+      "passed": true,
+      "actual": 2768.1504981785715,
+      "expected": 2768.1504981785715,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:switching_s",
+      "passed": true,
+      "actual": 109.25,
+      "expected": 109.25,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:detection_s",
+      "passed": true,
+      "actual": 685.0,
+      "expected": 685.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:optical_s",
+      "passed": true,
+      "actual": 39.0,
+      "expected": 39.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:removal_s",
+      "passed": true,
+      "actual": 26.0,
+      "expected": 26.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:baseline:baseline_no_ci",
+      "passed": true
+    },
+    {
+      "check": "csv:stress:state:n",
+      "passed": true,
+      "actual": 28.0,
+      "expected": 28,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:success",
+      "passed": true,
+      "actual": 28.0,
+      "expected": 28,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:mean_s",
+      "passed": true,
+      "actual": 3046.3358260714285,
+      "expected": 3046.3358260714285,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:p95_s",
+      "passed": true,
+      "actual": 4489.2594953,
+      "expected": 4489.2594953,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:movement_s",
+      "passed": true,
+      "actual": 2308.657254642857,
+      "expected": 2308.657254642857,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:switching_s",
+      "passed": true,
+      "actual": 103.75,
+      "expected": 103.75,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:detection_s",
+      "passed": true,
+      "actual": 568.9285714285714,
+      "expected": 568.9285714285714,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:optical_s",
+      "passed": true,
+      "actual": 39.0,
+      "expected": 39.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:removal_s",
+      "passed": true,
+      "actual": 26.0,
+      "expected": 26.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:saving_s",
+      "passed": true,
+      "actual": 581.0646721071429,
+      "expected": 581.0646721071429,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:ci_low_s",
+      "passed": true,
+      "actual": 500.65166313928563,
+      "expected": 500.65166313928563,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:state:ci_high_s",
+      "passed": true,
+      "actual": 661.8222426625,
+      "expected": 661.8222426625,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:n",
+      "passed": true,
+      "actual": 28.0,
+      "expected": 28,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:success",
+      "passed": true,
+      "actual": 28.0,
+      "expected": 28,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:mean_s",
+      "passed": true,
+      "actual": 3164.366973892857,
+      "expected": 3164.366973892857,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:p95_s",
+      "passed": true,
+      "actual": 4687.368519,
+      "expected": 4687.368519,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:movement_s",
+      "passed": true,
+      "actual": 2366.0455453214286,
+      "expected": 2366.0455453214286,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:switching_s",
+      "passed": true,
+      "actual": 105.28571428571429,
+      "expected": 105.28571428571429,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:detection_s",
+      "passed": true,
+      "actual": 628.0357142857143,
+      "expected": 628.0357142857143,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:optical_s",
+      "passed": true,
+      "actual": 39.0,
+      "expected": 39.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:removal_s",
+      "passed": true,
+      "actual": 26.0,
+      "expected": 26.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:saving_s",
+      "passed": true,
+      "actual": 463.03352428571435,
+      "expected": 463.03352428571435,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:ci_low_s",
+      "passed": true,
+      "actual": 323.06174225714295,
+      "expected": 323.06174225714295,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:rl:ci_high_s",
+      "passed": true,
+      "actual": 590.4833061687501,
+      "expected": 590.4833061687501,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:n",
+      "passed": true,
+      "actual": 28.0,
+      "expected": 28,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:success",
+      "passed": true,
+      "actual": 28.0,
+      "expected": 28,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:mean_s",
+      "passed": true,
+      "actual": 3254.1512870714287,
+      "expected": 3254.1512870714287,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:p95_s",
+      "passed": true,
+      "actual": 4396.5193967,
+      "expected": 4396.5193967,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:movement_s",
+      "passed": true,
+      "actual": 2502.6155727857144,
+      "expected": 2502.6155727857144,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:switching_s",
+      "passed": true,
+      "actual": 106.53571428571429,
+      "expected": 106.53571428571429,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:detection_s",
+      "passed": true,
+      "actual": 580.0,
+      "expected": 580.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:optical_s",
+      "passed": true,
+      "actual": 39.0,
+      "expected": 39.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:removal_s",
+      "passed": true,
+      "actual": 26.0,
+      "expected": 26.0,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:saving_s",
+      "passed": true,
+      "actual": 373.24921110714286,
+      "expected": 373.24921110714286,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:ci_low_s",
+      "passed": true,
+      "actual": 264.98910527857134,
+      "expected": 264.98910527857134,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "csv:stress:geo:ci_high_s",
+      "passed": true,
+      "actual": 476.4730320678571,
+      "expected": 476.4730320678571,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "trajectory:median:$.source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-geometric\\research\\final_trajectory_v1\\final_random_median.json"
+    },
+    {
+      "check": "trajectory:median:$.source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-geometric\\research\\final_trajectory_v1\\final_random_median.json",
+      "actual_sha256": "9d05995355bdafbc3207f20ae8cffe199132beb519a8abb62450e6e2f4bee880",
+      "expected_sha256": "9d05995355bdafbc3207f20ae8cffe199132beb519a8abb62450e6e2f4bee880"
+    },
+    {
+      "check": "trajectory:median:$.archives[0].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\baseline\\case-800035.json.gz"
+    },
+    {
+      "check": "trajectory:median:$.archives[0].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\baseline\\case-800035.json.gz",
+      "actual_sha256": "0e688788ea3c2732f6aab5377f601373b890112c755710e38a2b12a1349c3de5",
+      "expected_sha256": "0e688788ea3c2732f6aab5377f601373b890112c755710e38a2b12a1349c3de5"
+    },
+    {
+      "check": "trajectory:median:$.archives[1].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\state-future-cover\\case-800035.json.gz"
+    },
+    {
+      "check": "trajectory:median:$.archives[1].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\state-future-cover\\case-800035.json.gz",
+      "actual_sha256": "39928e7a0d8ebb4e8f30a814824c0b62e0732acd18dbbbd1ab721b096356e277",
+      "expected_sha256": "39928e7a0d8ebb4e8f30a814824c0b62e0732acd18dbbbd1ab721b096356e277"
+    },
+    {
+      "check": "trajectory:median:$.archives[2].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\rl-gae095-u512\\case-800035.json.gz"
+    },
+    {
+      "check": "trajectory:median:$.archives[2].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\rl-gae095-u512\\case-800035.json.gz",
+      "actual_sha256": "d7663468e19b7245ff663acc191af0f3c37a1c350f3d24956203fda343ddc10f",
+      "expected_sha256": "d7663468e19b7245ff663acc191af0f3c37a1c350f3d24956203fda343ddc10f"
+    },
+    {
+      "check": "trajectory:median:$.archives[3].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\geo-future-cover\\case-800035.json.gz"
+    },
+    {
+      "check": "trajectory:median:$.archives[3].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\geo-future-cover\\case-800035.json.gz",
+      "actual_sha256": "1fed063dfbd8abe35468b3aae6111f63c009fdc653c8158a6fa7e2ac2501cc58",
+      "expected_sha256": "1fed063dfbd8abe35468b3aae6111f63c009fdc653c8158a6fa7e2ac2501cc58"
+    },
+    {
+      "check": "trajectory:median:source_seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:source_selection",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:source_case_sha256",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:source_plotted",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:four_archives",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:baseline:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:baseline:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:baseline:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:baseline:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:baseline:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:state:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:state:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:state:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:state:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:state:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:rl:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:rl:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:rl:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:rl:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:rl:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:geo:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:geo:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:geo:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:geo:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:median:geo:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:$.source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-geometric\\research\\final_trajectory_v1\\final_random_state_worst.json"
+    },
+    {
+      "check": "trajectory:state_worst:$.source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-geometric\\research\\final_trajectory_v1\\final_random_state_worst.json",
+      "actual_sha256": "e8b377d26446ed24af0462a06b17bf8feef73484caada188e80eddd2f04177bb",
+      "expected_sha256": "e8b377d26446ed24af0462a06b17bf8feef73484caada188e80eddd2f04177bb"
+    },
+    {
+      "check": "trajectory:state_worst:$.archives[0].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\baseline\\case-800015.json.gz"
+    },
+    {
+      "check": "trajectory:state_worst:$.archives[0].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\baseline\\case-800015.json.gz",
+      "actual_sha256": "ae54ae9f42147e836b33202836f252e618615df3d408effc5973ce9280d0d3a2",
+      "expected_sha256": "ae54ae9f42147e836b33202836f252e618615df3d408effc5973ce9280d0d3a2"
+    },
+    {
+      "check": "trajectory:state_worst:$.archives[1].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\state-future-cover\\case-800015.json.gz"
+    },
+    {
+      "check": "trajectory:state_worst:$.archives[1].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\state-future-cover\\case-800015.json.gz",
+      "actual_sha256": "5e587a6e49d7b9cc7dad4cd1af03eb1f566ee9bc233133165ee5d323f2dc8441",
+      "expected_sha256": "5e587a6e49d7b9cc7dad4cd1af03eb1f566ee9bc233133165ee5d323f2dc8441"
+    },
+    {
+      "check": "trajectory:state_worst:$.archives[2].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\rl-gae095-u512\\case-800015.json.gz"
+    },
+    {
+      "check": "trajectory:state_worst:$.archives[2].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\rl-gae095-u512\\case-800015.json.gz",
+      "actual_sha256": "b05fdd81954f5337380dc7f1a207ebc9c543879e2930ae02c38e65460a0214f3",
+      "expected_sha256": "b05fdd81954f5337380dc7f1a207ebc9c543879e2930ae02c38e65460a0214f3"
+    },
+    {
+      "check": "trajectory:state_worst:$.archives[3].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\geo-future-cover\\case-800015.json.gz"
+    },
+    {
+      "check": "trajectory:state_worst:$.archives[3].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\geo-future-cover\\case-800015.json.gz",
+      "actual_sha256": "4f1feefac3f1d5a4a616252219ceff63cabc148287e46f4e03dd0c0905607e12",
+      "expected_sha256": "4f1feefac3f1d5a4a616252219ceff63cabc148287e46f4e03dd0c0905607e12"
+    },
+    {
+      "check": "trajectory:state_worst:source_seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:source_selection",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:source_case_sha256",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:source_plotted",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:four_archives",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:baseline:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:baseline:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:baseline:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:baseline:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:baseline:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:state:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:state:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:state:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:state:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:state:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:rl:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:rl:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:rl:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:rl:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:rl:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:geo:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:geo:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:geo:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:geo:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:state_worst:geo:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:$.source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-geometric\\research\\final_trajectory_v1\\final_random_rl_worst.json"
+    },
+    {
+      "check": "trajectory:rl_worst:$.source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-geometric\\research\\final_trajectory_v1\\final_random_rl_worst.json",
+      "actual_sha256": "7f445450b10a64bee1f498c42f115aa26d9d80cafd88bb5d937af47778ff90d7",
+      "expected_sha256": "7f445450b10a64bee1f498c42f115aa26d9d80cafd88bb5d937af47778ff90d7"
+    },
+    {
+      "check": "trajectory:rl_worst:$.archives[0].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\baseline\\case-800081.json.gz"
+    },
+    {
+      "check": "trajectory:rl_worst:$.archives[0].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\baseline\\case-800081.json.gz",
+      "actual_sha256": "855fb77c1077576939cbf791437ddd110df6df6d48affa09851311fafa9d8c29",
+      "expected_sha256": "855fb77c1077576939cbf791437ddd110df6df6d48affa09851311fafa9d8c29"
+    },
+    {
+      "check": "trajectory:rl_worst:$.archives[1].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\state-future-cover\\case-800081.json.gz"
+    },
+    {
+      "check": "trajectory:rl_worst:$.archives[1].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\state-future-cover\\case-800081.json.gz",
+      "actual_sha256": "0b889c9cbec32e687effe0cd0e7db9db8ef3eadc622f5261782dd2c9212ca367",
+      "expected_sha256": "0b889c9cbec32e687effe0cd0e7db9db8ef3eadc622f5261782dd2c9212ca367"
+    },
+    {
+      "check": "trajectory:rl_worst:$.archives[2].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\rl-gae095-u512\\case-800081.json.gz"
+    },
+    {
+      "check": "trajectory:rl_worst:$.archives[2].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\rl-gae095-u512\\case-800081.json.gz",
+      "actual_sha256": "25144ffe0af04069853a9fc9702a39945914fd1658e209138eb349ba17c9c65d",
+      "expected_sha256": "25144ffe0af04069853a9fc9702a39945914fd1658e209138eb349ba17c9c65d"
+    },
+    {
+      "check": "trajectory:rl_worst:$.archives[3].source:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\geo-future-cover\\case-800081.json.gz"
+    },
+    {
+      "check": "trajectory:rl_worst:$.archives[3].source:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\geo-future-cover\\case-800081.json.gz",
+      "actual_sha256": "b2c37c52206f3d0e3e39903458f22120337adec32372fb7996b9d7b55f53a9d7",
+      "expected_sha256": "b2c37c52206f3d0e3e39903458f22120337adec32372fb7996b9d7b55f53a9d7"
+    },
+    {
+      "check": "trajectory:rl_worst:source_seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:source_selection",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:source_case_sha256",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:source_plotted",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:four_archives",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:baseline:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:baseline:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:baseline:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:baseline:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:baseline:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:state:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:state:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:state:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:state:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:state:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:rl:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:rl:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:rl:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:rl:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:rl:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:geo:case_identity",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:geo:seed",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:geo:ground_truth",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:geo:recorded_row",
+      "passed": true
+    },
+    {
+      "check": "trajectory:rl_worst:geo:all_cleared",
+      "passed": true
+    },
+    {
+      "check": "q2:$.archive_path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\state-future-cover\\case-800035.json.gz"
+    },
+    {
+      "check": "q2:$.archive_path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-v1-artifacts\\final-evaluations-complete-0930\\v1-selection\\evaluations\\final_random\\state-future-cover\\case-800035.json.gz",
+      "actual_sha256": "39928e7a0d8ebb4e8f30a814824c0b62e0732acd18dbbbd1ab721b096356e277",
+      "expected_sha256": "39928e7a0d8ebb4e8f30a814824c0b62e0732acd18dbbbd1ab721b096356e277"
+    },
+    {
+      "check": "q2:$.source_manifest_path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-random\\comparison.json"
+    },
+    {
+      "check": "q2:$.source_manifest_path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\research\\final_results_v1\\report-random\\comparison.json",
+      "actual_sha256": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991",
+      "expected_sha256": "659d60d5921eec209a12e39beb9b94aa9a9d5771051784f49447c9a981d44991"
+    },
+    {
+      "check": "q2:$.geometry_source_hashes.src/geometry/__init__.py.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\geometry\\__init__.py"
+    },
+    {
+      "check": "q2:$.geometry_source_hashes.src/geometry/__init__.py.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\geometry\\__init__.py",
+      "actual_sha256": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa",
+      "expected_sha256": "ab863186eed111790cf712c0cd19c741841087144a8fd9ecd37a3c10d33e46fa"
+    },
+    {
+      "check": "q2:$.geometry_source_hashes.src/localization/__init__.py.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\localization\\__init__.py"
+    },
+    {
+      "check": "q2:$.geometry_source_hashes.src/localization/__init__.py.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\localization\\__init__.py",
+      "actual_sha256": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c",
+      "expected_sha256": "cda7e2f2a45faa60cb7dcef631e54cd384e3f367db96f23f415fc7eb666bb98c"
+    },
+    {
+      "check": "q2:$.geometry_source_hashes.src/localization/omni.py.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\localization\\omni.py"
+    },
+    {
+      "check": "q2:$.geometry_source_hashes.src/localization/omni.py.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\localization\\omni.py",
+      "actual_sha256": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b",
+      "expected_sha256": "35a999a1533a7c557315f719e2dcea91ffd3e1ec695636b94d374d4aaddc1e3b"
+    },
+    {
+      "check": "q2:$.geometry_source_hashes.src/simulator_client/state.py.path:exists",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\simulator_client\\state.py"
+    },
+    {
+      "check": "q2:$.geometry_source_hashes.src/simulator_client/state.py.path:sha256",
+      "passed": true,
+      "path": "D:\\jwt\\2026数模国赛\\q3-state-search\\src\\simulator_client\\state.py",
+      "actual_sha256": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+      "expected_sha256": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42"
+    },
+    {
+      "check": "q2:frozen_source:src/geometry/__init__.py",
+      "passed": true
+    },
+    {
+      "check": "q2:frozen_source:src/localization/__init__.py",
+      "passed": true
+    },
+    {
+      "check": "q2:frozen_source:src/localization/omni.py",
+      "passed": true
+    },
+    {
+      "check": "q2:frozen_source:src/simulator_client/state.py",
+      "passed": true
+    },
+    {
+      "check": "q2:case_identity",
+      "passed": true
+    },
+    {
+      "check": "q2:seed",
+      "passed": true
+    },
+    {
+      "check": "q2:two_observations",
+      "passed": true
+    },
+    {
+      "check": "q2:observation_0:recorded_action",
+      "passed": true
+    },
+    {
+      "check": "q2:observation_0:one_based",
+      "passed": true
+    },
+    {
+      "check": "q2:observation_0:channel",
+      "passed": true
+    },
+    {
+      "check": "q2:observation_0:stored_circle_encloses_vertices",
+      "passed": true,
+      "actual": 750.2259540309765,
+      "expected": 750.2259540309765,
+      "absolute_tolerance": 1e-06
+    },
+    {
+      "check": "q2:observation_0:clearance_flag",
+      "passed": true
+    },
+    {
+      "check": "q2:observation_1:recorded_action",
+      "passed": true
+    },
+    {
+      "check": "q2:observation_1:one_based",
+      "passed": true
+    },
+    {
+      "check": "q2:observation_1:channel",
+      "passed": true
+    },
+    {
+      "check": "q2:observation_1:stored_circle_encloses_vertices",
+      "passed": true,
+      "actual": 65.01242503712217,
+      "expected": 65.01242503712217,
+      "absolute_tolerance": 1e-06
+    },
+    {
+      "check": "q2:observation_1:clearance_flag",
+      "passed": true
+    },
+    {
+      "check": "q2:point_distance",
+      "passed": true,
+      "actual": 593.1056936276684,
+      "expected": 593.1056936276684,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "q2:movement_time",
+      "passed": true,
+      "actual": 118.62113872553368,
+      "expected": 118.62113872553368,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "q2:radius_reduction",
+      "passed": true,
+      "actual": 0.9133428739864179,
+      "expected": 0.9133428739864179,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "q2:max_vertex_distance",
+      "passed": true,
+      "actual": 960.4267227523205,
+      "expected": 960.4267227523205,
+      "absolute_tolerance": 1e-07
+    },
+    {
+      "check": "q2:guaranteed_reception_flag",
+      "passed": true
+    },
+    {
+      "check": "q2:angle_error",
+      "passed": true
+    },
+    {
+      "check": "q2:prefix_measure_count",
+      "passed": true
+    },
+    {
+      "check": "q2:prefix_negative_count",
+      "passed": true
+    },
+    {
+      "check": "q2:probe_selection_exists_verbatim_in_archive",
+      "passed": true
+    }
+  ],
+  "failures": []
+}

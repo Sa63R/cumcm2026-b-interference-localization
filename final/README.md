@@ -12,12 +12,13 @@
 - `data/`：图表所需的费用汇总及三例四方法轨迹数据，附来源哈希。
 - `references/`：两篇国赛官方展示范文、算法原论文、BibTeX和写作借鉴笔记。
 - `qa/`：内部编译日志与逐页渲染，不纳入Git。
+- `VALIDATION.md`：数据、文档结构和逐页视觉核验记录。
 
 正文方法以首版状态搜索为主干，后续相对静默与16源上限精化单列。首版四方法主表、后期RL配对、后续消融和官方50局分别报告，不跨场景、下界或模型版本拼接排名。首版主表中的前瞻rollout是较强基线，不是最初朴素方法。
 
 ## 本稿的实质边界
 
-第二问已给出自足的几何候选域、可接收证明和有限选点策略。现有材料主要验证第三问完整策略，尚未把第二检测点单独的受控性能试验补齐，因此正文没有声称该点选择具有连续全局最优性，也没有用第三问总耗时直接证明第二问策略最优。
+第二问已给出自足的几何候选域、可接收证明、有限选点策略与真实双测算例；算例原始动作、版本匹配与重建数值见`sources/q2_example.json`。现有材料主要验证第三问完整策略，尚无第二检测点单独的受控性能对比，因此正文没有声称该点选择具有连续全局最优性，也没有用第三问总耗时直接证明第二问策略最优。
 
 四方法的程序实际计算时间与机器人计费时间分开。后期48局未能判定RL与状态搜索的平均差异方向；48/48先扫20频道仅支持有限候选空间中的行为诊断。50局官方演练作为真实接口与执行补充，不充当四方法同场景排名。
 
@@ -27,8 +28,7 @@
 
 已验证环境：Windows，Python 3.12，Matplotlib 3.11.2，NumPy 2.5.3，pypandoc_binary 1.17（Pandoc 3.9），TeX Live 2026，XeLaTeX，字体SimSun/SimHei、Times New Roman、Microsoft YaHei、Consolas、FangSong。
 
-最简单的正文重编译：在本目录运行两次 `xelatex 第二问与第三问论文稿.tex`。`
-figures/`中的PDF与源稿一同保留。编译只涉及已有正文与图形，不运行实验。
+最简单的正文重编译：在本目录运行两次 `xelatex 第二问与第三问论文稿.tex`。`figures/`中的PDF与源稿一同保留。编译只涉及已有正文与图形，不运行实验。
 
 自动构建脚本：
 
@@ -40,6 +40,8 @@ python scripts/build_paper.py
 `plot_figures.py`读取本目录已保存数据并使用安装的scientific-visualization skill。`build_paper.py`由分节源稿生成MD、TeX和PDF；它会覆盖三份派生稿，因此直接手改TeX后请勿再运行该脚本，或将对应修改同步回源稿/构建脚本。
 
 `prepare_data.py`仅用于从原工作区重新抽取图表数据，需原始q3分支/档案仍位于本目录的上一级；不需要它即可用交付的data重绘。所有脚本均不调用策略或模拟器。
+
+数据复核运行`python scripts/validate_data.py`（需保留原始研究目录）；编译后结构检查运行`python scripts/validate_document.py`。验证结果保存在`sources/validation_data.json`与`sources/validation_document.json`，分别记录432项数据检查、72项文档及图形检查。
 
 本机任务使用Codex捆绑Python，补充绘图库置于工作区`tmp/paper-deps`，未改动各实验分支的Python环境。运行时将该目录加入PYTHONPATH即可。
 

@@ -87,7 +87,10 @@ def trajectory(label,number):
         ax.scatter(measures[:,0],measures[:,1],s=10,marker='o',facecolors='white',edgecolors=COL[k],lw=.6,zorder=4)
         for s in c['ground_truth']['sources']:
             ax.scatter(s['x'],s['y'],s=18,marker='x',color='black',lw=.9,zorder=6)
-            ax.annotate(str(s['channel']),(s['x'],s['y']),xytext=(4,3),textcoords='offset points',fontsize=6,color='black',zorder=7)
+            # Separate the two adjacent sources consistently across all four panels.
+            offset={12:(-12,-13),2:(6,10)}.get(s['channel'],(4,3)) if c['seed']==800015 else (4,3)
+            leader={'arrowstyle':'-','lw':.45,'color':'.35'} if offset!=(4,3) else None
+            ax.annotate(str(s['channel']),(s['x'],s['y']),xytext=offset,textcoords='offset points',fontsize=6,color='black',zorder=7,arrowprops=leader)
         ax.scatter([0],[0],marker='*',s=60,color='#882255',zorder=8)
         ax.scatter([route[-1,0]],[route[-1,1]],marker='s',s=27,facecolors='none',edgecolors='#882255',lw=1,zorder=8)
         clearpts=np.array([x['position'] for x in a['clears']]); ax.scatter(clearpts[:,0],clearpts[:,1],marker='+',s=28,color='#D55E00',lw=.9,zorder=7)
@@ -169,15 +172,14 @@ def ablations():
         p=e[key]['pair'];state.append((label,p['mean_saved_s'],p['paired_bootstrap_95ci_saved_s']))
     for key,label in [('relative_only','相对静默  256局'),('cap_only','16源上限  256局'),('derived_silence','两者组合  256局')]:
         p=e['E07']['comparisons'][key];state.append((label,p['mean_saved_s'],p['ci95_saved_s']))
-    rl=[(label,p['mean_saved_s'],p['ci95_saved_s']) for label,p in zip(['GAE 0.95 / 等预算λ1','GAE 0.95 / 父模型','注意力 / 父模型'],e['E09']['rows'][:3])]
+    rl=[(label,p['mean_saved_s'],p['ci95_saved_s']) for label,p in zip(['GAE 0.95 / 等预算λ1','GAE 0.95 / 基础模型','注意力 / 基础模型'],e['E09']['rows'][:3])]
     fig,axs=plt.subplots(2,1,figsize=(6.7,4.1),layout='constrained',gridspec_kw={'height_ratios':[1.35,1]})
     for ax,rows,col,title,lim in [(axs[0],state,COL['state'],'(a) 状态搜索组件  各行使用对应参照',(-8,68)),(axs[1],rl,COL['rl'],'(b) 强化学习配置  48局开发场景',(-100,130))]:
         for y,(lab,v,(lo,hi)) in enumerate(rows):
             ax.errorbar(v,y,xerr=[[v-lo],[hi-v]],fmt='o',ms=4,color=col,capsize=3)
-            ax.text(lim[1],y,f'{v:.2f} [{lo:.2f}, {hi:.2f}]',va='center',ha='right',fontsize=6.5)
-        # Value labels occupy a dedicated right-hand region beyond interval endpoints.
-        span=lim[1]-lim[0];ax.set_xlim(lim[0],lim[1]+span*.55)
-        for t in ax.texts:t.set_x(lim[1]+span*.52)
+            ax.text(1.035,y,f'{v:.2f} [{lo:.2f}, {hi:.2f}]',transform=ax.get_yaxis_transform(),va='center',ha='left',fontsize=6.5)
+        # Labels sit outside the numeric axis; do not extend the scale to fit prose.
+        ax.set_xlim(*lim)
         ax.set(yticks=range(len(rows)),yticklabels=[r[0] for r in rows],ylim=(len(rows)-.4,-.6),xlabel='相对各自参照节省 / s  点为均值，横线为95%配对区间')
         ax.axvline(0,ls='--',color='.55',lw=.7);ax.xaxis.grid(True,color='.92',lw=.5)
         ax.set_title(title,loc='left',fontsize=8,pad=7)
