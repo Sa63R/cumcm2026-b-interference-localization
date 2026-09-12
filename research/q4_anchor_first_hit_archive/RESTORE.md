@@ -12,4 +12,4 @@ git -c core.autocrlf=false worktree add --detach ../q4-r37-anchor-first-hit-rest
 git -C ../q4-r37-anchor-first-hit-restored rev-parse HEAD
 ```
 
-上述命令不运行模拟器。原路径分析脚本应从恢复树执行。当前状态为archived_pending_cleanup；必须等core归档已推送才能移除原实验树/分支，最终状态以MANIFEST及CLEANUP为准。未通过开发/几何门槛的研究不能写成独立验证失败或全体方法不可能，见RESULTS。
+上述命令不运行模拟器。原路径分析脚本应从恢复树执行。当前状态为 archived_and_removed。core 归档 `e642e3dd1e3db07ce09a3c023b17cecd132c26b3` 推送完成后，已用不带 force 的 git worktree remove 移除原树，并按精确 HEAD lease 删除该实验分支；永久标签及独立恢复仓库保留。删除窗口其他 refs 零变化，10 个核心保护分支不变；证据见 MANIFEST 与 CLEANUP。未通过开发/几何门槛的研究不能写成独立验证失败或全体方法不可能，见RESULTS。
