@@ -13,3 +13,5 @@ git -C ../q4-r34-known-source-restored rev-parse HEAD
 ```
 
 恢复不调用模拟器。分析脚本从恢复树原路径以 `python -m research.q4_known_source.analyze_development --output <新输出文件>` 执行；原输出拒覆盖。119局全清且首次审计全通过，但随机535.820651/压力538.340582秒每源均超过冻结500门槛；全部119局触发宽源真实服务，仍未晋级，预留独立未开启。T、N、T/N、LB及meanT/meanLB、真实费用与代理遗漏边界见RESULTS；不将本单臂结果当不同种子算法的因果差。
+
+归档报告已随core提交 `401bd9c4c0f06915553253bdba8a422ba89ba5d6` 推送后，才用无强制的 `git worktree remove` 删除本轮R34工作树，再以精确expected-HEAD lease删除远程实验分支、删除本地同名实验分支。归档标签和fresh bare恢复副本保留。即时删除窗口内原10保护分支及全部既有其他local/remote refs均未变化；另观察到并行新增paper/q2-q3-20260912，本任务未改动该引用。详见CLEANUP及原始前后快照。

@@ -1,0 +1,88 @@
+{
+  "status": "archived_and_removed",
+  "archive_commit": "401bd9c4c0f06915553253bdba8a422ba89ba5d6",
+  "workspace_relative_target": "q4-r34-known-source",
+  "path_basis": "workspace root",
+  "absolute_target_verified_as_exact_workspace_child": true,
+  "expected_target_head": "eb95af2d29d332e2fe5a9cd5c94d8215497e239f",
+  "archive_tag": "archive/q4-r34-known-source-rejected-20260912",
+  "restoration_repository": "q3-v1-artifacts/archive-checks-20260912/known-source-tag-r34.git",
+  "restored_head": "eb95af2d29d332e2fe5a9cd5c94d8215497e239f",
+  "source_owner_released": true,
+  "ignored_files": [
+    ".pytest_cache/.gitignore",
+    ".pytest_cache/CACHEDIR.TAG",
+    ".pytest_cache/README.md",
+    ".pytest_cache/v/cache/lastfailed",
+    ".pytest_cache/v/cache/nodeids"
+  ],
+  "worktree_removed": true,
+  "remote_branch_removed": true,
+  "local_branch_removed": true,
+  "commands": [
+    {
+      "args_workspace_relative": [
+        "worktree",
+        "remove",
+        "q4-r34-known-source"
+      ],
+      "used_validated_absolute_target": true,
+      "force": false,
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "push",
+        "origin",
+        "--force-with-lease=refs/heads/experiment/q4-r34-known-source:eb95af2d29d332e2fe5a9cd5c94d8215497e239f",
+        ":refs/heads/experiment/q4-r34-known-source"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "branch",
+        "-D",
+        "experiment/q4-r34-known-source"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "prior_rejected_attempt": {
+    "executed": false,
+    "reason": "Automatic approval rejected the combined cleanup command: blocked by policy.",
+    "resolution": "Used only unforced git worktree remove, which succeeded. No standalone recursive cache deletion was executed."
+  },
+  "archive_tag_preserved_local_and_remote": true,
+  "recorded_at_utc": "2026-09-12T00:31:04.072784+00:00",
+  "ref_changes": {
+    "refs/heads/paper/q2-q3-20260912": {
+      "before": null,
+      "after": "e7117c5afa438aa460e9db90bcdcc9ea935ac979"
+    },
+    "refs/remotes/origin/experiment/q4-r34-known-source": {
+      "before": "eb95af2d29d332e2fe5a9cd5c94d8215497e239f",
+      "after": null
+    },
+    "refs/heads/experiment/q4-r34-known-source": {
+      "before": "eb95af2d29d332e2fe5a9cd5c94d8215497e239f",
+      "after": null
+    }
+  },
+  "remote_ref_changes": {
+    "refs/heads/experiment/q4-r34-known-source": {
+      "before": "eb95af2d29d332e2fe5a9cd5c94d8215497e239f",
+      "after": null
+    }
+  },
+  "foreign_ref_changes": {
+    "refs/heads/paper/q2-q3-20260912": {
+      "before": null,
+      "after": "e7117c5afa438aa460e9db90bcdcc9ea935ac979"
+    }
+  },
+  "foreign_remote_ref_changes": {},
+  "preexisting_foreign_refs_unchanged": true,
+  "protected_core_branches_present": 10,
+  "comparison_scope": "Immediate cleanup window before/after snapshots only. A concurrent new paper branch appeared; this task did not create or modify that ref. No preexisting foreign ref changed."
+}

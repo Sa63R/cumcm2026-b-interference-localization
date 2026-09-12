@@ -1,5 +1,5 @@
 {
-  "status": "archived_pending_cleanup",
+  "status": "archived_and_removed",
   "archive_kind": "pushed_git_tag",
   "archive_tag": "archive/q4-r34-known-source-rejected-20260912",
   "archived_head": "eb95af2d29d332e2fe5a9cd5c94d8215497e239f",
@@ -81,12 +81,24 @@
   "restoration_repository": "q3-v1-artifacts/archive-checks-20260912/known-source-tag-r34.git",
   "source_worktree": "q4-r34-known-source",
   "lifecycle": {
-    "worktree_retained": true,
-    "local_branch_retained": true,
-    "remote_branch_retained": true,
+    "worktree_retained": false,
+    "local_branch_retained": false,
+    "remote_branch_retained": false,
     "local_archive_tag_retained": true,
     "remote_archive_tag_retained": true,
-    "restoration_repository_retained": true
+    "restoration_repository_retained": true,
+    "cleanup_report": "research/q4_known_source_archive/CLEANUP.json",
+    "completed_at_utc": "2026-09-12T00:31:04.072784+00:00",
+    "archive_commit_before_cleanup": "401bd9c4c0f06915553253bdba8a422ba89ba5d6",
+    "protected_core_branches_present": 10,
+    "foreign_ref_changes": {
+      "refs/heads/paper/q2-q3-20260912": {
+        "before": null,
+        "after": "e7117c5afa438aa460e9db90bcdcc9ea935ac979"
+      }
+    },
+    "foreign_remote_ref_changes": {},
+    "preexisting_foreign_refs_unchanged": true
   },
   "source_owner_release": "All owned execution/audit/selection sessions completed; final source tree clean and final branch pushed before archival.",
   "prepared_at_utc": "2026-09-12T00:24:15.199891+00:00",
