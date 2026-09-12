@@ -1,0 +1,74 @@
+{
+  "checked_at": "2026-09-12T09:54:22.165589+00:00",
+  "kind": "offline_release_validation",
+  "base_commit": "e37311bf0b5d28b833bde42c7ab234ef73a7cafc",
+  "unique_tests_passed": 69,
+  "suites": [
+    {
+      "command": "python -m unittest discover -s tests -p test_q3_selected_release.py -v",
+      "passed": 7,
+      "python": "3.12.14",
+      "numpy": "2.3.5",
+      "numba": true
+    },
+    {
+      "command": "python experiments/q3_selected/vendor/test_optimized.py",
+      "passed": 14,
+      "python": "3.12.14",
+      "numpy": "2.3.5",
+      "numba": true
+    },
+    {
+      "command": "python experiments/q3_selected/vendor/test_v3.py",
+      "passed": 14,
+      "python": "3.12.14",
+      "numpy": "2.3.5",
+      "numba": true
+    },
+    {
+      "command": "python -m unittest discover -s tests -p test_q4_v4_release.py -v",
+      "passed": 4,
+      "python": "3.12.14"
+    },
+    {
+      "command": "python -m pytest -q tests/test_simulator_client.py --tb=short",
+      "passed": 30,
+      "python": "3.12.14",
+      "wall_seconds": 15.55
+    }
+  ],
+  "minimal_optional_dependencies": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "numba": false,
+    "pandas": false,
+    "passed": 11,
+    "command": "python -m pytest -q tests/test_q3_selected_release.py tests/test_q4_v4_release.py tests/test_simulator_client.py",
+    "note": "These 11 selected/Q4 tests also passed within the initial combined invocation. The other 30 tests initially could not bind a local loopback socket under the sandbox; they passed on rerun with local socket access. No official simulator was contacted."
+  },
+  "q3_complete_parity_checks": {
+    "cases_per_method": 3,
+    "methods": [
+      "v3_origin20",
+      "optical"
+    ],
+    "direct_plus_protocol_runs": 12,
+    "all_cleared": true,
+    "same_virtual_time_within_seconds": 1e-06,
+    "same_detection_and_failed_clear_counts": true
+  },
+  "q3_runner_smoke": "Complete optical session executed through SyntheticClient; result.json, request log, source hashes, parameters, normal exit verified.",
+  "source_checks": {
+    "unchanged_archive_files": 8,
+    "optical_ast_matches_original": true
+  },
+  "q4": "Existing release decisions and files unchanged; offline full-session equality plus cache lifecycle tests passed.",
+  "new_official_practice_runs": 0,
+  "new_formal_runs": 0,
+  "not_a_performance_benchmark": true,
+  "files_sha256": {
+    "tests/test_q3_selected_release.py": "b6b36148eec53c630d1987835561ce30cacd0bce8c422701758743ec94623f0b",
+    "docs/Q3_Q4_METHODS.md": "f6e9a8983896605867b8d00d826e393a7e189362b617c765ffeda1e1a9d2167f",
+    "experiments/q3_selected/validation/local_paired400.csv": "ac1ac8040afc385c8f993e3618bddafea7502e6976a24434a1e9f6edd5238995"
+  }
+}

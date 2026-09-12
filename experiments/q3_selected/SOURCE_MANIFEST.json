@@ -1,0 +1,70 @@
+{
+  "version": "q3-selected-github-20260912-v1",
+  "methods": [
+    "v3_origin20",
+    "optical"
+  ],
+  "source": "User-provided Q3 archive and verified local official-protocol bridge",
+  "unchanged_files": {
+    "vendor/q3_base.py": {
+      "source_relative": "experiments/q3_comparison/vendor/B_Q3_optimized_v3/q3_base.py",
+      "sha256": "bc5f6e1bdb780877fe0cd3f0fcf5e481b96ca4e75324daf512d8becf2c566509"
+    },
+    "vendor/q3_optimized.py": {
+      "source_relative": "experiments/q3_comparison/vendor/B_Q3_optimized_v3/q3_optimized.py",
+      "sha256": "ab357a17f292576e1004c17987511398bbb2c7458060479d19a7f46c950aba4a"
+    },
+    "vendor/q3_v3.py": {
+      "source_relative": "experiments/q3_comparison/vendor/B_Q3_optimized_v3/q3_v3.py",
+      "sha256": "981df0428ed976a7d7e0f3da112330a1b03566c4d47952a609d9e7169bdde22b"
+    },
+    "vendor/probe_score.py": {
+      "source_relative": "experiments/q3_comparison/vendor/B_Q3_optimized_v3/probe_score.py",
+      "sha256": "b2d1c6b99d67987f45342f147b273a10e60b57bba14ff70076abfd50f35d673a"
+    },
+    "vendor/route_search.py": {
+      "source_relative": "experiments/q3_comparison/vendor/B_Q3_optimized_v3/route_search.py",
+      "sha256": "c95d7737249e182ff7cd90e70124273367b50b993fb903ed2d95039b315e08ce"
+    },
+    "vendor/test_optimized.py": {
+      "source_relative": "experiments/q3_comparison/vendor/B_Q3_optimized_v3/test_optimized.py",
+      "sha256": "9309d417fe8642af2783f1ee3082ee9c9e8fdd3ff3d03eb34e2210795276d0c1"
+    },
+    "vendor/test_v3.py": {
+      "source_relative": "experiments/q3_comparison/vendor/B_Q3_optimized_v3/test_v3.py",
+      "sha256": "174aa9450079f0137dc9b7de7b92291c80325f2bee0d64dd03928b42fbccdfa5"
+    },
+    "vendor/optical_experiment_original.py": {
+      "source_relative": "experiments/q3_comparison/vendor/avg200_diagnostics/optical_experiment.py",
+      "sha256": "6f35e7ffc2a4be4dd82bf4efaaf24e606bcba6816938e0e58042c083cde5f16e"
+    }
+  },
+  "extracted_policy": {
+    "file": "q3_optical.py",
+    "definitions": [
+      "area_points",
+      "ExperimentalOpticalAgent"
+    ],
+    "change": "Verbatim definitions; replace standalone benchmark imports with numpy and packaged vendor imports. No parameter or decision change."
+  },
+  "packaging_changes": [
+    "Official bridge narrowed to v3_origin20 and optical, using the same observation mapping and policy behavior.",
+    "Standalone benchmark dependencies removed from the imported optical definitions.",
+    "Runner adds source hashes, version, optional pre-enter kernel warmup, and a local ignored output directory.",
+    "Existing Q4 and shared protocol client retained from e37311bf0b5d28b833bde42c7ab234ef73a7cafc."
+  ],
+  "release_code_sha256": {
+    "__init__.py": "7df61bfeab0a3d35784bdef28dcdb38b645a948fd11245579a6bc0a04a44d7db",
+    "q3_optical.py": "fb2e8a38fc6984e7f6a8a9fdcc6844a54906f2a019daeadcdb77a603c855b8df",
+    "q3_runtime.py": "2e2174ee77c0b63c0e6c011924ae9510348113d305687f94cd216c4161bcf146",
+    "run_practice.py": "08c71859c04b871b758db0f5f7d35436dcc81b1e9b0657877352c0e21d00f359",
+    "vendor/optical_experiment_original.py": "6f35e7ffc2a4be4dd82bf4efaaf24e606bcba6816938e0e58042c083cde5f16e",
+    "vendor/probe_score.py": "b2d1c6b99d67987f45342f147b273a10e60b57bba14ff70076abfd50f35d673a",
+    "vendor/q3_base.py": "bc5f6e1bdb780877fe0cd3f0fcf5e481b96ca4e75324daf512d8becf2c566509",
+    "vendor/q3_optimized.py": "ab357a17f292576e1004c17987511398bbb2c7458060479d19a7f46c950aba4a",
+    "vendor/q3_v3.py": "981df0428ed976a7d7e0f3da112330a1b03566c4d47952a609d9e7169bdde22b",
+    "vendor/route_search.py": "c95d7737249e182ff7cd90e70124273367b50b993fb903ed2d95039b315e08ce",
+    "vendor/test_optimized.py": "9309d417fe8642af2783f1ee3082ee9c9e8fdd3ff3d03eb34e2210795276d0c1",
+    "vendor/test_v3.py": "174aa9450079f0137dc9b7de7b92291c80325f2bee0d64dd03928b42fbccdfa5"
+  }
+}
