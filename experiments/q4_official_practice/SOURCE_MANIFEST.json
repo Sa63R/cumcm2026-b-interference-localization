@@ -1,0 +1,101 @@
+{
+  "source": "User supplied V4 and locally validated computation optimizations",
+  "preserved_python_files": [
+    {
+      "path": "experiments/q4_comparison/common.py",
+      "sha256": "f62afedeed5fc8118134cb3326a10184e12a67c8d60a24d5418372bc7b9926f4",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/online.py",
+      "sha256": "a3dcf69adca5ffa6ac4a2e00171dee410b77c35d5a24d36206e3b45e6ba0d161",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_inference/radius_direction.py",
+      "sha256": "0508a91785778e8e5907b75857db1dd6beb07e27dce5fae92af9b9581400ea6b",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_baseline.py",
+      "sha256": "5d8a874563a5e6ecedb1d4254fae8dc4ca2c4cdbbcd8563b39f2acce25afa581",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_coverage.py",
+      "sha256": "eb3a0769820c926331a002438649a9e31d91e7e0150036e60e95bd2191f021f3",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_fast_local.py",
+      "sha256": "aac1e5affb8a2ca492008d5c8a8d8c4360d676c9ad21d4b3c459945c916653b8",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_information.py",
+      "sha256": "d1c5459d9246a10ff67f926e386da1a8f7fbe804da3e6a433974a5f931178e20",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_route.py",
+      "sha256": "db50aab737369a24d60dfc4e436ff66ccf4499f74d45d2557c347bb4043cf9c4",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_route_cached.py",
+      "sha256": "4b93994bc5d96697caaa3482aa03c9de01125efc63b7a712215bbc64284bef87",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_v3_local.py",
+      "sha256": "7897afa0266afaf0b35d6a300b4fedc4a25310258cf3ed01535e25355e037a8b",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_v3_route.py",
+      "sha256": "282d13120d2c0e733fa2b19cf9b9bd7ee61ec8c8a4ae66cbbf4bc6978615f0e1",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_v3_solver.py",
+      "sha256": "b9215a9c50a5658732ec5aec7e8b274596ab4b4f1f533d6a8ee9bfba179adf47",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_v4_local.py",
+      "sha256": "ff309885e6f38593e961491ee07e0dcdb19298e492544fe79cc183ac2ba3b5c5",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/q4_v4_solver.py",
+      "sha256": "73ff33de5ca82d1d4968953818485fc4f66ac43c94d7759ff56430e33c6fde35",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_comparison/vendor_v4/test_v4.py",
+      "sha256": "01729f293db45c14179cf945e834442aafd916b6f4c36e9f60fb7f36c06e6792",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_speedup/bootstrap.py",
+      "sha256": "eae279cded5ea7e13d034a52d9ba0bc95647036526d501f6a894517e78679ee7",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_speedup/compute_fast.py",
+      "sha256": "822ad5b9ee23ae30ce2b3db8f8e40b822d0e1423a801a014c8961090fc8598ad",
+      "unchanged_from_local_validated_source": true
+    },
+    {
+      "path": "experiments/q4_speedup/coverage_compute_fast.py",
+      "sha256": "4b650bb495f4765e6de94282bce4fe3870f35299124a34f2f483c0ff41e48ec0",
+      "unchanged_from_local_validated_source": true
+    }
+  ],
+  "adapted_files": [
+    "experiments/q4_official_practice/runtime.py",
+    "experiments/q4_official_practice/run_speedup.py",
+    "experiments/q4_official_practice/test_adapter.py"
+  ],
+  "adaptation_note": "Only V4 and V4 Fast are exposed; remove experimental planner imports and use repository-relative paths. Algorithms and compute modules above are byte-for-byte preserved."
+}

@@ -1,0 +1,137 @@
+{
+  "manifest": {
+    "kind": "Exact execution equivalence and CPU-only optimization; not virtual task improvement",
+    "shared_machine": true,
+    "timing": "Rotating paired serial runs; process_time and perf_counter; one comparison per case; trace recording enabled; cache enter/exit included; simulator setup and coverage audit excluded",
+    "seed_base": 230400000,
+    "cases_per_group": 10,
+    "groups": [
+      [
+        "all_omni",
+        0.0,
+        "uniform",
+        "hash"
+      ],
+      [
+        "mixed25",
+        0.25,
+        "uniform",
+        "hash"
+      ],
+      [
+        "mixed50",
+        0.5,
+        "uniform",
+        "hash"
+      ],
+      [
+        "mixed75",
+        0.75,
+        "uniform",
+        "hash"
+      ],
+      [
+        "all_directional",
+        1.0,
+        "uniform",
+        "hash"
+      ],
+      [
+        "boundary_directional",
+        1.0,
+        "outward_boundary",
+        "hash"
+      ],
+      [
+        "boundary_mixed",
+        0.5,
+        "outward_boundary",
+        "hash"
+      ],
+      [
+        "plus1",
+        0.5,
+        "uniform",
+        "plus"
+      ],
+      [
+        "minus1",
+        0.5,
+        "uniform",
+        "minus"
+      ],
+      [
+        "clustered",
+        0.75,
+        "clustered",
+        "hash"
+      ]
+    ],
+    "physical_error_deg": 1.0,
+    "display_round_deg": 0.01,
+    "geometric_bound_deg": 1.005,
+    "cache_limits": {
+      "polygon": 2048,
+      "gain": 512,
+      "route": 128,
+      "optical": 512
+    },
+    "acceleration_sha256": "822ad5b9ee23ae30ce2b3db8f8e40b822d0e1423a801a014c8961090fc8598ad"
+  },
+  "unit_checks": {
+    "route_cases": 247,
+    "clip_cases": 10000,
+    "circle_cases": 1200,
+    "mutable_cache_test": true,
+    "bounded_eviction": true,
+    "clear_test": true,
+    "exception_restoration": true,
+    "nested_context_rejection": true
+  },
+  "cases": 100,
+  "all_actions_identical": true,
+  "all_reports_identical": true,
+  "all_summary_identical": true,
+  "compared_actions": 34237,
+  "cleared_sources": 1299,
+  "all_clear_and_certified": true,
+  "baseline_cpu_s": 2.1768589999999968,
+  "accelerated_cpu_s": 1.4724249999999999,
+  "cpu_reduction": 0.32360111518476753,
+  "cpu_speedup": 1.4784175764470155,
+  "baseline_wall_s": 2.426403876102995,
+  "accelerated_wall_s": 1.649357587855775,
+  "wall_reduction": 0.3202460628670033,
+  "mean_cpu_saved_s": 0.007044339999999969,
+  "paired_normal95_cpu_saved_s": [
+    0.006273603223138247,
+    0.007815076776861692
+  ],
+  "cached": {
+    "circle": {
+      "hits": 27152,
+      "misses": 10631,
+      "peak_case_entries": 192,
+      "limit": 2048
+    },
+    "gain": {
+      "hits": 0,
+      "misses": 2635,
+      "peak_case_entries": 64,
+      "limit": 512
+    },
+    "optical": {
+      "hits": 0,
+      "misses": 1389,
+      "peak_case_entries": 26,
+      "limit": 512
+    },
+    "route": {
+      "hits": 0,
+      "misses": 3820,
+      "peak_case_entries": 49,
+      "limit": 128
+    }
+  },
+  "note": "CPU result is one paired comparison on a nonexclusive machine. It does not imply the official HTTP run is faster by the same percentage. No virtual task-time reduction: every action and feedback is exactly equal."
+}

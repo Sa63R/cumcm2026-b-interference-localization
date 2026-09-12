@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-12",
+  "python": "3.13.12",
+  "kind": "offline release checks; no official simulator session entered",
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_simulator_client.py tests/test_q4_v4_release.py experiments/q4_official_practice/test_adapter.py",
+      "passed": 37,
+      "subtests_passed": 10,
+      "wall_seconds": 17.22
+    },
+    {
+      "command": "python experiments/q4_comparison/vendor_v4/test_v4.py",
+      "passed": 7,
+      "wall_seconds": 2.109
+    }
+  ],
+  "release_methods": [
+    "v4",
+    "v4_fast"
+  ],
+  "equivalence": "Same full traces, accepted feedback, virtual time and non-timing completion report in three true emission-extreme scenarios.",
+  "privacy": "No account credentials or raw official session logs are included."
+}

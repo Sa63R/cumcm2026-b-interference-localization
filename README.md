@@ -15,6 +15,18 @@
 - [第三问前瞻策略官方演练验收](资料汇总/第三问前瞻策略官方演练验收.md)
 - [官方操作指南](资料汇总/手动操作与正式测试指南.md)
 
+## 第四问 V4（2026-09-12）
+
+新增 [V4 演练入口与验证说明](experiments/q4_official_practice/README.md)，包含原版 V4 和保持动作一致的计算加速版 `v4_fast`。每轮成对测向后重新规划，保留真实清除反馈及连续覆盖终止检查。
+
+在模拟器界面确认**问题4演练**并准备完成后，从仓库根目录运行：
+
+```sh
+python experiments/q4_official_practice/run_speedup.py --method v4_fast --robot-id YOUR_TEAM_ID --practice-confirmed
+```
+
+`--method v4` 用于原决策的未加速对照。计算优化不代表机器人任务虚拟时间缩短；已有的 Q3 结果和旧 Q4 默认入口保持原样。运行、依赖与测试命令见上方说明。
+
 ## 在本机运行
 
 2026-09-11 新增[演练自动调用](资料汇总/演练自动调用.md)：通过原模拟器内部接口自动启动第三问、第四问演练，串行求解并登记结果。已通过两问单局及连续换局实测。使用 `scripts/start_practice_control.ps1` 启动本地副本、手动登录后，执行 `scripts/run_practice.ps1 -Problem 3 -Repeat 10` 即可连续演练。这个新入口固定为演练模式。
