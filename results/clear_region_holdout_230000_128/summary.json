@@ -1,0 +1,107 @@
+{
+  "complete": true,
+  "expected_cases": 128,
+  "verified_completed_cases": 128,
+  "expected_runs": 256,
+  "recorded_runs": 256,
+  "all_runs_successful": true,
+  "source_unchanged": true,
+  "source_changes": [],
+  "harness_errors": [],
+  "elapsed_wall_s": 104.55382183298934,
+  "methods": {
+    "baseline": {
+      "runs": 128,
+      "successes": 128,
+      "failures": 0,
+      "source_total": 1684,
+      "cleared_total": 1684,
+      "raw_mean_time_s": 3117.1950747187498,
+      "raw_p95_time_s": 3478.460227,
+      "raw_max_time_s": 3815.878125,
+      "penalized_mean_time_s": 3117.1950747187498,
+      "penalized_p95_time_s": 3478.460227,
+      "pooled_time_per_target_s": 236.93644273396671,
+      "mean_case_time_per_target_s": 241.76234520764405,
+      "pooled_time_per_cleared_s": 236.93644273396671,
+      "mean_case_time_per_cleared_s": 241.76234520764405,
+      "cases_with_zero_cleared": 0,
+      "penalized_pooled_time_per_target_s": 236.93644273396671,
+      "mean_wall_s": 0.79080824540506,
+      "p95_wall_s": 1.2045775022008445,
+      "mean_measurement_count": 116.4296875,
+      "failed_clear_count": 0,
+      "mean_time_breakdown_s": {
+        "movement_s": 2362.5856997187498,
+        "switching_s": 106.6796875,
+        "detection_s": 582.1484375,
+        "optical_s": 39.46875,
+        "removal_s": 26.3125
+      }
+    },
+    "history": {
+      "runs": 128,
+      "successes": 128,
+      "failures": 0,
+      "source_total": 1684,
+      "cleared_total": 1684,
+      "raw_mean_time_s": 3104.7263247187498,
+      "raw_p95_time_s": 3460.1048650000002,
+      "raw_max_time_s": 3809.878125,
+      "penalized_mean_time_s": 3104.7263247187498,
+      "penalized_p95_time_s": 3460.1048650000002,
+      "pooled_time_per_target_s": 235.98869926603322,
+      "mean_case_time_per_target_s": 240.8174035282297,
+      "pooled_time_per_cleared_s": 235.98869926603322,
+      "mean_case_time_per_cleared_s": 240.8174035282297,
+      "cases_with_zero_cleared": 0,
+      "penalized_pooled_time_per_target_s": 235.98869926603322,
+      "mean_wall_s": 0.8048462679150816,
+      "p95_wall_s": 1.148896895504731,
+      "mean_measurement_count": 114.3515625,
+      "failed_clear_count": 0,
+      "mean_time_breakdown_s": {
+        "movement_s": 2362.5856997187498,
+        "switching_s": 104.6015625,
+        "detection_s": 571.7578125,
+        "optical_s": 39.46875,
+        "removal_s": 26.3125
+      }
+    }
+  },
+  "comparisons": {
+    "history": {
+      "paired_cases": 128,
+      "unpaired_baseline_seeds": [],
+      "unpaired_candidate_seeds": [],
+      "all_pairs_successful": true,
+      "all_candidate_clears_successful": true,
+      "comparison_metric": "penalized_time_s; failed method = 360000 s",
+      "baseline_mean_s": 3117.1950747187498,
+      "candidate_mean_s": 3104.7263247187498,
+      "mean_saving_s": 12.46875,
+      "mean_reduction_fraction": 0.003999990280083798,
+      "mean_saving_ci95_s": [
+        10.3982421875,
+        14.65625
+      ],
+      "wins": 97,
+      "losses": 0,
+      "ties": 31,
+      "max_regression_s": 0.0,
+      "worst_delta_s": -0.0,
+      "worst_case_seed": 230001,
+      "raw_mean_saving_s_descriptive_only": 12.46875,
+      "raw_mean_saving_s_all_successful": 12.46875,
+      "ci_scope": "Fixed 5000 paired bootstrap resamples of case-level penalized savings; exploratory when used to select among candidates."
+    }
+  },
+  "bootstrap": {
+    "seed": 20260912,
+    "resamples": 5000,
+    "interval": "percentile 95%; resample paired case savings"
+  },
+  "raw_time_caveat": "Early failed runs may have low raw times. Use penalized paired comparisons; efficiency claims require all expected cases to succeed.",
+  "wall_time_caveat": "Methods are sequential within a worker, but workers run concurrently. Wall times include CPU contention and fixed-order warmup effects; do not infer serial performance from these values.",
+  "generalization_caveat": "Synthetic local cases only. Multiple-candidate development CIs are exploratory; stress CIs are descriptive, not distribution-wide probability claims."
+}

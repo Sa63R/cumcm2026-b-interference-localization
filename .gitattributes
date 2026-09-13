@@ -10,3 +10,7 @@ results/validation/** -text
 # Preserve historical terminal output, including progress CRs and final blanks.
 results/study/console.txt -whitespace
 results/validation/pytest.txt -whitespace
+# These experiment archives include source snapshots and generated evidence whose
+# byte-level hashes are checked by their manifests.
+results/clear_region_*/** -text
+research/map_distribution_20260912/*.svg -text

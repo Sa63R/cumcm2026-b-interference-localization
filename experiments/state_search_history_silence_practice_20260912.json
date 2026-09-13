@@ -1,0 +1,32 @@
+{
+  "name": "clear_region_history",
+  "entrypoint": "strategies.clear_region_state_search:run_clear_region_state_search",
+  "kwargs": {
+    "max_active_probes": 6,
+    "config": {
+      "ring_radius": 1150.0,
+      "max_expansions": 100,
+      "max_total_expansions": 60000,
+      "scan_source_s": 0.0,
+      "skip_certified_scans": true,
+      "stop_discovery_at_16": true,
+      "opportunistic_measurements": true,
+      "opportunistic_min_radius": 60.0,
+      "replace_coverage": false,
+      "coverage_replacement_gain_s": 0.0,
+      "active_probe_search": true,
+      "probe_uncertainty_weight": 0.5,
+      "probe_model": "radius_proxy",
+      "probe_depth": 1,
+      "probe_supports": 6,
+      "probe_candidates": 9,
+      "probe_inner_candidates": 3,
+      "probe_noise_nodes": 1,
+      "probe_max_expansions": 500,
+      "probe_terminal_mode": "expected_support"
+    },
+    "enabled": true,
+    "clear_mode": "disabled",
+    "history_silence": true
+  }
+}

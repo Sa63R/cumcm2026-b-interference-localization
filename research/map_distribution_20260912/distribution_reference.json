@@ -1,0 +1,1690 @@
+{
+  "analysis_kind": "conditional_iid_area_uniform_disk_reference_for_four_official_observation_maps",
+  "source_inventory": "/tmp/cumcm_official_q3_observation_inventory.json",
+  "source_inventory_sha256": "489fa678f28be7d7892f4046b5874d02951d2c839590f018b73d680a965050dd",
+  "script": "/private/tmp/cumcm_official_q3_distribution_reference.py",
+  "script_sha256": "ef736dd9704f0ca668d4d318f3f1a8cc3e5633cafb63debe6578be3929580533",
+  "maps": 4,
+  "source_count": 48,
+  "arena_radius_m": 1800.0,
+  "conditional_source_counts": [
+    13,
+    15,
+    10,
+    10
+  ],
+  "null_hypothesis": "Within each map, locations are independent and area-uniform in the radius-1800 disk; maps are independent; each observed N is held fixed.",
+  "null_radial_law": "u=(r/1800)^2 is Uniform(0,1); radius r itself is not uniform.",
+  "null_generation": "r=1800*sqrt(U), theta=2*pi*V; U,V from a local statistical-reference RNG only.",
+  "monte_carlo_replicates": 10000,
+  "monte_carlo_seed": 4720260912,
+  "monte_carlo_seed_scope": "Statistical reference seed, not a simulator, official-case or strategy seed.",
+  "cluster_unit": "One full map. Overall statistics give each of the four maps equal weight. Pair distances are never treated as independent observations.",
+  "overall_radial_ks_definition": "Maximum absolute discrepancy of equal-map-weight empirical radial CDF from Uniform(0,1).",
+  "geometric_uncertainty": "Each estimated source lies in its recorded enclosing circle under the public stationary-source and measurement-error model. All intervals use triangle inequalities; interval propagation may be loose.",
+  "ks_uncertainty": "Bound the true CDF between the CDF of upper radial endpoints and the CDF of lower radial endpoints; derive conservative lower/upper KS discrepancy bounds.",
+  "probability_convention": "Add-one Monte Carlo tail estimates. Non-KS tests use twice the smaller empirical tail. Conservative p is the maximum over the propagated statistic interval.",
+  "multiple_exploration_tests": 20,
+  "multiplicity_adjustment": "Holm adjustment across all four per-map metrics and four overall metrics (20 exploratory comparisons).",
+  "limitations": [
+    "Only four archived official maps; sample inclusion and generator stationarity are not established.",
+    "Estimated coordinates are not hidden official truth; their conservative uncertainty is carried into metrics.",
+    "The area-uniform iid null is a comparison model, not a claim about the official generator.",
+    "These explorations are not preregistered confirmation; 10000 Monte Carlo replicates do not increase the number of observed official maps.",
+    "Failure to reject the null does not establish uniformity, independence, the absence of weak clustering, or any PRNG design.",
+    "No archived 872-case database, old sealed evaluation, official API or strategy/simulator execution was used."
+  ],
+  "worlds": [
+    {
+      "case_id": "22NU-Y7XU-VPWZ-HC9W",
+      "source_count": 13,
+      "estimates": {
+        "mean_normalized_radius_squared": 0.3789699048470409,
+        "radial_uniform_ks": 0.2639883404953133,
+        "minimum_pair_distance_m": 202.21295291558133,
+        "mean_nearest_neighbor_distance_m": 397.00191675082493
+      },
+      "conservative_statistic_intervals": {
+        "mean_normalized_radius_squared": [
+          0.3712819138716934,
+          0.3867698608814868
+        ],
+        "radial_uniform_ks": [
+          0.24892116195755698,
+          0.2788341435075981
+        ],
+        "minimum_pair_distance_m": [
+          174.53052986063386,
+          229.8953759705288
+        ],
+        "mean_nearest_neighbor_distance_m": [
+          369.790697108151,
+          424.21313639349876
+        ]
+      },
+      "radial_source_records": [
+        {
+          "channel": 19,
+          "estimated_radius_m": 1502.2326162405238,
+          "radius_interval_m": [
+            1499.0815388490312,
+            1505.3836936320165
+          ],
+          "normalized_radius_squared": 0.6965132201533485,
+          "normalized_radius_squared_interval": [
+            0.6935942778141913,
+            0.6994382916830781
+          ],
+          "position_enclosure_radius_m": 3.151077391492734
+        },
+        {
+          "channel": 3,
+          "estimated_radius_m": 1279.447329554006,
+          "radius_interval_m": [
+            1260.5098442071264,
+            1298.3848149008857
+          ],
+          "normalized_radius_squared": 0.505242428735456,
+          "normalized_radius_squared_interval": [
+            0.49039662572317105,
+            0.5203096072732122
+          ],
+          "position_enclosure_radius_m": 18.937485346879598
+        },
+        {
+          "channel": 17,
+          "estimated_radius_m": 1656.9019664502264,
+          "radius_interval_m": [
+            1639.1153840631637,
+            1674.688548837289
+          ],
+          "normalized_radius_squared": 0.8473222612427862,
+          "normalized_radius_squared_interval": [
+            0.829228161195226,
+            0.8656116467922053
+          ],
+          "position_enclosure_radius_m": 17.786582387062793
+        },
+        {
+          "channel": 18,
+          "estimated_radius_m": 1150.3107445649366,
+          "radius_interval_m": [
+            1132.9823666947166,
+            1167.6391224351567
+          ],
+          "normalized_radius_squared": 0.4083996324264009,
+          "normalized_radius_squared_interval": [
+            0.3961879763090003,
+            0.4207966420497354
+          ],
+          "position_enclosure_radius_m": 17.328377870220145
+        },
+        {
+          "channel": 1,
+          "estimated_radius_m": 439.9437878672445,
+          "radius_interval_m": [
+            422.8990857127136,
+            456.9884900217754
+          ],
+          "normalized_radius_squared": 0.05973781990215402,
+          "normalized_radius_squared_interval": [
+            0.0551986533014349,
+            0.06445632099147601
+          ],
+          "position_enclosure_radius_m": 17.04470215453091
+        },
+        {
+          "channel": 7,
+          "estimated_radius_m": 866.8693435299429,
+          "radius_interval_m": [
+            855.0863021625383,
+            878.6523848973474
+          ],
+          "normalized_radius_squared": 0.2319328576395167,
+          "normalized_radius_squared_interval": [
+            0.22567055066234684,
+            0.23828086835981363
+          ],
+          "position_enclosure_radius_m": 11.783041367404563
+        },
+        {
+          "channel": 12,
+          "estimated_radius_m": 1036.2965075124714,
+          "radius_interval_m": [
+            1035.0028896298436,
+            1037.5901253950992
+          ],
+          "normalized_radius_squared": 0.33145384305016845,
+          "normalized_radius_squared_interval": [
+            0.33062684615497717,
+            0.3322818729374746
+          ],
+          "position_enclosure_radius_m": 1.293617882627803
+        },
+        {
+          "channel": 13,
+          "estimated_radius_m": 782.1472041614946,
+          "radius_interval_m": [
+            770.6524410177167,
+            793.6419673052726
+          ],
+          "normalized_radius_squared": 0.18881303980791442,
+          "normalized_radius_squared_interval": [
+            0.18330406939708804,
+            0.19440357168771094
+          ],
+          "position_enclosure_radius_m": 11.494763143777986
+        },
+        {
+          "channel": 20,
+          "estimated_radius_m": 585.7276872029985,
+          "radius_interval_m": [
+            569.540027291829,
+            601.915347114168
+          ],
+          "normalized_radius_squared": 0.1058879393691894,
+          "normalized_radius_squared_interval": [
+            0.10011600082949919,
+            0.11182163120110163
+          ],
+          "position_enclosure_radius_m": 16.187659911169494
+        },
+        {
+          "channel": 16,
+          "estimated_radius_m": 791.5625100140567,
+          "radius_interval_m": [
+            779.6012357974182,
+            803.5237842306951
+          ],
+          "normalized_radius_squared": 0.1933861750801709,
+          "normalized_radius_squared_interval": [
+            0.18758582927680914,
+            0.19927483698284468
+          ],
+          "position_enclosure_radius_m": 11.961274216638504
+        },
+        {
+          "channel": 11,
+          "estimated_radius_m": 1388.6415410542338,
+          "radius_interval_m": [
+            1380.5483518212639,
+            1396.7347302872038
+          ],
+          "normalized_radius_squared": 0.5951621387473695,
+          "normalized_radius_squared_interval": [
+            0.5882449850976568,
+            0.6021197243180456
+          ],
+          "position_enclosure_radius_m": 8.093189232970072
+        },
+        {
+          "channel": 2,
+          "estimated_radius_m": 1213.1601419416638,
+          "radius_interval_m": [
+            1204.8775821258594,
+            1221.4427017574683
+          ],
+          "normalized_radius_squared": 0.454246151233308,
+          "normalized_radius_squared_interval": [
+            0.44806481108316576,
+            0.4604698375545011
+          ],
+          "position_enclosure_radius_m": 8.28255981580446
+        },
+        {
+          "channel": 15,
+          "estimated_radius_m": 999.7882116833284,
+          "radius_interval_m": [
+            983.3439596089112,
+            1016.2324637577457
+          ],
+          "normalized_radius_squared": 0.3085112556237494,
+          "normalized_radius_squared_interval": [
+            0.2984460934874481,
+            0.31874333962812895
+          ],
+          "position_enclosure_radius_m": 16.444252074417253
+        }
+      ],
+      "closest_estimated_pair": {
+        "channels": [
+          20,
+          13
+        ],
+        "distance_estimate_m": 202.21295291558133,
+        "conservative_interval_m": [
+          174.53052986063386,
+          229.8953759705288
+        ]
+      },
+      "nearest_neighbor_records": [
+        {
+          "channel": 19,
+          "distance_interval_m": [
+            506.8803218626096,
+            551.0574473393542
+          ]
+        },
+        {
+          "channel": 3,
+          "distance_interval_m": [
+            279.3002520544518,
+            351.8319784886513
+          ]
+        },
+        {
+          "channel": 17,
+          "distance_interval_m": [
+            475.2735775847039,
+            545.5034980992698
+          ]
+        },
+        {
+          "channel": 18,
+          "distance_interval_m": [
+            279.3002520544518,
+            351.8319784886513
+          ]
+        },
+        {
+          "channel": 1,
+          "distance_interval_m": [
+            574.1680302957755,
+            631.8235173396463
+          ]
+        },
+        {
+          "channel": 7,
+          "distance_interval_m": [
+            574.1680302957755,
+            631.8235173396463
+          ]
+        },
+        {
+          "channel": 12,
+          "distance_interval_m": [
+            732.7335384257105,
+            758.8868569257752
+          ]
+        },
+        {
+          "channel": 13,
+          "distance_interval_m": [
+            174.53052986063386,
+            229.8953759705288
+          ]
+        },
+        {
+          "channel": 20,
+          "distance_interval_m": [
+            174.53052986063386,
+            229.8953759705288
+          ]
+        },
+        {
+          "channel": 16,
+          "distance_interval_m": [
+            248.44929393807382,
+            305.26034652018535
+          ]
+        },
+        {
+          "channel": 11,
+          "distance_interval_m": [
+            279.47659209958863,
+            312.2280901971377
+          ]
+        },
+        {
+          "channel": 2,
+          "distance_interval_m": [
+            260.0188201354803,
+            309.47244391592375
+          ]
+        },
+        {
+          "channel": 15,
+          "distance_interval_m": [
+            248.44929393807382,
+            305.26034652018535
+          ]
+        }
+      ],
+      "monte_carlo_references": {
+        "mean_normalized_radius_squared": {
+          "observed_estimate": 0.3789699048470409,
+          "observed_conservative_interval": [
+            0.3712819138716934,
+            0.3867698608814868
+          ],
+          "null_mean": 0.5009451629693558,
+          "null_median": 0.5006307106413428,
+          "null_central_95_percent_interval": [
+            0.34750576807975136,
+            0.6549176224023094
+          ],
+          "lower_tail_probability_at_estimate": 0.059494050594940506,
+          "upper_tail_probability_at_estimate": 0.9406059394060594,
+          "test_alternative": "two-sided radial deviation; lower suggests more central, higher more peripheral",
+          "exploratory_p_at_estimate": 0.11898810118988101,
+          "p_range_allowed_by_position_uncertainty": [
+            0.0983901609839016,
+            0.14878512148785122
+          ],
+          "conservative_exploratory_p": 0.14878512148785122,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "radial_uniform_ks": {
+          "observed_estimate": 0.2639883404953133,
+          "observed_conservative_interval": [
+            0.24892116195755698,
+            0.2788341435075981
+          ],
+          "null_mean": 0.22838449612795017,
+          "null_median": 0.21761808041499003,
+          "null_central_95_percent_interval": [
+            0.1230363145742035,
+            0.3919761643495151
+          ],
+          "lower_tail_probability_at_estimate": 0.7265273472652735,
+          "upper_tail_probability_at_estimate": 0.2735726427357264,
+          "test_alternative": "larger discrepancy from area-uniform radial CDF",
+          "exploratory_p_at_estimate": 0.2735726427357264,
+          "p_range_allowed_by_position_uncertainty": [
+            0.21847815218478153,
+            0.34136586341365865
+          ],
+          "conservative_exploratory_p": 0.34136586341365865,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "minimum_pair_distance_m": {
+          "observed_estimate": 202.21295291558133,
+          "observed_conservative_interval": [
+            174.53052986063386,
+            229.8953759705288
+          ],
+          "null_mean": 181.10580376768104,
+          "null_median": 170.7522174741514,
+          "null_central_95_percent_interval": [
+            32.58300322246789,
+            388.8771177242608
+          ],
+          "lower_tail_probability_at_estimate": 0.6231376862313769,
+          "upper_tail_probability_at_estimate": 0.37696230376962303,
+          "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+          "exploratory_p_at_estimate": 0.7539246075392461,
+          "p_range_allowed_by_position_uncertainty": [
+            0.5743425657434257,
+            0.9717028297170283
+          ],
+          "conservative_exploratory_p": 0.9717028297170283,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "mean_nearest_neighbor_distance_m": {
+          "observed_estimate": 397.00191675082493,
+          "observed_conservative_interval": [
+            369.790697108151,
+            424.21313639349876
+          ],
+          "null_mean": 496.01381095634105,
+          "null_median": 496.3559863201332,
+          "null_central_95_percent_interval": [
+            339.0335155986802,
+            649.8734725115369
+          ],
+          "lower_tail_probability_at_estimate": 0.1080891910808919,
+          "upper_tail_probability_at_estimate": 0.892010798920108,
+          "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+          "exploratory_p_at_estimate": 0.2161783821617838,
+          "p_range_allowed_by_position_uncertainty": [
+            0.11338866113388661,
+            0.38276172382761725
+          ],
+          "conservative_exploratory_p": 0.38276172382761725,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        }
+      }
+    },
+    {
+      "case_id": "X5HF-5SMF-YZVQ-RKJQ",
+      "source_count": 15,
+      "estimates": {
+        "mean_normalized_radius_squared": 0.44044167740318696,
+        "radial_uniform_ks": 0.23987432632149275,
+        "minimum_pair_distance_m": 83.91420971480079,
+        "mean_nearest_neighbor_distance_m": 380.55602364633666
+      },
+      "conservative_statistic_intervals": {
+        "mean_normalized_radius_squared": [
+          0.43127077199655045,
+          0.44972485654097816
+        ],
+        "radial_uniform_ks": [
+          0.23546693508435945,
+          0.24426627615994023
+        ],
+        "minimum_pair_distance_m": [
+          62.20565282077017,
+          105.62276660883141
+        ],
+        "mean_nearest_neighbor_distance_m": [
+          354.4083655118127,
+          406.7036817808605
+        ]
+      },
+      "radial_source_records": [
+        {
+          "channel": 12,
+          "estimated_radius_m": 1373.5454132815917,
+          "radius_interval_m": [
+            1363.7369539268616,
+            1383.3538726363217
+          ],
+          "normalized_radius_squared": 0.5822922846749687,
+          "normalized_radius_squared_interval": [
+            0.5740057035511466,
+            0.5906382521413298
+          ],
+          "position_enclosure_radius_m": 9.808459354730093
+        },
+        {
+          "channel": 9,
+          "estimated_radius_m": 1616.916172103207,
+          "radius_interval_m": [
+            1604.56035726579,
+            1629.271986940624
+          ],
+          "normalized_radius_squared": 0.8069191072866937,
+          "normalized_radius_squared_interval": [
+            0.7946339321323825,
+            0.8192985208115582
+          ],
+          "position_enclosure_radius_m": 12.355814837417132
+        },
+        {
+          "channel": 16,
+          "estimated_radius_m": 1150.860890629545,
+          "radius_interval_m": [
+            1134.956246469592,
+            1166.7655347894981
+          ],
+          "normalized_radius_squared": 0.40879036715451533,
+          "normalized_radius_squared_interval": [
+            0.397569654753193,
+            0.42016722628784675
+          ],
+          "position_enclosure_radius_m": 15.904644159953103
+        },
+        {
+          "channel": 4,
+          "estimated_radius_m": 1207.734093286278,
+          "radius_interval_m": [
+            1192.5250959317982,
+            1222.9430906407579
+          ],
+          "normalized_radius_squared": 0.4501918642240827,
+          "normalized_radius_squared_interval": [
+            0.4389247235886249,
+            0.46160179103270643
+          ],
+          "position_enclosure_radius_m": 15.208997354479813
+        },
+        {
+          "channel": 3,
+          "estimated_radius_m": 763.9188673920686,
+          "radius_interval_m": [
+            754.9921436065295,
+            772.8455911776077
+          ],
+          "normalized_radius_squared": 0.1801148259128336,
+          "normalized_radius_squared_interval": [
+            0.1759299805270316,
+            0.1843488604329216
+          ],
+          "position_enclosure_radius_m": 8.926723785539144
+        },
+        {
+          "channel": 17,
+          "estimated_radius_m": 751.4410389391669,
+          "radius_interval_m": [
+            737.5022236342882,
+            765.3798542440456
+          ],
+          "normalized_radius_squared": 0.17427889969196744,
+          "normalized_radius_squared_interval": [
+            0.16787331168688877,
+            0.18080442014896192
+          ],
+          "position_enclosure_radius_m": 13.938815304878739
+        },
+        {
+          "channel": 5,
+          "estimated_radius_m": 1270.790689789839,
+          "radius_interval_m": [
+            1255.509675071935,
+            1286.071704507743
+          ],
+          "normalized_radius_squared": 0.4984286966841156,
+          "normalized_radius_squared_interval": [
+            0.48651374820964055,
+            0.5104877867702012
+          ],
+          "position_enclosure_radius_m": 15.281014717903986
+        },
+        {
+          "channel": 20,
+          "estimated_radius_m": 1171.5389010123167,
+          "radius_interval_m": [
+            1156.3943495234064,
+            1186.683452501227
+          ],
+          "normalized_radius_squared": 0.4236121594398601,
+          "normalized_radius_squared_interval": [
+            0.41273083074372297,
+            0.43463506680254077
+          ],
+          "position_enclosure_radius_m": 15.14455148891026
+        },
+        {
+          "channel": 19,
+          "estimated_radius_m": 1331.9280796967564,
+          "radius_interval_m": [
+            1314.9189803454885,
+            1348.9371790480243
+          ],
+          "normalized_radius_squared": 0.5475408671249041,
+          "normalized_radius_squared_interval": [
+            0.5336456558249443,
+            0.5616146645117411
+          ],
+          "position_enclosure_radius_m": 17.00909935126792
+        },
+        {
+          "channel": 14,
+          "estimated_radius_m": 1425.0639223271226,
+          "radius_interval_m": [
+            1420.0624159669158,
+            1430.0654286873294
+          ],
+          "normalized_radius_squared": 0.6267923403451738,
+          "normalized_radius_squared_interval": [
+            0.6224003905067264,
+            0.6311997315823071
+          ],
+          "position_enclosure_radius_m": 5.001506360206739
+        },
+        {
+          "channel": 6,
+          "estimated_radius_m": 1750.6611635809738,
+          "radius_interval_m": [
+            1737.0123681727082,
+            1764.3099589892395
+          ],
+          "normalized_radius_squared": 0.9459304042193486,
+          "normalized_radius_squared_interval": [
+            0.9312382614768394,
+            0.9607375405520406
+          ],
+          "position_enclosure_radius_m": 13.648795408265604
+        },
+        {
+          "channel": 13,
+          "estimated_radius_m": 375.4608386285627,
+          "radius_interval_m": [
+            362.9279835097568,
+            387.99369374736864
+          ],
+          "normalized_radius_squared": 0.04350951893322951,
+          "normalized_radius_squared_interval": [
+            0.040653309016808116,
+            0.04646268715670583
+          ],
+          "position_enclosure_radius_m": 12.532855118805886
+        },
+        {
+          "channel": 15,
+          "estimated_radius_m": 304.1229235536032,
+          "radius_interval_m": [
+            294.94722177837843,
+            313.29862532882794
+          ],
+          "normalized_radius_squared": 0.02854652858975024,
+          "normalized_radius_squared_interval": [
+            0.026849957911970354,
+            0.030295070565720155
+          ],
+          "position_enclosure_radius_m": 9.175701775224738
+        },
+        {
+          "channel": 18,
+          "estimated_radius_m": 994.4951693579048,
+          "radius_interval_m": [
+            979.8032713040598,
+            1009.1870674117499
+          ],
+          "normalized_radius_squared": 0.3052532845296938,
+          "normalized_radius_squared_interval": [
+            0.29630075631423985,
+            0.31433905463923695
+          ],
+          "position_enclosure_radius_m": 14.69189805384505
+        },
+        {
+          "channel": 8,
+          "estimated_radius_m": 1376.057338793265,
+          "radius_interval_m": [
+            1358.7214646134344,
+            1393.3932129730956
+          ],
+          "normalized_radius_squared": 0.5844240122366675,
+          "normalized_radius_squared_interval": [
+            0.5697913637040976,
+            0.5992421746788539
+          ],
+          "position_enclosure_radius_m": 17.335874179830554
+        }
+      ],
+      "closest_estimated_pair": {
+        "channels": [
+          15,
+          13
+        ],
+        "distance_estimate_m": 83.91420971480079,
+        "conservative_interval_m": [
+          62.20565282077017,
+          105.62276660883141
+        ]
+      },
+      "nearest_neighbor_records": [
+        {
+          "channel": 12,
+          "distance_interval_m": [
+            294.35346700554084,
+            338.68201538983527
+          ]
+        },
+        {
+          "channel": 9,
+          "distance_interval_m": [
+            294.35346700554084,
+            338.68201538983527
+          ]
+        },
+        {
+          "channel": 16,
+          "distance_interval_m": [
+            192.75622135371066,
+            254.98350438257648
+          ]
+        },
+        {
+          "channel": 4,
+          "distance_interval_m": [
+            192.75622135371066,
+            254.98350438257648
+          ]
+        },
+        {
+          "channel": 3,
+          "distance_interval_m": [
+            590.0889600701804,
+            635.8200382510162
+          ]
+        },
+        {
+          "channel": 17,
+          "distance_interval_m": [
+            590.0889600701804,
+            635.8200382510162
+          ]
+        },
+        {
+          "channel": 5,
+          "distance_interval_m": [
+            601.0656444997064,
+            661.9167769133348
+          ]
+        },
+        {
+          "channel": 20,
+          "distance_interval_m": [
+            144.46725500464805,
+            208.77455668500443
+          ]
+        },
+        {
+          "channel": 19,
+          "distance_interval_m": [
+            117.92817131866622,
+            161.94938274161552
+          ]
+        },
+        {
+          "channel": 14,
+          "distance_interval_m": [
+            117.92817131866622,
+            161.94938274161552
+          ]
+        },
+        {
+          "channel": 6,
+          "distance_interval_m": [
+            660.5379425272826,
+            721.8537320463496
+          ]
+        },
+        {
+          "channel": 13,
+          "distance_interval_m": [
+            62.20565282077017,
+            105.62276660883141
+          ]
+        },
+        {
+          "channel": 15,
+          "distance_interval_m": [
+            62.20565282077017,
+            105.62276660883141
+          ]
+        },
+        {
+          "channel": 18,
+          "distance_interval_m": [
+            613.8065657288035,
+            668.2560720741054
+          ]
+        },
+        {
+          "channel": 8,
+          "distance_interval_m": [
+            781.583129779013,
+            845.6386742463642
+          ]
+        }
+      ],
+      "monte_carlo_references": {
+        "mean_normalized_radius_squared": {
+          "observed_estimate": 0.44044167740318696,
+          "observed_conservative_interval": [
+            0.43127077199655045,
+            0.44972485654097816
+          ],
+          "null_mean": 0.4988819449264327,
+          "null_median": 0.4991386553402979,
+          "null_central_95_percent_interval": [
+            0.3535301305845067,
+            0.6430934736850302
+          ],
+          "lower_tail_probability_at_estimate": 0.22047795220477953,
+          "upper_tail_probability_at_estimate": 0.7796220377962204,
+          "test_alternative": "two-sided radial deviation; lower suggests more central, higher more peripheral",
+          "exploratory_p_at_estimate": 0.44095590440955906,
+          "p_range_allowed_by_position_uncertainty": [
+            0.36896310368963103,
+            0.5203479652034797
+          ],
+          "conservative_exploratory_p": 0.5203479652034797,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "radial_uniform_ks": {
+          "observed_estimate": 0.23987432632149275,
+          "observed_conservative_interval": [
+            0.23546693508435945,
+            0.24426627615994023
+          ],
+          "null_mean": 0.21395993457874685,
+          "null_median": 0.20379593075528654,
+          "null_central_95_percent_interval": [
+            0.11469167473236463,
+            0.36707289892342726
+          ],
+          "lower_tail_probability_at_estimate": 0.6944305569443056,
+          "upper_tail_probability_at_estimate": 0.3056694330566943,
+          "test_alternative": "larger discrepancy from area-uniform radial CDF",
+          "exploratory_p_at_estimate": 0.3056694330566943,
+          "p_range_allowed_by_position_uncertainty": [
+            0.28477152284771523,
+            0.3277672232776722
+          ],
+          "conservative_exploratory_p": 0.3277672232776722,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "minimum_pair_distance_m": {
+          "observed_estimate": 83.91420971480079,
+          "observed_conservative_interval": [
+            62.20565282077017,
+            105.62276660883141
+          ],
+          "null_mean": 155.31049677953735,
+          "null_median": 144.70951223137646,
+          "null_central_95_percent_interval": [
+            28.68226923467774,
+            336.38372610410613
+          ],
+          "lower_tail_probability_at_estimate": 0.20727927207279273,
+          "upper_tail_probability_at_estimate": 0.7928207179282072,
+          "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+          "exploratory_p_at_estimate": 0.41455854414558546,
+          "p_range_allowed_by_position_uncertainty": [
+            0.23357664233576642,
+            0.6061393860613938
+          ],
+          "conservative_exploratory_p": 0.6061393860613938,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "mean_nearest_neighbor_distance_m": {
+          "observed_estimate": 380.55602364633666,
+          "observed_conservative_interval": [
+            354.4083655118127,
+            406.7036817808605
+          ],
+          "null_mean": 458.2962872446375,
+          "null_median": 458.5336120787538,
+          "null_central_95_percent_interval": [
+            326.31437412013366,
+            591.6799256427485
+          ],
+          "lower_tail_probability_at_estimate": 0.12818718128187181,
+          "upper_tail_probability_at_estimate": 0.8719128087191281,
+          "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+          "exploratory_p_at_estimate": 0.25637436256374363,
+          "p_range_allowed_by_position_uncertainty": [
+            0.12918708129187081,
+            0.4557544245575442
+          ],
+          "conservative_exploratory_p": 0.4557544245575442,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        }
+      }
+    },
+    {
+      "case_id": "MMHX-REU8-846N-HWR7",
+      "source_count": 10,
+      "estimates": {
+        "mean_normalized_radius_squared": 0.6011645235009134,
+        "radial_uniform_ks": 0.3430613101681429,
+        "minimum_pair_distance_m": 291.436232481151,
+        "mean_nearest_neighbor_distance_m": 661.3217615462363
+      },
+      "conservative_statistic_intervals": {
+        "mean_normalized_radius_squared": [
+          0.5934880974622713,
+          0.6088975894359334
+        ],
+        "radial_uniform_ks": [
+          0.3373601141278534,
+          0.3488102769070601
+        ],
+        "minimum_pair_distance_m": [
+          277.6381857559457,
+          305.23427920635635
+        ],
+        "mean_nearest_neighbor_distance_m": [
+          644.5493720501635,
+          678.0941510423092
+        ]
+      },
+      "radial_source_records": [
+        {
+          "channel": 3,
+          "estimated_radius_m": 1131.5077372166347,
+          "radius_interval_m": [
+            1120.0440923027118,
+            1142.9713821305577
+          ],
+          "normalized_radius_squared": 0.3951573331423176,
+          "normalized_radius_squared_interval": [
+            0.38719097799450786,
+            0.4032048087559991
+          ],
+          "position_enclosure_radius_m": 11.463644913922915
+        },
+        {
+          "channel": 1,
+          "estimated_radius_m": 1700.3049172563583,
+          "radius_interval_m": [
+            1695.3034108961515,
+            1705.306423616565
+          ],
+          "normalized_radius_squared": 0.8922953122364664,
+          "normalized_radius_squared_interval": [
+            0.8870535972210264,
+            0.8975524686505926
+          ],
+          "position_enclosure_radius_m": 5.0015063602068
+        },
+        {
+          "channel": 10,
+          "estimated_radius_m": 1219.8068503945547,
+          "radius_interval_m": [
+            1214.806386182071,
+            1224.8073146070383
+          ],
+          "normalized_radius_squared": 0.4592372692189763,
+          "normalized_radius_squared_interval": [
+            0.45547980120640225,
+            0.4630101721959581
+          ],
+          "position_enclosure_radius_m": 5.000464212483722
+        },
+        {
+          "channel": 20,
+          "estimated_radius_m": 1211.6909182904328,
+          "radius_interval_m": [
+            1206.6894119302262,
+            1216.6924246506394
+          ],
+          "normalized_radius_squared": 0.4531465683541705,
+          "normalized_radius_squared_interval": [
+            0.44941337557546773,
+            0.45689520253155924
+          ],
+          "position_enclosure_radius_m": 5.001506360206683
+        },
+        {
+          "channel": 13,
+          "estimated_radius_m": 1067.8488487298807,
+          "radius_interval_m": [
+            1056.3804070915942,
+            1079.3172903681673
+          ],
+          "normalized_radius_squared": 0.3519448036215221,
+          "normalized_radius_squared_interval": [
+            0.34442579150833397,
+            0.3595450041011366
+          ],
+          "position_enclosure_radius_m": 11.468441638286585
+        },
+        {
+          "channel": 12,
+          "estimated_radius_m": 1763.0223667920498,
+          "radius_interval_m": [
+            1750.3148131293558,
+            1775.7299204547437
+          ],
+          "normalized_radius_squared": 0.959335761052173,
+          "normalized_radius_squared_interval": [
+            0.9455561558827321,
+            0.9732150464192008
+          ],
+          "position_enclosure_radius_m": 12.707553662693902
+        },
+        {
+          "channel": 17,
+          "estimated_radius_m": 1744.4952804722118,
+          "radius_interval_m": [
+            1730.91709216668,
+            1758.0734687777435
+          ],
+          "normalized_radius_squared": 0.9392789455524138,
+          "normalized_radius_squared_interval": [
+            0.9247141913440603,
+            0.9539575066729036
+          ],
+          "position_enclosure_radius_m": 13.578188305531812
+        },
+        {
+          "channel": 2,
+          "estimated_radius_m": 1329.0947473449028,
+          "radius_interval_m": [
+            1324.0937758027637,
+            1334.0957188870418
+          ],
+          "normalized_radius_squared": 0.5452138417962379,
+          "normalized_radius_squared_interval": [
+            0.5411186194813641,
+            0.5493245022076336
+          ],
+          "position_enclosure_radius_m": 5.000971542139022
+        },
+        {
+          "channel": 9,
+          "estimated_radius_m": 1054.2858459378003,
+          "radius_interval_m": [
+            1045.488770754734,
+            1063.0829211208666
+          ],
+          "normalized_radius_squared": 0.343061310168143,
+          "normalized_radius_squared_interval": [
+            0.3373601141278534,
+            0.3488102769070601
+          ],
+          "position_enclosure_radius_m": 8.797075183066285
+        },
+        {
+          "channel": 4,
+          "estimated_radius_m": 1476.6299641982596,
+          "radius_interval_m": [
+            1465.1694287386442,
+            1488.090499657875
+          ],
+          "normalized_radius_squared": 0.672974089866714,
+          "normalized_radius_squared_interval": [
+            0.6625683502809646,
+            0.6834609059172913
+          ],
+          "position_enclosure_radius_m": 11.460535459615437
+        }
+      ],
+      "closest_estimated_pair": {
+        "channels": [
+          9,
+          2
+        ],
+        "distance_estimate_m": 291.436232481151,
+        "conservative_interval_m": [
+          277.6381857559457,
+          305.23427920635635
+        ]
+      },
+      "nearest_neighbor_records": [
+        {
+          "channel": 3,
+          "distance_interval_m": [
+            989.7671203295685,
+            1022.697422877828
+          ]
+        },
+        {
+          "channel": 1,
+          "distance_interval_m": [
+            797.1992353271951,
+            817.2031764725762
+          ]
+        },
+        {
+          "channel": 10,
+          "distance_interval_m": [
+            797.1992353271951,
+            817.2031764725762
+          ]
+        },
+        {
+          "channel": 20,
+          "distance_interval_m": [
+            729.3820963870417,
+            762.3219923840281
+          ]
+        },
+        {
+          "channel": 13,
+          "distance_interval_m": [
+            694.9699569548367,
+            743.3219475567977
+          ]
+        },
+        {
+          "channel": 12,
+          "distance_interval_m": [
+            694.9699569548367,
+            743.3219475567977
+          ]
+        },
+        {
+          "channel": 17,
+          "distance_interval_m": [
+            549.3936525177338,
+            586.5519722130754
+          ]
+        },
+        {
+          "channel": 2,
+          "distance_interval_m": [
+            277.6381857559457,
+            305.23427920635635
+          ]
+        },
+        {
+          "channel": 9,
+          "distance_interval_m": [
+            277.6381857559457,
+            305.23427920635635
+          ]
+        },
+        {
+          "channel": 4,
+          "distance_interval_m": [
+            637.3360951913364,
+            677.8513164766998
+          ]
+        }
+      ],
+      "monte_carlo_references": {
+        "mean_normalized_radius_squared": {
+          "observed_estimate": 0.6011645235009134,
+          "observed_conservative_interval": [
+            0.5934880974622713,
+            0.6088975894359334
+          ],
+          "null_mean": 0.5004427289312245,
+          "null_median": 0.4999629570258638,
+          "null_central_95_percent_interval": [
+            0.3245098975958654,
+            0.6815754608993774
+          ],
+          "lower_tail_probability_at_estimate": 0.8602139786021398,
+          "upper_tail_probability_at_estimate": 0.13988601139886012,
+          "test_alternative": "two-sided radial deviation; lower suggests more central, higher more peripheral",
+          "exploratory_p_at_estimate": 0.27977202279772023,
+          "p_range_allowed_by_position_uncertainty": [
+            0.24697530246975302,
+            0.31916808319168083
+          ],
+          "conservative_exploratory_p": 0.31916808319168083,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "radial_uniform_ks": {
+          "observed_estimate": 0.3430613101681429,
+          "observed_conservative_interval": [
+            0.3373601141278534,
+            0.3488102769070601
+          ],
+          "null_mean": 0.2598223110393743,
+          "null_median": 0.24717114532408874,
+          "null_central_95_percent_interval": [
+            0.13990355392336953,
+            0.4469874264828796
+          ],
+          "lower_tail_probability_at_estimate": 0.8485151484851515,
+          "upper_tail_probability_at_estimate": 0.15158484151584842,
+          "test_alternative": "larger discrepancy from area-uniform radial CDF",
+          "exploratory_p_at_estimate": 0.15158484151584842,
+          "p_range_allowed_by_position_uncertainty": [
+            0.13938606139386062,
+            0.16548345165483452
+          ],
+          "conservative_exploratory_p": 0.16548345165483452,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "minimum_pair_distance_m": {
+          "observed_estimate": 291.436232481151,
+          "observed_conservative_interval": [
+            277.6381857559457,
+            305.23427920635635
+          ],
+          "null_mean": 238.92385610973946,
+          "null_median": 226.81636405460017,
+          "null_central_95_percent_interval": [
+            42.94745114396514,
+            505.3581656967239
+          ],
+          "lower_tail_probability_at_estimate": 0.688931106889311,
+          "upper_tail_probability_at_estimate": 0.31116888311168883,
+          "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+          "exploratory_p_at_estimate": 0.6223377662233777,
+          "p_range_allowed_by_position_uncertainty": [
+            0.5575442455754425,
+            0.7005299470052995
+          ],
+          "conservative_exploratory_p": 0.7005299470052995,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "mean_nearest_neighbor_distance_m": {
+          "observed_estimate": 661.3217615462363,
+          "observed_conservative_interval": [
+            644.5493720501635,
+            678.0941510423092
+          ],
+          "null_mean": 577.0362087387138,
+          "null_median": 577.7018099635679,
+          "null_central_95_percent_interval": [
+            374.24856347115355,
+            780.6254371269206
+          ],
+          "lower_tail_probability_at_estimate": 0.7865213478652134,
+          "upper_tail_probability_at_estimate": 0.21357864213578642,
+          "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+          "exploratory_p_at_estimate": 0.42715728427157285,
+          "p_range_allowed_by_position_uncertainty": [
+            0.34856514348565143,
+            0.5283471652834717
+          ],
+          "conservative_exploratory_p": 0.5283471652834717,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        }
+      }
+    },
+    {
+      "case_id": "UKP6-2UFV-RZMQ-CWGM",
+      "source_count": 10,
+      "estimates": {
+        "mean_normalized_radius_squared": 0.4005123169812058,
+        "radial_uniform_ks": 0.2581668702743115,
+        "minimum_pair_distance_m": 455.244770958574,
+        "mean_nearest_neighbor_distance_m": 586.0970663141069
+      },
+      "conservative_statistic_intervals": {
+        "mean_normalized_radius_squared": [
+          0.39380132457868366,
+          0.4073168612673931
+        ],
+        "radial_uniform_ks": [
+          0.25197355868020155,
+          0.2643045794197208
+        ],
+        "minimum_pair_distance_m": [
+          429.4974874807309,
+          480.9920544364171
+        ],
+        "mean_nearest_neighbor_distance_m": [
+          564.7736175395614,
+          607.4205150886525
+        ]
+      },
+      "radial_source_records": [
+        {
+          "channel": 2,
+          "estimated_radius_m": 532.4470696012322,
+          "radius_interval_m": [
+            525.2014315332327,
+            539.6927076692317
+          ],
+          "normalized_radius_squared": 0.08749996355769736,
+          "normalized_radius_squared_interval": [
+            0.08513473570511015,
+            0.08989759836769962
+          ],
+          "position_enclosure_radius_m": 7.2456380679994625
+        },
+        {
+          "channel": 11,
+          "estimated_radius_m": 1656.3852735374858,
+          "radius_interval_m": [
+            1643.548308271775,
+            1669.2222388031964
+          ],
+          "normalized_radius_squared": 0.8467938809851394,
+          "normalized_radius_squared_interval": [
+            0.8337194572910537,
+            0.8599700254676405
+          ],
+          "position_enclosure_radius_m": 12.83696526571055
+        },
+        {
+          "channel": 18,
+          "estimated_radius_m": 980.7049877117258,
+          "radius_interval_m": [
+            971.4074546683946,
+            990.002520755057
+          ],
+          "normalized_radius_squared": 0.296846380531684,
+          "normalized_radius_squared_interval": [
+            0.29124458116831153,
+            0.3025015404633849
+          ],
+          "position_enclosure_radius_m": 9.297533043331233
+        },
+        {
+          "channel": 8,
+          "estimated_radius_m": 725.200256591334,
+          "radius_interval_m": [
+            708.7505061568221,
+            741.6500070258459
+          ],
+          "normalized_radius_squared": 0.16231957165436317,
+          "normalized_radius_squared_interval": [
+            0.15503928394368877,
+            0.16976689287698682
+          ],
+          "position_enclosure_radius_m": 16.44975043451187
+        },
+        {
+          "channel": 6,
+          "estimated_radius_m": 621.0201820816567,
+          "radius_interval_m": [
+            601.7781739644373,
+            640.262190198876
+          ],
+          "normalized_radius_squared": 0.11903273659034999,
+          "normalized_radius_squared_interval": [
+            0.11177066995678164,
+            0.12652335561674746
+          ],
+          "position_enclosure_radius_m": 19.242008117219378
+        },
+        {
+          "channel": 15,
+          "estimated_radius_m": 1446.3162096227154,
+          "radius_interval_m": [
+            1429.6731179558858,
+            1462.959301289545
+          ],
+          "normalized_radius_squared": 0.6456267216720428,
+          "normalized_radius_squared_interval": [
+            0.6308534642610198,
+            0.6605709621078992
+          ],
+          "position_enclosure_radius_m": 16.643091666829687
+        },
+        {
+          "channel": 3,
+          "estimated_radius_m": 1722.4578601544067,
+          "radius_interval_m": [
+            1717.5012043247054,
+            1727.414515984108
+          ],
+          "normalized_radius_squared": 0.9156978641999067,
+          "normalized_radius_squared_interval": [
+            0.9104353045854363,
+            0.9209755895162376
+          ],
+          "position_enclosure_radius_m": 4.956655829701257
+        },
+        {
+          "channel": 4,
+          "estimated_radius_m": 1052.3969499724096,
+          "radius_interval_m": [
+            1042.9061140294962,
+            1061.887785915323
+          ],
+          "normalized_radius_squared": 0.34183312972568847,
+          "normalized_radius_squared_interval": [
+            0.3356954205802792,
+            0.34802644131979843
+          ],
+          "position_enclosure_radius_m": 9.490835942913405
+        },
+        {
+          "channel": 17,
+          "estimated_radius_m": 1314.321246158613,
+          "radius_interval_m": [
+            1311.9381049510225,
+            1316.7043873662033
+          ],
+          "normalized_radius_squared": 0.5331605981802251,
+          "normalized_radius_squared_interval": [
+            0.5312288861797778,
+            0.535095815959694
+          ],
+          "position_enclosure_radius_m": 2.3831412075902847
+        },
+        {
+          "channel": 1,
+          "estimated_radius_m": 427.14391672652425,
+          "radius_interval_m": [
+            413.96651127092775,
+            440.32132218212075
+          ],
+          "normalized_radius_squared": 0.056312322714961685,
+          "normalized_radius_squared_interval": [
+            0.05289144211537751,
+            0.059840390977842904
+          ],
+          "position_enclosure_radius_m": 13.177405455596487
+        }
+      ],
+      "closest_estimated_pair": {
+        "channels": [
+          8,
+          18
+        ],
+        "distance_estimate_m": 455.244770958574,
+        "conservative_interval_m": [
+          429.4974874807309,
+          480.9920544364171
+        ]
+      },
+      "nearest_neighbor_records": [
+        {
+          "channel": 2,
+          "distance_interval_m": [
+            633.6299893144997,
+            666.7163315371611
+          ]
+        },
+        {
+          "channel": 11,
+          "distance_interval_m": [
+            653.5462049151579,
+            697.8152015332414
+          ]
+        },
+        {
+          "channel": 18,
+          "distance_interval_m": [
+            429.4974874807309,
+            480.9920544364171
+          ]
+        },
+        {
+          "channel": 8,
+          "distance_interval_m": [
+            429.4974874807309,
+            480.9920544364171
+          ]
+        },
+        {
+          "channel": 6,
+          "distance_interval_m": [
+            499.82097190894024,
+            571.2044890124027
+          ]
+        },
+        {
+          "channel": 15,
+          "distance_interval_m": [
+            518.9832318223304,
+            562.1827268153924
+          ]
+        },
+        {
+          "channel": 3,
+          "distance_interval_m": [
+            518.9832318223304,
+            562.1827268153924
+          ]
+        },
+        {
+          "channel": 4,
+          "distance_interval_m": [
+            577.9446573490123,
+            601.6926116500198
+          ]
+        },
+        {
+          "channel": 17,
+          "distance_interval_m": [
+            577.9446573490123,
+            601.6926116500198
+          ]
+        },
+        {
+          "channel": 1,
+          "distance_interval_m": [
+            807.8882559528687,
+            848.7343430000607
+          ]
+        }
+      ],
+      "monte_carlo_references": {
+        "mean_normalized_radius_squared": {
+          "observed_estimate": 0.4005123169812058,
+          "observed_conservative_interval": [
+            0.39380132457868366,
+            0.4073168612673931
+          ],
+          "null_mean": 0.49859144909349706,
+          "null_median": 0.49883759880922074,
+          "null_central_95_percent_interval": [
+            0.31915998405724694,
+            0.6736166487090184
+          ],
+          "lower_tail_probability_at_estimate": 0.1444855514448555,
+          "upper_tail_probability_at_estimate": 0.8556144385561444,
+          "test_alternative": "two-sided radial deviation; lower suggests more central, higher more peripheral",
+          "exploratory_p_at_estimate": 0.288971102889711,
+          "p_range_allowed_by_position_uncertainty": [
+            0.25617438256174385,
+            0.32256774322567744
+          ],
+          "conservative_exploratory_p": 0.32256774322567744,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "radial_uniform_ks": {
+          "observed_estimate": 0.2581668702743115,
+          "observed_conservative_interval": [
+            0.25197355868020155,
+            0.2643045794197208
+          ],
+          "null_mean": 0.25887008602102973,
+          "null_median": 0.24730677800431328,
+          "null_central_95_percent_interval": [
+            0.13887795905271938,
+            0.44402573633307496
+          ],
+          "lower_tail_probability_at_estimate": 0.5495450454954505,
+          "upper_tail_probability_at_estimate": 0.45055494450554945,
+          "test_alternative": "larger discrepancy from area-uniform radial CDF",
+          "exploratory_p_at_estimate": 0.45055494450554945,
+          "p_range_allowed_by_position_uncertainty": [
+            0.42275772422757724,
+            0.48085191480851913
+          ],
+          "conservative_exploratory_p": 0.48085191480851913,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "minimum_pair_distance_m": {
+          "observed_estimate": 455.244770958574,
+          "observed_conservative_interval": [
+            429.4974874807309,
+            480.9920544364171
+          ],
+          "null_mean": 239.75055377217922,
+          "null_median": 227.40064448087963,
+          "null_central_95_percent_interval": [
+            42.56761121060357,
+            510.19665353278396
+          ],
+          "lower_tail_probability_at_estimate": 0.9458054194580542,
+          "upper_tail_probability_at_estimate": 0.0542945705429457,
+          "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+          "exploratory_p_at_estimate": 0.1085891410858914,
+          "p_range_allowed_by_position_uncertainty": [
+            0.07579242075792421,
+            0.1561843815618438
+          ],
+          "conservative_exploratory_p": 0.1561843815618438,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        },
+        "mean_nearest_neighbor_distance_m": {
+          "observed_estimate": 586.0970663141069,
+          "observed_conservative_interval": [
+            564.7736175395614,
+            607.4205150886525
+          ],
+          "null_mean": 577.0023712883661,
+          "null_median": 577.4761591276191,
+          "null_central_95_percent_interval": [
+            369.3228113967311,
+            785.5226379105479
+          ],
+          "lower_tail_probability_at_estimate": 0.5307469253074693,
+          "upper_tail_probability_at_estimate": 0.46935306469353066,
+          "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+          "exploratory_p_at_estimate": 0.9387061293870613,
+          "p_range_allowed_by_position_uncertainty": [
+            0.7853214678532147,
+            1.0
+          ],
+          "conservative_exploratory_p": 1.0,
+          "holm_adjusted_conservative_p_across_all_explorations": 1.0
+        }
+      }
+    }
+  ],
+  "overall_equal_map_weight": {
+    "mean_normalized_radius_squared": {
+      "observed_estimate": 0.4552721056830868,
+      "observed_conservative_interval": [
+        0.4474605269772997,
+        0.46317729203144786
+      ],
+      "null_mean": 0.4997153214801275,
+      "null_median": 0.49980152164249414,
+      "null_central_95_percent_interval": [
+        0.4183002784291366,
+        0.582675480656984
+      ],
+      "lower_tail_probability_at_estimate": 0.14488551144885511,
+      "upper_tail_probability_at_estimate": 0.8552144785521448,
+      "test_alternative": "two-sided radial deviation; lower suggests more central, higher more peripheral",
+      "exploratory_p_at_estimate": 0.28977102289771023,
+      "p_range_allowed_by_position_uncertainty": [
+        0.21557844215578442,
+        0.38716128387161286
+      ],
+      "conservative_exploratory_p": 0.38716128387161286,
+      "holm_adjusted_conservative_p_across_all_explorations": 1.0
+    },
+    "radial_uniform_ks": {
+      "observed_estimate": 0.14137632279109258,
+      "observed_conservative_interval": [
+        0.13441873722041642,
+        0.14829347644080526
+      ],
+      "null_mean": 0.1235839177209401,
+      "null_median": 0.11768907461086492,
+      "null_central_95_percent_interval": [
+        0.0669102536003939,
+        0.21147198308101653
+      ],
+      "lower_tail_probability_at_estimate": 0.7223277672232776,
+      "upper_tail_probability_at_estimate": 0.27777222277772223,
+      "test_alternative": "larger discrepancy from area-uniform radial CDF",
+      "exploratory_p_at_estimate": 0.27777222277772223,
+      "p_range_allowed_by_position_uncertainty": [
+        0.23097690230976903,
+        0.33466653334666535
+      ],
+      "conservative_exploratory_p": 0.33466653334666535,
+      "holm_adjusted_conservative_p_across_all_explorations": 1.0
+    },
+    "minimum_pair_distance_m": {
+      "observed_estimate": 258.20204151752677,
+      "observed_conservative_interval": [
+        235.96796397952016,
+        280.4361190555334
+      ],
+      "null_mean": 203.77267760728427,
+      "null_median": 200.98808257025638,
+      "null_central_95_percent_interval": [
+        107.21732063679289,
+        315.2127078628373
+      ],
+      "lower_tail_probability_at_estimate": 0.839016098390161,
+      "upper_tail_probability_at_estimate": 0.16108389161083891,
+      "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+      "exploratory_p_at_estimate": 0.32216778322167783,
+      "p_range_allowed_by_position_uncertainty": [
+        0.16718328167183283,
+        0.537946205379462
+      ],
+      "conservative_exploratory_p": 0.537946205379462,
+      "holm_adjusted_conservative_p_across_all_explorations": 1.0
+    },
+    "mean_nearest_neighbor_distance_m": {
+      "observed_estimate": 506.2441920643762,
+      "observed_conservative_interval": [
+        483.38051305242215,
+        529.1078710763302
+      ],
+      "null_mean": 527.0871695570146,
+      "null_median": 526.394753411703,
+      "null_central_95_percent_interval": [
+        437.8110897677842,
+        616.1334763550652
+      ],
+      "lower_tail_probability_at_estimate": 0.3213678632136786,
+      "upper_tail_probability_at_estimate": 0.6787321267873213,
+      "test_alternative": "two-sided spacing deviation; lower suggests clustering, higher separation",
+      "exploratory_p_at_estimate": 0.6427357264273572,
+      "p_range_allowed_by_position_uncertainty": [
+        0.3297670232976702,
+        1.0
+      ],
+      "conservative_exploratory_p": 1.0,
+      "holm_adjusted_conservative_p_across_all_explorations": 1.0
+    }
+  },
+  "runtime_s": 0.6418476249964442
+}

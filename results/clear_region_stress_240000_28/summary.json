@@ -1,0 +1,107 @@
+{
+  "complete": true,
+  "expected_cases": 28,
+  "verified_completed_cases": 28,
+  "expected_runs": 56,
+  "recorded_runs": 56,
+  "all_runs_successful": true,
+  "source_unchanged": true,
+  "source_changes": [],
+  "harness_errors": [],
+  "elapsed_wall_s": 18.979946542007383,
+  "methods": {
+    "baseline": {
+      "runs": 28,
+      "successes": 28,
+      "failures": 0,
+      "source_total": 337,
+      "cleared_total": 337,
+      "raw_mean_time_s": 2860.9142613214285,
+      "raw_p95_time_s": 4374.88549515,
+      "raw_max_time_s": 4631.479615,
+      "penalized_mean_time_s": 2860.9142613214285,
+      "penalized_p95_time_s": 4374.88549515,
+      "pooled_time_per_target_s": 237.7020751246291,
+      "mean_case_time_per_target_s": 245.5772858584753,
+      "pooled_time_per_cleared_s": 237.7020751246291,
+      "mean_case_time_per_cleared_s": 245.5772858584753,
+      "cases_with_zero_cleared": 0,
+      "penalized_pooled_time_per_target_s": 237.7020751246291,
+      "mean_wall_s": 0.6355395595694843,
+      "p95_wall_s": 0.99055556920066,
+      "mean_measurement_count": 114.53571428571429,
+      "failed_clear_count": 0,
+      "mean_time_breakdown_s": {
+        "movement_s": 2122.2714041785716,
+        "switching_s": 105.78571428571429,
+        "detection_s": 572.6785714285714,
+        "optical_s": 36.107142857142854,
+        "removal_s": 24.071428571428573
+      }
+    },
+    "history": {
+      "runs": 28,
+      "successes": 28,
+      "failures": 0,
+      "source_total": 337,
+      "cleared_total": 337,
+      "raw_mean_time_s": 2851.735689892857,
+      "raw_p95_time_s": 4374.88549515,
+      "raw_max_time_s": 4631.479615,
+      "penalized_mean_time_s": 2851.735689892857,
+      "penalized_p95_time_s": 4374.88549515,
+      "pooled_time_per_target_s": 236.9394638486647,
+      "mean_case_time_per_target_s": 244.74903910522855,
+      "pooled_time_per_cleared_s": 236.9394638486647,
+      "mean_case_time_per_cleared_s": 244.74903910522855,
+      "cases_with_zero_cleared": 0,
+      "penalized_pooled_time_per_target_s": 236.9394638486647,
+      "mean_wall_s": 0.6427049866075062,
+      "p95_wall_s": 1.201164518296718,
+      "mean_measurement_count": 113,
+      "failed_clear_count": 0,
+      "mean_time_breakdown_s": {
+        "movement_s": 2122.2714041785716,
+        "switching_s": 104.28571428571429,
+        "detection_s": 565.0,
+        "optical_s": 36.107142857142854,
+        "removal_s": 24.071428571428573
+      }
+    }
+  },
+  "comparisons": {
+    "history": {
+      "paired_cases": 28,
+      "unpaired_baseline_seeds": [],
+      "unpaired_candidate_seeds": [],
+      "all_pairs_successful": true,
+      "all_candidate_clears_successful": true,
+      "comparison_metric": "penalized_time_s; failed method = 360000 s",
+      "baseline_mean_s": 2860.9142613214285,
+      "candidate_mean_s": 2851.735689892857,
+      "mean_saving_s": 9.178571428571429,
+      "mean_reduction_fraction": 0.003208265117435549,
+      "mean_saving_ci95_s": [
+        4.071428571428571,
+        14.928571428571429
+      ],
+      "wins": 12,
+      "losses": 0,
+      "ties": 16,
+      "max_regression_s": 0.0,
+      "worst_delta_s": -0.0,
+      "worst_case_seed": 240001,
+      "raw_mean_saving_s_descriptive_only": 9.178571428571429,
+      "raw_mean_saving_s_all_successful": 9.178571428571429,
+      "ci_scope": "Fixed 5000 paired bootstrap resamples of case-level penalized savings; exploratory when used to select among candidates."
+    }
+  },
+  "bootstrap": {
+    "seed": 20260912,
+    "resamples": 5000,
+    "interval": "percentile 95%; resample paired case savings"
+  },
+  "raw_time_caveat": "Early failed runs may have low raw times. Use penalized paired comparisons; efficiency claims require all expected cases to succeed.",
+  "wall_time_caveat": "Methods are sequential within a worker, but workers run concurrently. Wall times include CPU contention and fixed-order warmup effects; do not infer serial performance from these values.",
+  "generalization_caveat": "Synthetic local cases only. Multiple-candidate development CIs are exploratory; stress CIs are descriptive, not distribution-wide probability claims."
+}

@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-09-12T05:10:24.005304+00:00",
+  "baseline_commit": "8c624d08c61c0e411f93345d63a932b01ead4868",
+  "baseline_spec": "experiments/state_search_candidate_relocating_cover_v1.json",
+  "development": {
+    "seeds": [
+      220000,
+      220032
+    ],
+    "candidates": [
+      "nearest",
+      "history",
+      "both"
+    ],
+    "note": "Exploratory development, including two integration-test cases; not independent evidence."
+  },
+  "selection": "Among all-clear, zero-failed-clear development candidates with p95 time <= 1.05 baseline, choose lowest mean total virtual time. If none improve, retain baseline and report negative result.",
+  "holdout": {
+    "seeds": [
+      230000,
+      230128
+    ],
+    "candidate_count": 1,
+    "freeze": "Record chosen spec and source hashes before first holdout case. No further tuning after seeing holdout."
+  },
+  "stress": {
+    "seeds": [
+      240000,
+      240028
+    ],
+    "families": 7,
+    "report_separately": true
+  },
+  "assessment": "Report all attempts, failures, per-case paired mean savings and bootstrap CI, p95, worst regression, and pooled T/N. Only claim supported mean improvement if independent paired CI lower >0 and all runs clear successfully with no failed clears.",
+  "runtime": "Only separate serial timing may support computer-time comparisons.",
+  "scope": "Local synthetic simulator only. No official or formal tests. Old sealed/reserved partitions untouched."
+}
