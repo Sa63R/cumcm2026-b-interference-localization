@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "C:\Users\baiwc\Downloads\Q3Practice\bootstrap.py", line 5, in <module>
+    runpy.run_path(str(root/'code/experiments/q3_official_practice/run_practice.py'),run_name='__main__')
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 294, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\baiwc\Downloads\Q3Practice\code\experiments\q3_official_practice\run_practice.py", line 68, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\baiwc\Downloads\Q3Practice\code\experiments\q3_official_practice\run_practice.py", line 38, in main
+    report['enter_response'] = client.enter()
+                               ~~~~~~~~~~~~^^
+  File "C:\Users\baiwc\Downloads\Q3Practice\code\src\simulator_client\client.py", line 127, in enter
+    return self._new_action("/enter", {})
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\baiwc\Downloads\Q3Practice\code\src\simulator_client\client.py", line 178, in _new_action
+    return self._send_pending()
+           ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\baiwc\Downloads\Q3Practice\code\src\simulator_client\client.py", line 257, in _send_pending
+    raise OutcomeUnknown(request_id, last_error)
+simulator_client.errors.OutcomeUnknown: Outcome of 84da57a099e04de6a82b2ccf54d14b0c-1 is unknown: ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。. Use retry_pending() with this client; do not send the action with a new ID.

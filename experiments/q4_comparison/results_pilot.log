@@ -1,0 +1,206 @@
+   1 mixed_25pct          107000000 v4         488.63 s/source  0.017 wall success=True
+   2 mixed_25pct          107000000 analytic   488.08 s/source  0.018 wall success=True
+   3 mixed_25pct          107000000 rollout    488.08 s/source  0.830 wall success=True
+   4 mixed_25pct          107000000 shared     488.08 s/source  0.903 wall success=True
+   5 mixed_25pct          107000000 dynamic    488.08 s/source  0.908 wall success=True
+   6 mixed_50pct          107100000 analytic   311.82 s/source  0.021 wall success=True
+   7 mixed_50pct          107100000 rollout    311.82 s/source  0.654 wall success=True
+   8 mixed_50pct          107100000 shared     311.82 s/source  0.961 wall success=True
+   9 mixed_50pct          107100000 dynamic    311.82 s/source  1.043 wall success=True
+  10 mixed_50pct          107100000 v4         311.82 s/source  0.019 wall success=True
+  11 mixed_75pct          107200000 rollout    402.59 s/source  0.727 wall success=True
+  12 mixed_75pct          107200000 shared     402.59 s/source  0.801 wall success=True
+  13 mixed_75pct          107200000 dynamic    402.59 s/source  0.954 wall success=True
+  14 mixed_75pct          107200000 v4         402.59 s/source  0.022 wall success=True
+  15 mixed_75pct          107200000 analytic   402.59 s/source  0.026 wall success=True
+  16 outward_boundary     107300000 shared     439.80 s/source  0.632 wall success=True
+  17 outward_boundary     107300000 dynamic    439.80 s/source  0.668 wall success=True
+  18 outward_boundary     107300000 v4         439.80 s/source  0.014 wall success=True
+  19 outward_boundary     107300000 analytic   439.80 s/source  0.017 wall success=True
+  20 outward_boundary     107300000 rollout    439.80 s/source  0.609 wall success=True
+  21 constant_plus1deg    107400000 dynamic    573.18 s/source  0.748 wall success=True
+  22 constant_plus1deg    107400000 v4         573.18 s/source  0.012 wall success=True
+  23 constant_plus1deg    107400000 analytic   573.18 s/source  0.016 wall success=True
+  24 constant_plus1deg    107400000 rollout    573.18 s/source  0.580 wall success=True
+  25 constant_plus1deg    107400000 shared     573.18 s/source  0.656 wall success=True
+  26 constant_minus1deg   107500000 v4         538.78 s/source  0.016 wall success=True
+  27 constant_minus1deg   107500000 analytic   538.78 s/source  0.016 wall success=True
+  28 constant_minus1deg   107500000 rollout    550.53 s/source  0.682 wall success=True
+  29 constant_minus1deg   107500000 shared     550.53 s/source  0.775 wall success=True
+  30 constant_minus1deg   107500000 dynamic    550.53 s/source  0.930 wall success=True
+{
+  "v4": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 459.13356906021437,
+    "mean_virtual_seconds": 5945.212127749871,
+    "mean_wall_seconds": 0.016687770834929932,
+    "mean_distance_m": 21252.727305416018,
+    "mean_detections": 265.1666666666667,
+    "mean_switches": 251.66666666666666,
+    "mean_failed_clears": 16.833333333333332,
+    "mean_tail_search_seconds": 557.828637905152,
+    "p95_seconds_per_source": 564.5821704145164,
+    "p95_wall_seconds": 0.021185114499530755,
+    "max_wall_seconds": 0.02177020799717866
+  },
+  "analytic": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 459.04265996930525,
+    "mean_virtual_seconds": 5944.212127749871,
+    "mean_wall_seconds": 0.019155736168613657,
+    "mean_distance_m": 21252.727305416018,
+    "mean_detections": 265,
+    "mean_switches": 251.5,
+    "mean_failed_clears": 16.833333333333332,
+    "mean_tail_search_seconds": 557.828637905152,
+    "p95_seconds_per_source": 564.5821704145164,
+    "p95_wall_seconds": 0.0248385105151101,
+    "max_wall_seconds": 0.02599350002128631,
+    "paired": {
+      "n": 6,
+      "mean_saved_seconds_per_source": 0.09090909090909349,
+      "normal95_saved_seconds_per_source": [
+        -0.08727272727272975,
+        0.2690909090909167
+      ],
+      "reduction_of_paired_mean": 0.0001980014031541461,
+      "faster": 1,
+      "slower": 0,
+      "tied": 5,
+      "worst_relative_regression": -0.0
+    }
+  },
+  "rollout": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 461.001855901805,
+    "mean_virtual_seconds": 5965.763283007368,
+    "mean_wall_seconds": 0.6803143609965142,
+    "mean_distance_m": 21348.81641503684,
+    "mean_detections": 265.8333333333333,
+    "mean_switches": 252.16666666666666,
+    "mean_failed_clears": 16,
+    "mean_tail_search_seconds": 516.8154699640719,
+    "p95_seconds_per_source": 567.5209643132661,
+    "p95_wall_seconds": 0.8043657082453137,
+    "max_wall_seconds": 0.8301344999927096,
+    "paired": {
+      "n": 6,
+      "mean_saved_seconds_per_source": -1.868286841590674,
+      "normal95_saved_seconds_per_source": [
+        -5.747877319835428,
+        2.011303636654081
+      ],
+      "reduction_of_paired_mean": -0.004069157577423079,
+      "faster": 1,
+      "slower": 1,
+      "tied": 4,
+      "worst_relative_regression": 0.021818260912748633
+    },
+    "planning": {
+      "attempts": 24,
+      "accepted": 1,
+      "timeouts": 0,
+      "posterior_fallbacks": 0,
+      "invalid_rollouts": 0,
+      "rollout_runs": 336,
+      "shared_candidates": 0,
+      "shift_candidates": 0,
+      "coverage_checks": 0,
+      "coverage_passed": 0
+    },
+    "selected_shared": 0,
+    "selected_shift": 0
+  },
+  "shared": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 461.001855901805,
+    "mean_virtual_seconds": 5965.763283007368,
+    "mean_wall_seconds": 0.7878677849948872,
+    "mean_distance_m": 21348.81641503684,
+    "mean_detections": 265.8333333333333,
+    "mean_switches": 252.16666666666666,
+    "mean_failed_clears": 16,
+    "mean_tail_search_seconds": 516.8154699640719,
+    "p95_seconds_per_source": 567.5209643132661,
+    "p95_wall_seconds": 0.9465760524908546,
+    "max_wall_seconds": 0.9612463339872193,
+    "paired": {
+      "n": 6,
+      "mean_saved_seconds_per_source": -1.868286841590674,
+      "normal95_saved_seconds_per_source": [
+        -5.747877319835428,
+        2.011303636654081
+      ],
+      "reduction_of_paired_mean": -0.004069157577423079,
+      "faster": 1,
+      "slower": 1,
+      "tied": 4,
+      "worst_relative_regression": 0.021818260912748633
+    },
+    "planning": {
+      "attempts": 24,
+      "accepted": 1,
+      "timeouts": 0,
+      "posterior_fallbacks": 0,
+      "invalid_rollouts": 0,
+      "rollout_runs": 368,
+      "shared_candidates": 6,
+      "shift_candidates": 0,
+      "coverage_checks": 0,
+      "coverage_passed": 0
+    },
+    "selected_shared": 0,
+    "selected_shift": 0
+  },
+  "dynamic": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 461.001855901805,
+    "mean_virtual_seconds": 5965.763283007368,
+    "mean_wall_seconds": 0.8753237151734842,
+    "mean_distance_m": 21348.81641503684,
+    "mean_detections": 265.8333333333333,
+    "mean_switches": 252.16666666666666,
+    "mean_failed_clears": 16,
+    "mean_tail_search_seconds": 516.8154699640719,
+    "p95_seconds_per_source": 567.5209643132661,
+    "p95_wall_seconds": 1.0209761039950536,
+    "max_wall_seconds": 1.0434189999941736,
+    "paired": {
+      "n": 6,
+      "mean_saved_seconds_per_source": -1.868286841590674,
+      "normal95_saved_seconds_per_source": [
+        -5.747877319835428,
+        2.011303636654081
+      ],
+      "reduction_of_paired_mean": -0.004069157577423079,
+      "faster": 1,
+      "slower": 1,
+      "tied": 4,
+      "worst_relative_regression": 0.021818260912748633
+    },
+    "planning": {
+      "attempts": 24,
+      "accepted": 1,
+      "timeouts": 0,
+      "posterior_fallbacks": 0,
+      "invalid_rollouts": 0,
+      "rollout_runs": 372,
+      "shared_candidates": 6,
+      "shift_candidates": 1,
+      "coverage_checks": 25,
+      "coverage_passed": 1
+    },
+    "selected_shared": 0,
+    "selected_shift": 0
+  }
+}

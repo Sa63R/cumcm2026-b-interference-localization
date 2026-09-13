@@ -1,0 +1,99 @@
+{
+  "warning": "LOCAL_ONLY, not official simulator results",
+  "python": "3.13.12 | packaged by conda-forge | (main, Feb  5 2026, 06:11:05) [Clang 19.1.7 ]",
+  "executable": "/opt/homebrew/Caskroom/miniforge/base/bin/python3.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "processor": "arm",
+  "cpu_count": 10,
+  "seed_base": 107000000,
+  "cases_per_group": 1,
+  "groups": [
+    [
+      "mixed_25pct",
+      0.25,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed_50pct",
+      0.5,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed_75pct",
+      0.75,
+      "uniform",
+      "hash"
+    ],
+    [
+      "outward_boundary",
+      0.75,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "constant_plus1deg",
+      0.5,
+      "uniform",
+      "plus"
+    ],
+    [
+      "constant_minus1deg",
+      0.5,
+      "uniform",
+      "minus"
+    ]
+  ],
+  "planning": {
+    "coarse_scenarios": 4,
+    "verify_scenarios": 4,
+    "base_candidates": 3,
+    "max_decisions": 4,
+    "action_interval": 5,
+    "seconds_per_decision": 3,
+    "particles": 32,
+    "unknown_particles": 128,
+    "min_saved_per_source": 0.5,
+    "max_validation_regret": 30.0,
+    "extra_detour_m": 75.0,
+    "shared": false,
+    "dynamic": false
+  },
+  "method_order": "rotating serial",
+  "prior": "uniform area/radius/orientation; count 10..16; both types conditioned; independent bounded location-specific errors",
+  "hashes": {
+    "planner.py": "e877a11ded2c27a57712984068790a7c376bfe113d9af10a04a5efde04ed1796",
+    "benchmark.py": "cdaeffd2519215f49e58118b1c7a8fd2f672d0450bb0b1d4ec8b1427a4117c8f",
+    "online.py": "f1e5b1677bc463456d035abdfd2c294dfce0fd3c49deba8b8558c8d46114fbfb",
+    "common.py": "f62afedeed5fc8118134cb3326a10184e12a67c8d60a24d5418372bc7b9926f4",
+    "posterior.py": "e8b8b553dd0139216765e4b6b3a8ba61c4fce85dc8c040fd241be9fe1a87dec4",
+    "test_online.py": "3bb6515c31280f9094e325942f06c8934f0c7eb8773e59f09ac74615dcb1cf70",
+    "vendor_v4/q4_fast_solver.py": "7c2f4b5424bc2b42585839026753cf40a2db82644237c03057c94c40b0d33e48",
+    "vendor_v4/q4_route_cached.py": "4b93994bc5d96697caaa3482aa03c9de01125efc63b7a712215bbc64284bef87",
+    "vendor_v4/q4_v3_local.py": "7897afa0266afaf0b35d6a300b4fedc4a25310258cf3ed01535e25355e037a8b",
+    "vendor_v4/test_v4.py": "01729f293db45c14179cf945e834442aafd916b6f4c36e9f60fb7f36c06e6792",
+    "vendor_v4/q4_v3_route.py": "282d13120d2c0e733fa2b19cf9b9bd7ee61ec8c8a4ae66cbbf4bc6978615f0e1",
+    "vendor_v4/q4_v4_local.py": "ff309885e6f38593e961491ee07e0dcdb19298e492544fe79cc183ac2ba3b5c5",
+    "vendor_v4/test_optimized.py": "827d140d81f269727b5c36ceb0ba0635bd4debf074b31664e61d7a34f53708c2",
+    "vendor_v4/q4_fast_local.py": "aac1e5affb8a2ca492008d5c8a8d8c4360d676c9ad21d4b3c459945c916653b8",
+    "vendor_v4/q4_information.py": "d1c5459d9246a10ff67f926e386da1a8f7fbe804da3e6a433974a5f931178e20",
+    "vendor_v4/benchmark_routing.py": "91bfca083aa0864eff418d83adc972f22261176c31d70327500fcb1ace946841",
+    "vendor_v4/q4_safe_patch.py": "1afd739e9ca16de004fbde6491c9c770b5ddb5cc7a1a3b573b8a307f95f60409",
+    "vendor_v4/run_v4_validation.py": "909175078a4bf27587377915b2f93d9e843f9e41faa0ac072128635579cdd821",
+    "vendor_v4/q4_route.py": "db50aab737369a24d60dfc4e436ff66ccf4499f74d45d2557c347bb4043cf9c4",
+    "vendor_v4/q4_baseline.py": "5d8a874563a5e6ecedb1d4254fae8dc4ca2c4cdbbcd8563b39f2acce25afa581",
+    "vendor_v4/q4_v3_solver.py": "b9215a9c50a5658732ec5aec7e8b274596ab4b4f1f533d6a8ee9bfba179adf47",
+    "vendor_v4/run_v3_validation.py": "6aed43524993bddc2f40e62fb1aa6f6f9e567da17db9a5f1403bb787faad8d52",
+    "vendor_v4/test_v3.py": "d74a58bfe3f5add4dfdf7e5eeab856fd83975230043150f22787cb4aa42515dd",
+    "vendor_v4/q4_v4_solver.py": "73ff33de5ca82d1d4968953818485fc4f66ac43c94d7759ff56430e33c6fde35",
+    "vendor_v4/q4_v3_cached.py": "5f679761b8648aac0a6bf477bce42b8f5b698f15db6548c8a93f797711338497",
+    "vendor_v4/q4_coverage.py": "eb3a0769820c926331a002438649a9e31d91e7e0150036e60e95bd2191f021f3",
+    "vendor_inference/radius_direction.py": "0508a91785778e8e5907b75857db1dd6beb07e27dce5fae92af9b9581400ea6b",
+    "vendor_inference/test_radius_direction.py": "bd60e8fd85a56e916c167177dabf4ddf1d8b8762501605e89b8b7b6c830bf30e",
+    "vendor_inference/audit_v4.py": "d9e94d9e3b7e97fed8143a0f13b82b1d520ca8a5b574c8b860f0f446fe709978",
+    "vendor_inference/demo.py": "d553bc9fa2a9a0a93c60337b1acb855b656b275431d5114c3afe55c4b32c3020"
+  },
+  "coverage_startup_seconds": 0.03878241698839702
+}

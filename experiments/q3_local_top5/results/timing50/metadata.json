@@ -1,0 +1,36 @@
+{
+  "command": [
+    "runner.py",
+    "--cases",
+    "50",
+    "--workers",
+    "1",
+    "--repeats",
+    "2",
+    "--seed-prefix",
+    "q3-top5-timing-20260912-",
+    "--out",
+    "results/timing50"
+  ],
+  "methods": [
+    "v3_origin20",
+    "future_cover",
+    "optical",
+    "v2",
+    "v3"
+  ],
+  "cases": 50,
+  "repeats": 2,
+  "workers": 1,
+  "seed_prefix": "q3-top5-timing-20260912-",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "numba": "0.67.0",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "wall_total_s": 37.04101866699057,
+  "warmup_s": 0.09240133402636275,
+  "source_manifest_sha256": "b89d93056afca8cdfefbbe4c702f3c02c9cf3bd32f9a69484e1787103d132d25",
+  "runner_sha256": "f520a4fd23bcc4ee934c730b6aa565462a357a26852d3573d4e90abeb15d5a59",
+  "timing_scope": "enter, construct policy, policy and in-process protocol, exit; excludes map creation, warmup, export and replay",
+  "provenance": "local static reconstruction; all five policies receive identical maps and noise fields; no official service"
+}

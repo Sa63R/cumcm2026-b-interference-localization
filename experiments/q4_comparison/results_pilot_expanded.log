@@ -1,0 +1,206 @@
+   1 mixed_25pct          107000010 v4         559.71 s/source  0.022 wall success=True
+   2 mixed_25pct          107000010 analytic   559.71 s/source  0.022 wall success=True
+   3 mixed_25pct          107000010 rollout    553.61 s/source  3.038 wall success=True
+   4 mixed_25pct          107000010 shared     553.61 s/source  3.251 wall success=True
+   5 mixed_25pct          107000010 dynamic    553.61 s/source  4.595 wall success=True
+   6 mixed_50pct          107100010 analytic   564.09 s/source  0.026 wall success=True
+   7 mixed_50pct          107100010 rollout    564.09 s/source  2.601 wall success=True
+   8 mixed_50pct          107100010 shared     564.09 s/source  2.578 wall success=True
+   9 mixed_50pct          107100010 dynamic    561.80 s/source  4.572 wall success=True
+  10 mixed_50pct          107100010 v4         553.64 s/source  0.025 wall success=True
+  11 mixed_75pct          107200010 rollout    476.23 s/source  4.754 wall success=True
+  12 mixed_75pct          107200010 shared     476.23 s/source  3.351 wall success=True
+  13 mixed_75pct          107200010 dynamic    476.23 s/source  4.301 wall success=True
+  14 mixed_75pct          107200010 v4         476.70 s/source  0.026 wall success=True
+  15 mixed_75pct          107200010 analytic   476.23 s/source  0.029 wall success=True
+  16 outward_boundary     107300010 shared     596.28 s/source  1.942 wall success=True
+  17 outward_boundary     107300010 dynamic    592.33 s/source  5.643 wall success=True
+  18 outward_boundary     107300010 v4         596.28 s/source  0.026 wall success=True
+  19 outward_boundary     107300010 analytic   596.28 s/source  0.037 wall success=True
+  20 outward_boundary     107300010 rollout    596.28 s/source  2.946 wall success=True
+  21 constant_plus1deg    107400010 dynamic    449.15 s/source  4.265 wall success=True
+  22 constant_plus1deg    107400010 v4         449.15 s/source  0.031 wall success=True
+  23 constant_plus1deg    107400010 analytic   449.15 s/source  0.033 wall success=True
+  24 constant_plus1deg    107400010 rollout    449.15 s/source  2.260 wall success=True
+  25 constant_plus1deg    107400010 shared     449.15 s/source  2.322 wall success=True
+  26 constant_minus1deg   107500010 v4         575.33 s/source  0.025 wall success=True
+  27 constant_minus1deg   107500010 analytic   575.33 s/source  0.025 wall success=True
+  28 constant_minus1deg   107500010 rollout    575.33 s/source  2.443 wall success=True
+  29 constant_minus1deg   107500010 shared     575.33 s/source  2.569 wall success=True
+  30 constant_minus1deg   107500010 dynamic    575.33 s/source  3.760 wall success=True
+{
+  "v4": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 535.1328025092563,
+    "mean_virtual_seconds": 6013.007620593455,
+    "mean_wall_seconds": 0.025883305837245036,
+    "mean_distance_m": 21286.704769633943,
+    "mean_detections": 278.6666666666667,
+    "mean_switches": 265.1666666666667,
+    "mean_failed_clears": 13.5,
+    "mean_tail_search_seconds": 272.19775458353007,
+    "p95_seconds_per_source": 591.0379240360896,
+    "p95_wall_seconds": 0.029713115000049584,
+    "max_wall_seconds": 0.03087641700403765
+  },
+  "analytic": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 536.7971015206406,
+    "mean_virtual_seconds": 6029.419841476529,
+    "mean_wall_seconds": 0.028632624831516296,
+    "mean_distance_m": 21361.265874049313,
+    "mean_detections": 278.8333333333333,
+    "mean_switches": 265.3333333333333,
+    "mean_failed_clears": 13.666666666666666,
+    "mean_tail_search_seconds": 272.19775458353007,
+    "p95_seconds_per_source": 591.0379240360896,
+    "p95_wall_seconds": 0.03595417676115176,
+    "max_wall_seconds": 0.037026708014309406,
+    "paired": {
+      "n": 6,
+      "mean_saved_seconds_per_source": -1.664299011384287,
+      "normal95_saved_seconds_per_source": [
+        -5.110415794355621,
+        1.7818177715870465
+      ],
+      "reduction_of_paired_mean": -0.0031100672647618147,
+      "faster": 1,
+      "slower": 1,
+      "tied": 4,
+      "worst_relative_regression": 0.01887014949291599
+    }
+  },
+  "rollout": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 535.7798068486267,
+    "mean_virtual_seconds": 6019.24689475639,
+    "mean_wall_seconds": 3.0070173748293505,
+    "mean_distance_m": 21307.90114044862,
+    "mean_detections": 278.8333333333333,
+    "mean_switches": 265.3333333333333,
+    "mean_failed_clears": 13.833333333333334,
+    "mean_tail_search_seconds": 272.19775458353007,
+    "p95_seconds_per_source": 591.0379240360896,
+    "p95_wall_seconds": 4.324942301995179,
+    "max_wall_seconds": 4.753864124999382,
+    "paired": {
+      "n": 6,
+      "mean_saved_seconds_per_source": -0.6470043393704259,
+      "normal95_saved_seconds_per_source": [
+        -4.942700635557205,
+        3.6486919568163536
+      ],
+      "reduction_of_paired_mean": -0.0012090537831667206,
+      "faster": 2,
+      "slower": 1,
+      "tied": 3,
+      "worst_relative_regression": 0.01887014949291599
+    },
+    "planning": {
+      "attempts": 44,
+      "accepted": 1,
+      "timeouts": 0,
+      "posterior_fallbacks": 6,
+      "invalid_rollouts": 0,
+      "rollout_runs": 1056,
+      "shared_candidates": 0,
+      "shift_candidates": 0,
+      "coverage_checks": 0,
+      "coverage_passed": 0
+    },
+    "selected_shared": 0,
+    "selected_shift": 0
+  },
+  "shared": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 535.7798068486267,
+    "mean_virtual_seconds": 6019.24689475639,
+    "mean_wall_seconds": 2.668984277668642,
+    "mean_distance_m": 21307.90114044862,
+    "mean_detections": 278.8333333333333,
+    "mean_switches": 265.3333333333333,
+    "mean_failed_clears": 13.833333333333334,
+    "mean_tail_search_seconds": 272.19775458353007,
+    "p95_seconds_per_source": 591.0379240360896,
+    "p95_wall_seconds": 3.3261604687650106,
+    "max_wall_seconds": 3.3510827500140294,
+    "paired": {
+      "n": 6,
+      "mean_saved_seconds_per_source": -0.6470043393704259,
+      "normal95_saved_seconds_per_source": [
+        -4.942700635557205,
+        3.6486919568163536
+      ],
+      "reduction_of_paired_mean": -0.0012090537831667206,
+      "faster": 2,
+      "slower": 1,
+      "tied": 3,
+      "worst_relative_regression": 0.01887014949291599
+    },
+    "planning": {
+      "attempts": 44,
+      "accepted": 1,
+      "timeouts": 0,
+      "posterior_fallbacks": 6,
+      "invalid_rollouts": 0,
+      "rollout_runs": 1144,
+      "shared_candidates": 13,
+      "shift_candidates": 0,
+      "coverage_checks": 0,
+      "coverage_passed": 0
+    },
+    "selected_shared": 0,
+    "selected_shift": 0
+  },
+  "dynamic": {
+    "cases": 6,
+    "successes": 6,
+    "failures": 0,
+    "mean_seconds_per_source": 534.7403864779119,
+    "mean_virtual_seconds": 6007.536369324121,
+    "mean_wall_seconds": 4.522696646003169,
+    "mean_distance_m": 21271.015179953938,
+    "mean_detections": 278,
+    "mean_switches": 264.6666666666667,
+    "mean_failed_clears": 14,
+    "mean_tail_search_seconds": 272.19775458353007,
+    "p95_seconds_per_source": 588.0762001545667,
+    "p95_wall_seconds": 5.381006426992826,
+    "max_wall_seconds": 5.642989374988247,
+    "paired": {
+      "n": 6,
+      "mean_saved_seconds_per_source": 0.3924160313443963,
+      "normal95_saved_seconds_per_source": [
+        -3.5066429560715875,
+        4.29147501876038
+      ],
+      "reduction_of_paired_mean": 0.0007333058812772154,
+      "faster": 3,
+      "slower": 1,
+      "tied": 2,
+      "worst_relative_regression": 0.01473832509051709
+    },
+    "planning": {
+      "attempts": 45,
+      "accepted": 3,
+      "timeouts": 0,
+      "posterior_fallbacks": 6,
+      "invalid_rollouts": 0,
+      "rollout_runs": 1288,
+      "shared_candidates": 12,
+      "shift_candidates": 11,
+      "coverage_checks": 311,
+      "coverage_passed": 11
+    },
+    "selected_shared": 0,
+    "selected_shift": 1
+  }
+}
