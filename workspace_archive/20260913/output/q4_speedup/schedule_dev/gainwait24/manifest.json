@@ -1,0 +1,64 @@
+{
+  "warning": "LOCAL SYNTHETIC DEVELOPMENT ONLY; not held-out or official",
+  "args": {
+    "cases": 4,
+    "seed_base": 214700000,
+    "methods": [
+      "baseline",
+      "gainwait_0.1_30_0",
+      "gainwait_0.3_30_0",
+      "gainwait_0.6_30_0",
+      "gainwait_0.1_100_0",
+      "gainwait_0.3_100_0",
+      "gainwait_0.6_100_0",
+      "gainwait_0.1_30_100",
+      "gainwait_0.3_30_100",
+      "gainwait_0.6_30_100",
+      "gainwait_0.1_100_100",
+      "gainwait_0.3_100_100",
+      "gainwait_0.6_100_100"
+    ],
+    "name": "gainwait24"
+  },
+  "geometry_degrees": 1.005,
+  "physical_error_degrees": 1,
+  "quantization_degrees": 0.01,
+  "groups": [
+    [
+      "mixed_25pct",
+      0.25,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed_50pct",
+      0.5,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed_75pct",
+      0.75,
+      "uniform",
+      "hash"
+    ],
+    [
+      "outward_boundary",
+      0.75,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "constant_plus1deg",
+      0.5,
+      "uniform",
+      "plus"
+    ],
+    [
+      "constant_minus1deg",
+      0.5,
+      "uniform",
+      "minus"
+    ]
+  ]
+}

@@ -1,0 +1,130 @@
+% Compile with XeLaTeX. All geometry is in metres, with equal x/y scales.
+% Based on 问题一_定位区域模型.md, current three-station example.
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{amsmath}
+\XeTeXgenerateactualtext=1
+\usetikzlibrary{arrows.meta,calc,patterns}
+\definecolor{ink}{HTML}{203045}
+\definecolor{blue}{HTML}{347DB0}
+\definecolor{orange}{HTML}{CB8435}
+\definecolor{purple}{HTML}{8A61A8}
+\definecolor{region}{HTML}{207C83}
+\definecolor{fail}{HTML}{C94E48}
+\definecolor{cover}{HTML}{348664}
+\begin{document}
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=ink,
+  dot/.style={circle,inner sep=1.6pt,fill=ink},
+  info/.style={fill=white,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,10.6);
+\fill[white] (0,0) rectangle (23,10.6);
+\node[font=\Large\bfseries] at (11.5,10.15)
+  {三次测向得到三角形，直径圆仍会漏点};
+\node[black!65] at (11.5,9.6)
+  {当前 Markdown 算例\quad 测向误差 $\pm1^\circ$\quad 坐标单位：m};
+\draw[black!15] (11.25,1.0)--(11.25,9.05);
+\node[font=\bfseries] at (5.5,8.95) {(a) 三个检测点与实际误差角域};
+\node[font=\bfseries] at (17.3,8.95) {(b) 定位区域放大与覆盖检验};
+
+% The full layout: true 2-degree sectors, no angular exaggeration.
+\begin{scope}[shift={(5.65,7.25)},x=.009cm,y=.009cm]
+  \clip (-585,-545) rectangle (540,125);
+  \foreach \x in {-500,-250,0,250,500}
+    \draw[black!7] (\x,-525)--(\x,110);
+  \foreach \y in {-500,-250,0}
+    \draw[black!7] (-560,\y)--(510,\y);
+  \draw[->,black!35] (-560,0)--(510,0);
+  \draw[->,black!35] (0,-525)--(0,110);
+
+  \fill[blue!15] (-500,0)--(400,0)--({-500+900*cos(2)},{900*sin(2)})--cycle;
+  \fill[orange!15] (-310,-450)
+    --({-310+680*cos(atan(1.5)-2)},{-450+680*sin(atan(1.5)-2)})
+    --({-310+680*cos(atan(1.5))},{-450+680*sin(atan(1.5))})--cycle;
+  \fill[purple!15] (310,-450)
+    --({310+680*cos(180-atan(1.5))},{-450+680*sin(180-atan(1.5))})
+    --({310+680*cos(182-atan(1.5))},{-450+680*sin(182-atan(1.5))})--cycle;
+
+  \draw[blue,thick] (-500,0)--(400,0);
+  \draw[blue,densely dashed] (-500,0)--({-500+900*cos(2)},{900*sin(2)});
+  \draw[orange,thick] (-310,-450)
+    --({-310+680*cos(atan(1.5))},{-450+680*sin(atan(1.5))});
+  \draw[orange,densely dashed] (-310,-450)
+    --({-310+680*cos(atan(1.5)-2)},{-450+680*sin(atan(1.5)-2)});
+  \draw[purple,thick] (310,-450)
+    --({310+680*cos(180-atan(1.5))},{-450+680*sin(180-atan(1.5))});
+  \draw[purple,densely dashed] (310,-450)
+    --({310+680*cos(182-atan(1.5))},{-450+680*sin(182-atan(1.5))});
+  \filldraw[fill=region!65,draw=region,thick] (-10,0)--(10,0)--(0,15)--cycle;
+  \draw[ink,densely dotted] (-28,-18) rectangle (28,35);
+
+  \node[dot,fill=blue] at (-500,0) {};
+  \node[dot,fill=orange] at (-310,-450) {};
+  \node[dot,fill=purple] at (310,-450) {};
+\end{scope}
+\node[align=left,anchor=west,blue,fill=white,inner sep=2pt] at (0.6,7.9)
+  {$S_1=(-500,0)$\\$\theta_1=1^\circ$};
+\node[align=center,orange] at (2.65,2.65)
+  {$S_2=(-310,-450)$\\$\theta_2\approx55.309932^\circ$};
+\node[align=center,purple] at (8.3,2.65)
+  {$S_3=(310,-450)$\\$\theta_3\approx124.690068^\circ$};
+\draw[->,ink] (7.2,8.05)--(5.92,7.56);
+\node[anchor=west,info] at (7.05,8.05) {公共区域 $P$};
+\node[align=center,black!70,font=\footnotesize] at (5.5,1.65)
+  {每个色带的张角均为 $2^\circ$，按实际比例绘制\\
+   实线：形成三角形的边界\quad 虚线：不再裁剪三角形的边界};
+\draw[->,black!40,thick] (10.4,7.45)--(11.8,7.45);
+\node[font=\footnotesize,black!60,above] at (11.1,7.45) {放大};
+
+% Zoom: the exact feasible triangle, diameter circle, and enclosing circle.
+\begin{scope}[shift={(17.25,4.65)},scale=.21]
+  \foreach \x in {-10,0,10} \draw[black!7] (\x,-12)--(\x,17);
+  \foreach \y in {0,5,10,15} \draw[black!7] (-16,\y)--(16,\y);
+  \draw[->,black!35] (-17,0)--(18,0) node[right] {$x$};
+  \draw[->,black!35] (0,-12)--(0,18) node[above right] {$y$};
+  \fill[region!12] (-10,0)--(10,0)--(0,15)--cycle;
+  \begin{scope}
+    \clip (-10,0)--(10,0)--(0,15)--cycle;
+    \fill[fail!22,even odd rule]
+      (-12,-12) rectangle (12,17) (0,0) circle[radius=10cm];
+  \end{scope}
+
+  \draw[cover,thick,dash pattern=on 5pt off 3pt]
+    (0,{25/6}) circle[radius={65/6*1cm}];
+  \draw[fail,very thick] (0,0) circle[radius=10cm];
+  \draw[blue,very thick] (-10,0)--(10,0);
+  \draw[orange,very thick] (-10,0)--(0,15);
+  \draw[purple,very thick] (10,0)--(0,15);
+
+  \node[dot] at (-10,0) {};
+  \node[dot] at (10,0) {};
+  \node[dot,fill=fail] at (0,15) {};
+  \node[dot,fill=fail] at (0,0) {};
+  \node[dot,fill=cover] at (0,{25/6}) {};
+
+  \node[below left,info] at (-10,-.3) {$A=(-10,0)$};
+  \node[below right,info] at (10,-.3) {$B=(10,0)$};
+  \node[above left,info] at (-.5,15.2) {$U=(0,15)$};
+  \node[below right,fill=white,inner sep=1pt,text=fail] at (.3,-.7) {$C_0$};
+  \node[left,fill=white,inner sep=1pt,text=cover] at (-.4,{25/6}) {$C^*$};
+  \node[region] at (-4,4.6) {$P$};
+  \node[text=fail,info] at (7,-5) {$r=10$};
+
+  \draw[fail,densely dotted] (0,10)--(14.5,10);
+  \draw[fail,densely dotted] (0,15)--(14.5,15);
+  \draw[<->,fail,thick] (13.7,10)--(13.7,15)
+    node[midway,right,fill=white,inner sep=2pt] {漏出 $5$ m};
+
+  \draw[black!35] (-10,-9)--(-10,-12.2);
+  \draw[black!35] (10,-9)--(10,-12.2);
+  \draw[<->,ink] (-10,-11.6)--(10,-11.6)
+    node[midway,below,fill=white,inner sep=2pt] {$D=|AB|=20$ m};
+\end{scope}
+\node[text=fail,font=\footnotesize,align=center] at (17.35,1.3)
+  {红色实线：直径圆\quad $C_0=(0,0)$，$r=10$ m};
+\node[text=cover,font=\footnotesize,align=center] at (17.35,.83)
+  {绿色虚线：最小包围圆\quad $C^*=(0,25/6)$，$R^*=65/6\approx10.833$ m};
+\node[font=\small\bfseries] at (11.5,.22)
+  {$|AU|=|BU|=\sqrt{325}\approx18.03<20$ m，直径仍由 $A,B$ 取得；上顶点却落在直径圆外。};
+\end{tikzpicture}
+\end{document}

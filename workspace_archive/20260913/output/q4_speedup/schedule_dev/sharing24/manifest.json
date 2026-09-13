@@ -1,0 +1,65 @@
+{
+  "warning": "LOCAL SYNTHETIC DEVELOPMENT ONLY; not held-out or official",
+  "args": {
+    "cases": 4,
+    "seed_base": 214700000,
+    "methods": [
+      "baseline",
+      "share_600_0",
+      "share_600_1",
+      "share_600_3",
+      "share_600_20",
+      "share_600_50",
+      "share_1000_0",
+      "share_1000_3",
+      "share_1000_10",
+      "share_1000_20",
+      "share_1500_0",
+      "share_1500_3",
+      "share_1500_10",
+      "share_1500_20"
+    ],
+    "name": "sharing24"
+  },
+  "geometry_degrees": 1.005,
+  "physical_error_degrees": 1,
+  "quantization_degrees": 0.01,
+  "groups": [
+    [
+      "mixed_25pct",
+      0.25,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed_50pct",
+      0.5,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed_75pct",
+      0.75,
+      "uniform",
+      "hash"
+    ],
+    [
+      "outward_boundary",
+      0.75,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "constant_plus1deg",
+      0.5,
+      "uniform",
+      "plus"
+    ],
+    [
+      "constant_minus1deg",
+      0.5,
+      "uniform",
+      "minus"
+    ]
+  ]
+}

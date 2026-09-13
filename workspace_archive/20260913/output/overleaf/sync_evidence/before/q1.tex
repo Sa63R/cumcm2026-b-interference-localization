@@ -1,0 +1,144 @@
+% Integrated from teammate source; original preserved in Overleaf.
+\subsection{问题一模型的建立与求解}\label{sec:q1}
+\subsubsection{误差角域与半平面交模型}\label{sec:q1-1}
+示向度自 $x$ 轴正方向逆时针计量，误差不超过 $\pm 1^\circ$，故第 $i$ 次测向的含义是：干扰源位于以 $S_i$ 为顶点、以 $\theta_i$ 为中轴线、两侧各张开 $1^\circ$ 的角域内。记 $\varphi_i=\pi\theta_i/180$、$\delta=\pi\varepsilon/180=\pi/180$，以下三角函数的自变量均以弧度计，角域两条边界射线的方向为
+
+\[
+u_i^-=\begin{pmatrix}\cos(\varphi_i-\delta)\\ \sin(\varphi_i-\delta)\end{pmatrix},\qquad
+u_i^+=\begin{pmatrix}\cos(\varphi_i+\delta)\\ \sin(\varphi_i+\delta)\end{pmatrix}.
+\]
+
+利用二维叉积 $a\times b=a_xb_y-a_yb_x$ 的符号判断转向，点 $X=(x,y)$ 落在该角域内等价于 $X-S_i$ 夹在两条射线之间：
+
+\begin{equation}\label{eq:q1-1}
+u_i^-\times(X-S_i)\ge 0,\qquad u_i^+\times(X-S_i)\le 0.
+\end{equation}
+
+角域张角仅 $2^\circ$，式\eqref{eq:q1-1} 已排除检测点背后的反向区域。展开叉积，每次测向化为两个线性不等式：
+
+\begin{equation}\label{eq:q1-2}
+\begin{aligned}
+\sin(\varphi_i-\delta)(x-x_i)-\cos(\varphi_i-\delta)(y-y_i)&\le 0,\\
+-\sin(\varphi_i+\delta)(x-x_i)+\cos(\varphi_i+\delta)(y-y_i)&\le 0.
+\end{aligned}
+\end{equation}
+
+将全部 $2n$ 个约束统一记为 $a_jx+b_jy\le c_j$，定位区域即
+
+\begin{equation}\label{eq:q1-3}
+P=\bigcap_{j=1}^{2n}\left\{(x,y):a_jx+b_jy\le c_j\right\}.
+\end{equation}
+
+半平面之交是凸集，故 $P$ 非空且有界时为凸多边形，退化情形为线段或点。题目图 2 的红色四边形就是 $n=2$ 时两个角域的交。
+
+\subsubsection{定位区域及其直径的求解}\label{sec:q1-2}
+求解分三步：判别有界性、提取顶点、枚举最远顶点对。
+
+若各示向度方向接近平行，角域之交会沿测向方向无限延伸，此时谈不上直径。因此先用线性规划检验约束组\eqref{eq:q1-3}：不可行说明测向数据与误差界矛盾；可行时再分别求 $x$、$-x$、$y$、$-y$ 的最大值，四者都有限才说明 $P$ 有界，否则应补充测向后再定位。
+
+$P$ 有界时，其顶点必为某两条边界直线的交点。对直线 $a_jx+b_jy=c_j$ 与 $a_kx+b_ky=c_k$，记 $\Delta_{jk}=a_jb_k-a_kb_j$，当 $\Delta_{jk}\ne 0$ 时交点为
+
+\begin{equation}\label{eq:q1-4}
+x_{jk}=\frac{c_jb_k-b_jc_k}{\Delta_{jk}},\qquad
+y_{jk}=\frac{a_jc_k-c_ja_k}{\Delta_{jk}}.
+\end{equation}
+
+把交点代回全部约束，保留满足 $a_\ell x_{jk}+b_\ell y_{jk}\le c_\ell$（$\ell=1,\dots,2n$）者并去重，即得顶点 $v_1,\dots,v_h$。
+
+区域直径定义为 $D=\max_{X,Y\in P}\|X-Y\|_2$。对凸多边形，它就等于最远顶点对的距离：
+
+\begin{equation}\label{eq:q1-5}
+D=\max_{1\le i<j\le h}\|v_i-v_j\|_2 .
+\end{equation}
+
+这是因为任意 $X,Y\in P$ 都可写成顶点的凸组合 $X=\sum_i\lambda_iv_i$、$Y=\sum_j\mu_jv_j$，于是 $X-Y=\sum_{i,j}\lambda_i\mu_j(v_i-v_j)$ 且系数和为 1，由三角不等式 $\|X-Y\|\le\max_{i,j}\|v_i-v_j\|$；而顶点本身属于 $P$，该上界可以取到。若区域退化为单点则 $D=0$；退化为线段则取两端点距离。
+
+整个流程归纳如下：
+
+\begin{tcolorbox}[colback=black!2,colframe=black!22,boxrule=0.4pt,arc=0pt,left=9pt,right=9pt,top=7pt,bottom=7pt]
+\small\setlength{\parskip}{2pt}
+\noindent\hangindent=1.5em\hangafter=1 输入：检测点 $S_i$、示向度 $\theta_i$，$i=1,\dots,n$\par
+\noindent\hangindent=1.5em\hangafter=1 1  按式\eqref{eq:q1-2} 将每次测向化为两个半平面；\par
+\noindent\hangindent=1.5em\hangafter=1 2  线性规划检验可行性与有界性，异常情形分别报告；\par
+\noindent\hangindent=1.5em\hangafter=1 3  按式\eqref{eq:q1-4} 求每对边界直线的交点；\par
+\noindent\hangindent=1.5em\hangafter=1 4  保留满足全部约束的交点并去重，得顶点集；\par
+\noindent\hangindent=1.5em\hangafter=1 5  枚举所有顶点对，取距离最大者 $(A,B)$，$D=|AB|$。\par
+\end{tcolorbox}
+
+边界直线共 $2n$ 条，交点枚举 $O(n^2)$ 次，每个交点检验约束需 $O(n)$，顶点数 $h\le 2n$，故总计算量 $O(n^3)$，对本题的检测点规模完全够用。程序实现时对平行判定、约束检验和去重设置数值容差即可。
+
+\subsubsection{直径圆的覆盖性分析}\label{sec:q1-3}
+设最远顶点对为 $A$、$B$，$\|A-B\|=D$。若某个半径 $D/2$ 的圆盖住了 $P$，它必须同时包含 $A$、$B$，而
+
+\[
+D=\|A-B\|\le\|A-C\|+\|C-B\|\le\frac D2+\frac D2=D,
+\]
+
+两端相等迫使中间全部取等，故圆心 $C$ 只能是线段 $AB$ 的中点，记为 $C_0$。也就是说，直径恰为 $D$ 的覆盖圆没有挑选圆心的余地；又因为圆盖住全部顶点就盖住整个凸多边形，覆盖性等价于
+
+\begin{equation}\label{eq:q1-6}
+\max_{1\le i\le h}\|v_i-C_0\|\le\frac D2 .
+\end{equation}
+
+问题于是变成：式\eqref{eq:q1-6} 是否总成立？我们构造如下算例说明它可以不成立。取两个检测点
+
+\[
+S_1=(-500,\,0),\quad\theta_1=44.5^\circ;\qquad
+S_2=(500,\,0),\quad\theta_2=135.5^\circ,
+\]
+
+误差界仍为 $\pm 1^\circ$。记 $t=\tan 43.5^\circ$、$u=\tan 45.5^\circ$，两个角域分别为 $t(x+500)\le y\le u(x+500)$ 与 $t(500-x)\le y\le u(500-x)$，按第\ref{sec:q1-2}节方法求交得一四边形，结果见表\ref{tab:q1-counterexample}。
+
+\Needspace{19\baselineskip}
+\begin{table}[htbp]
+\centering
+\caption{算例的顶点与覆盖性检验（单位：m）}\label{tab:q1-counterexample}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}p{0.52\linewidth}X}
+\toprule
+\textbf{量} & \textbf{数值} \\
+\midrule
+下顶点 $V_1$ & $(0,\ 474.482283)$ \\
+右顶点 $V_2$ & $(17.452406,\ 491.043999)$ \\
+上顶点 $V_3$ & $(0,\ 508.803696)$ \\
+左顶点 $V_4$ & $(-17.452406,\ 491.043999)$ \\
+直径 $D=\|V_2-V_4\|$ & $34.904813$ \\
+圆心 $C_0=(V_2+V_4)/2$ & $(0,\ 491.043999)$ \\
+直径圆半径 $D/2$ & $17.452406$ \\
+上顶点到圆心距离 $\|V_3-C_0\|$ & $\boldsymbol{17.759698}$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{table}
+
+最远点对为左右顶点 $V_2$、$V_4$，$D\approx 34.905$ m，圆心只能取 $C_0\approx(0,\ 491.044)$。但上顶点到 $C_0$ 的距离为 $508.803696-491.043999=17.759698$ m，超出半径约 $0.307$ m，落在圆外。
+
+从几何上看原因很清楚：这个四边形两条对角线几乎等长（$34.905$ m 与 $34.321$ m），但水平对角线并不平分竖直对角线---交点之上高 $17.760$ m，之下只有 $16.562$ m。圆心被钉在水平对角线中点，偏低，上顶点自然探出圆外。
+
+该算例由两个角域直接求交产生，符合本题的测向机制；四边形整体位于目标 $1800$ m 圆域内（顶点到原点最远约 $508.8$ m），加入这一先验也不改变结果。故第二小问的答案是否定的：\textbf{以定位区域直径为直径的圆不一定能覆盖该区域，即使允许自由选择圆心也一样}。
+
+\subsubsection{保证覆盖时的修正：最小包围圆}\label{sec:q1-4}
+上例说明区域直径 $D$ 与“盖住区域所需的最小圆直径”是两回事。后者由最小包围圆模型给出：
+
+\begin{equation}\label{eq:q1-7}
+\min_{C,\ R}\ R
+\qquad\text{s.t.}\quad\|v_i-C\|_2\le R,\quad i=1,\dots,h,
+\end{equation}
+
+其中 $C$、$R$ 为待求的圆心与半径；由圆的凸性，约束住顶点即约束住整个区域。有限点集的最小包围圆或以两个顶点为直径两端，或由三个不共线顶点外接确定，顶点不多时枚举这两类候选圆、取覆盖全部顶点且半径最小者即可。对表\ref{tab:q1-counterexample} 的算例解得
+
+\[
+C^*\approx(0,\ 491.348632),\qquad
+R^*\approx 17.455065\ \text{m}>\frac D2\approx 17.452406\ \text{m},
+\]
+
+即使圆心取到最优位置，所需半径仍大于 $D/2$。
+
+一般地，平面有界凸区域满足 $\dfrac D2\le R^*\le\dfrac{D}{\sqrt 3}$：下界即最远点对的要求；若最小包围圆由三点外接确定，这三点构成锐角三角形，最大内角 $\alpha\in[60^\circ,90^\circ)$，由正弦定理 $R^*=\dfrac{\text{对边}}{2\sin\alpha}\le\dfrac{D}{\sqrt 3}$，等边三角形取到上界。可见保证覆盖所需的最小半径相比 $D/2$ 最多增加约 $15.5\%$。
+
+这一区分与后续问题直接相关：机器狗须进入距干扰源 $20$ m 范围才能光学定位，要保证在某一位置能覆盖全部候选位置，应检验 $R^*\le 20$ m，而 $D\le 40$ m 只是必要条件。
+
+\subsubsection{问题一小结}\label{sec:q1-5}
+$n$ 次测向的定位区域是 $2n$ 个半平面的交，非空有界时为凸多边形；枚举边界直线交点得到顶点后，区域直径即最远顶点对的距离，总计算量 $O(n^3)$。以 $D$ 为直径的覆盖圆圆心只能取最远点对中点，而构造的算例（$D\approx 34.905$ m）中该圆漏掉上顶点约 $0.307$ m，最小包围圆半径 $R^*\approx 17.455$ m 也大于 $D/2$，故直径圆不一定能覆盖定位区域；需要保证覆盖时应改用最小包围圆，并以 $R^*\le 20$ m 作为光学定位可达的判据。

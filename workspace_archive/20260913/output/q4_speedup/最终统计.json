@@ -1,0 +1,840 @@
+{
+  "generated_at_utc": "2026-09-12T05:38:03.230504+00:00",
+  "recommendation": "v4_fast, q4-speedup-practice-20260912-v2; equivalent computation optimization; preserve V4 mission decisions",
+  "primary_metric": "Equal-weight mean of per-scenario virtual task time T_i / source count N_i; positive paired delta means improvement",
+  "primary_counts": {
+    "independent_scenarios": 300,
+    "full_solver_runs": 900,
+    "successful_solver_runs": 900,
+    "cleared_source_instances": 11760,
+    "sources_once_per_independent_scenario": 3918,
+    "duplicate_baseline_runs_between_first_two_batches": 100,
+    "note": "CPU-equivalence, development and Windows-offline runs are separate and excluded from these counts"
+  },
+  "batches": {
+    "geometry_holdout100": {
+      "rows": 300,
+      "scenarios": 100,
+      "method_counts": {
+        "v4": 100,
+        "cells_flex": 100,
+        "combined": 100
+      },
+      "cleared_source_instances": 3924
+    },
+    "prior_holdout100": {
+      "rows": 200,
+      "scenarios": 100,
+      "method_counts": {
+        "v4": 100,
+        "prior_fixed": 100
+      },
+      "cleared_source_instances": 2616
+    },
+    "cells_confirm200": {
+      "rows": 400,
+      "scenarios": 200,
+      "method_counts": {
+        "v4": 200,
+        "cells_flex": 200
+      },
+      "cleared_source_instances": 5220
+    }
+  },
+  "mission_comparisons": {
+    "prior100": {
+      "method": "prior_fixed",
+      "cases": 100,
+      "successes": 100,
+      "baseline_mean_seconds_per_source": 465.7108298382411,
+      "mean_seconds_per_source": 466.2913373044252,
+      "mean_paired_saved_seconds_per_source": -0.5805074661841266,
+      "reduction_of_mean": -0.0012464976740732435,
+      "stratified_paired_bootstrap95_saved_seconds_per_source": [
+        -1.8903334812254011,
+        0.743919877478037
+      ],
+      "bootstrap_includes_zero": true,
+      "bootstrap": {
+        "repetitions": 50000,
+        "seed": 2026091202,
+        "groups": [
+          "all_omni",
+          "mixed25",
+          "mixed50",
+          "mixed75",
+          "all_directional",
+          "boundary_directional",
+          "boundary_mixed",
+          "plus1",
+          "minus1",
+          "clustered"
+        ],
+        "group_sizes": {
+          "all_omni": 10,
+          "mixed25": 10,
+          "mixed50": 10,
+          "mixed75": 10,
+          "all_directional": 10,
+          "boundary_directional": 10,
+          "boundary_mixed": 10,
+          "plus1": 10,
+          "minus1": 10,
+          "clustered": 10
+        },
+        "algorithm": "Within each fixed scenario group, sample complete paired differences with replacement at original group size; pool the mean T/N difference; percentile interval"
+      },
+      "faster": 34,
+      "slower": 26,
+      "tied": 40,
+      "worst": {
+        "seed": 552220263,
+        "scenario": "mixed75",
+        "targets": 11,
+        "baseline_seconds_per_source": 505.8541033737425,
+        "candidate_seconds_per_source": 543.4500381097952,
+        "saved_seconds_per_source": -37.5959347360527,
+        "relative_regression": 0.07432169569310698
+      },
+      "mean_wall_seconds": 2.365285685408453,
+      "baseline_mean_wall_seconds": 0.0781984058022499,
+      "groups": {
+        "all_omni": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 0.19785488606099194
+        },
+        "mixed25": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -1.8685528201002852
+        },
+        "mixed50": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 1.5735156823092495
+        },
+        "mixed75": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -3.1951867084314927
+        },
+        "all_directional": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -0.17238391595905683
+        },
+        "boundary_directional": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 1.320768823943115
+        },
+        "boundary_mixed": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -0.8778861511189859
+        },
+        "plus1": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -0.8166878640944504
+        },
+        "minus1": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -1.5782802581218163
+        },
+        "clustered": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -0.388236336328535
+        }
+      }
+    },
+    "combined100": {
+      "method": "combined",
+      "cases": 100,
+      "successes": 100,
+      "baseline_mean_seconds_per_source": 465.7108298382411,
+      "mean_seconds_per_source": 464.9730180790404,
+      "mean_paired_saved_seconds_per_source": 0.7378117592007217,
+      "reduction_of_mean": 0.0015842701348753132,
+      "stratified_paired_bootstrap95_saved_seconds_per_source": [
+        -0.6825423862965191,
+        2.0696433179687372
+      ],
+      "bootstrap_includes_zero": true,
+      "bootstrap": {
+        "repetitions": 50000,
+        "seed": 2026091203,
+        "groups": [
+          "all_omni",
+          "mixed25",
+          "mixed50",
+          "mixed75",
+          "all_directional",
+          "boundary_directional",
+          "boundary_mixed",
+          "plus1",
+          "minus1",
+          "clustered"
+        ],
+        "group_sizes": {
+          "all_omni": 10,
+          "mixed25": 10,
+          "mixed50": 10,
+          "mixed75": 10,
+          "all_directional": 10,
+          "boundary_directional": 10,
+          "boundary_mixed": 10,
+          "plus1": 10,
+          "minus1": 10,
+          "clustered": 10
+        },
+        "algorithm": "Within each fixed scenario group, sample complete paired differences with replacement at original group size; pool the mean T/N difference; percentile interval"
+      },
+      "faster": 69,
+      "slower": 31,
+      "tied": 0,
+      "worst": {
+        "seed": 552320262,
+        "scenario": "all_directional",
+        "targets": 10,
+        "baseline_seconds_per_source": 590.0259133908753,
+        "candidate_seconds_per_source": 629.4354814443533,
+        "saved_seconds_per_source": -39.40956805347798,
+        "relative_regression": 0.0667929444437303
+      },
+      "mean_wall_seconds": 2.3413202537491453,
+      "baseline_mean_wall_seconds": 0.07573721794120501,
+      "groups": {
+        "all_omni": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 0.9316685177233296
+        },
+        "mixed25": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 0.0930572779313934
+        },
+        "mixed50": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -1.202328675381608
+        },
+        "mixed75": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 2.9964918331707735
+        },
+        "all_directional": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -4.503599720705926
+        },
+        "boundary_directional": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 0.14617433982401734
+        },
+        "boundary_mixed": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 3.113370752154424
+        },
+        "plus1": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 1.5231775379837587
+        },
+        "minus1": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 0.9774480735759596
+        },
+        "clustered": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 3.302657655731096
+        }
+      }
+    },
+    "cells_screen100": {
+      "method": "cells_flex",
+      "cases": 100,
+      "successes": 100,
+      "baseline_mean_seconds_per_source": 465.7108298382411,
+      "mean_seconds_per_source": 464.4066629477257,
+      "mean_paired_saved_seconds_per_source": 1.3041668905154264,
+      "reduction_of_mean": 0.002800379134340549,
+      "stratified_paired_bootstrap95_saved_seconds_per_source": [
+        0.1177457981565821,
+        2.52744312643322
+      ],
+      "bootstrap_includes_zero": false,
+      "bootstrap": {
+        "repetitions": 50000,
+        "seed": 2026091204,
+        "groups": [
+          "all_omni",
+          "mixed25",
+          "mixed50",
+          "mixed75",
+          "all_directional",
+          "boundary_directional",
+          "boundary_mixed",
+          "plus1",
+          "minus1",
+          "clustered"
+        ],
+        "group_sizes": {
+          "all_omni": 10,
+          "mixed25": 10,
+          "mixed50": 10,
+          "mixed75": 10,
+          "all_directional": 10,
+          "boundary_directional": 10,
+          "boundary_mixed": 10,
+          "plus1": 10,
+          "minus1": 10,
+          "clustered": 10
+        },
+        "algorithm": "Within each fixed scenario group, sample complete paired differences with replacement at original group size; pool the mean T/N difference; percentile interval"
+      },
+      "faster": 74,
+      "slower": 26,
+      "tied": 0,
+      "worst": {
+        "seed": 552820265,
+        "scenario": "clustered",
+        "targets": 16,
+        "baseline_seconds_per_source": 175.6154555038728,
+        "candidate_seconds_per_source": 184.2039472109926,
+        "saved_seconds_per_source": -8.5884917071198,
+        "relative_regression": 0.04890510167500839
+      },
+      "mean_wall_seconds": 2.3041823921294418,
+      "baseline_mean_wall_seconds": 0.07573721794120501,
+      "groups": {
+        "all_omni": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 1.0835768955350091
+        },
+        "mixed25": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 0.5654108321632407
+        },
+        "mixed50": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -0.5311283205300015
+        },
+        "mixed75": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 3.159536952156259
+        },
+        "all_directional": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": -0.5140557616152023
+        },
+        "boundary_directional": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 0.9513031632142827
+        },
+        "boundary_mixed": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 1.0407558205951546
+        },
+        "plus1": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 2.7556624566662267
+        },
+        "minus1": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 1.0246423845226444
+        },
+        "clustered": {
+          "cases": 10,
+          "mean_paired_saved_seconds_per_source": 3.5059644824466516
+        }
+      }
+    },
+    "cells_confirm200": {
+      "method": "cells_flex",
+      "cases": 200,
+      "successes": 200,
+      "baseline_mean_seconds_per_source": 464.28256654843125,
+      "mean_seconds_per_source": 463.20399512190835,
+      "mean_paired_saved_seconds_per_source": 1.0785714265228905,
+      "reduction_of_mean": 0.00232309266863327,
+      "stratified_paired_bootstrap95_saved_seconds_per_source": [
+        -0.26921387330143,
+        2.360864511312095
+      ],
+      "bootstrap_includes_zero": true,
+      "bootstrap": {
+        "repetitions": 50000,
+        "seed": 2026091205,
+        "groups": [
+          "all_omni",
+          "mixed25",
+          "mixed50",
+          "mixed75",
+          "all_directional",
+          "boundary_directional",
+          "boundary_mixed",
+          "plus1",
+          "minus1",
+          "clustered"
+        ],
+        "group_sizes": {
+          "all_omni": 20,
+          "mixed25": 20,
+          "mixed50": 20,
+          "mixed75": 20,
+          "all_directional": 20,
+          "boundary_directional": 20,
+          "boundary_mixed": 20,
+          "plus1": 20,
+          "minus1": 20,
+          "clustered": 20
+        },
+        "algorithm": "Within each fixed scenario group, sample complete paired differences with replacement at original group size; pool the mean T/N difference; percentile interval"
+      },
+      "faster": 161,
+      "slower": 39,
+      "tied": 0,
+      "worst": {
+        "seed": 663020263,
+        "scenario": "mixed25",
+        "targets": 16,
+        "baseline_seconds_per_source": 232.16871912469375,
+        "candidate_seconds_per_source": 319.58654701733604,
+        "saved_seconds_per_source": -87.4178278926423,
+        "relative_regression": 0.37652715758702926
+      },
+      "mean_wall_seconds": 2.930341206904268,
+      "baseline_mean_wall_seconds": 0.09467094105028082,
+      "groups": {
+        "all_omni": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": 1.9982092055888416
+        },
+        "mixed25": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": -7.958928504234656
+        },
+        "mixed50": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": 0.8113674720073647
+        },
+        "mixed75": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": 2.3432363218477663
+        },
+        "all_directional": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": 5.338255007479842
+        },
+        "boundary_directional": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": 2.792089408717621
+        },
+        "boundary_mixed": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": 2.5893239889937605
+        },
+        "plus1": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": 2.3587021021786456
+        },
+        "minus1": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": 2.2651893090459994
+        },
+        "clustered": {
+          "cases": 20,
+          "mean_paired_saved_seconds_per_source": -1.7517300463962784
+        }
+      }
+    }
+  },
+  "compute_only": {
+    "manifest": {
+      "kind": "Exact execution equivalence and CPU-only optimization; not virtual task improvement",
+      "shared_machine": true,
+      "timing": "Rotating paired serial runs; process_time and perf_counter; one comparison per case; trace recording enabled; cache enter/exit included; simulator setup and coverage audit excluded",
+      "seed_base": 230400000,
+      "cases_per_group": 10,
+      "groups": [
+        [
+          "all_omni",
+          0.0,
+          "uniform",
+          "hash"
+        ],
+        [
+          "mixed25",
+          0.25,
+          "uniform",
+          "hash"
+        ],
+        [
+          "mixed50",
+          0.5,
+          "uniform",
+          "hash"
+        ],
+        [
+          "mixed75",
+          0.75,
+          "uniform",
+          "hash"
+        ],
+        [
+          "all_directional",
+          1.0,
+          "uniform",
+          "hash"
+        ],
+        [
+          "boundary_directional",
+          1.0,
+          "outward_boundary",
+          "hash"
+        ],
+        [
+          "boundary_mixed",
+          0.5,
+          "outward_boundary",
+          "hash"
+        ],
+        [
+          "plus1",
+          0.5,
+          "uniform",
+          "plus"
+        ],
+        [
+          "minus1",
+          0.5,
+          "uniform",
+          "minus"
+        ],
+        [
+          "clustered",
+          0.75,
+          "clustered",
+          "hash"
+        ]
+      ],
+      "physical_error_deg": 1.0,
+      "display_round_deg": 0.01,
+      "geometric_bound_deg": 1.005,
+      "cache_limits": {
+        "polygon": 2048,
+        "gain": 512,
+        "route": 128,
+        "optical": 512
+      },
+      "acceleration_sha256": "822ad5b9ee23ae30ce2b3db8f8e40b822d0e1423a801a014c8961090fc8598ad"
+    },
+    "unit_checks": {
+      "route_cases": 247,
+      "clip_cases": 10000,
+      "circle_cases": 1200,
+      "mutable_cache_test": true,
+      "bounded_eviction": true,
+      "clear_test": true,
+      "exception_restoration": true,
+      "nested_context_rejection": true
+    },
+    "cases": 100,
+    "all_actions_identical": true,
+    "all_reports_identical": true,
+    "all_summary_identical": true,
+    "compared_actions": 34237,
+    "cleared_sources": 1299,
+    "all_clear_and_certified": true,
+    "baseline_cpu_s": 2.1768589999999968,
+    "accelerated_cpu_s": 1.4724249999999999,
+    "cpu_reduction": 0.32360111518476753,
+    "cpu_speedup": 1.4784175764470155,
+    "baseline_wall_s": 2.426403876102995,
+    "accelerated_wall_s": 1.649357587855775,
+    "wall_reduction": 0.3202460628670033,
+    "mean_cpu_saved_s": 0.007044339999999969,
+    "paired_normal95_cpu_saved_s": [
+      0.006273603223138247,
+      0.007815076776861692
+    ],
+    "cached": {
+      "circle": {
+        "hits": 27152,
+        "misses": 10631,
+        "peak_case_entries": 192,
+        "limit": 2048
+      },
+      "gain": {
+        "hits": 0,
+        "misses": 2635,
+        "peak_case_entries": 64,
+        "limit": 512
+      },
+      "optical": {
+        "hits": 0,
+        "misses": 1389,
+        "peak_case_entries": 26,
+        "limit": 512
+      },
+      "route": {
+        "hits": 0,
+        "misses": 3820,
+        "peak_case_entries": 49,
+        "limit": 128
+      }
+    },
+    "note": "CPU result is one paired comparison on a nonexclusive machine. It does not imply the official HTTP run is faster by the same percentage. No virtual task-time reduction: every action and feedback is exactly equal."
+  },
+  "coverage_compute_only": {
+    "inputs": 100,
+    "all_fields_except_wall_identical": true,
+    "ok": 4,
+    "witness": 19,
+    "unresolved": 77,
+    "keep_leaves_inputs": 25,
+    "accepted_boxes": 162205,
+    "outside_boxes": 118492,
+    "subdivided_boxes": 94149,
+    "baseline_cpu_s": 2.712976,
+    "accelerated_cpu_s": 1.3086200000000001,
+    "cpu_reduction": 0.5176440926864078,
+    "speedup": 2.0731579832189633,
+    "baseline_wall_s": 2.7250149602768943,
+    "accelerated_wall_s": 1.3140738719666842,
+    "wall_reduction": 0.5177737035861416,
+    "paired_normal95_cpu_saved_s": [
+      0.011904483533814517,
+      0.01618263646618548
+    ],
+    "cache_hits": 286191,
+    "cache_misses": 10145,
+    "peak_call_entries": 252,
+    "cache_limit": 512,
+    "lifecycle_checks": {
+      "alias_restoration": true,
+      "exception_restoration": true,
+      "nested_rejection": true,
+      "per_call_cache_release": true
+    },
+    "code_sha256": "4b650bb495f4765e6de94282bce4fe3870f35299124a34f2f483c0ff41e48ec0",
+    "original_code_sha256": "eb3a0769820c926331a002438649a9e31d91e7e0150036e60e95bd2191f021f3",
+    "note": "Nonexclusive machine. One paired serial comparison, alternating baseline/accelerated order. 90 inputs come from 286 actual unmodified cells_flex certificate trials in 3 development cases; 10 edge cases cover low depth, empty/degenerate/duplicate and scaled/rotated layouts. This validates certificate computation only, not an end-to-end rollout speed claim."
+  },
+  "windows_offline": {
+    "evidence": "output/q4_speedup/windows_adapter_evidence/Q4Practice/output/q4_speedup/schedule_dev/adapter_speedup/results.json",
+    "kind": "OFFLINE SyntheticClient through real protocol validation; no official practice run",
+    "runs": 13,
+    "cleared_sources": 150,
+    "versions": {
+      "baseline": 3,
+      "q4-speedup-practice-20260912-v2": 10
+    },
+    "v2_verified": true,
+    "note": "Windows offline synthetic transport through real protocol validation; not official practice",
+    "deployed_files_sha256_verified": 29,
+    "passed_test_methods": 5,
+    "test_suite_wall_seconds": 9.572,
+    "timing_note": "Single Windows v2 suite timing; not a paired speed comparison with v1"
+  },
+  "original_source_preservation": {
+    "original_tested_files": 46,
+    "changed_original_files": [],
+    "all_original_files_unchanged": true
+  },
+  "official": {
+    "new_practice_runs_this_round": 0,
+    "new_formal_runs_this_round": 0,
+    "previous_practice_runs": 15,
+    "previous_results_unchanged": true,
+    "blocker": "Mac is locked. User must manually unlock, then Q4 practice mode must be freshly verified before entering.",
+    "no_claim": "The previous 15 practice runs do not evaluate this version."
+  },
+  "development": {
+    "coverage": {
+      "static_layout_candidates": 3040,
+      "full_task_runs": 1182,
+      "note": "Exploratory reused historical development cases; original precision; not final holdout"
+    },
+    "scheduling": {
+      "full_task_runs": 2340,
+      "note": "Shared sensing, delayed clearing, service routing and station-order development; includes separate 60-case screens, not primary holdout"
+    },
+    "opportunistic_clears": {
+      "full_task_runs": 560,
+      "cases": 80,
+      "methods": 7
+    },
+    "unified_development": {
+      "full_task_runs": 600,
+      "datasets": [
+        "combined_dev40",
+        "domain_dev80",
+        "sectors_dev30",
+        "prior_dev40"
+      ]
+    },
+    "incumbent_route": {
+      "full_task_runs": 160,
+      "scenarios": 40,
+      "methods": 4,
+      "all_cleared": true,
+      "summary": {
+        "v4": {
+          "cases": 40,
+          "successes": 40,
+          "mean_seconds_per_source": 456.7866894790134,
+          "mean_virtual_seconds": 5851.266299431491,
+          "mean_wall_seconds": 0.055666921801457644,
+          "mean_distance_m": 20943.831497157455,
+          "mean_detections": 260.1,
+          "mean_failed_clears": 16.9,
+          "mean_tail_search_seconds": 417.74164265187716,
+          "saved_seconds_per_source": 0.0,
+          "reduction_of_mean": 0.0,
+          "exploratory_normal95": [
+            0.0,
+            0.0
+          ],
+          "faster": 0,
+          "slower": 0,
+          "worst_relative_regression": -0.0
+        },
+        "incumbent": {
+          "cases": 40,
+          "successes": 40,
+          "mean_seconds_per_source": 458.82850915572214,
+          "mean_virtual_seconds": 5881.735874488452,
+          "mean_wall_seconds": 0.055667828126024686,
+          "mean_distance_m": 21091.554372442264,
+          "mean_detections": 260.075,
+          "mean_failed_clears": 17.4,
+          "mean_tail_search_seconds": 413.70183217938387,
+          "saved_seconds_per_source": -2.0418196767087524,
+          "reduction_of_mean": -0.004469963166040463,
+          "exploratory_normal95": [
+            -4.351829001289858,
+            0.26818964787235355
+          ],
+          "faster": 2,
+          "slower": 8,
+          "worst_relative_regression": 0.10611911829940746
+        },
+        "flex_incumbent": {
+          "cases": 40,
+          "successes": 40,
+          "mean_seconds_per_source": 455.59975866859105,
+          "mean_virtual_seconds": 5834.231599104675,
+          "mean_wall_seconds": 1.5481475312255497,
+          "mean_distance_m": 20907.032995523383,
+          "mean_detections": 258.25,
+          "mean_failed_clears": 17.425,
+          "mean_tail_search_seconds": 446.20589409715535,
+          "saved_seconds_per_source": 1.186930810422328,
+          "reduction_of_mean": 0.0025984356325620566,
+          "exploratory_normal95": [
+            -3.5970432634102574,
+            5.970904884254913
+          ],
+          "faster": 27,
+          "slower": 13,
+          "worst_relative_regression": 0.1038709249610843
+        },
+        "cells_flex_incumbent": {
+          "cases": 40,
+          "successes": 40,
+          "mean_seconds_per_source": 454.4596312639774,
+          "mean_virtual_seconds": 5819.783562209661,
+          "mean_wall_seconds": 1.601765150052961,
+          "mean_distance_m": 20831.417811048304,
+          "mean_detections": 258.25,
+          "mean_failed_clears": 17.675,
+          "mean_tail_search_seconds": 422.1484987874424,
+          "saved_seconds_per_source": 2.327058215035939,
+          "reduction_of_mean": 0.005094408984837228,
+          "exploratory_normal95": [
+            -2.6161183214486727,
+            7.270234751520551
+          ],
+          "faster": 27,
+          "slower": 13,
+          "worst_relative_regression": 0.1023245235664687
+        }
+      },
+      "original_cells_flex_same_development": {
+        "cases": 40,
+        "successes": 40,
+        "mean_seconds_per_source": 452.4398311205322,
+        "mean_virtual_seconds": 5789.912857751299,
+        "mean_wall_seconds": 2.4324856396015093,
+        "mean_distance_m": 20696.1892887565,
+        "mean_detections": 257.9,
+        "mean_failed_clears": 17.3,
+        "mean_tail_search_seconds": 432.07424644674404,
+        "saved_seconds_per_source": 4.346858358481219,
+        "reduction_of_mean": 0.00951616686431694,
+        "exploratory_normal95": [
+          0.1177158888243568,
+          8.576000828138081
+        ],
+        "faster": 33,
+        "slower": 7,
+        "worst_relative_regression": 0.009782232926941026
+      },
+      "known_worst_replay": {
+        "kind": "Known-case diagnostic, not new holdout and excluded from the 40 development scenarios",
+        "runs": 4,
+        "rows": [
+          {
+            "method": "v4",
+            "seed": 663020263,
+            "scenario": "mixed25",
+            "success": true,
+            "targets": 16,
+            "cleared": 16,
+            "virtual_seconds": 3714.6995059951
+          },
+          {
+            "method": "incumbent",
+            "seed": 663020263,
+            "scenario": "mixed25",
+            "success": true,
+            "targets": 16,
+            "cleared": 16,
+            "virtual_seconds": 3817.2840792118836
+          },
+          {
+            "method": "flex_incumbent",
+            "seed": 663020263,
+            "scenario": "mixed25",
+            "success": true,
+            "targets": 16,
+            "cleared": 16,
+            "virtual_seconds": 5309.9231608146165
+          },
+          {
+            "method": "cells_flex_incumbent",
+            "seed": 663020263,
+            "scenario": "mixed25",
+            "success": true,
+            "targets": 16,
+            "cleared": 16,
+            "virtual_seconds": 5303.353809580269
+          }
+        ]
+      },
+      "promoted_to_new_holdout": false,
+      "deployed_to_default_or_official_entry": false,
+      "decision": "Archive as a negative development result: preserving a shorter route through estimated centers does not ensure earlier source discovery."
+    }
+  },
+  "input_sha256": {
+    "output/q4_speedup/geometry_holdout100/runs.jsonl": "6099e3a4c8ccc843470c61455498f9f40ae029052eb288e6c2340d1f7d193d25",
+    "output/q4_speedup/prior_holdout100/runs.jsonl": "e09356bc800ab4d5976e04974521cb282a62c9bf84a192d4833e8ba8d361ba68",
+    "output/q4_speedup/cells_confirm200/runs.jsonl": "6a70689f9936cca243ecebe78f89eab1593daf03941c1579bc840d68d3dd8d9d",
+    "output/q4_speedup/schedule_dev/compute100/summary.json": "bc5feea680501bc37fd2d8115f309a08f856ece703b10a1bdcf8182f9ce313d6",
+    "output/q4_speedup/schedule_dev/coverage_compute100/summary.json": "6390664fcce3dd395ded31cacd2ec12a6f971ce81a60ffa9a5630e47aa96e08a",
+    "output/q4_speedup/windows_adapter_evidence/Q4Practice/output/q4_speedup/schedule_dev/adapter_speedup/results.json": "f50bf7201e2f53f732811ce97f9315cd7a16a39bb529f676343ecc8869ae2b43",
+    "output/q4_speedup/frozen_candidates/freeze.json": "43d5da35421546b53dbf11d6dedf6609c9c537d835a2ea3cb21f672d9f531043",
+    "output/q4_speedup/cells_confirm_protocol.json": "e2a666956679ce937a6e413cc8094e4a1ef584b7cd9288d89f02c1797260ffe9",
+    "code/experiments/q4_official_practice/run_speedup.py": "e54882a8c9791c64462040c750aa25d8a947a223c09ef92ec355936f8437f583",
+    "output/q4_speedup/original_source_preservation.json": "4371e276758ff822aeac6f0737377b516f1aae62248a0793a5aa306147cfccf5",
+    "output/q4_speedup/windows_adapter_evidence/guest_source_audit.json": "c37e8d859242cf5db15d2bb79b1dbac2b7d8bb893bbc5e14ea026e03023ebe3b",
+    "output/q4_speedup/deployment_manifest_v2.json": "17718df3b817c5f017b68f3e9ab665cad027254c077047bc1a18a5636216e2b5",
+    "output/q4_speedup/windows_adapter_evidence/q4_speedup_adapter_console.txt": "9f308749fc03f9a96377912bbb4c32dcbdf29f073f39e4e77c41bfd8da1c8521",
+    "output/q4_speedup/incumbent_dev40/summary.json": "7905a8ccedcad2ede146aa39e8d8923705b8c36a70d6af175375c6f33b0a25c4",
+    "output/q4_speedup/incumbent_dev40/runs.jsonl": "c349a5556c59859c0fe788dee30bf32d016ce6a4dffdfc644a3c988a09e7f5c5",
+    "output/q4_speedup/incumbent_dev40/known_worst_replay.json": "c0eca6a5867ee0c3aa22c7a87a54a55f76871d52d21be8f93626650ecca350d8",
+    "output/q4_speedup/combined_dev40/summary.json": "1eb879dc5bbbee122b457ec5875f1ae2ecf6b2e70540d5532737e10116563b8a"
+  }
+}

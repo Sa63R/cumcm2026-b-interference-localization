@@ -1,0 +1,44 @@
+jammers/client/internal/simcore.normalizeDegrees
+Virtual address: 0x1404f5960
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f5960: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+1404f5964: 76 3c                       	jbe	0x1404f59a2 <.text+0x4f49a2>
+1404f5966: 55                          	push	rbp
+1404f5967: 48 89 e5                    	mov	rbp, rsp
+1404f596a: 48 83 ec 10                 	sub	rsp, 0x10
+1404f596e: 90                          	nop
+1404f596f: f2 0f 10 0d e1 4f 40 00     	movsd	xmm1, qword ptr [rip + 0x404fe1] # 0x1408fa958 ; f64=360.0
+1404f5977: e8 04 b2 be ff              	call	0x1400e0b80 <.text+0xdfb80> ; math.mod
+1404f597c: 0f 57 d2                    	xorps	xmm2, xmm2
+1404f597f: 66 0f 2e d0                 	ucomisd	xmm2, xmm0
+1404f5983: 76 0c                       	jbe	0x1404f5991 <.text+0x4f4991>
+1404f5985: f2 0f 10 0d cb 4f 40 00     	movsd	xmm1, qword ptr [rip + 0x404fcb] # 0x1408fa958 ; f64=360.0
+1404f598d: f2 0f 58 c1                 	addsd	xmm0, xmm1
+1404f5991: 66 0f 2e c2                 	ucomisd	xmm0, xmm2
+1404f5995: 75 05                       	jne	0x1404f599c <.text+0x4f499c>
+1404f5997: 7a 03                       	jp	0x1404f599c <.text+0x4f499c>
+1404f5999: 0f 57 c0                    	xorps	xmm0, xmm0
+1404f599c: 48 83 c4 10                 	add	rsp, 0x10
+1404f59a0: 5d                          	pop	rbp
+1404f59a1: c3                          	ret
+1404f59a2: f2 0f 11 44 24 08           	movsd	qword ptr [rsp + 0x8], xmm0
+1404f59a8: e8 93 6c b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f59ad: f2 0f 10 44 24 08           	movsd	xmm0, qword ptr [rsp + 0x8]
+1404f59b3: eb ab                       	jmp	0x1404f5960 <.text+0x4f4960>
+1404f59b5: cc                          	int3
+1404f59b6: cc                          	int3
+1404f59b7: cc                          	int3
+1404f59b8: cc                          	int3
+1404f59b9: cc                          	int3
+1404f59ba: cc                          	int3
+1404f59bb: cc                          	int3
+1404f59bc: cc                          	int3
+1404f59bd: cc                          	int3
+1404f59be: cc                          	int3
+1404f59bf: cc                          	int3

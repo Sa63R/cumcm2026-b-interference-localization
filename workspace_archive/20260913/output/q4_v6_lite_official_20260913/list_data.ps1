@@ -1,0 +1,2 @@
+$roots=@('C:\Users\baiwc\Downloads\Q4Practice\Jammers-simulator\JammersSimulatorData','C:\Users\baiwc\AppData\Roaming\jammers-simulator.exe')
+@(Get-ChildItem $roots -Recurse -File -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 12 FullName,Length,LastWriteTime) | ConvertTo-Json -Depth 4 | Out-File 'C:\Users\baiwc\Downloads\Q4V6Lite_20260913\data_listing.json' -Encoding utf8

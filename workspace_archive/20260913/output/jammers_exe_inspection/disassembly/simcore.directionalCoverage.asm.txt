@@ -1,0 +1,96 @@
+jammers/client/internal/simcore.directionalCoverage
+Virtual address: 0x1404f57e0
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f57e0: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+1404f57e4: 0f 86 ff 00 00 00           	jbe	0x1404f58e9 <.text+0x4f48e9>
+1404f57ea: 55                          	push	rbp
+1404f57eb: 48 89 e5                    	mov	rbp, rsp
+1404f57ee: 48 83 ec 10                 	sub	rsp, 0x10
+1404f57f2: 88 44 24 30                 	mov	byte ptr [rsp + 0x30], al
+1404f57f6: 48 89 5c 24 38              	mov	qword ptr [rsp + 0x38], rbx
+1404f57fb: 48 89 4c 24 40              	mov	qword ptr [rsp + 0x40], rcx
+1404f5800: 48 89 7c 24 48              	mov	qword ptr [rsp + 0x48], rdi
+1404f5805: 48 89 74 24 50              	mov	qword ptr [rsp + 0x50], rsi
+1404f580a: 4c 89 44 24 58              	mov	qword ptr [rsp + 0x58], r8
+1404f580f: 4c 89 4c 24 60              	mov	qword ptr [rsp + 0x60], r9
+1404f5814: 49 83 f8 04                 	cmp	r8, 0x4
+1404f5818: 75 08                       	jne	0x1404f5822 <.text+0x4f4822>
+1404f581a: 81 3e 6f 6d 6e 69           	cmp	dword ptr [rsi], 0x696e6d6f
+1404f5820: 74 0b                       	je	0x1404f582d <.text+0x4f482d>
+1404f5822: 0f 57 db                    	xorps	xmm3, xmm3
+1404f5825: 66 0f 2e d3                 	ucomisd	xmm2, xmm3
+1404f5829: 75 0d                       	jne	0x1404f5838 <.text+0x4f4838>
+1404f582b: 7a 0b                       	jp	0x1404f5838 <.text+0x4f4838>
+1404f582d: b8 01 00 00 00              	mov	eax, 0x1
+1404f5832: 48 83 c4 10                 	add	rsp, 0x10
+1404f5836: 5d                          	pop	rbp
+1404f5837: c3                          	ret
+1404f5838: 48 8b 44 24 40              	mov	rax, qword ptr [rsp + 0x40]
+1404f583d: 0f 57 d2                    	xorps	xmm2, xmm2
+1404f5840: f2 48 0f 2a d0              	cvtsi2sd	xmm2, rax
+1404f5845: f2 0f 10 1d ab 4b 40 00     	movsd	xmm3, qword ptr [rip + 0x404bab] # 0x1408fa3f8 ; f64=1000000.0
+1404f584d: f2 0f 5e d3                 	divsd	xmm2, xmm3
+1404f5851: f2 0f 5c ca                 	subsd	xmm1, xmm2
+1404f5855: 48 8b 44 24 38              	mov	rax, qword ptr [rsp + 0x38]
+1404f585a: 0f 57 d2                    	xorps	xmm2, xmm2
+1404f585d: f2 48 0f 2a d0              	cvtsi2sd	xmm2, rax
+1404f5862: f2 0f 5e d3                 	divsd	xmm2, xmm3
+1404f5866: f2 0f 5c c2                 	subsd	xmm0, xmm2
+1404f586a: 0f 10 d0                    	movups	xmm2, xmm0
+1404f586d: 0f 10 c1                    	movups	xmm0, xmm1
+1404f5870: 0f 10 ca                    	movups	xmm1, xmm2
+1404f5873: e8 28 a8 be ff              	call	0x1400e00a0 <.text+0xdf0a0> ; math.atan2
+1404f5878: f2 0f 10 15 d0 50 40 00     	movsd	xmm2, qword ptr [rip + 0x4050d0] # 0x1408fa950 ; f64=180.0
+1404f5880: f2 0f 59 c2                 	mulsd	xmm0, xmm2
+1404f5884: f2 0f 10 15 e4 4d 40 00     	movsd	xmm2, qword ptr [rip + 0x404de4] # 0x1408fa670 ; f64=3.141592653589793
+1404f588c: f2 0f 5e c2                 	divsd	xmm0, xmm2
+1404f5890: e8 cb 00 00 00              	call	0x1404f5960 <.text+0x4f4960> ; jammers/client/internal/simcore.normalizeDegrees
+1404f5895: 48 8b 44 24 60              	mov	rax, qword ptr [rsp + 0x60]
+1404f589a: 48 8b 00                    	mov	rax, qword ptr [rax]
+1404f589d: 0f 57 d2                    	xorps	xmm2, xmm2
+1404f58a0: f2 48 0f 2a d0              	cvtsi2sd	xmm2, rax
+1404f58a5: f2 0f 10 1d 4b 4b 40 00     	movsd	xmm3, qword ptr [rip + 0x404b4b] # 0x1408fa3f8 ; f64=1000000.0
+1404f58ad: f2 0f 5e d3                 	divsd	xmm2, xmm3
+1404f58b1: f2 0f 5c c2                 	subsd	xmm0, xmm2
+1404f58b5: f2 0f 10 0d 9b 50 40 00     	movsd	xmm1, qword ptr [rip + 0x40509b] # 0x1408fa958 ; f64=360.0
+1404f58bd: 0f 1f 00                    	nop	dword ptr [rax]
+1404f58c0: e8 1b ba be ff              	call	0x1400e12e0 <.text+0xe02e0> ; math.remainder
+1404f58c5: 66 48 0f 7e c0              	movq	rax, xmm0
+1404f58ca: 48 0f ba f0 3f              	btr	rax, 0x3f
+1404f58cf: 66 48 0f 6e d0              	movq	xmm2, rax
+1404f58d4: f2 0f 10 1d 6c 50 40 00     	movsd	xmm3, qword ptr [rip + 0x40506c] # 0x1408fa948 ; f64=90.000000001
+1404f58dc: 66 0f 2e da                 	ucomisd	xmm3, xmm2
+1404f58e0: 0f 93 c0                    	setae	al
+1404f58e3: 48 83 c4 10                 	add	rsp, 0x10
+1404f58e7: 5d                          	pop	rbp
+1404f58e8: c3                          	ret
+1404f58e9: f2 0f 11 44 24 08           	movsd	qword ptr [rsp + 0x8], xmm0
+1404f58ef: f2 0f 11 4c 24 10           	movsd	qword ptr [rsp + 0x10], xmm1
+1404f58f5: 88 44 24 18                 	mov	byte ptr [rsp + 0x18], al
+1404f58f9: 48 89 5c 24 20              	mov	qword ptr [rsp + 0x20], rbx
+1404f58fe: 48 89 4c 24 28              	mov	qword ptr [rsp + 0x28], rcx
+1404f5903: 48 89 7c 24 30              	mov	qword ptr [rsp + 0x30], rdi
+1404f5908: 48 89 74 24 38              	mov	qword ptr [rsp + 0x38], rsi
+1404f590d: 4c 89 44 24 40              	mov	qword ptr [rsp + 0x40], r8
+1404f5912: 4c 89 4c 24 48              	mov	qword ptr [rsp + 0x48], r9
+1404f5917: f2 0f 11 54 24 50           	movsd	qword ptr [rsp + 0x50], xmm2
+1404f591d: 0f 1f 00                    	nop	dword ptr [rax]
+1404f5920: e8 1b 6d b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f5925: f2 0f 10 44 24 08           	movsd	xmm0, qword ptr [rsp + 0x8]
+1404f592b: f2 0f 10 4c 24 10           	movsd	xmm1, qword ptr [rsp + 0x10]
+1404f5931: 0f b6 44 24 18              	movzx	eax, byte ptr [rsp + 0x18]
+1404f5936: 48 8b 5c 24 20              	mov	rbx, qword ptr [rsp + 0x20]
+1404f593b: 48 8b 4c 24 28              	mov	rcx, qword ptr [rsp + 0x28]
+1404f5940: 48 8b 7c 24 30              	mov	rdi, qword ptr [rsp + 0x30]
+1404f5945: 48 8b 74 24 38              	mov	rsi, qword ptr [rsp + 0x38]
+1404f594a: 4c 8b 44 24 40              	mov	r8, qword ptr [rsp + 0x40]
+1404f594f: 4c 8b 4c 24 48              	mov	r9, qword ptr [rsp + 0x48]
+1404f5954: f2 0f 10 54 24 50           	movsd	xmm2, qword ptr [rsp + 0x50]
+1404f595a: e9 81 fe ff ff              	jmp	0x1404f57e0 <.text+0x4f47e0>
+1404f595f: cc                          	int3

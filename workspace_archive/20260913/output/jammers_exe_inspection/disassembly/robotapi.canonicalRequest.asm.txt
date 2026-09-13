@@ -1,0 +1,166 @@
+jammers/client/internal/robotapi.canonicalRequest
+Virtual address: 0x140502a80
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+140502a80: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+140502a84: 0f 86 fd 01 00 00           	jbe	0x140502c87 <.text+0x501c87>
+140502a8a: 55                          	push	rbp
+140502a8b: 48 89 e5                    	mov	rbp, rsp
+140502a8e: 48 83 ec 60                 	sub	rsp, 0x60
+140502a92: 44 88 9c 24 b8 00 00 00     	mov	byte ptr [rsp + 0xb8], r11b
+140502a9a: f2 0f 11 84 24 c0 00 00 00  	movsd	qword ptr [rsp + 0xc0], xmm0
+140502aa3: f2 0f 11 8c 24 c8 00 00 00  	movsd	qword ptr [rsp + 0xc8], xmm1
+140502aac: 4c 89 94 24 b0 00 00 00     	mov	qword ptr [rsp + 0xb0], r10
+140502ab4: 4c 89 8c 24 a8 00 00 00     	mov	qword ptr [rsp + 0xa8], r9
+140502abc: 4c 89 84 24 a0 00 00 00     	mov	qword ptr [rsp + 0xa0], r8
+140502ac4: 48 89 b4 24 98 00 00 00     	mov	qword ptr [rsp + 0x98], rsi
+140502acc: 48 89 bc 24 90 00 00 00     	mov	qword ptr [rsp + 0x90], rdi
+140502ad4: 48 89 8c 24 88 00 00 00     	mov	qword ptr [rsp + 0x88], rcx
+140502adc: 48 89 9c 24 80 00 00 00     	mov	qword ptr [rsp + 0x80], rbx
+140502ae4: 48 89 44 24 78              	mov	qword ptr [rsp + 0x78], rax
+140502ae9: 0f b6 54 24 70              	movzx	edx, byte ptr [rsp + 0x70]
+140502aee: 83 ca 01                    	or	edx, 0x1
+140502af1: 88 54 24 2f                 	mov	byte ptr [rsp + 0x2f], dl
+140502af5: 90                          	nop
+140502af6: 31 c0                       	xor	eax, eax
+140502af8: 48 8d 1d ba 34 30 00        	lea	rbx, [rip + 0x3034ba]   # 0x140805fb9 ; text_prefix='jammers-robot-request-v1'
+140502aff: b9 19 00 00 00              	mov	ecx, 0x19
+140502b04: e8 97 85 b6 ff              	call	0x14006b0a0 <.text+0x6a0a0> ; runtime.stringtoslicebyte
+140502b09: 48 8d 54 24 38              	lea	rdx, [rsp + 0x38]
+140502b0e: 44 0f 11 3a                 	movups	xmmword ptr [rdx], xmm15
+140502b12: 44 0f 11 7a 10              	movups	xmmword ptr [rdx + 0x10], xmm15
+140502b17: 44 0f 11 7a 18              	movups	xmmword ptr [rdx + 0x18], xmm15
+140502b1c: 48 89 5c 24 40              	mov	qword ptr [rsp + 0x40], rbx
+140502b21: 48 89 4c 24 48              	mov	qword ptr [rsp + 0x48], rcx
+140502b26: 48 89 44 24 38              	mov	qword ptr [rsp + 0x38], rax
+140502b2b: 48 89 d0                    	mov	rax, rdx
+140502b2e: 48 8b 9c 24 80 00 00 00     	mov	rbx, qword ptr [rsp + 0x80]
+140502b36: e8 a5 47 ba ff              	call	0x1400a72e0 <.text+0xa62e0> ; bytes.(*Buffer).WriteByte
+140502b3b: 48 8d 44 24 38              	lea	rax, [rsp + 0x38]
+140502b40: 48 8b 5c 24 78              	mov	rbx, qword ptr [rsp + 0x78]
+140502b45: 48 8b 8c 24 80 00 00 00     	mov	rcx, qword ptr [rsp + 0x80]
+140502b4d: e8 2e 42 ba ff              	call	0x1400a6d80 <.text+0xa5d80> ; bytes.(*Buffer).WriteString
+140502b52: 48 8d 44 24 38              	lea	rax, [rsp + 0x38]
+140502b57: 48 8b 9c 24 90 00 00 00     	mov	rbx, qword ptr [rsp + 0x90]
+140502b5f: 90                          	nop
+140502b60: e8 7b 47 ba ff              	call	0x1400a72e0 <.text+0xa62e0> ; bytes.(*Buffer).WriteByte
+140502b65: 48 8d 44 24 38              	lea	rax, [rsp + 0x38]
+140502b6a: 48 8b 9c 24 88 00 00 00     	mov	rbx, qword ptr [rsp + 0x88]
+140502b72: 48 8b 8c 24 90 00 00 00     	mov	rcx, qword ptr [rsp + 0x90]
+140502b7a: e8 01 42 ba ff              	call	0x1400a6d80 <.text+0xa5d80> ; bytes.(*Buffer).WriteString
+140502b7f: 48 8d 44 24 38              	lea	rax, [rsp + 0x38]
+140502b84: 48 8b 9c 24 98 00 00 00     	mov	rbx, qword ptr [rsp + 0x98]
+140502b8c: 48 8b 8c 24 a0 00 00 00     	mov	rcx, qword ptr [rsp + 0xa0]
+140502b94: e8 87 01 00 00              	call	0x140502d20 <.text+0x501d20> ; jammers/client/internal/robotapi.writeUint16String
+140502b99: 48 8d 44 24 38              	lea	rax, [rsp + 0x38]
+140502b9e: 48 8b 9c 24 a8 00 00 00     	mov	rbx, qword ptr [rsp + 0xa8]
+140502ba6: 48 8b 8c 24 b0 00 00 00     	mov	rcx, qword ptr [rsp + 0xb0]
+140502bae: e8 6d 01 00 00              	call	0x140502d20 <.text+0x501d20> ; jammers/client/internal/robotapi.writeUint16String
+140502bb3: 0f b6 54 24 2f              	movzx	edx, byte ptr [rsp + 0x2f]
+140502bb8: 0f 1f 84 00 00 00 00 00     	nop	dword ptr [rax + rax]
+140502bc0: 80 fa 03                    	cmp	dl, 0x3
+140502bc3: 0f 85 81 00 00 00           	jne	0x140502c4a <.text+0x501c4a>
+140502bc9: 48 8d 44 24 38              	lea	rax, [rsp + 0x38]
+140502bce: 0f b6 9c 24 b8 00 00 00     	movzx	ebx, byte ptr [rsp + 0xb8]
+140502bd6: e8 05 47 ba ff              	call	0x1400a72e0 <.text+0xa62e0> ; bytes.(*Buffer).WriteByte
+140502bdb: 48 c7 44 24 27 00 00 00 00  	mov	qword ptr [rsp + 0x27], 0x0
+140502be4: f2 0f 10 84 24 c0 00 00 00  	movsd	xmm0, qword ptr [rsp + 0xc0]
+140502bed: 66 48 0f 7e c1              	movq	rcx, xmm0
+140502bf2: 48 0f c9                    	bswap	rcx
+140502bf5: f2 0f 10 84 24 c8 00 00 00  	movsd	xmm0, qword ptr [rsp + 0xc8]
+140502bfe: 66 48 0f 7e c2              	movq	rdx, xmm0
+140502c03: 48 0f ca                    	bswap	rdx
+140502c06: 48 89 54 24 30              	mov	qword ptr [rsp + 0x30], rdx
+140502c0b: 90                          	nop
+140502c0c: 90                          	nop
+140502c0d: 48 89 4c 24 27              	mov	qword ptr [rsp + 0x27], rcx
+140502c12: 48 8d 44 24 38              	lea	rax, [rsp + 0x38]
+140502c17: 48 8d 5c 24 27              	lea	rbx, [rsp + 0x27]
+140502c1c: b9 08 00 00 00              	mov	ecx, 0x8
+140502c21: 89 cf                       	mov	edi, ecx
+140502c23: e8 58 40 ba ff              	call	0x1400a6c80 <.text+0xa5c80> ; bytes.(*Buffer).Write
+140502c28: 90                          	nop
+140502c29: 90                          	nop
+140502c2a: 48 8b 4c 24 30              	mov	rcx, qword ptr [rsp + 0x30]
+140502c2f: 48 89 4c 24 27              	mov	qword ptr [rsp + 0x27], rcx
+140502c34: 48 8d 44 24 38              	lea	rax, [rsp + 0x38]
+140502c39: 48 8d 5c 24 27              	lea	rbx, [rsp + 0x27]
+140502c3e: b9 08 00 00 00              	mov	ecx, 0x8
+140502c43: 89 cf                       	mov	edi, ecx
+140502c45: e8 36 40 ba ff              	call	0x1400a6c80 <.text+0xa5c80> ; bytes.(*Buffer).Write
+140502c4a: 48 8b 5c 24 40              	mov	rbx, qword ptr [rsp + 0x40]
+140502c4f: 48 8b 54 24 50              	mov	rdx, qword ptr [rsp + 0x50]
+140502c54: 48 39 da                    	cmp	rdx, rbx
+140502c57: 77 28                       	ja	0x140502c81 <.text+0x501c81>
+140502c59: 48 8b 74 24 38              	mov	rsi, qword ptr [rsp + 0x38]
+140502c5e: 48 8b 4c 24 48              	mov	rcx, qword ptr [rsp + 0x48]
+140502c63: 48 29 d1                    	sub	rcx, rdx
+140502c66: 48 29 d3                    	sub	rbx, rdx
+140502c69: 48 89 cf                    	mov	rdi, rcx
+140502c6c: 48 f7 df                    	neg	rdi
+140502c6f: 48 c1 ff 3f                 	sar	rdi, 0x3f
+140502c73: 48 21 fa                    	and	rdx, rdi
+140502c76: 48 8d 04 16                 	lea	rax, [rsi + rdx]
+140502c7a: 48 83 c4 60                 	add	rsp, 0x60
+140502c7e: 5d                          	pop	rbp
+140502c7f: 90                          	nop
+140502c80: c3                          	ret
+140502c81: e8 fa b7 b8 ff              	call	0x14008e480 <.text+0x8d480> ; runtime.panicBounds
+140502c86: 90                          	nop
+140502c87: 48 89 44 24 10              	mov	qword ptr [rsp + 0x10], rax
+140502c8c: 48 89 5c 24 18              	mov	qword ptr [rsp + 0x18], rbx
+140502c91: 48 89 4c 24 20              	mov	qword ptr [rsp + 0x20], rcx
+140502c96: 48 89 7c 24 28              	mov	qword ptr [rsp + 0x28], rdi
+140502c9b: 48 89 74 24 30              	mov	qword ptr [rsp + 0x30], rsi
+140502ca0: 4c 89 44 24 38              	mov	qword ptr [rsp + 0x38], r8
+140502ca5: 4c 89 4c 24 40              	mov	qword ptr [rsp + 0x40], r9
+140502caa: 4c 89 54 24 48              	mov	qword ptr [rsp + 0x48], r10
+140502caf: 44 88 5c 24 50              	mov	byte ptr [rsp + 0x50], r11b
+140502cb4: f2 0f 11 44 24 58           	movsd	qword ptr [rsp + 0x58], xmm0
+140502cba: f2 0f 11 4c 24 60           	movsd	qword ptr [rsp + 0x60], xmm1
+140502cc0: e8 7b 99 b8 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+140502cc5: 48 8b 44 24 10              	mov	rax, qword ptr [rsp + 0x10]
+140502cca: 48 8b 5c 24 18              	mov	rbx, qword ptr [rsp + 0x18]
+140502ccf: 48 8b 4c 24 20              	mov	rcx, qword ptr [rsp + 0x20]
+140502cd4: 48 8b 7c 24 28              	mov	rdi, qword ptr [rsp + 0x28]
+140502cd9: 48 8b 74 24 30              	mov	rsi, qword ptr [rsp + 0x30]
+140502cde: 4c 8b 44 24 38              	mov	r8, qword ptr [rsp + 0x38]
+140502ce3: 4c 8b 4c 24 40              	mov	r9, qword ptr [rsp + 0x40]
+140502ce8: 4c 8b 54 24 48              	mov	r10, qword ptr [rsp + 0x48]
+140502ced: 44 0f b6 5c 24 50           	movzx	r11d, byte ptr [rsp + 0x50]
+140502cf3: f2 0f 10 44 24 58           	movsd	xmm0, qword ptr [rsp + 0x58]
+140502cf9: f2 0f 10 4c 24 60           	movsd	xmm1, qword ptr [rsp + 0x60]
+140502cff: 90                          	nop
+140502d00: e9 7b fd ff ff              	jmp	0x140502a80 <.text+0x501a80>
+140502d05: cc                          	int3
+140502d06: cc                          	int3
+140502d07: cc                          	int3
+140502d08: cc                          	int3
+140502d09: cc                          	int3
+140502d0a: cc                          	int3
+140502d0b: cc                          	int3
+140502d0c: cc                          	int3
+140502d0d: cc                          	int3
+140502d0e: cc                          	int3
+140502d0f: cc                          	int3
+140502d10: cc                          	int3
+140502d11: cc                          	int3
+140502d12: cc                          	int3
+140502d13: cc                          	int3
+140502d14: cc                          	int3
+140502d15: cc                          	int3
+140502d16: cc                          	int3
+140502d17: cc                          	int3
+140502d18: cc                          	int3
+140502d19: cc                          	int3
+140502d1a: cc                          	int3
+140502d1b: cc                          	int3
+140502d1c: cc                          	int3
+140502d1d: cc                          	int3
+140502d1e: cc                          	int3
+140502d1f: cc                          	int3

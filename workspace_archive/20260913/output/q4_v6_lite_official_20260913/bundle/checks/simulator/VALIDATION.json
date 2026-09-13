@@ -1,0 +1,37 @@
+{
+  "automated_tests": 23,
+  "test_runtime": "Python 3.12.14",
+  "tests_passed": true,
+  "existing_client_http_integration": true,
+  "unit_command": "../state-optimization/.venv/bin/python -m unittest discover -s tests -v",
+  "batches": [
+    {
+      "problem": 3,
+      "cases": 10,
+      "all_cleared": 10,
+      "policy_errors": 0,
+      "mean_virtual_time_s": 20260.624216300006,
+      "replay_actions": 9880,
+      "replay_all_matched": true
+    },
+    {
+      "problem": 4,
+      "cases": 10,
+      "all_cleared": 10,
+      "policy_errors": 0,
+      "mean_virtual_time_s": 20149.1061348,
+      "replay_actions": 10263,
+      "replay_all_matched": true
+    }
+  ],
+  "browser_checks": [
+    "truth toggle",
+    "baseline 14/14 demo completion",
+    "new scenario",
+    "manual enter",
+    "manual measure 300,400 at 105 seconds"
+  ],
+  "official_runtime_comparison": false,
+  "core_sha256": "05b213d8b867469456a798da2abf6f92b40cf7d25b699cf4ff4ac82f2e6737c7",
+  "algorithm_sha256": "053686ff46ecccaddd522026c192108603be5b79be9db59cac623704ad232deb"
+}

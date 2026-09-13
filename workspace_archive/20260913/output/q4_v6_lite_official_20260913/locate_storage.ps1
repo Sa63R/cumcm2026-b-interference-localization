@@ -1,0 +1,3 @@
+$ErrorActionPreference='Stop'
+$exe='C:\Users\baiwc\Downloads\Q4Practice\Jammers-simulator'
+@{exe_files=@(Get-ChildItem $exe -Force | Select-Object Name,Length,Mode);other_dirs=@(Get-ChildItem 'C:\Users\baiwc\AppData\Local','C:\Users\baiwc\AppData\Roaming' -Directory -ErrorAction SilentlyContinue | Where-Object {$_.Name -match 'jammer|simul|cumcm'} | Select-Object FullName);locations=@(Get-ChildItem 'C:\Windows\SysWOW64' -File -Filter '*.jlog' -ErrorAction SilentlyContinue | Select-Object Name,Length)} | ConvertTo-Json -Depth 6 | Out-File 'C:\Users\baiwc\Downloads\Q4V6Lite_20260913\storage_probe.json' -Encoding utf8

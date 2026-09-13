@@ -1,0 +1,79 @@
+{
+  "kind": "Exact execution equivalence and CPU-only optimization; not virtual task improvement",
+  "shared_machine": true,
+  "timing": "Rotating paired serial runs; process_time and perf_counter; one comparison per case; trace recording enabled; cache enter/exit included; simulator setup and coverage audit excluded",
+  "seed_base": 230400000,
+  "cases_per_group": 10,
+  "groups": [
+    [
+      "all_omni",
+      0.0,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed25",
+      0.25,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed50",
+      0.5,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed75",
+      0.75,
+      "uniform",
+      "hash"
+    ],
+    [
+      "all_directional",
+      1.0,
+      "uniform",
+      "hash"
+    ],
+    [
+      "boundary_directional",
+      1.0,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "boundary_mixed",
+      0.5,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "plus1",
+      0.5,
+      "uniform",
+      "plus"
+    ],
+    [
+      "minus1",
+      0.5,
+      "uniform",
+      "minus"
+    ],
+    [
+      "clustered",
+      0.75,
+      "clustered",
+      "hash"
+    ]
+  ],
+  "physical_error_deg": 1.0,
+  "display_round_deg": 0.01,
+  "geometric_bound_deg": 1.005,
+  "cache_limits": {
+    "polygon": 2048,
+    "gain": 512,
+    "route": 128,
+    "optical": 512
+  },
+  "acceleration_sha256": "822ad5b9ee23ae30ce2b3db8f8e40b822d0e1423a801a014c8961090fc8598ad"
+}

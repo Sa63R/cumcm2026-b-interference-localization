@@ -1,0 +1,171 @@
+jammers/client/internal/simcore.(*Engine).moveTo
+Virtual address: 0x1404f5580
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f5580: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+1404f5584: 0f 86 0e 02 00 00           	jbe	0x1404f5798 <.text+0x4f4798>
+1404f558a: 55                          	push	rbp
+1404f558b: 48 89 e5                    	mov	rbp, rsp
+1404f558e: 48 83 ec 30                 	sub	rsp, 0x30
+1404f5592: 0f 57 d2                    	xorps	xmm2, xmm2
+1404f5595: 66 0f 2e d0                 	ucomisd	xmm2, xmm0
+1404f5599: 75 05                       	jne	0x1404f55a0 <.text+0x4f45a0>
+1404f559b: 7a 03                       	jp	0x1404f55a0 <.text+0x4f45a0>
+1404f559d: 0f 57 c0                    	xorps	xmm0, xmm0
+1404f55a0: 66 0f 2e d1                 	ucomisd	xmm2, xmm1
+1404f55a4: 75 05                       	jne	0x1404f55ab <.text+0x4f45ab>
+1404f55a6: 7a 03                       	jp	0x1404f55ab <.text+0x4f45ab>
+1404f55a8: 0f 57 c9                    	xorps	xmm1, xmm1
+1404f55ab: 48 89 44 24 40              	mov	qword ptr [rsp + 0x40], rax
+1404f55b0: f2 0f 11 44 24 28           	movsd	qword ptr [rsp + 0x28], xmm0
+1404f55b6: f2 0f 11 4c 24 20           	movsd	qword ptr [rsp + 0x20], xmm1
+1404f55bc: f2 0f 10 90 98 00 00 00     	movsd	xmm2, qword ptr [rax + 0x98]
+1404f55c4: f2 0f 5c c2                 	subsd	xmm0, xmm2
+1404f55c8: f2 0f 10 90 a0 00 00 00     	movsd	xmm2, qword ptr [rax + 0xa0]
+1404f55d0: f2 0f 5c ca                 	subsd	xmm1, xmm2
+1404f55d4: f2 0f 11 04 24              	movsd	qword ptr [rsp], xmm0
+1404f55d9: f2 0f 11 4c 24 08           	movsd	qword ptr [rsp + 0x8], xmm1
+1404f55df: 90                          	nop
+1404f55e0: e8 9b d1 be ff              	call	0x1400e2780 <.text+0xe1780> ; math.archHypot
+1404f55e5: 45 0f 57 ff                 	xorps	xmm15, xmm15
+1404f55e9: 4c 8b 35 a8 20 cd 00        	mov	r14, qword ptr [rip + 0xcd20a8] # 0x1411c7698
+1404f55f0: 65 4d 8b 36                 	mov	r14, qword ptr gs:[r14]
+1404f55f4: 4d 8b 36                    	mov	r14, qword ptr [r14]
+1404f55f7: f2 0f 10 05 61 53 40 00     	movsd	xmm0, qword ptr [rip + 0x405361] # 0x1408fa960 ; f64=1000000000000.0
+1404f55ff: f2 0f 59 44 24 10           	mulsd	xmm0, qword ptr [rsp + 0x10]
+1404f5605: 48 8b 44 24 40              	mov	rax, qword ptr [rsp + 0x40]
+1404f560a: 48 8b 48 28                 	mov	rcx, qword ptr [rax + 0x28]
+1404f560e: 0f 57 c9                    	xorps	xmm1, xmm1
+1404f5611: f2 48 0f 2a c9              	cvtsi2sd	xmm1, rcx
+1404f5616: f2 0f 5e c1                 	divsd	xmm0, xmm1
+1404f561a: 66 48 0f 7e c1              	movq	rcx, xmm0
+1404f561f: 48 89 ca                    	mov	rdx, rcx
+1404f5622: 48 c1 ea 34                 	shr	rdx, 0x34
+1404f5626: 81 e2 ff 07 00 00           	and	edx, 0x7ff
+1404f562c: 90                          	nop
+1404f562d: 48 81 fa ff 03 00 00        	cmp	rdx, 0x3ff
+1404f5634: 73 2c                       	jae	0x1404f5662 <.text+0x4f4662>
+1404f5636: 48 be 00 00 00 00 00 00 00 80       	movabs	rsi, -0x8000000000000000
+1404f5640: 48 21 ce                    	and	rsi, rcx
+1404f5643: 48 bf 00 00 00 00 00 00 f0 3f       	movabs	rdi, 0x3ff0000000000000
+1404f564d: 48 09 f7                    	or	rdi, rsi
+1404f5650: 48 81 fa fe 03 00 00        	cmp	rdx, 0x3fe
+1404f5657: 48 0f 44 f7                 	cmove	rsi, rdi
+1404f565b: 48 89 f7                    	mov	rdi, rsi
+1404f565e: 66 90                       	nop
+1404f5660: eb 3e                       	jmp	0x1404f56a0 <.text+0x4f46a0>
+1404f5662: 48 81 fa 33 04 00 00        	cmp	rdx, 0x433
+1404f5669: 73 32                       	jae	0x1404f569d <.text+0x4f469d>
+1404f566b: 48 81 c2 01 fc ff ff        	add	rdx, -0x3ff
+1404f5672: 48 89 cb                    	mov	rbx, rcx
+1404f5675: 48 89 d1                    	mov	rcx, rdx
+1404f5678: 48 be 00 00 00 00 00 00 08 00       	movabs	rsi, 0x8000000000000
+1404f5682: 48 d3 ee                    	shr	rsi, cl
+1404f5685: 48 01 de                    	add	rsi, rbx
+1404f5688: 48 bf ff ff ff ff ff ff 0f 00       	movabs	rdi, 0xfffffffffffff
+1404f5692: 48 d3 ef                    	shr	rdi, cl
+1404f5695: 48 f7 d7                    	not	rdi
+1404f5698: 48 21 f7                    	and	rdi, rsi
+1404f569b: eb 03                       	jmp	0x1404f56a0 <.text+0x4f46a0>
+1404f569d: 48 89 cf                    	mov	rdi, rcx
+1404f56a0: 66 48 0f 6e c7              	movq	xmm0, rdi
+1404f56a5: 90                          	nop
+1404f56a6: 0f 57 c9                    	xorps	xmm1, xmm1
+1404f56a9: 66 0f 2e c8                 	ucomisd	xmm1, xmm0
+1404f56ad: 77 0e                       	ja	0x1404f56bd <.text+0x4f46bd>
+1404f56af: f2 0f 10 0d 51 4d 40 00     	movsd	xmm1, qword ptr [rip + 0x404d51] # 0x1408fa408 ; f64=9.223372036854776e+18
+1404f56b7: 66 0f 2e c1                 	ucomisd	xmm0, xmm1
+1404f56bb: 76 38                       	jbe	0x1404f56f5 <.text+0x4f46f5>
+1404f56bd: b8 10 00 00 00              	mov	eax, 0x10
+1404f56c2: 48 8d 1d 5f b3 b1 00        	lea	rbx, [rip + 0xb1b35f]   # 0x141010a28
+1404f56c9: b9 01 00 00 00              	mov	ecx, 0x1
+1404f56ce: e8 ed d3 b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f56d3: 48 c7 40 08 1a 00 00 00     	mov	qword ptr [rax + 0x8], 0x1a
+1404f56db: 48 8d 15 33 21 31 00        	lea	rdx, [rip + 0x312133]   # 0x140807815 ; text_prefix='movement duration overflowencode behavior record: %wdecode scenario suffix: %wdestination '
+1404f56e2: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f56e5: 48 89 c3                    	mov	rbx, rax
+1404f56e8: 48 8d 05 61 23 ba 00        	lea	rax, [rip + 0xba2361]   # 0x141097a50
+1404f56ef: 48 83 c4 30                 	add	rsp, 0x30
+1404f56f3: 5d                          	pop	rbp
+1404f56f4: c3                          	ret
+1404f56f5: f2 48 0f 2c d0              	cvttsd2si	rdx, xmm0
+1404f56fa: 48 85 d2                    	test	rdx, rdx
+1404f56fd: 7c 19                       	jl	0x1404f5718 <.text+0x4f4718>
+1404f56ff: 48 8b b0 b0 00 00 00        	mov	rsi, qword ptr [rax + 0xb0]
+1404f5706: 48 bf ff ff ff ff ff ff ff 7f       	movabs	rdi, 0x7fffffffffffffff
+1404f5710: 48 29 d7                    	sub	rdi, rdx
+1404f5713: 48 39 fe                    	cmp	rsi, rdi
+1404f5716: 7e 3a                       	jle	0x1404f5752 <.text+0x4f4752>
+1404f5718: 90                          	nop
+1404f5719: b8 10 00 00 00              	mov	eax, 0x10
+1404f571e: 48 8d 1d 03 b3 b1 00        	lea	rbx, [rip + 0xb1b303]   # 0x141010a28
+1404f5725: b9 01 00 00 00              	mov	ecx, 0x1
+1404f572a: e8 91 d3 b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f572f: 48 c7 40 08 15 00 00 00     	mov	qword ptr [rax + 0x8], 0x15
+1404f5737: 48 8d 15 5d ba 30 00        	lea	rdx, [rip + 0x30ba5d]   # 0x14080119b ; text_prefix='virtual time overflowinternal error: rc %dcrypto/rsa: p is evenmldsa: nil public keyunsupp'
+1404f573e: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f5741: 48 8d 0d 08 23 ba 00        	lea	rcx, [rip + 0xba2308]   # 0x141097a50
+1404f5748: 48 89 c2                    	mov	rdx, rax
+1404f574b: 48 8b 44 24 40              	mov	rax, qword ptr [rsp + 0x40]
+1404f5750: eb 0f                       	jmp	0x1404f5761 <.text+0x4f4761>
+1404f5752: 48 8d 0c 16                 	lea	rcx, [rsi + rdx]
+1404f5756: 48 89 88 b0 00 00 00        	mov	qword ptr [rax + 0xb0], rcx
+1404f575d: 31 c9                       	xor	ecx, ecx
+1404f575f: 31 d2                       	xor	edx, edx
+1404f5761: 48 85 c9                    	test	rcx, rcx
+1404f5764: 74 0c                       	je	0x1404f5772 <.text+0x4f4772>
+1404f5766: 48 89 c8                    	mov	rax, rcx
+1404f5769: 48 89 d3                    	mov	rbx, rdx
+1404f576c: 48 83 c4 30                 	add	rsp, 0x30
+1404f5770: 5d                          	pop	rbp
+1404f5771: c3                          	ret
+1404f5772: f2 0f 10 44 24 28           	movsd	xmm0, qword ptr [rsp + 0x28]
+1404f5778: f2 0f 11 80 98 00 00 00     	movsd	qword ptr [rax + 0x98], xmm0
+1404f5780: f2 0f 10 44 24 20           	movsd	xmm0, qword ptr [rsp + 0x20]
+1404f5786: f2 0f 11 80 a0 00 00 00     	movsd	qword ptr [rax + 0xa0], xmm0
+1404f578e: 31 c0                       	xor	eax, eax
+1404f5790: 31 db                       	xor	ebx, ebx
+1404f5792: 48 83 c4 30                 	add	rsp, 0x30
+1404f5796: 5d                          	pop	rbp
+1404f5797: c3                          	ret
+1404f5798: 48 89 44 24 08              	mov	qword ptr [rsp + 0x8], rax
+1404f579d: f2 0f 11 44 24 10           	movsd	qword ptr [rsp + 0x10], xmm0
+1404f57a3: f2 0f 11 4c 24 18           	movsd	qword ptr [rsp + 0x18], xmm1
+1404f57a9: e8 92 6e b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f57ae: 48 8b 44 24 08              	mov	rax, qword ptr [rsp + 0x8]
+1404f57b3: f2 0f 10 44 24 10           	movsd	xmm0, qword ptr [rsp + 0x10]
+1404f57b9: f2 0f 10 4c 24 18           	movsd	xmm1, qword ptr [rsp + 0x18]
+1404f57bf: 90                          	nop
+1404f57c0: e9 bb fd ff ff              	jmp	0x1404f5580 <.text+0x4f4580>
+1404f57c5: cc                          	int3
+1404f57c6: cc                          	int3
+1404f57c7: cc                          	int3
+1404f57c8: cc                          	int3
+1404f57c9: cc                          	int3
+1404f57ca: cc                          	int3
+1404f57cb: cc                          	int3
+1404f57cc: cc                          	int3
+1404f57cd: cc                          	int3
+1404f57ce: cc                          	int3
+1404f57cf: cc                          	int3
+1404f57d0: cc                          	int3
+1404f57d1: cc                          	int3
+1404f57d2: cc                          	int3
+1404f57d3: cc                          	int3
+1404f57d4: cc                          	int3
+1404f57d5: cc                          	int3
+1404f57d6: cc                          	int3
+1404f57d7: cc                          	int3
+1404f57d8: cc                          	int3
+1404f57d9: cc                          	int3
+1404f57da: cc                          	int3
+1404f57db: cc                          	int3
+1404f57dc: cc                          	int3
+1404f57dd: cc                          	int3
+1404f57de: cc                          	int3
+1404f57df: cc                          	int3

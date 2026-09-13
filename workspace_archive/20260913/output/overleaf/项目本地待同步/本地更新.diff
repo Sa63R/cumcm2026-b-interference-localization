@@ -1,0 +1,597 @@
+--- a/main.tex
++++ b/main.tex
+@@ -6,6 +6,9 @@
+ \usepackage{graphicx,booktabs,tabularx,array}
+ \usepackage{enumitem,needspace,tcolorbox,fancyhdr}
+ \usepackage{tikz}
++\usepackage{caption}
++\captionsetup{font=small,labelfont=bf,labelsep=quad,hypcap=false}
++\input{figures/q1_case}
+ \usepackage[unicode,hidelinks]{hyperref}
+ \usepackage{bookmark}
+ \XeTeXgenerateactualtext=1
+--- a/q1.tex
++++ b/q1.tex
+@@ -1,20 +1,25 @@
+-% Integrated from teammate source; original preserved in Overleaf.
++% Updated from current Markdown; old standalone TeX is preserved.
+ \subsection{问题一模型的建立与求解}\label{sec:q1}
+-\subsubsection{误差角域与半平面交模型}\label{sec:q1-1}
+-示向度自 $x$ 轴正方向逆时针计量，误差不超过 $\pm 1^\circ$，故第 $i$ 次测向的含义是：干扰源位于以 $S_i$ 为顶点、以 $\theta_i$ 为中轴线、两侧各张开 $1^\circ$ 的角域内。记 $\varphi_i=\pi\theta_i/180$、$\delta=\pi\varepsilon/180=\pi/180$，以下三角函数的自变量均以弧度计，角域两条边界射线的方向为
++\subsubsection{从测向数据到定位区域}\label{sec:q1-1}
++
++设机器狗在 $n$ 个位置 $S_i=(x_i,y_i)$ 处对该干扰源测得示向度 $\theta_i$。$\theta_i$ 是自正东逆时针量到“检测点指向干扰源”方向的角度，但它并不是干扰源的真实方位：真实方位落在 $\theta_i$ 两侧各 $1^\circ$ 内。因此，干扰源一定位于以 $S_i$ 为顶点、方向在 $\theta_i\pm1^\circ$ 之间的一个 $2^\circ$ 窄楔形内。
++
++现在要把“点在楔形内”写成数学不等式。记 $\varphi_i=\pi\theta_i/180$，$\delta=\pi\varepsilon/180=\pi/180$，楔形的两条边方向分别为
+ 
+ \[
+ u_i^-=\begin{pmatrix}\cos(\varphi_i-\delta)\\ \sin(\varphi_i-\delta)\end{pmatrix},\qquad
+-u_i^+=\begin{pmatrix}\cos(\varphi_i+\delta)\\ \sin(\varphi_i+\delta)\end{pmatrix}.
++u_i^+=\begin{pmatrix}\cos(\varphi_i+\delta)\\ \sin(\varphi_i+\delta)\end{pmatrix},
+ \]
+ 
+-利用二维叉积 $a\times b=a_xb_y-a_yb_x$ 的符号判断转向，点 $X=(x,y)$ 落在该角域内等价于 $X-S_i$ 夹在两条射线之间：
++其中 $u_i^-$ 对应偏转角度的下限 $\varphi_i-\delta$，$u_i^+$ 对应上限 $\varphi_i+\delta$。判断一个点在两条边的哪一侧，可以用二维向量的叉积：对 $a=(a_x,a_y)$、$b=(b_x,b_y)$，定义 $a\times b=a_xb_y-a_yb_x$，它大于零说明 $b$ 在 $a$ 的逆时针一侧，小于零说明在顺时针一侧。于是，点 $X=(x,y)$ 落在楔形内的条件是
+ 
+ \begin{equation}\label{eq:q1-1}
+ u_i^-\times(X-S_i)\ge 0,\qquad u_i^+\times(X-S_i)\le 0.
+ \end{equation}
+ 
+-角域张角仅 $2^\circ$，式\eqref{eq:q1-1} 已排除检测点背后的反向区域。展开叉积，每次测向化为两个线性不等式：
++第一式要求 $X-S_i$ 不越过下边 $u_i^-$（在其逆时针一侧），第二式要求不越过上边 $u_i^+$（在其顺时针一侧），两式合起来就是把 $X$ 夹在两条边之间。
++
++将式\eqref{eq:q1-1} 展开：
+ 
+ \begin{equation}\label{eq:q1-2}
+ \begin{aligned}
+@@ -23,122 +28,147 @@
+ \end{aligned}
+ \end{equation}
+ 
+-将全部 $2n$ 个约束统一记为 $a_jx+b_jy\le c_j$，定位区域即
++这两个式子都是 $x$、$y$ 的一次不等式，形如 $ax+by\le c$。满足 $ax+by\le c$ 的点集是直线 $ax+by=c$ 一侧的半个平面，称为半平面，它是一个凸集。式\eqref{eq:q1-2} 的两个不等式分别对应楔形的两条边，它们的交集就是该楔形。这样就把几何上“点在楔形内”的条件，转化成了代数上两个线性不等式同时成立。
++
++$n$ 次测向后，干扰源必须同时落在每个楔形内，也就是要同时满足全部 $2n$ 个不等式。将它们统一写成 $a_jx+b_jy\le c_j$，得到定位区域
+ 
+ \begin{equation}\label{eq:q1-3}
+ P=\bigcap_{j=1}^{2n}\left\{(x,y):a_jx+b_jy\le c_j\right\}.
+ \end{equation}
+ 
+-半平面之交是凸集，故 $P$ 非空且有界时为凸多边形，退化情形为线段或点。题目图 2 的红色四边形就是 $n=2$ 时两个角域的交。
++$P$ 是 $2n$ 个半平面的交。半平面是凸集，凸集之交仍是凸集，故 $P$ 为凸集；在非空且有界时，$P$ 是\textbf{凸多边形}，退化情形为线段或点。题目图 2 中的红色四边形就是 $n=2$ 时两个楔形求交的结果。每增加一次有效测向，约束增加两条，定位区域随之收缩。
+ 
+-\subsubsection{定位区域及其直径的求解}\label{sec:q1-2}
+-求解分三步：判别有界性、提取顶点、枚举最远顶点对。
++\subsubsection{求定位区域的直径}\label{sec:q1-2}
+ 
+-若各示向度方向接近平行，角域之交会沿测向方向无限延伸，此时谈不上直径。因此先用线性规划检验约束组\eqref{eq:q1-3}：不可行说明测向数据与误差界矛盾；可行时再分别求 $x$、$-x$、$y$、$-y$ 的最大值，四者都有限才说明 $P$ 有界，否则应补充测向后再定位。
++定位区域 $P$ 是凸多边形，现在要求它的直径---区域内距离最远的一对点之间的距离。
+ 
+-$P$ 有界时，其顶点必为某两条边界直线的交点。对直线 $a_jx+b_jy=c_j$ 与 $a_kx+b_ky=c_k$，记 $\Delta_{jk}=a_jb_k-a_kb_j$，当 $\Delta_{jk}\ne 0$ 时交点为
++\textbf{首先确认区域有界。} 并非任意一组测向都能定出有限的区域。若各检测点近似共线、示向度方向接近平行，楔形之交沿某方向无限延伸，区域无界，直径为无穷大；若某次读数偏差较大，各楔形可能互不相容，区域为空。这两种情形都需要先排除。
++
++具体做法是用线性规划：先检验约束组 $\{a_jx+b_jy\le c_j\}$ 是否可行，不可行说明数据矛盾，应剔除异常的测向数据；若可行，再分别求 $x$、$-x$、$y$、$-y$ 在约束下的最大值，四者均有限当且仅当 $P$ 有界。注意，无界区域也可能有若干有限顶点（例如楔形的尖端），若跳过这一步直接取顶点对距离，会把本应为无穷的直径误报成有限值。
++
++\textbf{确认有界后，求出全部顶点。} 凸多边形的每个顶点都是某两条边界直线的交点。对直线 $a_jx+b_jy=c_j$ 与 $a_kx+b_ky=c_k$，记 $\Delta_{jk}=a_jb_k-a_kb_j$，当 $\Delta_{jk}\ne0$ 时交点为
+ 
+ \begin{equation}\label{eq:q1-4}
+ x_{jk}=\frac{c_jb_k-b_jc_k}{\Delta_{jk}},\qquad
+ y_{jk}=\frac{a_jc_k-c_ja_k}{\Delta_{jk}}.
+ \end{equation}
+ 
+-把交点代回全部约束，保留满足 $a_\ell x_{jk}+b_\ell y_{jk}\le c_\ell$（$\ell=1,\dots,2n$）者并去重，即得顶点 $v_1,\dots,v_h$。
++$\Delta_{jk}=0$ 时两直线平行，没有孤立交点，跳过。求出的交点未必在区域内，需代回全部 $2n$ 个约束检验，保留满足所有不等式者；去重后即得顶点集 $\{v_1,\dots,v_h\}$。
+ 
+-区域直径定义为 $D=\max_{X,Y\in P}\|X-Y\|_2$。对凸多边形，它就等于最远顶点对的距离：
++\textbf{有了顶点，直径就可以确定。} 按题目定义，$D=\max_{X,Y\in P}\|X-Y\|_2$。因为 $P$ 是凸多边形，我们证明这个最大值一定在顶点对上取得：
+ 
+ \begin{equation}\label{eq:q1-5}
+ D=\max_{1\le i<j\le h}\|v_i-v_j\|_2 .
+ \end{equation}
+ 
+-这是因为任意 $X,Y\in P$ 都可写成顶点的凸组合 $X=\sum_i\lambda_iv_i$、$Y=\sum_j\mu_jv_j$，于是 $X-Y=\sum_{i,j}\lambda_i\mu_j(v_i-v_j)$ 且系数和为 1，由三角不等式 $\|X-Y\|\le\max_{i,j}\|v_i-v_j\|$；而顶点本身属于 $P$，该上界可以取到。若区域退化为单点则 $D=0$；退化为线段则取两端点距离。
++理由如下。凸多边形是其全部顶点的凸包，因此 $P$ 中任意一点都可写为顶点的凸组合：存在 $\lambda_i\ge0$、$\sum_i\lambda_i=1$，使 $X=\sum_i\lambda_iv_i$；同理 $Y=\sum_j\mu_jv_j$，$\mu_j\ge0$、$\sum_j\mu_j=1$。两式相减得
+ 
+-整个流程归纳如下：
++\[
++X-Y=\sum_{i,j}\lambda_i\mu_j(v_i-v_j),
++\qquad
++\sum_{i,j}\lambda_i\mu_j=\left(\sum_i\lambda_i\right)\left(\sum_j\mu_j\right)=1 .
++\]
++
++由三角不等式，
++
++\[
++\|X-Y\|\le\sum_{i,j}\lambda_i\mu_j\|v_i-v_j\|\le\max_{i,j}\|v_i-v_j\|\cdot1=\max_{i,j}\|v_i-v_j\|,
++\]
++
++即区域内任意两点的距离都不超过最远顶点对的距离。而最远顶点对本身就是区域内的点，所以这个上界可以取到。式\eqref{eq:q1-5} 成立。
++
++综上，求直径的完整流程为：
+ 
+ \begin{tcolorbox}[colback=black!2,colframe=black!22,boxrule=0.4pt,arc=0pt,left=9pt,right=9pt,top=7pt,bottom=7pt]
+ \small\setlength{\parskip}{2pt}
+ \noindent\hangindent=1.5em\hangafter=1 输入：检测点 $S_i$、示向度 $\theta_i$，$i=1,\dots,n$\par
+-\noindent\hangindent=1.5em\hangafter=1 1  按式\eqref{eq:q1-2} 将每次测向化为两个半平面；\par
+-\noindent\hangindent=1.5em\hangafter=1 2  线性规划检验可行性与有界性，异常情形分别报告；\par
++\noindent\hangindent=1.5em\hangafter=1 1  按式\eqref{eq:q1-2} 将每次测向写成两个半平面约束；\par
++\noindent\hangindent=1.5em\hangafter=1 2  线性规划检验可行性与有界性；\par
+ \noindent\hangindent=1.5em\hangafter=1 3  按式\eqref{eq:q1-4} 求每对边界直线的交点；\par
+ \noindent\hangindent=1.5em\hangafter=1 4  保留满足全部约束的交点并去重，得顶点集；\par
+-\noindent\hangindent=1.5em\hangafter=1 5  枚举所有顶点对，取距离最大者 $(A,B)$，$D=|AB|$。\par
++\noindent\hangindent=1.5em\hangafter=1 5  比较所有顶点对的距离，取最大者 $(A,B)$，$D=|AB|$。\par
+ \end{tcolorbox}
+ 
+-边界直线共 $2n$ 条，交点枚举 $O(n^2)$ 次，每个交点检验约束需 $O(n)$，顶点数 $h\le 2n$，故总计算量 $O(n^3)$，对本题的检测点规模完全够用。程序实现时对平行判定、约束检验和去重设置数值容差即可。
++边界直线共 $2n$ 条，交点约 $\binom{2n}{2}=O(n^2)$ 个，每个交点检验约束需 $O(n)$，顶点数不超过 $2n$，比较顶点对为 $O(n^2)$，总计算量 $O(n^3)$。本题 $n$ 一般不超过十几，计算量完全可以实时完成。
+ 
+-\subsubsection{直径圆的覆盖性分析}\label{sec:q1-3}
+-设最远顶点对为 $A$、$B$，$\|A-B\|=D$。若某个半径 $D/2$ 的圆盖住了 $P$，它必须同时包含 $A$、$B$，而
++\subsubsection{直径圆能否覆盖定位区域}\label{sec:q1-3}
++
++机器狗的光学探测仪只能在距干扰源 $20$ m 以内工作。如果以定位区域直径 $D$ 为直径画一个圆，能盖住整个区域，那么只要 $D\le40$ m，机器狗走到圆心就能保证清除成功---这比计算最小包围圆要简单得多。所以问题是：这样的圆真的能盖住整个区域吗？
++
++首先要确定圆心。设最远的一对顶点为 $A$、$B$，距离为 $D$。若半径 $D/2$、圆心 $C$ 的圆覆盖了 $P$，则 $A$、$B$ 都在圆内，即 $\|A-C\|\le D/2$、$\|C-B\|\le D/2$。代入三角不等式
+ 
+ \[
+-D=\|A-B\|\le\|A-C\|+\|C-B\|\le\frac D2+\frac D2=D,
++D=\|A-B\|\le\|A-C\|+\|C-B\|\le\frac D2+\frac D2=D .
+ \]
+ 
+-两端相等迫使中间全部取等，故圆心 $C$ 只能是线段 $AB$ 的中点，记为 $C_0$。也就是说，直径恰为 $D$ 的覆盖圆没有挑选圆心的余地；又因为圆盖住全部顶点就盖住整个凸多边形，覆盖性等价于
++不等式的两端相等，故中间每一步都取等号：$\|A-C\|=\|C-B\|=D/2$，且 $C$ 在线段 $AB$ 上。这两个条件合起来，$C$ 只能是 $AB$ 的中点 $C_0=(A+B)/2$。圆是凸集，覆盖全部顶点就覆盖了整个凸多边形，所以判据为
+ 
+ \begin{equation}\label{eq:q1-6}
+ \max_{1\le i\le h}\|v_i-C_0\|\le\frac D2 .
+ \end{equation}
+ 
+-问题于是变成：式\eqref{eq:q1-6} 是否总成立？我们构造如下算例说明它可以不成立。取两个检测点
++式\eqref{eq:q1-6} 是否一定满足？下面说明它可以不成立，并给出一个满足题设条件的具体反例。
++
++\textbf{构造思路。} 要让直径圆盖不住区域，需要找到这样一个顶点：它已经跑到了直径圆外面，但它到其他顶点的距离还没有超过原来的直径---直径没变，圆却已经不够大了。
++
++先用归一化的坐标把这个想法量化。取 $A=(-1,0)$、$B=(1,0)$，$|AB|=2$，直径圆以原点为圆心、半径为 $1$。在上方放一个点 $U=(0,h)$，希望它同时满足：
++
++\begin{itemize}
++\item 跑到圆外：$h>1$；
++\item 不改变直径：$|UA|=|UB|=\sqrt{1+h^2}\le2$，即 $h\le\sqrt{3}$。
++\end{itemize}
++
++两个条件合起来是 $1<h\le\sqrt{3}$，这个区间非空。直观地理解：上顶点刚越过圆的最高点时，它离左右两端还不够远，不会产生更长的边。
++
++取 $h=1.5$，则 $|UA|=\sqrt{3.25}\approx1.803<2$，直径仍为 $2$；而上顶点距圆心 $1.5$，超出半径 $50\%$。反例的形状就有了：底边为 $2$、高为 $1.5$ 的等腰三角形。
++
++\textbf{用测向数据实现这个形状。} 将坐标放大到米，目标三角形的三个顶点为
+ 
+ \[
+-S_1=(-500,\,0),\quad\theta_1=44.5^\circ;\qquad
+-S_2=(500,\,0),\quad\theta_2=135.5^\circ,
++A=(-10,\,0),\quad B=(10,\,0),\quad U=(0,\,15).
+ \]
+ 
+-误差界仍为 $\pm 1^\circ$。记 $t=\tan 43.5^\circ$、$u=\tan 45.5^\circ$，两个角域分别为 $t(x+500)\le y\le u(x+500)$ 与 $t(500-x)\le y\le u(500-x)$，按第\ref{sec:q1-2}节方法求交得一四边形，结果见表\ref{tab:q1-counterexample}。
++三条边分别是 $y=0$（底边）、$y=1.5x+15$（左腰）、$y=-1.5x+15$（右腰）。三角形有 $3$ 条边，而每个检测点的楔形提供 $2$ 条边界线，因此用 $3$ 个检测点（$6$ 条边界线）即可实现：让其中 $3$ 条边界线分别与三角形的三条边重合，另外 $3$ 条不切入三角形内部。具体取法见表\ref{tab:q1-counterexample}。
+ 
+ \Needspace{19\baselineskip}
+-\begin{table}[htbp]
+-\centering
+-\caption{算例的顶点与覆盖性检验（单位：m）}\label{tab:q1-counterexample}
++\begin{center}
++\captionof{table}{反例的检测数据（误差界 $\pm1^\circ$）}\label{tab:q1-counterexample}
++\end{center}
+ 
+ \begin{center}
+ \renewcommand{\arraystretch}{1.3}
+-\begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}p{0.52\linewidth}X}
++\begin{tabularx}{0.98\linewidth}{>{\centering\arraybackslash}p{0.22\linewidth}>{\centering\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}X}
+ \toprule
+-\textbf{量} & \textbf{数值} \\
++\textbf{检测点 $S_i$（m）} & \textbf{示向度 $\theta_i$} & \textbf{起决定作用的边界} \\
+ \midrule
+-下顶点 $V_1$ & $(0,\ 474.482283)$ \\
+-右顶点 $V_2$ & $(17.452406,\ 491.043999)$ \\
+-上顶点 $V_3$ & $(0,\ 508.803696)$ \\
+-左顶点 $V_4$ & $(-17.452406,\ 491.043999)$ \\
+-直径 $D=\|V_2-V_4\|$ & $34.904813$ \\
+-圆心 $C_0=(V_2+V_4)/2$ & $(0,\ 491.043999)$ \\
+-直径圆半径 $D/2$ & $17.452406$ \\
+-上顶点到圆心距离 $\|V_3-C_0\|$ & $\boldsymbol{17.759698}$ \\
++$(-500,\,0)$ & $1^\circ$ & 下边界方向为 $0^\circ$，给出 $y\ge0$（底边） \\
++$(-310,\,-450)$ & $\approx55.31^\circ$ & 上边界方向为 $\arctan(1.5)$，给出 $y\le1.5x+15$（左腰） \\
++$(310,\,-450)$ & $\approx124.69^\circ$ & 下边界方向为 $180^\circ-\arctan(1.5)$，给出 $y\le-1.5x+15$（右腰） \\
+ \bottomrule
+ \end{tabularx}
+ \end{center}
+-\end{table}
+ 
+-最远点对为左右顶点 $V_2$、$V_4$，$D\approx 34.905$ m，圆心只能取 $C_0\approx(0,\ 491.044)$。但上顶点到 $C_0$ 的距离为 $508.803696-491.043999=17.759698$ m，超出半径约 $0.307$ m，落在圆外。
++其中第二个检测点的示向度取 $\theta_2=\arctan(1.5)-1^\circ\approx55.31^\circ$，第三个取 $\theta_3=181^\circ-\arctan(1.5)\approx124.69^\circ$。将三角形的三个顶点分别代入每个楔形的另一条边界线，可以验证它们均满足约束（不被裁掉），因此 $6$ 个半平面的交恰好就是三角形 $ABU$。
+ 
+-从几何上看原因很清楚：这个四边形两条对角线几乎等长（$34.905$ m 与 $34.321$ m），但水平对角线并不平分竖直对角线---交点之上高 $17.760$ m，之下只有 $16.562$ m。圆心被钉在水平对角线中点，偏低，上顶点自然探出圆外。
+-
+-该算例由两个角域直接求交产生，符合本题的测向机制；四边形整体位于目标 $1800$ m 圆域内（顶点到原点最远约 $508.8$ m），加入这一先验也不改变结果。故第二小问的答案是否定的：\textbf{以定位区域直径为直径的圆不一定能覆盖该区域，即使允许自由选择圆心也一样}。
+-
+-\subsubsection{保证覆盖时的修正：最小包围圆}\label{sec:q1-4}
+-上例说明区域直径 $D$ 与“盖住区域所需的最小圆直径”是两回事。后者由最小包围圆模型给出：
+-
+-\begin{equation}\label{eq:q1-7}
+-\min_{C,\ R}\ R
+-\qquad\text{s.t.}\quad\|v_i-C\|_2\le R,\quad i=1,\dots,h,
+-\end{equation}
+-
+-其中 $C$、$R$ 为待求的圆心与半径；由圆的凸性，约束住顶点即约束住整个区域。有限点集的最小包围圆或以两个顶点为直径两端，或由三个不共线顶点外接确定，顶点不多时枚举这两类候选圆、取覆盖全部顶点且半径最小者即可。对表\ref{tab:q1-counterexample} 的算例解得
++现在检验覆盖性。边长为 $|AB|=20$，$|AU|=|BU|=\sqrt{325}\approx18.03$，直径 $D=20$ m 由 $A$、$B$ 取得。直径圆圆心 $C_0=(0,\,0)$，半径 $D/2=10$ m。而上顶点到圆心的距离为
+ 
+ \[
+-C^*\approx(0,\ 491.348632),\qquad
+-R^*\approx 17.455065\ \text{m}>\frac D2\approx 17.452406\ \text{m},
++\|U-C_0\|=15\ \text{m}>10\ \text{m}=\frac D2,
+ \]
+ 
+-即使圆心取到最优位置，所需半径仍大于 $D/2$。
++超出半径 $5$ m，式\eqref{eq:q1-6} 不成立。
+ 
+-一般地，平面有界凸区域满足 $\dfrac D2\le R^*\le\dfrac{D}{\sqrt 3}$：下界即最远点对的要求；若最小包围圆由三点外接确定，这三点构成锐角三角形，最大内角 $\alpha\in[60^\circ,90^\circ)$，由正弦定理 $R^*=\dfrac{\text{对边}}{2\sin\alpha}\le\dfrac{D}{\sqrt 3}$，等边三角形取到上界。可见保证覆盖所需的最小半径相比 $D/2$ 最多增加约 $15.5\%$。
++% Added case illustration; the six constraints use the exact stated angles.
++\begin{center}
++\begin{minipage}{\linewidth}
++\centering
++\QOneCaseFigure
++\captionof{figure}{三次测向的角域交集与直径圆覆盖检验。左图按实际比例绘制三个误差角域；右图放大定位三角形，红色圆的半径为 $10$ m，上顶点超出 $5$ m。}
++\label{fig:q1-counterexample}
++\end{minipage}
++\end{center}
+ 
+-这一区分与后续问题直接相关：机器狗须进入距干扰源 $20$ m 范围才能光学定位，要保证在某一位置能覆盖全部候选位置，应检验 $R^*\le 20$ m，而 $D\le 40$ m 只是必要条件。
+ 
+-\subsubsection{问题一小结}\label{sec:q1-5}
+-$n$ 次测向的定位区域是 $2n$ 个半平面的交，非空有界时为凸多边形；枚举边界直线交点得到顶点后，区域直径即最远顶点对的距离，总计算量 $O(n^3)$。以 $D$ 为直径的覆盖圆圆心只能取最远点对中点，而构造的算例（$D\approx 34.905$ m）中该圆漏掉上顶点约 $0.307$ m，最小包围圆半径 $R^*\approx 17.455$ m 也大于 $D/2$，故直径圆不一定能覆盖定位区域；需要保证覆盖时应改用最小包围圆，并以 $R^*\le 20$ m 作为光学定位可达的判据。
++三个检测点到三角形中心的距离均约 $500$ m，在有效接收半径内；三角形整体位于半径 $1800$ m 的目标区域内，是完全合理的探测场景。于是问题一的第二问答案为否：
++
++\textbf{以定位区域直径为直径的圆，不一定能覆盖该定位区域。}
+--- a/figures/q1_case.tex
++++ b/figures/q1_case.tex
+@@ -0,0 +1,113 @@
++\usepackage{tikz}
++\usetikzlibrary{arrows.meta,calc,patterns}
++\definecolor{qoneink}{HTML}{203045}
++\definecolor{qoneblue}{HTML}{347DB0}
++\definecolor{qoneorange}{HTML}{CB8435}
++\definecolor{qonepurple}{HTML}{8A61A8}
++\definecolor{qoneregion}{HTML}{207C83}
++\definecolor{qonefail}{HTML}{C94E48}
++\definecolor{qonecover}{HTML}{348664}
++
++\newcommand{\QOneCaseFigure}{\resizebox{\linewidth}{!}{%
++\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
++  font=\small,text=qoneink,
++  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
++  info/.style={fill=white,inner sep=2pt,align=center}]
++\path[use as bounding box] (0,.64) rectangle (23,9.2);
++\fill[white] (0,.64) rectangle (23,9.2);
++\draw[black!15] (11.25,1.0)--(11.25,9.05);
++\node[font=\bfseries] at (5.5,8.95) {(a) 三个检测点与实际误差角域};
++\node[font=\bfseries] at (17.3,8.95) {(b) 定位区域放大与覆盖检验};
++
++% The full layout: true 2-degree sectors, no angular exaggeration.
++\begin{scope}[shift={(5.65,7.25)},x=.009cm,y=.009cm]
++  \clip (-585,-545) rectangle (540,125);
++  \foreach \x in {-500,-250,0,250,500}
++    \draw[black!7] (\x,-525)--(\x,110);
++  \foreach \y in {-500,-250,0}
++    \draw[black!7] (-560,\y)--(510,\y);
++  \draw[->,black!35] (-560,0)--(510,0);
++  \draw[->,black!35] (0,-525)--(0,110);
++
++  \fill[qoneblue!15] (-500,0)--(400,0)--({-500+900*cos(2)},{900*sin(2)})--cycle;
++  \fill[qoneorange!15] (-310,-450)
++    --({-310+680*cos(atan(1.5)-2)},{-450+680*sin(atan(1.5)-2)})
++    --({-310+680*cos(atan(1.5))},{-450+680*sin(atan(1.5))})--cycle;
++  \fill[qonepurple!15] (310,-450)
++    --({310+680*cos(180-atan(1.5))},{-450+680*sin(180-atan(1.5))})
++    --({310+680*cos(182-atan(1.5))},{-450+680*sin(182-atan(1.5))})--cycle;
++
++  \draw[qoneblue,thick] (-500,0)--(400,0);
++  \draw[qoneblue,densely dashed] (-500,0)--({-500+900*cos(2)},{900*sin(2)});
++  \draw[qoneorange,thick] (-310,-450)
++    --({-310+680*cos(atan(1.5))},{-450+680*sin(atan(1.5))});
++  \draw[qoneorange,densely dashed] (-310,-450)
++    --({-310+680*cos(atan(1.5)-2)},{-450+680*sin(atan(1.5)-2)});
++  \draw[qonepurple,thick] (310,-450)
++    --({310+680*cos(180-atan(1.5))},{-450+680*sin(180-atan(1.5))});
++  \draw[qonepurple,densely dashed] (310,-450)
++    --({310+680*cos(182-atan(1.5))},{-450+680*sin(182-atan(1.5))});
++  \filldraw[fill=qoneregion!65,draw=qoneregion,thick] (-10,0)--(10,0)--(0,15)--cycle;
++  \draw[qoneink,densely dotted] (-28,-18) rectangle (28,35);
++
++  \node[dot,fill=qoneblue] at (-500,0) {};
++  \node[dot,fill=qoneorange] at (-310,-450) {};
++  \node[dot,fill=qonepurple] at (310,-450) {};
++\end{scope}
++\node[align=left,anchor=west,qoneblue,fill=white,inner sep=2pt] at (0.6,7.9)
++  {$S_1=(-500,0)$\\$\theta_1=1^\circ$};
++\node[align=center,qoneorange] at (2.65,2.65)
++  {$S_2=(-310,-450)$\\$\theta_2\approx55.309932^\circ$};
++\node[align=center,qonepurple] at (8.3,2.65)
++  {$S_3=(310,-450)$\\$\theta_3\approx124.690068^\circ$};
++\draw[->,qoneink] (7.2,8.05)--(5.92,7.56);
++\node[anchor=west,info] at (7.05,8.05) {公共区域 $P$};
++\node[align=center,black!70,font=\footnotesize] at (5.5,1.65)
++  {每个色带的张角均为 $2^\circ$，按实际比例绘制\\
++   实线：形成三角形的边界\quad 虚线：不再裁剪三角形的边界};
++\draw[->,black!40,thick] (10.4,7.45)--(11.8,7.45);
++\node[font=\footnotesize,black!60,above] at (11.1,7.45) {放大};
++
++% Zoom: the exact feasible triangle, diameter circle.
++\begin{scope}[shift={(17.25,4.65)},scale=.21]
++  \foreach \x in {-10,0,10} \draw[black!7] (\x,-12)--(\x,17);
++  \foreach \y in {0,5,10,15} \draw[black!7] (-16,\y)--(16,\y);
++  \draw[->,black!35] (-17,0)--(18,0) node[right] {$x$};
++  \draw[->,black!35] (0,-12)--(0,18) node[above right] {$y$};
++  \fill[qoneregion!12] (-10,0)--(10,0)--(0,15)--cycle;
++  \begin{scope}
++    \clip (-10,0)--(10,0)--(0,15)--cycle;
++    \fill[qonefail!22,even odd rule]
++      (-12,-12) rectangle (12,17) (0,0) circle[radius=10cm];
++  \end{scope}
++  \draw[qonefail,very thick] (0,0) circle[radius=10cm];
++  \draw[qoneblue,very thick] (-10,0)--(10,0);
++  \draw[qoneorange,very thick] (-10,0)--(0,15);
++  \draw[qonepurple,very thick] (10,0)--(0,15);
++
++  \node[dot] at (-10,0) {};
++  \node[dot] at (10,0) {};
++  \node[dot,fill=qonefail] at (0,15) {};
++  \node[dot,fill=qonefail] at (0,0) {};
++
++  \node[below left,info] at (-10,-.3) {$A=(-10,0)$};
++  \node[below right,info] at (10,-.3) {$B=(10,0)$};
++  \node[above left,info] at (-.5,15.2) {$U=(0,15)$};
++  \node[below right,fill=white,inner sep=1pt,text=qonefail] at (.3,-.7) {$C_0$};
++  \node[qoneregion] at (-4,4.6) {$P$};
++  \node[text=qonefail,info] at (7,-5) {$r=10$};
++
++  \draw[qonefail,densely dotted] (0,10)--(14.5,10);
++  \draw[qonefail,densely dotted] (0,15)--(14.5,15);
++  \draw[<->,qonefail,thick] (13.7,10)--(13.7,15)
++    node[midway,right,fill=white,inner sep=2pt] {漏出 $5$ m};
++
++  \draw[black!35] (-10,-9)--(-10,-12.2);
++  \draw[black!35] (10,-9)--(10,-12.2);
++  \draw[<->,qoneink] (-10,-11.6)--(10,-11.6)
++    node[midway,below,fill=white,inner sep=2pt] {$D=|AB|=20$ m};
++\end{scope}
++\node[text=qonefail,font=\footnotesize,align=center] at (17.35,1.3)
++  {红色实线：直径圆\quad $C_0=(0,0)$，$r=10$ m};
++\end{tikzpicture}
++}}
+--- a/问题一_当前版.tex
++++ b/问题一_当前版.tex
+@@ -0,0 +1,227 @@
++% !TeX program = xelatex
++% UTF-8; compile twice with XeLaTeX.
++% Source: 问题一_定位区域模型.md
++% User-selected excerpt: only Section 5.1--5.3; original Markdown unchanged.
++\documentclass[UTF8,a4paper,zihao=-4,fontset=fandol]{ctexart}
++\XeTeXgenerateactualtext=1
++\usepackage[left=23mm,right=23mm,top=22mm,bottom=23mm,headheight=15pt,headsep=7mm]{geometry}
++\usepackage{amsmath,amssymb,mathtools}
++\usepackage{booktabs,tabularx,array}
++\usepackage{enumitem}
++\usepackage{needspace}
++\usepackage{tcolorbox}
++\usepackage{fancyhdr}
++\usepackage[unicode,hidelinks]{hyperref}
++\usepackage{bookmark}
++\hypersetup{pdftitle={问题一：模型的建立与求解}}
++\renewcommand{\thesection}{5.\arabic{section}}
++\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
++\ctexset{
++  section={format=\large\bfseries,beforeskip=1.2em,afterskip=0.55em},
++  subsection={format=\normalsize\bfseries,beforeskip=0.9em,afterskip=0.35em}
++}
++\linespread{1.16}
++\setlength{\parskip}{0.25em}
++\setlength{\emergencystretch}{2em}
++\setlist[enumerate]{label=\arabic*.,leftmargin=2em,itemsep=0.15em,topsep=0.4em,parsep=0pt}
++\setlist[itemize]{leftmargin=2em,itemsep=0.15em,topsep=0.4em,parsep=0pt}
++\pagestyle{fancy}
++\fancyhf{}
++\fancyhead[L]{\small 问题一：干扰源定位区域}
++\fancyfoot[C]{\small\thepage}
++\renewcommand{\headrulewidth}{0.3pt}
++\renewcommand{\footrulewidth}{0pt}
++\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\thepage}\renewcommand{\headrulewidth}{0pt}}
++\widowpenalty=10000
++\clubpenalty=10000
++\displaywidowpenalty=10000
++\raggedbottom
++
++\usepackage{graphicx}
++\usepackage{caption}
++\captionsetup{font=small,labelfont=bf,labelsep=quad,hypcap=false}
++\renewcommand{\figurename}{图}
++\input{figures/q1_case}
++
++
++\begin{document}\thispagestyle{plain}
++\section*{五、模型的建立与求解}
++\addcontentsline{toc}{section}{五、模型的建立与求解}
++
++\subsection*{5.1 从测向数据到定位区域}
++\addcontentsline{toc}{subsection}{5.1 从测向数据到定位区域}
++
++设机器狗在 $n$ 个位置 $S_i=(x_i,y_i)$ 处对该干扰源测得示向度 $\theta_i$。$\theta_i$ 是自正东逆时针量到“检测点指向干扰源”方向的角度，但它并不是干扰源的真实方位：真实方位落在 $\theta_i$ 两侧各 $1^\circ$ 内。因此，干扰源一定位于以 $S_i$ 为顶点、方向在 $\theta_i\pm1^\circ$ 之间的一个 $2^\circ$ 窄楔形内。
++
++现在要把“点在楔形内”写成数学不等式。记 $\varphi_i=\pi\theta_i/180$，$\varepsilon=1^\circ=\pi/180$，楔形的两条边方向分别为
++
++\[
++u_i^-=\begin{pmatrix}\cos(\varphi_i-\varepsilon)\\ \sin(\varphi_i-\varepsilon)\end{pmatrix},\qquad
++u_i^+=\begin{pmatrix}\cos(\varphi_i+\varepsilon)\\ \sin(\varphi_i+\varepsilon)\end{pmatrix},
++\]
++
++其中 $u_i^-$ 对应偏转角度的下限 $\varphi_i-\varepsilon$，$u_i^+$ 对应上限 $\varphi_i+\varepsilon$。判断一个点在两条边的哪一侧，可以用二维向量的叉积：对 $a=(a_x,a_y)$、$b=(b_x,b_y)$，定义 $a\times b=a_xb_y-a_yb_x$，它大于零说明 $b$ 在 $a$ 的逆时针一侧，小于零说明在顺时针一侧。于是，点 $X=(x,y)$ 落在楔形内的条件是
++
++\[
++u_i^-\times(X-S_i)\ge 0,\qquad u_i^+\times(X-S_i)\le 0. \tag{1}
++\]
++
++第一式要求 $X-S_i$ 不越过下边 $u_i^-$（在其逆时针一侧），第二式要求不越过上边 $u_i^+$（在其顺时针一侧），两式合起来就是把 $X$ 夹在两条边之间。
++
++将式 (1) 展开：
++
++\[
++\begin{aligned}
++\sin(\varphi_i-\varepsilon)(x-x_i)-\cos(\varphi_i-\varepsilon)(y-y_i)&\le 0,\\
++-\sin(\varphi_i+\varepsilon)(x-x_i)+\cos(\varphi_i+\varepsilon)(y-y_i)&\le 0.
++\end{aligned}
++\tag{2}
++\]
++
++这两个式子都是 $x$、$y$ 的一次不等式，形如 $ax+by\le c$。满足 $ax+by\le c$ 的点集是直线 $ax+by=c$ 一侧的半个平面，称为半平面，它是一个凸集。式 (2) 的两个不等式分别对应楔形的两条边，它们的交集就是该楔形。这样就把几何上“点在楔形内”的条件，转化成了代数上两个线性不等式同时成立。
++
++$n$ 次测向后，干扰源必须同时落在每个楔形内，也就是要同时满足全部 $2n$ 个不等式。将它们统一写成 $a_jx+b_jy\le c_j$，得到定位区域
++
++\[
++P=\bigcap_{j=1}^{2n}\left\{(x,y):a_jx+b_jy\le c_j\right\}. \tag{3}
++\]
++
++$P$ 是 $2n$ 个半平面的交。半平面是凸集，凸集之交仍是凸集，故 $P$ 为凸集；在非空且有界时，$P$ 是\textbf{凸多边形}，退化情形为线段或点。题目图 2 中的红色四边形就是 $n=2$ 时两个楔形求交的结果。每增加一次有效测向，约束增加两条，定位区域随之收缩。
++
++\subsection*{5.2 求定位区域的直径}
++\addcontentsline{toc}{subsection}{5.2 求定位区域的直径}
++
++定位区域 $P$ 是凸多边形，现在要求它的直径---区域内距离最远的一对点之间的距离。
++
++\textbf{首先确认区域有界。} 并非任意一组测向都能定出有限的区域。若各检测点近似共线、示向度方向接近平行，楔形之交沿某方向无限延伸，区域无界，直径为无穷大；若某次读数偏差较大，各楔形可能互不相容，区域为空。这两种情形都需要先排除。
++
++具体做法是用线性规划：先检验约束组 $\{a_jx+b_jy\le c_j\}$ 是否可行，不可行说明数据矛盾，应剔除异常的测向数据；若可行，再分别求 $x$、$-x$、$y$、$-y$ 在约束下的最大值，四者均有限当且仅当 $P$ 有界。注意，无界区域也可能有若干有限顶点（例如楔形的尖端），若跳过这一步直接取顶点对距离，会把本应为无穷的直径误报成有限值。
++
++\textbf{确认有界后，求出全部顶点。} 凸多边形的每个顶点都是某两条边界直线的交点。对直线 $a_jx+b_jy=c_j$ 与 $a_kx+b_ky=c_k$，记 $\Delta_{jk}=a_jb_k-a_kb_j$，当 $\Delta_{jk}\ne0$ 时交点为
++
++\[
++x_{jk}=\frac{c_jb_k-b_jc_k}{\Delta_{jk}},\qquad
++y_{jk}=\frac{a_jc_k-c_ja_k}{\Delta_{jk}}. \tag{4}
++\]
++
++$\Delta_{jk}=0$ 时两直线平行，没有孤立交点，跳过。求出的交点未必在区域内，需代回全部 $2n$ 个约束检验，保留满足所有不等式者；去重后即得顶点集 $\{v_1,\dots,v_h\}$。
++
++\textbf{有了顶点，直径就可以确定。} 按题目定义，$D=\max_{X,Y\in P}\|X-Y\|_2$。因为 $P$ 是凸多边形，我们证明这个最大值一定在顶点对上取得：
++
++\[
++D=\max_{1\le i<j\le h}\|v_i-v_j\|_2 . \tag{5}
++\]
++
++理由如下。凸多边形是其全部顶点的凸包，因此 $P$ 中任意一点都可写为顶点的凸组合：存在 $\lambda_i\ge0$、$\sum_i\lambda_i=1$，使 $X=\sum_i\lambda_iv_i$；同理 $Y=\sum_j\mu_jv_j$，$\mu_j\ge0$、$\sum_j\mu_j=1$。两式相减得
++
++\[
++X-Y=\sum_{i,j}\lambda_i\mu_j(v_i-v_j),
++\qquad
++\sum_{i,j}\lambda_i\mu_j=\left(\sum_i\lambda_i\right)\left(\sum_j\mu_j\right)=1 .
++\]
++
++由三角不等式，
++
++\[
++\|X-Y\|\le\sum_{i,j}\lambda_i\mu_j\|v_i-v_j\|\le\max_{i,j}\|v_i-v_j\|\cdot1=\max_{i,j}\|v_i-v_j\|,
++\]
++
++即区域内任意两点的距离都不超过最远顶点对的距离。而最远顶点对本身就是区域内的点，所以这个上界可以取到。式 (5) 成立。
++
++综上，求直径的完整流程为：
++
++\begin{tcolorbox}[colback=black!2,colframe=black!22,boxrule=0.4pt,arc=0pt,left=9pt,right=9pt,top=7pt,bottom=7pt]
++\small\setlength{\parskip}{2pt}
++\noindent\hangindent=1.5em\hangafter=1 输入：检测点 $S_i$、示向度 $\theta_i$，$i=1,\dots,n$\par
++\noindent\hangindent=1.5em\hangafter=1 1  按式 (2) 将每次测向写成两个半平面约束；\par
++\noindent\hangindent=1.5em\hangafter=1 2  线性规划检验可行性与有界性；\par
++\noindent\hangindent=1.5em\hangafter=1 3  按式 (4) 求每对边界直线的交点；\par
++\noindent\hangindent=1.5em\hangafter=1 4  保留满足全部约束的交点并去重，得顶点集；\par
++\noindent\hangindent=1.5em\hangafter=1 5  比较所有顶点对的距离，取最大者 $(A,B)$，$D=|AB|$。\par
++\end{tcolorbox}
++
++边界直线共 $2n$ 条，交点约 $\binom{2n}{2}=O(n^2)$ 个，每个交点检验约束需 $O(n)$，顶点数不超过 $2n$，比较顶点对为 $O(n^2)$，总计算量 $O(n^3)$。本题 $n$ 一般不超过十几，计算量完全可以实时完成。
++
++\subsection*{5.3 直径圆能否覆盖定位区域}
++\addcontentsline{toc}{subsection}{5.3 直径圆能否覆盖定位区域}
++
++机器狗的光学探测仪只能在距干扰源 $20$ m 以内工作。如果以定位区域直径 $D$ 为直径画一个圆，能盖住整个区域，那么只要 $D\le40$ m，机器狗走到圆心就能保证清除成功---这比计算最小包围圆要简单得多。所以问题是：这样的圆真的能盖住整个区域吗？
++
++首先要确定圆心。设最远的一对顶点为 $A$、$B$，距离为 $D$。若半径 $D/2$、圆心 $C$ 的圆覆盖了 $P$，则 $A$、$B$ 都在圆内，即 $\|A-C\|\le D/2$、$\|C-B\|\le D/2$。代入三角不等式
++
++\[
++D=\|A-B\|\le\|A-C\|+\|C-B\|\le\frac D2+\frac D2=D .
++\]
++
++不等式的两端相等，故中间每一步都取等号：$\|A-C\|=\|C-B\|=D/2$，且 $C$ 在线段 $AB$ 上。这两个条件合起来，$C$ 只能是 $AB$ 的中点 $C_0=(A+B)/2$。圆是凸集，覆盖全部顶点就覆盖了整个凸多边形，所以判据为
++
++\[
++\max_{1\le i\le h}\|v_i-C_0\|\le\frac D2 . \tag{6}
++\]
++
++式 (6) 是否一定满足？下面说明它可以不成立，并给出一个满足题设条件的具体反例。
++
++\textbf{构造思路。} 要让直径圆盖不住区域，需要找到这样一个顶点：它已经跑到了直径圆外面，但它到其他顶点的距离还没有超过原来的直径---直径没变，圆却已经不够大了。
++
++先用归一化的坐标把这个想法量化。取 $A=(-1,0)$、$B=(1,0)$，$|AB|=2$，直径圆以原点为圆心、半径为 $1$。在上方放一个点 $U=(0,h)$，希望它同时满足：
++
++\begin{itemize}
++\item 跑到圆外：$h>1$；
++\item 不改变直径：$|UA|=|UB|=\sqrt{1+h^2}\le2$，即 $h\le\sqrt{3}$。
++\end{itemize}
++
++两个条件合起来是 $1<h\le\sqrt{3}$，这个区间非空。直观地理解：上顶点刚越过圆的最高点时，它离左右两端还不够远，不会产生更长的边。
++
++取 $h=1.5$，则 $|UA|=\sqrt{3.25}\approx1.803<2$，直径仍为 $2$；而上顶点距圆心 $1.5$，超出半径 $50\%$。反例的形状就有了：底边为 $2$、高为 $1.5$ 的等腰三角形。
++
++\textbf{用测向数据实现这个形状。} 将坐标放大到米，目标三角形的三个顶点为
++
++\[
++A=(-10,\,0),\quad B=(10,\,0),\quad U=(0,\,15).
++\]
++
++三条边分别是 $y=0$（底边）、$y=1.5x+15$（左腰）、$y=-1.5x+15$（右腰）。三角形有 $3$ 条边，而每个检测点的楔形提供 $2$ 条边界线，因此用 $3$ 个检测点（$6$ 条边界线）即可实现：让其中 $3$ 条边界线分别与三角形的三条边重合，另外 $3$ 条不切入三角形内部。具体取法见表 1。
++
++\Needspace{19\baselineskip}
++\begin{center}
++\textbf{表 1 反例的检测数据（误差界 $\pm1^\circ$）}
++\end{center}
++
++\begin{center}
++\renewcommand{\arraystretch}{1.3}
++\begin{tabularx}{0.98\linewidth}{>{\centering\arraybackslash}p{0.22\linewidth}>{\centering\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}X}
++\toprule
++\textbf{检测点 $S_i$（m）} & \textbf{示向度 $\theta_i$} & \textbf{起决定作用的边界} \\
++\midrule
++$(-500,\,0)$ & $1^\circ$ & 下边界方向为 $0^\circ$，给出 $y\ge0$（底边） \\
++$(-310,\,-450)$ & $\approx55.31^\circ$ & 上边界方向为 $\arctan(1.5)$，给出 $y\le1.5x+15$（左腰） \\
++$(310,\,-450)$ & $\approx124.69^\circ$ & 下边界方向为 $180^\circ-\arctan(1.5)$，给出 $y\le-1.5x+15$（右腰） \\
++\bottomrule
++\end{tabularx}
++\end{center}
++
++其中第二个检测点的示向度取 $\theta_2=\arctan(1.5)-1^\circ\approx55.31^\circ$，第三个取 $\theta_3=181^\circ-\arctan(1.5)\approx124.69^\circ$。将三角形的三个顶点分别代入每个楔形的另一条边界线，可以验证它们均满足约束（不被裁掉），因此 $6$ 个半平面的交恰好就是三角形 $ABU$。
++
++现在检验覆盖性。边长为 $|AB|=20$，$|AU|=|BU|=\sqrt{325}\approx18.03$，直径 $D=20$ m 由 $A$、$B$ 取得。直径圆圆心 $C_0=(0,\,0)$，半径 $D/2=10$ m。而上顶点到圆心的距离为
++
++\[
++\|U-C_0\|=15\ \text{m}>10\ \text{m}=\frac D2,
++\]
++
++超出半径 $5$ m，式 (6) 不成立。
++
++% Added case illustration; the six constraints use the exact stated angles.
++\begin{center}
++\begin{minipage}{\linewidth}
++\centering
++\QOneCaseFigure
++\captionof{figure}{三次测向的角域交集与直径圆覆盖检验。左图按实际比例绘制三个误差角域；右图放大定位三角形，红色圆的半径为 $10$ m，上顶点超出 $5$ m。}
++\label{fig:counterexample}
++\end{minipage}
++\end{center}
++
++
++三个检测点到三角形中心的距离均约 $500$ m，在有效接收半径内；三角形整体位于半径 $1800$ m 的目标区域内，是完全合理的探测场景。于是问题一的第二问答案为否：
++
++\textbf{以定位区域直径为直径的圆，不一定能覆盖该定位区域。}
++\end{document}

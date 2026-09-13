@@ -1,0 +1,92 @@
+{
+  "kind": "LOCAL_ONLY paired synthetic; physical error +/-1deg, reported 0.01deg, geometric bound1.005deg",
+  "python": "3.12.14",
+  "methods": [
+    "v4",
+    "service_route",
+    "share_600_20",
+    "share_600_50",
+    "share_none",
+    "gainwait_0.6_100_100",
+    "defer_500_300_600_10"
+  ],
+  "seed_base": 217900000,
+  "cases_per_group": 6,
+  "groups": [
+    [
+      "all_omni",
+      0.0,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed25",
+      0.25,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed50",
+      0.5,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed75",
+      0.75,
+      "uniform",
+      "hash"
+    ],
+    [
+      "all_directional",
+      1.0,
+      "uniform",
+      "hash"
+    ],
+    [
+      "boundary_directional",
+      1.0,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "boundary_mixed",
+      0.5,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "plus1",
+      0.5,
+      "uniform",
+      "plus"
+    ],
+    [
+      "minus1",
+      0.5,
+      "uniform",
+      "minus"
+    ],
+    [
+      "clustered",
+      0.75,
+      "clustered",
+      "hash"
+    ]
+  ],
+  "method_order": "rotating serial",
+  "source_hashes": {
+    "bootstrap.py": "eae279cded5ea7e13d034a52d9ba0bc95647036526d501f6a894517e78679ee7",
+    "local_candidate.py": "965f351a47a2b4f877fdff89d6f0cf051b61a8d9661e896ee152b8e034048802",
+    "coverage_candidate.py": "2d815fbd0c752f40b4a14fba12f24b362ce255f359fddf0460e26f32b0548bc5",
+    "coverage_development.py": "70cd2c35b88a9d1697263cbb9fe039a1e2425daf5e7008f73528000f57ad01d0",
+    "schedule_candidate.py": "f40dd80f239b71be82fff32608303e4c992788fcb14d0eb749c9d3e3e421c818",
+    "search_coverage.py": "04bd8aa04be48c6fe601b5acc81a52bc3392881cc2dfe3d0bacfb78783b0a4f9",
+    "local_development.py": "7b31b6c0d2dcd5329b539557a2f7cf88df288d67428ae3b51253e272f7b4b4e1",
+    "bench.py": "771785a05ae7e6c86809038d7293b443473e006dd91452a6aea7dbeef1f64f42",
+    "test_local_candidate.py": "c22919e9221bd4503444eb74c2ec47de3d7903f4887ae66ec7939d5a26fddade",
+    "coverage_bonus_development.py": "a4e379f9f25f8cfe065fab071e9908e3114d9154c202328a288a070d6f90c3e4",
+    "schedule_confirm.py": "c25d756248eb821b29b880a7efb2528dad316f47a25af856bb694821ea80b1b4",
+    "schedule_dev.py": "77dd8ab581a6d2187bbabc596241b27df67a4e70e0becd1098c2937bbd0a5ba6"
+  }
+}

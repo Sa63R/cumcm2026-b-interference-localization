@@ -1,0 +1,80 @@
+{
+  "kind": "LOCAL ONLY fixed development screening; not heldout",
+  "seed_base": 441920260,
+  "cases_per_group": 4,
+  "groups": [
+    [
+      "all_omni",
+      0.0,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed25",
+      0.25,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed50",
+      0.5,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed75",
+      0.75,
+      "uniform",
+      "hash"
+    ],
+    [
+      "all_directional",
+      1.0,
+      "uniform",
+      "hash"
+    ],
+    [
+      "boundary_directional",
+      1.0,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "boundary_mixed",
+      0.5,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "plus1",
+      0.5,
+      "uniform",
+      "plus"
+    ],
+    [
+      "minus1",
+      0.5,
+      "uniform",
+      "minus"
+    ],
+    [
+      "clustered",
+      0.75,
+      "clustered",
+      "hash"
+    ]
+  ],
+  "methods": [
+    "v4",
+    "incumbent",
+    "flex_incumbent",
+    "cells_flex_incumbent"
+  ],
+  "cache": "ExactComputeCache + CoverageComputeCache, all strategies preimported",
+  "constants": {
+    "physical_deg": 1.0,
+    "reported_deg": 0.01,
+    "geometric_deg": 1.005
+  },
+  "candidates_sha256": "101988bc286a3688f26018dbe1c28cd39c611098e2166d2d69b259fec7385930"
+}

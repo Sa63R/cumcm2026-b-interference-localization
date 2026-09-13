@@ -1,0 +1,592 @@
+{
+  "method": "v6_lite",
+  "source_commit": "ed795304a37a5cce8541c046a0ec0a0e4e88ba6d",
+  "mode": "operator_confirmed_q4_practice",
+  "case_label": "STMD-ZPRN-AS48-6VA2",
+  "mode_note": "Practice mode was visually confirmed; the business API cannot query it.",
+  "started_utc": "2026-09-12T18:49:06.373071+00:00",
+  "status": "policy_completed_and_exited",
+  "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:51:22) [MSC v.1944 64 bit (ARM64)]",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "bearing_bound_deg": 1.005,
+  "preparation_wall_seconds": 0.10816591599996173,
+  "source_manifest": {
+    "strategy_commit": "ed795304a37a5cce8541c046a0ec0a0e4e88ba6d",
+    "strategy_unchanged": true,
+    "files": {
+      "checks/cases.json": "a163a89c8d661c65f954143aeedbedc508a24d0c88c54318dc62db13419913fd",
+      "checks/simulator/COMPATIBILITY.md": "b561ae410f12c8445fcf64fa230ebe05161af82fdb4e51b64eda6fbe224b8f51",
+      "checks/simulator/README.md": "396965ee5a1310967e3d9e602abe7473a6a6646cfe85c2dc1d4c74069c991091",
+      "checks/simulator/VALIDATION.json": "35eb58fbed191b2b21a67cc7327bf2f0d52f45acb8046452181c5fad2fc117c6",
+      "checks/simulator/jammers_local/__init__.py": "074b1599f48386dc552f6d80904a46e2481443c1a4525f9be9591a89180b95b5",
+      "checks/simulator/jammers_local/__main__.py": "5968672b7498bbf48e66a52442ae9dd7ccb02798f3de8ac2d6d3dd166d30e4d1",
+      "checks/simulator/jammers_local/algorithms.py": "053686ff46ecccaddd522026c192108603be5b79be9db59cac623704ad232deb",
+      "checks/simulator/jammers_local/baseline.py": "ebb43eecc929de69e87fa8c0d1325bb77dfd12f732107b60ba14a53532525f2c",
+      "checks/simulator/jammers_local/core.py": "05b213d8b867469456a798da2abf6f92b40cf7d25b699cf4ff4ac82f2e6737c7",
+      "checks/simulator/jammers_local/dashboard.html": "61c488078b964a2e497b3802c890d0fdfac7ea6110afc938d568bfd3169c5d56",
+      "checks/simulator/jammers_local/server.py": "baceeb79ece026808b495191976b6f706538b168123cb31dceff12139e302749",
+      "checks/simulator/tests/test_existing_client.py": "8bb0576d79b69dd604a691c6e08ea5c9c7a47dad7599008e6086ffd0ccb7e7b6",
+      "checks/simulator/tests/test_simulator.py": "5469498b80c19133c922ecd2e72a1e77adc95eb722125d9700c1e2dcfdce1a02",
+      "run_official.py": "885edf02ff4b55de1acaa885e68758fbc69c3b318c098398f71f2288be6d1e0a",
+      "simulator_client/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "simulator_client/__init__.py": "aa5f551dfde62358958cc6d56c7ce986f3ce7937883c4edbb64cf8fb2c7aeee9",
+      "simulator_client/__main__.py": "d96fddf1ef8a4a824c8c85cba90e8e3b9ffd38b7fc97f21cdcd630875cd146f3",
+      "simulator_client/client.py": "441230d1f2bb231a7a64beaa119306d89b4535ffaf1f4393c8be9c4d08a81577",
+      "simulator_client/errors.py": "c1ad261e6e6a99a691c08fec3f4b331036386542c968b45452881c522dce7723",
+      "simulator_client/rules.py": "9bd7ca6df718aa42a414a94a08f981b519bfa70dc9ceeccb4f1a194aefcc83af",
+      "simulator_client/state.py": "7a64a2a871532f76613000994bd850e86148a28f72f415d017fa56553815bb42",
+      "source_v6_lite/q4_baseline.py": "5d8a874563a5e6ecedb1d4254fae8dc4ca2c4cdbbcd8563b39f2acce25afa581",
+      "source_v6_lite/q4_belief.py": "ef3ce1abc0c381c156ca76ae04e341905b1a3ccaf13cf465516491696f1a7a90",
+      "source_v6_lite/q4_coverage.py": "eb3a0769820c926331a002438649a9e31d91e7e0150036e60e95bd2191f021f3",
+      "source_v6_lite/q4_fast_local.py": "aac1e5affb8a2ca492008d5c8a8d8c4360d676c9ad21d4b3c459945c916653b8",
+      "source_v6_lite/q4_information.py": "d1c5459d9246a10ff67f926e386da1a8f7fbe804da3e6a433974a5f931178e20",
+      "source_v6_lite/q4_proposals.py": "38bb2561707e396c9a2b5ce84da53d84f8558bad5bbec3d3aa2c8b1aba4bee98",
+      "source_v6_lite/q4_route.py": "db50aab737369a24d60dfc4e436ff66ccf4499f74d45d2557c347bb4043cf9c4",
+      "source_v6_lite/q4_route_cached.py": "4b93994bc5d96697caaa3482aa03c9de01125efc63b7a712215bbc64284bef87",
+      "source_v6_lite/q4_state.py": "67087f2d9e6b4bfc5d74a46f13244d6cf30f95e11274df5f70bd512239b9a3da",
+      "source_v6_lite/q4_transit.py": "1058b41d52cb0d9c4c0b91237a52c6ffba036516f30128e9a58c368d994bdf11",
+      "source_v6_lite/q4_transit_critic.py": "11a4c2cf981d2f84f26c299fe2663490285aff99e7cb30dc168ce796867cf482",
+      "source_v6_lite/q4_v3_local.py": "7897afa0266afaf0b35d6a300b4fedc4a25310258cf3ed01535e25355e037a8b",
+      "source_v6_lite/q4_v3_route.py": "282d13120d2c0e733fa2b19cf9b9bd7ee61ec8c8a4ae66cbbf4bc6978615f0e1",
+      "source_v6_lite/q4_v3_solver.py": "b9215a9c50a5658732ec5aec7e8b274596ab4b4f1f533d6a8ee9bfba179adf47",
+      "source_v6_lite/q4_v4_local.py": "ff309885e6f38593e961491ee07e0dcdb19298e492544fe79cc183ac2ba3b5c5",
+      "source_v6_lite/q4_v4_solver.py": "73ff33de5ca82d1d4968953818485fc4f66ac43c94d7759ff56430e33c6fde35",
+      "source_v6_lite/q4_v6_lite.py": "2a3757b4314c3749ab2870d5fdaa7582909d97dd629aa155f31daa63d3a79014",
+      "source_v6_lite/radius_direction.py": "0508a91785778e8e5907b75857db1dd6beb07e27dce5fae92af9b9581400ea6b",
+      "source_v6_lite/transit_critic_big_extra.json": "cf1077fcd81864b0d93639893d59c243e0cda8dd4ba3a7eb102b93d94cbcabb8",
+      "test_bridge.py": "5a837a6049cd2ea5efbbd067b580cff0a7f6b9794fa0e5a866a42039a6cf3023"
+    }
+  },
+  "enter_response": {
+    "accepted": true,
+    "real_timestamp_ms": 1789238946849,
+    "virtual_time_s": 0,
+    "max_virtual_duration_s": 360000,
+    "max_real_duration_s": 1200,
+    "remaining_real_duration_s": 1200
+  },
+  "policy": {
+    "stop_certificate": "source_upper_bound",
+    "visited_stations": [
+      0,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "localizations": [
+      {
+        "channel": 15,
+        "stages": 1,
+        "pair_failures": 0,
+        "certificate": "intersection",
+        "negative_updates": 0
+      },
+      {
+        "channel": 3,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "optical_cover_confirmed",
+        "optical_attempts": 2,
+        "cover_size": 2,
+        "negative_updates": 0
+      },
+      {
+        "channel": 10,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "intersection",
+        "negative_updates": 2
+      },
+      {
+        "channel": 12,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "optical_cover_confirmed",
+        "optical_attempts": 2,
+        "cover_size": 9,
+        "negative_updates": 2
+      },
+      {
+        "channel": 20,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "optical_cover_confirmed",
+        "optical_attempts": 3,
+        "cover_size": 4,
+        "negative_updates": 1
+      },
+      {
+        "channel": 2,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "intersection",
+        "negative_updates": 0
+      },
+      {
+        "channel": 13,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "intersection",
+        "negative_updates": 0
+      },
+      {
+        "channel": 8,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "optical_cover_confirmed",
+        "optical_attempts": 2,
+        "cover_size": 3,
+        "negative_updates": 4
+      },
+      {
+        "channel": 17,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "optical_cover_confirmed",
+        "optical_attempts": 2,
+        "cover_size": 3,
+        "negative_updates": 0
+      },
+      {
+        "channel": 18,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "intersection",
+        "negative_updates": 0
+      },
+      {
+        "channel": 1,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "intersection",
+        "negative_updates": 0
+      },
+      {
+        "channel": 14,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "intersection",
+        "negative_updates": 0
+      },
+      {
+        "channel": 4,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "intersection",
+        "negative_updates": 3
+      },
+      {
+        "channel": 16,
+        "stages": 1,
+        "pair_failures": 0,
+        "certificate": "optical_cover_confirmed",
+        "optical_attempts": 1,
+        "cover_size": 2,
+        "negative_updates": 3
+      },
+      {
+        "channel": 5,
+        "stages": 1,
+        "pair_failures": 0,
+        "certificate": "optical_cover_confirmed",
+        "optical_attempts": 1,
+        "cover_size": 3,
+        "negative_updates": 2
+      },
+      {
+        "channel": 19,
+        "stages": 0,
+        "pair_failures": 0,
+        "certificate": "optical_cover_confirmed",
+        "optical_attempts": 1,
+        "cover_size": 2,
+        "negative_updates": 0
+      }
+    ],
+    "shared_detections": 54,
+    "scanpoints": 16,
+    "replans_after_pairs": 3,
+    "global_actions": 35,
+    "free_probes": 0,
+    "algorithm": "Q4_V6_LITE",
+    "configuration": {
+      "base": {
+        "local": {
+          "axial": 0.3,
+          "lateral": 0.025,
+          "speculative_radius": 0.0,
+          "nearest_clear": true,
+          "advance_lower": true,
+          "lower_factor": 0.98,
+          "range_fraction": 0.0,
+          "adaptive_lateral": 0.0,
+          "side_information": false,
+          "optical_cover_limit": 12,
+          "pause_after_pair": true
+        },
+        "ring_sites": [
+          8,
+          12,
+          998,
+          1865
+        ],
+        "route_starts": 8,
+        "cached_routing": true,
+        "shared_at_stations": true,
+        "shared_at_clears": true,
+        "shared_at_probes": true,
+        "share_min_distance": 50.0,
+        "share_min_gain": 10.0,
+        "channel_potential_radius": 600.0,
+        "directional_negatives": true,
+        "direction_sectors": 16
+      },
+      "transit_model": "C:\\Users\\baiwc\\Downloads\\Q4V6Lite_20260913\\source_v6_lite\\transit_critic_big_extra.json",
+      "transit_threshold": 0.0,
+      "max_transit_stops": 16,
+      "minimum_stations": 4,
+      "scenes": 24,
+      "position_draws": 128,
+      "min_gain": 2.0,
+      "max_decisions": 40,
+      "max_free_probes": 40,
+      "seed": 67541,
+      "total_planning_seconds": 120.0
+    },
+    "transit_stops": 9,
+    "transit_detections": 19,
+    "critic_values": [
+      12.814893296002847,
+      18.998057417301297,
+      11.449621297169434,
+      2.544531898528421,
+      12.332093574966265,
+      1.8225241619217083,
+      2.7178679042645184,
+      23.85522516692811,
+      10.37444509297561
+    ],
+    "planner_calls": 11,
+    "planner_accepts": 0,
+    "planner_seconds": 0.2918555810001635,
+    "guarded_steps": 8,
+    "activation": {
+      "visited_stations": 4,
+      "known_sources": 11
+    },
+    "minimum_stations": 4,
+    "planner_failures": {},
+    "planner_budget_reached": false
+  },
+  "policy_cpu_seconds": 0.625,
+  "policy_wall_seconds": 2.255391832999976,
+  "completion_audit": {
+    "kind": "source_upper_bound",
+    "successful_clears": 16
+  },
+  "exit_response": {
+    "accepted": true,
+    "real_timestamp_ms": 1789238949125,
+    "virtual_time_s": 4965.520282,
+    "exit_reason": "user_exit"
+  },
+  "cpu_seconds": 0.625,
+  "wall_seconds": 2.278932375000295,
+  "client_state": {
+    "session": "exited",
+    "position": {
+      "x": 988.0638437686957,
+      "y": -1246.8366376825475
+    },
+    "current_channel": 19,
+    "virtual_time_s": 4965.520282,
+    "max_virtual_duration_s": 360000.0,
+    "real_deadline": 4267.817629666,
+    "accepted_actions": 202,
+    "sources": {
+      "1": {
+        "status": "cleared",
+        "measurement_count": 9,
+        "last_result": "direction",
+        "last_bearing_deg": 115.5,
+        "last_measurement_position": {
+          "x": 1865.0,
+          "y": 0.0
+        },
+        "last_measurement_virtual_time_s": 2365.39344,
+        "failed_clear_count": 0
+      },
+      "2": {
+        "status": "cleared",
+        "measurement_count": 4,
+        "last_result": "direction",
+        "last_bearing_deg": 349.7,
+        "last_measurement_position": {
+          "x": -235.06945036637111,
+          "y": 820.492294033751
+        },
+        "last_measurement_virtual_time_s": 1323.903308,
+        "failed_clear_count": 0
+      },
+      "3": {
+        "status": "cleared",
+        "measurement_count": 2,
+        "last_result": "direction",
+        "last_bearing_deg": 112.25,
+        "last_measurement_position": {
+          "x": -342.52977482301617,
+          "y": -294.2441220478225
+        },
+        "last_measurement_virtual_time_s": 227.311959,
+        "failed_clear_count": 1
+      },
+      "4": {
+        "status": "cleared",
+        "measurement_count": 7,
+        "last_result": "direction",
+        "last_bearing_deg": 290.83,
+        "last_measurement_position": {
+          "x": -852.4363232751534,
+          "y": 1591.6588072596514
+        },
+        "last_measurement_virtual_time_s": 3251.296123,
+        "failed_clear_count": 0
+      },
+      "5": {
+        "status": "cleared",
+        "measurement_count": 4,
+        "last_result": "direction",
+        "last_bearing_deg": 327.13,
+        "last_measurement_position": {
+          "x": 393.57942757273,
+          "y": -991.6552367267514
+        },
+        "last_measurement_virtual_time_s": 4819.781416,
+        "failed_clear_count": 0
+      },
+      "6": {
+        "status": "unknown",
+        "measurement_count": 16,
+        "last_result": "no_signal",
+        "last_bearing_deg": null,
+        "last_measurement_position": {
+          "x": -932.5000000000008,
+          "y": -1615.1373780579777
+        },
+        "last_measurement_virtual_time_s": 4375.796502,
+        "failed_clear_count": 0
+      },
+      "7": {
+        "status": "unknown",
+        "measurement_count": 16,
+        "last_result": "no_signal",
+        "last_bearing_deg": null,
+        "last_measurement_position": {
+          "x": -932.5000000000008,
+          "y": -1615.1373780579777
+        },
+        "last_measurement_virtual_time_s": 4381.796502,
+        "failed_clear_count": 0
+      },
+      "8": {
+        "status": "cleared",
+        "measurement_count": 8,
+        "last_result": "direction",
+        "last_bearing_deg": 250.94,
+        "last_measurement_position": {
+          "x": 705.6925676241744,
+          "y": 705.6925676241743
+        },
+        "last_measurement_virtual_time_s": 1722.803909,
+        "failed_clear_count": 1
+      },
+      "9": {
+        "status": "unknown",
+        "measurement_count": 16,
+        "last_result": "no_signal",
+        "last_bearing_deg": null,
+        "last_measurement_position": {
+          "x": -932.5000000000008,
+          "y": -1615.1373780579777
+        },
+        "last_measurement_virtual_time_s": 4387.796502,
+        "failed_clear_count": 0
+      },
+      "10": {
+        "status": "cleared",
+        "measurement_count": 4,
+        "last_result": "direction",
+        "last_bearing_deg": 117.95,
+        "last_measurement_position": {
+          "x": -540.2547808458804,
+          "y": 210.31003383957952
+        },
+        "last_measurement_virtual_time_s": 805.632326,
+        "failed_clear_count": 0
+      },
+      "11": {
+        "status": "unknown",
+        "measurement_count": 16,
+        "last_result": "no_signal",
+        "last_bearing_deg": null,
+        "last_measurement_position": {
+          "x": -932.5000000000008,
+          "y": -1615.1373780579777
+        },
+        "last_measurement_virtual_time_s": 4369.796502,
+        "failed_clear_count": 0
+      },
+      "12": {
+        "status": "cleared",
+        "measurement_count": 5,
+        "last_result": "direction",
+        "last_bearing_deg": 280.92,
+        "last_measurement_position": {
+          "x": -625.7242039162289,
+          "y": 494.5489593717015
+        },
+        "last_measurement_virtual_time_s": 1068.361542,
+        "failed_clear_count": 1
+      },
+      "13": {
+        "status": "cleared",
+        "measurement_count": 9,
+        "last_result": "direction",
+        "last_bearing_deg": 323.03,
+        "last_measurement_position": {
+          "x": 227.24691475769845,
+          "y": 794.5366381900768
+        },
+        "last_measurement_virtual_time_s": 1550.820087,
+        "failed_clear_count": 0
+      },
+      "14": {
+        "status": "cleared",
+        "measurement_count": 7,
+        "last_result": "direction",
+        "last_bearing_deg": 210.31,
+        "last_measurement_position": {
+          "x": -305.5836975104924,
+          "y": 1707.594944194292
+        },
+        "last_measurement_virtual_time_s": 3118.464301,
+        "failed_clear_count": 0
+      },
+      "15": {
+        "status": "cleared",
+        "measurement_count": 2,
+        "last_result": "direction",
+        "last_bearing_deg": 164.27,
+        "last_measurement_position": {
+          "x": -342.52977482301617,
+          "y": -294.2441220478225
+        },
+        "last_measurement_virtual_time_s": 215.311959,
+        "failed_clear_count": 0
+      },
+      "16": {
+        "status": "cleared",
+        "measurement_count": 18,
+        "last_result": "direction",
+        "last_bearing_deg": 117.49,
+        "last_measurement_position": {
+          "x": -1153.9443076744967,
+          "y": -1360.8263334539647
+        },
+        "last_measurement_virtual_time_s": 4471.656581,
+        "failed_clear_count": 0
+      },
+      "17": {
+        "status": "cleared",
+        "measurement_count": 10,
+        "last_result": "direction",
+        "last_bearing_deg": 323.45,
+        "last_measurement_position": {
+          "x": 622.2693842888832,
+          "y": 505.59275332338547
+        },
+        "last_measurement_virtual_time_s": 1783.162583,
+        "failed_clear_count": 1
+      },
+      "18": {
+        "status": "cleared",
+        "measurement_count": 10,
+        "last_result": "direction",
+        "last_bearing_deg": 293.83,
+        "last_measurement_position": {
+          "x": 998.0,
+          "y": 0.0
+        },
+        "last_measurement_virtual_time_s": 2126.593483,
+        "failed_clear_count": 0
+      },
+      "19": {
+        "status": "cleared",
+        "measurement_count": 10,
+        "last_result": "direction",
+        "last_bearing_deg": 336.27,
+        "last_measurement_position": {
+          "x": 393.57942757273,
+          "y": -991.6552367267514
+        },
+        "last_measurement_virtual_time_s": 4825.781416,
+        "failed_clear_count": 0
+      },
+      "20": {
+        "status": "cleared",
+        "measurement_count": 5,
+        "last_result": "direction",
+        "last_bearing_deg": 85.22,
+        "last_measurement_position": {
+          "x": -269.6535775957356,
+          "y": 397.5496016726791
+        },
+        "last_measurement_virtual_time_s": 1222.029868,
+        "failed_clear_count": 2
+      }
+    },
+    "time_breakdown": {
+      "movement_s": 3816.520278924145,
+      "switching_s": 161.0,
+      "detection_s": 890.0,
+      "optical_s": 66.0,
+      "removal_s": 32.0
+    },
+    "cleared_count": 16,
+    "estimated_total_virtual_time_s": 4965.520278924145
+  },
+  "pending_request": null,
+  "successful_clear_channels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    8,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "last_success_virtual_s": 4965.520282,
+  "seconds_per_accepted_clear": 310.345017625,
+  "finished_utc": "2026-09-12T18:49:08.829094+00:00"
+}

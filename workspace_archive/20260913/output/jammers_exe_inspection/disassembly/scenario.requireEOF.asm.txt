@@ -1,0 +1,109 @@
+jammers/client/internal/scenario.requireEOF
+Virtual address: 0x1404f0ce0
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f0ce0: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+1404f0ce4: 0f 86 2a 01 00 00           	jbe	0x1404f0e14 <.text+0x4efe14>
+1404f0cea: 55                          	push	rbp
+1404f0ceb: 48 89 e5                    	mov	rbp, rsp
+1404f0cee: 48 83 ec 48                 	sub	rsp, 0x48
+1404f0cf2: 48 89 44 24 58              	mov	qword ptr [rsp + 0x58], rax
+1404f0cf7: b8 10 00 00 00              	mov	eax, 0x10
+1404f0cfc: 48 8d 1d e5 0c b1 00        	lea	rbx, [rip + 0xb10ce5]   # 0x1410019e8
+1404f0d03: b9 01 00 00 00              	mov	ecx, 0x1
+1404f0d08: e8 b3 1d b3 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f0d0d: 48 8d 1d 5c 6f a6 00        	lea	rbx, [rip + 0xa66f5c]   # 0x140f57c70
+1404f0d14: 48 89 c1                    	mov	rcx, rax
+1404f0d17: 48 8b 44 24 58              	mov	rax, qword ptr [rsp + 0x58]
+1404f0d1c: 0f 1f 40 00                 	nop	dword ptr [rax]
+1404f0d20: e8 db 45 cb ff              	call	0x1401a5300 <.text+0x1a4300> ; encoding/json.(*Decoder).Decode
+1404f0d25: 48 89 44 24 28              	mov	qword ptr [rsp + 0x28], rax
+1404f0d2a: 48 89 5c 24 30              	mov	qword ptr [rsp + 0x30], rbx
+1404f0d2f: 48 8b 0d da a7 c6 00        	mov	rcx, qword ptr [rip + 0xc6a7da] # 0x14115b510
+1404f0d36: 48 8b 3d db a7 c6 00        	mov	rdi, qword ptr [rip + 0xc6a7db] # 0x14115b518
+1404f0d3d: 0f 1f 00                    	nop	dword ptr [rax]
+1404f0d40: e8 1b 6a ba ff              	call	0x140097760 <.text+0x96760> ; errors.Is
+1404f0d45: 84 c0                       	test	al, al
+1404f0d47: 0f 85 bd 00 00 00           	jne	0x1404f0e0a <.text+0x4efe0a>
+1404f0d4d: 48 8b 54 24 28              	mov	rdx, qword ptr [rsp + 0x28]
+1404f0d52: 48 85 d2                    	test	rdx, rdx
+1404f0d55: 74 7b                       	je	0x1404f0dd2 <.text+0x4efdd2>
+1404f0d57: 44 0f 11 7c 24 38           	movups	xmmword ptr [rsp + 0x38], xmm15
+1404f0d5d: 74 06                       	je	0x1404f0d65 <.text+0x4efd65>
+1404f0d5f: 48 8b 42 08                 	mov	rax, qword ptr [rdx + 0x8]
+1404f0d63: eb 03                       	jmp	0x1404f0d68 <.text+0x4efd68>
+1404f0d65: 48 89 d0                    	mov	rax, rdx
+1404f0d68: 48 89 44 24 38              	mov	qword ptr [rsp + 0x38], rax
+1404f0d6d: 48 8b 54 24 30              	mov	rdx, qword ptr [rsp + 0x30]
+1404f0d72: 48 89 54 24 40              	mov	qword ptr [rsp + 0x40], rdx
+1404f0d77: 48 8d 05 cb 6a 31 00        	lea	rax, [rip + 0x316acb]   # 0x140807849 ; text_prefix='decode scenario suffix: %wdestination pointer is nilsql: no rows in result setfailed to ge'
+1404f0d7e: bb 1a 00 00 00              	mov	ebx, 0x1a
+1404f0d83: 48 8d 4c 24 38              	lea	rcx, [rsp + 0x38]
+1404f0d88: bf 01 00 00 00              	mov	edi, 0x1
+1404f0d8d: 89 fe                       	mov	esi, edi
+1404f0d8f: e8 0c 00 c4 ff              	call	0x140130da0 <.text+0x12fda0> ; fmt.errorf
+1404f0d94: 48 85 c0                    	test	rax, rax
+1404f0d97: 75 33                       	jne	0x1404f0dcc <.text+0x4efdcc>
+1404f0d99: 90                          	nop
+1404f0d9a: b8 10 00 00 00              	mov	eax, 0x10
+1404f0d9f: 48 8d 1d 82 fc b1 00        	lea	rbx, [rip + 0xb1fc82]   # 0x141010a28
+1404f0da6: b9 01 00 00 00              	mov	ecx, 0x1
+1404f0dab: e8 10 1d b3 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f0db0: 48 c7 40 08 1a 00 00 00     	mov	qword ptr [rax + 0x8], 0x1a
+1404f0db8: 48 8d 15 8a 6a 31 00        	lea	rdx, [rip + 0x316a8a]   # 0x140807849 ; text_prefix='decode scenario suffix: %wdestination pointer is nilsql: no rows in result setfailed to ge'
+1404f0dbf: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f0dc2: 48 89 c3                    	mov	rbx, rax
+1404f0dc5: 48 8d 05 84 6c ba 00        	lea	rax, [rip + 0xba6c84]   # 0x141097a50
+1404f0dcc: 48 83 c4 48                 	add	rsp, 0x48
+1404f0dd0: 5d                          	pop	rbp
+1404f0dd1: c3                          	ret
+1404f0dd2: b8 10 00 00 00              	mov	eax, 0x10
+1404f0dd7: 48 8d 1d 4a fc b1 00        	lea	rbx, [rip + 0xb1fc4a]   # 0x141010a28
+1404f0dde: b9 01 00 00 00              	mov	ecx, 0x1
+1404f0de3: e8 d8 1c b3 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f0de8: 48 c7 40 08 2a 00 00 00     	mov	qword ptr [rax + 0x8], 0x2a
+1404f0df0: 48 8d 15 f2 bb 32 00        	lea	rdx, [rip + 0x32bbf2]   # 0x14081c9e9 ; text_prefix='scenario contains more than one JSON valuesql: unknown driver %q (forgotten import?)sqlite'
+1404f0df7: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f0dfa: 48 89 c3                    	mov	rbx, rax
+1404f0dfd: 48 8d 05 4c 6c ba 00        	lea	rax, [rip + 0xba6c4c]   # 0x141097a50
+1404f0e04: 48 83 c4 48                 	add	rsp, 0x48
+1404f0e08: 5d                          	pop	rbp
+1404f0e09: c3                          	ret
+1404f0e0a: 31 c0                       	xor	eax, eax
+1404f0e0c: 31 db                       	xor	ebx, ebx
+1404f0e0e: 48 83 c4 48                 	add	rsp, 0x48
+1404f0e12: 5d                          	pop	rbp
+1404f0e13: c3                          	ret
+1404f0e14: 48 89 44 24 08              	mov	qword ptr [rsp + 0x8], rax
+1404f0e19: e8 22 b8 b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f0e1e: 48 8b 44 24 08              	mov	rax, qword ptr [rsp + 0x8]
+1404f0e23: e9 b8 fe ff ff              	jmp	0x1404f0ce0 <.text+0x4efce0>
+1404f0e28: cc                          	int3
+1404f0e29: cc                          	int3
+1404f0e2a: cc                          	int3
+1404f0e2b: cc                          	int3
+1404f0e2c: cc                          	int3
+1404f0e2d: cc                          	int3
+1404f0e2e: cc                          	int3
+1404f0e2f: cc                          	int3
+1404f0e30: cc                          	int3
+1404f0e31: cc                          	int3
+1404f0e32: cc                          	int3
+1404f0e33: cc                          	int3
+1404f0e34: cc                          	int3
+1404f0e35: cc                          	int3
+1404f0e36: cc                          	int3
+1404f0e37: cc                          	int3
+1404f0e38: cc                          	int3
+1404f0e39: cc                          	int3
+1404f0e3a: cc                          	int3
+1404f0e3b: cc                          	int3
+1404f0e3c: cc                          	int3
+1404f0e3d: cc                          	int3
+1404f0e3e: cc                          	int3
+1404f0e3f: cc                          	int3

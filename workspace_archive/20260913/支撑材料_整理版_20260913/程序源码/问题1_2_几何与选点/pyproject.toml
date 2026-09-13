@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cumcm2026-b-interference-localization"
+version = "0.1.0"
+description = "CUMCM 2026 Problem B simulator client and research code"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+report = ["matplotlib>=3.6", "reportlab>=4", "pypdf>=5"]
+
+[project.scripts]
+b-simulator = "simulator_client.__main__:main"
+b-workflow = "workflow.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]

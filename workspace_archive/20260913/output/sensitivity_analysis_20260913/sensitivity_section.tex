@@ -1,0 +1,74 @@
+% 由 output/sensitivity_analysis_20260913/make_sensitivity_analysis.py 生成。
+% 不含算法组件消融；只使用解析扰动和固定策略的既有场景记录。
+\section{模型的敏感性分析}\label{sec:sensitivity}
+
+\subsection{几何参数敏感性}
+
+问题二中，定位区域直径近似满足式\eqref{eq:q2-2}。取算例的
+$d_1=1000\,\mathrm{m}$、$d_2=470\,\mathrm{m}$，当交会角
+$\gamma=23^\circ$ 时，测角误差半角从 $0.8^\circ$ 增至
+$1.0^\circ$、$1.2^\circ$，估计直径依次为
+105.06、131.32、
+157.59\,m；固定 $\varepsilon=1^\circ$，
+$\gamma=20^\circ,23^\circ,26^\circ$ 时，估计直径依次为
+150.03、131.32、
+117.05\,m。由此可见，小幅测角误差近似等比例传递到定位直径，
+而提高交会角能够明显抑制误差放大；当交会角很小时，
+$1/\sin\gamma$ 急剧增大，支持第二问采用横向偏移形成交会角。
+
+第三问七个环上检测点的最坏保证距离为
+\[
+d_{\max}(a)=\max\left(a,\sqrt{1800^2+a^2-3600a\cos(\pi/7)}\right).
+\]
+该函数在 $a^*=998.925\,\mathrm{m}$ 处最小；
+满足 $d_{\max}\le1000\,\mathrm{m}$ 的半径区间为
+$[997.201,\,1000.000]\,\mathrm{m}$。
+本文取 $a=999\,\mathrm{m}$ 时最坏距离为
+999.000\,m，保留
+1.000\,m 的解析余量，且与理论极小点十分接近。
+因此该参数并非任意经验取值。
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.42\textheight,keepaspectratio]{figures/model_parameter_sensitivity.pdf}
+\caption{几何参数敏感性。左图为问题二估计定位直径随交会角和测角误差的变化；右图为问题三七点环半径变化时的最坏保证接收距离。}
+\label{fig:model-parameter-sensitivity}
+\end{figure}
+
+\subsection{场景参数敏感性}
+
+在问题三400个既有本地场景中，源数由10增至16时，平均源均耗时由
+293.31 降至
+201.99\,s/源；问题四1000个固定
+V6 Lite 本地场景中，相应数值由
+582.81 降至
+318.10\,s/源。这并不表示源越多越容易，
+而是覆盖搜索和结束确认等固定成本被更多源分摊。因此跨批次比较源均耗时时，
+必须同时报告源数分布。
+
+进一步对问题四按源数作组内中心化，以排除源数的混杂影响。定向源比例最低和最高四分位的
+调整后均值分别为
+430.17 和
+468.34\,s/源。
+在同时控制源数、定向比例、平均接收半径和平均径向位置的局部线性分析中，
+定向源比例跨越一个样本四分位距对应耗时变化
++26.15\,s/源，
+95\% bootstrap 区间为
+$[+23.88,\,
++28.41]$；
+平均接收半径对应变化为
++0.11\,s/源，
+区间跨越零；平均径向位置对应变化为
++2.51\,s/源。
+说明在本批场景中，定向源比例是最明显的难度因素，接收半径的平均变化影响较弱，
+源整体更靠近边界时耗时略有上升。
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.63\textheight,keepaspectratio]{figures/scenario_sensitivity.pdf}
+\caption{场景参数敏感性。误差线为按场景 bootstrap 得到的95\%区间；问题四定向比例分组结果已按源数校正，右下图为控制源数后的局部敏感性系数。}
+\label{fig:scenario-sensitivity}
+\end{figure}
+
+上述结论只描述固定算法在自建场景生成分布内的敏感性，不将相关关系解释为因果关系，
+也不与官方不同地图的演练成绩合并。

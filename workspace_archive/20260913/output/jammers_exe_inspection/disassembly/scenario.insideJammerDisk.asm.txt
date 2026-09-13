@@ -1,0 +1,126 @@
+jammers/client/internal/scenario.insideJammerDisk
+Virtual address: 0x1404f19c0
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f19c0: 4c 8d 64 24 80              	lea	r12, [rsp - 0x80]
+1404f19c5: 4d 3b 66 10                 	cmp	r12, qword ptr [r14 + 0x10]
+1404f19c9: 0f 86 97 01 00 00           	jbe	0x1404f1b66 <.text+0x4f0b66>
+1404f19cf: 55                          	push	rbp
+1404f19d0: 48 89 e5                    	mov	rbp, rsp
+1404f19d3: 48 81 ec f8 00 00 00        	sub	rsp, 0xf8
+1404f19da: 48 89 c2                    	mov	rdx, rax
+1404f19dd: 48 f7 d8                    	neg	rax
+1404f19e0: 90                          	nop
+1404f19e1: 48 85 d2                    	test	rdx, rdx
+1404f19e4: 48 0f 4c d0                 	cmovl	rdx, rax
+1404f19e8: 75 0c                       	jne	0x1404f19f6 <.text+0x4f09f6>
+1404f19ea: b8 00 00 00 00              	mov	eax, 0x0
+1404f19ef: b9 00 00 00 00              	mov	ecx, 0x0
+1404f19f4: eb 0f                       	jmp	0x1404f1a05 <.text+0x4f0a05>
+1404f19f6: 48 89 54 24 30              	mov	qword ptr [rsp + 0x30], rdx
+1404f19fb: b8 01 00 00 00              	mov	eax, 0x1
+1404f1a00: 48 8d 4c 24 30              	lea	rcx, [rsp + 0x30]
+1404f1a05: 0f 9c 84 24 d8 00 00 00     	setl	byte ptr [rsp + 0xd8]
+1404f1a0d: 48 89 84 24 e8 00 00 00     	mov	qword ptr [rsp + 0xe8], rax
+1404f1a15: 48 89 84 24 f0 00 00 00     	mov	qword ptr [rsp + 0xf0], rax
+1404f1a1d: 48 89 8c 24 e0 00 00 00     	mov	qword ptr [rsp + 0xe0], rcx
+1404f1a25: 48 89 da                    	mov	rdx, rbx
+1404f1a28: 48 f7 db                    	neg	rbx
+1404f1a2b: 90                          	nop
+1404f1a2c: 48 85 d2                    	test	rdx, rdx
+1404f1a2f: 48 0f 4c d3                 	cmovl	rdx, rbx
+1404f1a33: 75 0d                       	jne	0x1404f1a42 <.text+0x4f0a42>
+1404f1a35: b8 00 00 00 00              	mov	eax, 0x0
+1404f1a3a: b9 00 00 00 00              	mov	ecx, 0x0
+1404f1a3f: 90                          	nop
+1404f1a40: eb 0f                       	jmp	0x1404f1a51 <.text+0x4f0a51>
+1404f1a42: 48 89 54 24 28              	mov	qword ptr [rsp + 0x28], rdx
+1404f1a47: b8 01 00 00 00              	mov	eax, 0x1
+1404f1a4c: 48 8d 4c 24 28              	lea	rcx, [rsp + 0x28]
+1404f1a51: 0f 9c 84 24 b8 00 00 00     	setl	byte ptr [rsp + 0xb8]
+1404f1a59: 48 89 84 24 c8 00 00 00     	mov	qword ptr [rsp + 0xc8], rax
+1404f1a61: 48 89 84 24 d0 00 00 00     	mov	qword ptr [rsp + 0xd0], rax
+1404f1a69: 48 89 8c 24 c0 00 00 00     	mov	qword ptr [rsp + 0xc0], rcx
+1404f1a71: c6 84 24 98 00 00 00 00     	mov	byte ptr [rsp + 0x98], 0x0
+1404f1a79: 48 c7 84 24 a0 00 00 00 00 00 00 00 	mov	qword ptr [rsp + 0xa0], 0x0
+1404f1a85: 44 0f 11 bc 24 a8 00 00 00  	movups	xmmword ptr [rsp + 0xa8], xmm15
+1404f1a8e: 48 8d 84 24 98 00 00 00     	lea	rax, [rsp + 0x98]
+1404f1a96: 31 db                       	xor	ebx, ebx
+1404f1a98: 48 8d 8c 24 d8 00 00 00     	lea	rcx, [rsp + 0xd8]
+1404f1aa0: 48 89 cf                    	mov	rdi, rcx
+1404f1aa3: e8 18 8c cd ff              	call	0x1401ca6c0 <.text+0x1c96c0> ; math/big.(*Int).mul
+1404f1aa8: c6 44 24 78 00              	mov	byte ptr [rsp + 0x78], 0x0
+1404f1aad: 48 c7 84 24 80 00 00 00 00 00 00 00 	mov	qword ptr [rsp + 0x80], 0x0
+1404f1ab9: 44 0f 11 bc 24 88 00 00 00  	movups	xmmword ptr [rsp + 0x88], xmm15
+1404f1ac2: 48 8d 44 24 78              	lea	rax, [rsp + 0x78]
+1404f1ac7: 31 db                       	xor	ebx, ebx
+1404f1ac9: 48 8d 8c 24 b8 00 00 00     	lea	rcx, [rsp + 0xb8]
+1404f1ad1: 48 89 cf                    	mov	rdi, rcx
+1404f1ad4: e8 e7 8b cd ff              	call	0x1401ca6c0 <.text+0x1c96c0> ; math/big.(*Int).mul
+1404f1ad9: 48 8d 84 24 98 00 00 00     	lea	rax, [rsp + 0x98]
+1404f1ae1: 48 89 c3                    	mov	rbx, rax
+1404f1ae4: 48 8d 4c 24 78              	lea	rcx, [rsp + 0x78]
+1404f1ae9: e8 b2 87 cd ff              	call	0x1401ca2a0 <.text+0x1c92a0> ; math/big.(*Int).Add
+1404f1aee: 90                          	nop
+1404f1aef: 48 c7 44 24 20 80 0e 80 69  	mov	qword ptr [rsp + 0x20], 0x69800e80
+1404f1af8: c6 44 24 58 00              	mov	byte ptr [rsp + 0x58], 0x0
+1404f1afd: 48 c7 44 24 68 01 00 00 00  	mov	qword ptr [rsp + 0x68], 0x1
+1404f1b06: 48 c7 44 24 70 01 00 00 00  	mov	qword ptr [rsp + 0x70], 0x1
+1404f1b0f: 48 8d 54 24 20              	lea	rdx, [rsp + 0x20]
+1404f1b14: 48 89 54 24 60              	mov	qword ptr [rsp + 0x60], rdx
+1404f1b19: c6 44 24 38 00              	mov	byte ptr [rsp + 0x38], 0x0
+1404f1b1e: 48 c7 44 24 40 00 00 00 00  	mov	qword ptr [rsp + 0x40], 0x0
+1404f1b27: 44 0f 11 7c 24 48           	movups	xmmword ptr [rsp + 0x48], xmm15
+1404f1b2d: 48 8d 44 24 38              	lea	rax, [rsp + 0x38]
+1404f1b32: 31 db                       	xor	ebx, ebx
+1404f1b34: 48 8d 4c 24 58              	lea	rcx, [rsp + 0x58]
+1404f1b39: 48 89 cf                    	mov	rdi, rcx
+1404f1b3c: 0f 1f 40 00                 	nop	dword ptr [rax]
+1404f1b40: e8 7b 8b cd ff              	call	0x1401ca6c0 <.text+0x1c96c0> ; math/big.(*Int).mul
+1404f1b45: 48 8d 84 24 98 00 00 00     	lea	rax, [rsp + 0x98]
+1404f1b4d: 48 8d 5c 24 38              	lea	rbx, [rsp + 0x38]
+1404f1b52: e8 29 a3 cd ff              	call	0x1401cbe80 <.text+0x1cae80> ; math/big.(*Int).Cmp
+1404f1b57: 48 85 c0                    	test	rax, rax
+1404f1b5a: 0f 9e c0                    	setle	al
+1404f1b5d: 48 81 c4 f8 00 00 00        	add	rsp, 0xf8
+1404f1b64: 5d                          	pop	rbp
+1404f1b65: c3                          	ret
+1404f1b66: 48 89 44 24 08              	mov	qword ptr [rsp + 0x8], rax
+1404f1b6b: 48 89 5c 24 10              	mov	qword ptr [rsp + 0x10], rbx
+1404f1b70: e8 cb aa b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f1b75: 48 8b 44 24 08              	mov	rax, qword ptr [rsp + 0x8]
+1404f1b7a: 48 8b 5c 24 10              	mov	rbx, qword ptr [rsp + 0x10]
+1404f1b7f: 90                          	nop
+1404f1b80: e9 3b fe ff ff              	jmp	0x1404f19c0 <.text+0x4f09c0>
+1404f1b85: cc                          	int3
+1404f1b86: cc                          	int3
+1404f1b87: cc                          	int3
+1404f1b88: cc                          	int3
+1404f1b89: cc                          	int3
+1404f1b8a: cc                          	int3
+1404f1b8b: cc                          	int3
+1404f1b8c: cc                          	int3
+1404f1b8d: cc                          	int3
+1404f1b8e: cc                          	int3
+1404f1b8f: cc                          	int3
+1404f1b90: cc                          	int3
+1404f1b91: cc                          	int3
+1404f1b92: cc                          	int3
+1404f1b93: cc                          	int3
+1404f1b94: cc                          	int3
+1404f1b95: cc                          	int3
+1404f1b96: cc                          	int3
+1404f1b97: cc                          	int3
+1404f1b98: cc                          	int3
+1404f1b99: cc                          	int3
+1404f1b9a: cc                          	int3
+1404f1b9b: cc                          	int3
+1404f1b9c: cc                          	int3
+1404f1b9d: cc                          	int3
+1404f1b9e: cc                          	int3
+1404f1b9f: cc                          	int3

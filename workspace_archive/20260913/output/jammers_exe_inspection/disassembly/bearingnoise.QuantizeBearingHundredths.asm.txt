@@ -1,0 +1,123 @@
+jammers/client/internal/bearingnoise.QuantizeBearingHundredths
+Virtual address: 0x1404ee900
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404ee900: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+1404ee904: 0f 86 81 01 00 00           	jbe	0x1404eea8b <.text+0x4eda8b>
+1404ee90a: 55                          	push	rbp
+1404ee90b: 48 89 e5                    	mov	rbp, rsp
+1404ee90e: 48 83 ec 18                 	sub	rsp, 0x18
+1404ee912: f2 0f 58 c8                 	addsd	xmm1, xmm0
+1404ee916: f2 0f 10 15 c2 ba 40 00     	movsd	xmm2, qword ptr [rip + 0x40bac2] # 0x1408fa3e0 ; f64=100.0
+1404ee91e: f2 0f 59 ca                 	mulsd	xmm1, xmm2
+1404ee922: 66 48 0f 7e c9              	movq	rcx, xmm1
+1404ee927: 48 89 ca                    	mov	rdx, rcx
+1404ee92a: 48 c1 ea 34                 	shr	rdx, 0x34
+1404ee92e: 81 e2 ff 07 00 00           	and	edx, 0x7ff
+1404ee934: 90                          	nop
+1404ee935: 48 81 fa ff 03 00 00        	cmp	rdx, 0x3ff
+1404ee93c: 73 2a                       	jae	0x1404ee968 <.text+0x4ed968>
+1404ee93e: 48 bb 00 00 00 00 00 00 00 80       	movabs	rbx, -0x8000000000000000
+1404ee948: 48 21 cb                    	and	rbx, rcx
+1404ee94b: 48 b9 00 00 00 00 00 00 f0 3f       	movabs	rcx, 0x3ff0000000000000
+1404ee955: 48 09 d9                    	or	rcx, rbx
+1404ee958: 48 81 fa fe 03 00 00        	cmp	rdx, 0x3fe
+1404ee95f: 48 0f 44 d9                 	cmove	rbx, rcx
+1404ee963: 48 89 de                    	mov	rsi, rbx
+1404ee966: eb 3e                       	jmp	0x1404ee9a6 <.text+0x4ed9a6>
+1404ee968: 48 81 fa 33 04 00 00        	cmp	rdx, 0x433
+1404ee96f: 73 32                       	jae	0x1404ee9a3 <.text+0x4ed9a3>
+1404ee971: 48 81 c2 01 fc ff ff        	add	rdx, -0x3ff
+1404ee978: 48 89 c8                    	mov	rax, rcx
+1404ee97b: 48 89 d1                    	mov	rcx, rdx
+1404ee97e: 48 bb 00 00 00 00 00 00 08 00       	movabs	rbx, 0x8000000000000
+1404ee988: 48 d3 eb                    	shr	rbx, cl
+1404ee98b: 48 01 c3                    	add	rbx, rax
+1404ee98e: 48 be ff ff ff ff ff ff 0f 00       	movabs	rsi, 0xfffffffffffff
+1404ee998: 48 d3 ee                    	shr	rsi, cl
+1404ee99b: 48 f7 d6                    	not	rsi
+1404ee99e: 48 21 de                    	and	rsi, rbx
+1404ee9a1: eb 03                       	jmp	0x1404ee9a6 <.text+0x4ed9a6>
+1404ee9a3: 48 89 ce                    	mov	rsi, rcx
+1404ee9a6: 48 89 74 24 08              	mov	qword ptr [rsp + 0x8], rsi
+1404ee9ab: f2 0f 10 0d 05 ba 40 00     	movsd	xmm1, qword ptr [rip + 0x40ba05] # 0x1408fa3b8 ; f64=1.0
+1404ee9b3: 0f 10 d8                    	movups	xmm3, xmm0
+1404ee9b6: f2 0f 5c d9                 	subsd	xmm3, xmm1
+1404ee9ba: f2 0f 59 da                 	mulsd	xmm3, xmm2
+1404ee9be: 0f b6 0d e8 87 cd 00        	movzx	ecx, byte ptr [rip + 0xcd87e8] # 0x1411c71ad
+1404ee9c5: 85 c9                       	test	ecx, ecx
+1404ee9c7: 74 08                       	je	0x1404ee9d1 <.text+0x4ed9d1>
+1404ee9c9: 66 0f 3a 0b db 02           	roundsd	xmm3, xmm3, 0x2
+1404ee9cf: eb 35                       	jmp	0x1404eea06 <.text+0x4eda06>
+1404ee9d1: f2 0f 11 44 24 28           	movsd	qword ptr [rsp + 0x28], xmm0
+1404ee9d7: 0f 10 c3                    	movups	xmm0, xmm3
+1404ee9da: e8 21 1b bf ff              	call	0x1400e0500 <.text+0xdf500> ; math.Ceil
+1404ee9df: 0f b6 05 c7 87 cd 00        	movzx	eax, byte ptr [rip + 0xcd87c7] # 0x1411c71ad
+1404ee9e6: 85 c0                       	test	eax, eax
+1404ee9e8: 48 8b 74 24 08              	mov	rsi, qword ptr [rsp + 0x8]
+1404ee9ed: f2 0f 10 0d c3 b9 40 00     	movsd	xmm1, qword ptr [rip + 0x40b9c3] # 0x1408fa3b8 ; f64=1.0
+1404ee9f5: f2 0f 10 15 e3 b9 40 00     	movsd	xmm2, qword ptr [rip + 0x40b9e3] # 0x1408fa3e0 ; f64=100.0
+1404ee9fd: 0f 10 d8                    	movups	xmm3, xmm0
+1404eea00: f2 0f 10 44 24 28           	movsd	xmm0, qword ptr [rsp + 0x28]
+1404eea06: f2 0f 58 c1                 	addsd	xmm0, xmm1
+1404eea0a: f2 0f 59 c2                 	mulsd	xmm0, xmm2
+1404eea0e: 74 08                       	je	0x1404eea18 <.text+0x4eda18>
+1404eea10: 66 0f 3a 0b c0 01           	roundsd	xmm0, xmm0, 0x1
+1404eea16: eb 18                       	jmp	0x1404eea30 <.text+0x4eda30>
+1404eea18: f2 0f 11 5c 24 10           	movsd	qword ptr [rsp + 0x10], xmm3
+1404eea1e: 66 90                       	nop
+1404eea20: e8 7b 1a bf ff              	call	0x1400e04a0 <.text+0xdf4a0> ; math.Floor
+1404eea25: 48 8b 74 24 08              	mov	rsi, qword ptr [rsp + 0x8]
+1404eea2a: f2 0f 10 5c 24 10           	movsd	xmm3, qword ptr [rsp + 0x10]
+1404eea30: f2 48 0f 2c cb              	cvttsd2si	rcx, xmm3
+1404eea35: f2 48 0f 2c d0              	cvttsd2si	rdx, xmm0
+1404eea3a: 66 48 0f 6e c6              	movq	xmm0, rsi
+1404eea3f: f2 48 0f 2c d8              	cvttsd2si	rbx, xmm0
+1404eea44: 48 39 d9                    	cmp	rcx, rbx
+1404eea47: 48 0f 4f d9                 	cmovg	rbx, rcx
+1404eea4b: 48 39 da                    	cmp	rdx, rbx
+1404eea4e: 48 0f 4c da                 	cmovl	rbx, rdx
+1404eea52: 48 b8 6e c6 b8 44 6a 29 82 74       	movabs	rax, 0x7482296a44b8c66e
+1404eea5c: 48 f7 eb                    	imul	rbx
+1404eea5f: 48 c1 fa 0e                 	sar	rdx, 0xe
+1404eea63: 48 89 d8                    	mov	rax, rbx
+1404eea66: 48 c1 fb 3f                 	sar	rbx, 0x3f
+1404eea6a: 48 29 da                    	sub	rdx, rbx
+1404eea6d: 48 69 ca a0 8c 00 00        	imul	rcx, rdx, 0x8ca0
+1404eea74: 48 29 c8                    	sub	rax, rcx
+1404eea77: 48 8d 88 a0 8c 00 00        	lea	rcx, [rax + 0x8ca0]
+1404eea7e: 48 85 c0                    	test	rax, rax
+1404eea81: 48 0f 4c c1                 	cmovl	rax, rcx
+1404eea85: 48 83 c4 18                 	add	rsp, 0x18
+1404eea89: 5d                          	pop	rbp
+1404eea8a: c3                          	ret
+1404eea8b: f2 0f 11 44 24 08           	movsd	qword ptr [rsp + 0x8], xmm0
+1404eea91: f2 0f 11 4c 24 10           	movsd	qword ptr [rsp + 0x10], xmm1
+1404eea97: e8 a4 db b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404eea9c: f2 0f 10 44 24 08           	movsd	xmm0, qword ptr [rsp + 0x8]
+1404eeaa2: f2 0f 10 4c 24 10           	movsd	xmm1, qword ptr [rsp + 0x10]
+1404eeaa8: e9 53 fe ff ff              	jmp	0x1404ee900 <.text+0x4ed900>
+1404eeaad: cc                          	int3
+1404eeaae: cc                          	int3
+1404eeaaf: cc                          	int3
+1404eeab0: cc                          	int3
+1404eeab1: cc                          	int3
+1404eeab2: cc                          	int3
+1404eeab3: cc                          	int3
+1404eeab4: cc                          	int3
+1404eeab5: cc                          	int3
+1404eeab6: cc                          	int3
+1404eeab7: cc                          	int3
+1404eeab8: cc                          	int3
+1404eeab9: cc                          	int3
+1404eeaba: cc                          	int3
+1404eeabb: cc                          	int3
+1404eeabc: cc                          	int3
+1404eeabd: cc                          	int3
+1404eeabe: cc                          	int3
+1404eeabf: cc                          	int3

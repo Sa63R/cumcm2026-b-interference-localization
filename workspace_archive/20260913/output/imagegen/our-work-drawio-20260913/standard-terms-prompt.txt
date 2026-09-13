@@ -1,0 +1,67 @@
+Create ONE elegant publication-ready academic method overview, directly as a finished image, using the flat vector style of a carefully designed draw.io diagram for a top-tier research paper. The user wants: VERY SPACIOUS, FEW LARGE COMPONENTS, STANDARD TERMINOLOGY, precise method relationships. They rejected hand-drawn figures, excessive mini-illustrations, fragmented layouts, and made-up model names. Use only the established Chinese and English method names specified here.
+
+Canvas: white opaque background, landscape approximately 16:9, high resolution. Crisp uniform sans-serif typography, flat shapes, thin precise outlines, restrained cobalt/indigo/teal/orange accents. Pale flat fills with dark saturated labels. Large modules, generous whitespace and outer margins, optical alignment. Rounded corners only slightly, like draw.io. Absolutely no handwriting, texture, gradients, shadows, glass, glow, 3D, poster scenery, decorative icons, charts or detailed mini-sketches.
+This should look like a clean vector export from a professionally designed paper, not a dashboard or marketing poster.
+
+Small title at upper left:
+"Our Work"
+
+FOUR MAIN MODULES ONLY. Three form the upper horizontal chain. The fourth sits below the middle. One small execution box is permitted to the far right of the upper chain. Use one simple bold title, a small English translation, and two short body lines per main module. Do not add any extra model names or explanatory paragraphs.
+
+UPPER LEFT MODULE, pale blue with cobalt border:
+"半平面交"
+"Half-plane Intersection"
+Body line 1: "测向与成对检测 → 定位区域"
+Body line 2: "最小包围圆"
+The body describes real geometric calculations and conditional paired-measurement updates from this paper. Do not label this "半平面交定位模型" or invent a longer model title.
+
+UPPER MIDDLE MODULE, pale lavender with indigo border:
+"开放式旅行商问题"
+"Open TSP"
+Body line 1: "扫描与清除联合排序"
+Body line 2: "多起点局部搜索 · 2-opt"
+This is ONLY the current task-ordering subproblem with a fixed current start and a free end, no return to origin; it is not a claim that the entire online discovery task is a static TSP.
+Small line directly below this module, outside its box: "滚动规划".
+No graph of cities, no complicated route illustration.
+
+UPPER RIGHT MODULE, pale mint with teal border:
+"约束优化"
+"Constrained Optimization"
+Body line 1: "测点与清除位置选择"
+Body line 2: "有限候选 · 代价评分"
+This represents the constrained measurement/clearance choice given the selected task. Do not call it convex optimization because convexity of the full scoring objective is not proved. No gradient descent or exact-solver icon.
+
+SMALL EXECUTION BOX, to the right of the main chain, on its centerline:
+"执行"
+Neutral thin gray border, white fill. This is not a main model.
+
+LOWER MIDDLE MODULE, pale peach with orange border:
+"回归树"
+"Regression Trees"
+Body line 1: "途中补测收益预测"
+Body line 2: "局部前瞻比较候选动作"
+The first line belongs to the regression-tree predictor. IMPORTANT: The local lookahead in the second line is a SEPARATE action-evaluation procedure, not something the regression tree performs. To communicate this correctly, place that second line OUTSIDE the regression-tree box just beneath it in plain gray text, linked to the constrained-optimization module by a thin separate line if needed. The tree box itself contains only title, translation, and the benefit-prediction line.
+Small annotation near this lower lane, "混合源".
+Do not use a neural-network symbol or invent a model called "回归树收益预测模型". Standard model title is simply "回归树".
+
+CONNECTIONS:
+- Three upper modules form the main chain in this order: half-plane intersection -> Open TSP -> constrained optimization -> execute.
+- The connector from geometry to Open TSP has one short label: "区域与任务".
+- The connector from Open TSP to constrained optimization has one short label: "下一任务".
+- A thin branch from the current-state framework leads down into Regression Trees. Input label "当前状态".
+- The regression-tree output connects into the action/execution side through a right-angled line with label "补测决策".
+- The separate local-lookahead annotation beneath the tree has a thin line into constrained optimization (it compares localization actions for the selected source).
+- One single outside feedback connector exits execute, descends to the lower margin, runs left and rises into the geometry module. Label once "真实反馈".
+- All connectors are thin dark-gray orthogonal lines with clear filled arrowheads. Use the lower route for the return loop, keep all other connectors well above it. No crossing lines through modules, no overlaps with text. Arrow routes terminate at module boundaries.
+- No dashed all-over borders, no miniature loops, no orphan arrows.
+
+OUR WORK MUST BE VISIBLE THROUGH THE SHORT BODY LINES:
+This paper combines actual-feedback geometric localization, joint scheduling of scan tasks and known-source removal tasks, finite feasible-action comparison, paired-sensing geometric inference for directional sources, local simulated lookahead and learned en-route stop decisions. It does not just repeat the task requirements. But keep the labels concise; do not add the paper's long explanations.
+Use standard established names only; the role phrases underneath explain how THIS paper uses each tool.
+
+CANONICAL TERMINOLOGY BOUNDARY:
+Half-plane Intersection, minimum enclosing circle, constrained optimization, Open TSP, regression trees, multi-start local search, 2-opt, rolling planning and local lookahead are the real techniques.
+Do NOT add reinforcement learning, MDP/POMDP, graph neural networks, Bayesian optimization, integer programming, model predictive control, exact global optimization, or a invented branded framework acronym. No fake metrics, rankings or evaluation badges.
+Do not use generic four-question headings.
+
+Visual hierarchy: the FOUR standard method names dominate, then their smaller English equivalents, then concise application and solver notes. Preserve clear distinction between model/problem type and solver. Enough information for a mathematical-modeling paper, enough white space for a top-conference overview figure. The result should feel clean, balanced, assured and beautiful, with around half of the page left visually open.

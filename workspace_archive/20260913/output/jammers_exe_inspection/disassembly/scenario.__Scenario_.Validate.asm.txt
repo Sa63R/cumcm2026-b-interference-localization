@@ -1,0 +1,87 @@
+jammers/client/internal/scenario.(*Scenario).Validate
+Virtual address: 0x1404f1ba0
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f1ba0: 4c 8d a4 24 28 fe ff ff     	lea	r12, [rsp - 0x1d8]
+1404f1ba8: 4d 3b 66 10                 	cmp	r12, qword ptr [r14 + 0x10]
+1404f1bac: 0f 86 e4 00 00 00           	jbe	0x1404f1c96 <.text+0x4f0c96>
+1404f1bb2: 55                          	push	rbp
+1404f1bb3: 48 89 e5                    	mov	rbp, rsp
+1404f1bb6: 48 81 ec 50 02 00 00        	sub	rsp, 0x250
+1404f1bbd: 0f 1f 00                    	nop	dword ptr [rax]
+1404f1bc0: 48 85 c0                    	test	rax, rax
+1404f1bc3: 0f 84 c7 00 00 00           	je	0x1404f1c90 <.text+0x4f0c90>
+1404f1bc9: 48 8d 8c 24 28 01 00 00     	lea	rcx, [rsp + 0x128]
+1404f1bd1: ba 04 00 00 00              	mov	edx, 0x4
+1404f1bd6: 44 0f 10 30                 	movups	xmm14, xmmword ptr [rax]
+1404f1bda: 44 0f 11 31                 	movups	xmmword ptr [rcx], xmm14
+1404f1bde: 44 0f 10 70 10              	movups	xmm14, xmmword ptr [rax + 0x10]
+1404f1be3: 44 0f 11 71 10              	movups	xmmword ptr [rcx + 0x10], xmm14
+1404f1be8: 44 0f 10 70 20              	movups	xmm14, xmmword ptr [rax + 0x20]
+1404f1bed: 44 0f 11 71 20              	movups	xmmword ptr [rcx + 0x20], xmm14
+1404f1bf2: 44 0f 10 70 30              	movups	xmm14, xmmword ptr [rax + 0x30]
+1404f1bf7: 44 0f 11 71 30              	movups	xmmword ptr [rcx + 0x30], xmm14
+1404f1bfc: 48 83 c0 40                 	add	rax, 0x40
+1404f1c00: 48 83 c1 40                 	add	rcx, 0x40
+1404f1c04: ff ca                       	dec	edx
+1404f1c06: 75 ce                       	jne	0x1404f1bd6 <.text+0x4f0bd6>
+1404f1c08: 44 0f 10 30                 	movups	xmm14, xmmword ptr [rax]
+1404f1c0c: 44 0f 11 31                 	movups	xmmword ptr [rcx], xmm14
+1404f1c10: 44 0f 10 70 10              	movups	xmm14, xmmword ptr [rax + 0x10]
+1404f1c15: 44 0f 11 71 10              	movups	xmmword ptr [rcx + 0x10], xmm14
+1404f1c1a: 44 0f 10 70 18              	movups	xmm14, xmmword ptr [rax + 0x18]
+1404f1c1f: 44 0f 11 71 18              	movups	xmmword ptr [rcx + 0x18], xmm14
+1404f1c24: 48 89 e0                    	mov	rax, rsp
+1404f1c27: 48 8d 8c 24 28 01 00 00     	lea	rcx, [rsp + 0x128]
+1404f1c2f: ba 04 00 00 00              	mov	edx, 0x4
+1404f1c34: 44 0f 10 31                 	movups	xmm14, xmmword ptr [rcx]
+1404f1c38: 44 0f 11 30                 	movups	xmmword ptr [rax], xmm14
+1404f1c3c: 44 0f 10 71 10              	movups	xmm14, xmmword ptr [rcx + 0x10]
+1404f1c41: 44 0f 11 70 10              	movups	xmmword ptr [rax + 0x10], xmm14
+1404f1c46: 44 0f 10 71 20              	movups	xmm14, xmmword ptr [rcx + 0x20]
+1404f1c4b: 44 0f 11 70 20              	movups	xmmword ptr [rax + 0x20], xmm14
+1404f1c50: 44 0f 10 71 30              	movups	xmm14, xmmword ptr [rcx + 0x30]
+1404f1c55: 44 0f 11 70 30              	movups	xmmword ptr [rax + 0x30], xmm14
+1404f1c5a: 48 83 c1 40                 	add	rcx, 0x40
+1404f1c5e: 48 83 c0 40                 	add	rax, 0x40
+1404f1c62: ff ca                       	dec	edx
+1404f1c64: 75 ce                       	jne	0x1404f1c34 <.text+0x4f0c34>
+1404f1c66: 44 0f 10 31                 	movups	xmm14, xmmword ptr [rcx]
+1404f1c6a: 44 0f 11 30                 	movups	xmmword ptr [rax], xmm14
+1404f1c6e: 44 0f 10 71 10              	movups	xmm14, xmmword ptr [rcx + 0x10]
+1404f1c73: 44 0f 11 70 10              	movups	xmmword ptr [rax + 0x10], xmm14
+1404f1c78: 44 0f 10 71 18              	movups	xmm14, xmmword ptr [rcx + 0x18]
+1404f1c7d: 44 0f 11 70 18              	movups	xmmword ptr [rax + 0x18], xmm14
+1404f1c82: e8 b9 f1 ff ff              	call	0x1404f0e40 <.text+0x4efe40> ; jammers/client/internal/scenario.Scenario.validate
+1404f1c87: 48 81 c4 50 02 00 00        	add	rsp, 0x250
+1404f1c8e: 5d                          	pop	rbp
+1404f1c8f: c3                          	ret
+1404f1c90: e8 6b ac b2 ff              	call	0x14001c900 <.text+0x1b900> ; runtime.panicwrap
+1404f1c95: 90                          	nop
+1404f1c96: 48 89 44 24 08              	mov	qword ptr [rsp + 0x8], rax
+1404f1c9b: 0f 1f 44 00 00              	nop	dword ptr [rax + rax]
+1404f1ca0: e8 9b a9 b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f1ca5: 48 8b 44 24 08              	mov	rax, qword ptr [rsp + 0x8]
+1404f1caa: e9 f1 fe ff ff              	jmp	0x1404f1ba0 <.text+0x4f0ba0>
+1404f1caf: cc                          	int3
+1404f1cb0: cc                          	int3
+1404f1cb1: cc                          	int3
+1404f1cb2: cc                          	int3
+1404f1cb3: cc                          	int3
+1404f1cb4: cc                          	int3
+1404f1cb5: cc                          	int3
+1404f1cb6: cc                          	int3
+1404f1cb7: cc                          	int3
+1404f1cb8: cc                          	int3
+1404f1cb9: cc                          	int3
+1404f1cba: cc                          	int3
+1404f1cbb: cc                          	int3
+1404f1cbc: cc                          	int3
+1404f1cbd: cc                          	int3
+1404f1cbe: cc                          	int3
+1404f1cbf: cc                          	int3

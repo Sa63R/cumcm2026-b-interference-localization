@@ -1,0 +1,147 @@
+jammers/client/internal/robotapi.requiredChannel
+Virtual address: 0x140502820
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+140502820: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+140502824: 0f 86 40 02 00 00           	jbe	0x140502a6a <.text+0x501a6a>
+14050282a: 55                          	push	rbp
+14050282b: 48 89 e5                    	mov	rbp, rsp
+14050282e: 48 83 ec 50                 	sub	rsp, 0x50
+140502832: 48 89 c3                    	mov	rbx, rax
+140502835: 48 8d 0d 35 1b 2f 00        	lea	rcx, [rip + 0x2f1b35]   # 0x1407f4371 ; text_prefix='channelUNKNOWNcleanup:events, goid=  mark  s=nil'
+14050283c: bf 07 00 00 00              	mov	edi, 0x7
+140502841: 48 8d 05 90 5e aa 00        	lea	rax, [rip + 0xaa5e90]   # 0x140fa86d8
+140502848: e8 53 a1 b0 ff              	call	0x14000c9a0 <.text+0xb9a0> ; runtime.mapaccess2_faststr
+14050284d: 84 db                       	test	bl, bl
+14050284f: 0f 84 d3 01 00 00           	je	0x140502a28 <.text+0x501a28>
+140502855: 48 8b 50 08                 	mov	rdx, qword ptr [rax + 0x8]
+140502859: 48 89 54 24 28              	mov	qword ptr [rsp + 0x28], rdx
+14050285e: 48 8b 50 10                 	mov	rdx, qword ptr [rax + 0x10]
+140502862: 48 89 54 24 30              	mov	qword ptr [rsp + 0x30], rdx
+140502867: 48 8b 10                    	mov	rdx, qword ptr [rax]
+14050286a: 48 89 54 24 38              	mov	qword ptr [rsp + 0x38], rdx
+14050286f: b8 10 00 00 00              	mov	eax, 0x10
+140502874: 48 8d 1d cd 5b b1 00        	lea	rbx, [rip + 0xb15bcd]   # 0x141018448
+14050287b: b9 01 00 00 00              	mov	ecx, 0x1
+140502880: e8 3b 02 b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+140502885: 48 89 44 24 48              	mov	qword ptr [rsp + 0x48], rax
+14050288a: b8 28 00 00 00              	mov	eax, 0x28
+14050288f: 48 8d 1d 3a cf b3 00        	lea	rbx, [rip + 0xb3cf3a]   # 0x14103f7d0
+140502896: b9 01 00 00 00              	mov	ecx, 0x1
+14050289b: 0f 1f 44 00 00              	nop	dword ptr [rax + rax]
+1405028a0: e8 db 0c b2 ff              	call	0x140023580 <.text+0x22580> ; runtime.mallocgcSmallScanNoHeaderSC5
+1405028a5: 48 8b 54 24 28              	mov	rdx, qword ptr [rsp + 0x28]
+1405028aa: 48 89 50 08                 	mov	qword ptr [rax + 0x8], rdx
+1405028ae: 48 8b 54 24 30              	mov	rdx, qword ptr [rsp + 0x30]
+1405028b3: 48 89 50 10                 	mov	qword ptr [rax + 0x10], rdx
+1405028b7: 83 3d 62 50 cc 00 00        	cmp	dword ptr [rip + 0xcc5062], 0x0 # 0x1411c7920
+1405028be: 66 90                       	nop
+1405028c0: 75 07                       	jne	0x1405028c9 <.text+0x5018c9>
+1405028c2: 48 8b 4c 24 38              	mov	rcx, qword ptr [rsp + 0x38]
+1405028c7: eb 0d                       	jmp	0x1405028d6 <.text+0x5018d6>
+1405028c9: e8 f2 b7 b8 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1405028ce: 48 8b 4c 24 38              	mov	rcx, qword ptr [rsp + 0x38]
+1405028d3: 49 89 0b                    	mov	qword ptr [r11], rcx
+1405028d6: 48 89 08                    	mov	qword ptr [rax], rcx
+1405028d9: 48 c7 40 18 00 00 00 00     	mov	qword ptr [rax + 0x18], 0x0
+1405028e1: 48 c7 40 20 ff ff ff ff     	mov	qword ptr [rax + 0x20], -0x1
+1405028e9: 48 89 c3                    	mov	rbx, rax
+1405028ec: 48 8d 05 fd 50 b9 00        	lea	rax, [rip + 0xb950fd]   # 0x1410979f0
+1405028f3: e8 c8 26 ca ff              	call	0x1401a4fc0 <.text+0x1a3fc0> ; encoding/json.NewDecoder
+1405028f8: 48 89 44 24 40              	mov	qword ptr [rsp + 0x40], rax
+1405028fd: 0f 1f 00                    	nop	dword ptr [rax]
+140502900: e8 fb 27 ca ff              	call	0x1401a5100 <.text+0x1a4100> ; encoding/json.(*Decoder).UseNumber
+140502905: 48 8b 44 24 40              	mov	rax, qword ptr [rsp + 0x40]
+14050290a: 48 8d 1d 0f 66 a5 00        	lea	rbx, [rip + 0xa5660f]   # 0x140f58f20
+140502911: 48 8b 4c 24 48              	mov	rcx, qword ptr [rsp + 0x48]
+140502916: e8 e5 29 ca ff              	call	0x1401a5300 <.text+0x1a4300> ; encoding/json.(*Decoder).Decode
+14050291b: 0f 1f 44 00 00              	nop	dword ptr [rax + rax]
+140502920: 48 85 c0                    	test	rax, rax
+140502923: 0f 85 bd 00 00 00           	jne	0x1405029e6 <.text+0x5019e6>
+140502929: 48 8b 54 24 48              	mov	rdx, qword ptr [rsp + 0x48]
+14050292e: 48 8b 02                    	mov	rax, qword ptr [rdx]
+140502931: 48 8b 5a 08                 	mov	rbx, qword ptr [rdx + 0x8]
+140502935: b9 40 00 00 00              	mov	ecx, 0x40
+14050293a: e8 21 a6 bd ff              	call	0x1400dcf60 <.text+0xdbf60> ; strconv.ParseFloat
+14050293f: 90                          	nop
+140502940: 48 85 c0                    	test	rax, rax
+140502943: 75 51                       	jne	0x140502996 <.text+0x501996>
+140502945: f2 0f 10 0d 6b 7a 3f 00     	movsd	xmm1, qword ptr [rip + 0x3f7a6b] # 0x1408fa3b8 ; f64=1.0
+14050294d: 66 0f 2e c8                 	ucomisd	xmm1, xmm0
+140502951: 77 43                       	ja	0x140502996 <.text+0x501996>
+140502953: f2 0f 10 0d 45 7f 3f 00     	movsd	xmm1, qword ptr [rip + 0x3f7f45] # 0x1408fa8a0 ; f64=20.0
+14050295b: 66 0f 2e c1                 	ucomisd	xmm0, xmm1
+14050295f: 90                          	nop
+140502960: 77 34                       	ja	0x140502996 <.text+0x501996>
+140502962: 0f b6 15 44 48 cc 00        	movzx	edx, byte ptr [rip + 0xcc4844] # 0x1411c71ad
+140502969: 85 d2                       	test	edx, edx
+14050296b: 74 08                       	je	0x140502975 <.text+0x501975>
+14050296d: 66 0f 3a 0b c8 03           	roundsd	xmm1, xmm0, 0x3
+140502973: eb 19                       	jmp	0x14050298e <.text+0x50198e>
+140502975: f2 0f 11 44 24 20           	movsd	qword ptr [rsp + 0x20], xmm0
+14050297b: 0f 1f 44 00 00              	nop	dword ptr [rax + rax]
+140502980: e8 db db bd ff              	call	0x1400e0560 <.text+0xdf560> ; math.Trunc
+140502985: 0f 10 c8                    	movups	xmm1, xmm0
+140502988: f2 0f 10 44 24 20           	movsd	xmm0, qword ptr [rsp + 0x20]
+14050298e: 66 0f 2e c8                 	ucomisd	xmm1, xmm0
+140502992: 75 02                       	jne	0x140502996 <.text+0x501996>
+140502994: 7b 42                       	jnp	0x1405029d8 <.text+0x5019d8>
+140502996: b8 18 00 00 00              	mov	eax, 0x18
+14050299b: 48 8d 1d ae 11 b3 00        	lea	rbx, [rip + 0xb311ae]   # 0x141033b50
+1405029a2: b9 01 00 00 00              	mov	ecx, 0x1
+1405029a7: e8 74 04 b2 ff              	call	0x140022e20 <.text+0x21e20> ; runtime.mallocgcSmallScanNoHeaderSC3
+1405029ac: 48 c7 00 90 01 00 00        	mov	qword ptr [rax], 0x190
+1405029b3: 48 c7 40 10 20 00 00 00     	mov	qword ptr [rax + 0x10], 0x20
+1405029bb: 48 8d 15 86 c4 30 00        	lea	rdx, [rip + 0x30c486]   # 0x14080ee48 ; text_prefix='channel '
+1405029c2: 48 89 50 08                 	mov	qword ptr [rax + 0x8], rdx
+1405029c6: 48 8d 1d e3 67 b9 00        	lea	rbx, [rip + 0xb967e3]   # 0x1410991b0
+1405029cd: 48 89 c1                    	mov	rcx, rax
+1405029d0: 31 c0                       	xor	eax, eax
+1405029d2: 48 83 c4 50                 	add	rsp, 0x50
+1405029d6: 5d                          	pop	rbp
+1405029d7: c3                          	ret
+1405029d8: f2 0f 2c c0                 	cvttsd2si	eax, xmm0
+1405029dc: 31 db                       	xor	ebx, ebx
+1405029de: 31 c9                       	xor	ecx, ecx
+1405029e0: 48 83 c4 50                 	add	rsp, 0x50
+1405029e4: 5d                          	pop	rbp
+1405029e5: c3                          	ret
+1405029e6: b8 18 00 00 00              	mov	eax, 0x18
+1405029eb: 48 8d 1d 5e 11 b3 00        	lea	rbx, [rip + 0xb3115e]   # 0x141033b50
+1405029f2: b9 01 00 00 00              	mov	ecx, 0x1
+1405029f7: e8 24 04 b2 ff              	call	0x140022e20 <.text+0x21e20> ; runtime.mallocgcSmallScanNoHeaderSC3
+1405029fc: 48 c7 00 90 01 00 00        	mov	qword ptr [rax], 0x190
+140502a03: 48 c7 40 10 20 00 00 00     	mov	qword ptr [rax + 0x10], 0x20
+140502a0b: 48 8d 15 36 c4 30 00        	lea	rdx, [rip + 0x30c436]   # 0x14080ee48 ; text_prefix='channel '
+140502a12: 48 89 50 08                 	mov	qword ptr [rax + 0x8], rdx
+140502a16: 48 8d 1d 93 67 b9 00        	lea	rbx, [rip + 0xb96793]   # 0x1410991b0
+140502a1d: 48 89 c1                    	mov	rcx, rax
+140502a20: 31 c0                       	xor	eax, eax
+140502a22: 48 83 c4 50                 	add	rsp, 0x50
+140502a26: 5d                          	pop	rbp
+140502a27: c3                          	ret
+140502a28: b8 18 00 00 00              	mov	eax, 0x18
+140502a2d: 48 8d 1d 1c 11 b3 00        	lea	rbx, [rip + 0xb3111c]   # 0x141033b50
+140502a34: b9 01 00 00 00              	mov	ecx, 0x1
+140502a39: e8 e2 03 b2 ff              	call	0x140022e20 <.text+0x21e20> ; runtime.mallocgcSmallScanNoHeaderSC3
+140502a3e: 48 c7 00 90 01 00 00        	mov	qword ptr [rax], 0x190
+140502a45: 48 c7 40 10 14 00 00 00     	mov	qword ptr [rax + 0x10], 0x14
+140502a4d: 48 8d 15 2f d1 2f 00        	lea	rdx, [rip + 0x2fd12f]   # 0x1407ffb83
+140502a54: 48 89 50 08                 	mov	qword ptr [rax + 0x8], rdx
+140502a58: 48 8d 1d 51 67 b9 00        	lea	rbx, [rip + 0xb96751]   # 0x1410991b0
+140502a5f: 48 89 c1                    	mov	rcx, rax
+140502a62: 31 c0                       	xor	eax, eax
+140502a64: 48 83 c4 50                 	add	rsp, 0x50
+140502a68: 5d                          	pop	rbp
+140502a69: c3                          	ret
+140502a6a: 48 89 44 24 08              	mov	qword ptr [rsp + 0x8], rax
+140502a6f: e8 cc 9b b8 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+140502a74: 48 8b 44 24 08              	mov	rax, qword ptr [rsp + 0x8]
+140502a79: e9 a2 fd ff ff              	jmp	0x140502820 <.text+0x501820>
+140502a7e: cc                          	int3
+140502a7f: cc                          	int3

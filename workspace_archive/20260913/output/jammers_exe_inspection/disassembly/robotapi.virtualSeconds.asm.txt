@@ -1,0 +1,76 @@
+jammers/client/internal/robotapi.virtualSeconds
+Virtual address: 0x1404ffc00
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404ffc00: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+1404ffc04: 0f 86 01 01 00 00           	jbe	0x1404ffd0b <.text+0x4fed0b>
+1404ffc0a: 55                          	push	rbp
+1404ffc0b: 48 89 e5                    	mov	rbp, rsp
+1404ffc0e: 48 83 ec 60                 	sub	rsp, 0x60
+1404ffc12: 48 89 c1                    	mov	rcx, rax
+1404ffc15: 48 c1 f8 3f                 	sar	rax, 0x3f
+1404ffc19: 48 89 c2                    	mov	rdx, rax
+1404ffc1c: 48 b8 db 34 b6 d7 82 de 1b 43       	movabs	rax, 0x431bde82d7b634db
+1404ffc26: 48 89 d3                    	mov	rbx, rdx
+1404ffc29: 48 f7 e9                    	imul	rcx
+1404ffc2c: 48 c1 fa 12                 	sar	rdx, 0x12
+1404ffc30: 48 29 da                    	sub	rdx, rbx
+1404ffc33: 48 69 da 40 42 0f 00        	imul	rbx, rdx, 0xf4240
+1404ffc3a: 48 29 d9                    	sub	rcx, rbx
+1404ffc3d: 0f 1f 00                    	nop	dword ptr [rax]
+1404ffc40: 48 85 c9                    	test	rcx, rcx
+1404ffc43: 75 46                       	jne	0x1404ffc8b <.text+0x4fec8b>
+1404ffc45: 44 0f 11 7c 24 50           	movups	xmmword ptr [rsp + 0x50], xmm15
+1404ffc4b: 48 89 d0                    	mov	rax, rdx
+1404ffc4e: e8 cd 4b b8 ff              	call	0x140084820 <.text+0x83820> ; runtime.convT64
+1404ffc53: 48 8d 0d ae 4f af 00        	lea	rcx, [rip + 0xaf4fae]   # 0x140ff4c08
+1404ffc5a: 48 89 4c 24 50              	mov	qword ptr [rsp + 0x50], rcx
+1404ffc5f: 48 89 44 24 58              	mov	qword ptr [rsp + 0x58], rax
+1404ffc64: 48 8d 05 8f 34 2f 00        	lea	rax, [rip + 0x2f348f]   # 0x1407f30fa ; text_prefix='%den\\/C:ip53ivTe--%xTote%TA4P4P1V1V7V2V3U1V6A30b0x0X0o\\d\\D\\s\\S\\w\\W\\E:]/im=OUCNSTsk?1:/'
+1404ffc6b: bb 02 00 00 00              	mov	ebx, 0x2
+1404ffc70: 48 8d 4c 24 50              	lea	rcx, [rsp + 0x50]
+1404ffc75: bf 01 00 00 00              	mov	edi, 0x1
+1404ffc7a: 89 fe                       	mov	esi, edi
+1404ffc7c: 0f 1f 40 00                 	nop	dword ptr [rax]
+1404ffc80: e8 7b 40 c3 ff              	call	0x140133d00 <.text+0x132d00> ; fmt.Sprintf
+1404ffc85: 48 83 c4 60                 	add	rsp, 0x60
+1404ffc89: 5d                          	pop	rbp
+1404ffc8a: c3                          	ret
+1404ffc8b: 48 89 4c 24 28              	mov	qword ptr [rsp + 0x28], rcx
+1404ffc90: 48 8d 4c 24 30              	lea	rcx, [rsp + 0x30]
+1404ffc95: 44 0f 11 39                 	movups	xmmword ptr [rcx], xmm15
+1404ffc99: 44 0f 11 79 10              	movups	xmmword ptr [rcx + 0x10], xmm15
+1404ffc9e: 48 89 d0                    	mov	rax, rdx
+1404ffca1: e8 7a 4b b8 ff              	call	0x140084820 <.text+0x83820> ; runtime.convT64
+1404ffca6: 48 8d 0d 5b 4f af 00        	lea	rcx, [rip + 0xaf4f5b]   # 0x140ff4c08
+1404ffcad: 48 89 4c 24 30              	mov	qword ptr [rsp + 0x30], rcx
+1404ffcb2: 48 89 44 24 38              	mov	qword ptr [rsp + 0x38], rax
+1404ffcb7: 48 8b 44 24 28              	mov	rax, qword ptr [rsp + 0x28]
+1404ffcbc: 0f 1f 40 00                 	nop	dword ptr [rax]
+1404ffcc0: e8 5b 4b b8 ff              	call	0x140084820 <.text+0x83820> ; runtime.convT64
+1404ffcc5: 48 8d 0d 3c 4f af 00        	lea	rcx, [rip + 0xaf4f3c]   # 0x140ff4c08
+1404ffccc: 48 89 4c 24 40              	mov	qword ptr [rsp + 0x40], rcx
+1404ffcd1: 48 89 44 24 48              	mov	qword ptr [rsp + 0x48], rax
+1404ffcd6: 48 8d 05 9c 4b 2f 00        	lea	rax, [rip + 0x2f4b9c]   # 0x1407f4879 ; text_prefix='%d.%06dEd25519MD5-RSAserial:cRLSignTLS 1.0TLS 1.1TLS 1.2TLS 1.3versionInitialExpiresSubjec'
+1404ffcdd: bb 07 00 00 00              	mov	ebx, 0x7
+1404ffce2: 48 8d 4c 24 30              	lea	rcx, [rsp + 0x30]
+1404ffce7: bf 02 00 00 00              	mov	edi, 0x2
+1404ffcec: 89 fe                       	mov	esi, edi
+1404ffcee: e8 0d 40 c3 ff              	call	0x140133d00 <.text+0x132d00> ; fmt.Sprintf
+1404ffcf3: 48 8d 0d ee 88 3f 00        	lea	rcx, [rip + 0x3f88ee]   # 0x1408f85e8
+1404ffcfa: bf 01 00 00 00              	mov	edi, 0x1
+1404ffcff: 90                          	nop
+1404ffd00: e8 1b 34 c4 ff              	call	0x140143120 <.text+0x142120> ; strings.TrimRight
+1404ffd05: 48 83 c4 60                 	add	rsp, 0x60
+1404ffd09: 5d                          	pop	rbp
+1404ffd0a: c3                          	ret
+1404ffd0b: 48 89 44 24 08              	mov	qword ptr [rsp + 0x8], rax
+1404ffd10: e8 2b c9 b8 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404ffd15: 48 8b 44 24 08              	mov	rax, qword ptr [rsp + 0x8]
+1404ffd1a: e9 e1 fe ff ff              	jmp	0x1404ffc00 <.text+0x4fec00>
+1404ffd1f: cc                          	int3

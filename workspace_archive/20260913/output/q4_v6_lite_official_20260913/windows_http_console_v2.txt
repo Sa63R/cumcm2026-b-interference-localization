@@ -1,0 +1,60 @@
+test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) ... 
+  test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) (case='main-0000') ... FAIL
+  test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) (case='main-0066') ... FAIL
+  test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) (case='all_directional-0000') ... FAIL
+  test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) (case='boundary_outward_r1000-0000') ... FAIL
+test_unconfirmed_mode_cannot_connect (__main__.BridgeTests.test_unconfirmed_mode_cannot_connect) ... ok
+test_unknown_enter_is_not_replaced_by_exit (__main__.BridgeTests.test_unknown_enter_is_not_replaced_by_exit) ... ok
+
+======================================================================
+FAIL: test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) (case='main-0000')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\baiwc\Downloads\Q4V6Lite_20260913\test_bridge.py", line 45, in test_http_matches_four_frozen_lite_traces
+    self.assertEqual(trace_hash(app.session.history), case['trace_sha256'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'e43c27e33d46979de0f85a209bea97266d1fde95b90dfb42551b42dc526e214b' != '7450c04b4816db0aaa92c3e27a1e64b51a210391795280b3f75209b9cc527458'
+- e43c27e33d46979de0f85a209bea97266d1fde95b90dfb42551b42dc526e214b
++ 7450c04b4816db0aaa92c3e27a1e64b51a210391795280b3f75209b9cc527458
+
+
+======================================================================
+FAIL: test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) (case='main-0066')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\baiwc\Downloads\Q4V6Lite_20260913\test_bridge.py", line 45, in test_http_matches_four_frozen_lite_traces
+    self.assertEqual(trace_hash(app.session.history), case['trace_sha256'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'efc5cf4c4e851ac4e131e24693e3ccfbac04b4e7e7bf75dfcfd35096ed774969' != '45382b15ff09253641039c7303529b3547bcc0ff2c5b72c94ba4a6d0e11aa8a6'
+- efc5cf4c4e851ac4e131e24693e3ccfbac04b4e7e7bf75dfcfd35096ed774969
++ 45382b15ff09253641039c7303529b3547bcc0ff2c5b72c94ba4a6d0e11aa8a6
+
+
+======================================================================
+FAIL: test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) (case='all_directional-0000')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\baiwc\Downloads\Q4V6Lite_20260913\test_bridge.py", line 45, in test_http_matches_four_frozen_lite_traces
+    self.assertEqual(trace_hash(app.session.history), case['trace_sha256'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '5ae615071563177f306f1af17ea23d335a5e17a81c0e67e5bd31ebc6e88e623e' != '2280e4b9dd07755c742f8f3bf5aff32f4a0de39b9772c0e8581196fc6a39f6ce'
+- 5ae615071563177f306f1af17ea23d335a5e17a81c0e67e5bd31ebc6e88e623e
++ 2280e4b9dd07755c742f8f3bf5aff32f4a0de39b9772c0e8581196fc6a39f6ce
+
+
+======================================================================
+FAIL: test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) (case='boundary_outward_r1000-0000')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\baiwc\Downloads\Q4V6Lite_20260913\test_bridge.py", line 45, in test_http_matches_four_frozen_lite_traces
+    self.assertEqual(trace_hash(app.session.history), case['trace_sha256'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '0e87872108f7bca85a21dd0805d2a43dc355714d21efcee3634c5f7cefac5cb8' != '13efd0b5d3906e166e8b7731409dd7771fc2f70d4d0ade954ef9f3adaeff6341'
+- 0e87872108f7bca85a21dd0805d2a43dc355714d21efcee3634c5f7cefac5cb8
++ 13efd0b5d3906e166e8b7731409dd7771fc2f70d4d0ade954ef9f3adaeff6341
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 15.520s
+
+FAILED (failures=4)

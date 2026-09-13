@@ -1,0 +1,44 @@
+Redesign the supplied sparse, brightly colored hand-drawn "Our work" academic figure. KEEP its visual language: authentic black fineliner, vivid cobalt/orange/green colored-pencil hatching, opaque white paper, free airy composition, large legible handwritten Chinese, no panel boxes. But REPLACE the generic question-summary contents with the ACTUAL ALGORITHMIC MECHANISMS developed in this paper. The user says the previous figure just repeated the task requirements and wants to see THEIR WORK: how choices are filtered and scored, how tasks are jointly reordered, and how directional feedback is exploited.
+
+One high-resolution landscape image about 16:9, using the full page with generous margins. Small "Our work" title at upper left. Four free-standing mechanism sketches with NO Q1/Q2/Q3/Q4 markers and NO 01/02/03/04 numerals. Use spacing and curved connectors instead of a rigid grid. Bright blue represents geometry / allowed candidates, green represents retained information / safe regions, orange represents selected actions / routes. Gray dashed strokes show rejected candidates, removed regions or previous routes. No additional colors or decorations. At least 40 percent clean white space. Hand-drawn but publication appropriate. Avoid adding a big title, paragraphs, legend, robot, terrain, cartoon icons, neural network blocks or evaluation data.
+
+TEXT BUDGET:
+About 100 Chinese characters total, plus a few formulas or numbers. Use only the specified titles and labels below. Each cluster has one title and one or two short local labels. No prose explanations. The diagrams must explicitly show operations, rather than a generic map or an isolated radio fan.
+
+UPPER LEFT MECHANISM — title "可靠测点筛选"
+Show a slim green convex feasible polygon with FOUR clear vertex dots. To the side is the curved lens formed by the intersection of several blue circular arcs: each arc is centered on one of those polygon vertices, representing the candidate locations guaranteed to receive for every possible source. Make the geometry legible, schematic not to scale. Within this blue lens are several small hollow candidate dots. Two candidates outside the allowed lens are crossed out in gray; two candidates inside are checked. The lens MUST be separate visually from the green source-location polygon: one is where the source may be, the other is where the robot may measure.
+Small labels: "顶点检验" and "保留可行候选".
+A tiny note "≤23" can sit by the candidate set. It refers to the Q2 finite candidate pool, not number of real sources.
+This is the manuscript's robust-reception filter, not just a bearing wedge.
+
+UPPER RIGHT MECHANISM — title "模拟评分选点"
+A short loose arrow from the retained candidates in the previous cluster leads to this.
+Use an old long thin dashed blue feasible polygon containing FIVE small graphite representative-location dots; these are hypothetical representatives for comparing actions. Beside it, show THREE small alternative measurement-action arrows starting at candidate dots, each ending in a little possible post-measurement green polygon: one large, one intermediate, one compact. Below the alternatives, draw three qualitative cost strokes/bar lengths with NO axes and NO numeric values. Outline the lowest-cost alternative in orange with a small check; retain the others light gray. Make the shorter orange cost stroke signify lower combined cost, not just smallest polygon. Show the selected orange measurement arrow explicitly emerging as the output.
+Local labels ONLY: "≤5 代表点" and "移动 + 后续定位代价".
+The manuscript Q2 generates at most 23 candidates then scores them using at most 5 representative positions. Hypothetical observations compare actions only; they do not update the real polygon. No implication these samples are known true sources or the exact probability distribution.
+Keep the little candidate outcomes visually distinct and simple; no dense crossing wedges.
+
+LOWER MIDDLE / RIGHT, the largest mechanism — title "覆盖约束下联合排程"
+A small set of BLUE HOLLOW STATION CIRCLES and GREEN SOURCE-REGION POLYGONS merges into ONE mixed route. Both task types appear interleaved on the route, not separate queues with text. Draw a thin gray dashed old route with one unnecessary crossing, and a clean bright orange revised route that uncrosses those same two edges, illustrating 2-opt. Include one redundant future station faintly crossed out, accompanied by two or three blue coverage arcs that visibly retain coverage. The changed station is removed only because coverage remains, not arbitrarily. No need for a full 7-station map; this is the scheduling operation, not the task setup.
+The first orange route edge is bold; the remaining planned edges are thinner. Put an arrowhead on the first edge. This communicates executing only the first task before replanning.
+Two small local labels: "保覆盖删站" and "多起点 + 2-opt".
+A small detached sketch at the end of this cluster shows a safe green clearance region and an incoming + outgoing orange route passing through a point on its nearer boundary instead of going to its center and back. NO distance numbers needed. It indicates the clearance landing position considers both the current and next task. Keep this as a tiny subordinate sketch, not a fifth panel.
+One orange curved connector from the selected probe to this larger joint planner.
+
+LOWER LEFT EXTENSION — title "定向源：双测与途中补测"
+This is a distinct extension mechanism, not a sequential last stage. A light dashed curved connector from the shared planner points toward it.
+Two elegant adjacent mini-sketches, each large enough to read:
+LEFT MINI: Draw a long narrow OLD dashed feasible wedge starting from an earlier positive-signal dot at its left apex and extending to the right. A vertical line crosses this wedge partway along it. On this vertical line put a blue observation dot above the wedge and another blue dot below the wedge, on opposite sides of the central axis; give each a tiny orange x indicating no signal. The retained region is the part of the old wedge LEFT of the vertical cut, shaded green. The part RIGHT of the vertical cut is erased/light gray with a few gray strike strokes. This shows the paper's specific paired-point construction: if both points return no signal, all source positions beyond the paired line are excluded under that construction. It is not the generic rule that any two arbitrary failures allow clipping. Small label "双无信号 → 截断".
+RIGHT MINI: A single orange route segment has THREE optional stopping dots along it. Show a tiny graphite REGRESSION TREE next to these dots, with the center dot selected orange and the others hollow. Under the tree a three-branch small action-rollout sketch has one branch circled in orange, indicating local lookahead separately from the regression predictor. Do not draw a neural network. Two short stacked labels: "局部前瞻" and "回归树判收益".
+This conveys two actual Q4 improvements: comparing candidate localization actions by simulated continuation, and predicting whether an en-route measurement saves total task time. No need for semicircular radiation, station counts or repeated statements that source directions are unknown.
+
+UNIFYING LOOP:
+A single graceful black curved feedback arrow from the executed first route edge / action side of the main planner returns to the actual region / reliable-candidate filter. Label once "真实反馈更新".
+Route the feedback through central white space, not underneath tiny crowded text. Arrow must point into actual geometry/state, not into simulated candidates. Hypothetical samples never provide real feedback.
+Keep all connectors sparse and avoid any crossing through labels.
+
+SOURCE ACCURACY:
+The paper is the latest local Overleaf copy, with Q2 reliable reception established by vertex distance checks, ≤23 finite candidate locations, ≤5 representative hypothetical locations and a movement plus remaining-localization cost. Q3 preserves global discovery coverage when deleting/moving scan stations, merges remaining scans with known-source tasks, runs multi-start 2-opt/local search, executes only the next task, and chooses safe clearance landing points considering the next task. Q4 uses specially constructed paired measurement positions to infer a half-plane after double no-signal, with local lookahead and regression-tree scoring of along-route measurement benefit. Use those actual implementation mechanisms.
+Do not invent a new learned optimizer, global optimality guarantee, simulated benchmark gain or completed official test. No generic problem-setting labels such as "几何建模", "主动选点", "滚动规划", "定向扩展", "1+7", "1+8+12" as the whole content. Show the causal operations in the sketches.
+
+Aesthetic goal: keep the light, vibrant, spare pencil-sketch character of the supplied reference, but make every little drawing reveal a distinctive algorithmic choice from this work. More meaningful geometry and action comparisons, NOT more explanatory paragraphs.

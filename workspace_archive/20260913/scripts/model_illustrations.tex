@@ -1,0 +1,158 @@
+% Editable vector illustrations. Numeric macros are supplied by the build script.
+\usepackage{pgfplots}
+\usepackage{caption}
+\usepackage{placeins}
+\usetikzlibrary{arrows.meta,calc}
+\pgfplotsset{compat=1.18}
+\definecolor{regionteal}{HTML}{167C80}
+\definecolor{rayblue}{HTML}{386CA0}
+\definecolor{rayorange}{HTML}{BA783A}
+\definecolor{diamred}{HTML}{BF4C43}
+\definecolor{coverblue}{HTML}{326CB0}
+\captionsetup{font=small,labelfont=bf,labelsep=quad,skip=8pt,hypcap=false}
+\renewcommand{\figurename}{图}
+\pgfplotsset{modelaxis/.style={
+  axis lines=box,axis line style={black!45},
+  tick align=outside,tick style={black!55},
+  tick label style={font=\scriptsize},
+  label style={font=\small},title style={font=\small},
+  grid=major,grid style={black!7},scaled ticks=false,
+  /pgf/number format/1000 sep={},clip=true,
+  xlabel={$x$（m）},ylabel={$y$（m）}
+}}
+
+\newcommand{\AngleDiagram}{%
+\begin{tikzpicture}[>=Stealth,font=\small,line cap=round,line join=round]
+  \fill[regionteal!12] (0,0)--(39:7.9)--(21:7.9)--cycle;
+  \draw[->,black!55] (-0.35,0)--(8.55,0) node[right] {$x$};
+  \draw[->,black!55] (0,-0.35)--(0,5.2) node[above] {$y$};
+  \draw[->,rayblue,thick] (0,0)--(39:7.9) node[above right] {上边界 $u_i^+$};
+  \draw[->,rayblue,thick] (0,0)--(21:7.9) node[below right] {下边界 $u_i^-$};
+  \draw[->,regionteal,dashed,thick] (0,0)--(30:8.2)
+    node[right,align=left] {示向度方向};
+  \draw[->,black!70] (0,0)--(33:5.9);
+  \fill (33:5.9) circle (1.7pt) node[above left] {候选位置 $X$};
+  \fill (0,0) circle (2pt) node[below left] {$S_i$};
+  \draw[->,black!65] (1.15,0) arc (0:30:1.15);
+  \node at (13:1.48) {$\varphi_i$};
+  \draw[<->,rayorange] (21:3.0) arc (21:30:3.0);
+  \draw[<->,rayorange] (30:3.0) arc (30:39:3.0);
+  \node[rayorange] at (24.7:3.37) {$\varepsilon$};
+  \node[rayorange] at (35.3:3.37) {$\varepsilon$};
+  \node[regionteal] at (30:4.35) {误差角域};
+\end{tikzpicture}%
+}
+
+\newcommand{\IntersectionDiagram}{%
+\begin{minipage}[t]{0.49\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[modelaxis,width=0.94\linewidth,height=6.2cm,axis equal image,
+  xmin=-570,xmax=570,ymin=-65,ymax=665,
+  xtick={-500,0,500},ytick={0,250,500},title={(a) 两次测向的整体几何}]
+  \addplot[draw=none,fill=rayblue!16] coordinates
+    {(-500,0) (300,\RayLowerEnd) (300,\RayUpperEnd) (-500,0)};
+  \addplot[draw=none,fill=rayorange!18] coordinates
+    {(500,0) (-300,\RayLowerEnd) (-300,\RayUpperEnd) (500,0)};
+  \addplot[rayblue,thin,domain=-500:300,samples=2] {\TanLower*(x+500)};
+  \addplot[rayblue,thin,domain=-500:300,samples=2] {\TanUpper*(x+500)};
+  \addplot[rayorange,thin,domain=-300:500,samples=2] {\TanLower*(500-x)};
+  \addplot[rayorange,thin,domain=-300:500,samples=2] {\TanUpper*(500-x)};
+  \addplot[rayblue,dashed,domain=-500:300,samples=2] {\TanCenter*(x+500)};
+  \addplot[rayorange,dashed,domain=-300:500,samples=2] {\TanCenter*(500-x)};
+  \addplot[regionteal,fill=regionteal!55,thick] coordinates
+    {(0,\BottomY) (\HalfD,\MiddleY) (0,\TopY) (-\HalfD,\MiddleY) (0,\BottomY)};
+  \draw[regionteal,densely dotted] (axis cs:-29,465) rectangle (axis cs:29,520);
+  \draw[regionteal,->] (axis cs:130,555)--(axis cs:15,510);
+  \node[regionteal,font=\small] at (axis cs:170,565) {$P$};
+  \fill (axis cs:-500,0) circle (1.6pt) node[above right,font=\scriptsize] {$S_1$};
+  \fill (axis cs:500,0) circle (1.6pt) node[above left,font=\scriptsize] {$S_2$};
+  \fill[black!55] (axis cs:0,0) circle (1pt) node[above,font=\scriptsize] {$O$};
+  \node[rayblue,font=\scriptsize,anchor=west] at (axis cs:-510,180) {$\theta_1=44.5^\circ$};
+  \node[rayorange,font=\scriptsize,anchor=east] at (axis cs:510,180) {$\theta_2=135.5^\circ$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[modelaxis,width=0.94\linewidth,height=6.2cm,axis equal image,
+  xmin=-25,xmax=25,ymin=469,ymax=515,
+  xtick={-20,0,20},ytick={475,490,505},title={(b) 定位区域的局部放大}]
+  \addplot[regionteal,fill=regionteal!13,thick] coordinates
+    {(0,\BottomY) (\HalfD,\MiddleY) (0,\TopY) (-\HalfD,\MiddleY) (0,\BottomY)};
+  \addplot[black!35,densely dashed] coordinates {(0,\BottomY) (0,\TopY)};
+  \addplot[diamred,very thick] coordinates {(-\HalfD,\MiddleY) (\HalfD,\MiddleY)};
+  \fill (axis cs:0,\BottomY) circle (1.4pt) node[below,font=\small] {$V_1$};
+  \fill (axis cs:\HalfD,\MiddleY) circle (1.4pt) node[above right,font=\small] {$V_2$};
+  \fill (axis cs:0,\TopY) circle (1.4pt) node[above,font=\small] {$V_3$};
+  \fill (axis cs:-\HalfD,\MiddleY) circle (1.4pt) node[above left,font=\small] {$V_4$};
+  \fill[diamred] (axis cs:0,\MiddleY) circle (1.5pt) node[above right,font=\scriptsize] {$C_0$};
+  \node[diamred,font=\scriptsize,fill=white,inner sep=1pt] at (axis cs:0,486.5) {$D=34.905\ \mathrm m$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}%
+}
+
+\newcommand{\CoverageDiagram}{%
+\begin{minipage}[t]{0.55\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[modelaxis,width=0.94\linewidth,height=7.0cm,axis equal image,
+  xmin=-23,xmax=23,ymin=469,ymax=513,
+  xtick={-20,0,20},ytick={475,490,505},title={(a) 定位区域与两种圆},
+  legend style={font=\scriptsize,draw=none,at={(0.5,-0.26)},anchor=north},legend columns=1]
+  \addplot[regionteal,fill=regionteal!11,thick] coordinates
+    {(0,\BottomY) (\HalfD,\MiddleY) (0,\TopY) (-\HalfD,\MiddleY) (0,\BottomY)};
+  \addlegendentry{定位区域 $P$}
+  \addplot[diamred,dashed,thick,domain=0:360,samples=241]
+    ({\HalfD*cos(x)},{\MiddleY+\HalfD*sin(x)});
+  \addlegendentry{直径圆：圆心 $C_0$，半径 $D/2$}
+  \addplot[coverblue,thick,domain=0:360,samples=241]
+    ({\CoverR*cos(x)},{\CoverY+\CoverR*sin(x)});
+  \addlegendentry{最小包围圆：圆心 $C^*$，半径 $R^*$}
+  \addplot[only marks,mark=+,mark size=2pt,diamred,forget plot] coordinates {(0,\MiddleY)};
+  \addplot[only marks,mark=*,mark size=0.7pt,coverblue,forget plot] coordinates {(0,\CoverY)};
+  \fill (axis cs:0,\BottomY) circle (1.4pt) node[below,font=\scriptsize] {$V_1$};
+  \fill (axis cs:\HalfD,\MiddleY) circle (1.4pt) node[below left,font=\scriptsize] {$V_2$};
+  \fill (axis cs:0,\TopY) circle (1.4pt) node[above,font=\scriptsize] {$V_3$};
+  \fill (axis cs:-\HalfD,\MiddleY) circle (1.4pt) node[below right,font=\scriptsize] {$V_4$};
+  \draw[black!50,densely dotted] (axis cs:-2.4,508.38) rectangle (axis cs:2.4,508.92);
+\end{axis}
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[modelaxis,width=0.94\linewidth,height=4.4cm,
+  xmin=-2.4,xmax=2.4,ymin=508.38,ymax=508.92,
+  xtick={-2,0,2},ytick={508.4,508.6,508.8},title={(b) 上顶点附近的放大图},
+  yticklabel style={/pgf/number format/fixed,/pgf/number format/precision=1,font=\scriptsize}]
+  \addplot[regionteal,fill=regionteal!11,thick] coordinates
+    {(-\HalfD,\MiddleY) (0,\TopY) (\HalfD,\MiddleY) (-\HalfD,\MiddleY)};
+  \addplot[diamred,dashed,thick,domain=-2.4:2.4,samples=81]
+    {\MiddleY+sqrt(\HalfD^2-x^2)};
+  \addplot[coverblue,thick,domain=-2.4:2.4,samples=81]
+    {\CoverY+sqrt(\CoverR^2-x^2)};
+  \fill (axis cs:0,\TopY) circle (1.6pt) node[above left,font=\scriptsize] {$V_3$};
+  \draw[diamred,dotted] (axis cs:0,\CircleTop)--(axis cs:1.7,\CircleTop);
+  \draw[black!55,dotted] (axis cs:0,\TopY)--(axis cs:1.7,\TopY);
+  \draw[diamred,<->,>=Stealth] (axis cs:1.55,\CircleTop)--(axis cs:1.55,\TopY)
+    node[midway,right,rotate=90,anchor=south,font=\scriptsize] {$0.307\ \mathrm m$};
+\end{axis}
+\end{tikzpicture}
+\vspace{0.8em}
+\begin{minipage}{0.95\linewidth}
+\small
+\textcolor{diamred}{直径圆}：$D/2=17.452406$ m。\par
+\textcolor{coverblue}{最小包围圆}：$R^*=17.455065$ m。\par
+圆心由 $C_0$ 向上移动约 $0.304633$ m 后，最小包围圆经过 $V_2,V_3,V_4$。\par
+\vspace{0.35em}
+{\footnotesize 放大图的纵横比例不同，用于辨认顶部的覆盖差异。}
+\end{minipage}
+\end{minipage}%
+}

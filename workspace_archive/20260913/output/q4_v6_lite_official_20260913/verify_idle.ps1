@@ -1,0 +1,2 @@
+$root='C:\Users\baiwc\Downloads\Q4V6Lite_20260913'
+@{utc=(Get-Date).ToUniversalTime().ToString('o');python_processes=@(Get-Process -Name python -ErrorAction SilentlyContinue | Select-Object Id,ProcessName);automation_tasks_running=@(Get-ScheduledTask -TaskName 'Codex-Q4V6Lite_20260913-*' -ErrorAction SilentlyContinue | Where-Object {$_.State -eq 'Running'} | Select-Object TaskName,State);batch=Get-Content -Raw "$root\additional_10\status.json" | ConvertFrom-Json} | ConvertTo-Json -Depth 8 | Out-File "$root\final_idle_status.json" -Encoding utf8

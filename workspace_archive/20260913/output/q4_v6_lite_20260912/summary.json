@@ -1,0 +1,952 @@
+{
+  "local_reconstructed_only": true,
+  "runs": 3420,
+  "unique_new_cases": 1140,
+  "all_cleared": true,
+  "planner_wall_budget_reached": 0,
+  "source_instances": 14806,
+  "successful_clear_events": 44418,
+  "bootstrap_replicates": 50000,
+  "primary_contrast": "Lite minus original V6, complete task seconds/source on 1000 new random cases",
+  "groups": {
+    "new_practice": {
+      "cases": 1000,
+      "methods": {
+        "v4": {
+          "mean_seconds_per_source": 454.411576436196,
+          "saving_vs_v4_percent": 0.0,
+          "saving_vs_v4_ci95": [
+            0.0,
+            0.0
+          ],
+          "worst_slowdown_vs_v4_percent": 0.0,
+          "worst_vs_v4_case": "main-0000",
+          "p95_slowdown_vs_v4_percent": 0.0,
+          "mean_virtual_time_s": 5728.053944808,
+          "mean_distance_m": 20954.64471792358,
+          "mean_measurement_count": 242.659,
+          "mean_switch_count": 229.893,
+          "mean_failed_clear_count": 9.669,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_shared_detections": 23.999,
+          "mean_visited_station_count": 20.286,
+          "mean_last_discovery_s": 4236.777218045,
+          "mean_tail_after_last_clear_s": 389.99167216399997,
+          "time_per_source_breakdown": {
+            "movement": 330.9870162671984,
+            "switching": 18.514965384615387,
+            "detection": 97.6642401140526,
+            "optical": 5.245354670329671,
+            "removal": 2.0
+          }
+        },
+        "full": {
+          "mean_seconds_per_source": 449.5530780303844,
+          "saving_vs_v4_percent": 1.0691845581741632,
+          "saving_vs_v4_ci95": [
+            0.8270649197273572,
+            1.3157726961121083
+          ],
+          "worst_slowdown_vs_v4_percent": 66.14819646829501,
+          "worst_vs_v4_case": "main-0450",
+          "p95_slowdown_vs_v4_percent": 4.941083153314801,
+          "mean_virtual_time_s": 5665.204841765,
+          "mean_distance_m": 20631.769198532464,
+          "mean_measurement_count": 244.644,
+          "mean_switch_count": 229.785,
+          "mean_failed_clear_count": 6.972,
+          "mean_transit_stops": 8.44,
+          "mean_transit_detections": 11.583,
+          "mean_planner_calls": 11.401,
+          "mean_planner_accepts": 2.006,
+          "mean_shared_detections": 29.32,
+          "mean_visited_station_count": 20.243,
+          "mean_last_discovery_s": 4122.196461837,
+          "mean_tail_after_last_clear_s": 417.118919096,
+          "time_per_source_breakdown": {
+            "movement": 325.96825029145623,
+            "switching": 18.50983121878122,
+            "detection": 98.4592451090576,
+            "optical": 4.615751411088911,
+            "removal": 2.0
+          }
+        },
+        "lite": {
+          "mean_seconds_per_source": 449.8851706418513,
+          "saving_vs_v4_percent": 0.9961026587051003,
+          "saving_vs_v4_ci95": [
+            0.7914994444124827,
+            1.2020954190529194
+          ],
+          "worst_slowdown_vs_v4_percent": 65.84156130923043,
+          "worst_vs_v4_case": "main-0450",
+          "p95_slowdown_vs_v4_percent": 3.4145505343521463,
+          "mean_virtual_time_s": 5671.209859302,
+          "mean_distance_m": 20585.529286369143,
+          "mean_measurement_count": 247.085,
+          "mean_switch_count": 232.551,
+          "mean_failed_clear_count": 7.066,
+          "mean_transit_stops": 8.493,
+          "mean_transit_detections": 11.575,
+          "mean_planner_calls": 11.218,
+          "mean_planner_accepts": 1.985,
+          "mean_shared_detections": 29.865,
+          "mean_visited_station_count": 20.29,
+          "mean_last_discovery_s": 4201.513402892,
+          "mean_tail_after_last_clear_s": 393.40807583,
+          "time_per_source_breakdown": {
+            "movement": 325.1590348235036,
+            "switching": 18.71884624125874,
+            "detection": 99.37095358807858,
+            "optical": 4.636335989010989,
+            "removal": 2.0
+          }
+        }
+      },
+      "lite_vs_full": {
+        "change_seconds_per_source": 0.33209261146787106,
+        "change_ci95": [
+          -0.4280553398960677,
+          1.1029498672833855
+        ],
+        "saving_percent": -0.07387172454069724,
+        "saving_percent_ci95": [
+          -0.24595984193655274,
+          0.09494855512966562
+        ],
+        "faster": 483,
+        "slower": 449,
+        "equal": 68,
+        "worst_slowdown_percent": 39.48510323019689,
+        "worst_case": "main-0066",
+        "best_saving_percent": 20.350922546843776,
+        "best_case": "main-0841",
+        "slowdown_p95_percent": 4.267861419529112,
+        "median_change_seconds_per_source": 0.0
+      },
+      "by_source_count": {
+        "10": {
+          "cases": 151,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 588.8411377675496,
+              "last_discovery_s": 4059.6046066291387,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 582.4049706033113,
+              "last_discovery_s": 3920.075331529801,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 582.8098809046357,
+              "last_discovery_s": 3992.6953915827808,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "11": {
+          "cases": 141,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 536.6271486627983,
+              "last_discovery_s": 4266.9017058794325,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 533.086166374597,
+              "last_discovery_s": 4231.526825680851,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 531.1457756473243,
+              "last_discovery_s": 4221.711961340426,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "12": {
+          "cases": 142,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 484.02186537441315,
+              "last_discovery_s": 4089.469628274647,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 479.7582826607981,
+              "last_discovery_s": 3966.770859528169,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 479.92803820892016,
+              "last_discovery_s": 4092.2416560211273,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "13": {
+          "cases": 139,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 448.93547002324294,
+              "last_discovery_s": 4215.731861561151,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 444.22972090536797,
+              "last_discovery_s": 4155.478576733813,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 443.8430366928612,
+              "last_discovery_s": 4210.340775007195,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "14": {
+          "cases": 136,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 414.160564174895,
+              "last_discovery_s": 4280.42612242647,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 408.40695668277317,
+              "last_discovery_s": 4047.570011058823,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 410.05229716596637,
+              "last_discovery_s": 4164.990715352941,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "15": {
+          "cases": 146,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 383.1293394420091,
+              "last_discovery_s": 4271.190946253425,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 378.9490799579909,
+              "last_discovery_s": 4193.147284979452,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 378.4482890680365,
+              "last_discovery_s": 4283.197680835617,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "16": {
+          "cases": 145,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 320.2502149594828,
+              "last_discovery_s": 4480.831276827586,
+              "visited_station_count": 16.075862068965517
+            },
+            "full": {
+              "seconds_per_source": 315.18109575215516,
+              "last_discovery_s": 4345.226172586207,
+              "visited_station_count": 15.779310344827586
+            },
+            "lite": {
+              "seconds_per_source": 318.1020559620689,
+              "last_discovery_s": 4449.887797537931,
+              "visited_station_count": 16.103448275862068
+            }
+          }
+        }
+      },
+      "largest_regressions": [
+        {
+          "case_key": "main-0066",
+          "source_total": 16,
+          "slowdown_vs_full_percent": 39.48510323019689,
+          "task_seconds": {
+            "v4": 4441.817619,
+            "full": 4070.51534,
+            "lite": 5677.762524
+          }
+        },
+        {
+          "case_key": "main-0541",
+          "source_total": 16,
+          "slowdown_vs_full_percent": 33.93386644249428,
+          "task_seconds": {
+            "v4": 5308.835019,
+            "full": 3390.909403,
+            "lite": 4541.576071
+          }
+        },
+        {
+          "case_key": "main-0125",
+          "source_total": 16,
+          "slowdown_vs_full_percent": 25.867251667782256,
+          "task_seconds": {
+            "v4": 5122.096229,
+            "full": 3742.751609,
+            "lite": 4710.898587
+          }
+        },
+        {
+          "case_key": "main-0137",
+          "source_total": 16,
+          "slowdown_vs_full_percent": 24.37847274152558,
+          "task_seconds": {
+            "v4": 6180.788773,
+            "full": 5028.778919,
+            "lite": 6254.718417
+          }
+        },
+        {
+          "case_key": "main-0902",
+          "source_total": 16,
+          "slowdown_vs_full_percent": 22.239942272015934,
+          "task_seconds": {
+            "v4": 5482.771539,
+            "full": 4444.771182,
+            "lite": 5433.285727
+          }
+        }
+      ]
+    },
+    "all_directional": {
+      "cases": 70,
+      "methods": {
+        "v4": {
+          "mean_seconds_per_source": 480.04824960302034,
+          "saving_vs_v4_percent": 0.0,
+          "saving_vs_v4_ci95": [
+            0.0,
+            0.0
+          ],
+          "worst_slowdown_vs_v4_percent": 0.0,
+          "worst_vs_v4_case": "all_directional-0000",
+          "p95_slowdown_vs_v4_percent": 0.0,
+          "mean_virtual_time_s": 6075.716942142856,
+          "mean_distance_m": 22175.870423371907,
+          "mean_measurement_count": 257.72857142857146,
+          "mean_switch_count": 243.9142857142857,
+          "mean_failed_clear_count": 14.32857142857143,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_shared_detections": 23.585714285714285,
+          "mean_visited_station_count": 20.514285714285716,
+          "mean_last_discovery_s": 4856.508699642856,
+          "mean_tail_after_last_clear_s": 307.4036789,
+          "time_per_source_breakdown": {
+            "movement": 348.88827053447,
+            "switching": 19.552756469720755,
+            "detection": 103.28845261880974,
+            "optical": 6.3187699800199795,
+            "removal": 2.0
+          }
+        },
+        "full": {
+          "mean_seconds_per_source": 470.02706081884764,
+          "saving_vs_v4_percent": 2.0875378240540976,
+          "saving_vs_v4_ci95": [
+            1.1615138396857794,
+            3.0233080229992493
+          ],
+          "worst_slowdown_vs_v4_percent": 8.97476784332667,
+          "worst_vs_v4_case": "all_directional-0044",
+          "p95_slowdown_vs_v4_percent": 3.4180085546483197,
+          "mean_virtual_time_s": 5947.3654888142855,
+          "mean_distance_m": 21474.327434806873,
+          "mean_measurement_count": 261.65714285714284,
+          "mean_switch_count": 244.88571428571427,
+          "mean_failed_clear_count": 11.442857142857143,
+          "mean_transit_stops": 9.857142857142858,
+          "mean_transit_detections": 13.314285714285715,
+          "mean_planner_calls": 14.257142857142858,
+          "mean_planner_accepts": 2.6714285714285713,
+          "mean_shared_detections": 29.685714285714287,
+          "mean_visited_station_count": 20.442857142857143,
+          "mean_last_discovery_s": 4856.863246685715,
+          "mean_tail_after_last_clear_s": 323.01521812857146,
+          "time_per_source_breakdown": {
+            "movement": 338.0314268099992,
+            "switching": 19.61948337376909,
+            "detection": 104.70216925931213,
+            "optical": 5.673981375767091,
+            "removal": 2.0
+          }
+        },
+        "lite": {
+          "mean_seconds_per_source": 470.2550315960483,
+          "saving_vs_v4_percent": 2.0400486857457767,
+          "saving_vs_v4_ci95": [
+            1.2475741612675684,
+            2.8594826889867244
+          ],
+          "worst_slowdown_vs_v4_percent": 5.880910787087834,
+          "worst_vs_v4_case": "all_directional-0023",
+          "p95_slowdown_vs_v4_percent": 2.0552503626549985,
+          "mean_virtual_time_s": 5947.117198214285,
+          "mean_distance_m": 21432.585982841792,
+          "mean_measurement_count": 263.0,
+          "mean_switch_count": 246.74285714285713,
+          "mean_failed_clear_count": 11.285714285714286,
+          "mean_transit_stops": 9.657142857142857,
+          "mean_transit_detections": 13.485714285714286,
+          "mean_planner_calls": 14.157142857142857,
+          "mean_planner_accepts": 2.742857142857143,
+          "mean_shared_detections": 31.057142857142857,
+          "mean_visited_station_count": 20.32857142857143,
+          "mean_last_discovery_s": 4804.990821885715,
+          "mean_tail_after_last_clear_s": 304.50091767142857,
+          "time_per_source_breakdown": {
+            "movement": 337.50209488989725,
+            "switching": 19.78442462299605,
+            "detection": 105.35724602778174,
+            "optical": 5.611266055373198,
+            "removal": 2.0
+          }
+        }
+      },
+      "lite_vs_full": {
+        "change_seconds_per_source": 0.22797077720066372,
+        "change_ci95": [
+          -2.781640164515605,
+          3.294238060528199
+        ],
+        "saving_percent": -0.04850162814105108,
+        "saving_percent_ci95": [
+          -0.6972316463710237,
+          0.5949700844458026
+        ],
+        "faster": 30,
+        "slower": 35,
+        "equal": 5,
+        "worst_slowdown_percent": 6.788739615305861,
+        "worst_case": "all_directional-0021",
+        "best_saving_percent": 9.96814442650228,
+        "best_case": "all_directional-0020",
+        "slowdown_p95_percent": 4.295522013558211,
+        "median_change_seconds_per_source": 0.03597620833335213
+      },
+      "by_source_count": {
+        "10": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 612.40532193,
+              "last_discovery_s": 4238.4240168999995,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 595.09317933,
+              "last_discovery_s": 4481.2843451,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 600.58466759,
+              "last_discovery_s": 4472.145012,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "11": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 562.7523304909091,
+              "last_discovery_s": 4629.841292499999,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 548.1910566818183,
+              "last_discovery_s": 4548.6316922,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 548.643332609091,
+              "last_discovery_s": 4480.0521266000005,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "12": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 511.5657935666667,
+              "last_discovery_s": 4777.6924542,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 512.449661175,
+              "last_discovery_s": 4831.7699247,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 510.1741225083333,
+              "last_discovery_s": 5091.047607999999,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "13": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 467.3903068307692,
+              "last_discovery_s": 4749.3297655999995,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 457.1363413307692,
+              "last_discovery_s": 4593.3667141,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 457.71479558461544,
+              "last_discovery_s": 4394.002010300001,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "14": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 444.09082833571426,
+              "last_discovery_s": 5110.0730416999995,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 438.8222804214286,
+              "last_discovery_s": 5276.2371248,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 438.37195683571434,
+              "last_discovery_s": 5184.2567679,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "15": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 410.5760250733333,
+              "last_discovery_s": 5385.2370754,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 401.10580108666665,
+              "last_discovery_s": 5394.9064017,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 401.4336922133333,
+              "last_discovery_s": 5351.779921699999,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "16": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 351.55714099375,
+              "last_discovery_s": 5104.963251200001,
+              "visited_station_count": 17.6
+            },
+            "full": {
+              "seconds_per_source": 337.39110570624996,
+              "last_discovery_s": 4871.8465242,
+              "visited_station_count": 17.1
+            },
+            "lite": {
+              "seconds_per_source": 334.86265383125,
+              "last_discovery_s": 4661.6523067,
+              "visited_station_count": 16.3
+            }
+          }
+        }
+      },
+      "largest_regressions": [
+        {
+          "case_key": "all_directional-0021",
+          "source_total": 10,
+          "slowdown_vs_full_percent": 6.788739615305861,
+          "task_seconds": {
+            "v4": 6350.85533,
+            "full": 6182.173051,
+            "lite": 6601.864682
+          }
+        },
+        {
+          "case_key": "all_directional-0027",
+          "source_total": 16,
+          "slowdown_vs_full_percent": 5.644653242978048,
+          "task_seconds": {
+            "v4": 5881.602466,
+            "full": 5534.880719,
+            "lite": 5847.305543
+          }
+        },
+        {
+          "case_key": "all_directional-0063",
+          "source_total": 10,
+          "slowdown_vs_full_percent": 4.594759865060505,
+          "task_seconds": {
+            "v4": 6398.996436,
+            "full": 5821.785422,
+            "lite": 6089.282482
+          }
+        },
+        {
+          "case_key": "all_directional-0049",
+          "source_total": 10,
+          "slowdown_vs_full_percent": 4.34377466007867,
+          "task_seconds": {
+            "v4": 6247.522563,
+            "full": 5941.488042,
+            "lite": 6199.572894
+          }
+        },
+        {
+          "case_key": "all_directional-0003",
+          "source_total": 13,
+          "slowdown_vs_full_percent": 4.236546556699872,
+          "task_seconds": {
+            "v4": 6354.580306,
+            "full": 6069.026377,
+            "lite": 6326.143505
+          }
+        }
+      ]
+    },
+    "boundary_outward_r1000": {
+      "cases": 70,
+      "methods": {
+        "v4": {
+          "mean_seconds_per_source": 567.802266971257,
+          "saving_vs_v4_percent": 0.0,
+          "saving_vs_v4_ci95": [
+            0.0,
+            0.0
+          ],
+          "worst_slowdown_vs_v4_percent": 0.0,
+          "worst_vs_v4_case": "boundary_outward_r1000-0000",
+          "p95_slowdown_vs_v4_percent": 0.0,
+          "mean_virtual_time_s": 7228.242032271428,
+          "mean_distance_m": 23816.210174648753,
+          "mean_measurement_count": 380.6857142857143,
+          "mean_switch_count": 355.7,
+          "mean_failed_clear_count": 46.957142857142856,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_shared_detections": 14.142857142857142,
+          "mean_visited_station_count": 20.957142857142856,
+          "mean_last_discovery_s": 6728.053163542858,
+          "mean_tail_after_last_clear_s": 121.8396140571429,
+          "time_per_source_breakdown": {
+            "movement": 373.5921321061225,
+            "switching": 28.094885055420775,
+            "detection": 150.2633979116122,
+            "optical": 13.851851898101899,
+            "removal": 2.0
+          }
+        },
+        "full": {
+          "mean_seconds_per_source": 514.7309635098663,
+          "saving_vs_v4_percent": 9.346793161725298,
+          "saving_vs_v4_ci95": [
+            8.450663769680231,
+            10.217454100762007
+          ],
+          "worst_slowdown_vs_v4_percent": 4.584512876212687,
+          "worst_vs_v4_case": "boundary_outward_r1000-0055",
+          "p95_slowdown_vs_v4_percent": -3.7572904694292983,
+          "mean_virtual_time_s": 6550.901869957143,
+          "mean_distance_m": 21098.295058567575,
+          "mean_measurement_count": 374.7,
+          "mean_switch_count": 350.57142857142856,
+          "mean_failed_clear_count": 14.057142857142857,
+          "mean_transit_stops": 9.457142857142857,
+          "mean_transit_detections": 14.657142857142857,
+          "mean_planner_calls": 14.585714285714285,
+          "mean_planner_accepts": 2.6285714285714286,
+          "mean_shared_detections": 18.15714285714286,
+          "mean_visited_station_count": 20.957142857142856,
+          "mean_last_discovery_s": 6205.4812450142845,
+          "mean_tail_after_last_clear_s": 129.81766091428565,
+          "time_per_source_breakdown": {
+            "movement": 330.9571435797963,
+            "switching": 27.699383592597876,
+            "detection": 147.88990711669283,
+            "optical": 6.184529220779221,
+            "removal": 2.0
+          }
+        },
+        "lite": {
+          "mean_seconds_per_source": 515.4324280911818,
+          "saving_vs_v4_percent": 9.223252869246867,
+          "saving_vs_v4_ci95": [
+            8.315353097461037,
+            10.108457941817374
+          ],
+          "worst_slowdown_vs_v4_percent": 4.263702650068191,
+          "worst_vs_v4_case": "boundary_outward_r1000-0055",
+          "p95_slowdown_vs_v4_percent": -3.544917138851094,
+          "mean_virtual_time_s": 6559.872190128572,
+          "mean_distance_m": 21118.860944885306,
+          "mean_measurement_count": 375.4428571428571,
+          "mean_switch_count": 351.07142857142856,
+          "mean_failed_clear_count": 14.271428571428572,
+          "mean_transit_stops": 9.428571428571429,
+          "mean_transit_detections": 14.642857142857142,
+          "mean_planner_calls": 14.557142857142857,
+          "mean_planner_accepts": 2.7142857142857144,
+          "mean_shared_detections": 18.914285714285715,
+          "mean_visited_station_count": 20.957142857142856,
+          "mean_last_discovery_s": 6213.133471957141,
+          "mean_tail_after_last_clear_s": 129.81766091428565,
+          "time_per_source_breakdown": {
+            "movement": 331.2743302961197,
+            "switching": 27.7382103610675,
+            "detection": 148.19012862137865,
+            "optical": 6.229758812615955,
+            "removal": 2.0
+          }
+        }
+      },
+      "lite_vs_full": {
+        "change_seconds_per_source": 0.7014645813154078,
+        "change_ci95": [
+          0.40728636778519134,
+          1.0680915244778277
+        ],
+        "saving_percent": -0.136277906526594,
+        "saving_percent_ci95": [
+          -0.2074299923610018,
+          -0.07919053281570775
+        ],
+        "faster": 4,
+        "slower": 40,
+        "equal": 26,
+        "worst_slowdown_percent": 1.6838417154909635,
+        "worst_case": "boundary_outward_r1000-0002",
+        "best_saving_percent": 0.30674735419402577,
+        "best_case": "boundary_outward_r1000-0055",
+        "slowdown_p95_percent": 0.594222941681255,
+        "median_change_seconds_per_source": 0.345238095238102
+      },
+      "by_source_count": {
+        "10": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 704.32435311,
+              "last_discovery_s": 6328.1652005999995,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 638.8527258500001,
+              "last_discovery_s": 5911.262833,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 639.6350723900001,
+              "last_discovery_s": 5918.3862984,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "11": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 634.4356606818181,
+              "last_discovery_s": 6459.1085458,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 584.6066819727273,
+              "last_discovery_s": 6053.204019300001,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 584.9946657727271,
+              "last_discovery_s": 6057.4718411,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "12": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 603.1365463833333,
+              "last_discovery_s": 6571.031581499999,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 539.6171444999999,
+              "last_discovery_s": 6047.648310000001,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 540.688339475,
+              "last_discovery_s": 6060.5026497,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "13": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 555.2917603769231,
+              "last_discovery_s": 6728.491688799999,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 499.01385321538453,
+              "last_discovery_s": 6093.478576699999,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 499.7264127384615,
+              "last_discovery_s": 6099.3729828,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "14": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 513.6269647071429,
+              "last_discovery_s": 6833.208815700001,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 469.25723441428573,
+              "last_discovery_s": 6352.1198762,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 470.34968259999994,
+              "last_discovery_s": 6367.414150799999,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "15": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 492.35985673333334,
+              "last_discovery_s": 6892.0205801,
+              "visited_station_count": 21.0
+            },
+            "full": {
+              "seconds_per_source": 443.3804519666667,
+              "last_discovery_s": 6323.9045655,
+              "visited_station_count": 21.0
+            },
+            "lite": {
+              "seconds_per_source": 443.91089079333335,
+              "last_discovery_s": 6326.7033630000005,
+              "visited_station_count": 21.0
+            }
+          }
+        },
+        "16": {
+          "cases": 10,
+          "methods": {
+            "v4": {
+              "seconds_per_source": 471.44072680625004,
+              "last_discovery_s": 7284.345732299999,
+              "visited_station_count": 20.7
+            },
+            "full": {
+              "seconds_per_source": 428.3886526499999,
+              "last_discovery_s": 6656.7505344,
+              "visited_station_count": 20.7
+            },
+            "lite": {
+              "seconds_per_source": 428.72193286875,
+              "last_discovery_s": 6662.0830178999995,
+              "visited_station_count": 20.7
+            }
+          }
+        }
+      },
+      "largest_regressions": [
+        {
+          "case_key": "boundary_outward_r1000-0002",
+          "source_total": 12,
+          "slowdown_vs_full_percent": 1.6838417154909635,
+          "task_seconds": {
+            "v4": 7048.733159,
+            "full": 6743.115814,
+            "lite": 6856.659211
+          }
+        },
+        {
+          "case_key": "boundary_outward_r1000-0053",
+          "source_total": 14,
+          "slowdown_vs_full_percent": 0.9594295183146917,
+          "task_seconds": {
+            "v4": 7288.974647,
+            "full": 6599.963394,
+            "lite": 6663.285391
+          }
+        },
+        {
+          "case_key": "boundary_outward_r1000-0068",
+          "source_total": 15,
+          "slowdown_vs_full_percent": 0.7566806634323298,
+          "task_seconds": {
+            "v4": 7295.117623,
+            "full": 6816.329727,
+            "lite": 6867.907576
+          }
+        },
+        {
+          "case_key": "boundary_outward_r1000-0018",
+          "source_total": 14,
+          "slowdown_vs_full_percent": 0.5951631112654399,
+          "task_seconds": {
+            "v4": 7283.904,
+            "full": 6694.613165,
+            "lite": 6734.457033
+          }
+        },
+        {
+          "case_key": "boundary_outward_r1000-0031",
+          "source_total": 13,
+          "slowdown_vs_full_percent": 0.5930738455228068,
+          "task_seconds": {
+            "v4": 6873.49532,
+            "full": 6206.245694,
+            "lite": 6243.053314
+          }
+        }
+      ]
+    }
+  }
+}

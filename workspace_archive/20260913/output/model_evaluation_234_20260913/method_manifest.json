@@ -1,0 +1,61 @@
+{
+  "generated_by": "run_evaluation.py",
+  "random_seed": 20260913,
+  "bootstrap_replicates": 10000,
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "matplotlib": "3.11.2",
+    "scikit_learn": "1.9.1"
+  },
+  "data_sources": {
+    "github-release-q3-q4/experiments/q3_selected/validation/local_paired400.csv": {
+      "sha256": "ac1ac8040afc385c8f993e3618bddafea7502e6976a24434a1e9f6edd5238995",
+      "bytes": 107392
+    },
+    "output/q4_v6_lite_20260912/paired_records.csv": {
+      "sha256": "bb05dd8acf36e4395faefc2d102791d18911359caf2808f9d820acd192e46fb3",
+      "bytes": 1130963
+    },
+    "output/q4_v6_lite_20260912/plan.json": {
+      "sha256": "e85ede23b55519a3f1e57730b298c5c97f265fa3b6a85839cb5c263b8cf3c41b",
+      "bytes": 3851280
+    },
+    "output/q4_v6_lite_official_20260913/audited_results.json": {
+      "sha256": "89c3ae566843df7fb44405b2ba479cedee0f84aa3e3de7d148c2b4c54ffddf64",
+      "bytes": 12211
+    },
+    "output/q4_v6_lite_official_20260913/summary.json": {
+      "sha256": "c0153321f528af08eba64a65ff759746a6a2953a59ab20d0eca85db93d1c3aa3",
+      "bytes": 549
+    },
+    "Q4_V6/research/round1/critic_training.jsonl": {
+      "sha256": "6025bc9ae25fcd6d0cb8de8b02c75bde40c7224031d7bcd8db402b55b0ea32d5",
+      "bytes": 4357761
+    },
+    "Q4_V6/research/round1/critic_training_extra.jsonl": {
+      "sha256": "90007b5a46991a295bafc09a5f8beeecbf41e5930928e10e086d5254f0900f91",
+      "bytes": 16985537
+    },
+    "output/q4_v6_lite_20260912/source_v6_lite/transit_critic_big_extra.json": {
+      "sha256": "cf1077fcd81864b0d93639893d59c243e0cda8dd4ba3a7eb102b93d94cbcabb8",
+      "bytes": 7624421
+    }
+  },
+  "statistical_methods": [
+    "case-level nonparametric bootstrap percentile 95% intervals",
+    "Wilson 95% binomial interval for all-clear rate",
+    "P90/P95 and top-tail CVaR90/CVaR95",
+    "source-count fixed effects plus HC3 robust covariance",
+    "deterministic scenario-grouped 5-fold out-of-fold validation",
+    "cluster bootstrap by simulator scenario for decision-state utility",
+    "held-out grouped permutation importance"
+  ],
+  "boundaries": [
+    "No algorithm component was deleted or replaced; this is not an ablation study.",
+    "Q4 local results use the reconstructed simulator and are not official-program results.",
+    "Official results are practice observations, not formal test scores.",
+    "Counterfactual tree labels validate single decision states; they are not additive full-task savings.",
+    "Scene-factor regression is associative, not causal."
+  ]
+}

@@ -1,0 +1,261 @@
+% Process illustrations: geometric steps, not numerical result charts.
+\usepackage{tikz}
+\usepackage{caption}
+\usetikzlibrary{arrows.meta,calc,patterns}
+\definecolor{procblue}{HTML}{3976A3}
+\definecolor{procteal}{HTML}{187D79}
+\definecolor{procorange}{HTML}{B77A36}
+\definecolor{procred}{HTML}{BA4D43}
+\captionsetup{font=small,labelfont=bf,labelsep=quad,skip=7pt,hypcap=false}
+\renewcommand{\figurename}{图}
+\tikzset{
+ proc/.style={>=Stealth,line cap=round,line join=round,font=\footnotesize},
+ ptitle/.style={font=\small\bfseries,align=center},
+ pnote/.style={font=\footnotesize,align=center,text width=4.5cm},
+ edge/.style={procteal,thick},
+ kept/.style={procteal,fill=procteal},
+ rejected/.style={procred,thick}
+}
+\newcommand{\ProcArrow}[1]{\draw[->,black!45,thick] (#1,2.0)--++(0.5,0);}
+\newcommand{\ProcCross}[2]{\draw[rejected] (#1-0.09,#2-0.09)--(#1+0.09,#2+0.09);\draw[rejected] (#1-0.09,#2+0.09)--(#1+0.09,#2-0.09);}
+\newcommand{\ProcPentagon}{(0,0)--(4,0)--(4,1)--(2,3)--(0,3)--cycle}
+\newcommand{\ProcBounds}{%
+ \draw[black!30] (0,-.35)--(0,3.75) (4,-.35)--(4,3.75);
+ \draw[black!30] (-.3,0)--(5.4,0) (-.3,3)--(5.4,3);
+ \draw[black!30] (1.25,3.75)--(5.35,-.35) (3.65,-.35)--(5.35,1.35);
+}
+
+\newcommand{\DirectionToConstraints}{%
+\begin{tikzpicture}[proc]
+ \path[use as bounding box] (-.15,-.55) rectangle (15.05,4.0);
+ \node[ptitle] at (2.15,3.8) {(a) 读到一个方向};
+ \node[ptitle] at (7.45,3.8) {(b) 展开误差范围};
+ \node[ptitle] at (12.75,3.8) {(c) 写成两个半平面};
+ \begin{scope}[shift={(.2,.55)}]
+  \draw[->,black!40] (0,.3)--(3.85,.3);
+  \draw[->,procblue,very thick] (0,.3)--(3.65,1.774495);
+  \fill (0,.3) circle (1.7pt) node[below] {$S_i$};
+  \draw[->,procblue] (.85,.3) arc (0:22:.85);
+  \node[procblue] at (1.18,.53) {$\theta_i$};
+  \node[procblue,above] at (2.35,1.4) {示向度};
+ \end{scope}
+ \begin{scope}[shift={(5.5,.55)}]
+  \fill[procteal!12] (0,.3)--(3.75,.9)--(3.2,2.55)--cycle;
+  \draw[->,procblue,thick] (0,.3)--(3.75,.9);
+  \draw[->,procblue,thick] (0,.3)--(3.2,2.55);
+  \draw[->,procblue,dashed] (0,.3)--(3.65,1.774495);
+  \fill (0,.3) circle (1.7pt) node[below] {$S_i$};
+  \draw[<->,procorange] (9:1.85)++(0,.3) arc (9:22:1.85);
+  \draw[<->,procorange] (22:1.85)++(0,.3) arc (22:35:1.85);
+  \node[procorange] at (2.17,.8) {$\varepsilon$};
+  \node[procorange] at (1.97,1.63) {$\varepsilon$};
+  \node[procteal] at (2.85,1.45) {$W_i$};
+ \end{scope}
+ \begin{scope}[shift={(10.8,.55)}]
+  \begin{scope}
+   \clip (-.1,.05) rectangle (3.95,2.65);
+   \fill[procblue!10] (-.1,.284)--(3.95,.932)--(3.95,2.65)--(-.1,2.65)--cycle;
+   \fill[procorange!11] (-.1,.23)--(3.95,3.065)--(3.95,.05)--(-.1,.05)--cycle;
+   \fill[procteal!25] (0,.3)--(3.95,.932)--(3.95,3.065)--cycle;
+   \draw[procblue,thick] (-.1,.284)--(3.95,.932);
+   \draw[procorange,thick] (-.1,.23)--(3.95,3.065);
+  \end{scope}
+  \fill (0,.3) circle (1.7pt) node[below] {$S_i$};
+  \node[procblue] at (1.15,2.35) {$H_i^-$};
+  \node[procorange] at (2.9,.28) {$H_i^+$};
+  \node[procteal,font=\scriptsize] at (2.15,1.5) {$W_i=H_i^-\cap H_i^+$};
+ \end{scope}
+ \ProcArrow{4.55}\ProcArrow{9.85}
+ \node[pnote] at (2.15,-.13) {方向给出了方位，\textbf{尚未给出距离}};
+ \node[pnote] at (7.45,-.13) {向两侧各展开 $\varepsilon$，\textbf{得到候选角域}};
+ \node[pnote] at (12.75,-.13) {两条不等式同时成立，\textbf{才保留该点}};
+\end{tikzpicture}%
+}
+
+\newcommand{\ProgressiveIntersection}{%
+\begin{tikzpicture}[proc]
+ \path[use as bounding box] (-.15,-.55) rectangle (15.05,4.0);
+ \node[ptitle] at (2.15,3.8) {(a) 第一次：一个角域};
+ \node[ptitle] at (7.45,3.8) {(b) 第二次：保留交集};
+ \node[ptitle] at (12.75,3.8) {(c) 再测一次：继续收缩};
+ \foreach \off in {0,5.3,10.6}{
+  \begin{scope}[shift={(\off+.15,.55)}]
+   \draw[black!12] (0,0) rectangle (4,2.7);
+  \end{scope}
+ }
+ \begin{scope}[shift={(.15,.55)}]
+  \begin{scope}\clip (0,0) rectangle (4,2.7);
+   \fill[procblue!13] (0,0)--(4,1.2)--(4,4.8)--cycle;
+   \draw[procblue,thick] (0,0)--(4,1.2) (0,0)--(4,4.8);
+  \end{scope}
+  \fill (0,0) circle (1.5pt) node[below left] {$S_1$};
+  \node[procblue] at (2.8,1.8) {$W_1$};
+ \end{scope}
+ \begin{scope}[shift={(5.45,.55)}]
+  \begin{scope}\clip (0,0) rectangle (4,2.7);
+   \fill[procblue!8] (0,0)--(4,1.2)--(4,4.8)--cycle;
+   \fill[procorange!9] (4,0)--(0,1.2)--(0,4.8)--cycle;
+   \draw[procblue!70] (0,0)--(4,1.2) (0,0)--(4,4.8);
+   \draw[procorange!80] (4,0)--(0,1.2) (4,0)--(0,4.8);
+   \filldraw[edge,fill=procteal!22] (2,.6)--(3.2,.96)--(2,2.4)--(.8,.96)--cycle;
+  \end{scope}
+  \fill (0,0) circle (1.5pt) node[below left] {$S_1$};
+  \fill (4,0) circle (1.5pt) node[below right] {$S_2$};
+  \node[procteal] at (2,1.4) {$P_2$};
+ \end{scope}
+ \begin{scope}[shift={(10.75,.55)}]
+  \filldraw[black!25,fill=black!5] (2,.6)--(3.2,.96)--(2,2.4)--(.8,.96)--cycle;
+  \fill[procblue!12] (0,1.16)--(4,1.48)--(4,1.9)--(0,1.3)--cycle;
+  \draw[procblue] (0,1.16)--(4,1.48) (0,1.3)--(4,1.9);
+  \filldraw[edge,fill=procteal!30] \ThirdIntersectionPath;
+  \node[procblue,anchor=west] at (.05,1.55) {$W_3$};
+  \node[procteal,fill=white,inner sep=1pt] at (2.15,1.44) {$P_3$};
+  \node[black!50] at (2.05,2.18) {$P_2$};
+ \end{scope}
+ \ProcArrow{4.55}\ProcArrow{9.85}
+ \node[pnote] at (2.15,-.13) {$P_1=W_1$\\只排除角域以外的位置};
+ \node[pnote] at (7.45,-.13) {$P_2=P_1\cap W_2$\\必须同时符合两次测向};
+ \node[pnote] at (12.75,-.13) {$P_3=P_2\cap W_3\subseteq P_2$\\新信息不能扩大候选区域};
+\end{tikzpicture}%
+}
+
+\newcommand{\FeasibilityCases}{%
+\begin{tikzpicture}[proc]
+ \path[use as bounding box] (-.15,-.55) rectangle (15.05,3.75);
+ \node[ptitle] at (2.15,3.55) {(a) 空集：约束矛盾};
+ \node[ptitle] at (7.45,3.55) {(b) 无界：仍能走到任意远};
+ \node[ptitle] at (12.75,3.55) {(c) 有界：形成定位多边形};
+ \begin{scope}[shift={(.15,.6)}]
+  \fill[procblue!13] (0,0) rectangle (1.3,2.2);
+  \fill[procorange!14] (2.7,0) rectangle (4,2.2);
+  \draw[procblue,thick] (1.3,0)--(1.3,2.2);
+  \draw[procorange,thick] (2.7,0)--(2.7,2.2);
+  \draw[procblue,->] (1.2,1.1)--(.35,1.1);
+  \draw[procorange,->] (2.8,1.1)--(3.65,1.1);
+  \node[procred] at (2,1.5) {$\varnothing$};
+  \node at (2,.45) {没有公共部分};
+ \end{scope}
+ \begin{scope}[shift={(5.45,.6)}]
+  \fill[procteal!12] (.25,.45)--(4,.15)--(4,2.25)--cycle;
+  \draw[edge,->] (.25,.45)--(4,.15);
+  \draw[edge,->] (.25,.45)--(4,2.25);
+  \draw[procorange,very thick,->] (1.1,.75)--(3.8,1.12) node[above left] {可无限延伸};
+  \fill (.25,.45) circle (1.5pt) node[below right] {有限顶点};
+ \end{scope}
+ \begin{scope}[shift={(10.95,.6)},x=.7cm,y=.7cm]
+  \filldraw[edge,fill=procteal!14] \ProcPentagon;
+  \draw[<->,black!50] (0,-.35)--(4,-.35);
+  \draw[<->,black!50] (-.35,0)--(-.35,3);
+  \node[procteal] at (1.8,1.3) {$P$};
+ \end{scope}
+ \node[pnote] at (2.15,-.13) {线性规划不可行\\$\Downarrow$ 报告数据异常};
+ \node[pnote] at (7.45,-.13) {至少一个坐标方向无界\\$\Downarrow$ 补充测向};
+ \node[pnote] at (12.75,-.13) {四个坐标方向的极值均有限\\$\Downarrow$ 继续求顶点与直径};
+\end{tikzpicture}%
+}
+
+\newcommand{\VertexExtraction}{%
+\begin{tikzpicture}[proc]
+ \path[use as bounding box] (-.15,-.65) rectangle (15.05,4.1);
+ \node[ptitle] at (2.15,3.85) {(a) 枚举候选交点};
+ \node[ptitle] at (7.45,3.85) {(b) 检验全部约束};
+ \node[ptitle] at (12.75,3.85) {(c) 只保留互异顶点};
+ \begin{scope}[shift={(.25,.65)},x=.7cm,y=.7cm]
+  \ProcBounds
+  \foreach \p in {(0,0),(0,3),(4,0),(4,3),(4,1),(2,3),(5,0),(4.5,.5)}{
+   \draw[procorange,fill=white] \p circle (1.8pt);
+  }
+ \end{scope}
+ \begin{scope}[shift={(5.55,.65)},x=.7cm,y=.7cm]
+  \ProcBounds
+  \filldraw[edge,fill=procteal!12] \ProcPentagon;
+  \foreach \p in {(0,0),(0,3),(4,0),(4,1),(2,3)}{\fill[procteal] \p circle (1.9pt);}
+  \ProcCross{4}{3}\ProcCross{5}{0}\ProcCross{4.5}{.5}
+  \node[procred,anchor=east,font=\scriptsize] at (5.3,3.5) {不满足约束};
+ \end{scope}
+ \begin{scope}[shift={(11.0,.65)},x=.7cm,y=.7cm]
+  \filldraw[edge,fill=procteal!12] \ProcPentagon;
+  \fill[procteal] (0,0) circle (1.9pt) node[below left] {$v_1$};
+  \fill[procteal] (4,0) circle (1.9pt) node[below right] {$v_2$};
+  \fill[procteal] (4,1) circle (1.9pt) node[right] {$v_3$};
+  \fill[procteal] (2,3) circle (1.9pt) node[above] {$v_4$};
+  \fill[procteal] (0,3) circle (1.9pt) node[above left] {$v_5$};
+  \draw[black!45,->] (2.05,.8)--(3.85,.06);
+  \node[align=center,font=\scriptsize] at (1.7,1.22) {重复交点\\只记一次};
+ \end{scope}
+ \ProcArrow{4.55}\ProcArrow{9.85}
+ \node[pnote] at (2.15,-.23) {对非平行边界两两求交\\交点暂时都只是候选点};
+ \node[pnote] at (7.45,-.23) {代回全部不等式\\有任一不满足，就剔除};
+ \node[pnote] at (12.75,-.23) {合并重合点\\得到 $V=\{v_1,\ldots,v_h\}$};
+\end{tikzpicture}%
+}
+
+\newcommand{\DiameterReduction}{%
+\begin{tikzpicture}[proc]
+ \path[use as bounding box] (-.15,-.45) rectangle (15.05,4.45);
+ \node[ptitle] at (3.15,4.15) {(a) 定义：在整个区域中选两点};
+ \node[ptitle] at (11.55,4.15) {(b) 计算：只比较所有顶点对};
+ \begin{scope}[shift={(1.4,.65)},x=.9cm,y=.9cm]
+  \filldraw[edge,fill=procteal!12] \ProcPentagon;
+  \draw[black!50,dashed,thick] (.7,1.6)--(3.3,.6);
+  \fill (.7,1.6) circle (1.6pt) node[above left] {$X$};
+  \fill (3.3,.6) circle (1.6pt) node[above right] {$Y$};
+  \draw[->,black!40] (.75,1.65) to[bend left] (1.45,2.2);
+  \draw[->,black!40] (3.2,.65) to[bend right] (2.7,1.25);
+ \end{scope}
+ \draw[->,black!50,thick] (6.2,2.1)--(8.25,2.1) node[midway,above] {利用凸性};
+ \begin{scope}[shift={(9.8,.65)},x=.9cm,y=.9cm]
+  \fill[procteal!8] \ProcPentagon;
+  \coordinate (a) at (0,0);\coordinate (b) at (4,0);\coordinate (c) at (4,1);
+  \coordinate (d) at (2,3);\coordinate (e) at (0,3);
+  \foreach \s/\t in {a/b,a/c,a/d,a/e,b/c,b/d,b/e,c/d,c/e,d/e}{\draw[black!25] (\s)--(\t);}
+  \draw[edge] \ProcPentagon;
+  \draw[procred,very thick] (b)--(e) node[midway,fill=white,inner sep=1pt] {$D$};
+  \foreach \p in {a,b,c,d,e}{\fill[procteal] (\p) circle (1.7pt);}
+  \node[procred,below right] at (b) {$A$};\node[procred,above left] at (e) {$B$};
+ \end{scope}
+ \node[pnote,text width=6.2cm] at (3.15,-.08) {$X,Y$ 可以在区域中连续移动\\无法把所有点对逐个列出来};
+ \node[pnote,text width=6.2cm] at (11.55,-.08) {计算 $h(h-1)/2$ 个顶点对距离\\取最大值，并记下最远点对 $A,B$};
+\end{tikzpicture}%
+}
+
+\newcommand{\CoverageSteps}{%
+\begin{tikzpicture}[proc]
+ \path[use as bounding box] (-.15,-.72) rectangle (15.05,4.18);
+ \node[ptitle] at (2.15,3.93) {(a) 半径 $D/2$ 锁定圆心};
+ \node[ptitle] at (7.45,3.93) {(b) 再逐个检查顶点};
+ \node[ptitle] at (12.75,3.93) {(c) 漏点时，改求包围圆};
+ \begin{scope}[shift={(2.15,1.92)}]
+  \filldraw[procblue,fill=procblue!10] (-1,0) circle (1);
+  \filldraw[procorange,fill=procorange!11] (1,0) circle (1);
+  \draw[black!55] (-1,0)--(1,0);
+  \fill (-1,0) circle (1.4pt) node[below] {$A$};
+  \fill (1,0) circle (1.4pt) node[below] {$B$};
+  \fill[procred] (0,0) circle (1.8pt) node[above] {$C_0$};
+  \node[procblue,font=\scriptsize] at (-1,1.28) {$\|C-A\|\le D/2$};
+  \node[procorange,font=\scriptsize] at (1,-1.28) {$\|C-B\|\le D/2$};
+ \end{scope}
+ \begin{scope}[shift={(7.45,1.92)},x=.85cm,y=.85cm]
+  \filldraw[edge,fill=procteal!10] (-1.4,0)--(0,-1)--(1.4,0)--(0,1.7)--cycle;
+  \draw[procred,dashed,thick] (0,0) circle (1.4);
+  \fill[procred] (0,0) circle (1.5pt) node[below] {$C_0$};
+  \fill[procred] (0,1.7) circle (2pt) node[above right] {漏点};
+  \foreach \p in {(-1.4,0),(0,-1),(1.4,0)}{\fill[procteal] \p circle (1.5pt);}
+  \node[below left] at (-1.4,0) {$A$};\node[below right] at (1.4,0) {$B$};
+  \draw[procred,dotted] (0,1.4)--(.7,1.4) (0,1.7)--(.7,1.7);
+  \draw[procred,<->] (.65,1.4)--(.65,1.7);
+ \end{scope}
+ \begin{scope}[shift={(12.75,1.92)},x=.85cm,y=.85cm]
+  \filldraw[edge,fill=procteal!10] (-1.4,0)--(0,-1)--(1.4,0)--(0,1.7)--cycle;
+  \draw[black!25,dashed] (0,0) circle (1.4);
+  \draw[procblue,very thick] (0,.2735294118) circle (1.4264705882);
+  \draw[procblue,->] (0,.2735294118)--(-1.4,0) node[midway,above] {$R^*$};
+  \fill[procblue] (0,.2735294118) circle (1.6pt) node[right] {$C^*$};
+  \foreach \p in {(-1.4,0),(0,-1),(1.4,0),(0,1.7)}{\fill[procteal] \p circle (1.7pt);}
+ \end{scope}
+ \ProcArrow{4.55}\ProcArrow{9.85}
+ \node[pnote] at (2.15,-.23) {圆心必须同时落在两个圆盘内\\两圆盘的交集\textbf{只有中点}};
+ \node[pnote] at (7.45,-.23) {以 $C_0$ 作圆，检查全部顶点\\有一个顶点在外，就不能覆盖};
+ \node[pnote] at (12.75,-.23) {枚举两点圆与三点圆\\在覆盖全部顶点者中取最小};
+\end{tikzpicture}%
+}

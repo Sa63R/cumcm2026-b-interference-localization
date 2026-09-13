@@ -1,0 +1,86 @@
+% !TeX program = xelatex
+% Working manuscript: Q1 integrated from teammate upload; Q2 is a draft.
+\documentclass[UTF8,a4paper,zihao=-4,fontset=fandol]{ctexart}
+\usepackage[margin=25mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx,booktabs,tabularx,array}
+\usepackage{enumitem,needspace,tcolorbox,fancyhdr}
+\usepackage{tikz}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,labelsep=quad,hypcap=false}
+\input{figures/q1_case}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{bookmark}
+\XeTeXgenerateactualtext=1
+\hypersetup{pdftitle={无线电干扰源的快速自动定位与清除},pdfauthor={}}
+\ctexset{section={format=\large\bfseries},subsection={format=\normalsize\bfseries},subsubsection={format=\normalsize\bfseries}}
+\linespread{1.16}
+\setlength{\parskip}{0.2em}
+\setlength{\emergencystretch}{2em}
+\setlist[enumerate]{label=\arabic*.,leftmargin=2em,itemsep=0.15em,topsep=0.4em,parsep=0pt}
+\setlist[itemize]{leftmargin=2em,itemsep=0.15em,topsep=0.4em,parsep=0pt}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\widowpenalty=10000\clubpenalty=10000\displaywidowpenalty=10000
+\raggedbottom
+\begin{document}
+\setcounter{page}{1}
+\begin{center}{\LARGE\bfseries 无线电干扰源的快速自动定位与清除\par}\end{center}
+\begin{abstract}
+\noindent 摘要待四问模型与正式测试结果齐备后统一撰写。
+\par\medskip\noindent\textbf{关键词：}交会定位；最小包围圆；主动测向；干扰源清除
+\end{abstract}
+\clearpage
+\section{问题重述}
+无线电干扰源分布在半径为 $1800$ m 的圆形区域内，其数量、位置和有效接收半径未知。机器狗通过带有 $\pm1^\circ$ 误差的示向度逐步定位，并在距目标不超过 $20$ m 时进行光学定位和清除。本文依次研究交会定位区域直径、第二检测点选择、全向源搜索清除以及包含未知朝向定向源时的策略。
+
+\section{问题分析}
+\subsection{问题一的分析}
+问题一要求根据若干检测点的位置与示向度确定干扰源的可能区域，计算区域的直径，并判断以该直径为直径的圆能否覆盖整个区域。
+
+由于测向存在 $\pm 1^\circ$ 的误差，一次测向只能把干扰源限制在一个张角 $2^\circ$ 的角域内，多次测向的定位区域即各角域的交集。角域可以写成两个线性不等式，于是定位区域是有限个\textbf{半平面的交}，非空有界时为凸多边形，其直径在顶点对上取得，枚举顶点即可求出。至于覆盖性，我们发现直径为 $D$ 的圆若要盖住区域，圆心只能取最远点对的中点，据此构造出一个符合题设测向条件的算例，其中该圆恰好盖不住区域的一个顶点，从而对第二小问给出否定回答。
+
+\subsection{问题二的分析}
+首测只能约束干扰源的方向与距离范围。第二点的选择需要同时解决两个问题：移动后仍能接收到信号，以及两次观测能够有效缩小定位区域。为此，先利用最小接收半径构造保证再接收的候选域，再结合交会角、可能源位置和移动代价选择第二点，最终用真实反馈计算更新后的区域。
+
+\section{模型假设}
+\begin{enumerate}
+\item 测向误差有界，界为 $\pm 1^\circ$，不对误差的分布形式作附加假设；
+\item 检测点位置精确已知，问题在平面内讨论；
+\item 各测向数据相容，即真实干扰源同时位于所有误差角域内。
+\item 问题二中的干扰源为全向源，其位置和有效接收半径在一次定位过程中保持不变，有效接收半径位于 $[1000,1500]$ m；
+\item 同一地点的测向误差固定，重复测量不视为独立样本；机器狗可移动到目标圆域外的检测位置。
+\end{enumerate}
+
+\section{符号说明}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.98\linewidth}{>{\centering\arraybackslash}p{0.25\linewidth}>{\centering\arraybackslash}p{0.24\linewidth}>{\centering\arraybackslash}X}
+\toprule
+\textbf{符号} & \textbf{范围} & \textbf{说明} \\
+\midrule
+$n$ & $\mathbb{Z}^+$ & 测向次数 \\
+$S_i=(x_i,y_i)$ & $\mathbb{R}^2$ & 第 $i$ 个检测点的坐标 \\
+$\theta_i$ & $[0^\circ,360^\circ)$ & 第 $i$ 次测向的示向度 \\
+$\varepsilon$ & $1^\circ$ & 测向误差界 \\
+$P$ & --- & 定位区域 \\
+$v_1,\dots,v_h$ & $\mathbb{R}^2$ & 定位区域的顶点 \\
+$D$ & $[0,+\infty)$ & 定位区域的直径 \\
+$C^*,\ R^*$ & --- & 最小包围圆的圆心与半径 \\
+$\delta$ & $\pi\varepsilon/180$ & 用于三角函数计算的弧度误差界 \\
+$\rho$ & $[1000,1500]$ m & 未知有效接收半径 \\
+$\mathcal C_1,\ P_1$ & --- & 首测精确可行集及其外包多边形 \\
+$K_0,\ Q$ & --- & 保证再接收域及有限候选检测点集 \\
+$H$ & --- & 评分使用的有限假设源位置集 \\
+$\lambda$ & $0.02$ m/s & 检测点评分中的移动时间权重 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{模型的建立与求解}
+\input{q1}
+\input{q2}
+% 问题三、四由后续章节接入；保留已有编号和标签。
+% 参考文献、AI 工具使用声明、附录及支撑材料清单待全稿整合。
+\end{document}

@@ -1,0 +1,22 @@
+% !TeX program = xelatex
+% 主编译文件；正文按章节存放在 sections/，全局格式位于 config/preamble.tex。
+% 摘要：sections/abstract.tex；一、二问：sections/q1.tex、sections/q2.tex。
+% 第三问由 sections/q3.tex 汇总，细分内容见 sections/q3/。
+% 文献：references/references.tex；附录：appendices/。
+% 编译器使用 XeLaTeX，主文件保持 main.tex；子文件通过 input 引入。
+% figures 文件夹保存实机调试照片与各问配图；q1_case.tex 绘制第一问算例。
+\documentclass[UTF8,a4paper,zihao=5,fontset=fandol]{ctexart}
+\input{config/preamble}%
+\begin{document}
+\input{sections/abstract}%
+\clearpage
+\pagenumbering{arabic}
+\input{sections/01_problem}%
+\input{sections/02_analysis}%
+\input{sections/03_assumptions}%
+\input{sections/04_symbols}%
+\input{sections/05_models}%
+\input{references/references}%
+\input{appendices/a_evidence}%
+\input{appendices/b_trajectories}%
+\end{document}

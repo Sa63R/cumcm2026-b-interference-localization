@@ -1,0 +1,69 @@
+jammers/client/internal/scenario.(*counterSource).shuffle
+Virtual address: 0x1404f0380
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f0380: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+1404f0384: 0f 86 89 00 00 00           	jbe	0x1404f0413 <.text+0x4ef413>
+1404f038a: 55                          	push	rbp
+1404f038b: 48 89 e5                    	mov	rbp, rsp
+1404f038e: 48 83 ec 28                 	sub	rsp, 0x28
+1404f0392: 48 89 44 24 38              	mov	qword ptr [rsp + 0x38], rax
+1404f0397: 48 89 74 24 58              	mov	qword ptr [rsp + 0x58], rsi
+1404f039c: 48 89 7c 24 50              	mov	qword ptr [rsp + 0x50], rdi
+1404f03a1: 48 89 4c 24 48              	mov	qword ptr [rsp + 0x48], rcx
+1404f03a6: 48 89 5c 24 40              	mov	qword ptr [rsp + 0x40], rbx
+1404f03ab: 48 8d 56 ff                 	lea	rdx, [rsi - 0x1]
+1404f03af: eb 26                       	jmp	0x1404f03d7 <.text+0x4ef3d7>
+1404f03b1: 4c 8b 14 c6                 	mov	r10, qword ptr [rsi + 8*rax]
+1404f03b5: 4c 89 14 d6                 	mov	qword ptr [rsi + 8*rdx], r10
+1404f03b9: 4c 89 04 c6                 	mov	qword ptr [rsi + 8*rax], r8
+1404f03bd: 48 ff ca                    	dec	rdx
+1404f03c0: 48 8b 44 24 38              	mov	rax, qword ptr [rsp + 0x38]
+1404f03c5: 48 8b 4c 24 48              	mov	rcx, qword ptr [rsp + 0x48]
+1404f03ca: 48 8b 5c 24 40              	mov	rbx, qword ptr [rsp + 0x40]
+1404f03cf: 4c 89 ce                    	mov	rsi, r9
+1404f03d2: 48 8b 7c 24 50              	mov	rdi, qword ptr [rsp + 0x50]
+1404f03d7: 48 85 d2                    	test	rdx, rdx
+1404f03da: 7e 2b                       	jle	0x1404f0407 <.text+0x4ef407>
+1404f03dc: 48 89 54 24 20              	mov	qword ptr [rsp + 0x20], rdx
+1404f03e1: 48 8d 7a 01                 	lea	rdi, [rdx + 0x1]
+1404f03e5: e8 b6 fe ff ff              	call	0x1404f02a0 <.text+0x4ef2a0> ; jammers/client/internal/scenario.(*counterSource).uintN
+1404f03ea: 48 8b 54 24 20              	mov	rdx, qword ptr [rsp + 0x20]
+1404f03ef: 48 8b 74 24 50              	mov	rsi, qword ptr [rsp + 0x50]
+1404f03f4: 4c 8b 04 d6                 	mov	r8, qword ptr [rsi + 8*rdx]
+1404f03f8: 4c 8b 4c 24 58              	mov	r9, qword ptr [rsp + 0x58]
+1404f03fd: 0f 1f 00                    	nop	dword ptr [rax]
+1404f0400: 4c 39 c8                    	cmp	rax, r9
+1404f0403: 72 ac                       	jb	0x1404f03b1 <.text+0x4ef3b1>
+1404f0405: eb 06                       	jmp	0x1404f040d <.text+0x4ef40d>
+1404f0407: 48 83 c4 28                 	add	rsp, 0x28
+1404f040b: 5d                          	pop	rbp
+1404f040c: c3                          	ret
+1404f040d: e8 6e e0 b9 ff              	call	0x14008e480 <.text+0x8d480> ; runtime.panicBounds
+1404f0412: 90                          	nop
+1404f0413: 48 89 44 24 08              	mov	qword ptr [rsp + 0x8], rax
+1404f0418: 48 89 5c 24 10              	mov	qword ptr [rsp + 0x10], rbx
+1404f041d: 48 89 4c 24 18              	mov	qword ptr [rsp + 0x18], rcx
+1404f0422: 48 89 7c 24 20              	mov	qword ptr [rsp + 0x20], rdi
+1404f0427: 48 89 74 24 28              	mov	qword ptr [rsp + 0x28], rsi
+1404f042c: 4c 89 44 24 30              	mov	qword ptr [rsp + 0x30], r8
+1404f0431: e8 0a c2 b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f0436: 48 8b 44 24 08              	mov	rax, qword ptr [rsp + 0x8]
+1404f043b: 48 8b 5c 24 10              	mov	rbx, qword ptr [rsp + 0x10]
+1404f0440: 48 8b 4c 24 18              	mov	rcx, qword ptr [rsp + 0x18]
+1404f0445: 48 8b 7c 24 20              	mov	rdi, qword ptr [rsp + 0x20]
+1404f044a: 48 8b 74 24 28              	mov	rsi, qword ptr [rsp + 0x28]
+1404f044f: 4c 8b 44 24 30              	mov	r8, qword ptr [rsp + 0x30]
+1404f0454: e9 27 ff ff ff              	jmp	0x1404f0380 <.text+0x4ef380>
+1404f0459: cc                          	int3
+1404f045a: cc                          	int3
+1404f045b: cc                          	int3
+1404f045c: cc                          	int3
+1404f045d: cc                          	int3
+1404f045e: cc                          	int3
+1404f045f: cc                          	int3

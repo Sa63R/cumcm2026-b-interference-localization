@@ -1,0 +1,63 @@
+Use the attached figure ONLY as the reference for the bright, spacious hand-drawn visual style. Rebuild its content as an academic MATHEMATICAL-MODELING "Our work" figure. The user clarifies: this is a mathematical modeling paper, so the figure MUST EXPLICITLY NAME THE MATHEMATICAL MODELS USED, show their core constructions/objectives, and distinguish the models from the algorithms used to solve them. A generic sketch of the four question requirements is insufficient.
+
+VISUAL STYLE:
+One wide landscape image about 16:9, high resolution. Solid opaque white paper. Airy free asymmetrical hand-sketched layout, no boxes/cards/panels, no equal columns. Confident slightly imperfect black pen lettering and strokes, BRIGHT COBALT BLUE / TANGERINE ORANGE / GRASS GREEN colored-pencil hatching. The supplied reference's clear lines and vivid colors are good. Preserve that visual language. About 40% whitespace. Text must be short and comfortably readable; no paragraphs or long explanatory sentences, no long paper title, no Q1/Q2/Q3/Q4 headings, no generic "几何建模 / 主动选点 / 滚动规划" as substitutes for model names. Do not draw a robot, landscape, stock icons, decorative cards, gradients, translucent glass or photorealistic objects.
+A small handwritten "Our work" title at upper left.
+The page contains FIVE named mathematical models, with the first three forming the main chain and the last two together forming a smaller directional-source extension along the bottom. Use about 120 Chinese characters total, plus short mathematical notation. Models are named in slightly larger black handwriting, algorithms/short notes in smaller blue handwriting, action choices orange, feasible regions green. No numbered question badges.
+
+MAIN CHAIN: THREE MODEL SKETCHES ACROSS UPPER TWO-THIRDS, with varied sizes and open spacing.
+A. Upper left, title exactly "半平面交定位模型".
+A clean sketch of two narrow blue bearing wedges from distinct measurement positions, intersecting in a convex green quadrilateral. Beside it, a tiny circle fully enclosing an irregular triangle, distinguishing enclosing-circle reasoning from polygon diameter. No axes. One short formula under the sketch, typeset in careful mathematical handwriting:
+"P = ∩ Wᵢ"
+One short blue note: "顶点求解 · 包围圆检验".
+This is the actual geometric region model, not simply the task "locate a source".
+
+B. Upper middle/right, title exactly "约束选点优化模型".
+A thin green source-feasible polygon, and to its side a blue lens-shaped guaranteed-reception region with a few measurement candidates. Some candidates outside the lens are crossed out; candidates inside remain, one is ringed orange. Include three tiny qualitative score marks beside retained candidates with the lowest combined cost circled; no axes, no fake empirical values. The blue lens of allowed ROBOT POSITIONS is distinct from the green region of possible SOURCE POSITIONS.
+The mathematical objective is clearly printed below:
+"q* = arg min J(q),  q ∈ Q"
+Short labels ONLY:
+"可靠接收约束"
+"候选枚举 · 模拟评分"
+Do NOT call this model globally optimally solved. q* denotes the best finite feasible candidate. J combines movement cost and estimated remaining localization cost, not just area minimization.
+A curved arrow from model A's feasible polygon into model B communicates that geometry determines Q and candidate scoring.
+
+C. Middle right, the largest sketch, title exactly "覆盖约束滚动规划模型".
+A sparse top-down diagram mixing BLUE hollow circular station tasks and GREEN small polygonal known-source tasks. A thin gray dashed old route has a crossing; a bright orange new route uncrosses those SAME edges, clearly showing a 2-opt-style change. A lightly crossed-out redundant scan station has a couple of surviving blue coverage arcs around it, illustrating that removing it retains the discovery coverage. Bolden just the FIRST orange route segment; keep future route segments thinner. This is joint route planning for scan tasks and known-source tasks, not a decorative trajectory.
+Use one short objective:
+"min T"
+And two short blue notes:
+"保覆盖删站"
+"多起点 + 2-opt"
+This is rolling constrained time minimization, solved heuristically using current task routes. Do not label the 2-opt result a proven global optimum.
+A curved arrow from model B's chosen action into model C.
+One graceful return arrow from the first executed route action toward model A through central whitespace. Label it exactly "真实反馈更新". This is the common closed-loop backbone. No other long feedback sentence.
+
+LOWER EXTENSION: TWO SMALLER MODEL SKETCHES, CONNECTED TO THE COMMON FRAMEWORK WITH A LIGHT DASHED LINK.
+Put a single small connector label "混合源扩展". This is not an extra mandatory step after finishing an omnidirectional run.
+
+D. Lower left, title exactly "定向源几何约束模型".
+Show the paper's specially constructed PAIRED DETECTION inference:
+A long thin OLD dashed wedge starts at a previous positive-observation dot s on the left and extends right. A vertical cross-section at distance t has two blue measurement dots, one above and one below the narrow wedge, arranged symmetrically around the axis. Mark both observation dots with a small orange x (both silent). Shade GREEN the retained part of the feasible wedge LEFT of the vertical line; draw the discarded RIGHT part faint gray with two gentle strike strokes.
+One concise conditional relation, exactly:
+"双无信号 ⇒ e·(p−s) ≤ t"
+Small blue note: "成对构型 · 局部前瞻".
+This implication applies to the manuscript's carefully constructed paired points, not arbitrary two no-signal measurements. Do not show a lone failed measurement excluding a whole distance disk for an unknown directional source.
+This is the actual geometric constraint model and local-lookahead action selection, not merely a drawing of directional radio radiation.
+
+E. Lower middle, title exactly "回归树收益预测模型".
+A short orange path with THREE optional stop points. A small hand-drawn regression tree with branching decisions connects to the stop candidates; one stop is selected in orange. A simple three-way candidate-action fork may sit near the tree only if it remains very airy. NO neural network. NO charts with performance percentages.
+One short formula:
+"Ŷ > 0"
+One blue note:
+"预测省时，决定补测"
+The tree predicts saved total task time from a stop compared with no stop. The prediction selects an optional along-route measurement. It NEVER estimates ground-truth source coordinates or directly updates the real feasible region. Use one small upward arrow from the selected stop into the shared action-planning route, keeping all arrows away from text.
+
+VERY IMPORTANT COMMUNICATION:
+The figure should immediately tell a mathematical-modeling reviewer which models this paper uses: half-plane geometric localization; constrained finite-candidate probe optimization; coverage-constrained receding-horizon task/route planning; directional-source geometric constraints; regression-tree benefit prediction. The small handwritten blue notes name the solution procedures. The short formulas show each model's operative idea. Do not use the generic four problem titles, station-count maps alone, a task-requirements list or a benchmark collage.
+The models form a coherent method: conservative geometry -> feasible scored actions -> joint rolling planning -> actual feedback, with directional geometric inference and learned stop-benefit prediction as extensions.
+
+SOURCE FACTS, do not write these as extra text:
+The actual latest Overleaf manuscript uses half-plane intersection and vertex / enclosing-circle computations; Q2 finite candidate enumeration filtered for reliable reception and scored under representative hypothetical positions; Q3 coverage-preserving station deletion/adjustment, joint scan/source task ordering, multi-start local search and 2-opt, executing the next task only; Q4 paired sensing with no-signal half-plane inference, local lookahead via simulated continuation, and a regression-tree predictor of saved time for along-route measurements. It does not use reinforcement learning, neural networks, an exact global mixed-integer solver, or an end-to-end learned policy.
+No invented metrics, no claims of world-first novelty, no global-optimality badges, no official-test claims.
+Final requirement: show THE MODELS AND HOW THEY ARE SOLVED in the sparse bright human pencil-sketch style, with short text only, strong visual causality, ample breathing room and no generic AI infographic aesthetic.

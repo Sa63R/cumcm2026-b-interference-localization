@@ -1,0 +1,4387 @@
+{
+  "local_reconstructed_only": true,
+  "runs": 4476,
+  "all_cleared": true,
+  "unique_new_cases": 370,
+  "known_diagnostic_cases": 3,
+  "new_source_instances": 4802,
+  "new_source_clear_events": 57624,
+  "planner_wall_budget_reached": 0,
+  "bootstrap_replicates": 50000,
+  "primary_family": [
+    "no_route",
+    "no_transit",
+    "no_guard",
+    "no_rollout",
+    "no_rb"
+  ],
+  "groups": {
+    "new_practice": {
+      "case_count": 300,
+      "methods": {
+        "v4": {
+          "cases": 300,
+          "mean_seconds_per_source": 454.1503086335015,
+          "change_vs_full_s": 4.08453073235541,
+          "change_vs_full_ci95": [
+            2.56429204550099,
+            5.6327323542267855
+          ],
+          "saving_vs_full_percent": -0.9075408380089023,
+          "saving_vs_v4_percent": 0.0,
+          "faster_than_full": 116,
+          "slower_than_full": 184,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "main-0059",
+            "slower_percent": 17.231732980998537
+          },
+          "best_vs_full": {
+            "case_key": "main-0048",
+            "saving_percent": 12.660249882720597
+          },
+          "p95_slowdown_vs_v4_percent": 0.0,
+          "worst_slowdown_vs_v4_percent": 0.0,
+          "mean_virtual_time_s": 5728.150914313333,
+          "mean_cpu_seconds": 0.03590855333333347,
+          "mean_wall_seconds": 0.036653425827098546,
+          "mean_distance_m": 20984.471231640517,
+          "mean_measurement_count": 241.75666666666666,
+          "mean_failed_clear_count": 9.533333333333333,
+          "mean_switch_count": 229.00666666666666,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 23.77,
+          "mean_visited_station_count": 20.346666666666668,
+          "mean_last_discovery_s": 4175.0965755,
+          "mean_tail_after_last_clear_s": 418.7831865166667,
+          "mean_time_per_source_breakdown": {
+            "movement": 331.23347087403863,
+            "switching": 18.437380175380174,
+            "detection": 97.26969509657009,
+            "optical": 5.209762487512488,
+            "removal": 2.0
+          }
+        },
+        "v5": {
+          "cases": 300,
+          "mean_seconds_per_source": 450.3431329407509,
+          "change_vs_full_s": 0.2773550396050609,
+          "change_vs_full_ci95": [
+            -1.0266776124062287,
+            1.5466001379892882
+          ],
+          "saving_vs_full_percent": -0.06162544526229219,
+          "saving_vs_v4_percent": 0.8383074106469435,
+          "faster_than_full": 155,
+          "slower_than_full": 145,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "main-0059",
+            "slower_percent": 14.50825797481745
+          },
+          "best_vs_full": {
+            "case_key": "main-0297",
+            "saving_percent": 23.536115790351076
+          },
+          "p95_slowdown_vs_v4_percent": 2.3166043077734466,
+          "worst_slowdown_vs_v4_percent": 8.436358727073134,
+          "mean_virtual_time_s": 5677.212240736666,
+          "mean_cpu_seconds": 0.7232746200000008,
+          "mean_wall_seconds": 0.734064903606583,
+          "mean_distance_m": 20778.01119699015,
+          "mean_measurement_count": 240.55666666666667,
+          "mean_failed_clear_count": 8.69,
+          "mean_switch_count": 227.89,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 12.696666666666667,
+          "mean_planner_accepts": 2.9033333333333333,
+          "mean_planner_seconds": 0.6042319205991226,
+          "mean_rb_share_checks": 29.02,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 23.19,
+          "mean_visited_station_count": 20.31,
+          "mean_last_discovery_s": 4105.761775016666,
+          "mean_tail_after_last_clear_s": 415.5955190666667,
+          "mean_time_per_source_breakdown": {
+            "movement": 328.1423527487209,
+            "switching": 18.35383406870907,
+            "detection": 96.82544649794649,
+            "optical": 5.021499625374625,
+            "removal": 2.0
+          }
+        },
+        "full": {
+          "cases": 300,
+          "mean_seconds_per_source": 450.06577790114613,
+          "change_vs_full_s": 0.0,
+          "change_vs_full_ci95": [
+            0.0,
+            0.0
+          ],
+          "saving_vs_full_percent": 0.0,
+          "saving_vs_v4_percent": 0.899378609836321,
+          "faster_than_full": 0,
+          "slower_than_full": 0,
+          "equal_to_full": 300,
+          "worst_vs_full": {
+            "case_key": "main-0000",
+            "slower_percent": 0.0
+          },
+          "best_vs_full": {
+            "case_key": "main-0000",
+            "saving_percent": -0.0
+          },
+          "p95_slowdown_vs_v4_percent": 3.974485762436531,
+          "worst_slowdown_vs_v4_percent": 14.495404286960367,
+          "mean_virtual_time_s": 5673.8206484366665,
+          "mean_cpu_seconds": 0.676188123333332,
+          "mean_wall_seconds": 0.6861760334574502,
+          "mean_distance_m": 20691.186564999043,
+          "mean_measurement_count": 244.01333333333332,
+          "mean_failed_clear_count": 7.166666666666667,
+          "mean_switch_count": 229.15,
+          "mean_transit_stops": 8.243333333333334,
+          "mean_transit_detections": 11.226666666666667,
+          "mean_route_calls": 34.27333333333333,
+          "mean_route_accepts": 1.49,
+          "mean_planner_calls": 11.323333333333334,
+          "mean_planner_accepts": 1.8466666666666667,
+          "mean_planner_seconds": 0.4767666993685998,
+          "mean_rb_share_checks": 24.51,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 29.21,
+          "mean_visited_station_count": 20.273333333333333,
+          "mean_last_discovery_s": 4075.107684,
+          "mean_tail_after_last_clear_s": 428.18053763333336,
+          "mean_time_per_source_breakdown": {
+            "movement": 326.8335821108252,
+            "switching": 18.44382246919747,
+            "detection": 98.12447829947828,
+            "optical": 4.663895021645021,
+            "removal": 2.0
+          }
+        },
+        "no_route": {
+          "cases": 300,
+          "mean_seconds_per_source": 449.120370228102,
+          "change_vs_full_s": -0.9454076730440693,
+          "change_vs_full_ci95": [
+            -1.9856091883333589,
+            0.0476498647604902
+          ],
+          "saving_vs_full_percent": 0.2100598889017924,
+          "saving_vs_v4_percent": 1.1075492650294838,
+          "faster_than_full": 131,
+          "slower_than_full": 85,
+          "equal_to_full": 84,
+          "worst_vs_full": {
+            "case_key": "main-0231",
+            "slower_percent": 10.00912076303415
+          },
+          "best_vs_full": {
+            "case_key": "main-0297",
+            "saving_percent": 23.374635656854892
+          },
+          "p95_slowdown_vs_v4_percent": 3.4888904088001897,
+          "worst_slowdown_vs_v4_percent": 15.379934172432353,
+          "component_benefit_ci99_bonferroni5": [
+            -2.332411935183506,
+            0.3538015552874291
+          ],
+          "mean_virtual_time_s": 5661.176646906667,
+          "mean_cpu_seconds": 0.5727070599999996,
+          "mean_wall_seconds": 0.5812218472356714,
+          "mean_distance_m": 20599.533223912087,
+          "mean_measurement_count": 244.96,
+          "mean_failed_clear_count": 6.93,
+          "mean_switch_count": 230.81333333333333,
+          "mean_transit_stops": 8.373333333333333,
+          "mean_transit_detections": 11.35,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 11.093333333333334,
+          "mean_planner_accepts": 1.8966666666666667,
+          "mean_planner_seconds": 0.44361455496002844,
+          "mean_rb_share_checks": 24.626666666666665,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 29.186666666666667,
+          "mean_visited_station_count": 20.263333333333332,
+          "mean_last_discovery_s": 4120.930717563333,
+          "mean_tail_after_last_clear_s": 423.06746424,
+          "mean_time_per_source_breakdown": {
+            "movement": 325.4255170396237,
+            "switching": 18.577111874236873,
+            "detection": 98.50714840714842,
+            "optical": 4.610592907092907,
+            "removal": 2.0
+          }
+        },
+        "no_transit": {
+          "cases": 300,
+          "mean_seconds_per_source": 450.92503378196824,
+          "change_vs_full_s": 0.8592558808223145,
+          "change_vs_full_ci95": [
+            -0.2942239541862475,
+            2.0599485903193284
+          ],
+          "saving_vs_full_percent": -0.1909178442380588,
+          "saving_vs_v4_percent": 0.7101778398517,
+          "faster_than_full": 160,
+          "slower_than_full": 140,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "main-0266",
+            "slower_percent": 26.01887826330074
+          },
+          "best_vs_full": {
+            "case_key": "main-0048",
+            "saving_percent": 11.19525815565483
+          },
+          "p95_slowdown_vs_v4_percent": 3.6099469834541877,
+          "worst_slowdown_vs_v4_percent": 10.895266459185905,
+          "component_benefit_ci99_bonferroni5": [
+            -0.6209666445275445,
+            2.4771631693304217
+          ],
+          "mean_virtual_time_s": 5685.069630836667,
+          "mean_cpu_seconds": 0.7986040999999998,
+          "mean_wall_seconds": 0.8134937169541566,
+          "mean_distance_m": 20847.764815230315,
+          "mean_measurement_count": 239.46,
+          "mean_failed_clear_count": 8.85,
+          "mean_switch_count": 226.8,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 27.676666666666666,
+          "mean_route_accepts": 1.2633333333333334,
+          "mean_planner_calls": 13.116666666666667,
+          "mean_planner_accepts": 2.84,
+          "mean_planner_seconds": 0.6285270841361489,
+          "mean_rb_share_checks": 28.476666666666667,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 22.83,
+          "mean_visited_station_count": 20.316666666666666,
+          "mean_last_discovery_s": 4073.9796921166667,
+          "mean_tail_after_last_clear_s": 422.94624889333335,
+          "mean_time_per_source_breakdown": {
+            "movement": 329.24852209920664,
+            "switching": 18.26409174159174,
+            "detection": 96.3629695998446,
+            "optical": 5.0494503413253415,
+            "removal": 2.0
+          }
+        },
+        "no_guard": {
+          "cases": 300,
+          "mean_seconds_per_source": 450.4907405853634,
+          "change_vs_full_s": 0.42496268421732575,
+          "change_vs_full_ci95": [
+            -1.6848020344828867,
+            2.563690542643456
+          ],
+          "saving_vs_full_percent": -0.09442235003938038,
+          "saving_vs_v4_percent": 0.8058054742160925,
+          "faster_than_full": 137,
+          "slower_than_full": 163,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "main-0198",
+            "slower_percent": 48.89208389942314
+          },
+          "best_vs_full": {
+            "case_key": "main-0297",
+            "saving_percent": 22.377005976967133
+          },
+          "p95_slowdown_vs_v4_percent": 5.699522463438072,
+          "worst_slowdown_vs_v4_percent": 32.700787604761075,
+          "component_benefit_ci99_bonferroni5": [
+            -2.3657437815750675,
+            3.261677741351788
+          ],
+          "mean_virtual_time_s": 5681.384470486667,
+          "mean_cpu_seconds": 0.6381242200000016,
+          "mean_wall_seconds": 0.6508062554036345,
+          "mean_distance_m": 20690.905671191755,
+          "mean_measurement_count": 245.39,
+          "mean_failed_clear_count": 7.34,
+          "mean_switch_count": 229.36666666666667,
+          "mean_transit_stops": 11.426666666666666,
+          "mean_transit_detections": 19.85333333333333,
+          "mean_route_calls": 43.23,
+          "mean_route_accepts": 3.84,
+          "mean_planner_calls": 10.273333333333333,
+          "mean_planner_accepts": 1.0466666666666666,
+          "mean_planner_seconds": 0.41802517069416356,
+          "mean_rb_share_checks": 18.323333333333334,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 32.266666666666666,
+          "mean_visited_station_count": 20.416666666666668,
+          "mean_last_discovery_s": 4087.0141629233335,
+          "mean_tail_after_last_clear_s": 430.15396934333336,
+          "mean_time_per_source_breakdown": {
+            "movement": 326.8706308062536,
+            "switching": 18.424557678432677,
+            "detection": 98.48032412032413,
+            "optical": 4.715227980352981,
+            "removal": 2.0
+          }
+        },
+        "no_rollout": {
+          "cases": 300,
+          "mean_seconds_per_source": 451.71664704529763,
+          "change_vs_full_s": 1.6508691441514178,
+          "change_vs_full_ci95": [
+            0.6120238217847501,
+            2.7838038849554954
+          ],
+          "saving_vs_full_percent": -0.36680619260816005,
+          "saving_vs_v4_percent": 0.5358713936640336,
+          "faster_than_full": 93,
+          "slower_than_full": 159,
+          "equal_to_full": 48,
+          "worst_vs_full": {
+            "case_key": "main-0206",
+            "slower_percent": 37.67260582554848
+          },
+          "best_vs_full": {
+            "case_key": "main-0290",
+            "saving_percent": 9.689248677883711
+          },
+          "p95_slowdown_vs_v4_percent": 3.728226478162013,
+          "worst_slowdown_vs_v4_percent": 20.86680906785583,
+          "component_benefit_ci99_bonferroni5": [
+            0.3082546954438712,
+            3.16883832774587
+          ],
+          "mean_virtual_time_s": 5697.760483000001,
+          "mean_cpu_seconds": 0.20362171999999862,
+          "mean_wall_seconds": 0.20813992525906846,
+          "mean_distance_m": 20790.1690715497,
+          "mean_measurement_count": 244.45666666666668,
+          "mean_failed_clear_count": 7.73,
+          "mean_switch_count": 229.38666666666666,
+          "mean_transit_stops": 8.25,
+          "mean_transit_detections": 11.153333333333334,
+          "mean_route_calls": 34.156666666666666,
+          "mean_route_accepts": 1.5566666666666666,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 24.3,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 29.203333333333333,
+          "mean_visited_station_count": 20.33,
+          "mean_last_discovery_s": 4094.361037763334,
+          "mean_tail_after_last_clear_s": 459.7407199266667,
+          "mean_time_per_source_breakdown": {
+            "movement": 328.19683385848424,
+            "switching": 18.45689307914308,
+            "detection": 98.26383186258187,
+            "optical": 4.799088245088245,
+            "removal": 2.0
+          }
+        },
+        "no_rb": {
+          "cases": 300,
+          "mean_seconds_per_source": 450.0912259786942,
+          "change_vs_full_s": 0.02544807754794069,
+          "change_vs_full_ci95": [
+            -0.5591362761647858,
+            0.4018443918734861
+          ],
+          "saving_vs_full_percent": -0.0056543018370991405,
+          "saving_vs_v4_percent": 0.893775161580479,
+          "faster_than_full": 78,
+          "slower_than_full": 131,
+          "equal_to_full": 91,
+          "worst_vs_full": {
+            "case_key": "main-0224",
+            "slower_percent": 3.9927846490540153
+          },
+          "best_vs_full": {
+            "case_key": "main-0297",
+            "saving_percent": 21.819390773921953
+          },
+          "p95_slowdown_vs_v4_percent": 3.9093583860040644,
+          "worst_slowdown_vs_v4_percent": 14.385211065456872,
+          "component_benefit_ci99_bonferroni5": [
+            -0.7987999783362753,
+            0.46880522479357223
+          ],
+          "mean_virtual_time_s": 5673.39782055,
+          "mean_cpu_seconds": 0.608792419999998,
+          "mean_wall_seconds": 0.6216116215240133,
+          "mean_distance_m": 20679.905759138404,
+          "mean_measurement_count": 244.31333333333333,
+          "mean_failed_clear_count": 7.243333333333333,
+          "mean_switch_count": 229.25333333333333,
+          "mean_transit_stops": 8.303333333333333,
+          "mean_transit_detections": 11.31,
+          "mean_route_calls": 34.346666666666664,
+          "mean_route_accepts": 1.4866666666666666,
+          "mean_planner_calls": 11.466666666666667,
+          "mean_planner_accepts": 1.8466666666666667,
+          "mean_planner_seconds": 0.4825692375183765,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 29.75,
+          "mean_visited_station_count": 20.243333333333332,
+          "mean_last_discovery_s": 4057.82794793,
+          "mean_tail_after_last_clear_s": 427.05728474999995,
+          "mean_time_per_source_breakdown": {
+            "movement": 326.69392308714106,
+            "switching": 18.45516711066711,
+            "detection": 98.26207063769563,
+            "optical": 4.680065143190143,
+            "removal": 2.0
+          }
+        },
+        "no_rollout_rb": {
+          "cases": 300,
+          "mean_seconds_per_source": 451.8738280410699,
+          "change_vs_full_s": 1.8080501399237718,
+          "change_vs_full_ci95": [
+            0.613891621617174,
+            3.0469673189862974
+          ],
+          "saving_vs_full_percent": -0.4017301978291865,
+          "saving_vs_v4_percent": 0.5012614874756571,
+          "faster_than_full": 97,
+          "slower_than_full": 188,
+          "equal_to_full": 15,
+          "worst_vs_full": {
+            "case_key": "main-0206",
+            "slower_percent": 37.10556208734073
+          },
+          "best_vs_full": {
+            "case_key": "main-0297",
+            "saving_percent": 21.819390773921953
+          },
+          "p95_slowdown_vs_v4_percent": 3.8812315210463364,
+          "worst_slowdown_vs_v4_percent": 20.368984777917376,
+          "mean_virtual_time_s": 5699.075260783333,
+          "mean_cpu_seconds": 0.13150096666666497,
+          "mean_wall_seconds": 0.13351322829674853,
+          "mean_distance_m": 20785.926294067962,
+          "mean_measurement_count": 244.78333333333333,
+          "mean_failed_clear_count": 7.87,
+          "mean_switch_count": 229.49666666666667,
+          "mean_transit_stops": 8.33,
+          "mean_transit_detections": 11.253333333333334,
+          "mean_route_calls": 34.21,
+          "mean_route_accepts": 1.5433333333333332,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 29.726666666666667,
+          "mean_visited_station_count": 20.3,
+          "mean_last_discovery_s": 4091.1408285166663,
+          "mean_tail_after_last_clear_s": 457.52547927000006,
+          "mean_time_per_source_breakdown": {
+            "movement": 328.1659551361969,
+            "switching": 18.468031107781105,
+            "detection": 98.41019182206682,
+            "optical": 4.829649975024974,
+            "removal": 2.0
+          }
+        },
+        "transit_geometry": {
+          "cases": 300,
+          "mean_seconds_per_source": 451.5322876013732,
+          "change_vs_full_s": 1.4665097002270087,
+          "change_vs_full_ci95": [
+            0.46878887148998716,
+            2.5014628114909727
+          ],
+          "saving_vs_full_percent": -0.325843414948368,
+          "saving_vs_v4_percent": 0.5764657608635537,
+          "faster_than_full": 124,
+          "slower_than_full": 176,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "main-0082",
+            "slower_percent": 15.771137987945828
+          },
+          "best_vs_full": {
+            "case_key": "main-0075",
+            "saving_percent": 8.192224529992409
+          },
+          "p95_slowdown_vs_v4_percent": 4.8890759161020245,
+          "worst_slowdown_vs_v4_percent": 15.372953350312857,
+          "mean_virtual_time_s": 5693.816127369999,
+          "mean_cpu_seconds": 0.5918140833333324,
+          "mean_wall_seconds": 0.6039005202770932,
+          "mean_distance_m": 20733.04729002891,
+          "mean_measurement_count": 246.10333333333332,
+          "mean_failed_clear_count": 6.983333333333333,
+          "mean_switch_count": 230.87333333333333,
+          "mean_transit_stops": 11.326666666666666,
+          "mean_transit_detections": 16.133333333333333,
+          "mean_route_calls": 36.92666666666667,
+          "mean_route_accepts": 1.4933333333333334,
+          "mean_planner_calls": 10.906666666666666,
+          "mean_planner_accepts": 1.67,
+          "mean_planner_seconds": 0.40407807326846523,
+          "mean_rb_share_checks": 22.566666666666666,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 31.416666666666668,
+          "mean_visited_station_count": 20.346666666666668,
+          "mean_last_discovery_s": 4111.40875117,
+          "mean_tail_after_last_clear_s": 403.2748648466667,
+          "mean_time_per_source_breakdown": {
+            "movement": 327.4466169664524,
+            "switching": 18.570534299034296,
+            "detection": 98.88631257631258,
+            "optical": 4.628823759573759,
+            "removal": 2.0
+          }
+        },
+        "route_only_unguarded": {
+          "cases": 300,
+          "mean_seconds_per_source": 450.1332047266275,
+          "change_vs_full_s": 0.06742682548125667,
+          "change_vs_full_ci95": [
+            -2.23623980317523,
+            2.359913171765253
+          ],
+          "saving_vs_full_percent": -0.014981549096182434,
+          "saving_vs_v4_percent": 0.8845318015881287,
+          "faster_than_full": 145,
+          "slower_than_full": 155,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "main-0198",
+            "slower_percent": 31.001987901061725
+          },
+          "best_vs_full": {
+            "case_key": "main-0230",
+            "saving_percent": 25.187089125518646
+          },
+          "p95_slowdown_vs_v4_percent": 6.84162913421083,
+          "worst_slowdown_vs_v4_percent": 28.509246525456987,
+          "mean_virtual_time_s": 5674.253566806668,
+          "mean_cpu_seconds": 0.8003851333333332,
+          "mean_wall_seconds": 0.8141590465039674,
+          "mean_distance_m": 20854.08449517372,
+          "mean_measurement_count": 237.47333333333333,
+          "mean_failed_clear_count": 8.843333333333334,
+          "mean_switch_count": 224.67333333333335,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 34.38333333333333,
+          "mean_route_accepts": 3.183333333333333,
+          "mean_planner_calls": 12.923333333333334,
+          "mean_planner_accepts": 2.76,
+          "mean_planner_seconds": 0.6183288247928916,
+          "mean_rb_share_checks": 27.89666666666667,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 22.523333333333333,
+          "mean_visited_station_count": 20.336666666666666,
+          "mean_last_discovery_s": 3981.6319196533336,
+          "mean_tail_after_last_clear_s": 439.2508435266667,
+          "mean_time_per_source_breakdown": {
+            "movement": 329.4742422585398,
+            "switching": 18.082301032301032,
+            "detection": 95.51369040681541,
+            "optical": 5.062971028971029,
+            "removal": 2.0
+          }
+        },
+        "transit_only_unguarded": {
+          "cases": 300,
+          "mean_seconds_per_source": 448.1786813462902,
+          "change_vs_full_s": -1.8870965548557554,
+          "change_vs_full_ci95": [
+            -3.6010488283866233,
+            -0.20329787372657768
+          ],
+          "saving_vs_full_percent": 0.4192935005314702,
+          "saving_vs_v4_percent": 1.3149010743115808,
+          "faster_than_full": 154,
+          "slower_than_full": 146,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "main-0206",
+            "slower_percent": 20.79613430374647
+          },
+          "best_vs_full": {
+            "case_key": "main-0085",
+            "saving_percent": 18.60257730541026
+          },
+          "p95_slowdown_vs_v4_percent": 4.521380962424656,
+          "worst_slowdown_vs_v4_percent": 14.675168074200439,
+          "mean_virtual_time_s": 5650.892763106667,
+          "mean_cpu_seconds": 0.49892429666666827,
+          "mean_wall_seconds": 0.5089407550162286,
+          "mean_distance_m": 20518.563801706397,
+          "mean_measurement_count": 245.98,
+          "mean_failed_clear_count": 7.133333333333334,
+          "mean_switch_count": 231.01333333333332,
+          "mean_transit_stops": 11.463333333333333,
+          "mean_transit_detections": 19.676666666666666,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 10.093333333333334,
+          "mean_planner_accepts": 1.13,
+          "mean_planner_seconds": 0.36958307793034084,
+          "mean_rb_share_checks": 18.626666666666665,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 31.946666666666665,
+          "mean_visited_station_count": 20.313333333333333,
+          "mean_last_discovery_s": 4070.6645555799996,
+          "mean_tail_after_last_clear_s": 427.01639881,
+          "mean_time_per_source_breakdown": {
+            "movement": 324.0600165527505,
+            "switching": 18.586175421800423,
+            "detection": 98.89129564879563,
+            "optical": 4.641193722943722,
+            "removal": 2.0
+          }
+        }
+      },
+      "exploratory_contrasts": {
+        "route_transit_guard4": {
+          "weights": {
+            "full": 1,
+            "no_transit": -1,
+            "no_route": -1,
+            "v5": 1
+          },
+          "mean": 0.3635068318267827,
+          "ci95": [
+            -0.5652921983601856,
+            1.2925429017169376
+          ]
+        },
+        "route_transit_guard0": {
+          "weights": {
+            "no_guard": 1,
+            "route_only_unguarded": -1,
+            "transit_only_unguarded": -1,
+            "v5": 1
+          },
+          "mean": 2.521987453196573,
+          "ci95": [
+            0.26779919665524854,
+            4.870916879623054
+          ]
+        },
+        "rollout_rb_full_learned": {
+          "weights": {
+            "full": 1,
+            "no_rb": -1,
+            "no_rollout": -1,
+            "no_rollout_rb": 1
+          },
+          "mean": 0.13173291822420197,
+          "ci95": [
+            -0.03437281206797275,
+            0.3357173098435056
+          ]
+        },
+        "route_average_marginal_benefit": {
+          "weights": {
+            "v5": 0.5,
+            "no_transit": -0.5,
+            "no_route": 0.5,
+            "full": -0.5
+          },
+          "mean": -0.7636542571307245,
+          "ci95": [
+            -1.7432048148248958,
+            0.14209958523301097
+          ]
+        },
+        "transit_average_marginal_benefit": {
+          "weights": {
+            "v5": 0.5,
+            "no_route": -0.5,
+            "no_transit": 0.5,
+            "full": -0.5
+          },
+          "mean": 1.0410092967354956,
+          "ci95": [
+            0.06706606564035515,
+            2.053404545363973
+          ]
+        },
+        "guard_with_route_only": {
+          "weights": {
+            "route_only_unguarded": 1,
+            "no_transit": -1
+          },
+          "mean": -0.7918290553407132,
+          "ci95": [
+            -2.8692463133870967,
+            1.2868436234257818
+          ]
+        },
+        "guard_with_transit_only": {
+          "weights": {
+            "transit_only_unguarded": 1,
+            "no_route": -1
+          },
+          "mean": -0.9416888818117854,
+          "ci95": [
+            -2.676193143771992,
+            0.7572497839173893
+          ]
+        },
+        "learned_transit_vs_geometry": {
+          "weights": {
+            "transit_geometry": 1,
+            "full": -1
+          },
+          "mean": 1.46650970022705,
+          "ci95": [
+            0.46878887148998716,
+            2.5014628114909727
+          ]
+        },
+        "rb_without_rollout": {
+          "weights": {
+            "no_rollout_rb": 1,
+            "no_rollout": -1
+          },
+          "mean": 0.15718099577225075,
+          "ci95": [
+            -0.45684009747704263,
+            0.5949041193571389
+          ]
+        },
+        "rollout_without_rb": {
+          "weights": {
+            "no_rollout_rb": 1,
+            "no_rb": -1
+          },
+          "mean": 1.7826020623757017,
+          "ci95": [
+            0.7173444629776486,
+            2.9375672648023454
+          ]
+        }
+      },
+      "by_source_count": {
+        "10": {
+          "cases": 38,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 585.7983261026314,
+              "mean_last_discovery_s": 3763.2652550789476,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 582.2102577999999,
+              "mean_last_discovery_s": 3645.996642789474,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 582.8539290026315,
+              "mean_last_discovery_s": 3717.4314553684203,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 581.1431108105263,
+              "mean_last_discovery_s": 3708.5031130263155,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 584.2090787078946,
+              "mean_last_discovery_s": 3733.0630887894736,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 579.842916218421,
+              "mean_last_discovery_s": 3643.201924263158,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 583.7162525526317,
+              "mean_last_discovery_s": 3755.6726291842115,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 583.1656793973683,
+              "mean_last_discovery_s": 3720.830308921052,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 583.9383915578948,
+              "mean_last_discovery_s": 3757.8406979210536,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 584.3034351289474,
+              "mean_last_discovery_s": 3667.8668148684214,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 582.619194305263,
+              "mean_last_discovery_s": 3478.40657431579,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 575.0399650026316,
+              "mean_last_discovery_s": 3802.5555858421053,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "11": {
+          "cases": 54,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 534.0185401565658,
+              "mean_last_discovery_s": 4095.9967239629627,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 531.300614037037,
+              "mean_last_discovery_s": 4045.670090296296,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 528.9205186245791,
+              "mean_last_discovery_s": 3931.494056388888,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 529.2838954107744,
+              "mean_last_discovery_s": 3965.060313055556,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 530.7641741313132,
+              "mean_last_discovery_s": 3938.2277954629626,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 529.3937029797981,
+              "mean_last_discovery_s": 3937.70029612963,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 529.5529571767677,
+              "mean_last_discovery_s": 3948.6106938518515,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 529.1509928063973,
+              "mean_last_discovery_s": 3932.749752981481,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 529.9352100117844,
+              "mean_last_discovery_s": 3951.277655462963,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 530.537228074074,
+              "mean_last_discovery_s": 3948.375207981481,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 530.0531233771045,
+              "mean_last_discovery_s": 3643.254878759259,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 528.8618607878788,
+              "mean_last_discovery_s": 3926.3586417592587,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "12": {
+          "cases": 40,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 486.6659294145833,
+              "mean_last_discovery_s": 4285.059495175,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 483.90573545416675,
+              "mean_last_discovery_s": 4287.475113449999,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 485.5129021104167,
+              "mean_last_discovery_s": 4213.149164775,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 484.23883243541667,
+              "mean_last_discovery_s": 4344.903240725,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 484.4390243375,
+              "mean_last_discovery_s": 4184.38272875,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 485.7318244770833,
+              "mean_last_discovery_s": 4131.198884150001,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 485.77550823958336,
+              "mean_last_discovery_s": 4241.439045025,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 486.04600854583333,
+              "mean_last_discovery_s": 4220.74734145,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 486.3577313208333,
+              "mean_last_discovery_s": 4247.827438925,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 486.1573506583333,
+              "mean_last_discovery_s": 4130.639876825,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 485.1096453104166,
+              "mean_last_discovery_s": 4101.03460245,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 483.9472904041666,
+              "mean_last_discovery_s": 4330.541086650001,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "13": {
+          "cases": 38,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 448.2332652813766,
+              "mean_last_discovery_s": 4439.884274368422,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 442.7854499170041,
+              "mean_last_discovery_s": 4246.433311131579,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 442.2453634190283,
+              "mean_last_discovery_s": 4293.534230763158,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 441.10247221862346,
+              "mean_last_discovery_s": 4295.813245105263,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 442.41718636234816,
+              "mean_last_discovery_s": 4281.818475052631,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 444.6753860161943,
+              "mean_last_discovery_s": 4267.585126552632,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 443.84714831174097,
+              "mean_last_discovery_s": 4252.733346736843,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 442.25582532793527,
+              "mean_last_discovery_s": 4243.630071421054,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 444.0980574129555,
+              "mean_last_discovery_s": 4205.616624473684,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 442.7716552894737,
+              "mean_last_discovery_s": 4347.562219421053,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 443.31750155465585,
+              "mean_last_discovery_s": 4298.034862315789,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 443.5880007186235,
+              "mean_last_discovery_s": 4256.376422815789,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "14": {
+          "cases": 42,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 415.7265297959183,
+              "mean_last_discovery_s": 4093.4624840238102,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 412.3190891904763,
+              "mean_last_discovery_s": 4114.355982119047,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 412.54383371938786,
+              "mean_last_discovery_s": 4251.176781642857,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 411.00560067687087,
+              "mean_last_discovery_s": 4246.319654666667,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 412.6652070629253,
+              "mean_last_discovery_s": 4148.403357595238,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 413.2872456105443,
+              "mean_last_discovery_s": 4181.192142285714,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 413.5062556836735,
+              "mean_last_discovery_s": 4210.856969261905,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 412.8043727057823,
+              "mean_last_discovery_s": 4208.325393904762,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 414.29988102551016,
+              "mean_last_discovery_s": 4213.29368954762,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 413.23560306972786,
+              "mean_last_discovery_s": 4271.716449238095,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 412.0714105765305,
+              "mean_last_discovery_s": 4159.498425857143,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 410.07766989455774,
+              "mean_last_discovery_s": 3956.9873235476184,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "15": {
+          "cases": 52,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 381.59641349743595,
+              "mean_last_discovery_s": 4223.873777057692,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 379.8269013653847,
+              "mean_last_discovery_s": 4179.8629904807685,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 379.2035721807693,
+              "mean_last_discovery_s": 4027.13711775,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 379.4064714948718,
+              "mean_last_discovery_s": 4191.64652575,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 380.83837325,
+              "mean_last_discovery_s": 4055.7026375961536,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 378.3368155371796,
+              "mean_last_discovery_s": 4124.16220725,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 380.5379845076923,
+              "mean_last_discovery_s": 4030.4086562499997,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 379.3442848153846,
+              "mean_last_discovery_s": 4029.8468594423075,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 380.87943886923074,
+              "mean_last_discovery_s": 4079.1033250384617,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 380.2110003846153,
+              "mean_last_discovery_s": 4163.412218115384,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 377.7318484051282,
+              "mean_last_discovery_s": 4033.553715884615,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 377.70969767564105,
+              "mean_last_discovery_s": 4092.3750693461534,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "16": {
+          "cases": 36,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 315.13127830902783,
+              "mean_last_discovery_s": 4351.561858166667,
+              "mean_visited_stations": 15.555555555555555
+            },
+            "v5": {
+              "mean_seconds_per_source": 306.61777210590276,
+              "mean_last_discovery_s": 4213.754946888888,
+              "mean_visited_stations": 15.25
+            },
+            "full": {
+              "mean_seconds_per_source": 306.619705515625,
+              "mean_last_discovery_s": 4148.011348305556,
+              "mean_visited_stations": 14.944444444444445
+            },
+            "no_route": {
+              "mean_seconds_per_source": 304.125653265625,
+              "mean_last_discovery_s": 4108.187841416668,
+              "mean_visited_stations": 14.86111111111111
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 308.0930994357639,
+              "mean_last_discovery_s": 4234.981109166667,
+              "mean_visited_stations": 15.305555555555555
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 310.20597297569446,
+              "mean_last_discovery_s": 4376.224023222222,
+              "mean_visited_stations": 16.13888888888889
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 313.48519251388893,
+              "mean_last_discovery_s": 4296.363948361111,
+              "mean_visited_stations": 15.416666666666666
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 305.0463943506945,
+              "mean_last_discovery_s": 4088.8557325555553,
+              "mean_visited_stations": 14.694444444444445
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 311.6563037135417,
+              "mean_last_discovery_s": 4232.69643025,
+              "mean_visited_stations": 15.166666666666666
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 311.3516987013889,
+              "mean_last_discovery_s": 4291.359431500001,
+              "mean_visited_stations": 15.555555555555555
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 307.7238094236111,
+              "mean_last_discovery_s": 4271.220184472222,
+              "mean_visited_stations": 15.472222222222221
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 304.5873109184028,
+              "mean_last_discovery_s": 4186.610250805555,
+              "mean_visited_stations": 15.277777777777779
+            }
+          }
+        }
+      }
+    },
+    "all_directional": {
+      "case_count": 35,
+      "methods": {
+        "v4": {
+          "cases": 35,
+          "mean_seconds_per_source": 482.70153456181515,
+          "change_vs_full_s": 11.39612955243102,
+          "change_vs_full_ci95": [
+            4.401260577163756,
+            17.357191943980574
+          ],
+          "saving_vs_full_percent": -2.417992543964975,
+          "saving_vs_v4_percent": 0.0,
+          "faster_than_full": 5,
+          "slower_than_full": 30,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "all_directional-0032",
+            "slower_percent": 10.579459469618735
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0027",
+            "saving_percent": 20.602367780093942
+          },
+          "p95_slowdown_vs_v4_percent": 0.0,
+          "worst_slowdown_vs_v4_percent": 0.0,
+          "mean_virtual_time_s": 6098.769949714287,
+          "mean_cpu_seconds": 0.03759442857143053,
+          "mean_wall_seconds": 0.037993274945100505,
+          "mean_distance_m": 22167.13546030727,
+          "mean_measurement_count": 262.62857142857143,
+          "mean_failed_clear_count": 12.914285714285715,
+          "mean_switch_count": 248.45714285714286,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 23.6,
+          "mean_visited_station_count": 20.542857142857144,
+          "mean_last_discovery_s": 5005.158945028572,
+          "mean_tail_after_last_clear_s": 389.94535237142856,
+          "mean_time_per_source_breakdown": {
+            "movement": 349.5253796453032,
+            "switching": 19.934954807097665,
+            "detection": 105.31854811854812,
+            "optical": 5.922651990866277,
+            "removal": 2.0
+          }
+        },
+        "v5": {
+          "cases": 35,
+          "mean_seconds_per_source": 473.24073148035677,
+          "change_vs_full_s": 1.9353264709726041,
+          "change_vs_full_ci95": [
+            -4.346405134635596,
+            7.249898976476816
+          ],
+          "saving_vs_full_percent": -0.4106310792115764,
+          "saving_vs_v4_percent": 1.959969547237228,
+          "faster_than_full": 17,
+          "slower_than_full": 18,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "all_directional-0032",
+            "slower_percent": 9.050393898397523
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0027",
+            "saving_percent": 22.21588653974712
+          },
+          "p95_slowdown_vs_v4_percent": 2.0153238560936617,
+          "worst_slowdown_vs_v4_percent": 3.686135394708745,
+          "mean_virtual_time_s": 5979.823541028572,
+          "mean_cpu_seconds": 1.1397518000000137,
+          "mean_wall_seconds": 1.1438165048885691,
+          "mean_distance_m": 21676.11770104503,
+          "mean_measurement_count": 259.4,
+          "mean_failed_clear_count": 12.485714285714286,
+          "mean_switch_count": 245.14285714285714,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 17.228571428571428,
+          "mean_planner_accepts": 4.885714285714286,
+          "mean_planner_seconds": 1.0014704535382666,
+          "mean_rb_share_checks": 31.857142857142858,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 22.885714285714286,
+          "mean_visited_station_count": 20.457142857142856,
+          "mean_last_discovery_s": 4850.839913657143,
+          "mean_tail_after_last_clear_s": 394.0614790285714,
+          "mean_time_per_source_breakdown": {
+            "movement": 341.63880447878694,
+            "switching": 19.671355430284,
+            "detection": 104.04575781361496,
+            "optical": 5.8848137576709,
+            "removal": 2.0
+          }
+        },
+        "full": {
+          "cases": 35,
+          "mean_seconds_per_source": 471.3054050093843,
+          "change_vs_full_s": 0.0,
+          "change_vs_full_ci95": [
+            0.0,
+            0.0
+          ],
+          "saving_vs_full_percent": 0.0,
+          "saving_vs_v4_percent": 2.3609060126100534,
+          "faster_than_full": 0,
+          "slower_than_full": 0,
+          "equal_to_full": 35,
+          "worst_vs_full": {
+            "case_key": "all_directional-0000",
+            "slower_percent": 0.0
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0000",
+            "saving_percent": -0.0
+          },
+          "p95_slowdown_vs_v4_percent": 1.8491668057214488,
+          "worst_slowdown_vs_v4_percent": 25.948340276737692,
+          "mean_virtual_time_s": 5957.318188542857,
+          "mean_cpu_seconds": 0.9377265428571474,
+          "mean_wall_seconds": 0.9409356786869466,
+          "mean_distance_m": 21508.448074529635,
+          "mean_measurement_count": 262.3142857142857,
+          "mean_failed_clear_count": 11.142857142857142,
+          "mean_switch_count": 245.62857142857143,
+          "mean_transit_stops": 8.342857142857143,
+          "mean_transit_detections": 11.885714285714286,
+          "mean_route_calls": 35.82857142857143,
+          "mean_route_accepts": 1.4,
+          "mean_planner_calls": 14.6,
+          "mean_planner_accepts": 2.6285714285714286,
+          "mean_planner_seconds": 0.7271926247107331,
+          "mean_rb_share_checks": 26.885714285714286,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 29.857142857142858,
+          "mean_visited_station_count": 20.714285714285715,
+          "mean_last_discovery_s": 4843.444357085716,
+          "mean_tail_after_last_clear_s": 374.8380674857143,
+          "mean_time_per_source_breakdown": {
+            "movement": 338.8902974978481,
+            "switching": 19.69983801912373,
+            "detection": 105.11365182436612,
+            "optical": 5.60161766804624,
+            "removal": 2.0
+          }
+        },
+        "no_route": {
+          "cases": 35,
+          "mean_seconds_per_source": 471.8394112747352,
+          "change_vs_full_s": 0.5340062653510789,
+          "change_vs_full_ci95": [
+            -6.2473208723109,
+            5.968454535671171
+          ],
+          "saving_vs_full_percent": -0.11330365823838395,
+          "saving_vs_v4_percent": 2.250277347251517,
+          "faster_than_full": 14,
+          "slower_than_full": 12,
+          "equal_to_full": 9,
+          "worst_vs_full": {
+            "case_key": "all_directional-0016",
+            "slower_percent": 8.20094164711691
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0027",
+            "saving_percent": 25.775433451200225
+          },
+          "p95_slowdown_vs_v4_percent": 1.6352267024153895,
+          "worst_slowdown_vs_v4_percent": 4.162202351944688,
+          "component_benefit_ci99_bonferroni5": [
+            -8.934503219768738,
+            7.479235423763643
+          ],
+          "mean_virtual_time_s": 5956.876278114286,
+          "mean_cpu_seconds": 0.8749374000000005,
+          "mean_wall_seconds": 0.8780017357161601,
+          "mean_distance_m": 21445.66709470755,
+          "mean_measurement_count": 264.4,
+          "mean_failed_clear_count": 10.885714285714286,
+          "mean_switch_count": 248.0857142857143,
+          "mean_transit_stops": 8.857142857142858,
+          "mean_transit_detections": 12.657142857142857,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 14.514285714285714,
+          "mean_planner_accepts": 2.8857142857142857,
+          "mean_planner_seconds": 0.7371241999008427,
+          "mean_rb_share_checks": 25.942857142857143,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 29.942857142857143,
+          "mean_visited_station_count": 20.485714285714284,
+          "mean_last_discovery_s": 4949.766965914286,
+          "mean_tail_after_last_clear_s": 382.48887757142853,
+          "mean_time_per_source_breakdown": {
+            "movement": 338.35645803749634,
+            "switching": 19.91247133818562,
+            "detection": 106.04840219304506,
+            "optical": 5.522079706008277,
+            "removal": 2.0
+          }
+        },
+        "no_transit": {
+          "cases": 35,
+          "mean_seconds_per_source": 474.7461993081489,
+          "change_vs_full_s": 3.44079429876468,
+          "change_vs_full_ci95": [
+            0.9049304086765305,
+            6.003879597654979
+          ],
+          "saving_vs_full_percent": -0.730056193328843,
+          "saving_vs_v4_percent": 1.6480857598449306,
+          "faster_than_full": 14,
+          "slower_than_full": 21,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "all_directional-0027",
+            "slower_percent": 4.397074853316774
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0012",
+            "saving_percent": 2.9087805337903005
+          },
+          "p95_slowdown_vs_v4_percent": 1.9607936581712622,
+          "worst_slowdown_vs_v4_percent": 31.48638307521596,
+          "component_benefit_ci99_bonferroni5": [
+            0.11179897674768081,
+            6.800350409671301
+          ],
+          "mean_virtual_time_s": 6004.431682428572,
+          "mean_cpu_seconds": 1.1616505428571438,
+          "mean_wall_seconds": 1.168886152459475,
+          "mean_distance_m": 21822.872696367845,
+          "mean_measurement_count": 258.51428571428573,
+          "mean_failed_clear_count": 12.771428571428572,
+          "mean_switch_count": 243.97142857142856,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 29.714285714285715,
+          "mean_route_accepts": 1.3142857142857143,
+          "mean_planner_calls": 16.714285714285715,
+          "mean_planner_accepts": 4.057142857142857,
+          "mean_planner_seconds": 0.9719258318214478,
+          "mean_rb_share_checks": 31.057142857142857,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 23.0,
+          "mean_visited_station_count": 20.714285714285715,
+          "mean_last_discovery_s": 4866.87980377143,
+          "mean_tail_after_last_clear_s": 362.3452664857142,
+          "mean_time_per_source_breakdown": {
+            "movement": 343.6207602234241,
+            "switching": 19.571529422957994,
+            "detection": 103.61957863565007,
+            "optical": 5.934331026116741,
+            "removal": 2.0
+          }
+        },
+        "no_guard": {
+          "cases": 35,
+          "mean_seconds_per_source": 465.06428369530454,
+          "change_vs_full_s": -6.241121314079612,
+          "change_vs_full_ci95": [
+            -13.266570897375676,
+            0.5939903310258617
+          ],
+          "saving_vs_full_percent": 1.3242201866866976,
+          "saving_vs_v4_percent": 3.65386260528906,
+          "faster_than_full": 21,
+          "slower_than_full": 14,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "all_directional-0024",
+            "slower_percent": 12.44927026009741
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0006",
+            "saving_percent": 17.398888283989
+          },
+          "p95_slowdown_vs_v4_percent": 2.362963935389759,
+          "worst_slowdown_vs_v4_percent": 13.422193219851742,
+          "component_benefit_ci99_bonferroni5": [
+            -15.48145227404929,
+            2.8079812730065115
+          ],
+          "mean_virtual_time_s": 5872.172871599999,
+          "mean_cpu_seconds": 0.8327883428571405,
+          "mean_wall_seconds": 0.8397120725953885,
+          "mean_distance_m": 21243.57863008219,
+          "mean_measurement_count": 257.2857142857143,
+          "mean_failed_clear_count": 10.514285714285714,
+          "mean_switch_count": 240.4857142857143,
+          "mean_transit_stops": 11.685714285714285,
+          "mean_transit_detections": 19.228571428571428,
+          "mean_route_calls": 43.94285714285714,
+          "mean_route_accepts": 4.057142857142857,
+          "mean_planner_calls": 12.771428571428572,
+          "mean_planner_accepts": 1.7428571428571429,
+          "mean_planner_seconds": 0.6068341786316264,
+          "mean_rb_share_checks": 19.914285714285715,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 31.514285714285716,
+          "mean_visited_station_count": 20.428571428571427,
+          "mean_last_discovery_s": 4431.696674057142,
+          "mean_tail_after_last_clear_s": 350.6763661714285,
+          "mean_time_per_source_breakdown": {
+            "movement": 334.8881563702487,
+            "switching": 19.344075805147234,
+            "detection": 103.38870593692023,
+            "optical": 5.4433455829884405,
+            "removal": 2.0
+          }
+        },
+        "no_rollout": {
+          "cases": 35,
+          "mean_seconds_per_source": 476.1074625369759,
+          "change_vs_full_s": 4.802057527591583,
+          "change_vs_full_ci95": [
+            2.2866327453456887,
+            7.755618851230479
+          ],
+          "saving_vs_full_percent": -1.018884459323366,
+          "saving_vs_v4_percent": 1.3660764577484108,
+          "faster_than_full": 6,
+          "slower_than_full": 24,
+          "equal_to_full": 5,
+          "worst_vs_full": {
+            "case_key": "all_directional-0010",
+            "slower_percent": 8.015480608517356
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0024",
+            "saving_percent": 1.6103219555171355
+          },
+          "p95_slowdown_vs_v4_percent": 1.1912937679219455,
+          "worst_slowdown_vs_v4_percent": 25.948340276737692,
+          "component_benefit_ci99_bonferroni5": [
+            1.6249319356853846,
+            8.872448857696783
+          ],
+          "mean_virtual_time_s": 6017.836524085714,
+          "mean_cpu_seconds": 0.21313459999999915,
+          "mean_wall_seconds": 0.21617024165711232,
+          "mean_distance_m": 21761.896897305825,
+          "mean_measurement_count": 263.9428571428571,
+          "mean_failed_clear_count": 11.114285714285714,
+          "mean_switch_count": 247.4,
+          "mean_transit_stops": 8.914285714285715,
+          "mean_transit_detections": 12.657142857142857,
+          "mean_route_calls": 36.542857142857144,
+          "mean_route_accepts": 1.5142857142857142,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 25.571428571428573,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 29.714285714285715,
+          "mean_visited_station_count": 20.8,
+          "mean_last_discovery_s": 4945.2739740285715,
+          "mean_tail_after_last_clear_s": 313.34206880000005,
+          "mean_time_per_source_breakdown": {
+            "movement": 342.9820964744669,
+            "switching": 19.8314627039627,
+            "detection": 105.71256719471005,
+            "optical": 5.581336163836164,
+            "removal": 2.0
+          }
+        },
+        "no_rb": {
+          "cases": 35,
+          "mean_seconds_per_source": 471.88882289370343,
+          "change_vs_full_s": 0.5834178843192522,
+          "change_vs_full_ci95": [
+            -0.0033674648959586295,
+            1.165248834761613
+          ],
+          "saving_vs_full_percent": -0.12378764981648693,
+          "saving_vs_v4_percent": 2.24004087286096,
+          "faster_than_full": 5,
+          "slower_than_full": 19,
+          "equal_to_full": 11,
+          "worst_vs_full": {
+            "case_key": "all_directional-0009",
+            "slower_percent": 1.0584562727125268
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0006",
+            "saving_percent": 1.6081228536775072
+          },
+          "p95_slowdown_vs_v4_percent": 1.8812094460506459,
+          "worst_slowdown_vs_v4_percent": 26.28283510350822,
+          "component_benefit_ci99_bonferroni5": [
+            -0.2095816116502729,
+            1.349516761115624
+          ],
+          "mean_virtual_time_s": 5963.992215342858,
+          "mean_cpu_seconds": 0.8772691999999876,
+          "mean_wall_seconds": 0.8832853810304576,
+          "mean_distance_m": 21506.81820904107,
+          "mean_measurement_count": 263.54285714285714,
+          "mean_failed_clear_count": 11.0,
+          "mean_switch_count": 246.9142857142857,
+          "mean_transit_stops": 8.485714285714286,
+          "mean_transit_detections": 12.0,
+          "mean_route_calls": 36.02857142857143,
+          "mean_route_accepts": 1.4285714285714286,
+          "mean_planner_calls": 14.485714285714286,
+          "mean_planner_accepts": 2.7142857142857144,
+          "mean_planner_seconds": 0.7445399702052652,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 31.057142857142857,
+          "mean_visited_station_count": 20.714285714285715,
+          "mean_last_discovery_s": 4849.914488057144,
+          "mean_tail_after_last_clear_s": 374.83569259999996,
+          "mean_time_per_source_breakdown": {
+            "movement": 338.9130355857733,
+            "switching": 19.799635840350128,
+            "detection": 105.60375457875459,
+            "optical": 5.572396888825461,
+            "removal": 2.0
+          }
+        },
+        "no_rollout_rb": {
+          "cases": 35,
+          "mean_seconds_per_source": 476.56386005851743,
+          "change_vs_full_s": 5.258455049133253,
+          "change_vs_full_ci95": [
+            2.7422920990224138,
+            8.181476439042568
+          ],
+          "saving_vs_full_percent": -1.11572135461262,
+          "saving_vs_v4_percent": 1.2715257905424604,
+          "faster_than_full": 5,
+          "slower_than_full": 27,
+          "equal_to_full": 3,
+          "worst_vs_full": {
+            "case_key": "all_directional-0010",
+            "slower_percent": 8.015480608517356
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0024",
+            "saving_percent": 1.6103219555171355
+          },
+          "p95_slowdown_vs_v4_percent": 1.2106654668401948,
+          "worst_slowdown_vs_v4_percent": 27.32326962654468,
+          "mean_virtual_time_s": 6023.8845438571425,
+          "mean_cpu_seconds": 0.1308236857142885,
+          "mean_wall_seconds": 0.13126205836971558,
+          "mean_distance_m": 21767.70842537159,
+          "mean_measurement_count": 264.7142857142857,
+          "mean_failed_clear_count": 11.17142857142857,
+          "mean_switch_count": 248.25714285714287,
+          "mean_transit_stops": 8.942857142857143,
+          "mean_transit_detections": 12.628571428571428,
+          "mean_route_calls": 36.65714285714286,
+          "mean_route_accepts": 1.4857142857142858,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 30.37142857142857,
+          "mean_visited_station_count": 20.8,
+          "mean_last_discovery_s": 4951.399304942856,
+          "mean_tail_after_last_clear_s": 313.34209722857145,
+          "mean_time_per_source_breakdown": {
+            "movement": 343.05052065982096,
+            "switching": 19.899146805575374,
+            "detection": 106.02636292279149,
+            "optical": 5.587829670329669,
+            "removal": 2.0
+          }
+        },
+        "transit_geometry": {
+          "cases": 35,
+          "mean_seconds_per_source": 474.6646079888091,
+          "change_vs_full_s": 3.359202979424866,
+          "change_vs_full_ci95": [
+            1.071308005603198,
+            5.853272624950038
+          ],
+          "saving_vs_full_percent": -0.7127444208618661,
+          "saving_vs_v4_percent": 1.6649888176348493,
+          "faster_than_full": 14,
+          "slower_than_full": 21,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "all_directional-0033",
+            "slower_percent": 6.406329101980224
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0004",
+            "saving_percent": 1.9572441001245
+          },
+          "p95_slowdown_vs_v4_percent": 2.552493067677708,
+          "worst_slowdown_vs_v4_percent": 29.626933028777213,
+          "mean_virtual_time_s": 6003.044553942857,
+          "mean_cpu_seconds": 0.79682217142857,
+          "mean_wall_seconds": 0.801194889287165,
+          "mean_distance_m": 21681.93703767087,
+          "mean_measurement_count": 264.51428571428573,
+          "mean_failed_clear_count": 10.542857142857143,
+          "mean_switch_count": 247.45714285714286,
+          "mean_transit_stops": 12.428571428571429,
+          "mean_transit_detections": 18.114285714285714,
+          "mean_route_calls": 39.142857142857146,
+          "mean_route_accepts": 1.457142857142857,
+          "mean_planner_calls": 13.571428571428571,
+          "mean_planner_accepts": 2.3142857142857145,
+          "mean_planner_seconds": 0.595480540054684,
+          "mean_rb_share_checks": 24.228571428571428,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 32.628571428571426,
+          "mean_visited_station_count": 20.771428571428572,
+          "mean_last_discovery_s": 4880.959368514285,
+          "mean_tail_after_last_clear_s": 381.51854734285723,
+          "mean_time_per_source_breakdown": {
+            "movement": 341.50120472540584,
+            "switching": 19.8261223300509,
+            "detection": 105.88938739831598,
+            "optical": 5.447893535036393,
+            "removal": 2.0
+          }
+        },
+        "route_only_unguarded": {
+          "cases": 35,
+          "mean_seconds_per_source": 469.37415609973147,
+          "change_vs_full_s": -1.9312489096526082,
+          "change_vs_full_ci95": [
+            -8.768406317102455,
+            4.63787274465345
+          ],
+          "saving_vs_full_percent": 0.4097659159275624,
+          "saving_vs_v4_percent": 2.760997740390847,
+          "faster_than_full": 19,
+          "slower_than_full": 16,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "all_directional-0024",
+            "slower_percent": 10.737604678676504
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0006",
+            "saving_percent": 16.529970788336534
+          },
+          "p95_slowdown_vs_v4_percent": 2.7608332672217104,
+          "worst_slowdown_vs_v4_percent": 31.48638307521596,
+          "mean_virtual_time_s": 5932.638291514286,
+          "mean_cpu_seconds": 1.0981771142857173,
+          "mean_wall_seconds": 1.1023248881143186,
+          "mean_distance_m": 21722.334310651968,
+          "mean_measurement_count": 250.4,
+          "mean_failed_clear_count": 11.6,
+          "mean_switch_count": 236.37142857142857,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 36.42857142857143,
+          "mean_route_accepts": 3.4571428571428573,
+          "mean_planner_calls": 16.057142857142857,
+          "mean_planner_accepts": 4.114285714285714,
+          "mean_planner_seconds": 0.9023918818549386,
+          "mean_rb_share_checks": 29.17142857142857,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 21.97142857142857,
+          "mean_visited_station_count": 20.6,
+          "mean_last_discovery_s": 4648.405058685715,
+          "mean_tail_after_last_clear_s": 331.8126370571429,
+          "mean_time_per_source_breakdown": {
+            "movement": 341.876542641761,
+            "switching": 19.044422363350932,
+            "detection": 100.77744755244755,
+            "optical": 5.675743542172114,
+            "removal": 2.0
+          }
+        },
+        "transit_only_unguarded": {
+          "cases": 35,
+          "mean_seconds_per_source": 465.7061840922705,
+          "change_vs_full_s": -5.599220917113475,
+          "change_vs_full_ci95": [
+            -11.407502897068504,
+            0.18095731202948134
+          ],
+          "saving_vs_full_percent": 1.1880239134966608,
+          "saving_vs_v4_percent": 3.520881798101716,
+          "faster_than_full": 23,
+          "slower_than_full": 12,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "all_directional-0016",
+            "slower_percent": 8.345484976210837
+          },
+          "best_vs_full": {
+            "case_key": "all_directional-0013",
+            "saving_percent": 11.09156067428605
+          },
+          "p95_slowdown_vs_v4_percent": 1.5780746556386371,
+          "worst_slowdown_vs_v4_percent": 12.063731254962985,
+          "mean_virtual_time_s": 5880.491584142858,
+          "mean_cpu_seconds": 0.7417133714285747,
+          "mean_wall_seconds": 0.7438972773404592,
+          "mean_distance_m": 21104.457905859977,
+          "mean_measurement_count": 263.62857142857143,
+          "mean_failed_clear_count": 9.714285714285714,
+          "mean_switch_count": 247.31428571428572,
+          "mean_transit_stops": 12.2,
+          "mean_transit_detections": 19.257142857142856,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 12.485714285714286,
+          "mean_planner_accepts": 2.0285714285714285,
+          "mean_planner_seconds": 0.6077376608853229,
+          "mean_rb_share_checks": 19.142857142857142,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 30.857142857142858,
+          "mean_visited_station_count": 20.514285714285716,
+          "mean_last_discovery_s": 4733.853846971428,
+          "mean_tail_after_last_clear_s": 396.19883882857147,
+          "mean_time_per_source_breakdown": {
+            "movement": 333.0488762810343,
+            "switching": 19.82766376480662,
+            "detection": 105.57610187431615,
+            "optical": 5.2535421721136,
+            "removal": 2.0
+          }
+        }
+      },
+      "exploratory_contrasts": {
+        "route_transit_guard4": {
+          "weights": {
+            "full": 1,
+            "no_transit": -1,
+            "no_route": -1,
+            "v5": 1
+          },
+          "mean": -2.039474093143042,
+          "ci95": [
+            -5.896270713209138,
+            1.4827829320082886
+          ]
+        },
+        "route_transit_guard0": {
+          "weights": {
+            "no_guard": 1,
+            "route_only_unguarded": -1,
+            "transit_only_unguarded": -1,
+            "v5": 1
+          },
+          "mean": 3.2246749836593267,
+          "ci95": [
+            -5.063480120773637,
+            10.702427102791185
+          ]
+        },
+        "rollout_rb_full_learned": {
+          "weights": {
+            "full": 1,
+            "no_rb": -1,
+            "no_rollout": -1,
+            "no_rollout_rb": 1
+          },
+          "mean": -0.12702036277761408,
+          "ci95": [
+            -0.7328011350440733,
+            0.44662792957249886
+          ]
+        },
+        "route_average_marginal_benefit": {
+          "weights": {
+            "v5": 0.5,
+            "no_transit": -0.5,
+            "no_route": 0.5,
+            "full": -0.5
+          },
+          "mean": -0.4857307812206386,
+          "ci95": [
+            -7.035246632385843,
+            4.322048481815213
+          ]
+        },
+        "transit_average_marginal_benefit": {
+          "weights": {
+            "v5": 0.5,
+            "no_route": -0.5,
+            "no_transit": 0.5,
+            "full": -0.5
+          },
+          "mean": 2.421057252193094,
+          "ci95": [
+            0.04905416792650783,
+            4.913477698906765
+          ]
+        },
+        "guard_with_route_only": {
+          "weights": {
+            "route_only_unguarded": 1,
+            "no_transit": -1
+          },
+          "mean": -5.372043208417438,
+          "ci95": [
+            -11.823531774542216,
+            0.9072307650720294
+          ]
+        },
+        "guard_with_transit_only": {
+          "weights": {
+            "transit_only_unguarded": 1,
+            "no_route": -1
+          },
+          "mean": -6.13322718246468,
+          "ci95": [
+            -11.33574835852166,
+            -0.7335101123617521
+          ]
+        },
+        "learned_transit_vs_geometry": {
+          "weights": {
+            "transit_geometry": 1,
+            "full": -1
+          },
+          "mean": 3.359202979424822,
+          "ci95": [
+            1.071308005603198,
+            5.853272624950038
+          ]
+        },
+        "rb_without_rollout": {
+          "weights": {
+            "no_rollout_rb": 1,
+            "no_rollout": -1
+          },
+          "mean": 0.45639752154153257,
+          "ci95": [
+            0.18055244952826408,
+            0.7762072288062698
+          ]
+        },
+        "rollout_without_rb": {
+          "weights": {
+            "no_rollout_rb": 1,
+            "no_rb": -1
+          },
+          "mean": 4.675037164814,
+          "ci95": [
+            2.068771354695427,
+            7.69363961378268
+          ]
+        }
+      },
+      "by_source_count": {
+        "10": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 628.8059239199999,
+              "mean_last_discovery_s": 5391.427565399999,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 614.21445496,
+              "mean_last_discovery_s": 5284.155311199999,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 615.2263812799999,
+              "mean_last_discovery_s": 5373.5374476,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 617.52921966,
+              "mean_last_discovery_s": 5187.433470399999,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 614.59840756,
+              "mean_last_discovery_s": 5357.842563,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 613.05771158,
+              "mean_last_discovery_s": 5300.540748,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 621.8235948600001,
+              "mean_last_discovery_s": 5439.5095834,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 615.5463812800001,
+              "mean_last_discovery_s": 5376.7374475999995,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 622.1834604600001,
+              "mean_last_discovery_s": 5443.1082394,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 619.5831611599999,
+              "mean_last_discovery_s": 5395.0111050000005,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 610.3585576600001,
+              "mean_last_discovery_s": 5251.0495604,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 612.16076004,
+              "mean_last_discovery_s": 5184.522306,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "11": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 556.5855089818182,
+              "mean_last_discovery_s": 4114.891069400001,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 552.7819583090909,
+              "mean_last_discovery_s": 3931.9914818000007,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 546.331123490909,
+              "mean_last_discovery_s": 3929.6636514000006,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 547.1909031454545,
+              "mean_last_discovery_s": 4326.263230800001,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 551.5349232,
+              "mean_last_discovery_s": 3945.5513306000003,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 537.9136060727272,
+              "mean_last_discovery_s": 3935.1226130000005,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 551.2370250909091,
+              "mean_last_discovery_s": 4102.355545,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 547.7693584363635,
+              "mean_last_discovery_s": 3942.584887,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 552.0789287090909,
+              "mean_last_discovery_s": 4109.6164850000005,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 545.8740005454546,
+              "mean_last_discovery_s": 3903.6022094,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 547.4002472727273,
+              "mean_last_discovery_s": 4281.076863,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 532.597723309091,
+              "mean_last_discovery_s": 3993.624294,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "12": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 521.3023220499999,
+              "mean_last_discovery_s": 5169.8305732,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 505.1840219833333,
+              "mean_last_discovery_s": 4828.0169594,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 505.46156401666667,
+              "mean_last_discovery_s": 4976.2657196,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 511.7578555,
+              "mean_last_discovery_s": 5378.1915194,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 509.4157051333333,
+              "mean_last_discovery_s": 4973.562981,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 495.28524135,
+              "mean_last_discovery_s": 4481.418968200001,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 512.90019445,
+              "mean_last_discovery_s": 4968.157157600001,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 506.68502094999997,
+              "mean_last_discovery_s": 4992.283813399999,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 512.9211221833333,
+              "mean_last_discovery_s": 4968.4142972,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 508.71930698333335,
+              "mean_last_discovery_s": 5042.601060399999,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 496.4590715833333,
+              "mean_last_discovery_s": 4649.4010478,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 507.1151525833334,
+              "mean_last_discovery_s": 5244.2600378,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "13": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 477.66514683076923,
+              "mean_last_discovery_s": 5404.038127599999,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 466.7097111076922,
+              "mean_last_discovery_s": 5198.384674,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 465.4669116769231,
+              "mean_last_discovery_s": 5111.312919200001,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 463.86756050769225,
+              "mean_last_discovery_s": 5091.2916594,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 467.616760276923,
+              "mean_last_discovery_s": 5189.6604694,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 469.781949,
+              "mean_last_discovery_s": 4623.9584284,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 470.84331196923074,
+              "mean_last_discovery_s": 5235.8186676,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 465.9333947538461,
+              "mean_last_discovery_s": 5117.377199199999,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 471.10485043076915,
+              "mean_last_discovery_s": 5239.2186676,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 465.94002687692307,
+              "mean_last_discovery_s": 5116.6344834,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 467.6452255538462,
+              "mean_last_discovery_s": 4601.8695511999995,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 460.4022380769231,
+              "mean_last_discovery_s": 5030.7754878,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "14": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 443.3487086142857,
+              "mean_last_discovery_s": 4764.203054,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 438.6220638857143,
+              "mean_last_discovery_s": 4915.574971800001,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 425.88223204285714,
+              "mean_last_discovery_s": 4489.0858382,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 438.5807189,
+              "mean_last_discovery_s": 4898.351795799999,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 430.2703762142857,
+              "mean_last_discovery_s": 4507.0172554,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 412.11252532857145,
+              "mean_last_discovery_s": 3442.0127354000006,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 424.92983294285716,
+              "mean_last_discovery_s": 4461.0782838000005,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 427.31898058571426,
+              "mean_last_discovery_s": 4509.3357852,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 425.61445007142856,
+              "mean_last_discovery_s": 4474.1980946,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 429.7629449142857,
+              "mean_last_discovery_s": 4523.7079326,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 427.4125036857143,
+              "mean_last_discovery_s": 4307.162808399999,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 428.0024213857143,
+              "mean_last_discovery_s": 4001.7232782,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "15": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 410.5169885733333,
+              "mean_last_discovery_s": 5118.8239730000005,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 396.89126826666666,
+              "mean_last_discovery_s": 4858.2352532,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 391.95268093333334,
+              "mean_last_discovery_s": 4747.883897,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 390.95474096000004,
+              "mean_last_discovery_s": 4861.068161,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 394.23363036,
+              "mean_last_discovery_s": 4778.2755362,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 399.3635097733333,
+              "mean_last_discovery_s": 4555.6675844,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 398.06306133333334,
+              "mean_last_discovery_s": 5006.4808126,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 392.29934760000003,
+              "mean_last_discovery_s": 4753.0838969999995,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 398.23717308,
+              "mean_last_discovery_s": 5008.0924888,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 402.0320490666667,
+              "mean_last_discovery_s": 4837.9625562,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 398.68788988000006,
+              "mean_last_discovery_s": 4562.891122200001,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 394.02618521333335,
+              "mean_last_discovery_s": 4872.092181800001,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "16": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 340.68614296249996,
+              "mean_last_discovery_s": 5072.8982526,
+              "mean_visited_stations": 17.8
+            },
+            "v5": {
+              "mean_seconds_per_source": 338.28164184999997,
+              "mean_last_discovery_s": 4939.520744200001,
+              "mean_visited_stations": 17.2
+            },
+            "full": {
+              "mean_seconds_per_source": 348.81694162499997,
+              "mean_last_discovery_s": 5276.3610266,
+              "mean_visited_stations": 19.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 332.99488025,
+              "mean_last_discovery_s": 4905.7689246,
+              "mean_visited_stations": 17.4
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 355.55359241250005,
+              "mean_last_discovery_s": 5316.2484908,
+              "mean_visited_stations": 19.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 327.9354427625,
+              "mean_last_discovery_s": 4683.155640999999,
+              "mean_visited_stations": 17.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 352.9552171125,
+              "mean_last_discovery_s": 5403.5177682,
+              "mean_visited_stations": 19.6
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 347.66927665000003,
+              "mean_last_discovery_s": 5257.998387,
+              "mean_visited_stations": 19.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 353.80703547499996,
+              "mean_last_discovery_s": 5417.1468620000005,
+              "mean_visited_stations": 19.6
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 350.74076637499996,
+              "mean_last_discovery_s": 5347.1962326,
+              "mean_visited_stations": 19.4
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 337.65559706249996,
+              "mean_last_discovery_s": 4885.3844578,
+              "mean_visited_stations": 18.2
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 325.63880803750004,
+              "mean_last_discovery_s": 4809.9793432,
+              "mean_visited_stations": 17.6
+            }
+          }
+        }
+      }
+    },
+    "boundary_outward_r1000": {
+      "case_count": 35,
+      "methods": {
+        "v4": {
+          "cases": 35,
+          "mean_seconds_per_source": 574.1930113609797,
+          "change_vs_full_s": 52.065488645822256,
+          "change_vs_full_ci95": [
+            45.20559390998546,
+            59.76048319700718
+          ],
+          "saving_vs_full_percent": -9.971795467718758,
+          "saving_vs_v4_percent": 0.0,
+          "faster_than_full": 0,
+          "slower_than_full": 35,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0021",
+            "slower_percent": 21.38383402194726
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0017",
+            "saving_percent": -3.867375049252497
+          },
+          "p95_slowdown_vs_v4_percent": 0.0,
+          "worst_slowdown_vs_v4_percent": 0.0,
+          "mean_virtual_time_s": 7302.5211905999995,
+          "mean_cpu_seconds": 0.032396599999999255,
+          "mean_wall_seconds": 0.032508383171599625,
+          "mean_distance_m": 24095.89167980939,
+          "mean_measurement_count": 384.0857142857143,
+          "mean_failed_clear_count": 46.2,
+          "mean_switch_count": 359.3142857142857,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 13.342857142857143,
+          "mean_visited_station_count": 20.942857142857143,
+          "mean_last_discovery_s": 6909.7589204285705,
+          "mean_tail_after_last_clear_s": 42.262817628571405,
+          "mean_time_per_source_breakdown": {
+            "movement": 378.29598148609267,
+            "switching": 28.40318859711717,
+            "detection": 151.6900022596451,
+            "optical": 13.803839018124734,
+            "removal": 2.0
+          }
+        },
+        "v5": {
+          "cases": 35,
+          "mean_seconds_per_source": 572.8916122418341,
+          "change_vs_full_s": 50.76408952667665,
+          "change_vs_full_ci95": [
+            43.839087546275486,
+            58.5388986738272
+          ],
+          "saving_vs_full_percent": -9.722546182337656,
+          "saving_vs_v4_percent": 0.22664837317698527,
+          "faster_than_full": 0,
+          "slower_than_full": 35,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0021",
+            "slower_percent": 21.700423518537914
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0017",
+            "saving_percent": -3.5085474398683036
+          },
+          "p95_slowdown_vs_v4_percent": 0.8066093301028671,
+          "worst_slowdown_vs_v4_percent": 1.4696860006504497,
+          "mean_virtual_time_s": 7280.726287799999,
+          "mean_cpu_seconds": 2.567413085714296,
+          "mean_wall_seconds": 2.6305882214277516,
+          "mean_distance_m": 24075.774305737497,
+          "mean_measurement_count": 382.77142857142854,
+          "mean_failed_clear_count": 42.74285714285714,
+          "mean_switch_count": 358.48571428571427,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 21.942857142857143,
+          "mean_planner_accepts": 3.3714285714285714,
+          "mean_planner_seconds": 2.4719831870103786,
+          "mean_rb_share_checks": 17.0,
+          "mean_rb_share_failures": 0.14285714285714285,
+          "mean_shared_detections": 12.714285714285714,
+          "mean_visited_station_count": 20.942857142857143,
+          "mean_last_discovery_s": 6889.503790599999,
+          "mean_tail_after_last_clear_s": 42.18363557142862,
+          "mean_time_per_source_breakdown": {
+            "movement": 378.2430454514817,
+            "switching": 28.34744160601303,
+            "detection": 151.2751825555397,
+            "optical": 13.025942628799772,
+            "removal": 2.0
+          }
+        },
+        "full": {
+          "cases": 35,
+          "mean_seconds_per_source": 522.1275227151574,
+          "change_vs_full_s": 0.0,
+          "change_vs_full_ci95": [
+            0.0,
+            0.0
+          ],
+          "saving_vs_full_percent": 0.0,
+          "saving_vs_v4_percent": 9.067593581888811,
+          "faster_than_full": 0,
+          "slower_than_full": 0,
+          "equal_to_full": 35,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0000",
+            "slower_percent": 0.0
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0000",
+            "saving_percent": -0.0
+          },
+          "p95_slowdown_vs_v4_percent": -4.793058456570076,
+          "worst_slowdown_vs_v4_percent": -3.7233780553505347,
+          "mean_virtual_time_s": 6633.493647885715,
+          "mean_cpu_seconds": 1.3754338000000026,
+          "mean_wall_seconds": 1.3819846071128268,
+          "mean_distance_m": 21434.611091528375,
+          "mean_measurement_count": 377.62857142857143,
+          "mean_failed_clear_count": 13.428571428571429,
+          "mean_switch_count": 353.14285714285717,
+          "mean_transit_stops": 9.685714285714285,
+          "mean_transit_detections": 14.6,
+          "mean_route_calls": 28.742857142857144,
+          "mean_route_accepts": 0.11428571428571428,
+          "mean_planner_calls": 14.914285714285715,
+          "mean_planner_accepts": 2.5428571428571427,
+          "mean_planner_seconds": 1.2385168938024436,
+          "mean_rb_share_checks": 7.742857142857143,
+          "mean_rb_share_failures": 0.11428571428571428,
+          "mean_shared_detections": 18.085714285714285,
+          "mean_visited_station_count": 20.914285714285715,
+          "mean_last_discovery_s": 6370.6198452571425,
+          "mean_tail_after_last_clear_s": 49.87865414285713,
+          "mean_time_per_source_breakdown": {
+            "movement": 336.70770312998076,
+            "switching": 27.953069073783357,
+            "detection": 149.35049533799534,
+            "optical": 6.116255173398031,
+            "removal": 2.0
+          }
+        },
+        "no_route": {
+          "cases": 35,
+          "mean_seconds_per_source": 522.1226868707253,
+          "change_vs_full_s": -0.004835844432235652,
+          "change_vs_full_ci95": [
+            -0.027849783241777004,
+            0.015357444798497965
+          ],
+          "saving_vs_full_percent": 0.0009261807167315617,
+          "saving_vs_v4_percent": 9.068435780302309,
+          "faster_than_full": 2,
+          "slower_than_full": 2,
+          "equal_to_full": 31,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0012",
+            "slower_percent": 0.04600615013690135
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0027",
+            "saving_percent": 0.07193333144673852
+          },
+          "p95_slowdown_vs_v4_percent": -4.793058456570076,
+          "worst_slowdown_vs_v4_percent": -3.7233780553505347,
+          "component_benefit_ci99_bonferroni5": [
+            -0.03645414217044163,
+            0.021184177353461564
+          ],
+          "mean_virtual_time_s": 6633.406302714287,
+          "mean_cpu_seconds": 1.3387170857142758,
+          "mean_wall_seconds": 1.390363795257872,
+          "mean_distance_m": 21434.460079708366,
+          "mean_measurement_count": 377.57142857142856,
+          "mean_failed_clear_count": 13.514285714285714,
+          "mean_switch_count": 353.1142857142857,
+          "mean_transit_stops": 9.685714285714285,
+          "mean_transit_detections": 14.6,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 14.971428571428572,
+          "mean_planner_accepts": 2.5428571428571427,
+          "mean_planner_seconds": 1.2927582904588364,
+          "mean_rb_share_checks": 7.714285714285714,
+          "mean_rb_share_failures": 0.11428571428571428,
+          "mean_shared_detections": 18.02857142857143,
+          "mean_visited_station_count": 20.914285714285715,
+          "mean_last_discovery_s": 6370.532500085714,
+          "mean_tail_after_last_clear_s": 49.87865414285713,
+          "mean_time_per_source_breakdown": {
+            "movement": 336.7064387141199,
+            "switching": 27.951164311878596,
+            "detection": 149.33204295704294,
+            "optical": 6.133040887683745,
+            "removal": 2.0
+          }
+        },
+        "no_transit": {
+          "cases": 35,
+          "mean_seconds_per_source": 572.8614529359669,
+          "change_vs_full_s": 50.733930220809306,
+          "change_vs_full_ci95": [
+            43.78892133462994,
+            58.51946034722644
+          ],
+          "saving_vs_full_percent": -9.71676994864854,
+          "saving_vs_v4_percent": 0.23190084147082235,
+          "faster_than_full": 0,
+          "slower_than_full": 35,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0021",
+            "slower_percent": 21.700423518537914
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0017",
+            "saving_percent": -3.5085474398683036
+          },
+          "p95_slowdown_vs_v4_percent": 0.8066093301028671,
+          "worst_slowdown_vs_v4_percent": 1.4696860006504497,
+          "component_benefit_ci99_bonferroni5": [
+            41.975619397294054,
+            61.27504680003883
+          ],
+          "mean_virtual_time_s": 7280.242599657143,
+          "mean_cpu_seconds": 2.6437534285714297,
+          "mean_wall_seconds": 2.706392528543282,
+          "mean_distance_m": 24072.78443631942,
+          "mean_measurement_count": 382.77142857142854,
+          "mean_failed_clear_count": 42.77142857142857,
+          "mean_switch_count": 358.51428571428573,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 26.571428571428573,
+          "mean_route_accepts": 0.08571428571428572,
+          "mean_planner_calls": 21.942857142857143,
+          "mean_planner_accepts": 3.3714285714285714,
+          "mean_planner_seconds": 2.501813725149259,
+          "mean_rb_share_checks": 17.0,
+          "mean_rb_share_failures": 0.14285714285714285,
+          "mean_shared_detections": 12.714285714285714,
+          "mean_visited_station_count": 20.942857142857143,
+          "mean_last_discovery_s": 6889.020102457143,
+          "mean_tail_after_last_clear_s": 42.18363557142862,
+          "mean_time_per_source_breakdown": {
+            "movement": 378.20574328847135,
+            "switching": 28.349227320298745,
+            "detection": 151.2751825555397,
+            "optical": 13.031299771656913,
+            "removal": 2.0
+          }
+        },
+        "no_guard": {
+          "cases": 35,
+          "mean_seconds_per_source": 522.1275227151574,
+          "change_vs_full_s": 0.0,
+          "change_vs_full_ci95": [
+            0.0,
+            0.0
+          ],
+          "saving_vs_full_percent": 0.0,
+          "saving_vs_v4_percent": 9.067593581888811,
+          "faster_than_full": 0,
+          "slower_than_full": 0,
+          "equal_to_full": 35,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0000",
+            "slower_percent": 0.0
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0000",
+            "saving_percent": -0.0
+          },
+          "p95_slowdown_vs_v4_percent": -4.793058456570076,
+          "worst_slowdown_vs_v4_percent": -3.7233780553505347,
+          "component_benefit_ci99_bonferroni5": [
+            0.0,
+            0.0
+          ],
+          "mean_virtual_time_s": 6633.493647885715,
+          "mean_cpu_seconds": 1.4078454571428665,
+          "mean_wall_seconds": 1.463836664200062,
+          "mean_distance_m": 21434.611091528375,
+          "mean_measurement_count": 377.62857142857143,
+          "mean_failed_clear_count": 13.428571428571429,
+          "mean_switch_count": 353.14285714285717,
+          "mean_transit_stops": 9.685714285714285,
+          "mean_transit_detections": 14.6,
+          "mean_route_calls": 28.742857142857144,
+          "mean_route_accepts": 0.11428571428571428,
+          "mean_planner_calls": 14.914285714285715,
+          "mean_planner_accepts": 2.5428571428571427,
+          "mean_planner_seconds": 1.307041702454444,
+          "mean_rb_share_checks": 7.742857142857143,
+          "mean_rb_share_failures": 0.11428571428571428,
+          "mean_shared_detections": 18.085714285714285,
+          "mean_visited_station_count": 20.914285714285715,
+          "mean_last_discovery_s": 6370.6198452571425,
+          "mean_tail_after_last_clear_s": 49.87865414285713,
+          "mean_time_per_source_breakdown": {
+            "movement": 336.70770312998076,
+            "switching": 27.953069073783357,
+            "detection": 149.35049533799534,
+            "optical": 6.116255173398031,
+            "removal": 2.0
+          }
+        },
+        "no_rollout": {
+          "cases": 35,
+          "mean_seconds_per_source": 522.6618629882408,
+          "change_vs_full_s": 0.5343402730833353,
+          "change_vs_full_ci95": [
+            -0.33395372083141683,
+            1.4018708161391844
+          ],
+          "saving_vs_full_percent": -0.1023390359322196,
+          "saving_vs_v4_percent": 8.97453423381055,
+          "faster_than_full": 13,
+          "slower_than_full": 18,
+          "equal_to_full": 4,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0027",
+            "slower_percent": 1.3245350628444674
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0002",
+            "saving_percent": 0.9238635127722716
+          },
+          "p95_slowdown_vs_v4_percent": -4.896863201564975,
+          "worst_slowdown_vs_v4_percent": -2.9188588416250716,
+          "component_benefit_ci99_bonferroni5": [
+            -0.6139754395113062,
+            1.6831223634823116
+          ],
+          "mean_virtual_time_s": 6641.29519882857,
+          "mean_cpu_seconds": 0.14435428571428344,
+          "mean_wall_seconds": 0.14800879519898444,
+          "mean_distance_m": 21395.618845353078,
+          "mean_measurement_count": 378.9142857142857,
+          "mean_failed_clear_count": 16.37142857142857,
+          "mean_switch_count": 353.48571428571427,
+          "mean_transit_stops": 9.685714285714285,
+          "mean_transit_detections": 14.6,
+          "mean_route_calls": 28.085714285714285,
+          "mean_route_accepts": 0.11428571428571428,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 7.828571428571428,
+          "mean_rb_share_failures": 0.11428571428571428,
+          "mean_shared_detections": 18.34285714285714,
+          "mean_visited_station_count": 20.914285714285715,
+          "mean_last_discovery_s": 6375.652285314286,
+          "mean_tail_after_last_clear_s": 49.839610371428584,
+          "mean_time_per_source_breakdown": {
+            "movement": 336.08823768497274,
+            "switching": 27.97684315684316,
+            "detection": 149.81740045668616,
+            "optical": 6.779381689738833,
+            "removal": 2.0
+          }
+        },
+        "no_rb": {
+          "cases": 35,
+          "mean_seconds_per_source": 522.2661946751876,
+          "change_vs_full_s": 0.1386719600300905,
+          "change_vs_full_ci95": [
+            -0.10373116627918363,
+            0.4152204698455309
+          ],
+          "saving_vs_full_percent": -0.02655902131132315,
+          "saving_vs_v4_percent": 9.043442824689308,
+          "faster_than_full": 4,
+          "slower_than_full": 9,
+          "equal_to_full": 22,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0010",
+            "slower_percent": 0.5858579140057163
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0033",
+            "saving_percent": 0.42257360506779973
+          },
+          "p95_slowdown_vs_v4_percent": -4.793058456570076,
+          "worst_slowdown_vs_v4_percent": -3.7233780553505347,
+          "component_benefit_ci99_bonferroni5": [
+            -0.17301799549492328,
+            0.5178881206576414
+          ],
+          "mean_virtual_time_s": 6635.227392971428,
+          "mean_cpu_seconds": 1.3531619428571406,
+          "mean_wall_seconds": 1.3642746141986988,
+          "mean_distance_m": 21432.565531418386,
+          "mean_measurement_count": 378.0,
+          "mean_failed_clear_count": 13.428571428571429,
+          "mean_switch_count": 353.42857142857144,
+          "mean_transit_stops": 9.685714285714285,
+          "mean_transit_detections": 14.6,
+          "mean_route_calls": 28.771428571428572,
+          "mean_route_accepts": 0.11428571428571428,
+          "mean_planner_calls": 14.942857142857143,
+          "mean_planner_accepts": 2.5714285714285716,
+          "mean_planner_seconds": 1.2666211917780206,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 18.457142857142856,
+          "mean_visited_station_count": 20.914285714285715,
+          "mean_last_discovery_s": 6372.153590342858,
+          "mean_tail_after_last_clear_s": 49.87865414285713,
+          "mean_time_per_source_breakdown": {
+            "movement": 336.68933950654673,
+            "switching": 27.97541601255887,
+            "detection": 149.48501914751915,
+            "optical": 6.116420008562866,
+            "removal": 2.0
+          }
+        },
+        "no_rollout_rb": {
+          "cases": 35,
+          "mean_seconds_per_source": 523.4737771010864,
+          "change_vs_full_s": 1.346254385928827,
+          "change_vs_full_ci95": [
+            0.36353684586900425,
+            2.3219804820894665
+          ],
+          "saving_vs_full_percent": -0.25784014964931323,
+          "saving_vs_v4_percent": 8.83313332910063,
+          "faster_than_full": 11,
+          "slower_than_full": 21,
+          "equal_to_full": 3,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0011",
+            "slower_percent": 1.4793506794664513
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0002",
+            "saving_percent": 0.9238635127722716
+          },
+          "p95_slowdown_vs_v4_percent": -4.215808874277281,
+          "worst_slowdown_vs_v4_percent": -2.9188588416250716,
+          "mean_virtual_time_s": 6652.318457542857,
+          "mean_cpu_seconds": 0.08912739999999368,
+          "mean_wall_seconds": 0.08970253691409848,
+          "mean_distance_m": 21435.449424672046,
+          "mean_measurement_count": 379.37142857142857,
+          "mean_failed_clear_count": 16.571428571428573,
+          "mean_switch_count": 353.65714285714284,
+          "mean_transit_stops": 9.685714285714285,
+          "mean_transit_detections": 14.6,
+          "mean_route_calls": 28.228571428571428,
+          "mean_route_accepts": 0.11428571428571428,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 18.571428571428573,
+          "mean_visited_station_count": 20.914285714285715,
+          "mean_last_discovery_s": 6386.6755440285715,
+          "mean_tail_after_last_clear_s": 49.839610371428584,
+          "mean_time_per_source_breakdown": {
+            "movement": 336.6753441055105,
+            "switching": 27.989785333713904,
+            "detection": 149.9820881499453,
+            "optical": 6.826559511916655,
+            "removal": 2.0
+          }
+        },
+        "transit_geometry": {
+          "cases": 35,
+          "mean_seconds_per_source": 563.1373519595493,
+          "change_vs_full_s": 41.0098292443918,
+          "change_vs_full_ci95": [
+            34.11820010021296,
+            48.746922608444265
+          ],
+          "saving_vs_full_percent": -7.854370332966432,
+          "saving_vs_v4_percent": 1.9254256291322158,
+          "faster_than_full": 0,
+          "slower_than_full": 35,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0021",
+            "slower_percent": 20.1214962030539
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0017",
+            "saving_percent": -1.7220051621815724
+          },
+          "p95_slowdown_vs_v4_percent": 0.7496827195571525,
+          "worst_slowdown_vs_v4_percent": 1.489730139806178,
+          "mean_virtual_time_s": 7155.195115714286,
+          "mean_cpu_seconds": 2.3283531142857035,
+          "mean_wall_seconds": 2.3512414833455946,
+          "mean_distance_m": 23628.404141634022,
+          "mean_measurement_count": 387.0857142857143,
+          "mean_failed_clear_count": 24.457142857142856,
+          "mean_switch_count": 355.7142857142857,
+          "mean_transit_stops": 10.514285714285714,
+          "mean_transit_detections": 16.228571428571428,
+          "mean_route_calls": 34.2,
+          "mean_route_accepts": 0.02857142857142857,
+          "mean_planner_calls": 19.34285714285714,
+          "mean_planner_accepts": 3.5428571428571427,
+          "mean_planner_seconds": 2.187494624949094,
+          "mean_rb_share_checks": 12.971428571428572,
+          "mean_rb_share_failures": 0.11428571428571428,
+          "mean_shared_detections": 20.857142857142858,
+          "mean_visited_station_count": 20.942857142857143,
+          "mean_last_discovery_s": 6808.553022114285,
+          "mean_tail_after_last_clear_s": 42.16832134285713,
+          "mean_time_per_source_breakdown": {
+            "movement": 371.33294767335923,
+            "switching": 28.132285333713906,
+            "detection": 152.9344494790923,
+            "optical": 8.737669473383761,
+            "removal": 2.0
+          }
+        },
+        "route_only_unguarded": {
+          "cases": 35,
+          "mean_seconds_per_source": 572.8614529359669,
+          "change_vs_full_s": 50.733930220809306,
+          "change_vs_full_ci95": [
+            43.78892133462994,
+            58.51946034722644
+          ],
+          "saving_vs_full_percent": -9.71676994864854,
+          "saving_vs_v4_percent": 0.23190084147082235,
+          "faster_than_full": 0,
+          "slower_than_full": 35,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0021",
+            "slower_percent": 21.700423518537914
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0017",
+            "saving_percent": -3.5085474398683036
+          },
+          "p95_slowdown_vs_v4_percent": 0.8066093301028671,
+          "worst_slowdown_vs_v4_percent": 1.4696860006504497,
+          "mean_virtual_time_s": 7280.242599657143,
+          "mean_cpu_seconds": 2.6351636285714286,
+          "mean_wall_seconds": 2.657931633314417,
+          "mean_distance_m": 24072.78443631942,
+          "mean_measurement_count": 382.77142857142854,
+          "mean_failed_clear_count": 42.77142857142857,
+          "mean_switch_count": 358.51428571428573,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 26.571428571428573,
+          "mean_route_accepts": 0.08571428571428572,
+          "mean_planner_calls": 21.942857142857143,
+          "mean_planner_accepts": 3.3714285714285714,
+          "mean_planner_seconds": 2.4499136701068243,
+          "mean_rb_share_checks": 17.0,
+          "mean_rb_share_failures": 0.14285714285714285,
+          "mean_shared_detections": 12.714285714285714,
+          "mean_visited_station_count": 20.942857142857143,
+          "mean_last_discovery_s": 6889.020102457143,
+          "mean_tail_after_last_clear_s": 42.18363557142862,
+          "mean_time_per_source_breakdown": {
+            "movement": 378.20574328847135,
+            "switching": 28.349227320298745,
+            "detection": 151.2751825555397,
+            "optical": 13.031299771656913,
+            "removal": 2.0
+          }
+        },
+        "transit_only_unguarded": {
+          "cases": 35,
+          "mean_seconds_per_source": 522.1226868707253,
+          "change_vs_full_s": -0.004835844432235652,
+          "change_vs_full_ci95": [
+            -0.027849783241777004,
+            0.015357444798497965
+          ],
+          "saving_vs_full_percent": 0.0009261807167315617,
+          "saving_vs_v4_percent": 9.068435780302309,
+          "faster_than_full": 2,
+          "slower_than_full": 2,
+          "equal_to_full": 31,
+          "worst_vs_full": {
+            "case_key": "boundary_outward_r1000-0012",
+            "slower_percent": 0.04600615013690135
+          },
+          "best_vs_full": {
+            "case_key": "boundary_outward_r1000-0027",
+            "saving_percent": 0.07193333144673852
+          },
+          "p95_slowdown_vs_v4_percent": -4.793058456570076,
+          "worst_slowdown_vs_v4_percent": -3.7233780553505347,
+          "mean_virtual_time_s": 6633.406302714287,
+          "mean_cpu_seconds": 1.354477714285716,
+          "mean_wall_seconds": 1.369305176257954,
+          "mean_distance_m": 21434.460079708366,
+          "mean_measurement_count": 377.57142857142856,
+          "mean_failed_clear_count": 13.514285714285714,
+          "mean_switch_count": 353.1142857142857,
+          "mean_transit_stops": 9.685714285714285,
+          "mean_transit_detections": 14.6,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 14.971428571428572,
+          "mean_planner_accepts": 2.5428571428571427,
+          "mean_planner_seconds": 1.2712258742282367,
+          "mean_rb_share_checks": 7.714285714285714,
+          "mean_rb_share_failures": 0.11428571428571428,
+          "mean_shared_detections": 18.02857142857143,
+          "mean_visited_station_count": 20.914285714285715,
+          "mean_last_discovery_s": 6370.532500085714,
+          "mean_tail_after_last_clear_s": 49.87865414285713,
+          "mean_time_per_source_breakdown": {
+            "movement": 336.7064387141199,
+            "switching": 27.951164311878596,
+            "detection": 149.33204295704294,
+            "optical": 6.133040887683745,
+            "removal": 2.0
+          }
+        }
+      },
+      "exploratory_contrasts": {
+        "route_transit_guard4": {
+          "weights": {
+            "full": 1,
+            "no_transit": -1,
+            "no_route": -1,
+            "v5": 1
+          },
+          "mean": 0.03499515029932354,
+          "ci95": [
+            -0.01530755414972873,
+            0.11673387657504009
+          ]
+        },
+        "route_transit_guard0": {
+          "weights": {
+            "no_guard": 1,
+            "route_only_unguarded": -1,
+            "transit_only_unguarded": -1,
+            "v5": 1
+          },
+          "mean": 0.03499515029932354,
+          "ci95": [
+            -0.015307554149671887,
+            0.11673387657504009
+          ]
+        },
+        "rollout_rb_full_learned": {
+          "weights": {
+            "full": 1,
+            "no_rb": -1,
+            "no_rollout": -1,
+            "no_rollout_rb": 1
+          },
+          "mean": 0.6732421528153054,
+          "ci95": [
+            0.1371261130090491,
+            1.352374732402638
+          ]
+        },
+        "route_average_marginal_benefit": {
+          "weights": {
+            "v5": 0.5,
+            "no_transit": -0.5,
+            "no_route": 0.5,
+            "full": -0.5
+          },
+          "mean": 0.012661730717582032,
+          "ci95": [
+            -0.010037873763707239,
+            0.04676448177196022
+          ]
+        },
+        "transit_average_marginal_benefit": {
+          "weights": {
+            "v5": 0.5,
+            "no_route": -0.5,
+            "no_transit": 0.5,
+            "full": -0.5
+          },
+          "mean": 50.75142779595916,
+          "ci95": [
+            43.81910432276519,
+            58.52974059349798
+          ]
+        },
+        "guard_with_route_only": {
+          "weights": {
+            "route_only_unguarded": 1,
+            "no_transit": -1
+          },
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "guard_with_transit_only": {
+          "weights": {
+            "transit_only_unguarded": 1,
+            "no_route": -1
+          },
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "learned_transit_vs_geometry": {
+          "weights": {
+            "transit_geometry": 1,
+            "full": -1
+          },
+          "mean": 41.00982924439188,
+          "ci95": [
+            34.11820010021296,
+            48.746922608444265
+          ]
+        },
+        "rb_without_rollout": {
+          "weights": {
+            "no_rollout_rb": 1,
+            "no_rollout": -1
+          },
+          "mean": 0.8119141128455567,
+          "ci95": [
+            0.2744054429850792,
+            1.4719814226157582
+          ]
+        },
+        "rollout_without_rb": {
+          "weights": {
+            "no_rollout_rb": 1,
+            "no_rb": -1
+          },
+          "mean": 1.2075824258987495,
+          "ci95": [
+            0.23305454423046118,
+            2.172067784467035
+          ]
+        }
+      },
+      "by_source_count": {
+        "10": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 713.59227142,
+              "mean_last_discovery_s": 6791.0531934,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 717.2117140799999,
+              "mean_last_discovery_s": 6806.6145786,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 645.71295168,
+              "mean_last_discovery_s": 6133.7844958000005,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 645.71295168,
+              "mean_last_discovery_s": 6133.7844958000005,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 717.2117140799999,
+              "mean_last_discovery_s": 6806.6145786,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 645.71295168,
+              "mean_last_discovery_s": 6133.7844958000005,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 646.3461896599999,
+              "mean_last_discovery_s": 6139.986529399999,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 645.85295168,
+              "mean_last_discovery_s": 6133.7844958000005,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 646.3461896599999,
+              "mean_last_discovery_s": 6139.986529399999,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 713.4308530599999,
+              "mean_last_discovery_s": 6798.532258200001,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 717.2117140799999,
+              "mean_last_discovery_s": 6806.6145786,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 645.71295168,
+              "mean_last_discovery_s": 6133.7844958000005,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "11": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 654.5982742363636,
+              "mean_last_discovery_s": 6857.9337206,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 654.9248052,
+              "mean_last_discovery_s": 6863.654424799999,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 607.5295874545454,
+              "mean_last_discovery_s": 6521.0915434,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 607.5295874545454,
+              "mean_last_discovery_s": 6521.0915434,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 654.9248052,
+              "mean_last_discovery_s": 6863.654424799999,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 607.5295874545454,
+              "mean_last_discovery_s": 6521.0915434,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 606.1155160909091,
+              "mean_last_discovery_s": 6505.5367584,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 607.5295874545454,
+              "mean_last_discovery_s": 6521.0915434,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 606.8741488545454,
+              "mean_last_discovery_s": 6513.8817188,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 639.3183838181818,
+              "mean_last_discovery_s": 6718.290825399999,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 654.9248052,
+              "mean_last_discovery_s": 6863.654424799999,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 607.5295874545454,
+              "mean_last_discovery_s": 6521.0915434,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "12": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 596.3671044333333,
+              "mean_last_discovery_s": 6787.3872336,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 593.56568725,
+              "mean_last_discovery_s": 6747.0581336000005,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 545.3887800666666,
+              "mean_last_discovery_s": 6300.0836674,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 545.3887800666666,
+              "mean_last_discovery_s": 6300.0836674,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 593.56568725,
+              "mean_last_discovery_s": 6747.0581336000005,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 545.3887800666666,
+              "mean_last_discovery_s": 6300.0836674,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 544.7225008500001,
+              "mean_last_discovery_s": 6292.088316799999,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 545.3637817666666,
+              "mean_last_discovery_s": 6299.7836878,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 546.2045524,
+              "mean_last_discovery_s": 6309.8729354,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 579.4576277666666,
+              "mean_last_discovery_s": 6655.0766376,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 593.56568725,
+              "mean_last_discovery_s": 6747.0581336000005,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 545.3887800666666,
+              "mean_last_discovery_s": 6300.0836674,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "13": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 562.067572676923,
+              "mean_last_discovery_s": 6891.771489000001,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 562.1779241230769,
+              "mean_last_discovery_s": 6891.5481322000005,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 515.2635457384615,
+              "mean_last_discovery_s": 6415.5642408,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 515.2732674307692,
+              "mean_last_discovery_s": 6415.690622800001,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 562.1779241230769,
+              "mean_last_discovery_s": 6891.5481322000005,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 515.2635457384615,
+              "mean_last_discovery_s": 6415.5642408,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 517.9779060615385,
+              "mean_last_discovery_s": 6450.850925000001,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 515.8757259230769,
+              "mean_last_discovery_s": 6423.5225832,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 518.5900862461539,
+              "mean_last_discovery_s": 6458.8092674,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 555.3243255846154,
+              "mean_last_discovery_s": 6841.2242868,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 562.1779241230769,
+              "mean_last_discovery_s": 6891.5481322000005,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 515.2732674307692,
+              "mean_last_discovery_s": 6415.690622800001,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "14": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 534.8525795285714,
+              "mean_last_discovery_s": 7020.7896273999995,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 535.1367099714287,
+              "mean_last_discovery_s": 7033.4657449999995,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 481.20071697142856,
+              "mean_last_discovery_s": 6444.811595199999,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 481.20071697142856,
+              "mean_last_discovery_s": 6444.811595199999,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 535.1406973428572,
+              "mean_last_discovery_s": 7033.521568200001,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 481.20071697142856,
+              "mean_last_discovery_s": 6444.811595199999,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 482.5248445285714,
+              "mean_last_discovery_s": 6462.867204,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 481.7765182428572,
+              "mean_last_discovery_s": 6452.872813,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 483.0248445285714,
+              "mean_last_discovery_s": 6469.867204,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 522.4354388857143,
+              "mean_last_discovery_s": 6852.590601399999,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 535.1406973428572,
+              "mean_last_discovery_s": 7033.521568200001,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 481.20071697142856,
+              "mean_last_discovery_s": 6444.811595199999,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "15": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 496.04764370666663,
+              "mean_last_discovery_s": 7060.563315400001,
+              "mean_visited_stations": 21.0
+            },
+            "v5": {
+              "mean_seconds_per_source": 489.8123046933333,
+              "mean_last_discovery_s": 6991.1090306,
+              "mean_visited_stations": 21.0
+            },
+            "full": {
+              "mean_seconds_per_source": 442.15417012,
+              "mean_last_discovery_s": 6276.2750466,
+              "mean_visited_stations": 21.0
+            },
+            "no_route": {
+              "mean_seconds_per_source": 442.1948066666667,
+              "mean_last_discovery_s": 6276.8845948,
+              "mean_visited_stations": 21.0
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 489.8123046933333,
+              "mean_last_discovery_s": 6991.1090306,
+              "mean_visited_stations": 21.0
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 442.15417012,
+              "mean_last_discovery_s": 6276.2750466,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 442.5341338266667,
+              "mean_last_discovery_s": 6279.3276484,
+              "mean_visited_stations": 21.0
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 441.8210641466666,
+              "mean_last_discovery_s": 6271.278457,
+              "mean_visited_stations": 21.0
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 443.7477928933334,
+              "mean_last_discovery_s": 6297.5325344,
+              "mean_visited_stations": 21.0
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 479.1662064266667,
+              "mean_last_discovery_s": 6883.147079200001,
+              "mean_visited_stations": 21.0
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 489.8123046933333,
+              "mean_last_discovery_s": 6991.1090306,
+              "mean_visited_stations": 21.0
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 442.1948066666667,
+              "mean_last_discovery_s": 6276.8845948,
+              "mean_visited_stations": 21.0
+            }
+          }
+        },
+        "16": {
+          "cases": 5,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 461.825633525,
+              "mean_last_discovery_s": 6958.8138635999985,
+              "mean_visited_stations": 20.6
+            },
+            "v5": {
+              "mean_seconds_per_source": 457.4121403749999,
+              "mean_last_discovery_s": 6893.0764894,
+              "mean_visited_stations": 20.6
+            },
+            "full": {
+              "mean_seconds_per_source": 417.642906975,
+              "mean_last_discovery_s": 6502.7283276,
+              "mean_visited_stations": 20.4
+            },
+            "no_route": {
+              "mean_seconds_per_source": 417.55869782499997,
+              "mean_last_discovery_s": 6501.380981200001,
+              "mean_visited_stations": 20.4
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 457.19703786249994,
+              "mean_last_discovery_s": 6889.634849200001,
+              "mean_visited_stations": 20.6
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 417.642906975,
+              "mean_last_discovery_s": 6502.7283276,
+              "mean_visited_stations": 20.4
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 418.4119499,
+              "mean_last_discovery_s": 6498.9086152,
+              "mean_visited_stations": 20.4
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 417.6437335125,
+              "mean_last_discovery_s": 6502.741552200001,
+              "mean_visited_stations": 20.4
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 419.528825125,
+              "mean_last_discovery_s": 6516.7786188,
+              "mean_visited_stations": 20.4
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 452.828628175,
+              "mean_last_discovery_s": 6911.0094662,
+              "mean_visited_stations": 20.6
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 457.19703786249994,
+              "mean_last_discovery_s": 6889.634849200001,
+              "mean_visited_stations": 20.6
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 417.55869782499997,
+              "mean_last_discovery_s": 6501.380981200001,
+              "mean_visited_stations": 20.4
+            }
+          }
+        }
+      }
+    },
+    "known_regression_diagnostic": {
+      "case_count": 3,
+      "methods": {
+        "v4": {
+          "cases": 3,
+          "mean_seconds_per_source": 244.38359666666665,
+          "change_vs_full_s": -57.1990551875,
+          "saving_vs_full_percent": 18.966294923077744,
+          "saving_vs_v4_percent": 0.0,
+          "faster_than_full": 3,
+          "slower_than_full": 0,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0291",
+            "slower_percent": -7.922098511668773
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0180",
+            "saving_percent": 26.97744773899681
+          },
+          "p95_slowdown_vs_v4_percent": 0.0,
+          "worst_slowdown_vs_v4_percent": 0.0,
+          "mean_virtual_time_s": 3910.1375466666664,
+          "mean_cpu_seconds": 0.04068100000002536,
+          "mean_wall_seconds": 0.04094987533365687,
+          "mean_distance_m": 14615.687726804028,
+          "mean_measurement_count": 147.33333333333334,
+          "mean_failed_clear_count": 10.0,
+          "mean_switch_count": 140.33333333333334,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 32.0,
+          "mean_visited_station_count": 10.666666666666666,
+          "mean_last_discovery_s": 2999.988674,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 182.69609666666668,
+            "switching": 8.770833333333334,
+            "detection": 46.041666666666664,
+            "optical": 4.875,
+            "removal": 2.0
+          }
+        },
+        "v5": {
+          "cases": 3,
+          "mean_seconds_per_source": 300.50295202083333,
+          "change_vs_full_s": -1.0796998333333363,
+          "saving_vs_full_percent": 0.3580112538619895,
+          "saving_vs_v4_percent": -22.96363426990238,
+          "faster_than_full": 2,
+          "slower_than_full": 1,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0291",
+            "slower_percent": 35.83521674586556
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0096",
+            "saving_percent": 19.806698815876224
+          },
+          "p95_slowdown_vs_v4_percent": 46.19069034864785,
+          "worst_slowdown_vs_v4_percent": 47.522059636730084,
+          "mean_virtual_time_s": 4808.047232333333,
+          "mean_cpu_seconds": 1.106726999999978,
+          "mean_wall_seconds": 1.1132086526680116,
+          "mean_distance_m": 17735.236147885196,
+          "mean_measurement_count": 195.33333333333334,
+          "mean_failed_clear_count": 7.666666666666667,
+          "mean_switch_count": 181.33333333333334,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 16.333333333333332,
+          "mean_planner_accepts": 5.0,
+          "mean_planner_seconds": 0.8650959853451544,
+          "mean_rb_share_checks": 45.666666666666664,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 33.0,
+          "mean_visited_station_count": 15.0,
+          "mean_last_discovery_s": 4087.3248990000006,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 221.69045202083336,
+            "switching": 11.333333333333334,
+            "detection": 61.041666666666664,
+            "optical": 4.4375,
+            "removal": 2.0
+          }
+        },
+        "full": {
+          "cases": 3,
+          "mean_seconds_per_source": 301.58265185416667,
+          "change_vs_full_s": 0.0,
+          "saving_vs_full_percent": 0.0,
+          "saving_vs_v4_percent": -23.405439631661594,
+          "faster_than_full": 0,
+          "slower_than_full": 0,
+          "equal_to_full": 3,
+          "worst_vs_full": {
+            "case_key": "known-main-0096",
+            "slower_percent": 0.0
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0096",
+            "saving_percent": -0.0
+          },
+          "p95_slowdown_vs_v4_percent": 35.45577787576409,
+          "worst_slowdown_vs_v4_percent": 36.94399456564022,
+          "mean_virtual_time_s": 4825.322429666667,
+          "mean_cpu_seconds": 0.8242020000000139,
+          "mean_wall_seconds": 0.8462879586635003,
+          "mean_distance_m": 18249.94547962316,
+          "mean_measurement_count": 180.33333333333334,
+          "mean_failed_clear_count": 8.666666666666666,
+          "mean_switch_count": 167.66666666666666,
+          "mean_transit_stops": 7.666666666666667,
+          "mean_transit_detections": 13.666666666666666,
+          "mean_route_calls": 31.666666666666668,
+          "mean_route_accepts": 1.6666666666666667,
+          "mean_planner_calls": 13.333333333333334,
+          "mean_planner_accepts": 2.0,
+          "mean_planner_seconds": 0.5186075556557626,
+          "mean_rb_share_checks": 35.333333333333336,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 38.333333333333336,
+          "mean_visited_station_count": 14.666666666666666,
+          "mean_last_discovery_s": 3897.9384726666667,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 228.12431852083333,
+            "switching": 10.479166666666666,
+            "detection": 56.354166666666664,
+            "optical": 4.625,
+            "removal": 2.0
+          }
+        },
+        "no_route": {
+          "cases": 3,
+          "mean_seconds_per_source": 296.9575988541667,
+          "change_vs_full_s": -4.6250529999999985,
+          "saving_vs_full_percent": 1.533593849501813,
+          "saving_vs_v4_percent": -21.512901399519755,
+          "faster_than_full": 2,
+          "slower_than_full": 1,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0291",
+            "slower_percent": 29.768241671969076
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0096",
+            "saving_percent": 20.938683595546237
+          },
+          "p95_slowdown_vs_v4_percent": 40.51943540770889,
+          "worst_slowdown_vs_v4_percent": 40.93310074884171,
+          "mean_virtual_time_s": 4751.321581666667,
+          "mean_cpu_seconds": 0.7663923333333287,
+          "mean_wall_seconds": 0.7844652780137645,
+          "mean_distance_m": 17268.274566118158,
+          "mean_measurement_count": 199.66666666666666,
+          "mean_failed_clear_count": 11.333333333333334,
+          "mean_switch_count": 185.33333333333334,
+          "mean_transit_stops": 7.666666666666667,
+          "mean_transit_detections": 15.0,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 13.666666666666666,
+          "mean_planner_accepts": 2.6666666666666665,
+          "mean_planner_seconds": 0.5341145403508563,
+          "mean_rb_share_checks": 40.333333333333336,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 42.333333333333336,
+          "mean_visited_station_count": 14.666666666666666,
+          "mean_last_discovery_s": 3971.939488,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 215.85343218750003,
+            "switching": 11.583333333333334,
+            "detection": 62.395833333333336,
+            "optical": 5.125,
+            "removal": 2.0
+          }
+        },
+        "no_transit": {
+          "cases": 3,
+          "mean_seconds_per_source": 299.21771879166664,
+          "change_vs_full_s": -2.3649330625000196,
+          "saving_vs_full_percent": 0.784174105493185,
+          "saving_vs_v4_percent": -22.437726129300085,
+          "faster_than_full": 2,
+          "slower_than_full": 1,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0291",
+            "slower_percent": 0.13627138922371884
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0180",
+            "saving_percent": 2.079052756026134
+          },
+          "p95_slowdown_vs_v4_percent": 32.87629514480398,
+          "worst_slowdown_vs_v4_percent": 34.096856672411,
+          "mean_virtual_time_s": 4787.483500666666,
+          "mean_cpu_seconds": 0.7933843333333167,
+          "mean_wall_seconds": 0.8134060280087093,
+          "mean_distance_m": 18312.417504783076,
+          "mean_measurement_count": 172.66666666666666,
+          "mean_failed_clear_count": 6.333333333333333,
+          "mean_switch_count": 162.66666666666666,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 24.666666666666668,
+          "mean_route_accepts": 1.0,
+          "mean_planner_calls": 13.0,
+          "mean_planner_accepts": 2.3333333333333335,
+          "mean_planner_seconds": 0.5384607626959527,
+          "mean_rb_share_checks": 38.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 30.333333333333332,
+          "mean_visited_station_count": 14.666666666666666,
+          "mean_last_discovery_s": 3869.323183666667,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 228.90521879166667,
+            "switching": 10.166666666666666,
+            "detection": 53.958333333333336,
+            "optical": 4.1875,
+            "removal": 2.0
+          }
+        },
+        "no_guard": {
+          "cases": 3,
+          "mean_seconds_per_source": 292.6218699583334,
+          "change_vs_full_s": -8.960781895833321,
+          "saving_vs_full_percent": 2.9712524380103855,
+          "saving_vs_v4_percent": -19.738752497968413,
+          "faster_than_full": 2,
+          "slower_than_full": 1,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0291",
+            "slower_percent": 17.63376268971264
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0180",
+            "saving_percent": 11.94964610481215
+          },
+          "p95_slowdown_vs_v4_percent": 27.037114960709868,
+          "worst_slowdown_vs_v4_percent": 27.75460863931618,
+          "mean_virtual_time_s": 4681.949919333334,
+          "mean_cpu_seconds": 0.6546696666667154,
+          "mean_wall_seconds": 0.6790358193393331,
+          "mean_distance_m": 17639.74959147866,
+          "mean_measurement_count": 174.66666666666666,
+          "mean_failed_clear_count": 12.666666666666666,
+          "mean_switch_count": 162.66666666666666,
+          "mean_transit_stops": 11.666666666666666,
+          "mean_transit_detections": 24.333333333333332,
+          "mean_route_calls": 41.333333333333336,
+          "mean_route_accepts": 4.333333333333333,
+          "mean_planner_calls": 11.666666666666666,
+          "mean_planner_accepts": 1.3333333333333333,
+          "mean_planner_seconds": 0.33432836102050106,
+          "mean_rb_share_checks": 22.333333333333332,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 41.333333333333336,
+          "mean_visited_station_count": 15.0,
+          "mean_last_discovery_s": 4152.985680666667,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 220.49686995833335,
+            "switching": 10.166666666666666,
+            "detection": 54.583333333333336,
+            "optical": 5.375,
+            "removal": 2.0
+          }
+        },
+        "no_rollout": {
+          "cases": 3,
+          "mean_seconds_per_source": 296.66744258333335,
+          "change_vs_full_s": -4.915209270833334,
+          "saving_vs_full_percent": 1.6298050436966527,
+          "saving_vs_v4_percent": -21.39417155234875,
+          "faster_than_full": 1,
+          "slower_than_full": 2,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0096",
+            "slower_percent": 0.775194828379
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0291",
+            "saving_percent": 9.040173937536998
+          },
+          "p95_slowdown_vs_v4_percent": 36.0938799713252,
+          "worst_slowdown_vs_v4_percent": 37.54786167454161,
+          "mean_virtual_time_s": 4746.679081333334,
+          "mean_cpu_seconds": 0.2830706666666553,
+          "mean_wall_seconds": 0.2846867223464263,
+          "mean_distance_m": 18070.062062448986,
+          "mean_measurement_count": 171.66666666666666,
+          "mean_failed_clear_count": 11.0,
+          "mean_switch_count": 161.33333333333334,
+          "mean_transit_stops": 7.666666666666667,
+          "mean_transit_detections": 12.0,
+          "mean_route_calls": 30.666666666666668,
+          "mean_route_accepts": 1.6666666666666667,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 32.333333333333336,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 36.666666666666664,
+          "mean_visited_station_count": 14.666666666666666,
+          "mean_last_discovery_s": 4165.334334333334,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 225.87577591666664,
+            "switching": 10.083333333333334,
+            "detection": 53.645833333333336,
+            "optical": 5.0625,
+            "removal": 2.0
+          }
+        },
+        "no_rb": {
+          "cases": 3,
+          "mean_seconds_per_source": 302.5631254791667,
+          "change_vs_full_s": 0.9804736249999829,
+          "saving_vs_full_percent": -0.3251094248863273,
+          "saving_vs_v4_percent": -23.806642346726537,
+          "faster_than_full": 1,
+          "slower_than_full": 2,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0096",
+            "slower_percent": 1.7154281950193528
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0180",
+            "saving_percent": 1.4891493449476156
+          },
+          "p95_slowdown_vs_v4_percent": 33.82979563826207,
+          "worst_slowdown_vs_v4_percent": 34.9046939676209,
+          "mean_virtual_time_s": 4841.010007666667,
+          "mean_cpu_seconds": 0.6470310000000078,
+          "mean_wall_seconds": 0.6505847359852245,
+          "mean_distance_m": 18336.71670034756,
+          "mean_measurement_count": 179.66666666666666,
+          "mean_failed_clear_count": 8.666666666666666,
+          "mean_switch_count": 169.33333333333334,
+          "mean_transit_stops": 7.333333333333333,
+          "mean_transit_detections": 12.0,
+          "mean_route_calls": 31.333333333333332,
+          "mean_route_accepts": 1.6666666666666667,
+          "mean_planner_calls": 12.666666666666666,
+          "mean_planner_accepts": 1.6666666666666667,
+          "mean_planner_seconds": 0.4867082493631945,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 34.666666666666664,
+          "mean_visited_station_count": 15.333333333333334,
+          "mean_last_discovery_s": 4270.122514666667,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 229.2089588125,
+            "switching": 10.583333333333334,
+            "detection": 56.145833333333336,
+            "optical": 4.625,
+            "removal": 2.0
+          }
+        },
+        "no_rollout_rb": {
+          "cases": 3,
+          "mean_seconds_per_source": 299.03781091666673,
+          "change_vs_full_s": -2.544840937499989,
+          "saving_vs_full_percent": 0.8438286890356417,
+          "saving_vs_v4_percent": -22.364109128219066,
+          "faster_than_full": 1,
+          "slower_than_full": 2,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0096",
+            "slower_percent": 2.490623023398375
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0291",
+            "saving_percent": 8.568394668457325
+          },
+          "p95_slowdown_vs_v4_percent": 36.25811653862285,
+          "worst_slowdown_vs_v4_percent": 37.49769308185527,
+          "mean_virtual_time_s": 4784.604974666668,
+          "mean_cpu_seconds": 0.166889000000045,
+          "mean_wall_seconds": 0.16797519465520358,
+          "mean_distance_m": 18228.024857780547,
+          "mean_measurement_count": 172.0,
+          "mean_failed_clear_count": 12.666666666666666,
+          "mean_switch_count": 161.0,
+          "mean_transit_stops": 7.666666666666667,
+          "mean_transit_detections": 12.333333333333334,
+          "mean_route_calls": 30.666666666666668,
+          "mean_route_accepts": 1.3333333333333333,
+          "mean_planner_calls": 0.0,
+          "mean_planner_accepts": 0.0,
+          "mean_planner_seconds": 0.0,
+          "mean_rb_share_checks": 0.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 37.0,
+          "mean_visited_station_count": 14.666666666666666,
+          "mean_last_discovery_s": 4203.261649666667,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 227.85031091666667,
+            "switching": 10.0625,
+            "detection": 53.75,
+            "optical": 5.375,
+            "removal": 2.0
+          }
+        },
+        "transit_geometry": {
+          "cases": 3,
+          "mean_seconds_per_source": 300.92069691666666,
+          "change_vs_full_s": -0.6619549375000039,
+          "saving_vs_full_percent": 0.21949370543372648,
+          "saving_vs_v4_percent": -23.134572459507275,
+          "faster_than_full": 1,
+          "slower_than_full": 2,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0096",
+            "slower_percent": 1.4806317776440814
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0180",
+            "saving_percent": 3.1542247900444353
+          },
+          "p95_slowdown_vs_v4_percent": 31.74893721408513,
+          "worst_slowdown_vs_v4_percent": 32.624473140573706,
+          "mean_virtual_time_s": 4814.7311506666665,
+          "mean_cpu_seconds": 0.5136326666666567,
+          "mean_wall_seconds": 0.516614916336645,
+          "mean_distance_m": 18161.989073006564,
+          "mean_measurement_count": 182.66666666666666,
+          "mean_failed_clear_count": 6.0,
+          "mean_switch_count": 171.0,
+          "mean_transit_stops": 12.333333333333334,
+          "mean_transit_detections": 20.0,
+          "mean_route_calls": 35.333333333333336,
+          "mean_route_accepts": 1.3333333333333333,
+          "mean_planner_calls": 12.666666666666666,
+          "mean_planner_accepts": 1.6666666666666667,
+          "mean_planner_seconds": 0.2494210543712446,
+          "mean_rb_share_checks": 27.0,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 39.0,
+          "mean_visited_station_count": 15.333333333333334,
+          "mean_last_discovery_s": 4240.936297333334,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 227.0248635833333,
+            "switching": 10.6875,
+            "detection": 57.083333333333336,
+            "optical": 4.125,
+            "removal": 2.0
+          }
+        },
+        "route_only_unguarded": {
+          "cases": 3,
+          "mean_seconds_per_source": 288.86398491666665,
+          "change_vs_full_s": -12.718666937500009,
+          "saving_vs_full_percent": 4.21730721555239,
+          "saving_vs_v4_percent": -18.20105312169138,
+          "faster_than_full": 1,
+          "slower_than_full": 2,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0096",
+            "slower_percent": 3.3277970281148983
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0180",
+            "saving_percent": 15.329678491670107
+          },
+          "p95_slowdown_vs_v4_percent": 25.106509834903846,
+          "worst_slowdown_vs_v4_percent": 26.12379754044012,
+          "mean_virtual_time_s": 4621.823758666666,
+          "mean_cpu_seconds": 0.8935536666666621,
+          "mean_wall_seconds": 0.8993009859890057,
+          "mean_distance_m": 17592.45212328627,
+          "mean_measurement_count": 168.66666666666666,
+          "mean_failed_clear_count": 7.333333333333333,
+          "mean_switch_count": 158.0,
+          "mean_transit_stops": 0.0,
+          "mean_transit_detections": 0.0,
+          "mean_route_calls": 32.333333333333336,
+          "mean_route_accepts": 3.3333333333333335,
+          "mean_planner_calls": 14.333333333333334,
+          "mean_planner_accepts": 1.6666666666666667,
+          "mean_planner_seconds": 0.6172108316483597,
+          "mean_rb_share_checks": 43.666666666666664,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 33.0,
+          "mean_visited_station_count": 14.666666666666666,
+          "mean_last_discovery_s": 4036.0083629999995,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 219.90565158333334,
+            "switching": 9.875,
+            "detection": 52.708333333333336,
+            "optical": 4.375,
+            "removal": 2.0
+          }
+        },
+        "transit_only_unguarded": {
+          "cases": 3,
+          "mean_seconds_per_source": 275.4312760208333,
+          "change_vs_full_s": -26.151375833333343,
+          "saving_vs_full_percent": 8.671379362357722,
+          "saving_vs_v4_percent": -12.704485807414878,
+          "faster_than_full": 2,
+          "slower_than_full": 1,
+          "equal_to_full": 0,
+          "worst_vs_full": {
+            "case_key": "known-main-0291",
+            "slower_percent": 30.285808619921674
+          },
+          "best_vs_full": {
+            "case_key": "known-main-0096",
+            "saving_percent": 21.089316452791618
+          },
+          "p95_slowdown_vs_v4_percent": 38.327811398533754,
+          "worst_slowdown_vs_v4_percent": 41.49519755989708,
+          "mean_virtual_time_s": 4406.900416333333,
+          "mean_cpu_seconds": 0.5500033333333173,
+          "mean_wall_seconds": 0.5529647636673568,
+          "mean_distance_m": 16077.835396020155,
+          "mean_measurement_count": 182.0,
+          "mean_failed_clear_count": 11.666666666666666,
+          "mean_switch_count": 166.33333333333334,
+          "mean_transit_stops": 11.0,
+          "mean_transit_detections": 28.333333333333332,
+          "mean_route_calls": 0.0,
+          "mean_route_accepts": 0.0,
+          "mean_planner_calls": 13.666666666666666,
+          "mean_planner_accepts": 1.0,
+          "mean_planner_seconds": 0.32793229165448184,
+          "mean_rb_share_checks": 30.666666666666668,
+          "mean_rb_share_failures": 0.0,
+          "mean_shared_detections": 48.0,
+          "mean_visited_station_count": 14.333333333333334,
+          "mean_last_discovery_s": 3934.032100666667,
+          "mean_tail_after_last_clear_s": 0.0,
+          "mean_time_per_source_breakdown": {
+            "movement": 200.97294268750002,
+            "switching": 10.395833333333334,
+            "detection": 56.875,
+            "optical": 5.1875,
+            "removal": 2.0
+          }
+        }
+      },
+      "exploratory_contrasts": {
+        "route_transit_guard4": {
+          "weights": {
+            "full": 1,
+            "no_transit": -1,
+            "no_route": -1,
+            "v5": 1
+          },
+          "mean": 5.9102862291666725
+        },
+        "route_transit_guard0": {
+          "weights": {
+            "no_guard": 1,
+            "route_only_unguarded": -1,
+            "transit_only_unguarded": -1,
+            "v5": 1
+          },
+          "mean": 28.82956104166675
+        },
+        "rollout_rb_full_learned": {
+          "weights": {
+            "full": 1,
+            "no_rb": -1,
+            "no_rollout": -1,
+            "no_rollout_rb": 1
+          },
+          "mean": 1.3898947083333724
+        },
+        "route_average_marginal_benefit": {
+          "weights": {
+            "v5": 0.5,
+            "no_transit": -0.5,
+            "no_route": 0.5,
+            "full": -0.5
+          },
+          "mean": -1.6699098854165868
+        },
+        "transit_average_marginal_benefit": {
+          "weights": {
+            "v5": 0.5,
+            "no_route": -0.5,
+            "no_transit": 0.5,
+            "full": -0.5
+          },
+          "mean": 0.5902100520833073
+        },
+        "guard_with_route_only": {
+          "weights": {
+            "route_only_unguarded": 1,
+            "no_transit": -1
+          },
+          "mean": -10.353733874999989
+        },
+        "guard_with_transit_only": {
+          "weights": {
+            "transit_only_unguarded": 1,
+            "no_route": -1
+          },
+          "mean": -21.52632283333338
+        },
+        "learned_transit_vs_geometry": {
+          "weights": {
+            "transit_geometry": 1,
+            "full": -1
+          },
+          "mean": -0.6619549375000133
+        },
+        "rb_without_rollout": {
+          "weights": {
+            "no_rollout_rb": 1,
+            "no_rollout": -1
+          },
+          "mean": 2.3703683333333743
+        },
+        "rollout_without_rb": {
+          "weights": {
+            "no_rollout_rb": 1,
+            "no_rb": -1
+          },
+          "mean": -3.5253145624999433
+        }
+      },
+      "by_source_count": {
+        "16": {
+          "cases": 3,
+          "methods": {
+            "v4": {
+              "mean_seconds_per_source": 244.38359666666665,
+              "mean_last_discovery_s": 2999.988674,
+              "mean_visited_stations": 10.666666666666666
+            },
+            "v5": {
+              "mean_seconds_per_source": 300.50295202083333,
+              "mean_last_discovery_s": 4087.3248990000006,
+              "mean_visited_stations": 15.0
+            },
+            "full": {
+              "mean_seconds_per_source": 301.58265185416667,
+              "mean_last_discovery_s": 3897.9384726666667,
+              "mean_visited_stations": 14.666666666666666
+            },
+            "no_route": {
+              "mean_seconds_per_source": 296.9575988541667,
+              "mean_last_discovery_s": 3971.939488,
+              "mean_visited_stations": 14.666666666666666
+            },
+            "no_transit": {
+              "mean_seconds_per_source": 299.21771879166664,
+              "mean_last_discovery_s": 3869.323183666667,
+              "mean_visited_stations": 14.666666666666666
+            },
+            "no_guard": {
+              "mean_seconds_per_source": 292.6218699583334,
+              "mean_last_discovery_s": 4152.985680666667,
+              "mean_visited_stations": 15.0
+            },
+            "no_rollout": {
+              "mean_seconds_per_source": 296.66744258333335,
+              "mean_last_discovery_s": 4165.334334333334,
+              "mean_visited_stations": 14.666666666666666
+            },
+            "no_rb": {
+              "mean_seconds_per_source": 302.5631254791667,
+              "mean_last_discovery_s": 4270.122514666667,
+              "mean_visited_stations": 15.333333333333334
+            },
+            "no_rollout_rb": {
+              "mean_seconds_per_source": 299.03781091666673,
+              "mean_last_discovery_s": 4203.261649666667,
+              "mean_visited_stations": 14.666666666666666
+            },
+            "transit_geometry": {
+              "mean_seconds_per_source": 300.92069691666666,
+              "mean_last_discovery_s": 4240.936297333334,
+              "mean_visited_stations": 15.333333333333334
+            },
+            "route_only_unguarded": {
+              "mean_seconds_per_source": 288.86398491666665,
+              "mean_last_discovery_s": 4036.0083629999995,
+              "mean_visited_stations": 14.666666666666666
+            },
+            "transit_only_unguarded": {
+              "mean_seconds_per_source": 275.4312760208333,
+              "mean_last_discovery_s": 3934.032100666667,
+              "mean_visited_stations": 14.333333333333334
+            }
+          }
+        }
+      },
+      "inference_note": "Hand-picked prior regression cases; descriptive diagnostics only, no population confidence intervals."
+    }
+  }
+}

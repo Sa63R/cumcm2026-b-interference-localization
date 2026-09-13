@@ -1,0 +1,55 @@
+\documentclass[tikz,border=7pt]{standalone}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\definecolor{ink}{HTML}{22384A}
+\definecolor{sector}{HTML}{4F84BF}
+\definecolor{region}{HTML}{167B78}
+\definecolor{newobs}{HTML}{D88B3D}
+\pgfplotsset{regionaxis/.style={
+  axis equal image,scale only axis,
+  axis line style={black!35},tick style={black!35},
+  grid=major,grid style={black!8},
+  label style={font=\small},tick label style={font=\footnotesize},
+  xlabel={$x$/m},ylabel={$y$/m},
+  title style={font=\bfseries\small,text=ink},
+  clip=true}}
+\begin{document}
+\begin{tikzpicture}[text=ink]
+\path[use as bounding box] (-1,-.7) rectangle (16.8,10.8);
+\node[font=\Large\bfseries] at (8,10.4) {定位区域随观测求交而改变};
+\node[font=\small,text=black!60] at (8,9.75)
+  {模拟观测示例\quad 每次测角误差 $\pm1^\circ$\quad 各图等比例，后两图局部放大};
+\begin{axis}[regionaxis,at={(0cm,6.6cm)},anchor=south west,
+ width=16cm,height=2.2cm,xmin=-30,xmax=1540,ymin=-90,ymax=90,
+ title={一次测向：很窄的扇形},xtick={0,300,600,900,1200,1500},ytick={-50,0,50}]
+\addplot[fill=sector!25,draw=sector,thick] table {first.dat} --cycle;
+\addplot[only marks,mark=*,mark size=1.7pt,ink] coordinates {(0,0)};
+\node[anchor=north west,font=\footnotesize] at (axis cs:0,-25) {首测点};
+\node[font=\small,text=sector] at (axis cs:390,43) {总张角仅 $2^\circ$};
+\node[font=\footnotesize,text=sector] at (axis cs:1190,50) {远端为半径 1500 m 的圆弧};
+\draw[region,dashed,thick] (axis cs:850,-30) rectangle (axis cs:945,30);
+\node[font=\footnotesize,text=region] at (axis cs:900,-63) {后两图放大这里};
+\end{axis}
+\begin{axis}[regionaxis,at={(0cm,.7cm)},anchor=south west,
+ width=7.1cm,height=4.1cm,xmin=850,xmax=942,ymin=-25,ymax=25,
+ title={两次测向：本例为四边形},xtick={860,880,900,920,940},ytick={-20,0,20}]
+\addplot[fill=sector!12,draw=none] table {first_zoom.dat} --cycle;
+\addplot[fill=newobs!18,draw=none] table {second_wedge.dat} --cycle;
+\addplot[fill=region!30,draw=region,thick] table {second.dat} --cycle;
+\addplot[only marks,mark=*,mark size=1.2pt,region] table {second.dat};
+\node[font=\footnotesize,text=region] at (axis cs:896,-21) {两次测向允许区域的公共部分};
+\end{axis}
+\begin{axis}[regionaxis,at={(8.9cm,.7cm)},anchor=south west,
+ width=7.1cm,height=4.1cm,xmin=850,xmax=942,ymin=-25,ymax=25,
+ title={三次测向：本例变为五边形},xtick={860,880,900,920,940},ytick={-20,0,20}]
+\addplot[fill=newobs!18,draw=none] table {third_wedge.dat} --cycle;
+\addplot[draw=black!40,dashed,thick] table {second.dat};
+\addplot[fill=region!35,draw=region,thick] table {third.dat} --cycle;
+\addplot[only marks,mark=*,mark size=1.2pt,region] table {third.dat};
+\node[font=\footnotesize,text=black!55] at (axis cs:896,-21) {虚线：上一步的四边形};
+\end{axis}
+\node[font=\footnotesize,text=black!60,align=center] at (8,-.55)
+  {顶点由测向约束求交得到，没有预设边数。采用论文的保守区域表示，省略近场排除。};
+\end{tikzpicture}
+\end{document}

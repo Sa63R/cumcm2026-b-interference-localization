@@ -1,0 +1,47 @@
+\usepackage[a4paper,left=25mm,right=25mm,top=28mm,bottom=25mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx,xcolor,tabularx,booktabs,array,calc}
+\usepackage{caption,float,placeins,fancyhdr,enumitem,needspace}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{bookmark,microtype}
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{Latin Modern Mono}
+\input{figures/q1_case}
+\linespread{1.2}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2em}
+\clubpenalty=10000\widowpenalty=10000\displaywidowpenalty=10000
+\raggedbottom
+\setcounter{secnumdepth}{3}
+\ctexset{
+ section={name={},number=\arabic{section},format=\centering\fontsize{14pt}{17pt}\selectfont\bfseries,beforeskip=14pt,afterskip=8pt},
+ subsection={format=\fontsize{12pt}{15pt}\selectfont\bfseries,beforeskip=11pt,afterskip=6pt},
+ subsubsection={format=\fontsize{10.5pt}{13pt}\selectfont\bfseries,beforeskip=9pt,afterskip=5pt}
+}
+% 公式与算法全篇连续编号；正文统一使用标签交叉引用。
+\renewcommand{\theequation}{\arabic{equation}}
+\newcounter{algorithm}
+\renewcommand{\thealgorithm}{\arabic{algorithm}}
+\setlist[enumerate]{label=\arabic*.,leftmargin=2.2em,itemsep=2pt,topsep=4pt,parsep=0pt}
+\setlist[itemize]{leftmargin=2em,itemsep=2pt,topsep=4pt,parsep=0pt}
+\captionsetup{font=small,labelfont=normalfont,labelsep=colon,skip=6pt,justification=raggedright,singlelinecheck=true,hypcap=false}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.65}
+\makeatletter
+\setlength{\@fptop}{0pt}\setlength{\@fpsep}{14pt}\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{14pt}
+\hypersetup{pdftitle={无线电干扰源的主动定位与搜索清除},pdfauthor={}}
+\XeTeXgenerateactualtext=1

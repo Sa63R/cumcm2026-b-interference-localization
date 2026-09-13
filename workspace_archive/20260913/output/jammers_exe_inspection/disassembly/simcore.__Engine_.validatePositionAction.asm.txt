@@ -1,0 +1,67 @@
+jammers/client/internal/simcore.(*Engine).validatePositionAction
+Virtual address: 0x1404f54c0
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f54c0: 80 b8 90 00 00 00 00        	cmp	byte ptr [rax + 0x90], 0x0
+1404f54c7: 0f 84 9d 00 00 00           	je	0x1404f556a <.text+0x4f456a>
+1404f54cd: 84 db                       	test	bl, bl
+1404f54cf: 74 05                       	je	0x1404f54d6 <.text+0x4f44d6>
+1404f54d1: 80 fb 14                    	cmp	bl, 0x14
+1404f54d4: 76 0d                       	jbe	0x1404f54e3 <.text+0x4f44e3>
+1404f54d6: 48 8d 05 36 53 30 00        	lea	rax, [rip + 0x305336]   # 0x1407fa813 ; text_prefix='invalid_channelstartup_failurejammer/%d/thetapractice-gen-v1Write CommittedRepeatable Read'
+1404f54dd: bb 0f 00 00 00              	mov	ebx, 0xf
+1404f54e2: c3                          	ret
+1404f54e3: 66 0f 2e c0                 	ucomisd	xmm0, xmm0
+1404f54e7: 75 20                       	jne	0x1404f5509 <.text+0x4f4509>
+1404f54e9: 7a 1e                       	jp	0x1404f5509 <.text+0x4f4509>
+1404f54eb: 66 48 0f 7e c1              	movq	rcx, xmm0
+1404f54f0: 48 0f ba f1 3f              	btr	rcx, 0x3f
+1404f54f5: 66 48 0f 6e c1              	movq	xmm0, rcx
+1404f54fa: 90                          	nop
+1404f54fb: f2 0f 10 15 dd 4f 40 00     	movsd	xmm2, qword ptr [rip + 0x404fdd] # 0x1408fa4e0 ; f64=1.7976931348623157e+308
+1404f5503: 66 0f 2e c2                 	ucomisd	xmm0, xmm2
+1404f5507: 76 07                       	jbe	0x1404f5510 <.text+0x4f4510>
+1404f5509: b9 01 00 00 00              	mov	ecx, 0x1
+1404f550e: eb 10                       	jmp	0x1404f5520 <.text+0x4f4520>
+1404f5510: f2 0f 10 1d 90 53 40 00     	movsd	xmm3, qword ptr [rip + 0x405390] # 0x1408fa8a8 ; f64=2000000.0
+1404f5518: 66 0f 2e c3                 	ucomisd	xmm0, xmm3
+1404f551c: 0f 97 c1                    	seta	cl
+1404f551f: 90                          	nop
+1404f5520: 84 c9                       	test	cl, cl
+1404f5522: 75 34                       	jne	0x1404f5558 <.text+0x4f4558>
+1404f5524: 66 0f 2e c9                 	ucomisd	xmm1, xmm1
+1404f5528: 75 2e                       	jne	0x1404f5558 <.text+0x4f4558>
+1404f552a: 7a 2c                       	jp	0x1404f5558 <.text+0x4f4558>
+1404f552c: 66 48 0f 7e c9              	movq	rcx, xmm1
+1404f5531: 48 0f ba f1 3f              	btr	rcx, 0x3f
+1404f5536: 66 48 0f 6e c1              	movq	xmm0, rcx
+1404f553b: 90                          	nop
+1404f553c: f2 0f 10 0d 9c 4f 40 00     	movsd	xmm1, qword ptr [rip + 0x404f9c] # 0x1408fa4e0 ; f64=1.7976931348623157e+308
+1404f5544: 66 0f 2e c1                 	ucomisd	xmm0, xmm1
+1404f5548: 77 0e                       	ja	0x1404f5558 <.text+0x4f4558>
+1404f554a: f2 0f 10 0d 56 53 40 00     	movsd	xmm1, qword ptr [rip + 0x405356] # 0x1408fa8a8 ; f64=2000000.0
+1404f5552: 66 0f 2e c1                 	ucomisd	xmm0, xmm1
+1404f5556: 76 0d                       	jbe	0x1404f5565 <.text+0x4f4565>
+1404f5558: 48 8d 05 35 83 30 00        	lea	rax, [rip + 0x308335]   # 0x1407fd894 ; text_prefix='invalid_coordinatecase_unlock_failedunknown _txlock %qcrypto/rsa: p == qproxy-authenticate'
+1404f555f: bb 12 00 00 00              	mov	ebx, 0x12
+1404f5564: c3                          	ret
+1404f5565: 31 c0                       	xor	eax, eax
+1404f5567: 31 db                       	xor	ebx, ebx
+1404f5569: c3                          	ret
+1404f556a: 48 8d 05 bd 1e 30 00        	lea	rax, [rip + 0x301ebd]   # 0x1407f742e ; text_prefix='not_enteredid_conflictdigest_onlydirectionalscenario-v1psk_id_hashretry-after%d:%d:%d:%dCr'
+1404f5571: bb 0b 00 00 00              	mov	ebx, 0xb
+1404f5576: c3                          	ret
+1404f5577: cc                          	int3
+1404f5578: cc                          	int3
+1404f5579: cc                          	int3
+1404f557a: cc                          	int3
+1404f557b: cc                          	int3
+1404f557c: cc                          	int3
+1404f557d: cc                          	int3
+1404f557e: cc                          	int3
+1404f557f: cc                          	int3

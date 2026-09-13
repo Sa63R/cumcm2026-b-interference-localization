@@ -1,0 +1,35 @@
+{
+  "inputs": 100,
+  "all_fields_except_wall_identical": true,
+  "ok": 4,
+  "witness": 19,
+  "unresolved": 77,
+  "keep_leaves_inputs": 25,
+  "accepted_boxes": 162205,
+  "outside_boxes": 118492,
+  "subdivided_boxes": 94149,
+  "baseline_cpu_s": 2.712976,
+  "accelerated_cpu_s": 1.3086200000000001,
+  "cpu_reduction": 0.5176440926864078,
+  "speedup": 2.0731579832189633,
+  "baseline_wall_s": 2.7250149602768943,
+  "accelerated_wall_s": 1.3140738719666842,
+  "wall_reduction": 0.5177737035861416,
+  "paired_normal95_cpu_saved_s": [
+    0.011904483533814517,
+    0.01618263646618548
+  ],
+  "cache_hits": 286191,
+  "cache_misses": 10145,
+  "peak_call_entries": 252,
+  "cache_limit": 512,
+  "lifecycle_checks": {
+    "alias_restoration": true,
+    "exception_restoration": true,
+    "nested_rejection": true,
+    "per_call_cache_release": true
+  },
+  "code_sha256": "4b650bb495f4765e6de94282bce4fe3870f35299124a34f2f483c0ff41e48ec0",
+  "original_code_sha256": "eb3a0769820c926331a002438649a9e31d91e7e0150036e60e95bd2191f021f3",
+  "note": "Nonexclusive machine. One paired serial comparison, alternating baseline/accelerated order. 90 inputs come from 286 actual unmodified cells_flex certificate trials in 3 development cases; 10 edge cases cover low depth, empty/degenerate/duplicate and scaled/rotated layouts. This validates certificate computation only, not an end-to-end rollout speed claim."
+}

@@ -1,0 +1,160 @@
+jammers/client/internal/bearingnoise.ErrorDegrees
+Virtual address: 0x1404ee680
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404ee680: 4c 8d 64 24 f8              	lea	r12, [rsp - 0x8]
+1404ee685: 4d 3b 66 10                 	cmp	r12, qword ptr [r14 + 0x10]
+1404ee689: 0f 86 23 02 00 00           	jbe	0x1404ee8b2 <.text+0x4ed8b2>
+1404ee68f: 55                          	push	rbp
+1404ee690: 48 89 e5                    	mov	rbp, rsp
+1404ee693: 48 83 c4 80                 	add	rsp, -0x80
+1404ee697: 48 89 84 24 90 00 00 00     	mov	qword ptr [rsp + 0x90], rax
+1404ee69f: 88 9c 24 98 00 00 00        	mov	byte ptr [rsp + 0x98], bl
+1404ee6a6: f2 0f 10 15 f2 c2 40 00     	movsd	xmm2, qword ptr [rip + 0x40c2f2] # 0x1408fa9a0 ; f64=150.0
+1404ee6ae: f2 0f 5e c2                 	divsd	xmm0, xmm2
+1404ee6b2: f2 0f 11 44 24 68           	movsd	qword ptr [rsp + 0x68], xmm0
+1404ee6b8: f2 0f 5e ca                 	divsd	xmm1, xmm2
+1404ee6bc: f2 0f 11 4c 24 60           	movsd	qword ptr [rsp + 0x60], xmm1
+1404ee6c2: 0f b6 15 e4 8a cd 00        	movzx	edx, byte ptr [rip + 0xcd8ae4] # 0x1411c71ad
+1404ee6c9: 85 d2                       	test	edx, edx
+1404ee6cb: 74 08                       	je	0x1404ee6d5 <.text+0x4ed6d5>
+1404ee6cd: 66 0f 3a 0b d0 01           	roundsd	xmm2, xmm0, 0x1
+1404ee6d3: eb 2d                       	jmp	0x1404ee702 <.text+0x4ed702>
+1404ee6d5: e8 c6 1d bf ff              	call	0x1400e04a0 <.text+0xdf4a0> ; math.Floor
+1404ee6da: 0f b6 05 cc 8a cd 00        	movzx	eax, byte ptr [rip + 0xcd8acc] # 0x1411c71ad
+1404ee6e1: 85 c0                       	test	eax, eax
+1404ee6e3: 48 8b 84 24 90 00 00 00     	mov	rax, qword ptr [rsp + 0x90]
+1404ee6eb: 0f b6 9c 24 98 00 00 00     	movzx	ebx, byte ptr [rsp + 0x98]
+1404ee6f3: f2 0f 10 4c 24 60           	movsd	xmm1, qword ptr [rsp + 0x60]
+1404ee6f9: 0f 10 d0                    	movups	xmm2, xmm0
+1404ee6fc: f2 0f 10 44 24 68           	movsd	xmm0, qword ptr [rsp + 0x68]
+1404ee702: 74 08                       	je	0x1404ee70c <.text+0x4ed70c>
+1404ee704: 66 0f 3a 0b d9 01           	roundsd	xmm3, xmm1, 0x1
+1404ee70a: eb 33                       	jmp	0x1404ee73f <.text+0x4ed73f>
+1404ee70c: f2 0f 11 54 24 30           	movsd	qword ptr [rsp + 0x30], xmm2
+1404ee712: 0f 10 c1                    	movups	xmm0, xmm1
+1404ee715: e8 86 1d bf ff              	call	0x1400e04a0 <.text+0xdf4a0> ; math.Floor
+1404ee71a: 48 8b 84 24 90 00 00 00     	mov	rax, qword ptr [rsp + 0x90]
+1404ee722: 0f b6 9c 24 98 00 00 00     	movzx	ebx, byte ptr [rsp + 0x98]
+1404ee72a: f2 0f 10 4c 24 60           	movsd	xmm1, qword ptr [rsp + 0x60]
+1404ee730: f2 0f 10 54 24 30           	movsd	xmm2, qword ptr [rsp + 0x30]
+1404ee736: 0f 10 d8                    	movups	xmm3, xmm0
+1404ee739: f2 0f 10 44 24 68           	movsd	xmm0, qword ptr [rsp + 0x68]
+1404ee73f: f2 0f 5c c2                 	subsd	xmm0, xmm2
+1404ee743: 0f 57 e4                    	xorps	xmm4, xmm4
+1404ee746: 66 0f 2e e0                 	ucomisd	xmm4, xmm0
+1404ee74a: 76 05                       	jbe	0x1404ee751 <.text+0x4ed751>
+1404ee74c: 0f 57 c0                    	xorps	xmm0, xmm0
+1404ee74f: eb 16                       	jmp	0x1404ee767 <.text+0x4ed767>
+1404ee751: f2 0f 10 2d 5f bc 40 00     	movsd	xmm5, qword ptr [rip + 0x40bc5f] # 0x1408fa3b8 ; f64=1.0
+1404ee759: 66 0f 2e c5                 	ucomisd	xmm0, xmm5
+1404ee75d: 76 08                       	jbe	0x1404ee767 <.text+0x4ed767>
+1404ee75f: f2 0f 10 05 51 bc 40 00     	movsd	xmm0, qword ptr [rip + 0x40bc51] # 0x1408fa3b8 ; f64=1.0
+1404ee767: f2 0f 5c cb                 	subsd	xmm1, xmm3
+1404ee76b: 0f 10 e8                    	movups	xmm5, xmm0
+1404ee76e: f2 0f 59 c0                 	mulsd	xmm0, xmm0
+1404ee772: f2 0f 58 ed                 	addsd	xmm5, xmm5
+1404ee776: f2 0f 10 35 ea be 40 00     	movsd	xmm6, qword ptr [rip + 0x40beea] # 0x1408fa668 ; f64=3.0
+1404ee77e: f2 0f 5c f5                 	subsd	xmm6, xmm5
+1404ee782: f2 0f 59 f0                 	mulsd	xmm6, xmm0
+1404ee786: f2 0f 11 74 24 28           	movsd	qword ptr [rsp + 0x28], xmm6
+1404ee78c: 66 0f 2e e1                 	ucomisd	xmm4, xmm1
+1404ee790: 76 05                       	jbe	0x1404ee797 <.text+0x4ed797>
+1404ee792: 0f 57 c9                    	xorps	xmm1, xmm1
+1404ee795: eb 16                       	jmp	0x1404ee7ad <.text+0x4ed7ad>
+1404ee797: f2 0f 10 05 19 bc 40 00     	movsd	xmm0, qword ptr [rip + 0x40bc19] # 0x1408fa3b8 ; f64=1.0
+1404ee79f: 66 0f 2e c8                 	ucomisd	xmm1, xmm0
+1404ee7a3: 76 08                       	jbe	0x1404ee7ad <.text+0x4ed7ad>
+1404ee7a5: f2 0f 10 0d 0b bc 40 00     	movsd	xmm1, qword ptr [rip + 0x40bc0b] # 0x1408fa3b8 ; f64=1.0
+1404ee7ad: f2 48 0f 2c ca              	cvttsd2si	rcx, xmm2
+1404ee7b2: 48 89 4c 24 58              	mov	qword ptr [rsp + 0x58], rcx
+1404ee7b7: f2 48 0f 2c fb              	cvttsd2si	rdi, xmm3
+1404ee7bc: 48 89 7c 24 50              	mov	qword ptr [rsp + 0x50], rdi
+1404ee7c1: 48 8d 51 01                 	lea	rdx, [rcx + 0x1]
+1404ee7c5: 48 89 54 24 78              	mov	qword ptr [rsp + 0x78], rdx
+1404ee7ca: 48 8d 57 01                 	lea	rdx, [rdi + 0x1]
+1404ee7ce: 48 89 54 24 70              	mov	qword ptr [rsp + 0x70], rdx
+1404ee7d3: 0f 10 c1                    	movups	xmm0, xmm1
+1404ee7d6: f2 0f 59 c9                 	mulsd	xmm1, xmm1
+1404ee7da: f2 0f 58 c0                 	addsd	xmm0, xmm0
+1404ee7de: f2 0f 10 15 82 be 40 00     	movsd	xmm2, qword ptr [rip + 0x40be82] # 0x1408fa668 ; f64=3.0
+1404ee7e6: f2 0f 5c d0                 	subsd	xmm2, xmm0
+1404ee7ea: f2 0f 59 d1                 	mulsd	xmm2, xmm1
+1404ee7ee: f2 0f 11 54 24 20           	movsd	qword ptr [rsp + 0x20], xmm2
+1404ee7f4: e8 c7 02 00 00              	call	0x1404eeac0 <.text+0x4edac0> ; jammers/client/internal/bearingnoise.grid
+1404ee7f9: f2 0f 11 44 24 48           	movsd	qword ptr [rsp + 0x48], xmm0
+1404ee7ff: 48 8b 84 24 90 00 00 00     	mov	rax, qword ptr [rsp + 0x90]
+1404ee807: 0f b6 9c 24 98 00 00 00     	movzx	ebx, byte ptr [rsp + 0x98]
+1404ee80f: 48 8b 4c 24 78              	mov	rcx, qword ptr [rsp + 0x78]
+1404ee814: 48 8b 7c 24 50              	mov	rdi, qword ptr [rsp + 0x50]
+1404ee819: e8 a2 02 00 00              	call	0x1404eeac0 <.text+0x4edac0> ; jammers/client/internal/bearingnoise.grid
+1404ee81e: f2 0f 11 44 24 38           	movsd	qword ptr [rsp + 0x38], xmm0
+1404ee824: 48 8b 84 24 90 00 00 00     	mov	rax, qword ptr [rsp + 0x90]
+1404ee82c: 0f b6 9c 24 98 00 00 00     	movzx	ebx, byte ptr [rsp + 0x98]
+1404ee834: 48 8b 4c 24 58              	mov	rcx, qword ptr [rsp + 0x58]
+1404ee839: 48 8b 7c 24 70              	mov	rdi, qword ptr [rsp + 0x70]
+1404ee83e: 66 90                       	nop
+1404ee840: e8 7b 02 00 00              	call	0x1404eeac0 <.text+0x4edac0> ; jammers/client/internal/bearingnoise.grid
+1404ee845: f2 0f 11 44 24 40           	movsd	qword ptr [rsp + 0x40], xmm0
+1404ee84b: 48 8b 84 24 90 00 00 00     	mov	rax, qword ptr [rsp + 0x90]
+1404ee853: 0f b6 9c 24 98 00 00 00     	movzx	ebx, byte ptr [rsp + 0x98]
+1404ee85b: 48 8b 4c 24 78              	mov	rcx, qword ptr [rsp + 0x78]
+1404ee860: 48 8b 7c 24 70              	mov	rdi, qword ptr [rsp + 0x70]
+1404ee865: e8 56 02 00 00              	call	0x1404eeac0 <.text+0x4edac0> ; jammers/client/internal/bearingnoise.grid
+1404ee86a: f2 0f 10 4c 24 38           	movsd	xmm1, qword ptr [rsp + 0x38]
+1404ee870: f2 0f 10 54 24 48           	movsd	xmm2, qword ptr [rsp + 0x48]
+1404ee876: f2 0f 5c ca                 	subsd	xmm1, xmm2
+1404ee87a: f2 0f 10 5c 24 28           	movsd	xmm3, qword ptr [rsp + 0x28]
+1404ee880: f2 0f 59 cb                 	mulsd	xmm1, xmm3
+1404ee884: f2 0f 58 d1                 	addsd	xmm2, xmm1
+1404ee888: f2 0f 10 4c 24 40           	movsd	xmm1, qword ptr [rsp + 0x40]
+1404ee88e: f2 0f 5c c1                 	subsd	xmm0, xmm1
+1404ee892: f2 0f 59 c3                 	mulsd	xmm0, xmm3
+1404ee896: f2 0f 58 c1                 	addsd	xmm0, xmm1
+1404ee89a: f2 0f 5c c2                 	subsd	xmm0, xmm2
+1404ee89e: f2 0f 10 4c 24 20           	movsd	xmm1, qword ptr [rsp + 0x20]
+1404ee8a4: f2 0f 59 c1                 	mulsd	xmm0, xmm1
+1404ee8a8: f2 0f 58 c2                 	addsd	xmm0, xmm2
+1404ee8ac: 48 83 ec 80                 	sub	rsp, -0x80
+1404ee8b0: 5d                          	pop	rbp
+1404ee8b1: c3                          	ret
+1404ee8b2: 48 89 44 24 08              	mov	qword ptr [rsp + 0x8], rax
+1404ee8b7: 88 5c 24 10                 	mov	byte ptr [rsp + 0x10], bl
+1404ee8bb: f2 0f 11 44 24 18           	movsd	qword ptr [rsp + 0x18], xmm0
+1404ee8c1: f2 0f 11 4c 24 20           	movsd	qword ptr [rsp + 0x20], xmm1
+1404ee8c7: e8 74 dd b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404ee8cc: 48 8b 44 24 08              	mov	rax, qword ptr [rsp + 0x8]
+1404ee8d1: 0f b6 5c 24 10              	movzx	ebx, byte ptr [rsp + 0x10]
+1404ee8d6: f2 0f 10 44 24 18           	movsd	xmm0, qword ptr [rsp + 0x18]
+1404ee8dc: f2 0f 10 4c 24 20           	movsd	xmm1, qword ptr [rsp + 0x20]
+1404ee8e2: e9 99 fd ff ff              	jmp	0x1404ee680 <.text+0x4ed680>
+1404ee8e7: cc                          	int3
+1404ee8e8: cc                          	int3
+1404ee8e9: cc                          	int3
+1404ee8ea: cc                          	int3
+1404ee8eb: cc                          	int3
+1404ee8ec: cc                          	int3
+1404ee8ed: cc                          	int3
+1404ee8ee: cc                          	int3
+1404ee8ef: cc                          	int3
+1404ee8f0: cc                          	int3
+1404ee8f1: cc                          	int3
+1404ee8f2: cc                          	int3
+1404ee8f3: cc                          	int3
+1404ee8f4: cc                          	int3
+1404ee8f5: cc                          	int3
+1404ee8f6: cc                          	int3
+1404ee8f7: cc                          	int3
+1404ee8f8: cc                          	int3
+1404ee8f9: cc                          	int3
+1404ee8fa: cc                          	int3
+1404ee8fb: cc                          	int3
+1404ee8fc: cc                          	int3
+1404ee8fd: cc                          	int3
+1404ee8fe: cc                          	int3
+1404ee8ff: cc                          	int3

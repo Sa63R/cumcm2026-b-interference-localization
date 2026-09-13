@@ -1,0 +1,71 @@
+jammers/client/internal/scenario.(*counterSource).uintN
+Virtual address: 0x1404f02a0
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f02a0: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+1404f02a4: 0f 86 9c 00 00 00           	jbe	0x1404f0346 <.text+0x4ef346>
+1404f02aa: 55                          	push	rbp
+1404f02ab: 48 89 e5                    	mov	rbp, rsp
+1404f02ae: 48 83 ec 20                 	sub	rsp, 0x20
+1404f02b2: 48 89 5c 24 38              	mov	qword ptr [rsp + 0x38], rbx
+1404f02b7: 48 85 ff                    	test	rdi, rdi
+1404f02ba: 74 72                       	je	0x1404f032e <.text+0x4ef32e>
+1404f02bc: 48 ba 00 00 00 00 00 00 00 80       	movabs	rdx, -0x8000000000000000
+1404f02c6: 48 39 d7                    	cmp	rdi, rdx
+1404f02c9: 77 63                       	ja	0x1404f032e <.text+0x4ef32e>
+1404f02cb: 48 89 44 24 30              	mov	qword ptr [rsp + 0x30], rax
+1404f02d0: 48 89 7c 24 48              	mov	qword ptr [rsp + 0x48], rdi
+1404f02d5: 48 89 4c 24 40              	mov	qword ptr [rsp + 0x40], rcx
+1404f02da: 48 89 5c 24 38              	mov	qword ptr [rsp + 0x38], rbx
+1404f02df: 48 89 fa                    	mov	rdx, rdi
+1404f02e2: 48 f7 df                    	neg	rdi
+1404f02e5: 48 89 c6                    	mov	rsi, rax
+1404f02e8: 48 89 f8                    	mov	rax, rdi
+1404f02eb: 49 89 d0                    	mov	r8, rdx
+1404f02ee: 31 d2                       	xor	edx, edx
+1404f02f0: 49 f7 f0                    	div	r8
+1404f02f3: 48 89 54 24 18              	mov	qword ptr [rsp + 0x18], rdx
+1404f02f8: eb 0f                       	jmp	0x1404f0309 <.text+0x4ef309>
+1404f02fa: 48 8b 4c 24 40              	mov	rcx, qword ptr [rsp + 0x40]
+1404f02ff: 48 8b 5c 24 38              	mov	rbx, qword ptr [rsp + 0x38]
+1404f0304: 48 8b 74 24 30              	mov	rsi, qword ptr [rsp + 0x30]
+1404f0309: 48 89 f0                    	mov	rax, rsi
+1404f030c: e8 0f fd ff ff              	call	0x1404f0020 <.text+0x4ef020> ; jammers/client/internal/scenario.(*counterSource).next
+1404f0311: 48 8b 54 24 18              	mov	rdx, qword ptr [rsp + 0x18]
+1404f0316: 48 39 d0                    	cmp	rax, rdx
+1404f0319: 72 df                       	jb	0x1404f02fa <.text+0x4ef2fa>
+1404f031b: 48 8b 4c 24 48              	mov	rcx, qword ptr [rsp + 0x48]
+1404f0320: 31 d2                       	xor	edx, edx
+1404f0322: 48 f7 f1                    	div	rcx
+1404f0325: 48 89 d0                    	mov	rax, rdx
+1404f0328: 48 83 c4 20                 	add	rsp, 0x20
+1404f032c: 5d                          	pop	rbp
+1404f032d: c3                          	ret
+1404f032e: 48 8d 05 13 47 b0 00        	lea	rax, [rip + 0xb04713]   # 0x140ff4a48
+1404f0335: 48 8d 1d 04 d8 40 00        	lea	rbx, [rip + 0x40d804]   # 0x1408fdb40
+1404f033c: 0f 1f 40 00                 	nop	dword ptr [rax]
+1404f0340: e8 1b 68 b9 ff              	call	0x140086b60 <.text+0x85b60> ; runtime.gopanic
+1404f0345: 90                          	nop
+1404f0346: 48 89 44 24 08              	mov	qword ptr [rsp + 0x8], rax
+1404f034b: 48 89 5c 24 10              	mov	qword ptr [rsp + 0x10], rbx
+1404f0350: 48 89 4c 24 18              	mov	qword ptr [rsp + 0x18], rcx
+1404f0355: 48 89 7c 24 20              	mov	qword ptr [rsp + 0x20], rdi
+1404f035a: e8 e1 c2 b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f035f: 48 8b 44 24 08              	mov	rax, qword ptr [rsp + 0x8]
+1404f0364: 48 8b 5c 24 10              	mov	rbx, qword ptr [rsp + 0x10]
+1404f0369: 48 8b 4c 24 18              	mov	rcx, qword ptr [rsp + 0x18]
+1404f036e: 48 8b 7c 24 20              	mov	rdi, qword ptr [rsp + 0x20]
+1404f0373: e9 28 ff ff ff              	jmp	0x1404f02a0 <.text+0x4ef2a0>
+1404f0378: cc                          	int3
+1404f0379: cc                          	int3
+1404f037a: cc                          	int3
+1404f037b: cc                          	int3
+1404f037c: cc                          	int3
+1404f037d: cc                          	int3
+1404f037e: cc                          	int3
+1404f037f: cc                          	int3

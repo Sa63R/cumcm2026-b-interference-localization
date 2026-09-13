@@ -1,0 +1,754 @@
+jammers/client/internal/testsession.NewFromState
+Virtual address: 0x1404f6320
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f6320: 4c 8d a4 24 48 f9 ff ff     	lea	r12, [rsp - 0x6b8]
+1404f6328: 4d 3b 66 10                 	cmp	r12, qword ptr [r14 + 0x10]
+1404f632c: 0f 86 f2 0e 00 00           	jbe	0x1404f7224 <.text+0x4f6224>
+1404f6332: 55                          	push	rbp
+1404f6333: 48 89 e5                    	mov	rbp, rsp
+1404f6336: 48 81 ec 30 07 00 00        	sub	rsp, 0x730
+1404f633d: 48 83 bc 24 40 07 00 00 00  	cmp	qword ptr [rsp + 0x740], 0x0
+1404f6346: 0f 84 73 07 00 00           	je	0x1404f6abf <.text+0x4f5abf>
+1404f634c: 48 83 bc 24 b0 07 00 00 00  	cmp	qword ptr [rsp + 0x7b0], 0x0
+1404f6355: 0f 84 64 07 00 00           	je	0x1404f6abf <.text+0x4f5abf>
+1404f635b: 48 83 bc 24 c0 07 00 00 00  	cmp	qword ptr [rsp + 0x7c0], 0x0
+1404f6364: 75 0f                       	jne	0x1404f6375 <.text+0x4f5375>
+1404f6366: 48 8d 15 b3 91 ba 00        	lea	rdx, [rip + 0xba91b3]   # 0x14109f520
+1404f636d: 48 89 94 24 c0 07 00 00     	mov	qword ptr [rsp + 0x7c0], rdx
+1404f6375: 48 8b 84 24 50 07 00 00     	mov	rax, qword ptr [rsp + 0x750]
+1404f637d: 48 8b 9c 24 58 07 00 00     	mov	rbx, qword ptr [rsp + 0x758]
+1404f6385: 48 85 c0                    	test	rax, rax
+1404f6388: 75 0c                       	jne	0x1404f6396 <.text+0x4f5396>
+1404f638a: 48 85 db                    	test	rbx, rbx
+1404f638d: 75 07                       	jne	0x1404f6396 <.text+0x4f5396>
+1404f638f: b8 01 00 00 00              	mov	eax, 0x1
+1404f6394: eb 73                       	jmp	0x1404f6409 <.text+0x4f5409>
+1404f6396: 48 8b bc 24 68 07 00 00     	mov	rdi, qword ptr [rsp + 0x768]
+1404f639e: 48 8b b4 24 70 07 00 00     	mov	rsi, qword ptr [rsp + 0x770]
+1404f63a6: 48 85 ff                    	test	rdi, rdi
+1404f63a9: 75 0c                       	jne	0x1404f63b7 <.text+0x4f53b7>
+1404f63ab: 48 85 f6                    	test	rsi, rsi
+1404f63ae: 75 07                       	jne	0x1404f63b7 <.text+0x4f53b7>
+1404f63b0: b8 01 00 00 00              	mov	eax, 0x1
+1404f63b5: eb 52                       	jmp	0x1404f6409 <.text+0x4f5409>
+1404f63b7: 48 83 bc 24 80 07 00 00 00  	cmp	qword ptr [rsp + 0x780], 0x0
+1404f63c0: 75 12                       	jne	0x1404f63d4 <.text+0x4f53d4>
+1404f63c2: 48 83 bc 24 88 07 00 00 00  	cmp	qword ptr [rsp + 0x788], 0x0
+1404f63cb: 75 07                       	jne	0x1404f63d4 <.text+0x4f53d4>
+1404f63cd: b8 01 00 00 00              	mov	eax, 0x1
+1404f63d2: eb 35                       	jmp	0x1404f6409 <.text+0x4f5409>
+1404f63d4: 48 83 bc 24 98 07 00 00 00  	cmp	qword ptr [rsp + 0x798], 0x0
+1404f63dd: 75 12                       	jne	0x1404f63f1 <.text+0x4f53f1>
+1404f63df: 48 83 bc 24 a0 07 00 00 00  	cmp	qword ptr [rsp + 0x7a0], 0x0
+1404f63e8: 75 07                       	jne	0x1404f63f1 <.text+0x4f53f1>
+1404f63ea: b8 01 00 00 00              	mov	eax, 0x1
+1404f63ef: eb 18                       	jmp	0x1404f6409 <.text+0x4f5409>
+1404f63f1: 48 8b 8c 24 60 07 00 00     	mov	rcx, qword ptr [rsp + 0x760]
+1404f63f9: 4c 8b 84 24 78 07 00 00     	mov	r8, qword ptr [rsp + 0x778]
+1404f6401: e8 fa 06 bd ff              	call	0x1400c6b00 <.text+0xc5b00> ; time.Time.Before
+1404f6406: 83 f0 01                    	xor	eax, 0x1
+1404f6409: 84 c0                       	test	al, al
+1404f640b: 75 32                       	jne	0x1404f643f <.text+0x4f543f>
+1404f640d: 48 8b 94 24 80 07 00 00     	mov	rdx, qword ptr [rsp + 0x780]
+1404f6415: 81 e2 ff ff ff 3f           	and	edx, 0x3fffffff
+1404f641b: 48 63 d2                    	movsxd	rdx, edx
+1404f641e: 48 be 39 61 c2 68 56 b6 0f 79       	movabs	rsi, 0x790fb65668c26139
+1404f6428: 48 0f af d6                 	imul	rdx, rsi
+1404f642c: 48 c1 c2 3a                 	rol	rdx, 0x3a
+1404f6430: 48 be ed b5 a0 f7 c6 10 00 00       	movabs	rsi, 0x10c6f7a0b5ed
+1404f643a: 48 39 d6                    	cmp	rsi, rdx
+1404f643d: 73 3d                       	jae	0x1404f647c <.text+0x4f547c>
+1404f643f: b8 10 00 00 00              	mov	eax, 0x10
+1404f6444: 48 8d 1d dd a5 b1 00        	lea	rbx, [rip + 0xb1a5dd]   # 0x141010a28
+1404f644b: b9 01 00 00 00              	mov	ecx, 0x1
+1404f6450: e8 6b c6 b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f6455: 48 c7 40 08 2d 00 00 00     	mov	qword ptr [rax + 0x8], 0x2d
+1404f645d: 48 8d 15 42 8d 32 00        	lea	rdx, [rip + 0x328d42]   # 0x14081f1a6 ; text_prefix='invalid restored test session time boundarieslifecycle error code does not match the event'
+1404f6464: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f6467: 48 8d 1d e2 15 ba 00        	lea	rbx, [rip + 0xba15e2]   # 0x141097a50
+1404f646e: 48 89 c1                    	mov	rcx, rax
+1404f6471: 31 c0                       	xor	eax, eax
+1404f6473: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f647a: 5d                          	pop	rbp
+1404f647b: c3                          	ret
+1404f647c: 48 83 bc 24 c8 07 00 00 00  	cmp	qword ptr [rsp + 0x7c8], 0x0
+1404f6485: 75 0f                       	jne	0x1404f6496 <.text+0x4f5496>
+1404f6487: 48 8d 0d aa 9b ba 00        	lea	rcx, [rip + 0xba9baa]   # 0x1410a0038
+1404f648e: 48 89 8c 24 c8 07 00 00     	mov	qword ptr [rsp + 0x7c8], rcx
+1404f6496: 48 8b 8c 24 40 07 00 00     	mov	rcx, qword ptr [rsp + 0x740]
+1404f649e: 48 8b 84 24 48 07 00 00     	mov	rax, qword ptr [rsp + 0x748]
+1404f64a6: 48 8b 49 20                 	mov	rcx, qword ptr [rcx + 0x20]
+1404f64aa: ff d1                       	call	rcx
+1404f64ac: 88 84 24 88 06 00 00        	mov	byte ptr [rsp + 0x688], al
+1404f64b3: 88 9c 24 89 06 00 00        	mov	byte ptr [rsp + 0x689], bl
+1404f64ba: f2 0f 11 84 24 90 06 00 00  	movsd	qword ptr [rsp + 0x690], xmm0
+1404f64c3: f2 0f 11 8c 24 98 06 00 00  	movsd	qword ptr [rsp + 0x698], xmm1
+1404f64cc: 88 8c 24 a0 06 00 00        	mov	byte ptr [rsp + 0x6a0], cl
+1404f64d3: 89 bc 24 a4 06 00 00        	mov	dword ptr [rsp + 0x6a4], edi
+1404f64da: 48 89 b4 24 a8 06 00 00     	mov	qword ptr [rsp + 0x6a8], rsi
+1404f64e2: 4c 89 84 24 b0 06 00 00     	mov	qword ptr [rsp + 0x6b0], r8
+1404f64ea: 4c 89 8c 24 b8 06 00 00     	mov	qword ptr [rsp + 0x6b8], r9
+1404f64f2: 0f b6 84 24 88 06 00 00     	movzx	eax, byte ptr [rsp + 0x688]
+1404f64fa: 0f b6 9c 24 89 06 00 00     	movzx	ebx, byte ptr [rsp + 0x689]
+1404f6502: f2 0f 10 84 24 90 06 00 00  	movsd	xmm0, qword ptr [rsp + 0x690]
+1404f650b: f2 0f 10 8c 24 98 06 00 00  	movsd	xmm1, qword ptr [rsp + 0x698]
+1404f6514: 0f b6 8c 24 a0 06 00 00     	movzx	ecx, byte ptr [rsp + 0x6a0]
+1404f651c: 8b bc 24 a4 06 00 00        	mov	edi, dword ptr [rsp + 0x6a4]
+1404f6523: 48 8b b4 24 a8 06 00 00     	mov	rsi, qword ptr [rsp + 0x6a8]
+1404f652b: 4c 8b 84 24 b0 06 00 00     	mov	r8, qword ptr [rsp + 0x6b0]
+1404f6533: 4c 8b 8c 24 b8 06 00 00     	mov	r9, qword ptr [rsp + 0x6b8]
+1404f653b: 48 8d 94 24 c8 02 00 00     	lea	rdx, [rsp + 0x2c8]
+1404f6543: 4c 8d 94 24 88 06 00 00     	lea	r10, [rsp + 0x688]
+1404f654b: 45 0f 10 32                 	movups	xmm14, xmmword ptr [r10]
+1404f654f: 44 0f 11 32                 	movups	xmmword ptr [rdx], xmm14
+1404f6553: 45 0f 10 72 10              	movups	xmm14, xmmword ptr [r10 + 0x10]
+1404f6558: 44 0f 11 72 10              	movups	xmmword ptr [rdx + 0x10], xmm14
+1404f655d: 45 0f 10 72 20              	movups	xmm14, xmmword ptr [r10 + 0x20]
+1404f6562: 44 0f 11 72 20              	movups	xmmword ptr [rdx + 0x20], xmm14
+1404f6567: 45 0f 10 72 28              	movups	xmm14, xmmword ptr [r10 + 0x28]
+1404f656c: 44 0f 11 72 28              	movups	xmmword ptr [rdx + 0x28], xmm14
+1404f6571: 48 8b 94 24 68 07 00 00     	mov	rdx, qword ptr [rsp + 0x768]
+1404f6579: 4c 8b 94 24 70 07 00 00     	mov	r10, qword ptr [rsp + 0x770]
+1404f6581: 4c 8b 9c 24 78 07 00 00     	mov	r11, qword ptr [rsp + 0x778]
+1404f6589: 49 89 e4                    	mov	r12, rsp
+1404f658c: 4c 8d ac 24 d0 07 00 00     	lea	r13, [rsp + 0x7d0]
+1404f6594: 45 0f 10 75 00              	movups	xmm14, xmmword ptr [r13]
+1404f6599: 45 0f 11 34 24              	movups	xmmword ptr [r12], xmm14
+1404f659e: 45 0f 10 75 10              	movups	xmm14, xmmword ptr [r13 + 0x10]
+1404f65a3: 45 0f 11 74 24 10           	movups	xmmword ptr [r12 + 0x10], xmm14
+1404f65a9: 45 0f 10 75 20              	movups	xmm14, xmmword ptr [r13 + 0x20]
+1404f65ae: 45 0f 11 74 24 20           	movups	xmmword ptr [r12 + 0x20], xmm14
+1404f65b4: 45 0f 10 75 30              	movups	xmm14, xmmword ptr [r13 + 0x30]
+1404f65b9: 45 0f 11 74 24 30           	movups	xmmword ptr [r12 + 0x30], xmm14
+1404f65bf: 45 0f 10 75 40              	movups	xmm14, xmmword ptr [r13 + 0x40]
+1404f65c4: 45 0f 11 74 24 40           	movups	xmmword ptr [r12 + 0x40], xmm14
+1404f65ca: 45 0f 10 75 50              	movups	xmm14, xmmword ptr [r13 + 0x50]
+1404f65cf: 45 0f 11 74 24 50           	movups	xmmword ptr [r12 + 0x50], xmm14
+1404f65d5: 45 0f 10 75 60              	movups	xmm14, xmmword ptr [r13 + 0x60]
+1404f65da: 45 0f 11 74 24 60           	movups	xmmword ptr [r12 + 0x60], xmm14
+1404f65e0: 45 0f 10 75 68              	movups	xmm14, xmmword ptr [r13 + 0x68]
+1404f65e5: 45 0f 11 74 24 68           	movups	xmmword ptr [r12 + 0x68], xmm14
+1404f65eb: 48 89 54 24 78              	mov	qword ptr [rsp + 0x78], rdx
+1404f65f0: 4c 89 94 24 80 00 00 00     	mov	qword ptr [rsp + 0x80], r10
+1404f65f8: 4c 89 9c 24 88 00 00 00     	mov	qword ptr [rsp + 0x88], r11
+1404f6600: e8 3b 0c 00 00              	call	0x1404f7240 <.text+0x4f6240> ; jammers/client/internal/testsession.validateRestoredSessionState
+1404f6605: 48 85 c0                    	test	rax, rax
+1404f6608: 0f 85 a0 04 00 00           	jne	0x1404f6aae <.text+0x4f5aae>
+1404f660e: 48 8b 94 24 b0 07 00 00     	mov	rdx, qword ptr [rsp + 0x7b0]
+1404f6616: 66 0f 1f 84 00 00 00 00 00  	nop	word ptr [rax + rax]
+1404f661f: 90                          	nop
+1404f6620: 48 39 94 24 38 08 00 00     	cmp	qword ptr [rsp + 0x838], rdx
+1404f6628: 0f 87 43 04 00 00           	ja	0x1404f6a71 <.text+0x4f5a71>
+1404f662e: 48 8d 05 73 14 a9 00        	lea	rax, [rip + 0xa91473]   # 0x140f87aa8
+1404f6635: 31 db                       	xor	ebx, ebx
+1404f6637: e8 24 27 b2 ff              	call	0x140018d60 <.text+0x17d60> ; runtime.makechan
+1404f663c: 48 89 84 24 28 07 00 00     	mov	qword ptr [rsp + 0x728], rax
+1404f6644: e8 77 e9 b8 ff              	call	0x140084fc0 <.text+0x83fc0> ; runtime.makemap_small
+1404f6649: 48 89 84 24 20 07 00 00     	mov	qword ptr [rsp + 0x720], rax
+1404f6651: 48 8d 05 28 3b b9 00        	lea	rax, [rip + 0xb93b28]   # 0x14108a180
+1404f6658: e8 63 bb b2 ff              	call	0x1400221c0 <.text+0x211c0> ; runtime.newobject
+1404f665d: 48 8b 8c 24 40 07 00 00     	mov	rcx, qword ptr [rsp + 0x740]
+1404f6665: 48 8b 94 24 48 07 00 00     	mov	rdx, qword ptr [rsp + 0x748]
+1404f666d: 48 89 48 10                 	mov	qword ptr [rax + 0x10], rcx
+1404f6671: 83 3d a8 12 cd 00 00        	cmp	dword ptr [rip + 0xcd12a8], 0x0 # 0x1411c7920
+1404f6678: 74 08                       	je	0x1404f6682 <.text+0x4f5682>
+1404f667a: e8 41 7a b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f667f: 49 89 13                    	mov	qword ptr [r11], rdx
+1404f6682: 48 89 50 18                 	mov	qword ptr [rax + 0x18], rdx
+1404f6686: 48 8b 94 24 c0 07 00 00     	mov	rdx, qword ptr [rsp + 0x7c0]
+1404f668e: 83 3d 8b 12 cd 00 00        	cmp	dword ptr [rip + 0xcd128b], 0x0 # 0x1411c7920
+1404f6695: 74 08                       	je	0x1404f669f <.text+0x4f569f>
+1404f6697: e8 24 7a b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f669c: 49 89 13                    	mov	qword ptr [r11], rdx
+1404f669f: 48 89 50 20                 	mov	qword ptr [rax + 0x20], rdx
+1404f66a3: 48 8b 94 24 c8 07 00 00     	mov	rdx, qword ptr [rsp + 0x7c8]
+1404f66ab: 83 3d 6e 12 cd 00 00        	cmp	dword ptr [rip + 0xcd126e], 0x0 # 0x1411c7920
+1404f66b2: 74 08                       	je	0x1404f66bc <.text+0x4f56bc>
+1404f66b4: e8 07 7a b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f66b9: 49 89 13                    	mov	qword ptr [r11], rdx
+1404f66bc: 48 89 50 28                 	mov	qword ptr [rax + 0x28], rdx
+1404f66c0: 48 8b 94 24 50 07 00 00     	mov	rdx, qword ptr [rsp + 0x750]
+1404f66c8: 48 8b b4 24 58 07 00 00     	mov	rsi, qword ptr [rsp + 0x758]
+1404f66d0: 48 8b bc 24 60 07 00 00     	mov	rdi, qword ptr [rsp + 0x760]
+1404f66d8: 48 89 50 30                 	mov	qword ptr [rax + 0x30], rdx
+1404f66dc: 48 89 70 38                 	mov	qword ptr [rax + 0x38], rsi
+1404f66e0: 83 3d 39 12 cd 00 00        	cmp	dword ptr [rip + 0xcd1239], 0x0 # 0x1411c7920
+1404f66e7: 74 08                       	je	0x1404f66f1 <.text+0x4f56f1>
+1404f66e9: e8 d2 79 b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f66ee: 49 89 3b                    	mov	qword ptr [r11], rdi
+1404f66f1: 48 89 78 40                 	mov	qword ptr [rax + 0x40], rdi
+1404f66f5: 48 8b 94 24 68 07 00 00     	mov	rdx, qword ptr [rsp + 0x768]
+1404f66fd: 48 8b b4 24 70 07 00 00     	mov	rsi, qword ptr [rsp + 0x770]
+1404f6705: 48 8b bc 24 78 07 00 00     	mov	rdi, qword ptr [rsp + 0x778]
+1404f670d: 48 89 50 48                 	mov	qword ptr [rax + 0x48], rdx
+1404f6711: 48 89 70 50                 	mov	qword ptr [rax + 0x50], rsi
+1404f6715: 83 3d 04 12 cd 00 00        	cmp	dword ptr [rip + 0xcd1204], 0x0 # 0x1411c7920
+1404f671c: 74 0a                       	je	0x1404f6728 <.text+0x4f5728>
+1404f671e: 66 90                       	nop
+1404f6720: e8 9b 79 b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f6725: 49 89 3b                    	mov	qword ptr [r11], rdi
+1404f6728: 48 89 78 58                 	mov	qword ptr [rax + 0x58], rdi
+1404f672c: 48 8b 94 24 80 07 00 00     	mov	rdx, qword ptr [rsp + 0x780]
+1404f6734: 48 8b b4 24 88 07 00 00     	mov	rsi, qword ptr [rsp + 0x788]
+1404f673c: 48 8b bc 24 90 07 00 00     	mov	rdi, qword ptr [rsp + 0x790]
+1404f6744: 48 89 50 60                 	mov	qword ptr [rax + 0x60], rdx
+1404f6748: 48 89 70 68                 	mov	qword ptr [rax + 0x68], rsi
+1404f674c: 83 3d cd 11 cd 00 00        	cmp	dword ptr [rip + 0xcd11cd], 0x0 # 0x1411c7920
+1404f6753: 74 08                       	je	0x1404f675d <.text+0x4f575d>
+1404f6755: e8 66 79 b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f675a: 49 89 3b                    	mov	qword ptr [r11], rdi
+1404f675d: 48 89 78 70                 	mov	qword ptr [rax + 0x70], rdi
+1404f6761: 48 8b 94 24 98 07 00 00     	mov	rdx, qword ptr [rsp + 0x798]
+1404f6769: 48 8b b4 24 a0 07 00 00     	mov	rsi, qword ptr [rsp + 0x7a0]
+1404f6771: 48 8b bc 24 a8 07 00 00     	mov	rdi, qword ptr [rsp + 0x7a8]
+1404f6779: 48 89 50 78                 	mov	qword ptr [rax + 0x78], rdx
+1404f677d: 48 89 b0 80 00 00 00        	mov	qword ptr [rax + 0x80], rsi
+1404f6784: 83 3d 95 11 cd 00 00        	cmp	dword ptr [rip + 0xcd1195], 0x0 # 0x1411c7920
+1404f678b: 74 08                       	je	0x1404f6795 <.text+0x4f5795>
+1404f678d: e8 2e 79 b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f6792: 49 89 3b                    	mov	qword ptr [r11], rdi
+1404f6795: 48 89 b8 88 00 00 00        	mov	qword ptr [rax + 0x88], rdi
+1404f679c: 48 8b 94 24 e8 07 00 00     	mov	rdx, qword ptr [rsp + 0x7e8]
+1404f67a4: 48 8b b4 24 f0 07 00 00     	mov	rsi, qword ptr [rsp + 0x7f0]
+1404f67ac: 48 8b bc 24 f8 07 00 00     	mov	rdi, qword ptr [rsp + 0x7f8]
+1404f67b4: 48 89 90 90 00 00 00        	mov	qword ptr [rax + 0x90], rdx
+1404f67bb: 48 89 b0 98 00 00 00        	mov	qword ptr [rax + 0x98], rsi
+1404f67c2: 83 3d 57 11 cd 00 00        	cmp	dword ptr [rip + 0xcd1157], 0x0 # 0x1411c7920
+1404f67c9: 74 08                       	je	0x1404f67d3 <.text+0x4f57d3>
+1404f67cb: e8 f0 78 b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f67d0: 49 89 3b                    	mov	qword ptr [r11], rdi
+1404f67d3: 48 89 b8 a0 00 00 00        	mov	qword ptr [rax + 0xa0], rdi
+1404f67da: 48 8b 94 24 d0 07 00 00     	mov	rdx, qword ptr [rsp + 0x7d0]
+1404f67e2: 48 8b b4 24 d8 07 00 00     	mov	rsi, qword ptr [rsp + 0x7d8]
+1404f67ea: 48 8b bc 24 e0 07 00 00     	mov	rdi, qword ptr [rsp + 0x7e0]
+1404f67f2: 48 89 90 a8 00 00 00        	mov	qword ptr [rax + 0xa8], rdx
+1404f67f9: 48 89 b0 b0 00 00 00        	mov	qword ptr [rax + 0xb0], rsi
+1404f6800: 83 3d 19 11 cd 00 00        	cmp	dword ptr [rip + 0xcd1119], 0x0 # 0x1411c7920
+1404f6807: 74 08                       	je	0x1404f6811 <.text+0x4f5811>
+1404f6809: e8 b2 78 b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f680e: 49 89 3b                    	mov	qword ptr [r11], rdi
+1404f6811: 48 89 b8 b8 00 00 00        	mov	qword ptr [rax + 0xb8], rdi
+1404f6818: 48 8b 94 24 00 08 00 00     	mov	rdx, qword ptr [rsp + 0x800]
+1404f6820: 48 8b b4 24 08 08 00 00     	mov	rsi, qword ptr [rsp + 0x808]
+1404f6828: 48 8b bc 24 10 08 00 00     	mov	rdi, qword ptr [rsp + 0x810]
+1404f6830: 48 89 90 c0 00 00 00        	mov	qword ptr [rax + 0xc0], rdx
+1404f6837: 48 89 b0 c8 00 00 00        	mov	qword ptr [rax + 0xc8], rsi
+1404f683e: 83 3d db 10 cd 00 00        	cmp	dword ptr [rip + 0xcd10db], 0x0 # 0x1411c7920
+1404f6845: 74 08                       	je	0x1404f684f <.text+0x4f584f>
+1404f6847: e8 74 78 b9 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+1404f684c: 49 89 3b                    	mov	qword ptr [r11], rdi
+1404f684f: 48 89 84 24 00 03 00 00     	mov	qword ptr [rsp + 0x300], rax
+1404f6857: 48 89 b8 d0 00 00 00        	mov	qword ptr [rax + 0xd0], rdi
+1404f685e: 48 8b 94 24 20 08 00 00     	mov	rdx, qword ptr [rsp + 0x820]
+1404f6866: 48 8b b4 24 18 08 00 00     	mov	rsi, qword ptr [rsp + 0x818]
+1404f686e: 48 89 90 e0 00 00 00        	mov	qword ptr [rax + 0xe0], rdx
+1404f6875: 48 8d 98 e8 00 00 00        	lea	rbx, [rax + 0xe8]
+1404f687c: 83 3d 9d 10 cd 00 00        	cmp	dword ptr [rip + 0xcd109d], 0x0 # 0x1411c7920
+1404f6883: 74 72                       	je	0x1404f68f7 <.text+0x4f58f7>
+1404f6885: 48 89 9c 24 18 07 00 00     	mov	qword ptr [rsp + 0x718], rbx
+1404f688d: 48 89 b4 24 10 07 00 00     	mov	qword ptr [rsp + 0x710], rsi
+1404f6895: 48 8b 90 28 01 00 00        	mov	rdx, qword ptr [rax + 0x128]
+1404f689c: 48 8b b8 50 01 00 00        	mov	rdi, qword ptr [rax + 0x150]
+1404f68a3: e8 98 78 b9 ff              	call	0x14008e140 <.text+0x8d140> ; runtime.gcWriteBarrier5
+1404f68a8: 49 89 33                    	mov	qword ptr [r11], rsi
+1404f68ab: 48 8b b4 24 28 07 00 00     	mov	rsi, qword ptr [rsp + 0x728]
+1404f68b3: 49 89 73 08                 	mov	qword ptr [r11 + 0x8], rsi
+1404f68b7: 49 89 53 10                 	mov	qword ptr [r11 + 0x10], rdx
+1404f68bb: 48 8b 94 24 20 07 00 00     	mov	rdx, qword ptr [rsp + 0x720]
+1404f68c3: 49 89 53 18                 	mov	qword ptr [r11 + 0x18], rdx
+1404f68c7: 49 89 7b 20                 	mov	qword ptr [r11 + 0x20], rdi
+1404f68cb: 48 8d 05 3e 7e b7 00        	lea	rax, [rip + 0xb77e3e]   # 0x14106e710
+1404f68d2: 48 8d 8c 24 c8 02 00 00     	lea	rcx, [rsp + 0x2c8]
+1404f68da: e8 01 f8 b2 ff              	call	0x1400260e0 <.text+0x250e0> ; runtime.wbMove
+1404f68df: 48 8b 84 24 00 03 00 00     	mov	rax, qword ptr [rsp + 0x300]
+1404f68e7: 48 8b 9c 24 18 07 00 00     	mov	rbx, qword ptr [rsp + 0x718]
+1404f68ef: 48 8b b4 24 10 07 00 00     	mov	rsi, qword ptr [rsp + 0x710]
+1404f68f7: 48 89 b0 d8 00 00 00        	mov	qword ptr [rax + 0xd8], rsi
+1404f68fe: 48 8d 94 24 c8 02 00 00     	lea	rdx, [rsp + 0x2c8]
+1404f6906: 44 0f 10 32                 	movups	xmm14, xmmword ptr [rdx]
+1404f690a: 44 0f 11 33                 	movups	xmmword ptr [rbx], xmm14
+1404f690e: 44 0f 10 72 10              	movups	xmm14, xmmword ptr [rdx + 0x10]
+1404f6913: 44 0f 11 73 10              	movups	xmmword ptr [rbx + 0x10], xmm14
+1404f6918: 44 0f 10 72 20              	movups	xmm14, xmmword ptr [rdx + 0x20]
+1404f691d: 44 0f 11 73 20              	movups	xmmword ptr [rbx + 0x20], xmm14
+1404f6922: 44 0f 10 72 28              	movups	xmm14, xmmword ptr [rdx + 0x28]
+1404f6927: 44 0f 11 73 28              	movups	xmmword ptr [rbx + 0x28], xmm14
+1404f692c: 48 8b 94 24 28 07 00 00     	mov	rdx, qword ptr [rsp + 0x728]
+1404f6934: 48 89 90 28 01 00 00        	mov	qword ptr [rax + 0x128], rdx
+1404f693b: 48 8b 94 24 20 07 00 00     	mov	rdx, qword ptr [rsp + 0x720]
+1404f6943: 48 89 90 50 01 00 00        	mov	qword ptr [rax + 0x150], rdx
+1404f694a: 48 8b 94 24 b0 07 00 00     	mov	rdx, qword ptr [rsp + 0x7b0]
+1404f6952: 48 89 90 58 01 00 00        	mov	qword ptr [rax + 0x158], rdx
+1404f6959: 0f b6 94 24 b8 07 00 00     	movzx	edx, byte ptr [rsp + 0x7b8]
+1404f6961: 88 90 60 01 00 00           	mov	byte ptr [rax + 0x160], dl
+1404f6967: b8 38 00 00 00              	mov	eax, 0x38
+1404f696c: 48 8d 1d 7d a1 b5 00        	lea	rbx, [rip + 0xb5a17d]   # 0x141050af0
+1404f6973: b9 01 00 00 00              	mov	ecx, 0x1
+1404f6978: e8 23 d0 b2 ff              	call	0x1400239a0 <.text+0x229a0> ; runtime.mallocgcSmallScanNoHeaderSC6
+1404f697d: 48 8d 15 94 36 ba 00        	lea	rdx, [rip + 0xba3694]   # 0x14109a018
+1404f6984: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f6987: 83 3d 92 0f cd 00 00        	cmp	dword ptr [rip + 0xcd0f92], 0x0 # 0x1411c7920
+1404f698e: 75 0a                       	jne	0x1404f699a <.text+0x4f599a>
+1404f6990: 48 8b 94 24 00 03 00 00     	mov	rdx, qword ptr [rsp + 0x300]
+1404f6998: eb 1c                       	jmp	0x1404f69b6 <.text+0x4f59b6>
+1404f699a: 48 8b 94 24 00 03 00 00     	mov	rdx, qword ptr [rsp + 0x300]
+1404f69a2: 48 8b 72 08                 	mov	rsi, qword ptr [rdx + 0x8]
+1404f69a6: e8 55 77 b9 ff              	call	0x14008e100 <.text+0x8d100> ; runtime.gcWriteBarrier3
+1404f69ab: 49 89 13                    	mov	qword ptr [r11], rdx
+1404f69ae: 49 89 43 08                 	mov	qword ptr [r11 + 0x8], rax
+1404f69b2: 49 89 73 10                 	mov	qword ptr [r11 + 0x10], rsi
+1404f69b6: 48 89 50 08                 	mov	qword ptr [rax + 0x8], rdx
+1404f69ba: 48 89 42 08                 	mov	qword ptr [rdx + 0x8], rax
+1404f69be: 48 8b 9c 24 38 08 00 00     	mov	rbx, qword ptr [rsp + 0x838]
+1404f69c6: 48 8b b4 24 28 08 00 00     	mov	rsi, qword ptr [rsp + 0x828]
+1404f69ce: 48 89 b4 24 c8 00 00 00     	mov	qword ptr [rsp + 0xc8], rsi
+1404f69d6: 48 8d 8c 24 c0 06 00 00     	lea	rcx, [rsp + 0x6c0]
+1404f69de: 44 0f 11 39                 	movups	xmmword ptr [rcx], xmm15
+1404f69e2: 44 0f 11 79 10              	movups	xmmword ptr [rcx + 0x10], xmm15
+1404f69e7: 44 0f 11 79 20              	movups	xmmword ptr [rcx + 0x20], xmm15
+1404f69ec: 48 83 fb 08                 	cmp	rbx, 0x8
+1404f69f0: 7f 4e                       	jg	0x1404f6a40 <.text+0x4f5a40>
+1404f69f2: 48 8d bc 24 d0 00 00 00     	lea	rdi, [rsp + 0xd0]
+1404f69fa: 44 0f 11 3f                 	movups	xmmword ptr [rdi], xmm15
+1404f69fe: 44 0f 11 7f 10              	movups	xmmword ptr [rdi + 0x10], xmm15
+1404f6a03: 44 0f 11 7f 20              	movups	xmmword ptr [rdi + 0x20], xmm15
+1404f6a08: 44 0f 11 7f 30              	movups	xmmword ptr [rdi + 0x30], xmm15
+1404f6a0d: 44 0f 11 7f 40              	movups	xmmword ptr [rdi + 0x40], xmm15
+1404f6a12: 44 0f 11 7f 50              	movups	xmmword ptr [rdi + 0x50], xmm15
+1404f6a17: 44 0f 11 7f 60              	movups	xmmword ptr [rdi + 0x60], xmm15
+1404f6a1c: 44 0f 11 7f 70              	movups	xmmword ptr [rdi + 0x70], xmm15
+1404f6a21: 44 0f 11 7f 78              	movups	xmmword ptr [rdi + 0x78], xmm15
+1404f6a26: 49 b8 80 80 80 80 80 80 80 80       	movabs	r8, -0x7f7f7f7f7f7f7f80
+1404f6a30: 4c 89 84 24 d0 00 00 00     	mov	qword ptr [rsp + 0xd0], r8
+1404f6a38: 48 89 bc 24 d0 06 00 00     	mov	qword ptr [rsp + 0x6d0], rdi
+1404f6a40: 48 8d 05 91 2d ab 00        	lea	rax, [rip + 0xab2d91]   # 0x140fa97d8
+1404f6a47: e8 b4 e5 b8 ff              	call	0x140085000 <.text+0x84000> ; runtime.makemap
+1404f6a4c: 48 89 84 24 08 03 00 00     	mov	qword ptr [rsp + 0x308], rax
+1404f6a54: 48 8b 94 24 30 08 00 00     	mov	rdx, qword ptr [rsp + 0x830]
+1404f6a5c: 48 8b b4 24 38 08 00 00     	mov	rsi, qword ptr [rsp + 0x838]
+1404f6a64: 48 8b 8c 24 c8 00 00 00     	mov	rcx, qword ptr [rsp + 0xc8]
+1404f6a6c: e9 b8 00 00 00              	jmp	0x1404f6b29 <.text+0x4f5b29>
+1404f6a71: b8 10 00 00 00              	mov	eax, 0x10
+1404f6a76: 48 8d 1d ab 9f b1 00        	lea	rbx, [rip + 0xb19fab]   # 0x141010a28
+1404f6a7d: b9 01 00 00 00              	mov	ecx, 0x1
+1404f6a82: e8 39 c0 b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f6a87: 48 c7 40 08 2c 00 00 00     	mov	qword ptr [rax + 0x8], 0x2c
+1404f6a8f: 48 8d 15 44 7a 32 00        	lea	rdx, [rip + 0x327a44]   # 0x14081e4da ; text_prefix='restored idempotency cache exceeds its limitproblem 3 cannot contain directional jammersno'
+1404f6a96: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f6a99: 48 8d 1d b0 0f ba 00        	lea	rbx, [rip + 0xba0fb0]   # 0x141097a50
+1404f6aa0: 48 89 c1                    	mov	rcx, rax
+1404f6aa3: 31 c0                       	xor	eax, eax
+1404f6aa5: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f6aac: 5d                          	pop	rbp
+1404f6aad: c3                          	ret
+1404f6aae: 48 89 d9                    	mov	rcx, rbx
+1404f6ab1: 48 89 c3                    	mov	rbx, rax
+1404f6ab4: 31 c0                       	xor	eax, eax
+1404f6ab6: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f6abd: 5d                          	pop	rbp
+1404f6abe: c3                          	ret
+1404f6abf: b8 10 00 00 00              	mov	eax, 0x10
+1404f6ac4: 48 8d 1d 5d 9f b1 00        	lea	rbx, [rip + 0xb19f5d]   # 0x141010a28
+1404f6acb: b9 01 00 00 00              	mov	ecx, 0x1
+1404f6ad0: e8 eb bf b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f6ad5: 48 c7 40 08 21 00 00 00     	mov	qword ptr [rax + 0x8], 0x21
+1404f6add: 48 8d 15 c9 a0 31 00        	lea	rdx, [rip + 0x31a0c9]   # 0x140810bad ; text_prefix='invalid test session dependenciesinvalid behavior run-state fieldssql: connection is alrea'
+1404f6ae4: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f6ae7: 48 8d 1d 62 0f ba 00        	lea	rbx, [rip + 0xba0f62]   # 0x141097a50
+1404f6aee: 48 89 c1                    	mov	rcx, rax
+1404f6af1: 31 c0                       	xor	eax, eax
+1404f6af3: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f6afa: 5d                          	pop	rbp
+1404f6afb: c3                          	ret
+1404f6afc: 48 89 30                    	mov	qword ptr [rax], rsi
+1404f6aff: 48 8b 94 24 08 07 00 00     	mov	rdx, qword ptr [rsp + 0x708]
+1404f6b07: 48 81 c2 88 01 00 00        	add	rdx, 0x188
+1404f6b0e: 48 8b b4 24 68 01 00 00     	mov	rsi, qword ptr [rsp + 0x168]
+1404f6b16: 48 ff ce                    	dec	rsi
+1404f6b19: 48 8b 84 24 08 03 00 00     	mov	rax, qword ptr [rsp + 0x308]
+1404f6b21: 48 8b 8c 24 c8 00 00 00     	mov	rcx, qword ptr [rsp + 0xc8]
+1404f6b29: 48 85 f6                    	test	rsi, rsi
+1404f6b2c: 0f 8e 9a 05 00 00           	jle	0x1404f70cc <.text+0x4f60cc>
+1404f6b32: 48 89 b4 24 68 01 00 00     	mov	qword ptr [rsp + 0x168], rsi
+1404f6b3a: 48 89 8c 24 c8 00 00 00     	mov	qword ptr [rsp + 0xc8], rcx
+1404f6b42: 48 89 94 24 08 07 00 00     	mov	qword ptr [rsp + 0x708], rdx
+1404f6b4a: 4c 8b 42 38                 	mov	r8, qword ptr [rdx + 0x38]
+1404f6b4e: 4c 8b 4a 40                 	mov	r9, qword ptr [rdx + 0x40]
+1404f6b52: 44 0f b6 52 30              	movzx	r10d, byte ptr [rdx + 0x30]
+1404f6b57: 44 0f b6 5a 31              	movzx	r11d, byte ptr [rdx + 0x31]
+1404f6b5c: 4c 8b 62 08                 	mov	r12, qword ptr [rdx + 0x8]
+1404f6b60: 4c 8d ac 24 a0 03 00 00     	lea	r13, [rsp + 0x3a0]
+1404f6b68: 48 89 d3                    	mov	rbx, rdx
+1404f6b6b: 41 bf 06 00 00 00           	mov	r15d, 0x6
+1404f6b71: 44 0f 10 32                 	movups	xmm14, xmmword ptr [rdx]
+1404f6b75: 45 0f 11 75 00              	movups	xmmword ptr [r13], xmm14
+1404f6b7a: 44 0f 10 72 10              	movups	xmm14, xmmword ptr [rdx + 0x10]
+1404f6b7f: 45 0f 11 75 10              	movups	xmmword ptr [r13 + 0x10], xmm14
+1404f6b84: 44 0f 10 72 20              	movups	xmm14, xmmword ptr [rdx + 0x20]
+1404f6b89: 45 0f 11 75 20              	movups	xmmword ptr [r13 + 0x20], xmm14
+1404f6b8e: 44 0f 10 72 30              	movups	xmm14, xmmword ptr [rdx + 0x30]
+1404f6b93: 45 0f 11 75 30              	movups	xmmword ptr [r13 + 0x30], xmm14
+1404f6b98: 48 83 c2 40                 	add	rdx, 0x40
+1404f6b9c: 49 83 c5 40                 	add	r13, 0x40
+1404f6ba0: 41 ff cf                    	dec	r15d
+1404f6ba3: 75 cc                       	jne	0x1404f6b71 <.text+0x4f5b71>
+1404f6ba5: 44 0f 10 72 f8              	movups	xmm14, xmmword ptr [rdx - 0x8]
+1404f6baa: 45 0f 11 75 f8              	movups	xmmword ptr [r13 - 0x8], xmm14
+1404f6baf: 4d 85 e4                    	test	r12, r12
+1404f6bb2: 75 0c                       	jne	0x1404f6bc0 <.text+0x4f5bc0>
+1404f6bb4: ba 01 00 00 00              	mov	edx, 0x1
+1404f6bb9: eb 70                       	jmp	0x1404f6c2b <.text+0x4f5c2b>
+1404f6bbb: 0f 1f 44 00 00              	nop	dword ptr [rax + rax]
+1404f6bc0: 41 80 fa 01                 	cmp	r10b, 0x1
+1404f6bc4: 74 07                       	je	0x1404f6bcd <.text+0x4f5bcd>
+1404f6bc6: ba 01 00 00 00              	mov	edx, 0x1
+1404f6bcb: eb 5e                       	jmp	0x1404f6c2b <.text+0x4f5c2b>
+1404f6bcd: 45 84 db                    	test	r11b, r11b
+1404f6bd0: 74 07                       	je	0x1404f6bd9 <.text+0x4f5bd9>
+1404f6bd2: ba 01 00 00 00              	mov	edx, 0x1
+1404f6bd7: eb 52                       	jmp	0x1404f6c2b <.text+0x4f5c2b>
+1404f6bd9: 4d 85 c0                    	test	r8, r8
+1404f6bdc: 75 07                       	jne	0x1404f6be5 <.text+0x4f5be5>
+1404f6bde: ba 01 00 00 00              	mov	edx, 0x1
+1404f6be3: eb 46                       	jmp	0x1404f6c2b <.text+0x4f5c2b>
+1404f6be5: 4d 39 c1                    	cmp	r9, r8
+1404f6be8: 74 07                       	je	0x1404f6bf1 <.text+0x4f5bf1>
+1404f6bea: ba 01 00 00 00              	mov	edx, 0x1
+1404f6bef: eb 3a                       	jmp	0x1404f6c2b <.text+0x4f5c2b>
+1404f6bf1: 48 8d 84 24 f0 04 00 00     	lea	rax, [rsp + 0x4f0]
+1404f6bf9: 48 8d 9c 24 60 04 00 00     	lea	rbx, [rsp + 0x460]
+1404f6c01: e8 fa ed ff ff              	call	0x1404f5a00 <.text+0x4f4a00> ; type:.eq.M2K6GGM1K3M12S
+1404f6c06: 83 f0 01                    	xor	eax, 0x1
+1404f6c09: 48 8b 8c 24 c8 00 00 00     	mov	rcx, qword ptr [rsp + 0xc8]
+1404f6c11: 48 8b 9c 24 08 07 00 00     	mov	rbx, qword ptr [rsp + 0x708]
+1404f6c19: 48 8b b4 24 68 01 00 00     	mov	rsi, qword ptr [rsp + 0x168]
+1404f6c21: 89 c2                       	mov	edx, eax
+1404f6c23: 48 8b 84 24 08 03 00 00     	mov	rax, qword ptr [rsp + 0x308]
+1404f6c2b: 84 d2                       	test	dl, dl
+1404f6c2d: 0f 85 59 04 00 00           	jne	0x1404f708c <.text+0x4f608c>
+1404f6c33: 48 8b 94 24 80 04 00 00     	mov	rdx, qword ptr [rsp + 0x480]
+1404f6c3b: 0f 1f 44 00 00              	nop	dword ptr [rax + rax]
+1404f6c40: 48 39 94 24 48 04 00 00     	cmp	qword ptr [rsp + 0x448], rdx
+1404f6c48: 0f 8f 3e 04 00 00           	jg	0x1404f708c <.text+0x4f608c>
+1404f6c4e: 48 8b 94 24 00 03 00 00     	mov	rdx, qword ptr [rsp + 0x300]
+1404f6c56: 48 8b 9a 50 01 00 00        	mov	rbx, qword ptr [rdx + 0x150]
+1404f6c5d: 48 8b 8c 24 a0 03 00 00     	mov	rcx, qword ptr [rsp + 0x3a0]
+1404f6c65: 48 8b bc 24 a8 03 00 00     	mov	rdi, qword ptr [rsp + 0x3a8]
+1404f6c6d: 48 8d 05 64 09 ab 00        	lea	rax, [rip + 0xab0964]   # 0x140fa75d8
+1404f6c74: e8 27 5d b1 ff              	call	0x14000c9a0 <.text+0xb9a0> ; runtime.mapaccess2_faststr
+1404f6c79: 0f 1f 80 00 00 00 00        	nop	dword ptr [rax]
+1404f6c80: 84 db                       	test	bl, bl
+1404f6c82: 0f 85 c4 03 00 00           	jne	0x1404f704c <.text+0x4f604c>
+1404f6c88: 48 8b 8c 24 d8 03 00 00     	mov	rcx, qword ptr [rsp + 0x3d8]
+1404f6c90: 48 8d 05 41 2b ab 00        	lea	rax, [rip + 0xab2b41]   # 0x140fa97d8
+1404f6c97: 48 8b 9c 24 08 03 00 00     	mov	rbx, qword ptr [rsp + 0x308]
+1404f6c9f: 90                          	nop
+1404f6ca0: e8 db 51 b1 ff              	call	0x14000be80 <.text+0xae80> ; runtime.mapaccess2_fast64
+1404f6ca5: 84 db                       	test	bl, bl
+1404f6ca7: 0f 85 5e 03 00 00           	jne	0x1404f700b <.text+0x4f600b>
+1404f6cad: 48 8b 8c 24 d8 03 00 00     	mov	rcx, qword ptr [rsp + 0x3d8]
+1404f6cb5: 48 8d 05 1c 2b ab 00        	lea	rax, [rip + 0xab2b1c]   # 0x140fa97d8
+1404f6cbc: 48 8b 9c 24 08 03 00 00     	mov	rbx, qword ptr [rsp + 0x308]
+1404f6cc4: e8 17 54 b1 ff              	call	0x14000c0e0 <.text+0xb0e0> ; runtime.mapassign_fast64
+1404f6cc9: 84 00                       	test	byte ptr [rax], al
+1404f6ccb: 48 8b 94 24 d8 03 00 00     	mov	rdx, qword ptr [rsp + 0x3d8]
+1404f6cd3: 48 89 94 24 60 01 00 00     	mov	qword ptr [rsp + 0x160], rdx
+1404f6cdb: 48 8d 05 c6 0d a9 00        	lea	rax, [rip + 0xa90dc6]   # 0x140f87aa8
+1404f6ce2: 31 db                       	xor	ebx, ebx
+1404f6ce4: e8 77 20 b2 ff              	call	0x140018d60 <.text+0x17d60> ; runtime.makechan
+1404f6ce9: 48 89 84 24 80 06 00 00     	mov	qword ptr [rsp + 0x680], rax
+1404f6cf1: e8 2a 2c b2 ff              	call	0x140019920 <.text+0x18920> ; runtime.closechan
+1404f6cf6: 48 8d 94 24 28 05 00 00     	lea	rdx, [rsp + 0x528]
+1404f6cfe: 48 8d b4 24 d0 03 00 00     	lea	rsi, [rsp + 0x3d0]
+1404f6d06: bf 05 00 00 00              	mov	edi, 0x5
+1404f6d0b: 44 0f 10 36                 	movups	xmm14, xmmword ptr [rsi]
+1404f6d0f: 44 0f 11 32                 	movups	xmmword ptr [rdx], xmm14
+1404f6d13: 44 0f 10 76 10              	movups	xmm14, xmmword ptr [rsi + 0x10]
+1404f6d18: 44 0f 11 72 10              	movups	xmmword ptr [rdx + 0x10], xmm14
+1404f6d1d: 44 0f 10 76 20              	movups	xmm14, xmmword ptr [rsi + 0x20]
+1404f6d22: 44 0f 11 72 20              	movups	xmmword ptr [rdx + 0x20], xmm14
+1404f6d27: 44 0f 10 76 30              	movups	xmm14, xmmword ptr [rsi + 0x30]
+1404f6d2c: 44 0f 11 72 30              	movups	xmmword ptr [rdx + 0x30], xmm14
+1404f6d31: 48 83 c6 40                 	add	rsi, 0x40
+1404f6d35: 48 83 c2 40                 	add	rdx, 0x40
+1404f6d39: ff cf                       	dec	edi
+1404f6d3b: 75 ce                       	jne	0x1404f6d0b <.text+0x4f5d0b>
+1404f6d3d: 44 0f 10 36                 	movups	xmm14, xmmword ptr [rsi]
+1404f6d41: 44 0f 11 32                 	movups	xmmword ptr [rdx], xmm14
+1404f6d45: 44 0f 10 76 08              	movups	xmm14, xmmword ptr [rsi + 0x8]
+1404f6d4a: 44 0f 11 72 08              	movups	xmmword ptr [rdx + 0x8], xmm14
+1404f6d4f: 48 8b 94 24 c8 00 00 00     	mov	rdx, qword ptr [rsp + 0xc8]
+1404f6d57: 48 8b b4 24 60 01 00 00     	mov	rsi, qword ptr [rsp + 0x160]
+1404f6d5f: 48 39 f2                    	cmp	rdx, rsi
+1404f6d62: 48 0f 42 d6                 	cmovb	rdx, rsi
+1404f6d66: 48 89 94 24 c8 00 00 00     	mov	qword ptr [rsp + 0xc8], rdx
+1404f6d6e: 48 83 bc 24 10 06 00 00 00  	cmp	qword ptr [rsp + 0x610], 0x0
+1404f6d77: 48 8d b4 24 10 03 00 00     	lea	rsi, [rsp + 0x310]
+1404f6d7f: 48 8d bc 24 f0 05 00 00     	lea	rdi, [rsp + 0x5f0]
+1404f6d87: 44 0f 10 37                 	movups	xmm14, xmmword ptr [rdi]
+1404f6d8b: 44 0f 11 36                 	movups	xmmword ptr [rsi], xmm14
+1404f6d8f: 44 0f 10 77 10              	movups	xmm14, xmmword ptr [rdi + 0x10]
+1404f6d94: 44 0f 11 76 10              	movups	xmmword ptr [rsi + 0x10], xmm14
+1404f6d99: 44 0f 10 77 20              	movups	xmm14, xmmword ptr [rdi + 0x20]
+1404f6d9e: 44 0f 11 76 20              	movups	xmmword ptr [rsi + 0x20], xmm14
+1404f6da3: 44 0f 10 77 30              	movups	xmm14, xmmword ptr [rdi + 0x30]
+1404f6da8: 44 0f 11 76 30              	movups	xmmword ptr [rsi + 0x30], xmm14
+1404f6dad: 44 0f 10 77 40              	movups	xmm14, xmmword ptr [rdi + 0x40]
+1404f6db2: 44 0f 11 76 40              	movups	xmmword ptr [rsi + 0x40], xmm14
+1404f6db7: 44 0f 10 77 50              	movups	xmm14, xmmword ptr [rdi + 0x50]
+1404f6dbc: 44 0f 11 76 50              	movups	xmmword ptr [rsi + 0x50], xmm14
+1404f6dc1: 44 0f 10 77 60              	movups	xmm14, xmmword ptr [rdi + 0x60]
+1404f6dc6: 44 0f 11 76 60              	movups	xmmword ptr [rsi + 0x60], xmm14
+1404f6dcb: 44 0f 10 77 70              	movups	xmm14, xmmword ptr [rdi + 0x70]
+1404f6dd0: 44 0f 11 76 70              	movups	xmmword ptr [rsi + 0x70], xmm14
+1404f6dd5: 44 0f 10 b7 80 00 00 00     	movups	xmm14, xmmword ptr [rdi + 0x80]
+1404f6ddd: 44 0f 11 b6 80 00 00 00     	movups	xmmword ptr [rsi + 0x80], xmm14
+1404f6de5: 74 32                       	je	0x1404f6e19 <.text+0x4f5e19>
+1404f6de7: 48 8d 05 9a de af 00        	lea	rax, [rip + 0xafde9a]   # 0x140ff4c88
+1404f6dee: e8 cd b3 b2 ff              	call	0x1400221c0 <.text+0x211c0> ; runtime.newobject
+1404f6df3: 48 8b 8c 24 30 03 00 00     	mov	rcx, qword ptr [rsp + 0x330]
+1404f6dfb: 48 8b 09                    	mov	rcx, qword ptr [rcx]
+1404f6dfe: 48 89 08                    	mov	qword ptr [rax], rcx
+1404f6e01: 48 89 84 24 30 03 00 00     	mov	qword ptr [rsp + 0x330], rax
+1404f6e09: 48 8d b4 24 10 03 00 00     	lea	rsi, [rsp + 0x310]
+1404f6e11: 48 8d bc 24 f0 05 00 00     	lea	rdi, [rsp + 0x5f0]
+1404f6e19: 44 0f 10 36                 	movups	xmm14, xmmword ptr [rsi]
+1404f6e1d: 44 0f 11 37                 	movups	xmmword ptr [rdi], xmm14
+1404f6e21: 44 0f 10 76 10              	movups	xmm14, xmmword ptr [rsi + 0x10]
+1404f6e26: 44 0f 11 77 10              	movups	xmmword ptr [rdi + 0x10], xmm14
+1404f6e2b: 44 0f 10 76 20              	movups	xmm14, xmmword ptr [rsi + 0x20]
+1404f6e30: 44 0f 11 77 20              	movups	xmmword ptr [rdi + 0x20], xmm14
+1404f6e35: 44 0f 10 76 30              	movups	xmm14, xmmword ptr [rsi + 0x30]
+1404f6e3a: 44 0f 11 77 30              	movups	xmmword ptr [rdi + 0x30], xmm14
+1404f6e3f: 44 0f 10 76 40              	movups	xmm14, xmmword ptr [rsi + 0x40]
+1404f6e44: 44 0f 11 77 40              	movups	xmmword ptr [rdi + 0x40], xmm14
+1404f6e49: 44 0f 10 76 50              	movups	xmm14, xmmword ptr [rsi + 0x50]
+1404f6e4e: 44 0f 11 77 50              	movups	xmmword ptr [rdi + 0x50], xmm14
+1404f6e53: 44 0f 10 76 60              	movups	xmm14, xmmword ptr [rsi + 0x60]
+1404f6e58: 44 0f 11 77 60              	movups	xmmword ptr [rdi + 0x60], xmm14
+1404f6e5d: 44 0f 10 76 70              	movups	xmm14, xmmword ptr [rsi + 0x70]
+1404f6e62: 44 0f 11 77 70              	movups	xmmword ptr [rdi + 0x70], xmm14
+1404f6e67: 44 0f 10 b6 80 00 00 00     	movups	xmm14, xmmword ptr [rsi + 0x80]
+1404f6e6f: 44 0f 11 b7 80 00 00 00     	movups	xmmword ptr [rdi + 0x80], xmm14
+1404f6e77: 48 8d 8c 24 70 01 00 00     	lea	rcx, [rsp + 0x170]
+1404f6e7f: 48 8d 94 24 28 05 00 00     	lea	rdx, [rsp + 0x528]
+1404f6e87: bb 05 00 00 00              	mov	ebx, 0x5
+1404f6e8c: 44 0f 10 32                 	movups	xmm14, xmmword ptr [rdx]
+1404f6e90: 44 0f 11 31                 	movups	xmmword ptr [rcx], xmm14
+1404f6e94: 44 0f 10 72 10              	movups	xmm14, xmmword ptr [rdx + 0x10]
+1404f6e99: 44 0f 11 71 10              	movups	xmmword ptr [rcx + 0x10], xmm14
+1404f6e9e: 44 0f 10 72 20              	movups	xmm14, xmmword ptr [rdx + 0x20]
+1404f6ea3: 44 0f 11 71 20              	movups	xmmword ptr [rcx + 0x20], xmm14
+1404f6ea8: 44 0f 10 72 30              	movups	xmm14, xmmword ptr [rdx + 0x30]
+1404f6ead: 44 0f 11 71 30              	movups	xmmword ptr [rcx + 0x30], xmm14
+1404f6eb2: 48 83 c2 40                 	add	rdx, 0x40
+1404f6eb6: 48 83 c1 40                 	add	rcx, 0x40
+1404f6eba: ff cb                       	dec	ebx
+1404f6ebc: 75 ce                       	jne	0x1404f6e8c <.text+0x4f5e8c>
+1404f6ebe: 44 0f 10 32                 	movups	xmm14, xmmword ptr [rdx]
+1404f6ec2: 44 0f 11 31                 	movups	xmmword ptr [rcx], xmm14
+1404f6ec6: 44 0f 10 72 08              	movups	xmm14, xmmword ptr [rdx + 0x8]
+1404f6ecb: 44 0f 11 71 08              	movups	xmmword ptr [rcx + 0x8], xmm14
+1404f6ed0: 48 8d 05 79 11 b5 00        	lea	rax, [rip + 0xb51179]   # 0x141048050
+1404f6ed7: e8 e4 b2 b2 ff              	call	0x1400221c0 <.text+0x211c0> ; runtime.newobject
+1404f6edc: 48 89 84 24 00 07 00 00     	mov	qword ptr [rsp + 0x700], rax
+1404f6ee4: 48 8d 8c 24 b0 03 00 00     	lea	rcx, [rsp + 0x3b0]
+1404f6eec: 44 0f 10 31                 	movups	xmm14, xmmword ptr [rcx]
+1404f6ef0: 44 0f 11 30                 	movups	xmmword ptr [rax], xmm14
+1404f6ef4: 44 0f 10 71 10              	movups	xmm14, xmmword ptr [rcx + 0x10]
+1404f6ef9: 44 0f 11 70 10              	movups	xmmword ptr [rax + 0x10], xmm14
+1404f6efe: 48 8d 58 28                 	lea	rbx, [rax + 0x28]
+1404f6f02: 83 3d 17 0a cd 00 00        	cmp	dword ptr [rip + 0xcd0a17], 0x0 # 0x1411c7920
+1404f6f09: 74 44                       	je	0x1404f6f4f <.text+0x4f5f4f>
+1404f6f0b: 48 89 9c 24 f8 06 00 00     	mov	qword ptr [rsp + 0x6f8], rbx
+1404f6f13: 48 8b 50 20                 	mov	rdx, qword ptr [rax + 0x20]
+1404f6f17: e8 c4 71 b9 ff              	call	0x14008e0e0 <.text+0x8d0e0> ; runtime.gcWriteBarrier2
+1404f6f1c: 48 8b b4 24 80 06 00 00     	mov	rsi, qword ptr [rsp + 0x680]
+1404f6f24: 49 89 33                    	mov	qword ptr [r11], rsi
+1404f6f27: 49 89 53 08                 	mov	qword ptr [r11 + 0x8], rdx
+1404f6f2b: 48 8d 05 76 0b b8 00        	lea	rax, [rip + 0xb80b76]   # 0x141077aa8
+1404f6f32: 48 8d 8c 24 70 01 00 00     	lea	rcx, [rsp + 0x170]
+1404f6f3a: e8 a1 f1 b2 ff              	call	0x1400260e0 <.text+0x250e0> ; runtime.wbMove
+1404f6f3f: 48 8b 84 24 00 07 00 00     	mov	rax, qword ptr [rsp + 0x700]
+1404f6f47: 48 8b 9c 24 f8 06 00 00     	mov	rbx, qword ptr [rsp + 0x6f8]
+1404f6f4f: 48 8b 94 24 80 06 00 00     	mov	rdx, qword ptr [rsp + 0x680]
+1404f6f57: 48 89 50 20                 	mov	qword ptr [rax + 0x20], rdx
+1404f6f5b: 48 8d 94 24 70 01 00 00     	lea	rdx, [rsp + 0x170]
+1404f6f63: be 05 00 00 00              	mov	esi, 0x5
+1404f6f68: 44 0f 10 32                 	movups	xmm14, xmmword ptr [rdx]
+1404f6f6c: 44 0f 11 33                 	movups	xmmword ptr [rbx], xmm14
+1404f6f70: 44 0f 10 72 10              	movups	xmm14, xmmword ptr [rdx + 0x10]
+1404f6f75: 44 0f 11 73 10              	movups	xmmword ptr [rbx + 0x10], xmm14
+1404f6f7a: 44 0f 10 72 20              	movups	xmm14, xmmword ptr [rdx + 0x20]
+1404f6f7f: 44 0f 11 73 20              	movups	xmmword ptr [rbx + 0x20], xmm14
+1404f6f84: 44 0f 10 72 30              	movups	xmm14, xmmword ptr [rdx + 0x30]
+1404f6f89: 44 0f 11 73 30              	movups	xmmword ptr [rbx + 0x30], xmm14
+1404f6f8e: 48 83 c2 40                 	add	rdx, 0x40
+1404f6f92: 48 83 c3 40                 	add	rbx, 0x40
+1404f6f96: ff ce                       	dec	esi
+1404f6f98: 75 ce                       	jne	0x1404f6f68 <.text+0x4f5f68>
+1404f6f9a: 44 0f 10 32                 	movups	xmm14, xmmword ptr [rdx]
+1404f6f9e: 44 0f 11 33                 	movups	xmmword ptr [rbx], xmm14
+1404f6fa2: 44 0f 10 72 08              	movups	xmm14, xmmword ptr [rdx + 0x8]
+1404f6fa7: 44 0f 11 73 08              	movups	xmmword ptr [rbx + 0x8], xmm14
+1404f6fac: 48 8b 94 24 00 03 00 00     	mov	rdx, qword ptr [rsp + 0x300]
+1404f6fb4: 48 8b 9a 50 01 00 00        	mov	rbx, qword ptr [rdx + 0x150]
+1404f6fbb: 48 8b 8c 24 a0 03 00 00     	mov	rcx, qword ptr [rsp + 0x3a0]
+1404f6fc3: 48 8b bc 24 a8 03 00 00     	mov	rdi, qword ptr [rsp + 0x3a8]
+1404f6fcb: 48 8d 05 06 06 ab 00        	lea	rax, [rip + 0xab0606]   # 0x140fa75d8
+1404f6fd2: e8 69 5c b1 ff              	call	0x14000cc40 <.text+0xbc40> ; runtime.mapassign_faststr
+1404f6fd7: 83 3d 42 09 cd 00 00        	cmp	dword ptr [rip + 0xcd0942], 0x0 # 0x1411c7920
+1404f6fde: 66 90                       	nop
+1404f6fe0: 75 0d                       	jne	0x1404f6fef <.text+0x4f5fef>
+1404f6fe2: 48 8b b4 24 00 07 00 00     	mov	rsi, qword ptr [rsp + 0x700]
+1404f6fea: e9 0d fb ff ff              	jmp	0x1404f6afc <.text+0x4f5afc>
+1404f6fef: 48 8b 10                    	mov	rdx, qword ptr [rax]
+1404f6ff2: e8 e9 70 b9 ff              	call	0x14008e0e0 <.text+0x8d0e0> ; runtime.gcWriteBarrier2
+1404f6ff7: 48 8b b4 24 00 07 00 00     	mov	rsi, qword ptr [rsp + 0x700]
+1404f6fff: 49 89 33                    	mov	qword ptr [r11], rsi
+1404f7002: 49 89 53 08                 	mov	qword ptr [r11 + 0x8], rdx
+1404f7006: e9 f1 fa ff ff              	jmp	0x1404f6afc <.text+0x4f5afc>
+1404f700b: b8 10 00 00 00              	mov	eax, 0x10
+1404f7010: 48 8d 1d 11 9a b1 00        	lea	rbx, [rip + 0xb19a11]   # 0x141010a28
+1404f7017: b9 01 00 00 00              	mov	ecx, 0x1
+1404f701c: 0f 1f 40 00                 	nop	dword ptr [rax]
+1404f7020: e8 9b ba b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f7025: 48 c7 40 08 25 00 00 00     	mov	qword ptr [rax + 0x8], 0x25
+1404f702d: 48 8d 15 ca e9 31 00        	lea	rdx, [rip + 0x31e9ca]   # 0x1408159fe ; text_prefix='duplicate restored admission sequencecrypto/ecdh: invalid private key sizeincomplete trust'
+1404f7034: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f7037: 48 8d 1d 12 0a ba 00        	lea	rbx, [rip + 0xba0a12]   # 0x141097a50
+1404f703e: 48 89 c1                    	mov	rcx, rax
+1404f7041: 31 c0                       	xor	eax, eax
+1404f7043: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f704a: 5d                          	pop	rbp
+1404f704b: c3                          	ret
+1404f704c: b8 10 00 00 00              	mov	eax, 0x10
+1404f7051: 48 8d 1d d0 99 b1 00        	lea	rbx, [rip + 0xb199d0]   # 0x141010a28
+1404f7058: b9 01 00 00 00              	mov	ecx, 0x1
+1404f705d: 0f 1f 00                    	nop	dword ptr [rax]
+1404f7060: e8 5b ba b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f7065: 48 c7 40 08 1d 00 00 00     	mov	qword ptr [rax + 0x8], 0x1d
+1404f706d: 48 8d 15 63 44 31 00        	lea	rdx, [rip + 0x314463]   # 0x14080b4d7 ; text_prefix='duplicate restored request IDencode canonical scenario: %w2006-01-02 15:04:05.999999999200'
+1404f7074: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f7077: 48 8d 1d d2 09 ba 00        	lea	rbx, [rip + 0xba09d2]   # 0x141097a50
+1404f707e: 48 89 c1                    	mov	rcx, rax
+1404f7081: 31 c0                       	xor	eax, eax
+1404f7083: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f708a: 5d                          	pop	rbp
+1404f708b: c3                          	ret
+1404f708c: b8 10 00 00 00              	mov	eax, 0x10
+1404f7091: 48 8d 1d 90 99 b1 00        	lea	rbx, [rip + 0xb19990]   # 0x141010a28
+1404f7098: b9 01 00 00 00              	mov	ecx, 0x1
+1404f709d: 0f 1f 00                    	nop	dword ptr [rax]
+1404f70a0: e8 1b ba b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f70a5: 48 c7 40 08 26 00 00 00     	mov	qword ptr [rax + 0x8], 0x26
+1404f70ad: 48 8d 15 ab 13 32 00        	lea	rdx, [rip + 0x3213ab]   # 0x14081845f ; text_prefix='invalid restored idempotency executioninvalid test session execution requestinvalid practi'
+1404f70b4: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f70b7: 48 8d 1d 92 09 ba 00        	lea	rbx, [rip + 0xba0992]   # 0x141097a50
+1404f70be: 48 89 c1                    	mov	rcx, rax
+1404f70c1: 31 c0                       	xor	eax, eax
+1404f70c3: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f70ca: 5d                          	pop	rbp
+1404f70cb: c3                          	ret
+1404f70cc: 48 8b 94 24 00 03 00 00     	mov	rdx, qword ptr [rsp + 0x300]
+1404f70d4: 48 89 8a 30 01 00 00        	mov	qword ptr [rdx + 0x130], rcx
+1404f70db: 48 ff c1                    	inc	rcx
+1404f70de: 48 89 8a 38 01 00 00        	mov	qword ptr [rdx + 0x138], rcx
+1404f70e5: 0f 84 fc 00 00 00           	je	0x1404f71e7 <.text+0x4f61e7>
+1404f70eb: 48 83 bc 24 20 08 00 00 00  	cmp	qword ptr [rsp + 0x820], 0x0
+1404f70f4: 0f 85 cc 00 00 00           	jne	0x1404f71c6 <.text+0x4f61c6>
+1404f70fa: 90                          	nop
+1404f70fb: 90                          	nop
+1404f70fc: 31 c0                       	xor	eax, eax
+1404f70fe: b9 01 00 00 00              	mov	ecx, 0x1
+1404f7103: f0                          	lock
+1404f7104: 0f b1 0a                    	cmpxchg	dword ptr [rdx], ecx
+1404f7107: 0f 94 c1                    	sete	cl
+1404f710a: 84 c9                       	test	cl, cl
+1404f710c: 75 10                       	jne	0x1404f711e <.text+0x4f611e>
+1404f710e: 48 89 d0                    	mov	rax, rdx
+1404f7111: e8 ea 19 ba ff              	call	0x140098b00 <.text+0x97b00> ; internal/sync.(*Mutex).lockSlow
+1404f7116: 48 8b 94 24 00 03 00 00     	mov	rdx, qword ptr [rsp + 0x300]
+1404f711e: 48 89 d0                    	mov	rax, rdx
+1404f7121: e8 5a 34 00 00              	call	0x1404fa580 <.text+0x4f9580> ; jammers/client/internal/testsession.(*Session).effectiveDeadlineLocked
+1404f7126: 48 89 84 24 60 01 00 00     	mov	qword ptr [rsp + 0x160], rax
+1404f712e: 48 89 9c 24 58 01 00 00     	mov	qword ptr [rsp + 0x158], rbx
+1404f7136: 48 89 8c 24 f0 06 00 00     	mov	qword ptr [rsp + 0x6f0], rcx
+1404f713e: 48 8b 84 24 00 03 00 00     	mov	rax, qword ptr [rsp + 0x300]
+1404f7146: e8 d5 34 00 00              	call	0x1404fa620 <.text+0x4f9620> ; jammers/client/internal/testsession.(*Session).effectiveDeadlineKindLocked
+1404f714b: 48 8b 9c 24 60 01 00 00     	mov	rbx, qword ptr [rsp + 0x160]
+1404f7153: 48 8b 8c 24 58 01 00 00     	mov	rcx, qword ptr [rsp + 0x158]
+1404f715b: 48 8b bc 24 f0 06 00 00     	mov	rdi, qword ptr [rsp + 0x6f0]
+1404f7163: 89 c6                       	mov	esi, eax
+1404f7165: 48 8b 84 24 00 03 00 00     	mov	rax, qword ptr [rsp + 0x300]
+1404f716d: e8 ce 3a 00 00              	call	0x1404fac40 <.text+0x4f9c40> ; jammers/client/internal/testsession.(*Session).scheduleDeadlineLocked
+1404f7172: 48 8b 94 24 c0 07 00 00     	mov	rdx, qword ptr [rsp + 0x7c0]
+1404f717a: 48 8b 0a                    	mov	rcx, qword ptr [rdx]
+1404f717d: ff d1                       	call	rcx
+1404f717f: 48 89 cf                    	mov	rdi, rcx
+1404f7182: 48 89 d9                    	mov	rcx, rbx
+1404f7185: 48 89 c3                    	mov	rbx, rax
+1404f7188: 48 8b 84 24 00 03 00 00     	mov	rax, qword ptr [rsp + 0x300]
+1404f7190: e8 0b 35 00 00              	call	0x1404fa6a0 <.text+0x4f96a0> ; jammers/client/internal/testsession.(*Session).refreshDeadlineLocked
+1404f7195: 90                          	nop
+1404f7196: 90                          	nop
+1404f7197: bb ff ff ff ff              	mov	ebx, 0xffffffff
+1404f719c: 48 8b 84 24 00 03 00 00     	mov	rax, qword ptr [rsp + 0x300]
+1404f71a4: f0                          	lock
+1404f71a5: 0f c1 18                    	xadd	dword ptr [rax], ebx
+1404f71a8: ff cb                       	dec	ebx
+1404f71aa: 74 0d                       	je	0x1404f71b9 <.text+0x4f61b9>
+1404f71ac: e8 2f 1c ba ff              	call	0x140098de0 <.text+0x97de0> ; internal/sync.(*Mutex).unlockSlow
+1404f71b1: 48 8b 84 24 00 03 00 00     	mov	rax, qword ptr [rsp + 0x300]
+1404f71b9: 31 db                       	xor	ebx, ebx
+1404f71bb: 31 c9                       	xor	ecx, ecx
+1404f71bd: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f71c4: 5d                          	pop	rbp
+1404f71c5: c3                          	ret
+1404f71c6: 48 8b 82 28 01 00 00        	mov	rax, qword ptr [rdx + 0x128]
+1404f71cd: e8 4e 27 b2 ff              	call	0x140019920 <.text+0x18920> ; runtime.closechan
+1404f71d2: 48 8b 84 24 00 03 00 00     	mov	rax, qword ptr [rsp + 0x300]
+1404f71da: 31 db                       	xor	ebx, ebx
+1404f71dc: 31 c9                       	xor	ecx, ecx
+1404f71de: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f71e5: 5d                          	pop	rbp
+1404f71e6: c3                          	ret
+1404f71e7: b8 10 00 00 00              	mov	eax, 0x10
+1404f71ec: 48 8d 1d 35 98 b1 00        	lea	rbx, [rip + 0xb19835]   # 0x141010a28
+1404f71f3: b9 01 00 00 00              	mov	ecx, 0x1
+1404f71f8: e8 c3 b8 b2 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f71fd: 48 c7 40 08 24 00 00 00     	mov	qword ptr [rax + 0x8], 0x24
+1404f7205: 48 8d 15 37 d5 31 00        	lea	rdx, [rip + 0x31d537]   # 0x140814743 ; text_prefix='restored admission sequence overflowinvalid formal behavior meta bindingbehavior event pre'
+1404f720c: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f720f: 48 8d 1d 3a 08 ba 00        	lea	rbx, [rip + 0xba083a]   # 0x141097a50
+1404f7216: 48 89 c1                    	mov	rcx, rax
+1404f7219: 31 c0                       	xor	eax, eax
+1404f721b: 48 81 c4 30 07 00 00        	add	rsp, 0x730
+1404f7222: 5d                          	pop	rbp
+1404f7223: c3                          	ret
+1404f7224: e8 17 54 b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f7229: e9 f2 f0 ff ff              	jmp	0x1404f6320 <.text+0x4f5320>
+1404f722e: cc                          	int3
+1404f722f: cc                          	int3
+1404f7230: cc                          	int3
+1404f7231: cc                          	int3
+1404f7232: cc                          	int3
+1404f7233: cc                          	int3
+1404f7234: cc                          	int3
+1404f7235: cc                          	int3
+1404f7236: cc                          	int3
+1404f7237: cc                          	int3
+1404f7238: cc                          	int3
+1404f7239: cc                          	int3
+1404f723a: cc                          	int3
+1404f723b: cc                          	int3
+1404f723c: cc                          	int3
+1404f723d: cc                          	int3
+1404f723e: cc                          	int3
+1404f723f: cc                          	int3

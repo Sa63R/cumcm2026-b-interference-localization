@@ -1,0 +1,68 @@
+{
+  "warning": "LOCAL SYNTHETIC DEVELOPMENT ONLY; not held-out or official",
+  "args": {
+    "cases": 4,
+    "seed_base": 214700000,
+    "methods": [
+      "baseline",
+      "defer_40_0_600_10",
+      "defer_100_0_600_10",
+      "defer_300_0_600_10",
+      "defer_500_0_600_10",
+      "defer_40_100_600_10",
+      "defer_100_100_600_10",
+      "defer_300_100_600_10",
+      "defer_500_100_600_10",
+      "defer_40_300_600_10",
+      "defer_100_300_600_10",
+      "defer_300_300_600_10",
+      "defer_500_300_600_10",
+      "defer_40_100_1500_0",
+      "defer_100_100_1500_0",
+      "defer_300_100_1500_0",
+      "defer_500_100_1500_0"
+    ],
+    "name": "defer24"
+  },
+  "geometry_degrees": 1.005,
+  "physical_error_degrees": 1,
+  "quantization_degrees": 0.01,
+  "groups": [
+    [
+      "mixed_25pct",
+      0.25,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed_50pct",
+      0.5,
+      "uniform",
+      "hash"
+    ],
+    [
+      "mixed_75pct",
+      0.75,
+      "uniform",
+      "hash"
+    ],
+    [
+      "outward_boundary",
+      0.75,
+      "outward_boundary",
+      "hash"
+    ],
+    [
+      "constant_plus1deg",
+      0.5,
+      "uniform",
+      "plus"
+    ],
+    [
+      "constant_minus1deg",
+      0.5,
+      "uniform",
+      "minus"
+    ]
+  ]
+}

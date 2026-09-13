@@ -1,0 +1,29 @@
+test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces) ... ERROR
+test_unconfirmed_mode_cannot_connect (__main__.BridgeTests.test_unconfirmed_mode_cannot_connect) ... ok
+test_unknown_enter_is_not_replaced_by_exit (__main__.BridgeTests.test_unknown_enter_is_not_replaced_by_exit) ... ok
+
+======================================================================
+ERROR: test_http_matches_four_frozen_lite_traces (__main__.BridgeTests.test_http_matches_four_frozen_lite_traces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/zephyrr/竞赛/26国赛/数模/output/q4_v6_lite_official_20260913/bundle/test_bridge.py", line 31, in test_http_matches_four_frozen_lite_traces
+    sites, certificate, _ = runner.prepare()
+                            ~~~~~~~~~~~~~~^^
+  File "/Users/zephyrr/竞赛/26国赛/数模/output/q4_v6_lite_official_20260913/bundle/run_official.py", line 24, in prepare
+    manifest = json.loads((ROOT / 'source_manifest.json').read_text(encoding='utf-8'))
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/pathlib/_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/zephyrr/竞赛/26国赛/数模/output/q4_v6_lite_official_20260913/bundle/source_manifest.json'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (errors=1)

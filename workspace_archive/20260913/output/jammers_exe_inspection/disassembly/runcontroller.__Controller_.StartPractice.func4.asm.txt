@@ -1,0 +1,46 @@
+jammers/client/internal/runcontroller.(*Controller).StartPractice.func4
+Virtual address: 0x14075f9a0
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+14075f9a0: 4c 8d a4 24 28 fe ff ff     	lea	r12, [rsp - 0x1d8]
+14075f9a8: 4d 3b 66 10                 	cmp	r12, qword ptr [r14 + 0x10]
+14075f9ac: 76 64                       	jbe	0x14075fa12 <.text+0x75ea12>
+14075f9ae: 55                          	push	rbp
+14075f9af: 48 89 e5                    	mov	rbp, rsp
+14075f9b2: 48 81 ec 50 02 00 00        	sub	rsp, 0x250
+14075f9b9: 48 8b 5a 10                 	mov	rbx, qword ptr [rdx + 0x10]
+14075f9bd: 48 8b 42 08                 	mov	rax, qword ptr [rdx + 0x8]
+14075f9c1: 48 89 e1                    	mov	rcx, rsp
+14075f9c4: 48 8d 94 24 60 02 00 00     	lea	rdx, [rsp + 0x260]
+14075f9cc: be 09 00 00 00              	mov	esi, 0x9
+14075f9d1: 44 0f 10 32                 	movups	xmm14, xmmword ptr [rdx]
+14075f9d5: 44 0f 11 31                 	movups	xmmword ptr [rcx], xmm14
+14075f9d9: 44 0f 10 72 10              	movups	xmm14, xmmword ptr [rdx + 0x10]
+14075f9de: 44 0f 11 71 10              	movups	xmmword ptr [rcx + 0x10], xmm14
+14075f9e3: 44 0f 10 72 20              	movups	xmm14, xmmword ptr [rdx + 0x20]
+14075f9e8: 44 0f 11 71 20              	movups	xmmword ptr [rcx + 0x20], xmm14
+14075f9ed: 44 0f 10 72 30              	movups	xmm14, xmmword ptr [rdx + 0x30]
+14075f9f2: 44 0f 11 71 30              	movups	xmmword ptr [rcx + 0x30], xmm14
+14075f9f7: 48 83 c2 40                 	add	rdx, 0x40
+14075f9fb: 48 83 c1 40                 	add	rcx, 0x40
+14075f9ff: 90                          	nop
+14075fa00: ff ce                       	dec	esi
+14075fa02: 75 cd                       	jne	0x14075f9d1 <.text+0x75e9d1>
+14075fa04: e8 b7 b2 ff ff              	call	0x14075acc0 <.text+0x759cc0> ; jammers/client/internal/runcontroller.(*Controller).recordRobot
+14075fa09: 48 81 c4 50 02 00 00        	add	rsp, 0x250
+14075fa10: 5d                          	pop	rbp
+14075fa11: c3                          	ret
+14075fa12: e8 a9 cb 92 ff              	call	0x14008c5c0 <.text+0x8b5c0> ; runtime.morestack
+14075fa17: eb 87                       	jmp	0x14075f9a0 <.text+0x75e9a0>
+14075fa19: cc                          	int3
+14075fa1a: cc                          	int3
+14075fa1b: cc                          	int3
+14075fa1c: cc                          	int3
+14075fa1d: cc                          	int3
+14075fa1e: cc                          	int3
+14075fa1f: cc                          	int3

@@ -1,0 +1,169 @@
+jammers/client/internal/simcore.NewEngineFromState
+Virtual address: 0x1404f23a0
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+1404f23a0: 4c 8d a4 24 30 ff ff ff     	lea	r12, [rsp - 0xd0]
+1404f23a8: 4d 3b 66 10                 	cmp	r12, qword ptr [r14 + 0x10]
+1404f23ac: 0f 86 36 02 00 00           	jbe	0x1404f25e8 <.text+0x4f15e8>
+1404f23b2: 55                          	push	rbp
+1404f23b3: 48 89 e5                    	mov	rbp, rsp
+1404f23b6: 48 81 ec 48 01 00 00        	sub	rsp, 0x148
+1404f23bd: 88 84 24 80 02 00 00        	mov	byte ptr [rsp + 0x280], al
+1404f23c4: 88 9c 24 81 02 00 00        	mov	byte ptr [rsp + 0x281], bl
+1404f23cb: f2 0f 11 84 24 88 02 00 00  	movsd	qword ptr [rsp + 0x288], xmm0
+1404f23d4: f2 0f 11 8c 24 90 02 00 00  	movsd	qword ptr [rsp + 0x290], xmm1
+1404f23dd: 88 8c 24 98 02 00 00        	mov	byte ptr [rsp + 0x298], cl
+1404f23e4: 89 bc 24 9c 02 00 00        	mov	dword ptr [rsp + 0x29c], edi
+1404f23eb: 48 89 b4 24 a0 02 00 00     	mov	qword ptr [rsp + 0x2a0], rsi
+1404f23f3: 4c 89 84 24 a8 02 00 00     	mov	qword ptr [rsp + 0x2a8], r8
+1404f23fb: 4c 89 8c 24 b0 02 00 00     	mov	qword ptr [rsp + 0x2b0], r9
+1404f2403: 48 89 e0                    	mov	rax, rsp
+1404f2406: 48 8d 8c 24 58 01 00 00     	lea	rcx, [rsp + 0x158]
+1404f240e: ba 04 00 00 00              	mov	edx, 0x4
+1404f2413: 44 0f 10 31                 	movups	xmm14, xmmword ptr [rcx]
+1404f2417: 44 0f 11 30                 	movups	xmmword ptr [rax], xmm14
+1404f241b: 44 0f 10 71 10              	movups	xmm14, xmmword ptr [rcx + 0x10]
+1404f2420: 44 0f 11 70 10              	movups	xmmword ptr [rax + 0x10], xmm14
+1404f2425: 44 0f 10 71 20              	movups	xmm14, xmmword ptr [rcx + 0x20]
+1404f242a: 44 0f 11 70 20              	movups	xmmword ptr [rax + 0x20], xmm14
+1404f242f: 44 0f 10 71 30              	movups	xmm14, xmmword ptr [rcx + 0x30]
+1404f2434: 44 0f 11 70 30              	movups	xmmword ptr [rax + 0x30], xmm14
+1404f2439: 48 83 c1 40                 	add	rcx, 0x40
+1404f243d: 48 83 c0 40                 	add	rax, 0x40
+1404f2441: ff ca                       	dec	edx
+1404f2443: 75 ce                       	jne	0x1404f2413 <.text+0x4f1413>
+1404f2445: 44 0f 10 31                 	movups	xmm14, xmmword ptr [rcx]
+1404f2449: 44 0f 11 30                 	movups	xmmword ptr [rax], xmm14
+1404f244d: 44 0f 10 71 10              	movups	xmm14, xmmword ptr [rcx + 0x10]
+1404f2452: 44 0f 11 70 10              	movups	xmmword ptr [rax + 0x10], xmm14
+1404f2457: 44 0f 10 71 18              	movups	xmm14, xmmword ptr [rcx + 0x18]
+1404f245c: 44 0f 11 70 18              	movups	xmmword ptr [rax + 0x18], xmm14
+1404f2461: e8 fa fa ff ff              	call	0x1404f1f60 <.text+0x4f0f60> ; jammers/client/internal/simcore.NewEngine
+1404f2466: 48 85 db                    	test	rbx, rbx
+1404f2469: 0f 85 6e 01 00 00           	jne	0x1404f25dd <.text+0x4f15dd>
+1404f246f: 48 89 84 24 28 01 00 00     	mov	qword ptr [rsp + 0x128], rax
+1404f2477: 0f b6 9c 24 80 02 00 00     	movzx	ebx, byte ptr [rsp + 0x280]
+1404f247f: 0f b6 8c 24 81 02 00 00     	movzx	ecx, byte ptr [rsp + 0x281]
+1404f2487: f2 0f 10 84 24 88 02 00 00  	movsd	xmm0, qword ptr [rsp + 0x288]
+1404f2490: f2 0f 10 8c 24 90 02 00 00  	movsd	xmm1, qword ptr [rsp + 0x290]
+1404f2499: 0f b6 bc 24 98 02 00 00     	movzx	edi, byte ptr [rsp + 0x298]
+1404f24a1: 8b b4 24 9c 02 00 00        	mov	esi, dword ptr [rsp + 0x29c]
+1404f24a8: 4c 8b 84 24 a0 02 00 00     	mov	r8, qword ptr [rsp + 0x2a0]
+1404f24b0: 4c 8b 8c 24 a8 02 00 00     	mov	r9, qword ptr [rsp + 0x2a8]
+1404f24b8: 4c 8b 94 24 b0 02 00 00     	mov	r10, qword ptr [rsp + 0x2b0]
+1404f24c0: e8 db 01 00 00              	call	0x1404f26a0 <.text+0x4f16a0> ; jammers/client/internal/simcore.(*Engine).validateRestoredState
+1404f24c5: 48 85 c0                    	test	rax, rax
+1404f24c8: 0f 84 88 00 00 00           	je	0x1404f2556 <.text+0x4f1556>
+1404f24ce: 44 0f 11 bc 24 38 01 00 00  	movups	xmmword ptr [rsp + 0x138], xmm15
+1404f24d7: 74 04                       	je	0x1404f24dd <.text+0x4f14dd>
+1404f24d9: 48 8b 40 08                 	mov	rax, qword ptr [rax + 0x8]
+1404f24dd: 48 89 84 24 38 01 00 00     	mov	qword ptr [rsp + 0x138], rax
+1404f24e5: 48 89 9c 24 40 01 00 00     	mov	qword ptr [rsp + 0x140], rbx
+1404f24ed: 48 8d 05 1f 5f 32 00        	lea	rax, [rip + 0x325f1f]   # 0x140818413 ; text_prefix='validate restored simulation state: %wstate changed before machine-dog entryinvalid restor'
+1404f24f4: bb 26 00 00 00              	mov	ebx, 0x26
+1404f24f9: 48 8d 8c 24 38 01 00 00     	lea	rcx, [rsp + 0x138]
+1404f2501: bf 01 00 00 00              	mov	edi, 0x1
+1404f2506: 89 fe                       	mov	esi, edi
+1404f2508: e8 93 e8 c3 ff              	call	0x140130da0 <.text+0x12fda0> ; fmt.errorf
+1404f250d: 48 85 c0                    	test	rax, rax
+1404f2510: 75 33                       	jne	0x1404f2545 <.text+0x4f1545>
+1404f2512: 90                          	nop
+1404f2513: b8 10 00 00 00              	mov	eax, 0x10
+1404f2518: 48 8d 1d 09 e5 b1 00        	lea	rbx, [rip + 0xb1e509]   # 0x141010a28
+1404f251f: b9 01 00 00 00              	mov	ecx, 0x1
+1404f2524: e8 97 05 b3 ff              	call	0x140022ac0 <.text+0x21ac0> ; runtime.mallocgcSmallScanNoHeaderSC2
+1404f2529: 48 c7 40 08 26 00 00 00     	mov	qword ptr [rax + 0x8], 0x26
+1404f2531: 48 8d 15 db 5e 32 00        	lea	rdx, [rip + 0x325edb]   # 0x140818413 ; text_prefix='validate restored simulation state: %wstate changed before machine-dog entryinvalid restor'
+1404f2538: 48 89 10                    	mov	qword ptr [rax], rdx
+1404f253b: 48 89 c3                    	mov	rbx, rax
+1404f253e: 48 8d 05 0b 55 ba 00        	lea	rax, [rip + 0xba550b]   # 0x141097a50
+1404f2545: 48 89 d9                    	mov	rcx, rbx
+1404f2548: 48 89 c3                    	mov	rbx, rax
+1404f254b: 31 c0                       	xor	eax, eax
+1404f254d: 48 81 c4 48 01 00 00        	add	rsp, 0x148
+1404f2554: 5d                          	pop	rbp
+1404f2555: c3                          	ret
+1404f2556: 48 8b 9c 24 28 01 00 00     	mov	rbx, qword ptr [rsp + 0x128]
+1404f255e: 84 03                       	test	byte ptr [rbx], al
+1404f2560: 48 8d 93 90 00 00 00        	lea	rdx, [rbx + 0x90]
+1404f2567: 83 3d b2 53 cd 00 00        	cmp	dword ptr [rip + 0xcd53b2], 0x0 # 0x1411c7920
+1404f256e: 74 2f                       	je	0x1404f259f <.text+0x4f159f>
+1404f2570: 48 89 94 24 30 01 00 00     	mov	qword ptr [rsp + 0x130], rdx
+1404f2578: 48 8d 05 91 c1 b7 00        	lea	rax, [rip + 0xb7c191]   # 0x14106e710
+1404f257f: 48 89 d3                    	mov	rbx, rdx
+1404f2582: 48 8d 8c 24 80 02 00 00     	lea	rcx, [rsp + 0x280]
+1404f258a: e8 51 3b b3 ff              	call	0x1400260e0 <.text+0x250e0> ; runtime.wbMove
+1404f258f: 48 8b 94 24 30 01 00 00     	mov	rdx, qword ptr [rsp + 0x130]
+1404f2597: 48 8b 9c 24 28 01 00 00     	mov	rbx, qword ptr [rsp + 0x128]
+1404f259f: 48 8d b4 24 80 02 00 00     	lea	rsi, [rsp + 0x280]
+1404f25a7: 44 0f 10 36                 	movups	xmm14, xmmword ptr [rsi]
+1404f25ab: 44 0f 11 32                 	movups	xmmword ptr [rdx], xmm14
+1404f25af: 44 0f 10 76 10              	movups	xmm14, xmmword ptr [rsi + 0x10]
+1404f25b4: 44 0f 11 72 10              	movups	xmmword ptr [rdx + 0x10], xmm14
+1404f25b9: 44 0f 10 76 20              	movups	xmm14, xmmword ptr [rsi + 0x20]
+1404f25be: 44 0f 11 72 20              	movups	xmmword ptr [rdx + 0x20], xmm14
+1404f25c3: 44 0f 10 76 28              	movups	xmm14, xmmword ptr [rsi + 0x28]
+1404f25c8: 44 0f 11 72 28              	movups	xmmword ptr [rdx + 0x28], xmm14
+1404f25cd: 48 89 d8                    	mov	rax, rbx
+1404f25d0: 31 db                       	xor	ebx, ebx
+1404f25d2: 31 c9                       	xor	ecx, ecx
+1404f25d4: 48 81 c4 48 01 00 00        	add	rsp, 0x148
+1404f25db: 5d                          	pop	rbp
+1404f25dc: c3                          	ret
+1404f25dd: 31 c0                       	xor	eax, eax
+1404f25df: 48 81 c4 48 01 00 00        	add	rsp, 0x148
+1404f25e6: 5d                          	pop	rbp
+1404f25e7: c3                          	ret
+1404f25e8: 88 84 24 30 01 00 00        	mov	byte ptr [rsp + 0x130], al
+1404f25ef: 88 9c 24 31 01 00 00        	mov	byte ptr [rsp + 0x131], bl
+1404f25f6: f2 0f 11 84 24 38 01 00 00  	movsd	qword ptr [rsp + 0x138], xmm0
+1404f25ff: f2 0f 11 8c 24 40 01 00 00  	movsd	qword ptr [rsp + 0x140], xmm1
+1404f2608: 88 8c 24 48 01 00 00        	mov	byte ptr [rsp + 0x148], cl
+1404f260f: 89 bc 24 4c 01 00 00        	mov	dword ptr [rsp + 0x14c], edi
+1404f2616: 48 89 b4 24 50 01 00 00     	mov	qword ptr [rsp + 0x150], rsi
+1404f261e: 4c 89 84 24 58 01 00 00     	mov	qword ptr [rsp + 0x158], r8
+1404f2626: 4c 89 8c 24 60 01 00 00     	mov	qword ptr [rsp + 0x160], r9
+1404f262e: e8 0d a0 b9 ff              	call	0x14008c640 <.text+0x8b640> ; runtime.morestack_noctxt
+1404f2633: 0f b6 84 24 30 01 00 00     	movzx	eax, byte ptr [rsp + 0x130]
+1404f263b: 0f b6 9c 24 31 01 00 00     	movzx	ebx, byte ptr [rsp + 0x131]
+1404f2643: f2 0f 10 84 24 38 01 00 00  	movsd	xmm0, qword ptr [rsp + 0x138]
+1404f264c: f2 0f 10 8c 24 40 01 00 00  	movsd	xmm1, qword ptr [rsp + 0x140]
+1404f2655: 0f b6 8c 24 48 01 00 00     	movzx	ecx, byte ptr [rsp + 0x148]
+1404f265d: 8b bc 24 4c 01 00 00        	mov	edi, dword ptr [rsp + 0x14c]
+1404f2664: 48 8b b4 24 50 01 00 00     	mov	rsi, qword ptr [rsp + 0x150]
+1404f266c: 4c 8b 84 24 58 01 00 00     	mov	r8, qword ptr [rsp + 0x158]
+1404f2674: 4c 8b 8c 24 60 01 00 00     	mov	r9, qword ptr [rsp + 0x160]
+1404f267c: 0f 1f 40 00                 	nop	dword ptr [rax]
+1404f2680: e9 1b fd ff ff              	jmp	0x1404f23a0 <.text+0x4f13a0>
+1404f2685: cc                          	int3
+1404f2686: cc                          	int3
+1404f2687: cc                          	int3
+1404f2688: cc                          	int3
+1404f2689: cc                          	int3
+1404f268a: cc                          	int3
+1404f268b: cc                          	int3
+1404f268c: cc                          	int3
+1404f268d: cc                          	int3
+1404f268e: cc                          	int3
+1404f268f: cc                          	int3
+1404f2690: cc                          	int3
+1404f2691: cc                          	int3
+1404f2692: cc                          	int3
+1404f2693: cc                          	int3
+1404f2694: cc                          	int3
+1404f2695: cc                          	int3
+1404f2696: cc                          	int3
+1404f2697: cc                          	int3
+1404f2698: cc                          	int3
+1404f2699: cc                          	int3
+1404f269a: cc                          	int3
+1404f269b: cc                          	int3
+1404f269c: cc                          	int3
+1404f269d: cc                          	int3
+1404f269e: cc                          	int3
+1404f269f: cc                          	int3

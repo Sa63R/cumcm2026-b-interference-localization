@@ -1,0 +1,12 @@
+% ===== 问题三正文 =====
+% 本文件汇总第三问；各部分正文、公式与图表请编辑 sections/q3/ 下的对应子文件。
+% 算法依据 paper_code/q3_optical_paper 中的 v3 提前光学策略；实验数字只引用该包 code/statistics.json 的记录。
+\subsection{问题三：多源自动搜索与清除策略}\label{sec:q3}
+
+问题三要机器狗从原点出发，把场地里 $10$ 到 $16$ 个全向干扰源全部找到并清除，源的数量、位置和接收半径都不知道，目标是总耗时尽量短。和前两问相比，这里多了三件事要决定：还没发现的源怎么保证一定能找到；已经发现的源什么时候去定位、什么时候去清除；任务什么时候可以结束。这三件事互相牵制：多扫几站能早点把源找全，但每扫一站要花几十秒检测时间；先把手头的源清掉再去扫站，路可能要走回头。本节先交代沿用的记号和无信号反馈的用法，再分发现、定位、清除、任务安排四部分建立模型，其中定位部分在第二问的选点模型之外加了一条“区域已经很小时先试一次光学清除”的规则；然后给出求解流程；最后在本地复原的模拟器上用 $2000$ 个相同场景比较五种方案，检验各条规则的作用。
+
+\input{sections/q3/01_model_and_algorithm}%
+\input{sections/q3/02_baselines_and_setup}%
+\input{sections/q3/03_results_and_ablations}%
+\input{sections/q3/04_training_and_practice}%
+\input{sections/q3/05_trajectories_and_discussion}%

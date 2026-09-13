@@ -1,0 +1,528 @@
+% !TeX program = xelatex
+% UTF-8; compile twice with XeLaTeX.
+% Source: 问题一_定位区域模型.md
+% This file preserves the supplied text, mathematics, data and section numbering.
+\documentclass[UTF8,a4paper,zihao=-4,fontset=fandol]{ctexart}
+\XeTeXgenerateactualtext=1
+\usepackage[left=23mm,right=23mm,top=22mm,bottom=23mm,headheight=15pt,headsep=7mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{bookmark}
+\hypersetup{pdftitle={基于角域交会与最小包围圆的无源测向快速定位模型}}
+\renewcommand{\thesection}{5.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\ctexset{
+  section={format=\large\bfseries,beforeskip=1.2em,afterskip=0.55em},
+  subsection={format=\normalsize\bfseries,beforeskip=0.9em,afterskip=0.35em}
+}
+\linespread{1.16}
+\setlength{\parskip}{0.25em}
+\setlength{\emergencystretch}{2em}
+\setlist[enumerate]{label=\arabic*.,leftmargin=2em,itemsep=0.15em,topsep=0.4em,parsep=0pt}
+\setlist[itemize]{leftmargin=2em,itemsep=0.15em,topsep=0.4em,parsep=0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small 无源测向快速定位模型}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\thepage}\renewcommand{\headrulewidth}{0pt}}
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+\raggedbottom
+
+% BEGIN EDITABLE VECTOR FIGURES
+\def\TanLower{0.948964566715}
+\def\TanUpper{1.017607392972}
+\def\TanCenter{0.982697263116}
+\def\RayLowerEnd{759.171653371904}
+\def\RayUpperEnd{814.085914377700}
+\def\HalfD{17.452406437284}
+\def\MiddleY{491.043998670329}
+\def\BottomY{474.482283357440}
+\def\TopY{508.803696486063}
+\def\CoverY{491.348631557845}
+\def\CoverR{17.455064928218}
+\def\CircleTop{508.496405107612}
+% Editable vector illustrations. Numeric macros are supplied by the build script.
+\usepackage{pgfplots}
+\usepackage{caption}
+\usepackage{placeins}
+\usetikzlibrary{arrows.meta,calc}
+\pgfplotsset{compat=1.18}
+\definecolor{regionteal}{HTML}{167C80}
+\definecolor{rayblue}{HTML}{386CA0}
+\definecolor{rayorange}{HTML}{BA783A}
+\definecolor{diamred}{HTML}{BF4C43}
+\definecolor{coverblue}{HTML}{326CB0}
+\captionsetup{font=small,labelfont=bf,labelsep=quad,skip=8pt,hypcap=false}
+\renewcommand{\figurename}{图}
+\pgfplotsset{modelaxis/.style={
+  axis lines=box,axis line style={black!45},
+  tick align=outside,tick style={black!55},
+  tick label style={font=\scriptsize},
+  label style={font=\small},title style={font=\small},
+  grid=major,grid style={black!7},scaled ticks=false,
+  /pgf/number format/1000 sep={},clip=true,
+  xlabel={$x$（m）},ylabel={$y$（m）}
+}}
+
+\newcommand{\AngleDiagram}{%
+\begin{tikzpicture}[>=Stealth,font=\small,line cap=round,line join=round]
+  \fill[regionteal!12] (0,0)--(39:7.9)--(21:7.9)--cycle;
+  \draw[->,black!55] (-0.35,0)--(8.55,0) node[right] {$x$};
+  \draw[->,black!55] (0,-0.35)--(0,5.2) node[above] {$y$};
+  \draw[->,rayblue,thick] (0,0)--(39:7.9) node[above right] {上边界 $u_i^+$};
+  \draw[->,rayblue,thick] (0,0)--(21:7.9) node[below right] {下边界 $u_i^-$};
+  \draw[->,regionteal,dashed,thick] (0,0)--(30:8.2)
+    node[right,align=left] {示向度方向};
+  \draw[->,black!70] (0,0)--(33:5.9);
+  \fill (33:5.9) circle (1.7pt) node[above left] {候选位置 $X$};
+  \fill (0,0) circle (2pt) node[below left] {$S_i$};
+  \draw[->,black!65] (1.15,0) arc (0:30:1.15);
+  \node at (13:1.48) {$\varphi_i$};
+  \draw[<->,rayorange] (21:3.0) arc (21:30:3.0);
+  \draw[<->,rayorange] (30:3.0) arc (30:39:3.0);
+  \node[rayorange] at (24.7:3.37) {$\varepsilon$};
+  \node[rayorange] at (35.3:3.37) {$\varepsilon$};
+  \node[regionteal] at (30:4.35) {误差角域};
+\end{tikzpicture}%
+}
+
+\newcommand{\IntersectionDiagram}{%
+\begin{minipage}[t]{0.49\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[modelaxis,width=0.94\linewidth,height=6.2cm,axis equal image,
+  xmin=-570,xmax=570,ymin=-65,ymax=665,
+  xtick={-500,0,500},ytick={0,250,500},title={(a) 两次测向的整体几何}]
+  \addplot[draw=none,fill=rayblue!16] coordinates
+    {(-500,0) (300,\RayLowerEnd) (300,\RayUpperEnd) (-500,0)};
+  \addplot[draw=none,fill=rayorange!18] coordinates
+    {(500,0) (-300,\RayLowerEnd) (-300,\RayUpperEnd) (500,0)};
+  \addplot[rayblue,thin,domain=-500:300,samples=2] {\TanLower*(x+500)};
+  \addplot[rayblue,thin,domain=-500:300,samples=2] {\TanUpper*(x+500)};
+  \addplot[rayorange,thin,domain=-300:500,samples=2] {\TanLower*(500-x)};
+  \addplot[rayorange,thin,domain=-300:500,samples=2] {\TanUpper*(500-x)};
+  \addplot[rayblue,dashed,domain=-500:300,samples=2] {\TanCenter*(x+500)};
+  \addplot[rayorange,dashed,domain=-300:500,samples=2] {\TanCenter*(500-x)};
+  \addplot[regionteal,fill=regionteal!55,thick] coordinates
+    {(0,\BottomY) (\HalfD,\MiddleY) (0,\TopY) (-\HalfD,\MiddleY) (0,\BottomY)};
+  \draw[regionteal,densely dotted] (axis cs:-29,465) rectangle (axis cs:29,520);
+  \draw[regionteal,->] (axis cs:130,555)--(axis cs:15,510);
+  \node[regionteal,font=\small] at (axis cs:170,565) {$P$};
+  \fill (axis cs:-500,0) circle (1.6pt) node[above right,font=\scriptsize] {$S_1$};
+  \fill (axis cs:500,0) circle (1.6pt) node[above left,font=\scriptsize] {$S_2$};
+  \fill[black!55] (axis cs:0,0) circle (1pt) node[above,font=\scriptsize] {$O$};
+  \node[rayblue,font=\scriptsize,anchor=west] at (axis cs:-510,180) {$\theta_1=44.5^\circ$};
+  \node[rayorange,font=\scriptsize,anchor=east] at (axis cs:510,180) {$\theta_2=135.5^\circ$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[modelaxis,width=0.94\linewidth,height=6.2cm,axis equal image,
+  xmin=-25,xmax=25,ymin=469,ymax=515,
+  xtick={-20,0,20},ytick={475,490,505},title={(b) 定位区域的局部放大}]
+  \addplot[regionteal,fill=regionteal!13,thick] coordinates
+    {(0,\BottomY) (\HalfD,\MiddleY) (0,\TopY) (-\HalfD,\MiddleY) (0,\BottomY)};
+  \addplot[black!35,densely dashed] coordinates {(0,\BottomY) (0,\TopY)};
+  \addplot[diamred,very thick] coordinates {(-\HalfD,\MiddleY) (\HalfD,\MiddleY)};
+  \fill (axis cs:0,\BottomY) circle (1.4pt) node[below,font=\small] {$V_1$};
+  \fill (axis cs:\HalfD,\MiddleY) circle (1.4pt) node[above right,font=\small] {$V_2$};
+  \fill (axis cs:0,\TopY) circle (1.4pt) node[above,font=\small] {$V_3$};
+  \fill (axis cs:-\HalfD,\MiddleY) circle (1.4pt) node[above left,font=\small] {$V_4$};
+  \fill[diamred] (axis cs:0,\MiddleY) circle (1.5pt) node[above right,font=\scriptsize] {$C_0$};
+  \node[diamred,font=\scriptsize,fill=white,inner sep=1pt] at (axis cs:0,486.5) {$D=34.905\ \mathrm m$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}%
+}
+
+\newcommand{\CoverageDiagram}{%
+\begin{minipage}[t]{0.55\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[modelaxis,width=0.94\linewidth,height=7.0cm,axis equal image,
+  xmin=-23,xmax=23,ymin=469,ymax=513,
+  xtick={-20,0,20},ytick={475,490,505},title={(a) 定位区域与两种圆},
+  legend style={font=\scriptsize,draw=none,at={(0.5,-0.26)},anchor=north},legend columns=1]
+  \addplot[regionteal,fill=regionteal!11,thick] coordinates
+    {(0,\BottomY) (\HalfD,\MiddleY) (0,\TopY) (-\HalfD,\MiddleY) (0,\BottomY)};
+  \addlegendentry{定位区域 $P$}
+  \addplot[diamred,dashed,thick,domain=0:360,samples=241]
+    ({\HalfD*cos(x)},{\MiddleY+\HalfD*sin(x)});
+  \addlegendentry{直径圆：圆心 $C_0$，半径 $D/2$}
+  \addplot[coverblue,thick,domain=0:360,samples=241]
+    ({\CoverR*cos(x)},{\CoverY+\CoverR*sin(x)});
+  \addlegendentry{最小包围圆：圆心 $C^*$，半径 $R^*$}
+  \addplot[only marks,mark=+,mark size=2pt,diamred,forget plot] coordinates {(0,\MiddleY)};
+  \addplot[only marks,mark=*,mark size=0.7pt,coverblue,forget plot] coordinates {(0,\CoverY)};
+  \fill (axis cs:0,\BottomY) circle (1.4pt) node[below,font=\scriptsize] {$V_1$};
+  \fill (axis cs:\HalfD,\MiddleY) circle (1.4pt) node[below left,font=\scriptsize] {$V_2$};
+  \fill (axis cs:0,\TopY) circle (1.4pt) node[above,font=\scriptsize] {$V_3$};
+  \fill (axis cs:-\HalfD,\MiddleY) circle (1.4pt) node[below right,font=\scriptsize] {$V_4$};
+  \draw[black!50,densely dotted] (axis cs:-2.4,508.38) rectangle (axis cs:2.4,508.92);
+\end{axis}
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[modelaxis,width=0.94\linewidth,height=4.4cm,
+  xmin=-2.4,xmax=2.4,ymin=508.38,ymax=508.92,
+  xtick={-2,0,2},ytick={508.4,508.6,508.8},title={(b) 上顶点附近的放大图},
+  yticklabel style={/pgf/number format/fixed,/pgf/number format/precision=1,font=\scriptsize}]
+  \addplot[regionteal,fill=regionteal!11,thick] coordinates
+    {(-\HalfD,\MiddleY) (0,\TopY) (\HalfD,\MiddleY) (-\HalfD,\MiddleY)};
+  \addplot[diamred,dashed,thick,domain=-2.4:2.4,samples=81]
+    {\MiddleY+sqrt(\HalfD^2-x^2)};
+  \addplot[coverblue,thick,domain=-2.4:2.4,samples=81]
+    {\CoverY+sqrt(\CoverR^2-x^2)};
+  \fill (axis cs:0,\TopY) circle (1.6pt) node[above left,font=\scriptsize] {$V_3$};
+  \draw[diamred,dotted] (axis cs:0,\CircleTop)--(axis cs:1.7,\CircleTop);
+  \draw[black!55,dotted] (axis cs:0,\TopY)--(axis cs:1.7,\TopY);
+  \draw[diamred,<->,>=Stealth] (axis cs:1.55,\CircleTop)--(axis cs:1.55,\TopY)
+    node[midway,right,rotate=90,anchor=south,font=\scriptsize] {$0.307\ \mathrm m$};
+\end{axis}
+\end{tikzpicture}
+\vspace{0.8em}
+\begin{minipage}{0.95\linewidth}
+\small
+\textcolor{diamred}{直径圆}：$D/2=17.452406$ m。\par
+\textcolor{coverblue}{最小包围圆}：$R^*=17.455065$ m。\par
+圆心由 $C_0$ 向上移动约 $0.304633$ m 后，最小包围圆经过 $V_2,V_3,V_4$。\par
+\vspace{0.35em}
+{\footnotesize 放大图的纵横比例不同，用于辨认顶部的覆盖差异。}
+\end{minipage}
+\end{minipage}%
+}
+
+% END EDITABLE VECTOR FIGURES
+
+\begin{document}
+\thispagestyle{plain}
+\begin{center}{\LARGE\bfseries 基于角域交会与最小包围圆的\par\vspace{0.25em}无源测向快速定位模型\par}\end{center}
+\vspace{0.4em}
+% BEGIN DOCUMENT BODY
+
+\section*{\centering 摘要}
+\addcontentsline{toc}{section}{摘要}
+
+针对无线电干扰源的快速自动定位问题，本文建立角域交会定位模型，给出定位区域及其直径的求解算法，并对“以区域直径为直径的圆能否覆盖定位区域”这一判断作出回答。
+
+\textbf{问题一}要求由若干检测点及其示向度计算干扰源的定位区域与直径，并判断直径圆的覆盖性。本文采用\textbf{角域交会定位模型}：示向度存在 $\pm1^\circ$ 的读数误差，一次测向只能确定干扰源位于一个张角 $2^\circ$ 的角域内；该角域可用两个线性不等式精确刻画，故多次测向的定位区域是若干半平面之交，为\textbf{凸多边形}。利用凸性，区域直径必在最远顶点对上取得，将区域上的极值问题化为有限次顶点比较，算法总复杂度 $O(n^3)$。对覆盖性，本文证明直径恰为 $D$ 的覆盖圆没有选择圆心的余地---圆心只能取最远点对的中点，由此得到 $O(h)$ 的充要判据；并构造了一个由两个误差角域直接求交得到的算例，其中该圆漏掉区域的一个顶点约 $0.307$ m，说明\textbf{以区域直径为直径的圆不一定能覆盖定位区域}。最后指出保证覆盖应采用\textbf{最小包围圆模型}，并以 $R^*\le20$ m 作为进入清除的判据。
+
+\textbf{关键词：} 角域交会　半平面交　凸多边形直径　最小包围圆　示向度误差
+
+\clearpage
+\section*{一、问题背景与重述}
+\addcontentsline{toc}{section}{一、问题背景与重述}
+
+无线电干扰源的定位与清除是频谱管理中的基础任务。完整的定位流程通常包括初步监测、区域性排查与精准定位三个阶段，前两个阶段只能划定干扰源的大致分布范围，最终的精确定位仍需人员或设备抵近完成。为缩短排查时间、降低人员风险，本题考虑以机器狗代替技术人员，携带测向机与光学探测设备在目标区域内自动搜寻并清除干扰源。
+
+目标区域是半径 $1800$ m 的圆形区域，圆心为坐标原点，正东为 $x$ 轴正方向，正北为 $y$ 轴正方向，单位为米。区域内分布 $10$ 至 $16$ 个干扰源，具体个数未知，每个干扰源占用一个互不相同的频道。
+
+机器狗通过测向机获得的不是干扰源的位置，而是\textbf{示向度}：在检测点处测得的干扰源最大场强方向的方位角，自 $x$ 轴正方向逆时针计量，范围 $[0^\circ,360^\circ)$。受电磁环境与测向精度限制，示向度读数与真实方位之间存在误差，误差界限为 $[-1^\circ,1^\circ]$。也就是说，一次测向只能说明干扰源位于一个很窄的楔形范围内，要确定它的位置，必须从不同方向多次测向，逐步逼近---这正是\textbf{交会定位}的思路。
+
+题目给出的问题一如下：
+
+\begin{quote}
+已知若干个检测点坐标及某干扰源关于这些检测点的示向度，请给出采用交会定位法计算多边形定位区域直径（即区域内任意两点之间距离的最大值）的算法。以定位区域直径为直径的圆能否覆盖此定位区域？
+\end{quote}
+
+本文即围绕这一问题展开。
+
+\section*{二、问题一的分析}
+\addcontentsline{toc}{section}{二、问题一的分析}
+
+问题一包含两件事：一是算出定位区域及其直径，二是判断直径圆能否盖住这个区域。本问的难点不在数值计算，而在于找到一个合适的几何结构，使“区域内任意两点距离的最大值”这样一个涉及无穷多点的量能够有限步算出。
+
+注意到每次测向给出的角域是一条射线张开得到的扇形，边界是两条直线，可以精确地写成两个线性不等式。因此，$n$ 次测向的定位区域就是 $2n$ 个\textbf{半平面的交}，是一个\textbf{凸多边形}。凸性带来了很大的便利：区域内任意一点都可以表示为顶点的凸组合，于是任意两点的距离不会超过最远顶点对的距离，而顶点之间的比较是有限次的。这样，求直径的问题就归结为求顶点、再枚举顶点对。
+
+第二问的判断，关键在圆心。若一个圆的直径恰好等于区域直径 $D$，它必须同时覆盖最远的两点，由三角不等式可知圆心只能取这两点的中点，不能再作调整。圆心定下来后，覆盖与否只需逐一检验各顶点是否落在圆内。本文构造了一个完全符合题设误差界的算例，其中该圆没有盖住区域的一个顶点，说明第二问的答案是否定的；并指出此时应改用\textbf{最小包围圆}。
+
+\Needspace{10\baselineskip}
+\section*{三、模型假设}
+\addcontentsline{toc}{section}{三、模型假设}
+
+\begin{enumerate}
+\item 测向误差有界，界为 $\pm1^\circ$；除误差界外，不对误差的分布形式作任何假设；
+\item 检测点位置精确已知，问题在平面内讨论，忽略机器狗与干扰源的高度差异；
+\item 各测向数据相容，即真实干扰源同时位于所有误差角域内；
+\item 干扰源为点源，不考虑其发射功率与天线方向性对定位的影响。
+\end{enumerate}
+
+\Needspace{21\baselineskip}
+\section*{四、符号说明}
+\addcontentsline{toc}{section}{四、符号说明}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.98\linewidth}{>{\centering\arraybackslash}p{0.25\linewidth}>{\centering\arraybackslash}p{0.24\linewidth}>{\centering\arraybackslash}X}
+\toprule
+\textbf{符号} & \textbf{范围} & \textbf{说明} \\
+\midrule
+$n$ & $\mathbb{Z}^+$ & 测向次数（检测点个数） \\
+$S_i=(x_i,y_i)$ & $\mathbb{R}^2$ & 第 $i$ 个检测点的坐标 \\
+$\theta_i$ & $[0^\circ,360^\circ)$ & 第 $i$ 次测向的示向度 \\
+$\varepsilon$ & $1^\circ$ & 测向误差界 \\
+$P$ & --- & 定位区域 \\
+$v_1,\dots,v_h$ & $\mathbb{R}^2$ & 定位区域的顶点 \\
+$D$ & $(0,+\infty)$ & 定位区域直径 \\
+$C^*,\ R^*$ & --- & 最小包围圆的圆心与半径 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section*{五、模型的建立与求解}
+\addcontentsline{toc}{section}{五、模型的建立与求解}
+
+\subsection*{5.1 角域交会定位模型}
+\addcontentsline{toc}{subsection}{5.1 角域交会定位模型}
+
+设机器狗在 $n$ 个位置 $S_i=(x_i,y_i)$ 处对该干扰源测得示向度 $\theta_i$。$\theta_i$ 是自正东逆时针量到“检测点指向干扰源”方向的角度，但它并不是干扰源的真实方位：真实方位落在 $\theta_i$ 两侧各 $1^\circ$ 内。记 $\varphi_i=\pi\theta_i/180$，$\varepsilon=1^\circ=\pi/180$，则该角域的两条边界射线方向为
+
+\[
+u_i^-=\begin{pmatrix}\cos(\varphi_i-\varepsilon)\\ \sin(\varphi_i-\varepsilon)\end{pmatrix},\qquad
+u_i^+=\begin{pmatrix}\cos(\varphi_i+\varepsilon)\\ \sin(\varphi_i+\varepsilon)\end{pmatrix},
+\]
+
+分别对应真实方位取到下限与上限两个极端。对二维向量记叉积 $a\times b=a_xb_y-a_yb_x$：若 $a\times b>0$，则 $b$ 在 $a$ 的逆时针一侧；若小于零，则在顺时针一侧；等于零则两向量共线。据此，点 $X=(x,y)$ 落在该角域内等价于
+
+\[
+u_i^-\times(X-S_i)\ge 0,\qquad u_i^+\times(X-S_i)\le 0. \tag{1}
+\]
+
+式 (1) 中第一式要求 $X-S_i$ 在 $u_i^-$ 的逆时针一侧，即位于下边界的上方；第二式要求它在 $u_i^+$ 的顺时针一侧，即位于上边界的下方。两式合起来，正是把 $X$ 限制在两条射线之间。又因角域张角仅 $2^\circ$，两条射线方向相反的那个区域（检测点背后）不满足这两式，不必另行排除。
+
+
+% BEGIN ADDED FIGURE
+\begin{center}\begin{minipage}{\linewidth}
+\centering
+\AngleDiagram
+\captionof{figure}{单次测向的误差角域。为便于辨认，图中误差角作放大示意；模型计算仍取半张角 $\varepsilon=1^\circ$。}
+\label{fig:angle-domain}
+\end{minipage}\end{center}
+% END ADDED FIGURE
+
+将式 (1) 展开，一次测向对应两个线性不等式：
+
+\[
+\begin{aligned}
+\sin(\varphi_i-\varepsilon)(x-x_i)-\cos(\varphi_i-\varepsilon)(y-y_i)&\le 0,\\
+-\sin(\varphi_i+\varepsilon)(x-x_i)+\cos(\varphi_i+\varepsilon)(y-y_i)&\le 0.
+\end{aligned}
+\tag{2}
+\]
+
+这两个式子都是 $x$、$y$ 的一次不等式，形如 $ax+by\le c$。满足 $ax+by\le c$ 的点集是直线 $ax+by=c$ 一侧的半个平面，称为半平面，它是一个凸集。式 (2) 的两个不等式分别限制了角域的两条边界，它们的交集就是该角域。
+
+$n$ 次测向后，干扰源必须同时落在每个角域内，也就是要同时满足全部 $2n$ 个不等式。将它们统一写成 $a_jx+b_jy\le c_j$，得到定位区域
+
+\[
+P=\bigcap_{j=1}^{2n}\left\{(x,y):a_jx+b_jy\le c_j\right\}. \tag{3}
+\]
+
+由式 (3)，$P$ 是 $2n$ 个半平面的交。半平面是凸集，凸集之交仍是凸集，故 $P$ 为凸集；在非空且有界时，$P$ 是\textbf{凸多边形}，退化情形为线段或点。题目图 2 中的红色四边形，正是 $n=2$ 时两个角域求交的结果；多个检测点的情形依式 (3) 继续求交即可，每增加一次有效测向，约束增加两条，定位区域随之收缩。
+
+
+% BEGIN ADDED FIGURE
+\begin{center}\begin{minipage}{\linewidth}
+\centering
+\IntersectionDiagram
+\captionof{figure}{两次测向的角域交会与定位区域。采用第 5.3 节算例数据，边界角按真实的 $\pm1^\circ$ 绘制；两幅子图各自保持等比例坐标，右图为交会区域放大。}
+\label{fig:intersection}
+\end{minipage}\end{center}
+% END ADDED FIGURE
+
+\subsection*{5.2 定位区域及其直径的求解}
+\addcontentsline{toc}{subsection}{5.2 定位区域及其直径的求解}
+
+求解分三步：先判明区域是否存在且有界，再求出全部顶点，最后在顶点对中取距离最大者。
+
+\textbf{第一步，判别有界性。} 并非任意一组测向都能定出有限的区域，两种情形需要先排除。其一，若各次测向来自机器狗几乎沿一条直线走过的位置，各示向度方向接近平行，角域之交会沿这条方向无限延伸，区域无界。其二，若某次读数受干扰而偏差较大，各角域可能互不相容，区域为空。为此用线性规划对约束组作两个判断：先检验是否可行，不可行则说明数据与误差界矛盾，应剔除异常的测向数据；再对可行情形求 $x$、$-x$、$y$、$-y$ 在约束下的最大值，四者均有限当且仅当 $P$ 有界，若某一方向无界，则需改变探测位置，使各次测向的方向张开一些再重新定位。
+
+有界性判别不能省略。无界区域同样可能有若干有限顶点，例如上述楔形，其尖端是有限顶点，但区域内沿楔形方向可以走到任意远；若跳过判别直接取顶点对的最大距离，会把本应为无穷的直径误报成有限值。
+
+\textbf{第二步，求顶点。} 凸多边形的每个顶点都是某两条边界直线的交点。对直线 $a_jx+b_jy=c_j$ 与 $a_kx+b_ky=c_k$，记 $\Delta_{jk}=a_jb_k-a_kb_j$，当 $\Delta_{jk}\ne0$ 时交点为
+
+\[
+x_{jk}=\frac{c_jb_k-b_jc_k}{\Delta_{jk}},\qquad
+y_{jk}=\frac{a_jc_k-c_ja_k}{\Delta_{jk}}. \tag{4}
+\]
+
+两直线平行时无交点或有无穷多交点，都不产生顶点，故只需处理 $\Delta_{jk}\ne0$ 的情形。求出的交点未必在区域内，需代回全部 $2n$ 个约束逐一检验，保留满足 $a_\ell x_{jk}+b_\ell y_{jk}\le c_\ell$（$\ell=1,\dots,2n$）者；这些点还可能有重复（多条边界直线共点），去重后即得顶点集 $\{v_1,\dots,v_h\}$。
+
+\textbf{第三步，求直径。} 按题目定义，定位区域直径是区域内任意两点间距离的最大值，$D=\max_{X,Y\in P}\|X-Y\|_2$。由于 $P$ 是凸多边形，该最大值必在顶点对上取得：
+
+\[
+D=\max_{1\le i<j\le h}\|v_i-v_j\|_2 . \tag{5}
+\]
+
+下证式 (5)。凸多边形是其全部顶点的凸包，因此 $P$ 中任意一点都可写为顶点的凸组合，即存在权重 $\lambda_i\ge0$、$\sum_i\lambda_i=1$，使 $X=\sum_i\lambda_iv_i$；同理 $Y=\sum_j\mu_jv_j$，$\mu_j\ge0$、$\sum_j\mu_j=1$。两式相减得
+
+\[
+X-Y=\sum_{i,j}\lambda_i\mu_j(v_i-v_j),
+\qquad
+\sum_{i,j}\lambda_i\mu_j=\left(\sum_i\lambda_i\right)\left(\sum_j\mu_j\right)=1 .
+\]
+
+由三角不等式，
+
+\[
+\|X-Y\|\le\sum_{i,j}\lambda_i\mu_j\|v_i-v_j\|\le\max_{i,j}\|v_i-v_j\|\cdot1=\max_{i,j}\|v_i-v_j\|,
+\]
+
+即区域内任意两点的距离都不超过最远顶点对的距离。另一方面，顶点本身属于 $P$，故最远顶点对的距离是区域内可以取到的点对距离。两者结合，式 (5) 成立。这一结论把区域内无穷多组点对的比较，归结为顶点之间的有限次比较。
+
+综上，问题一的求解流程为：
+
+\begin{tcolorbox}[colback=black!2,colframe=black!22,boxrule=0.4pt,arc=0pt,left=9pt,right=9pt,top=7pt,bottom=7pt]
+\small\setlength{\parskip}{2pt}
+\noindent\hangindent=1.5em\hangafter=1 输入：检测点 $S_i$、示向度 $\theta_i$，$i=1,\dots,n$\par
+\noindent\hangindent=1.5em\hangafter=1 1  按式 (2) 将每次测向化为两个半平面；\par
+\noindent\hangindent=1.5em\hangafter=1 2  线性规划检验可行性与有界性，异常情形分别报告；\par
+\noindent\hangindent=1.5em\hangafter=1 3  按式 (4) 求每对边界直线的交点；\par
+\noindent\hangindent=1.5em\hangafter=1 4  保留满足全部约束的交点并去重，得顶点集；\par
+\noindent\hangindent=1.5em\hangafter=1 5  枚举所有顶点对，取距离最大者 $(A,B)$，$D=|AB|$。\par
+\end{tcolorbox}
+
+边界直线共 $2n$ 条，需要检验的交点约 $\binom{2n}{2}=O(n^2)$ 个，每个交点检验约束需 $O(n)$，顶点数不超过 $2n$，最后比较顶点对又是 $O(n^2)$，故总计算量 $O(n^3)$。机器狗每取得一次新的示向度就可用该算法更新一次定位区域，这一计算量在实时策略中不构成负担。
+
+\subsection*{5.3 直径圆的覆盖性分析}
+\addcontentsline{toc}{subsection}{5.3 直径圆的覆盖性分析}
+
+机器狗携带的光学探测仪只能在距干扰源不超过 $20$ m 时精确定位并清除，因此“以定位区域直径为直径的圆能否覆盖该区域”，直接决定了能否将整片候选区域一次性纳入光学作用范围。
+
+若半径为 $D/2$、圆心为 $C$ 的圆覆盖了 $P$，则 $A$、$B$ 两点都在圆内，即 $\|A-C\|\le D/2$、$\|C-B\|\le D/2$。代入三角不等式
+
+\[
+D=\|A-B\|\le\|A-C\|+\|C-B\|\le\frac D2+\frac D2=D .
+\]
+
+不等式的两端相等，故中间每一步都必须取等号：既要有 $\|A-C\|=\|C-B\|=D/2$，又要求三角不等式 $D\le\|A-C\|+\|C-B\|$ 取等，即 $C$ 在线段 $AB$ 上。两者合起来，$C$ 只能是 $AB$ 的中点 $C_0=(A+B)/2$。也就是说，直径恰为 $D$ 的圆，其圆心被 $A$、$B$ 唯一确定。又因为圆是凸集，它包含全部顶点就包含以这些顶点为顶点的整个凸多边形，所以覆盖 $P$ 等价于覆盖所有顶点，判据为
+
+\[
+\max_{1\le i\le h}\|v_i-C_0\|\le\frac D2 . \tag{6}
+\]
+
+式 (6) 是否总成立？我们用下面的算例说明它可以不成立。取两个检测点
+
+\[
+S_1=(-500,\,0),\quad\theta_1=44.5^\circ;\qquad
+S_2=(500,\,0),\quad\theta_2=135.5^\circ,
+\]
+
+误差界仍为 $\pm1^\circ$，两次测得的真实方位分别落在 $\theta_1$、$\theta_2$ 两侧各 $1^\circ$ 内。记 $t=\tan43.5^\circ$、$u=\tan45.5^\circ$，两个角域分别是 $t(x+500)\le y\le u(x+500)$ 与 $t(500-x)\le y\le u(500-x)$，按式 (3) 求交得一四边形，结果见表 1。
+
+\Needspace{19\baselineskip}
+\begin{center}
+\textbf{表 1 算例的顶点与覆盖性检验（单位：m）}
+\end{center}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}p{0.52\linewidth}X}
+\toprule
+\textbf{量} & \textbf{数值} \\
+\midrule
+下顶点 $V_1$ & $(0,\ 474.482283)$ \\
+右顶点 $V_2$ & $(17.452406,\ 491.043999)$ \\
+上顶点 $V_3$ & $(0,\ 508.803696)$ \\
+左顶点 $V_4$ & $(-17.452406,\ 491.043999)$ \\
+直径 $D=\|V_2-V_4\|$ & $34.904813$ \\
+圆心 $C_0=(V_2+V_4)/2$ & $(0,\ 491.043999)$ \\
+半径 $D/2$ & $17.452406$ \\
+上顶点到圆心的距离 $\|V_3-C_0\|$ & $\boldsymbol{17.759698}$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+枚举全部顶点对可知，最远的一对是左右两个顶点 $V_2$、$V_4$，距离 $D\approx34.905$ m，故圆心只能取 $C_0$、半径只能取 $D/2$。但上顶点到圆心的距离为
+
+\[
+\|V_3-C_0\|=508.803696-491.043999=17.759698\ \text{m}>17.452406\ \text{m},
+\]
+
+超出半径约 $0.307$ m，落在圆外，式 (6) 不成立。
+
+从图形上看，原因在于这个四边形的两条对角线长度接近（$34.905$ m 与 $34.321$ m），但水平对角线并不平分竖直对角线：交点以上高 $17.760$ m，以下只有 $16.562$ m。圆心被限定在水平对角线的中点，位置偏低，故上顶点落在圆外。
+
+该算例由两个满足题设误差界的角域直接求交得到，并非人为拼凑的图形；两次测向方向相差约 $91^\circ$，检测点相距 $1000$ m，与目标区域内的实际探测尺度一致；四边形顶点到原点最远约 $508.8$ m，整体位于半径 $1800$ m 的目标区域之内，故即便引入“干扰源位于目标区域内”这一先验，结论也不改变。于是问题一的第二问答案为否：
+
+\textbf{以定位区域直径为直径的圆，不一定能覆盖该定位区域；即使允许自由选择圆心，结论也是如此。}
+
+\subsection*{5.4 保证覆盖时的修正：最小包围圆模型}
+\addcontentsline{toc}{subsection}{5.4 保证覆盖时的修正：最小包围圆模型}
+
+上面的算例说明，“区域直径 $D$”与“盖住区域所需的最小圆半径”是两个不同的量。后者由最小包围圆模型给出：
+
+\[
+\min_{C,\ R}\ R
+\qquad\text{s.t.}\quad\|v_i-C\|_2\le R,\quad i=1,\dots,h . \tag{7}
+\]
+
+其中，$C$ 是待求的圆心，$R$ 是待求的半径。由圆的凸性，只要全部顶点落在圆内，区域内的其余点也落在圆内，故只需对顶点施加约束。
+
+对有限个点，最小包围圆有一条现成的性质：它或者以某两个顶点为直径的两端，或者经过某三个不共线的顶点。这是因为，若半径还可以继续减小，就说明圆没有被顶点“卡住”，沿某个方向平移圆心即可缩小半径；只有当圆被两个点（且圆心在两点连线上）或三个点同时约束时，半径才不能再减小。因此顶点不多时，枚举全部两点圆和三点圆，挑出能覆盖所有顶点且半径最小的一个，即为所求。
+
+对表 1 的算例求解模型 (7)，得
+
+\[
+C^*\approx(0,\ 491.348632),\qquad
+R^*\approx17.455065\ \text{m}>\frac D2\approx17.452406\ \text{m},
+\]
+
+即便把圆心放到最合适的位置，所需半径仍大于 $D/2$，与前面的判断一致。
+
+进一步地，对一般的平面有界凸区域，两个量之间的差距有普适的界：
+
+\[
+\frac D2\le R^*\le\frac{D}{\sqrt3}. \tag{8}
+\]
+
+左端由最远点对给出。右端的来源是：若最小包围圆由三个顶点确定，则这三点构成锐角三角形，其最大内角 $\alpha$ 不小于 $60^\circ$，而由正弦定理，半径与边长的关系为 $R^*=\dfrac{\text{对边}}{2\sin\alpha}$，代入 $\alpha\ge60^\circ$ 即得 $R^*\le\dfrac{D}{\sqrt3}$；若由两点直径确定则更有 $R^*=D/2$。等边三角形恰好使上界取等，说明式 (8) 不能再改进，也就是说，直接把覆盖圆半径取成 $D/2$，最多可能低估约 $15.5\%$。
+
+这个区分与后续清除策略直接相关。机器狗在某位置能否清除干扰源，取决于该位置与干扰源的距离是否不超过 $20$ m；若要保证当前位置覆盖干扰源的\textbf{全部}候选位置，应当检验 $R^*\le20$ m，而 $D\le40$ m 只是必要条件。问题三、四中，机器狗正是依据已获得的示向度不断收缩定位区域、减小 $D$ 与 $R^*$，待 $R^*$ 落入 $20$ m 后再发送清除指令；若只检查 $D$ 而忽略区域的形状，清除指令就可能落空。
+
+
+% BEGIN ADDED FIGURE
+\begin{center}\begin{minipage}{\linewidth}
+\centering
+\CoverageDiagram
+\captionof{figure}{直径圆覆盖失败与最小包围圆的修正。红色虚线圆在上顶点 $V_3$ 处留下约 $0.307$ m 的覆盖缺口；蓝色实线圆覆盖全部顶点。左图按等比例绘制，右图单独放大顶部差异。}
+\label{fig:coverage}
+\end{minipage}\end{center}
+% END ADDED FIGURE
+
+\subsection*{5.5 模型说明}
+\addcontentsline{toc}{subsection}{5.5 模型说明}
+
+以上模型针对的是测向角域的交会区域。若进一步利用“干扰源必位于半径 $1800$ m 圆域内”这一先验，则更紧的候选区域为该圆域与 $P$ 的交，可能含有圆弧边界，不再必为多边形；此时仅枚举直线交点的顶点算法不再完备，需补充直线与圆交点、圆弧段的处理，不能以内接正方形等替代圆域后声称得到了精确直径。本文算例整体位于该圆域内部，故该先验不影响任何结论。
+
+此外，实际探测中检测点还受有效接收半径（$1000$ m 至 $1500$ m）的限制：只有检测点到干扰源的距离不超过其有效接收半径时，机器狗才能获得该频道的示向度，因此可用于定位的检测点必然落在干扰源周围的一个环带内，测向方向也不会过于平行。这是实际数据的有利条件，但本文算法不依赖它，对任意给定的一组检测点与示向度均成立。
+
+至于问题标题所问的“圆能否覆盖”，本文的回答是否定的，且原因不在于圆的大小不够，而在于\textbf{圆心被最远点对唯一确定}---即便换一个圆心、把半径放到最优，所需的圆仍可能比直径圆更大。
+
+\section*{六、问题一小结}
+\addcontentsline{toc}{section}{六、问题一小结}
+
+\begin{enumerate}
+\item 每次测向对应一个张角 $2^\circ$ 的误差角域，恰为两个半平面约束；$n$ 次测向的定位区域是 $2n$ 个半平面之交，非空有界时为凸多边形；
+\item 先判别有界性，再枚举边界直线交点得到顶点，区域直径等于最远顶点对的距离，算法总复杂度 $O(n^3)$；
+\item 直径为 $D$ 的覆盖圆，圆心只能取最远点对的中点；构造的算例中该圆漏掉上顶点约 $0.307$ m，最小包围圆半径 $R^*\approx17.455$ m 亦大于 $D/2$。故直径圆不一定能覆盖定位区域，需要保证覆盖时应改用最小包围圆，并以 $R^*\le20$ m 作为光学精确定位可达的判据。
+\end{enumerate}
+% END DOCUMENT BODY
+\end{document}

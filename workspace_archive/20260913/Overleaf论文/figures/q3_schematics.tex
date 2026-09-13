@@ -1,0 +1,336 @@
+% 第三问示意图：7 站发现覆盖、无信号反馈的裁剪、候选探测点与提前光学评分、求解流程、按源数分层的结果。
+% 由 config/preamble.tex 引入；颜色沿用 figures/q1_case.tex 的定义。
+
+% ---------- 图：7 个检测站的布局与覆盖 ----------
+% 比例 1 cm = 650 m：1800 m -> 2.769，999 m -> 1.537，1000 m 圆盘 -> 1.538
+\newcommand{\QThreeCoverFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  site/.style={circle,inner sep=1.9pt,fill=qonecover},
+  done/.style={circle,inner sep=1.9pt,fill=qoneink},
+  info/.style={fill=white,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.6);
+\fill[white] (0,0) rectangle (23,7.6);
+\draw[black!15] (11.5,.3)--(11.5,7.3);
+\node[font=\bfseries] at (5.7,7.25) {(a) 半径 999 m 圆周上的 7 个检测站（按实际比例）};
+\node[font=\bfseries] at (17.3,7.25) {(b) 扫过几站之后：剪掉多余的站、把未去的站挪到路线上};
+
+% (a) 布局：7 站及其 1000 m 圆盘的并
+\begin{scope}[shift={(0.6,0.4)}]
+  \clip (0,0) rectangle (10.8,6.6);
+  \coordinate (c) at (5.4,3.05);
+  \foreach \k in {0,...,6}
+    \fill[qonecover!9] ($(c)+({360/7*\k}:1.537)$) circle[radius=1.538];
+  \foreach \k in {0,...,6}
+    \draw[qonecover!60,thin] ($(c)+({360/7*\k}:1.537)$) circle[radius=1.538];
+  \fill[qoneblue!7] (c) circle[radius=2.769];
+  \draw[qoneblue,thick] (c) circle[radius=2.769];
+  \draw[black!30,densely dotted] (c) circle[radius=1.537];
+  \draw[qonefail,densely dashed,thick] ($(c)+(0:1.537)$) circle[radius=1.538];
+  \node[dot] at (c) {};
+  \foreach \k in {0,...,6} \node[site] at ($(c)+({360/7*\k}:1.537)$) {};
+  \node[info,font=\footnotesize] at ($(c)+(0.05,-.35)$) {原点};
+  \node[text=qonecover,info,font=\footnotesize] at ($(c)+(103:1.537)+(0,.3)$) {检测站，半径 999 m};
+  \node[text=qonefail,info,font=\footnotesize] at ($(c)+(0:1.537)+(1.0,-1.35)$) {一个站的 1000 m 接收圆};
+  \node[text=qoneblue,info,font=\footnotesize] at ($(c)+(-125:2.769)+(-.2,-.3)$) {目标区域 1800 m};
+  \node[info,font=\footnotesize,align=left] at (2.0,6.1) {7 个圆盘盖住整个场地，\\原点离每个站不到 1000 m};
+\end{scope}
+
+% (b) 剪站与挪站
+\begin{scope}[shift={(12.2,0.4)}]
+  \clip (0,0) rectangle (10.8,6.6);
+  \coordinate (c) at (5.4,3.05);
+  \fill[qoneblue!7] (c) circle[radius=2.769];
+  \draw[qoneblue,thick] (c) circle[radius=2.769];
+  \draw[black!30,densely dotted] (c) circle[radius=1.537];
+  % 已扫描的两站及其接收圆
+  \foreach \a in {0,51.43}
+    \fill[qoneink!8] ($(c)+(\a:1.537)$) circle[radius=1.538];
+  \foreach \a in {0,51.43}
+    \draw[qoneink!50,thin] ($(c)+(\a:1.537)$) circle[radius=1.538];
+  % 已知源与路线
+  \coordinate (cur) at ($(c)+(51.43:1.537)$);
+  \coordinate (src) at ($(c)+(150:2.2)$);
+  \coordinate (old) at ($(c)+(154.29:1.537)$);
+  \coordinate (new) at ($(c)+(120:1.9)$);
+  \coordinate (s5) at ($(c)+(257.14:1.537)$);
+  \draw[qoneink,densely dashed] (cur)--(new)--(src)--(s5);
+  \draw[->,qoneorange,thick] (old)--(new);
+  % 站点
+  \foreach \a in {0,51.43} \node[done] at ($(c)+(\a:1.537)$) {};
+  \foreach \a in {205.71,257.14,308.57} \node[site] at ($(c)+(\a:1.537)$) {};
+  \node[site,fill=qonecover!40] at (old) {};
+  \node[site] at (new) {};
+  % 被剪掉的站
+  \coordinate (cut) at ($(c)+(102.86:1.537)$);
+  \node[site,fill=qonecover!40] at (cut) {};
+  \draw[qonefail,thick] ($(cut)+(-.16,-.16)$)--($(cut)+(.16,.16)$);
+  \draw[qonefail,thick] ($(cut)+(-.16,.16)$)--($(cut)+(.16,-.16)$);
+  \node[dot,fill=qonefail] at (src) {};
+  \node[info,font=\footnotesize] at ($(cur)+(.55,.35)$) {当前位置};
+  \node[info,font=\footnotesize] at ($(c)+(0:1.537)+(.85,-.25)$) {已扫描的站};
+  \node[text=qonefail,info,font=\footnotesize] at ($(cut)+(.2,.55)$) {剪掉：它负责的区域\\已被其他站盖住};
+  \node[text=qoneorange,info,font=\footnotesize] at ($(old)+(-.3,-.6)$) {挪到路线附近，\\仍保持全覆盖};
+  \node[text=qonefail,info,font=\footnotesize] at ($(src)+(-.1,.4)$) {已发现的源};
+\end{scope}
+\end{tikzpicture}
+}}
+
+% ---------- 图：无信号反馈的两种裁剪 ----------
+\newcommand{\QThreeNegativeFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\large,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  info/.style={fill=white,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.2);
+\fill[white] (0,0) rectangle (23,7.2);
+\draw[black!15] (11.5,.3)--(11.5,6.9);
+\node[font=\bfseries] at (5.7,6.85) {(a) 挖去无信号点周围的 1000 m 圆盘};
+\node[font=\bfseries] at (17.3,6.85) {(b) 无信号点与有信号点配对：源离有信号点更近};
+
+% (a) 楔形被一个无信号点的圆盘挖去一角，再取凸包
+\begin{scope}[shift={(0.9,3.3)}]
+  \coordinate (x1) at (0,0);
+  \coordinate (xn) at (4.2,-2.3);
+  \fill[qoneblue!16] (x1)--($(x1)+(-6:9.6)$)--($(x1)+(6:9.6)$)--cycle;
+  \draw[qoneblue] (x1)--($(x1)+(-6:9.6)$);
+  \draw[qoneblue] (x1)--($(x1)+(6:9.6)$);
+  \begin{scope}
+    \clip (x1)--($(x1)+(-6:9.6)$)--($(x1)+(6:9.6)$)--cycle;
+    \fill[white] (xn) circle[radius=3.4];
+    \fill[qoneorange!30] (xn) circle[radius=3.4];
+  \end{scope}
+  \draw[qoneorange,densely dashed,thick] (xn) circle[radius=3.4];
+  \node[dot] at (x1) {};
+  \node[dot,fill=qoneorange] at (xn) {};
+  \node[below,info] at (x1) {$x^+$ 有信号};
+  \node[below,info,text=qoneorange] at (xn) {$x^-$ 无信号};
+  \node[text=qoneorange,info] at ($(xn)+(2.0,1.65)$) {圆内不可能有源};
+  \node[text=qoneblue,info] at (7.9,1.1) {剩下的区域};
+  \draw[<->,qoneink,thick] ($(xn)+(0,.25)$)--($(xn)+(90:3.4)+(0,-.25)$)
+    node[midway,right,info] {1000 m};
+\end{scope}
+
+% (b) 配对半平面：源到 x^+ 的距离不超过接收半径，到 x^- 的距离超过它
+\begin{scope}[shift={(12.4,3.3)}]
+  \coordinate (xp) at (0,0);
+  \coordinate (xn) at (3.4,-2.6);
+  \coordinate (p) at (6.9,.3);
+  \fill[qoneblue!16] (xp)--($(xp)+(-6:9.6)$)--($(xp)+(6:9.6)$)--cycle;
+  \draw[qoneblue] (xp)--($(xp)+(-6:9.6)$);
+  \draw[qoneblue] (xp)--($(xp)+(6:9.6)$);
+  % 垂直平分线：留下靠近 x^+ 的一侧
+  \coordinate (m) at ($(xp)!.5!(xn)$);
+  \begin{scope}
+    \clip (xp)--($(xp)+(-6:9.6)$)--($(xp)+(6:9.6)$)--cycle;
+    \fill[qoneorange!30] ($(m)+(52.6:6)$)--($(m)+(52.6:6)+(-37.4:8)$)--($(m)+(-127.4:6)+(-37.4:8)$)--($(m)+(-127.4:6)$)--cycle;
+  \end{scope}
+  \draw[qoneorange,thick] ($(m)+(52.6:4.0)$)--($(m)+(-127.4:2.0)$);
+  \draw[qonepurple,densely dotted,thick] (xp)--(xn);
+  \draw[qoneink,densely dashed] (xp)--(p);
+  \draw[qoneink,densely dashed] (xn)--(p);
+  \node[dot] at (xp) {};
+  \node[dot,fill=qoneorange] at (xn) {};
+  \node[dot,fill=qonefail] at (p) {};
+  \node[below,info] at (xp) {$x^+$ 有信号};
+  \node[below,info,text=qoneorange] at (xn) {$x^-$ 无信号};
+  \node[above right,text=qonefail,inner sep=1pt] at (p) {源 $p$};
+  \node[text=qoneorange,info] at ($(m)+(52.6:4.0)+(.4,.4)$) {$x^+x^-$ 的垂直平分线};
+  \node[text=qoneorange,info] at ($(m)+(2.6,-1.7)$) {这一侧离 $x^-$ 更近，\\不可能有源};
+  \node[info] at (1.6,1.3) {$\|p-x^+\|\le R_f<\|p-x^-\|$};
+\end{scope}
+\node[black!60,font=\small] at (11.5,.45)
+  {为便于观察，图中楔形张角放大绘制；实际张角为 $2^\circ$};
+\end{tikzpicture}
+}}
+
+% ===== 后续宏（探测点与面积评分、流程图、分层结果）追加在此标记之后 =====
+% ---------- 图：候选探测点与提前光学的面积占比 ----------
+\newcommand{\QThreeProbeFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  cand/.style={circle,inner sep=1.5pt,fill=qoneorange},
+  gone/.style={circle,inner sep=1.5pt,fill=black!30},
+  smp/.style={circle,inner sep=.9pt,fill=qoneblue!45},
+  hit/.style={circle,inner sep=.9pt,fill=qoneregion},
+  info/.style={fill=white,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.6);
+\fill[white] (0,0) rectangle (23,7.6);
+\draw[black!15] (11.5,.3)--(11.5,7.3);
+\node[font=\bfseries] at (5.7,7.25) {(a) 包围圆圆心附近的候选探测点};
+\node[font=\bfseries] at (17.3,7.25) {(b) 提前光学：20 m 圆盘盖住的面积占比};
+
+% (a) 候选点网格：纵向 a r、横向 b r；u 指向圆心
+\begin{scope}[shift={(1.0,0.6)}]
+  \clip (0,0) rectangle (10.4,6.4);
+  \coordinate (x0) at (1.2,1.1);
+  \coordinate (z) at (6.4,3.6);
+  % 定位区域：沿 62 度方向的窄条
+  \fill[qoneblue!16] ($(z)+(62:2.3)+(152:.28)$)--($(z)+(62:2.3)+(-28:.28)$)--($(z)+(242:2.3)+(-28:.12)$)--($(z)+(242:2.3)+(152:.12)$)--cycle;
+  \draw[qoneblue] ($(z)+(62:2.3)+(152:.28)$)--($(z)+(62:2.3)+(-28:.28)$)--($(z)+(242:2.3)+(-28:.12)$)--($(z)+(242:2.3)+(152:.12)$)--cycle;
+  \draw[qoneblue!60,densely dashed] (z) circle[radius=2.3];
+  \draw[qoneink,densely dotted] (x0)--(z);
+  \draw[->,qoneink] (x0)--($(x0)+(25.7:1.3)$) node[right,inner sep=1pt] {$u$};
+  \draw[->,qoneink] (x0)--($(x0)+(115.7:1.0)$) node[above,inner sep=1pt] {$v$};
+  % 网格：a in {-.7,-.35,0,.35,.7}, b in {-.4,-.15,0,.15,.4}, r=2.3, u 方向 25.7 度
+  \foreach \a in {-.7,-.35,0,.35,.7}
+    \foreach \b in {-.15,0,.15}
+      \node[cand] at ($(z)+(25.7:{2.3*\a})+(115.7:{2.3*\b})$) {};
+  \foreach \a in {-.7,-.35,0,.35}
+    \foreach \b in {-.4,.4}
+      \node[cand] at ($(z)+(25.7:{2.3*\a})+(115.7:{2.3*\b})$) {};
+  \foreach \b in {-.4,.4}
+    \node[gone] at ($(z)+(25.7:{2.3*.7})+(115.7:{2.3*\b})$) {};
+  \node[dot] at (z) {};
+  \node[dot,fill=qonefail] at (x0) {};
+  \node[below,info] at (x0) {当前位置 $x_0$};
+  \node[info,font=\footnotesize] at ($(z)+(0,-.42)$) {圆心 $z$};
+  \node[text=qoneblue,info,font=\footnotesize] at ($(z)+(62:2.3)+(1.1,.15)$) {定位区域};
+  \node[text=qoneblue,info,font=\footnotesize] at ($(z)+(-40:2.3)+(.2,-.3)$) {包围圆，半径 $r$};
+  \node[text=qoneorange,info,font=\footnotesize] at ($(z)+(25.7:-1.6)+(115.7:-.92)+(-.4,-.35)$) {候选点 $z+r(a\,u+b\,v)$};
+  \node[text=black!55,info,font=\footnotesize] at ($(z)+(25.7:1.61)+(115.7:.92)+(1.0,.35)$) {超出可靠接收，剔除};
+\end{scope}
+
+% (b) 小区域、面积样本点、20 m 圆盘；比例 1 cm = 15 m，圆盘半径 1.333
+\begin{scope}[shift={(12.4,0.6)}]
+  \clip (0,0) rectangle (10.4,6.4);
+  \coordinate (q) at (5.0,3.3);
+  \coordinate (A) at (2.2,2.1);
+  \coordinate (B) at (4.6,1.55);
+  \coordinate (C) at (8.4,3.2);
+  \coordinate (D) at (7.6,4.4);
+  \coordinate (E) at (3.4,4.75);
+  \fill[qoneblue!14] (A)--(B)--(C)--(D)--(E)--cycle;
+  % 面积样本点：浅色为圆盘外，深色为圆盘内
+  \begin{scope}
+    \clip (A)--(B)--(C)--(D)--(E)--cycle;
+    \foreach \x in {2.3,2.6,...,8.3}
+      \foreach \y in {1.6,1.9,...,4.7}
+        \node[smp] at (\x,\y) {};
+    \begin{scope}
+      \clip (q) circle[radius=1.333];
+      \foreach \x in {2.3,2.6,...,8.3}
+        \foreach \y in {1.6,1.9,...,4.7}
+          \node[hit] at (\x,\y) {};
+    \end{scope}
+  \end{scope}
+  \draw[qoneblue,thick] (A)--(B)--(C)--(D)--(E)--cycle;
+  \draw[qoneregion,thick,densely dashed] (q) circle[radius=1.333];
+  \node[dot,fill=qonefail] at (q) {};
+  \node[below,info,font=\footnotesize] at ($(q)+(0,-.1)$) {面积加权重心 $q^*$};
+  \draw[<->,qoneregion] (q)--($(q)+(35:1.333)$) node[midway,above left,inner sep=1pt,text=qoneregion,font=\footnotesize] {20 m};
+  \node[text=qoneblue,info,font=\footnotesize] at ($(A)+(-.1,-.45)$) {定位区域，半径不超过 80 m};
+  \node[info,font=\footnotesize,align=left] at (7.6,5.6) {深色样本点在圆盘内，\\占比 $h_f(q^*)\ge0.4$ 时先试一次清除};
+\end{scope}
+\end{tikzpicture}
+}}
+
+% ---------- 图：求解流程 ----------
+\newcommand{\QThreeFlowFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  box/.style={draw=qoneink!70,fill=white,rounded corners=2pt,align=center,inner sep=4pt,minimum height=9mm},
+  act/.style={box,fill=qoneblue!10},
+  dec/.style={box,fill=qoneorange!14},
+  fin/.style={box,fill=qonecover!18},
+  arr/.style={->,qoneink!80,thick}]
+\path[use as bounding box] (0,0) rectangle (23,9.7);
+\fill[white] (0,0) rectangle (23,9.7);
+\node[act] (start) at (2.6,8.3) {从原点出发\\20 个频道未发现，7 个站未去};
+\node[dec] (check) at (8.0,8.3) {就地能清的先清；\\已清 16 个？或站扫完且已知源清完？};
+\node[fin] (end) at (14.2,8.3) {结束};
+\node[act] (plan) at (8.0,6.2) {剪掉多余的站、挪动未去的站（保持覆盖）\\把未去的站和已知源排成最短路线，取第一个任务};
+\node[act] (scan) at (3.2,3.9) {前往检测站\\扫描全部未发现频道\\顺便补测附近已知源};
+\node[dec] (small) at (9.2,3.9) {包围圆半径\\$\le19.5$ m？};
+\node[act] (clear) at (13.9,3.9) {走到兼顾下一任务\\的清除点，清除};
+\node[dec] (opt) at (9.2,1.6) {半径 $\le80$ m，尝试不满 2 次，\\重心处面积占比 $\ge0.4$？};
+\node[act] (try) at (14.6,1.6) {去重心先试一次清除\\失败则原地测向};
+\node[act] (probe) at (19.6,1.6) {按代价选候选点\\测向（满 4 次改测圆心）};
+\node[act] (upd) at (19.6,5.2) {用示向度、无信号记录\\更新定位区域和频道状态};
+\draw[arr] (start)--(check);
+\draw[arr] (check)--node[above,font=\footnotesize]{是}(end);
+\draw[arr] (check)--node[right,font=\footnotesize]{否}(plan);
+\draw[arr] (plan.south)--++(0,-.4)-|node[pos=.25,above,font=\footnotesize]{首任务是站}(scan.north);
+\draw[arr] (plan.south)--++(0,-.4)-|node[pos=.25,above,font=\footnotesize]{首任务是源}(small.north);
+\draw[arr] (small)--node[above,font=\footnotesize]{是}(clear);
+\draw[arr] (small)--node[right,font=\footnotesize]{否}(opt);
+\draw[arr] (opt)--node[above,font=\footnotesize]{是}(try);
+\draw[arr] (opt.south)--++(0,-.45)-|node[pos=.25,below,font=\footnotesize]{否}(probe.south);
+\draw[arr] (try.north)|-(upd.west);
+\draw[arr] (probe)--(upd);
+\draw[arr] (clear.north)|-(upd.west);
+\draw[arr] (scan.south)--(3.2,.35)--(22.4,.35)--(22.4,5.2)--(upd.east);
+\draw[arr] (upd.north)--(19.6,9.3)--(8.0,9.3)--(check.north);
+\node[font=\footnotesize,text=qoneink!70,fill=white,inner sep=1pt] at (5.6,.35) {扫描结果同样进入区域与状态更新};
+\end{tikzpicture}
+}}
+
+% ---------- 图：按源数分层的结果 ----------
+% (a) 四种策略的平均定位清除时间；(b) 相对无提前光学方案的同场景差值。数据来自 code/statistics.json。
+\newcommand{\QThreeStrataFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  mk/.style={circle,inner sep=1.4pt},
+  info/.style={fill=white,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.6);
+\fill[white] (0,0) rectangle (23,7.6);
+\draw[black!15] (11.5,.3)--(11.5,7.3);
+\node[font=\bfseries] at (5.7,7.25) {(a) 各源数下的平均定位清除时间};
+\node[font=\bfseries] at (17.3,7.25) {(b) 相对无提前光学方案的同场景差值};
+
+% (a) x: 源数 10..16 -> 0..7.8 (1.3 cm/个)；y: (值-190)*0.05 cm
+\begin{scope}[shift={(1.9,1.1)},x=1.3cm,y=0.05cm]
+  \draw[black!40] (0,0)--(6,0);
+  \draw[black!40] (0,0)--(0,110);
+  \foreach \n in {0,...,6} {
+    \draw[black!40] (\n,0)--(\n,-2);
+    \node[below,font=\footnotesize] at (\n,-2) {\pgfmathparse{int(\n+10)}\pgfmathresult};
+  }
+  \foreach \yv in {200,220,...,300} {
+    \draw[black!12] (0,\yv-190)--(6,\yv-190);
+    \node[left,font=\footnotesize] at (0,\yv-190) {\yv};
+  }
+  \node[below,font=\footnotesize] at (3,-9) {场景中的源数};
+  \node[rotate=90,font=\footnotesize] at (-1.0,55) {平均定位清除时间 / s/源};
+  \draw[qonefail!80,thick] plot coordinates {(0,103.160)(1,83.165)(2,65.025)(3,51.287)(4,36.903)(5,26.672)(6,10.766)};
+  \draw[qoneorange,thick] plot coordinates {(0,100.465)(1,80.697)(2,62.730)(3,48.643)(4,34.482)(5,24.169)(6,8.538)};
+  \draw[qoneblue,thick] plot coordinates {(0,98.482)(1,79.106)(2,62.520)(3,47.027)(4,34.778)(5,25.141)(6,9.203)};
+  \draw[qonecover,very thick] plot coordinates {(0,96.954)(1,77.453)(2,60.873)(3,45.466)(4,33.153)(5,23.510)(6,7.431)};
+  \foreach \p in {(0,96.954),(1,77.453),(2,60.873),(3,45.466),(4,33.153),(5,23.510),(6,7.431)} \node[mk,fill=qonecover] at \p {};
+  \foreach \p in {(0,98.482),(1,79.106),(2,62.520),(3,47.027),(4,34.778),(5,25.141),(6,9.203)} \node[mk,fill=qoneblue] at \p {};
+  % 图例
+  \draw[qonecover,very thick] (3.4,104)--(3.9,104) node[right,font=\footnotesize,text=qoneink] {本文方案};
+  \draw[qoneblue,thick] (3.4,97)--(3.9,97) node[right,font=\footnotesize,text=qoneink] {无提前光学};
+  \draw[qoneorange,thick] (3.4,90)--(3.9,90) node[right,font=\footnotesize,text=qoneink] {原点先扫};
+  \draw[qonefail!80,thick] (3.4,83)--(3.9,83) node[right,font=\footnotesize,text=qoneink] {早期版本};
+\end{scope}
+
+% (b) y: (差值+3)*0.7 cm；零线在 2.1
+\begin{scope}[shift={(13.6,1.1)},x=1.3cm,y=0.7cm]
+  \draw[black!40] (0,0)--(6,0);
+  \draw[black!40] (0,0)--(0,8);
+  \foreach \n in {0,...,6} {
+    \draw[black!40] (\n,0)--(\n,-.15);
+    \node[below,font=\footnotesize] at (\n,-.15) {\pgfmathparse{int(\n+10)}\pgfmathresult};
+  }
+  \foreach \d in {-3,-2,...,5} {
+    \draw[black!12] (0,\d+3)--(6,\d+3);
+    \node[left,font=\footnotesize] at (0,\d+3) {\pgfmathparse{int(\d)}\pgfmathresult};
+  }
+  \draw[black!60] (0,3)--(6,3);
+  \node[below,font=\footnotesize] at (3,-.6) {场景中的源数};
+  \node[rotate=90,font=\footnotesize] at (-.85,4) {差值 / s/源（负值更快）};
+  \draw[qonefail!80,thick] plot coordinates {(0,7.678)(1,7.059)(2,5.505)(3,7.260)(4,5.125)(5,4.531)(6,4.563)};
+  \draw[qoneorange,thick] plot coordinates {(0,4.983)(1,4.591)(2,3.210)(3,4.616)(4,2.704)(5,2.028)(6,2.335)};
+  \draw[qonepurple,thick] plot coordinates {(0,3.036)(1,3.171)(2,3.037)(3,3.048)(4,2.922)(5,3.046)(6,2.963)};
+  \draw[qonecover,very thick] plot coordinates {(0,1.472)(1,1.347)(2,1.353)(3,1.439)(4,1.375)(5,1.369)(6,1.228)};
+  \foreach \p in {(0,1.472),(1,1.347),(2,1.353),(3,1.439),(4,1.375),(5,1.369),(6,1.228)} \node[mk,fill=qonecover] at \p {};
+  \draw[qonecover,very thick] (3.2,7.6)--(3.7,7.6) node[right,font=\footnotesize,text=qoneink] {本文方案};
+  \draw[qonepurple,thick] (3.2,7.1)--(3.7,7.1) node[right,font=\footnotesize,text=qoneink] {联合规划};
+  \draw[qoneorange,thick] (3.2,6.6)--(3.7,6.6) node[right,font=\footnotesize,text=qoneink] {原点先扫};
+  \draw[qonefail!80,thick] (3.2,6.1)--(3.7,6.1) node[right,font=\footnotesize,text=qoneink] {早期版本};
+\end{scope}
+\end{tikzpicture}
+}}

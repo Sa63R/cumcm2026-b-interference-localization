@@ -1,0 +1,15 @@
+% ===== 问题三正文 =====
+% 本文件汇总第三问；各部分正文、公式与图表请编辑 sections/q3/ 下的对应子文件。
+\subsection{问题三：基于状态压缩与覆盖约束的多源搜索}\label{sec:q3}
+
+第二问解决已发现单源的后续测点选择，第三问还需确定何时继续发现未知源、何时处理已知源，以及怎样确认任务完成。
+由于新观测不断改变可行域和任务集合，一次性规划所有真实源的最短路线并不可行。
+本文采用滚动规划：以合法观测维护源区域，将当前覆盖任务与定位清除任务合并为有限路线问题；
+每完成一个任务，再根据新信息重新规划。
+以下先给出状态搜索第一版的方法主体，再单列利用历史负观测的扫描精化，使不同版本的实验结果能够对应到明确算法。
+
+\input{sections/q3/01_model_and_algorithm}%
+\input{sections/q3/02_baselines_and_setup}%
+\input{sections/q3/03_results_and_ablations}%
+\input{sections/q3/04_training_and_practice}%
+\input{sections/q3/05_trajectories_and_discussion}%

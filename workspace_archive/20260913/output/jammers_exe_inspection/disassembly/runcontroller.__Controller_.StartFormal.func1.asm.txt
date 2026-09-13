@@ -1,0 +1,61 @@
+jammers/client/internal/runcontroller.(*Controller).StartFormal.func1
+Virtual address: 0x14075fca0
+
+
+/Users/zephyrr/Downloads/CUMCM2026B/Jammers-simulator/jammers-simulator.exe:	file format coff-x86-64
+
+Disassembly of section .text:
+
+0000000140001000 <.text>:
+14075fca0: 49 3b 66 10                 	cmp	rsp, qword ptr [r14 + 0x10]
+14075fca4: 0f 86 ab 00 00 00           	jbe	0x14075fd55 <.text+0x75ed55>
+14075fcaa: 55                          	push	rbp
+14075fcab: 48 89 e5                    	mov	rbp, rsp
+14075fcae: 48 83 ec 28                 	sub	rsp, 0x28
+14075fcb2: 48 8b 42 10                 	mov	rax, qword ptr [rdx + 0x10]
+14075fcb6: 48 89 44 24 20              	mov	qword ptr [rsp + 0x20], rax
+14075fcbb: 48 8b 42 08                 	mov	rax, qword ptr [rdx + 0x8]
+14075fcbf: 48 8b 08                    	mov	rcx, qword ptr [rax]
+14075fcc2: 48 8b 5a 18                 	mov	rbx, qword ptr [rdx + 0x18]
+14075fcc6: 48 89 5c 24 10              	mov	qword ptr [rsp + 0x10], rbx
+14075fccb: 48 89 c2                    	mov	rdx, rax
+14075fcce: ff d1                       	call	rcx
+14075fcd0: 48 8b 44 24 20              	mov	rax, qword ptr [rsp + 0x20]
+14075fcd5: 48 8d 48 10                 	lea	rcx, [rax + 0x10]
+14075fcd9: 48 89 c2                    	mov	rdx, rax
+14075fcdc: 31 c0                       	xor	eax, eax
+14075fcde: bb 01 00 00 00              	mov	ebx, 0x1
+14075fce3: f0                          	lock
+14075fce4: 0f b1 5a 10                 	cmpxchg	dword ptr [rdx + 0x10], ebx
+14075fce8: 0f 94 c0                    	sete	al
+14075fceb: 84 c0                       	test	al, al
+14075fced: 75 17                       	jne	0x14075fd06 <.text+0x75ed06>
+14075fcef: 48 89 4c 24 18              	mov	qword ptr [rsp + 0x18], rcx
+14075fcf4: 48 89 c8                    	mov	rax, rcx
+14075fcf7: e8 04 8e 93 ff              	call	0x140098b00 <.text+0x97b00> ; internal/sync.(*Mutex).lockSlow
+14075fcfc: 48 8b 4c 24 18              	mov	rcx, qword ptr [rsp + 0x18]
+14075fd01: 48 8b 54 24 20              	mov	rdx, qword ptr [rsp + 0x20]
+14075fd06: 48 8b 74 24 10              	mov	rsi, qword ptr [rsp + 0x10]
+14075fd0b: 48 39 b2 58 02 00 00        	cmp	qword ptr [rdx + 0x258], rsi
+14075fd12: 75 23                       	jne	0x14075fd37 <.text+0x75ed37>
+14075fd14: 83 3d 05 7c a6 00 00        	cmp	dword ptr [rip + 0xa67c05], 0x0 # 0x1411c7920
+14075fd1b: 74 0f                       	je	0x14075fd2c <.text+0x75ed2c>
+14075fd1d: 48 8b b2 58 02 00 00        	mov	rsi, qword ptr [rdx + 0x258]
+14075fd24: e8 97 e3 92 ff              	call	0x14008e0c0 <.text+0x8d0c0> ; runtime.gcWriteBarrier1
+14075fd29: 49 89 33                    	mov	qword ptr [r11], rsi
+14075fd2c: 48 c7 82 58 02 00 00 00 00 00 00    	mov	qword ptr [rdx + 0x258], 0x0
+14075fd37: 90                          	nop
+14075fd38: 90                          	nop
+14075fd39: bb ff ff ff ff              	mov	ebx, 0xffffffff
+14075fd3e: f0                          	lock
+14075fd3f: 0f c1 5a 10                 	xadd	dword ptr [rdx + 0x10], ebx
+14075fd43: ff cb                       	dec	ebx
+14075fd45: 74 08                       	je	0x14075fd4f <.text+0x75ed4f>
+14075fd47: 48 89 c8                    	mov	rax, rcx
+14075fd4a: e8 91 90 93 ff              	call	0x140098de0 <.text+0x97de0> ; internal/sync.(*Mutex).unlockSlow
+14075fd4f: 48 83 c4 28                 	add	rsp, 0x28
+14075fd53: 5d                          	pop	rbp
+14075fd54: c3                          	ret
+14075fd55: e8 66 c8 92 ff              	call	0x14008c5c0 <.text+0x8b5c0> ; runtime.morestack
+14075fd5a: e9 41 ff ff ff              	jmp	0x14075fca0 <.text+0x75eca0>
+14075fd5f: cc                          	int3
