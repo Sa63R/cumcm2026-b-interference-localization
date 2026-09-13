@@ -1,0 +1,32 @@
+% 当前第三问实验来源；原始多版本文件保留，仅筛选本文实现。
+\section*{附录A\quad 实验来源与复核口径}\label{sec:appendix-evidence}
+\markboth{附录A\quad 实验来源与复核口径}{}
+\addcontentsline{toc}{section}{附录A 实验来源与复核口径}
+
+第三问采用的程序配置为 \texttt{v3\_origin20}。本节汇总该配置的运行记录。主指标为逐局完整时间除以该局源数，再对场景取算术平均；不与总用时除以总源数的合并比值混用。
+
+\begin{center}
+\small
+\captionof{table}{第三问实验来源与使用范围}\label{tab:q23-evidence}
+\begin{tabularx}{\linewidth}{@{}p{0.20\linewidth}p{0.28\linewidth}X@{}}
+\toprule
+资料 & 使用样本 & 用途与边界 \\
+\midrule
+本地逐例记录 & 本文方法的400个自建场景 & 汇总全清情况、完整任务用时和动作费用；属于既有验证记录 \\
+官方演练快照 & 本文方法的20局、277个源 & 检验实际执行结果；与本地场景不同，不作前后提速比较 \\
+发布核验记录 & 程序提取与接口适配检查 & 确认实现及数据出处，不计为新增性能实验 \\
+历史单源记录 & 第二问的两次测向实例 & 说明单源选点几何，不纳入本问整局统计 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+配套仓库的 \path{experiments/q3_selected/validation/} 保存原始资料。
+
+本地结果从 \path{local_paired400.csv} 筛选本文配置的400条记录，场景编号为5000至5399。正文数值由逐例数据复算，并与 \path{local_summary.json} 的汇总值核对。
+
+官方结果取自 \path{official_snapshot_182.json}，只提取其中属于当前配置的20局。原批次的182/900进度包含其他配置，不是本文方法的样本数。程序提取信息保存在 \path{SOURCE_MANIFEST.json} 中。
+
+图\ref{fig:overall-framework}由已有 draw.io 主图整理，总体框架与 D 模块的三种算法保留在同一张图中。覆盖、主动选点与执行流程的局部示意使用 TikZ 绘制。
+图\ref{fig:q3-contraction}右侧按式\eqref{eq:q3-center-contraction}计算圆心测向的半径上界，采用160 m说明起点，未使用实测半径数据。
+
+写作组织参考了官方公开的2018年国赛B217与A440两篇匿名展示论文，其出处与获奖展示依据保存在 \texttt{references/references.md}。它们只作为表达范例，本题公式和成绩均以本项目实现及实验为依据。

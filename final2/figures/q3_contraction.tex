@@ -1,0 +1,94 @@
+% 第三问圆心测向：构造扇形覆盖圆，并绘制保守半径上界。
+% 左图半角放大至18度，整体旋转20度；右图计算仍用1.005度。
+% 示意角度与理论数据的说明放在正文图注中。
+\newcommand{\QThreeContractionFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\fontsize{10}{12.5}\selectfont,text=qoneink,
+  lab/.style={fill=none,inner sep=2pt,align=center},
+  lead/.style={line width=.65pt},
+  point/.style={circle,inner sep=1.7pt,fill=qoneink}]
+\path[use as bounding box] (0,0) rectangle (16.6,8.0);
+\fill[white] (0,0) rectangle (16.6,8.0);
+\draw[black!12] (7.9,1.0)--(7.9,7.30);
+\node[font=\bfseries] at (3.85,7.6) {(a) 在圆心再次测量，缩小定位区域};
+\node[font=\bfseries] at (12.15,7.6) {(b) 多次测量后的半径上界};
+
+% ---------- 左：原包围圆、误差扇形及扇形覆盖圆 ----------
+\pgfmathsetmacro{\rad}{2.3}
+\pgfmathsetmacro{\coverR}{\rad/(2*cos(18))}
+\coordinate (z) at (3.00,4.15);
+\coordinate (c) at ($(z)+(20:\coverR)$);
+\coordinate (a) at ($(z)+(2:\rad)$);
+\coordinate (b) at ($(z)+(38:\rad)$);
+
+\fill[qoneblue!5] (z) circle[radius=\rad];
+\draw[qoneblue!85,dash pattern=on 3.5pt off 2.5pt,line width=.85pt]
+  (z) circle[radius=\rad];
+\fill[qonepurple!7] (c) circle[radius=\coverR];
+\fill[qoneorange!27] (z)--(a)
+  arc[start angle=2,end angle=38,radius=\rad]--cycle;
+\draw[qonepurple,line width=1.0pt] (c) circle[radius=\coverR];
+\draw[qoneorange,line width=1.05pt] (a)--(z)--(b);
+\draw[qoneorange,line width=1.05pt] (a)
+  arc[start angle=2,end angle=38,radius=\rad];
+
+\draw[qoneorange,line width=.65pt] ($(z)+(2:.55)$)
+  arc[start angle=2,end angle=38,radius=.55];
+\node[text=qoneorange,inner sep=1pt] at ($(z)+(.89,.31)$) {$2\bar\varepsilon$};
+\draw[->,qoneblue!85,line width=.7pt] (z)--($(z)+(140:\rad)$);
+\node[lab,text=qoneblue] at ($(z)+(-1.12,.54)$) {$r$};
+\node[point] at (z) {};
+\node[lab,anchor=north east] at ($(z)+(-.10,-.16)$) {检测点 $z$};
+\foreach \p in {a,b} \fill[qoneorange] (\p) circle[radius=.042];
+
+\node[lab,text=qoneblue] at (2.10,6.85) {原包围圆 $B(z,r)$};
+\node[lab,text=qoneorange,anchor=west,align=left] (sectorlabel) at (5.70,6.20)
+  {新区域位于\\此扇形内};
+\draw[lead,qoneorange!85] (sectorlabel.south west)--(5.70,5.68)--(5.18,4.93);
+\node[lab,text=qonepurple,anchor=west] (coverlabel) at (5.28,2.55) {能罩住扇形的圆};
+\draw[lead,qonepurple] (coverlabel.west)--(5.02,2.55)--($(c)+(-49:\coverR)$);
+\node[text=qonepurple,font=\fontsize{11}{14}\selectfont] at (3.85,1.13)
+  {$\displaystyle r_{\rm new}\le R=\frac{r}{2\cos\bar\varepsilon}$};
+
+% ---------- 右：线性坐标，递推数据未作平滑或修改 ----------
+\coordinate (origin) at (8.95,1.55);
+\foreach \v in {40,80,120,160} {
+  \draw[black!12,line width=.4pt] (8.95,{1.55+\v*.029})--(16.05,{1.55+\v*.029});
+}
+\draw[->,qoneink!65,line width=.7pt] (origin)--(16.20,1.55);
+\draw[->,qoneink!65,line width=.7pt] (origin)--(8.95,6.85);
+\node[anchor=west] at (9.02,6.94) {半径上界 / m};
+\node at (12.55,.42) {圆心处的检测次数 $k$};
+\foreach \v in {0,40,80,120,160} {
+  \node[anchor=east,font=\fontsize{9.5}{12}\selectfont]
+    at (8.80,{1.55+\v*.029}) {\v};
+}
+
+\pgfmathsetmacro{\thresholdY}{1.55+19.5*.029}
+\draw[qonefail,dash pattern=on 3pt off 2pt,line width=.8pt]
+  (8.95,\thresholdY)--(16.05,\thresholdY);
+\node[lab,anchor=south west,text=qonefail,font=\fontsize{9}{11}\selectfont]
+  at (9.15,{\thresholdY+.07}) {清除所需半径：$19.5$ m};
+
+\foreach \k in {0,...,4} {
+  \pgfmathsetmacro{\bound}{160/(2*cos(1.005))^\k}
+  \coordinate (p\k) at ({9.15+\k*1.57},{1.55+\bound*.029});
+  \draw[qoneink!50,line width=.5pt] ({9.15+\k*1.57},1.55)--({9.15+\k*1.57},1.44);
+  \node[anchor=north,font=\fontsize{9.5}{12}\selectfont]
+    at ({9.15+\k*1.57},1.31) {\k};
+}
+\draw[qoneblue,line width=1.0pt] (p0)--(p1)--(p2)--(p3)--(p4);
+\foreach \k in {0,1,2,3}
+  \node[point,fill=qoneblue,draw=white,line width=.5pt,inner sep=2.2pt] at (p\k) {};
+\node[point,fill=qonecover,draw=white,line width=.5pt,inner sep=2.5pt] at (p4) {};
+
+\node[lab,anchor=south west,text=qoneblue] at ($(p0)+(.02,.05)$) {$160.00$};
+\node[lab,anchor=south west,text=qoneblue] at ($(p1)+(.03,.06)$) {$80.01$};
+\node[lab,anchor=south west,text=qoneblue] at ($(p2)+(.03,.08)$) {$40.01$};
+\node[lab,anchor=south,text=qoneblue] at (13.86,3.10) {$20.01$};
+% 末端两点靠近门限，数值放在曲线上方，用短引线对应，不占横轴空间。
+\draw[lead,qoneblue!70] ($(p3)+(0,.04)$)--(13.86,3.09);
+\node[lab,anchor=south,text=qonecover] at (15.46,3.10) {$10.01$};
+\draw[lead,qonecover!80] ($(p4)+(0,.05)$)--(15.43,3.09);
+\end{tikzpicture}%
+}}

@@ -1,0 +1,15 @@
+% ===== 问题三正文 =====
+% 本文件汇总第三问；各部分正文、公式与图表请编辑 sections/q3/ 下的对应子文件。
+\subsection{问题三模型建立与求解}\label{sec:q3}
+
+第二问给出了已发现单源的主动选点方法。面对多个数量未知的源，还需要安排覆盖扫描，并决定先处理哪个任务。本文将待扫描点与已发现源合并为动态任务集合，以当前定位区域表示源的位置，每次选择一项任务执行，再根据新观测重新安排路线。
+
+\input{figures/q3_schematics}%
+\input{figures/q3_contraction}%
+\input{sections/q3/01_model_and_algorithm}%
+\input{sections/q3/02_baselines_and_setup}%
+\input{sections/q3/03_results_and_ablations}%
+\input{sections/q3/04_training_and_practice}%
+\input{sections/q3/05_trajectories_and_discussion}%
+
+本问的圆盘覆盖和包围圆心测向都利用了全向接收条件。下一问保留滚动规划的任务组织方式，进一步处理发射方向未知时的覆盖与定位问题。

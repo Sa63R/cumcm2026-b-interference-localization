@@ -1,0 +1,22 @@
+\par\medskip\Needspace{4\baselineskip}
+\textbf{（2）任务完成情况。}本问方案在400个本地场景中全部完成清除，共清除5209个干扰源，每个源的平均耗时为243.991 s/源，平均每局耗时为3119.627 s/局。直接调用模拟器进行演练的20局也全部完成，共清除277个干扰源，每个源的平均耗时为225.623 s/源，平均每局耗时为3074.968 s/局。两批记录中的光学精确定位尝试均成功，结果见表\ref{tab:q3-current-results}。
+
+\Needspace{40mm}
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering\small
+\captionof{table}{原点扫描方案的任务完成情况与耗时}
+\label{tab:q3-current-results}
+\vspace{4pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrrr@{}}
+\toprule
+数据来源 & \shortstack{全部清除\\局数} & 清除源数 & \shortstack{平均耗时\\(s/源)} & \shortstack{平均耗时\\(s/局)} & \shortstack{光学精确定位\\失败次数} \\
+\midrule
+本地场景 & 400/400 & 5209 & 243.991 & 3119.627 & 0 \\
+模拟器演练 & 20/20 & 277 & 225.623 & 3074.968 & 0 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+
+这些完成记录说明，在所测试的场景中，机器狗能够通过扫描发现干扰源，用实际测得的示向度缩小定位区域，在满足距离条件的位置完成清除，并在结束前确认没有遗漏。

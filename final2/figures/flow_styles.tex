@@ -1,0 +1,47 @@
+% 蓝、红、绿标题分别搭配同色系浅底；色带略深，正文区域保留清楚的底色。
+\definecolor{flowInk}{HTML}{08264A}
+\definecolor{flowBlueHead}{HTML}{D1E3F1}
+\definecolor{flowBlueBody}{HTML}{E5EFF7}
+\definecolor{flowBlueEdge}{HTML}{8EB9D5}
+\definecolor{flowBlueTitle}{HTML}{14538B}
+\definecolor{flowWarmHead}{HTML}{EDCDC8}
+\definecolor{flowWarmBody}{HTML}{F6E5E2}
+\definecolor{flowWarmEdge}{HTML}{BB827D}
+\definecolor{flowWarmTitle}{HTML}{93332D}
+\definecolor{flowGreenHead}{HTML}{CEE4DA}
+\definecolor{flowGreenBody}{HTML}{E5F0E9}
+\definecolor{flowGreenEdge}{HTML}{78A591}
+\definecolor{flowGreenTitle}{HTML}{267A63}
+\definecolor{flowNote}{HTML}{647889}
+\tikzset{
+  paper flow/.style={>=Stealth,line cap=butt,line join=miter,
+    text=flowInk,font=\linespread{1}\fontsize{9.5}{12}\selectfont},
+  flow arrow/.style={->,draw=flowBlueTitle,line width=.8pt},
+  flow label/.style={fill=none,inner sep=2pt,align=center,
+    font=\linespread{1}\fontsize{9.5}{12}\selectfont}
+}
+
+% 参数：名称、中心、宽(cm)、高(cm)、配色、标题、说明。
+% 标题色带与正文分开排版；所有框均为直角，说明文字无白色遮罩。
+\newcommand{\PaperFlowCard}[7]{%
+  \node[rectangle,inner sep=0pt,minimum width=#3cm,minimum height=#4cm,
+    fill=flow#5Body,draw=none] (#1) at #2 {};
+  \path[fill=flow#5Head] (#1.north west)
+    rectangle ($(#1.north east)+(0,-.49)$);
+  \draw[flow#5Edge,line width=.65pt] (#1.north west) rectangle (#1.south east);
+  \node[anchor=north,inner sep=0pt,text=flow#5Title,
+    font=\linespread{1}\fontsize{10.5}{12.5}\selectfont\bfseries]
+    at ($(#1.north)+(0,-.075)$) {#6};
+  \node[anchor=north,inner sep=0pt,align=center,
+    text width=\dimexpr#3cm-4mm\relax,font=\linespread{1}\fontsize{9.5}{12}\selectfont]
+    at ($(#1.north)+(0,-.66)$) {#7};
+}
+
+% 第四问保留已确认的分支顺序，使用相同的浅色与直角框。
+\colorlet{flowLine}{flowBlueTitle}
+\colorlet{flowAccent}{flowBlueTitle}
+\tikzset{
+  flow process/.style={rectangle,draw=flowBlueEdge,fill=flowBlueBody,line width=.65pt,
+    inner xsep=2mm,inner ysep=2mm,align=center,
+    font=\linespread{1}\fontsize{10}{12.5}\selectfont}
+}

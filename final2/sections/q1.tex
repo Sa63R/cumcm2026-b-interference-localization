@@ -1,0 +1,178 @@
+% ===== 问题一正文 =====
+% 在本子文件修改问题一正文，公式和图表编号由主文件统一管理。
+\subsection{问题一模型建立与求解}\label{sec:q1}
+\subsubsection{计算干扰源定位区域}\label{sec:q1-1}
+
+设机器狗在 $n$ 个位置 $S_i=(x_i,y_i)$ 处对该干扰源测得示向度 $\theta_i$。$\theta_i$ 是自正东逆时针量到“检测点指向干扰源”方向的角度，但它并不是干扰源的真实方位：真实方位落在 $\theta_i$ 两侧各 $1^\circ$ 内。记示向度误差界为 $\varepsilon=1^\circ$。因此，干扰源一定位于以 $S_i$ 为顶点、方向在 $\theta_i\pm1^\circ$ 之间的一个 $2^\circ$ 窄楔形内。
+
+现在把“点在楔形内”写成数学不等式。将示向度与误差界换算成弧度，分别记为 $\varphi_i=\pi\theta_i/180$，$\delta=\pi\varepsilon/180=\pi/180$，楔形的两条边方向分别为
+
+\[
+u_i^-=\begin{pmatrix}\cos(\varphi_i-\delta)\\ \sin(\varphi_i-\delta)\end{pmatrix},\qquad
+u_i^+=\begin{pmatrix}\cos(\varphi_i+\delta)\\ \sin(\varphi_i+\delta)\end{pmatrix},
+\]
+
+其中 $u_i^-$ 对应偏转角度的下限 $\varphi_i-\delta$，$u_i^+$ 对应上限 $\varphi_i+\delta$。判断一个点在两条边的哪一侧，可以用二维向量的叉积：对 $a=(a_x,a_y)$、$b=(b_x,b_y)$，定义 $a\times b=a_xb_y-a_yb_x$，它大于零说明 $b$ 在 $a$ 的逆时针一侧，小于零说明在顺时针一侧。于是，点 $X=(x,y)$ 落在楔形内的条件是
+
+\begin{equation}\label{eq:q1-1}
+u_i^-\times(X-S_i)\ge 0,\qquad u_i^+\times(X-S_i)\le 0.
+\end{equation}
+
+第一式要求 $X-S_i$ 不越过下边 $u_i^-$（在其逆时针一侧），第二式要求不越过上边 $u_i^+$（在其顺时针一侧），两式合起来就是把 $X$ 夹在两条边之间。
+
+将式\eqref{eq:q1-1} 展开：
+
+\begin{equation}\label{eq:q1-2}
+\begin{aligned}
+\sin(\varphi_i-\delta)(x-x_i)-\cos(\varphi_i-\delta)(y-y_i)&\le 0,\\
+-\sin(\varphi_i+\delta)(x-x_i)+\cos(\varphi_i+\delta)(y-y_i)&\le 0.
+\end{aligned}
+\end{equation}
+
+这两个式子都是 $x$、$y$ 的一次不等式，形如 $ax+by\le c$。满足 $ax+by\le c$ 的点集是直线 $ax+by=c$ 一侧的半个平面，称为半平面，它是一个凸集。式\eqref{eq:q1-2} 的两个不等式分别对应楔形的两条边，它们的交集就是该楔形。这样就把几何上“点在楔形内”的条件，转化成了代数上两个线性不等式同时成立。
+
+$n$ 次测向后，干扰源必须同时落在每个楔形内，也就是要同时满足全部 $2n$ 个不等式。将它们统一写成 $a_jx+b_jy\le c_j$，得到定位区域
+
+\begin{equation}\label{eq:q1-3}
+P=\bigcap_{j=1}^{2n}\left\{(x,y):a_jx+b_jy\le c_j\right\}.
+\end{equation}
+
+$P$ 是 $2n$ 个半平面的交。半平面是凸集，凸集之交仍是凸集，故 $P$ 为凸集；在非空且有界时，$P$ 是\textbf{凸多边形}，退化情形为线段或点。题目图 2 中的红色四边形就是 $n=2$ 时两个楔形求交的结果。每增加一次有效测向，约束增加两条，定位区域随之收缩。
+
+\subsubsection{求定位区域的直径}\label{sec:q1-2}
+
+定位区域 $P$ 是凸多边形，现在要求它的直径---区域内距离最远的一对点之间的距离。
+
+\textbf{首先确认区域有界。} 这是因为测向定出的区域可能无界或为空。若各检测点近似共线、示向度方向接近平行，楔形之交沿某方向无限延伸，则区域无界，直径为无穷大；若某次读数偏差较大，各楔形可能互不相容，则区域为空。这两种情形都需要先排除。
+
+具体做法是用线性规划：先检验约束组 $\{a_jx+b_jy\le c_j\}$ 是否可行，不可行说明数据矛盾，应剔除异常的测向数据；若可行，再分别求 $x$、$-x$、$y$、$-y$ 在约束下的最大值，四者均有限当且仅当 $P$ 有界。
+
+\textbf{确认有界后，求出全部顶点。} 凸多边形的每个顶点都是某两条边界直线的交点。对直线 $a_jx+b_jy=c_j$ 与 $a_kx+b_ky=c_k$，记 $\Delta_{jk}=a_jb_k-a_kb_j$，当 $\Delta_{jk}\ne0$ 时交点为
+
+\begin{equation}\label{eq:q1-4}
+x_{jk}=\frac{c_jb_k-b_jc_k}{\Delta_{jk}},\qquad
+y_{jk}=\frac{a_jc_k-c_ja_k}{\Delta_{jk}}.
+\end{equation}
+
+$\Delta_{jk}=0$ 时两直线平行，没有孤立交点，跳过。
+
+但是有些交点可能在区域外，只有在区域内的交点才是顶点。所以我们将交点代回全部 $2n$ 个约束检验，保留满足所有不等式者；去重后即得顶点集 $\{v_1,\dots,v_h\}$。
+
+有了顶点，直径就可以确定。按题目定义，$D=\max_{X,Y\in P}\|X-Y\|_2$。因为 $P$ 是凸多边形，我们证明这个最大值一定在顶点对上取得：
+
+\begin{equation}\label{eq:q1-5}
+D=\max_{1\le i<j\le h}\|v_i-v_j\|_2 .
+\end{equation}
+
+理由如下。凸多边形是其全部顶点的凸包，因此 $P$ 中任意一点都可写为顶点的凸组合：存在 $\lambda_i\ge0$、$\sum_i\lambda_i=1$，使 $X=\sum_i\lambda_iv_i$；同理 $Y=\sum_j\mu_jv_j$，$\mu_j\ge0$、$\sum_j\mu_j=1$。两式相减得
+
+\[
+X-Y=\sum_{i,j}\lambda_i\mu_j(v_i-v_j),
+\qquad
+\sum_{i,j}\lambda_i\mu_j=\left(\sum_i\lambda_i\right)\left(\sum_j\mu_j\right)=1 .
+\]
+
+由三角不等式，
+
+\[
+\|X-Y\|\le\sum_{i,j}\lambda_i\mu_j\|v_i-v_j\|\le\max_{i,j}\|v_i-v_j\|\cdot1=\max_{i,j}\|v_i-v_j\|,
+\]
+
+即区域内任意两点的距离都不超过最远顶点对的距离。而最远顶点对本身就是区域内的点，所以这个上界可以取到。式\eqref{eq:q1-5} 成立。
+
+综上，求直径的完整流程为：
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\small
+\refstepcounter{algorithm}\label{alg:q1-diameter}
+\textbf{算法\thealgorithm：定位区域直径计算}\par\smallskip
+\noindent\textbf{输入：}检测点 $S_i$、示向度 $\theta_i$，$i=1,\dots,n$
+\begin{enumerate}
+\setlength{\itemsep}{2pt}
+\setlength{\parskip}{0pt}
+\item 按式\eqref{eq:q1-2} 将每次测向写成两个半平面约束；
+\item 线性规划检验可行性与有界性；
+\item 按式\eqref{eq:q1-4} 求每对边界直线的交点；
+\item 保留满足全部约束的交点并去重，得顶点集；
+\item 比较所有顶点对的距离，取最大者 $(A,B)$，$D=|AB|$。
+\end{enumerate}
+\end{minipage}
+\par\medskip
+
+边界直线共 $2n$ 条，交点约 $\binom{2n}{2}=O(n^2)$ 个，每个交点检验约束需 $O(n)$，顶点数不超过 $2n$，比较顶点对为 $O(n^2)$，总计算量 $O(n^3)$。本题 $n$不超过十几，计算量完全可以实时完成。
+
+\subsubsection{判断直径圆能否覆盖定位区域}\label{sec:q1-3}
+
+机器狗的光学探测仪只能在距干扰源 $20$ m 以内工作。如果以定位区域直径 $D$ 为直径画一个圆，能盖住整个区域，那么只要 $D\le40$ m，机器狗走到圆心就能保证清除成功————这比计算最小包围圆要简单得多。所以题目提出疑问：这样的圆是否真的能盖住整个区域。
+
+首先要确定圆心。设最远的一对顶点为 $A$、$B$，距离为 $D$。若半径 $D/2$、圆心 $C$ 的圆覆盖了 $P$，则 $A$、$B$ 都在圆内，即 $\|A-C\|\le D/2$、$\|C-B\|\le D/2$。代入三角不等式
+
+\[
+D=\|A-B\|\le\|A-C\|+\|C-B\|\le\frac D2+\frac D2=D .
+\]
+
+不等式的两端相等，故中间每一步必须取等号：$\|A-C\|=\|C-B\|=D/2$；且 $C$ 在线段 $AB$ 上。这两个条件合起来，$C$ 只能是 $AB$ 的中点 $C_0=(A+B)/2$。圆是凸集，覆盖全部顶点就覆盖了整个凸多边形，所以判据为
+
+\begin{equation}\label{eq:q1-6}
+\max_{1\le i\le h}\|v_i-C_0\|\le\frac D2 .
+\end{equation}
+
+式\eqref{eq:q1-6} 是否一定满足？下面给出一个满足题设条件的具体反例，说明它可以\textbf{不成立}
+
+现构造一组符合题意的检测点位置和示向度，使这些测向数据形成的误差约束区域：目标三角形的三个顶点为
+
+\[
+A=(-10,\,0),\quad B=(10,\,0),\quad U=(0,\,15).
+\]
+
+三条边分别是 $y=0$（底边）、$y=1.5x+15$（左腰）、$y=-1.5x+15$（右腰）。
+
+下面说明这个三角形是可以构造的。三角形有 $3$ 条边，而每个检测点的楔形可以提供 $2$ 条边界线，因此用 $3$ 个检测点（$6$ 条边界线）即可实现：让其中 $3$ 条边界线分别与三角形的三条边重合，另外 $3$ 条不切入三角形内部。具体取法见表\ref{tab:q1-counterexample}。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\captionof{table}{反例的检测数据（误差界 $\pm1^\circ$）}\label{tab:q1-counterexample}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.98\linewidth}{>{\centering\arraybackslash}p{0.22\linewidth}>{\centering\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{检测点 $S_i$（m）} & \textbf{示向度 $\theta_i$} & \textbf{起决定作用的边界} \\
+\midrule
+$(-500,\,0)$ & $1^\circ$ & 下边界方向为 $0^\circ$，给出 $y\ge0$（底边） \\
+$(-310,\,-450)$ & $\approx55.31^\circ$ & 上边界方向为 $\arctan(1.5)$，给出 $y\le1.5x+15$（左腰） \\
+$(310,\,-450)$ & $\approx124.69^\circ$ & 下边界方向为 $180^\circ-\arctan(1.5)$，给出 $y\le-1.5x+15$（右腰） \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+
+其中第二个检测点的示向度取 $\theta_2=\arctan(1.5)-1^\circ\approx55.31^\circ$，第三个取 $\theta_3=181^\circ-\arctan(1.5)\approx124.69^\circ$。将三角形的三个顶点分别代入每个楔形的另一条边界线，可以验证它们均满足约束，因此 $6$ 个半平面的交恰好就是三角形 $ABU$。三个检测点到三角形中心的距离均约 $500$ m，在有效接收半径内；三角形整体位于半径 $1800$ m 的目标区域内，是完全合理的探测场景。
+
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\QOneCaseFigure
+\captionof{figure}{三次测向的角域交集与直径圆覆盖检验。左图按实际比例绘制三个误差角域；右图放大定位三角形，红色圆的半径为 $10$ m，上顶点超出 $5$ m。}
+\label{fig:q1-counterexample}
+\end{minipage}
+\end{center}
+
+
+
+现在检验覆盖性。边长为 $|AB|=20$，$|AU|=|BU|=\sqrt{325}\approx18.03$，直径 $D=20$ m 由 $A$、$B$ 取得。直径圆圆心 $C_0=(0,\,0)$，半径 $D/2=10$ m。而上顶点到圆心的距离为
+
+\[
+\|U-C_0\|=15\ \text{m}>10\ \text{m}=\frac D2,
+\]
+
+超出半径 $5$ m，式\eqref{eq:q1-6} 不成立。
+于是\textbf{问题一的第二问答案为否}：
+
+\textbf{以定位区域直径为直径的圆，不一定能覆盖该定位区域。}
+
+
+
+这一结果说明，区域直径与清除所需的覆盖半径应分别计算。后续将用包围圆描述定位尺度，并以对全部可能源位置的距离检验判断能否接收或清除。

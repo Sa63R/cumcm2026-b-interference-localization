@@ -1,0 +1,214 @@
+% 第二问示意图：交会几何、候选点布设、选点流程。由 config/preamble.tex 引入。
+\usetikzlibrary{positioning,shapes.geometric,shapes.misc}
+
+% ---------- 图：为什么要横向偏移（交会几何） ----------
+\newcommand{\QTwoCrossFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\large,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  info/.style={fill=none,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.2);
+\fill[white] (0,0) rectangle (23,7.2);
+\draw[black!15] (11.5,.3)--(11.5,6.9);
+\node[font=\bfseries] at (5.7,6.85) {(a) 沿示向方向前进再测};
+\node[font=\bfseries] at (17.3,6.85) {(b) 横向偏移后再测};
+
+% (a) 两个检测点共线：第二个楔形整个落在第一个楔形内，区域只是被截短
+\begin{scope}[shift={(1.0,3.4)}]
+  \coordinate (x1) at (0,0);
+  \coordinate (x2) at (3.6,0);
+  \fill[qoneblue!16] (x1)--($(x1)+(-6:9.6)$)--($(x1)+(6:9.6)$)--cycle;
+  \draw[qoneblue] (x1)--($(x1)+(-6:9.6)$);
+  \draw[qoneblue] (x1)--($(x1)+(6:9.6)$);
+  \begin{scope}
+    \clip (x1)--($(x1)+(-6:9.6)$)--($(x1)+(6:9.6)$)--cycle;
+    \fill[qoneregion!55] (x2)--($(x2)+(-6:9)$)--($(x2)+(6:9)$)--cycle;
+  \end{scope}
+  \draw[qoneorange] (x2)--($(x2)+(-6:6)$);
+  \draw[qoneorange] (x2)--($(x2)+(6:6)$);
+  \draw[qoneink,densely dashed] (x1)--(9.6,0);
+  \node[dot] at (x1) {};
+  \node[dot,fill=qoneorange] at (x2) {};
+  \node[dot,fill=qonefail] at (7.4,.18) {};
+  \node[below,info] at ($(x1)+(0,-.15)$) {$x_1$ 首测点};
+  \node[below,info] at ($(x2)+(0,-.65)$) {$x_2$ 第二检测点};
+  \node[above right,text=qonefail,inner sep=1pt] at (7.4,.2) {源 $p$};
+  \draw[<->,qoneink,thick] (3.6,-1.45)--(9.5,-1.45)
+    node[midway,below,info] {剩余定位区域仍然狭长};
+  \draw[black!35] (3.6,-1.1)--(3.6,-1.6);
+  \draw[black!35] (9.5,-1.1)--(9.5,-1.6);
+  \node[text=qoneblue,info] at (2.0,1.35) {首测楔形};
+\end{scope}
+
+% (b) 横向拉开基线：两个楔形斜着相交，交出一小块四边形
+\begin{scope}[shift={(12.4,3.4)}]
+  \coordinate (x1) at (0,0);
+  \coordinate (x2) at (4.6,-2.5);
+  \coordinate (p) at (6.7,.15);
+  \fill[qoneblue!16] (x1)--($(x1)+(-6:9.6)$)--($(x1)+(6:9.6)$)--cycle;
+  \draw[qoneblue] (x1)--($(x1)+(-6:9.6)$);
+  \draw[qoneblue] (x1)--($(x1)+(6:9.6)$);
+  \begin{scope}
+    \clip (x1)--($(x1)+(-6:9.6)$)--($(x1)+(6:9.6)$)--cycle;
+    \fill[qoneregion!75] (x2)--($(x2)+(45.6:6.5)$)--($(x2)+(57.6:6.5)$)--cycle;
+  \end{scope}
+  \fill[qoneorange!14] (x2)--($(x2)+(45.6:4.4)$)--($(x2)+(57.6:4.4)$)--cycle;
+  \draw[qoneorange] (x2)--($(x2)+(45.6:4.4)$);
+  \draw[qoneorange] (x2)--($(x2)+(57.6:4.4)$);
+  \draw[qoneink,densely dashed] (x1)--(p);
+  \draw[qoneink,densely dashed] (x2)--(p);
+  \draw[qonepurple,thick,densely dotted] (x1)--(x2)
+    node[midway,below left,text=qonepurple,info] {横向基线};
+  % 交会角
+  \draw[qonefail,thick] ($(p)+(180:1.1)$) arc[start angle=180,end angle=231.6,radius=1.1];
+  \node[text=qonefail,info] at ($(p)+(215:1.65)$) {$\gamma$};
+  \node[dot] at (x1) {};
+  \node[dot,fill=qoneorange] at (x2) {};
+  \node[dot,fill=qonefail] at (p) {};
+  \node[below,info] at (x1) {$x_1$};
+  \node[below,info] at (x2) {$x_2$};
+  \node[above right,text=qonefail,inner sep=1pt] at (p) {源 $p$};
+  \draw[->,qoneink] (6.2,2.25)--(6.65,.45);
+  \node[anchor=south,info] at (6.0,2.3) {两条视线的交集很小};
+  \node[text=qoneblue,info] at (2.0,1.35) {首测楔形};
+\end{scope}
+\node[black!60,font=\small] at (11.5,.45)
+  {为便于观察，图中楔形张角放大绘制；实际张角为 $2^\circ$};
+\end{tikzpicture}
+}}
+
+% ---------- 图：两组候选检测点的布设 ----------
+\newcommand{\QTwoCandidateFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  info/.style={fill=none,inner sep=2pt,align=center},
+  candA/.style={circle,inner sep=1.9pt,fill=qoneorange,draw=qoneorange!60!black},
+  candB/.style={rectangle,inner sep=2.1pt,fill=qoneblue,draw=qoneblue!60!black},
+  candX/.style={cross out,draw=qonefail,thick,inner sep=2.4pt}]
+\path[use as bounding box] (-3.2,-3.6) rectangle (13.2,3.2);
+\fill[white] (-3.2,-3.6) rectangle (13.2,3.2);
+
+% 源的定位区域（外接多边形）
+\fill[qoneregion!14] (1,0)--(2.5,-.9)--(7,-1.15)--(9.8,-.3)--(9.6,.9)--(5,1.2)--cycle;
+\draw[qoneregion,thick] (1,0)--(2.5,-.9)--(7,-1.15)--(9.8,-.3)--(9.6,.9)--(5,1.2)--cycle;
+\node[text=qoneregion,info] at (8.0,.55) {定位区域 $\widehat C_f$};
+
+% 长轴与投影区间
+\coordinate (z) at (5.4,0);
+\draw[qoneink,densely dashed] (1,0)--(9.8,0);
+\draw[->,qoneink,thick] (9.8,0)--(10.7,0) node[right,info] {长轴方向 $e$};
+\draw[black!45] (1,-1.6)--(1,-2.0);
+\draw[black!45] (9.8,-1.6)--(9.8,-2.0);
+\draw[<->,black!60] (1,-1.85)--(9.8,-1.85)
+  node[midway,below,info] {区域沿长轴的长度 $w$};
+
+% 第二组：长轴四个分位点 × 三个横向位置，另加中心两侧
+\foreach \x in {3.2,4.3,6.5,7.6} {
+  \node[candB] at (\x,0) {};
+  \node[candB] at (\x,1.1) {};
+  \node[candB] at (\x,-1.1) {};
+}
+\node[candB] at (5.4,1.1) {};
+\node[candB] at (5.4,-1.1) {};
+\node[candX] at (7.6,1.1) {};
+\node[candX] at (7.6,-1.1) {};
+\draw[<->,qoneblue,thick] (11.0,0)--(11.0,1.1)
+  node[midway,right,text=qoneblue,info] {$b_*$};
+\draw[black!35,densely dotted] (7.6,1.1)--(11.0,1.1);
+\node[below,font=\footnotesize,black!60] at (3.2,-1.25) {$1/4$};
+\node[below,font=\footnotesize,black!60] at (4.3,-1.25) {$3/8$};
+\node[below,font=\footnotesize,black!60] at (6.5,-1.25) {$5/8$};
+\node[below,font=\footnotesize,black!60] at (7.6,-1.25) {$3/4$};
+
+% 第一组：当前位置到中心连线的中点与终点，各带横向偏移
+\coordinate (x0) at (-1.6,-2.3);
+\draw[qoneorange,densely dashed] (x0)--(z);
+\coordinate (m) at ($(x0)!.5!(z)$);
+\foreach \pt in {m,z} {
+  \node[candA] at ($(\pt)+(108.2:.3)$) {};
+  \node[candA] at ($(\pt)+(108.2:.9)$) {};
+  \node[candA] at ($(\pt)+(-71.8:.3)$) {};
+  \node[candA] at ($(\pt)+(-71.8:.9)$) {};
+}
+\node[candA] at (z) {};
+\node[dot] at (x0) {};
+\node[below,info] at (x0) {$x_0$ 当前位置};
+\node[anchor=west,info,inner sep=1pt] at ($(z)+(.35,.48)$) {$z$};
+
+% 图例
+\node[candA] at (-2.6,2.7) {};
+\node[anchor=west,inner sep=2pt] at (-2.4,2.7) {第一组：沿前进方向，横向错开 $50$、$150$ m};
+\node[candB] at (-2.6,2.1) {};
+\node[anchor=west,inner sep=2pt] at (-2.4,2.1) {第二组：沿长轴分位点，横向错开 $b_*$};
+\node[candX] at (-2.6,1.5) {};
+\node[anchor=west,inner sep=2pt] at (-2.4,1.5) {超出可靠接收区，剔除};
+\end{tikzpicture}
+}}
+
+% ---------- 图：第二检测点的选择流程 ----------
+\newcommand{\QTwoFlowFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[paper flow]
+\path[use as bounding box] (0,0) rectangle (16,4.0);
+\PaperFlowCard{observe}{(2.6,3.05)}{4.75}{1.4}{Blue}
+  {1\quad 首次测向}{记录位置与示向度}
+\PaperFlowCard{region}{(8,3.05)}{4.75}{1.4}{Blue}
+  {2\quad 更新定位区域}{测向、距离与场地约束}
+\PaperFlowCard{candidates}{(13.4,3.05)}{4.75}{1.4}{Warm}
+  {3\quad 构造与筛选测点}{两组布点，保证可靠接收}
+\PaperFlowCard{evaluate}{(13.4,.85)}{4.75}{1.4}{Blue}
+  {4\quad 评价候选测点}{假想测向，比较预计耗时}
+\PaperFlowCard{execute}{(8,.85)}{4.75}{1.4}{Blue}
+  {5\quad 执行下一步}{到费用最小的候选点测向}
+\PaperFlowCard{output}{(2.6,.85)}{4.75}{1.4}{Green}
+  {6\quad 输出测点与定位区域}{依据真实示向度更新区域}
+\draw[flow arrow] (observe)--(region);
+\draw[flow arrow] (region)--(candidates);
+\draw[flow arrow] (candidates)--(evaluate);
+\draw[flow arrow] (evaluate)--(execute);
+\draw[flow arrow] (execute)--(output);
+\end{tikzpicture}%
+}}
+
+% ---------- 图：首测楔形、覆盖圆与可靠接收区（按实际比例） ----------
+\newcommand{\QTwoRegionFigure}{\resizebox{0.66\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  info/.style={fill=none,inner sep=2pt,align=center}]
+\begin{scope}[x=.0075cm,y=.0075cm]
+  \path[use as bounding box] (-160,-880) rectangle (1720,880);
+  \fill[white] (-160,-880) rectangle (1720,880);
+  \draw[->,black!35] (-120,0)--(1660,0);
+  \node[below left,font=\footnotesize,black!60] at (1660,-5) {示向方向};
+  % 可靠接收区：到三角形三个顶点均不超过 1000 m，即三个圆盘的交
+  \begin{scope}
+    \clip (0,0) circle[radius=1000];
+    \clip (1500,26) circle[radius=1000];
+    \fill[qoneblue!22] (1500,-26) circle[radius=1000];
+  \end{scope}
+  % 覆盖整个楔形的圆与其中的安全圆盘
+  \draw[qonepurple,densely dashed,thick] (750,0) circle[radius=750];
+  \fill[qonecover!35] (750,0) circle[radius=250];
+  \draw[qonecover,thick] (750,0) circle[radius=250];
+  % 首测楔形，张角 2°，按实际比例
+  \fill[qoneorange!55] (0,0)--(1500,26)--(1500,-26)--cycle;
+  \draw[qoneorange,thick] (0,0)--(1500,26);
+  \draw[qoneorange,thick] (0,0)--(1500,-26);
+  \node[dot] at (0,0) {};
+  \node[dot,fill=qonepurple] at (750,0) {};
+  \node[below left,info] at (0,-12) {$x_1$};
+  \node[below right,info] at (762,-14) {$z_0$};
+  \node[text=qoneorange!80!black,info] at (1225,210) {首测楔形\\（张角 $2^\circ$，实际比例）};
+  \draw[->,qoneorange!80!black] (1225,140)--(1225,28);
+  \node[text=qoneblue!80!black,info] at (750,815) {可靠接收区 $Q_f$：到三个顶点均不超过 $1000$ m};
+  \node[text=qonecover!70!black,info] at (750,-400) {半径约 $250$ m 的圆盘\\沿示向方向前进约 $750$ m};
+  \draw[->,qonecover!70!black] (750,-345)--(750,-258);
+  \node[text=qonepurple,info] at (750,-590) {覆盖整个楔形的圆 $B(z_0,r_0)$\\$r_0\approx750$ m};
+  \draw[qonepurple] (1080,-590)--(1210,-590);
+  \draw[<->,qoneink] (0,-760)--(1500,-760) node[midway,below,info] {$1500$ m};
+  \draw[black!35] (0,-735)--(0,-785);
+  \draw[black!35] (1500,-735)--(1500,-785);
+\end{scope}
+\end{tikzpicture}
+}}

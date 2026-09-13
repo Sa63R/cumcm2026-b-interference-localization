@@ -1,0 +1,309 @@
+% 第三问辅助示意图。颜色沿用 q1_case.tex，局部由 sections/q3.tex 引入。
+% 图宽按 16 cm 设计；几何图按注释给定比例，概念规划图不代表实际轨迹。
+% 仅使用已有的 arrows.meta、calc、positioning、shapes.geometric、shapes.misc 库。
+
+% ---------- 原点扫描、七环布局及最近站的覆盖保证 ----------
+\newcommand{\QThreeCoverageFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\fontsize{10}{12}\selectfont,text=qoneink,
+  dot/.style={circle,inner sep=1.7pt,fill=qoneink},
+  site/.style={rectangle,inner sep=2.2pt,fill=qonecover,draw=qonecover!80!black},
+  info/.style={fill=none,inner sep=1.5pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (16,8.05);
+\fill[white] (0,0) rectangle (16,8.05);
+\draw[black!15] (7.7,.8)--(7.7,7.65);
+\node[font=\bfseries] at (3.7,7.65) {(a) 原点扫描与七个环上检测点};
+\node[font=\bfseries] at (11.9,7.65) {(b) 每个可能位置附近都有检测点};
+
+% 左图比例：1 cm = 600 m，三类圆都用同一比例。
+\coordinate (O) at (3.7,4.15);
+\fill[qoneblue!5] (O) circle[radius=3];
+\begin{scope}
+  \clip (O) circle[radius=3];
+  \foreach \k in {0,...,6} {
+    \pgfmathsetmacro{\ang}{360*\k/7}
+    \draw[qonecover!60,line width=.45pt] ($(O)+(\ang:1.665)$) circle[radius=1.666667];
+  }
+  \fill[qonecover!16] ($(O)+(1.665,0)$) circle[radius=1.666667];
+  \draw[qonecover,line width=.9pt] ($(O)+(1.665,0)$) circle[radius=1.666667];
+\end{scope}
+\draw[qoneblue,line width=.9pt] (O) circle[radius=3];
+\draw[qoneink!55,densely dashed] (O) circle[radius=1.665];
+\foreach \k in {0,...,6} {
+  \pgfmathsetmacro{\ang}{360*\k/7}
+  \node[site] at ($(O)+(\ang:1.665)$) {};
+}
+\node[dot] at (O) {};
+\node[below right,info] at ($(O)+(.18,-.18)$) {原点 $O$};
+\draw[<->,qoneink!75] (O)--($(O)+(235:1.665)$);
+\node[info,anchor=west] (ringlabel) at (.2,1.65) {$999$ m};
+\draw[qoneink!55,line width=.5pt] (ringlabel.north east)--(2.2,2.25)--($(O)+(235:1.665)$);
+\draw[<->,qonecover] ($(O)+(1.665,0)$)--($(O)+(1.665,0)+(65:1.666667)$);
+\node[info,text=qonecover] (radiuslabel) at (6.1,6.8) {$1000$ m};
+\draw[qonecover,line width=.5pt] (radiuslabel.south)--($(O)+(1.665,0)+(65:1.666667)$);
+\node[info,text=qoneblue] at (3.7,.8) {场地半径 $1800$ m};
+\node[info,font=\fontsize{9.5}{11.5}\selectfont] at (3.7,.15)
+  {七个检测点覆盖场地，原点先获取信息};
+
+% 右图仍用 1 cm = 600 m；画出角度最不利的边界点。
+\coordinate (C) at (9.55,4.0);
+\coordinate (s) at ($(C)+(1.665,0)$);
+\coordinate (p) at ($(C)+(25.714286:3)$);
+\fill[qoneblue!7] (C)--($(C)+(-25.714286:3)$)
+  arc[start angle=-25.714286,end angle=25.714286,radius=3]--cycle;
+\draw[qoneblue,line width=.9pt] ($(C)+(-25.714286:3)$)
+  arc[start angle=-25.714286,end angle=25.714286,radius=3];
+\draw[qoneblue!55,densely dotted] (C)--($(C)+(-25.714286:3)$);
+\draw[qoneink!65,densely dashed] (C)--($(C)+(3.25,0)$);
+\draw[qoneink,line width=.7pt] (C)--(p);
+\draw[qonecover,line width=1pt] (s)--(p);
+\draw[qoneorange,line width=.8pt] ($(C)+(.75,0)$)
+  arc[start angle=0,end angle=25.714286,radius=.75];
+\node[text=qoneorange,info] at ($(C)+(.55,.82)$) {$\alpha\le\pi/7$};
+\node[dot] at (C) {};
+\node[site] at (s) {};
+\node[dot,fill=qonefail] at (p) {};
+\node[below left,info] at (C) {$O$};
+\node[below,info] at ($(s)+(0,-.1)$) {检测点 $x_k$};
+\node[above right,info] at ($(p)+(.10,.18)$) {源的可能位置 $p$};
+\node[info] at (10.4,5.7) {$r\le1800$ m};
+\node[anchor=west,info,text=qonecover] (distlabel) at (13.05,4.9) {$d\le1000$ m};
+\draw[qonecover,line width=.5pt] (distlabel.west)--($(s)!.6!(p)+(.08,0)$);
+\node[info,align=left,anchor=north west] at (8.25,2.50)
+  {$d^2=r^2+999^2-2\times999r\cos\alpha$\\[3pt]
+   关于 $r$ 为凸函数，只需检查 $r=0,1800$\\[3pt]
+   最不利情形仍有 $d\le999<1000$ m};
+\node[info,font=\fontsize{9.5}{11.5}\selectfont] at (11.8,.15)
+  {按实际比例，场地外的接收圆弧省略};
+\end{tikzpicture}
+}}
+
+% ---------- 将覆盖任务和已知源任务合并，并在真实反馈后重新规划 ----------
+\newcommand{\QThreePlanningFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\fontsize{10}{12}\selectfont,text=qoneink,
+  dot/.style={circle,inner sep=1.8pt,fill=qoneink},
+  past/.style={circle,inner sep=2.1pt,draw=qoneink!65,fill=white,line width=.8pt},
+  site/.style={rectangle,inner sep=2.2pt,fill=qonecover,draw=qonecover!80!black},
+  source/.style={circle,inner sep=1.7pt,fill=qoneblue},
+  info/.style={fill=white,inner sep=1.5pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (16,7.45);
+\fill[white] (0,0) rectangle (16,7.45);
+\draw[black!15] (8,1.5)--(8,7.05);
+\node[font=\bfseries] at (4,7.0) {(a) 合并任务，安排访问顺序};
+\node[font=\bfseries] at (12,7.0) {(b) 到达后读取检测结果，再安排任务};
+
+\begin{scope}[shift={(.35,1.5)}]
+  \coordinate (x) at (.8,2.0);
+  \coordinate (old) at (1.0,.55);
+  \coordinate (F1) at (2.0,4.45);
+  \coordinate (F2) at (6.0,1.0);
+  \coordinate (z1) at (5.15,4.05);
+  \coordinate (z2) at (3.35,.55);
+  \foreach \pt in {z1,z2} {
+    \filldraw[fill=qoneblue!10,draw=qoneblue!60,line width=.6pt]
+      ($(\pt)+(-.65,-.1)$)--($(\pt)+(-.3,-.3)$)--($(\pt)+(.58,-.17)$)
+      --($(\pt)+(.7,.08)$)--($(\pt)+(.25,.27)$)--($(\pt)+(-.5,.2)$)--cycle;
+    \node[source] at (\pt) {};
+  }
+  \draw[->,qoneink!65,densely dashed,line width=.7pt] (x)--(F1);
+  \draw[->,qoneink!65,densely dashed,line width=.7pt] (F1)--(z1);
+  \draw[->,qoneink!65,densely dashed,line width=.7pt] (z1)--(F2);
+  \draw[->,qoneink!65,densely dashed,line width=.7pt] (F2)--(z2);
+  \draw[->,qoneorange,line width=1.5pt] (x)--(F1)
+    node[midway,left,info,text=qoneorange] {这一步\\只去这里};
+  \node[dot] at (x) {};
+  \node[past] at (old) {};
+  \node[site] at (F1) {};
+  \node[site] at (F2) {};
+  \node[below left,info] at (x) {$x_t$};
+  \node[below,info] at (old) {$P_1$};
+  \node[above,info] at (F1) {$F_1$：下一个扫描点};
+  \node[right,info] at (F2) {$F_2$};
+  \node[above,info] at ($(z1)+(0,.30)$) {定位区域圆心 $z_1$};
+  \node[below,info] at ($(z2)+(0,-.30)$) {定位区域圆心 $z_2$};
+\end{scope}
+
+\begin{scope}[shift={(8.35,1.5)}]
+  \coordinate (old) at (1.0,.55);
+  \coordinate (F1) at (2.0,4.45);
+  \coordinate (F2) at (6.0,1.0);
+  \coordinate (z1) at (5.15,4.05);
+  \coordinate (z2) at (3.35,.55);
+  \coordinate (z3) at (2.7,2.4);
+  \foreach \pt in {z1,z2,z3} {
+    \filldraw[fill=qoneblue!10,draw=qoneblue!60,line width=.6pt]
+      ($(\pt)+(-.65,-.1)$)--($(\pt)+(-.3,-.3)$)--($(\pt)+(.58,-.17)$)
+      --($(\pt)+(.7,.08)$)--($(\pt)+(.25,.27)$)--($(\pt)+(-.5,.2)$)--cycle;
+    \node[source] at (\pt) {};
+  }
+  \draw[->,qoneink!65,densely dashed,line width=.7pt] (F1)--(z3);
+  \draw[->,qoneink!65,densely dashed,line width=.7pt] (z3)--(z2);
+  \draw[->,qoneink!65,densely dashed,line width=.7pt] (z2)--(F2);
+  \draw[->,qoneink!65,densely dashed,line width=.7pt] (F2)--(z1);
+  \node[past] at (old) {};
+  \node[past] at (F1) {};
+  \draw[qoneorange,line width=1.1pt] (F1) circle[radius=.17];
+  \node[site] at (F2) {};
+  \node[below,info] at (old) {$P_1$};
+  \node[above,info] at (F1) {$F_1$ 扫描完成，加入 $P_t$};
+  \node[right,info] at (F2) {$F_2$};
+  \node[above,info] at ($(z1)+(0,.30)$) {$z_1$};
+  \node[below,info] at ($(z2)+(0,-.30)$) {$z_2$};
+  \node[anchor=west,info,text=qoneblue] at ($(z3)+(.6,.3)$) {新源的区域圆心 $z_3$};
+  \node[anchor=east,info,text=qoneorange] at ($(F1)+(-.3,-.38)$) {当前位置};
+\end{scope}
+
+\node[past] at (.65,.88) {};
+\node[anchor=west] at (.88,.88) {已扫描位置 $P_t$};
+\node[site] at (4.1,.88) {};
+\node[anchor=west] at (4.35,.88) {待扫描的点 $F_t$};
+\node[source] at (8.1,.88) {};
+\node[anchor=west] at (8.35,.88) {定位区域圆心};
+\draw[qoneink!65,densely dashed] (12.0,.88)--(12.65,.88);
+\node[anchor=west] at (12.85,.88) {当前计划路线};
+\end{tikzpicture}
+}}
+
+% ---------- 按包围圆尺度生成候选测点，再作接收距离筛选 ----------
+\newcommand{\QThreeProbeFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\fontsize{10.5}{13}\selectfont,text=qoneink,
+  cand/.style={circle,inner sep=2.4pt,fill=qoneblue,draw=white,line width=.7pt},
+  reject/.style={cross out,draw=qonefail,line width=1.0pt,inner sep=2.6pt},
+  lab/.style={fill=none,inner sep=2pt,align=left},
+  lead/.style={line width=.65pt,draw=qoneink!60}]
+\path[use as bounding box] (0,-.35) rectangle (16,9.2);
+\fill[white] (0,-.35) rectangle (16,9.2);
+
+% 教学几何，等比例绘制：1 cm=200 m。
+% x=(0,0), C=[200,1400]×[-20,20], z=(800,0), r=sqrt(600^2+20^2)。
+% 距离域边界：(|q_x-800|+600)^2+(|q_y|+20)^2=999.9^2。
+% 填充由四个圆盘的真实交集给出，不用椭圆替代。
+\pgfmathsetmacro{\rr}{sqrt(3*3+.1*.1)}
+\pgfmathsetmacro{\receive}{4.9995}
+\coordinate (z) at (8,4.7);
+\coordinate (x) at (4,4.7);
+\coordinate (v1) at (5,4.6);
+\coordinate (v2) at (11,4.6);
+\coordinate (v3) at (11,4.8);
+\coordinate (v4) at (5,4.8);
+
+% 浅蓝域：候选点到每个顶点的距离均小于999.9 m。
+\begin{scope}
+  \foreach \v in {v1,v2,v3,v4} \clip (\v) circle[radius=\receive];
+  \fill[qoneblue!9] (0,0) rectangle (16,9.2);
+  \foreach \v in {v1,v2,v3,v4}
+    \draw[qoneblue!65,densely dashed,line width=.7pt]
+      (\v) circle[radius=\receive];
+\end{scope}
+
+% 包围圆只用于确定布点尺度，灰紫虚线与接收域边界区分。
+\draw[qonepurple!75,dash pattern=on 4pt off 3pt,line width=.8pt]
+  (z) circle[radius=\rr];
+
+% 淡网格强调横纵各五个采样位置。
+\foreach \a in {-.7,-.35,0,.35,.7}
+  \draw[black!12,line width=.35pt]
+    ($(z)+(\a*\rr,-.4*\rr)$)--($(z)+(\a*\rr,.4*\rr)$);
+\foreach \b in {-.4,-.15,0,.15,.4}
+  \draw[black!12,line width=.35pt]
+    ($(z)+(-.7*\rr,\b*\rr)$)--($(z)+(.7*\rr,\b*\rr)$);
+
+\filldraw[fill=qoneregion!25,draw=qoneregion,line width=.9pt]
+  (v1)--(v2)--(v3)--(v4)--cycle;
+\foreach \v in {v1,v2,v3,v4} \fill[qoneregion] (\v) circle[radius=.035];
+
+% 半径标记避开下排点，不与图外标注交叉。
+\draw[->,qonepurple!80,line width=.7pt]
+  (z)--($(z)+(-62:\rr)$);
+\node[lab,text=qonepurple] at ($(z)+(.78,-1.88)$) {$r$};
+
+\foreach \a in {-.7,-.35,0,.35,.7} {
+  \foreach \b in {-.4,-.15,0,.15,.4} {
+    \pgfmathtruncatemacro{\bad}{abs(\a)>.6}
+    \ifnum\bad=1
+      \node[reject] at ($(z)+(\a*\rr,\b*\rr)$) {};
+    \else
+      \node[cand] at ($(z)+(\a*\rr,\b*\rr)$) {};
+    \fi
+  }
+}
+\node[reject] at (x) {};
+\node[lab,anchor=north] at ($(x)+(0,-.24)$) {当前位置 $x$};
+\node[lab,anchor=north west,inner sep=1pt] at ($(z)+(.22,.94)$) {$z$};
+
+% 直接标注布置在数据区外。
+\node[lab,anchor=east,text=qonepurple] (circlelabel) at (4.75,7.55) {包围圆};
+\draw[lead,qonepurple!70] (circlelabel.east)--(5.1,7.55)--($(z)+(133:\rr)$);
+\node[lab,anchor=west,text=qoneblue] (domainlabel) at (11.4,8.0)
+  {可靠接收区};
+\draw[lead,qoneblue!70] (domainlabel.west)--(10.65,8.0)--(8.71,8.0);
+\node[lab,anchor=west,text=qoneregion] (regionlabel) at (12.0,5.65)
+  {当前定位区域 $\widehat C_f$};
+\draw[lead,qoneregion] (regionlabel.west)--(11.65,5.65)--(10.82,4.8);
+
+% 局部方向轴只解释布点方向，不作为数值坐标轴。
+\draw[->,qoneink!75,line width=.8pt] (2.2,1.45)--(4.35,1.45)
+  node[right,inner sep=2pt] {$e$};
+\draw[->,qoneink!75,line width=.8pt] (2.2,1.45)--(2.2,2.75)
+  node[above,inner sep=2pt] {$e_\perp$};
+\node[anchor=north,align=center,font=\fontsize{9.5}{12}\selectfont]
+  at (3.3,1.2) {$e$ 指向包围圆心};
+
+% 图例使用颜色与形状双重编码。
+\node[cand] at (3.2,.15) {};
+\node[anchor=west] at (3.45,.15) {通过距离检验：15点};
+\node[reject] at (9.1,.15) {};
+\node[anchor=west] at (9.35,.15) {未通过：10点及当前位置};
+\end{tikzpicture}
+}}
+
+% ---------- 与算法3一致的滚动求解流程 ----------
+\newcommand{\QThreeFlowFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[paper flow]
+\path[use as bounding box] (0,.1) rectangle (16,11.9);
+\PaperFlowCard{start}{(8,11.0)}{6.6}{1.4}{Blue}
+  {初始化与扫描}{原点扫描20个频道，布置七个检测点}
+
+% 完成条件与图1一致；短分支结束，未完成时向下执行。
+\node[diamond,aspect=4.5,draw=flowBlueTitle,fill=flowBlueBody,
+  line width=.8pt,inner sep=0pt,text width=35mm,align=center,
+  minimum width=60mm,minimum height=14mm] (done) at (8,9.1)
+  {未知频道均已排除\\已发现源全部清除？};
+\PaperFlowCard{finish}{(2.15,9.1)}{3.2}{1.4}{Green}
+  {任务结束}{核对清除记录}
+\node[flow label,text=flowNote,text width=42mm,
+  font=\linespread{1}\fontsize{9}{11.5}\selectfont] at (2.15,7.72)
+  {未知频道排除依据\\全场覆盖或已发现16个源};
+
+\PaperFlowCard{plan}{(8,6.9)}{6.6}{1.65}{Warm}
+  {构造任务并选择下一步}
+  {先清除当前位置可清除源\\调整扫描点，合并任务并用2-opt排序}
+
+% 任务类型由左右分支表示，不再另画一个重复说明的判断框。
+\PaperFlowCard{coverage}{(4,4.6)}{6.0}{1.65}{Blue}
+  {覆盖扫描}{到站扫描未知频道\\按需补测已发现源}
+\PaperFlowCard{source}{(12,4.6)}{6.0}{1.65}{Blue}
+  {主动测向或清除}
+  {满足条件则清除，否则选点检测\\必要时在包围圆心测向}
+\PaperFlowCard{update}{(8,2.5)}{6.6}{1.65}{Blue}
+  {真实反馈与状态更新}
+  {按需追加扫描或测向\\更新定位区域、覆盖记录与清除状态}
+
+\draw[flow arrow] (start)--(done);
+\draw[flow arrow] (done.west)--node[flow label,above]{是}(finish.east);
+\draw[flow arrow] (done.south)--node[flow label,right]{否}(plan.north);
+\draw[flowBlueTitle,line width=.8pt] (plan.south)--(8,5.72);
+\draw[flow arrow] (8,5.72)--(4,5.72)--(coverage.north);
+\draw[flow arrow] (8,5.72)--(12,5.72)--(source.north);
+\node[flow label,above] at (3.7,5.72) {扫描任务};
+\node[flow label,above] at (12.3,5.72) {源任务};
+\draw[flow arrow] (coverage.south)--(4,2.5)--(update.west);
+\draw[flow arrow] (source.south)--(12,2.5)--(update.east);
+\draw[flow arrow] (update.south)--(8,1.0)--(15.65,1.0)
+  --(15.65,9.1)--(done.east);
+\node[flow label,text=flowBlueTitle] at (11.5,.53)
+  {每执行一步，按观测结果重新规划};
+\end{tikzpicture}%
+}}

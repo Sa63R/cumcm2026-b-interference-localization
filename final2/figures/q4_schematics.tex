@@ -1,0 +1,345 @@
+% 第四问示意图：定向源发射范围、覆盖布局与凸包条件、成对检测点、定向源无信号的裁剪、沿途停测、求解流程。
+% 由 config/preamble.tex 引入；颜色沿用 figures/q1_case.tex 的定义。
+
+% ---------- 图：定向源只向一侧发射，无信号有两种原因 ----------
+\newcommand{\QFourEmissionFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  info/.style={fill=none,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.6);
+\fill[white] (0,0) rectangle (23,7.6);
+\draw[black!15] (11.5,.3)--(11.5,7.3);
+\node[font=\bfseries] at (5.7,7.25) {(a) 定向源只向一侧发射};
+\node[font=\bfseries] at (17.3,7.25) {(b) 紧贴边界、朝外发射的定向源};
+
+% (a) 发射半平面、接收范围与三个检测点
+\begin{scope}[shift={(0.8,0.5)}]
+  \clip (0,0) rectangle (10.4,6.4);
+  \coordinate (p) at (4.2,3.1);
+  \fill[qoneorange!14] ($(p)+(110:6)$)--($(p)+(110:6)+(20:9)$)--($(p)+(-70:6)+(20:9)$)--($(p)+(-70:6)$)--cycle;
+  \draw[qoneorange,thick] ($(p)+(110:3.4)$)--($(p)+(-70:3.4)$);
+  \draw[qoneblue,densely dashed,thick] (p) circle[radius=2.7];
+  \draw[->,qonefail,very thick] (p)--($(p)+(20:1.3)$) node[above,text=qonefail,inner sep=1pt] {$u$};
+  \draw[qonefail] ($(p)+(110:.9)$) arc[start angle=110,end angle=-70,radius=.9];
+  \node[text=qonefail,info,font=\footnotesize] at ($(p)+(-15:1.45)$) {$\pm90^\circ$};
+  \coordinate (A) at ($(p)+(45:1.9)$);
+  \coordinate (B) at ($(p)+(165:1.7)$);
+  \coordinate (C) at ($(p)+(5:3.6)$);
+  \node[dot,fill=qonefail] at (p) {};
+  \node[dot,fill=qoneblue] at (A) {};
+  \node[dot] at (B) {};
+  \node[dot] at (C) {};
+  \node[below left,info] at ($(p)+(-.3,-.15)$) {干扰源 $p$};
+  \node[above left,info,text=qoneblue] at ($(A)+(-.1,.1)$) {有信号};
+  \node[anchor=north,info] (blabel) at (1.75,6.35) {无信号\\（在发射范围之外）};
+  \draw[qoneink!55,line width=.5pt] (blabel.south)--($(B)+(0,.12)$);
+  \node[anchor=north,info] at (8.55,2.9) {无信号\\（超出接收距离）};
+  \node[text=qoneblue,info] at (3.65,1.6) {接收范围\\$\|x-p\|\le R_f$};
+  \node[text=qoneorange,info] at (8.2,.75) {发射范围\\$u\cdot(x-p)\ge0$};
+\end{scope}
+
+% (b) 边界朝外的定向源：场内检测点全部无信号
+\begin{scope}[shift={(12.2,0.5)}]
+  \clip (0,0) rectangle (10.6,6.4);
+  \coordinate (c) at (4.6,3.2);
+  \coordinate (p) at ($(c)+(20:3.0)$);
+  \fill[qoneblue!7] (c) circle[radius=3.0];
+  \fill[qoneorange!16] ($(p)+(110:5)$)--($(p)+(110:5)+(20:6)$)--($(p)+(-70:5)+(20:6)$)--($(p)+(-70:5)$)--cycle;
+  \draw[qoneblue,thick] (c) circle[radius=3.0];
+  \draw[qoneorange,thick] ($(p)+(110:3.2)$)--($(p)+(-70:3.2)$);
+  \draw[qoneblue,densely dashed] (p) circle[radius=1.667];
+  \draw[->,qonefail,very thick] (p)--($(p)+(20:1.0)$) node[right,text=qonefail,inner sep=1pt] {$u$};
+  \node[dot] at (c) {};
+  \foreach \a in {0,45,...,315} \node[dot] at ($(c)+(\a:1.663)$) {};
+  \foreach \a in {0,30,...,330} \node[dot,fill=qonecover] at ($(c)+(\a:3.108)$) {};
+  \node[dot,fill=qonefail] at (p) {};
+  \draw[qonecover,thick] ($(c)+(15:3.108)$) circle[radius=.22];
+  \node[info,text=qonecover] (outerlabel) at (9.25,2.05) {外环检测点\\收到信号};
+  \draw[qonecover,line width=.5pt] (outerlabel.north west)--($(c)+(15:3.108)+(.25,0)$);
+  \node[anchor=north,info] (sourcelabel) at (9.1,6.39) {贴边朝外发射的\\定向源 $p$};
+  \draw[qoneink!55,line width=.5pt] (sourcelabel.south west)--($(p)+(.05,.12)$);
+  \node[info] at ($(c)+(-.3,-.57)$) {场内检测点都在\\发射范围之外};
+  \node[text=qoneblue,info] at (4.6,.95) {目标区域 1800 m};
+  \node[text=qonecover,info,font=\footnotesize] at ($(c)+(120:3.108)+(-.9,.35)$) {外环 1865 m，在区域外};
+\end{scope}
+\end{tikzpicture}
+}}
+
+% ---------- 图：21 个检测站的布局与凸包条件 ----------
+\newcommand{\QFourCoverageFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  site/.style={circle,inner sep=1.9pt,fill=qonecover},
+  info/.style={fill=none,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.6);
+\fill[white] (0,0) rectangle (23,7.6);
+\draw[black!15] (11.5,.3)--(11.5,7.3);
+\node[font=\bfseries] at (5.7,7.25) {(a) 21 个检测站（按实际比例）};
+\node[font=\bfseries] at (17.3,7.25) {(b) 候选源位置 $g$ 附近的局部放大};
+
+% (a) 布局：原点 + 内环 8 站（998 m）+ 外环 12 站（1865 m）；比例 1 cm = 650 m
+\begin{scope}[shift={(0.6,0.4)}]
+  \clip (0,0) rectangle (10.8,6.6);
+  \coordinate (c) at (5.4,3.05);
+  \fill[qoneblue!7] (c) circle[radius=2.769];
+  \draw[qoneblue,thick] (c) circle[radius=2.769];
+  \draw[black!25,densely dotted] (c) circle[radius=1.535];
+  \draw[black!25,densely dotted] (c) circle[radius=2.869];
+  \coordinate (g) at ($(c)+(190:2.308)$);
+  % g 附近 1000 m 内的四个站及其凸包
+  \fill[qonecover!22] ($(c)+(180:2.869)$)--($(c)+(210:2.869)$)--($(c)+(225:1.535)$)--($(c)+(180:1.535)$)--cycle;
+  \draw[qonecover] ($(c)+(180:2.869)$)--($(c)+(210:2.869)$)--($(c)+(225:1.535)$)--($(c)+(180:1.535)$)--cycle;
+  \draw[qonefail,densely dashed] (g) circle[radius=1.538];
+  \node[dot] at (c) {};
+  \foreach \a in {0,45,...,315} \node[dot] at ($(c)+(\a:1.535)$) {};
+  \foreach \a in {0,30,...,330} \node[site] at ($(c)+(\a:2.869)$) {};
+  \node[dot,fill=qonefail] at (g) {};
+  \node[text=qonefail,info,font=\footnotesize] (glabel) at (1.6,.5) {$g$ 及其 1000 m 圆};
+  \draw[qonefail,line width=.5pt] (glabel.north east)--($(g)+(-75:1.538)$);
+  \node[info,font=\footnotesize] at ($(c)+(0.05,-.35)$) {原点};
+  \node[info,font=\footnotesize] (innerlabel) at (9.0,4.9) {内环 8 站，998 m};
+  \draw[qoneink!55,line width=.5pt] (innerlabel.south west)--($(c)+(45:1.535)$);
+  \node[text=qonecover,info,font=\footnotesize] at ($(c)+(75:2.869)+(.95,.15)$) {外环 12 站，1865 m};
+  \node[text=qoneblue,info,font=\footnotesize] (fieldlabel) at (9.1,.55) {目标区域 1800 m};
+  \draw[qoneblue,line width=.5pt] (fieldlabel.west)--($(c)+(-52:2.769)$);
+\end{scope}
+
+% (b) 放大：g 在附近站的凸包内，过 g 的任一直线两侧都有站；比例 1 cm = 300 m
+\begin{scope}[shift={(17.4,3.5)}]
+  \clip (-5.0,-3.0) rectangle (5.4,3.4);
+  \coordinate (g) at (0,0);
+  \coordinate (o180) at (-1.29,.87);
+  \coordinate (o210) at (-.46,-2.24);
+  \coordinate (i225) at (2.57,-1.49);
+  \coordinate (i180) at (1.60,.87);
+  % 某个发射方向 u 的照射半平面
+  \fill[qoneorange!14] ($(g)+(10:6)$)--($(g)+(10:6)+(100:6)$)--($(g)+(190:6)+(100:6)$)--($(g)+(190:6)$)--cycle;
+  \draw[qoneorange,thick] ($(g)+(190:4.2)$)--($(g)+(10:4.2)$);
+  \fill[qonecover!22] (o180)--(o210)--(i225)--(i180)--cycle;
+  \draw[qonecover,thick] (o180)--(o210)--(i225)--(i180)--cycle;
+  \draw[->,qonefail,very thick] (g)--($(g)+(100:1.0)$) node[right,text=qonefail,inner sep=1pt] {$u$};
+  \node[site] at (o180) {};
+  \node[site] at (o210) {};
+  \node[dot] at (i225) {};
+  \node[dot] at (i180) {};
+  \node[dot,fill=qonefail] at (g) {};
+  \draw[qoneblue,thick] (i180) circle[radius=.24];
+  \node[below left,info,text=qonefail] at (g) {$g$};
+  \node[above,info,font=\footnotesize] at ($(i180)+(0,.3)$) {在发射范围内，且距 $g$ 不到 1000 m};
+  \node[anchor=north,info,font=\footnotesize,text=qonecover] at ($(o210)+(0,-.3)$) {四个站到 $g$ 都不到 1000 m，凸包盖住 $g$};
+  \node[info,font=\footnotesize,text=qoneorange] at ($(g)+(190:3.0)+(0,-.55)$) {发射范围的边界过 $g$};
+\end{scope}
+\end{tikzpicture}
+}}
+
+% ---------- 图：成对检测点与“两点都无信号”的推断 ----------
+\newcommand{\QFourPairFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  info/.style={fill=none,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.4);
+\fill[white] (0,0) rectangle (23,7.4);
+\begin{scope}
+\clip (0,0) rectangle (23,7.4);
+\coordinate (s) at (1.6,3.5);
+\coordinate (qa) at (6.6,4.5);
+\coordinate (qb) at (6.6,2.5);
+\coordinate (p) at (11.1,4.1);
+% 楔形（张角放大绘制）与当前定位区域
+\fill[qoneblue!12] (s)--($(s)+(-7:15)$)--($(s)+(7:15)$)--cycle;
+\draw[qoneblue] (s)--($(s)+(-7:15)$);
+\draw[qoneblue] (s)--($(s)+(7:15)$);
+\fill[qoneregion!35] ($(s)+(-7:4.53)$)--($(s)+(-7:13.1)$)--($(s)+(7:13.1)$)--($(s)+(7:4.53)$)--cycle;
+% 被“两点均无信号”排除的部分
+\begin{scope}
+  \clip ($(s)+(-7:4.53)$)--($(s)+(-7:13.1)$)--($(s)+(7:13.1)$)--($(s)+(7:4.53)$)--cycle;
+  \fill[pattern=north east lines,pattern color=qonefail!70] (6.6,0)--(15.5,0)--(15.5,7)--(6.6,7)--cycle;
+\end{scope}
+\draw[qonefail,thick] (6.6,1.55)--(6.6,5.45);
+% 某个包含 s 的发射半平面（边界过 p）：它必然也包含 q+ 或 q-
+\draw[qoneorange,thick] ($(p)+(190:10.2)$)--($(p)+(10:2.6)$);
+\fill[qoneorange!12] ($(p)+(190:10.2)$)--($(p)+(10:2.6)$)--($(p)+(10:2.6)+(100:3.2)$)--($(p)+(190:10.2)+(100:3.2)$)--cycle;
+\draw[->,qonefail,very thick] (p)--($(p)+(100:1.0)$) node[left,text=qonefail,inner sep=1pt] {$u$};
+% 距离比较
+\draw[qoneink,densely dashed] (s)--(p);
+\draw[qoneink,densely dashed] (qa)--(p);
+\draw[qoneink,densely dashed] (qb)--(p);
+\draw[qoneink,densely dashed] (s)--(6.6,3.5);
+% 尺寸标注
+\draw[<->,qoneink] (1.6,1.2)--(6.6,1.2) node[midway,below,info] {$t$};
+\draw[black!35] (1.6,1.0)--(1.6,1.4);
+\draw[black!35] (6.6,1.0)--(6.6,1.4);
+\draw[black!35,densely dotted] (5.2,4.5)--(qa);
+\draw[black!35,densely dotted] (5.2,2.5)--(qb);
+\draw[<->,qoneink] (5.2,3.5)--(5.2,4.5) node[midway,left,info] {$h$};
+\draw[<->,qoneink] (5.2,2.5)--(5.2,3.5) node[pos=.2,left,info] {$h$};
+\node[dot] at (s) {};
+\node[dot,fill=qoneorange] at (qa) {};
+\node[dot,fill=qoneorange] at (qb) {};
+\node[dot,fill=qonefail] at (p) {};
+\node[above,info] at ($(s)+(0,.4)$) {上一次有信号的\\检测点 $s$};
+\node[above left,info,text=qoneorange] at ($(qa)+(-.2,.2)$) {$q^+$};
+\node[below left,info,text=qoneorange] at ($(qb)+(-.2,-.2)$) {$q^-$};
+\node[info,text=qonefail] (plabel) at (10.8,6.3) {假设源 $p$ 在 $t$ 之外};
+\draw[qonefail,line width=.5pt] (plabel.south east)--($(p)+(.18,.18)$);
+\node[text=qoneblue,info] at (3.3,5.9) {示向度楔形};
+\node[text=qoneregion,info] (regionlabel) at (9.6,1.8) {当前定位区域};
+\draw[qoneregion,line width=.5pt] (regionlabel.north)--(9.6,2.45);
+\draw[->,qoneink,thick] ($(s)+(0,-1.4)$)--($(s)+(1.4,-1.4)$) node[right,info] {示向方向 $e$};
+\node[anchor=north west,info,align=left,text width=56mm,font=\footnotesize] at (16.9,7.0)
+  {$p$ 在 $t$ 之外时：\\
+   $q^+$、$q^-$ 都比 $s$ 更靠近 $p$，\\都在接收范围内；\\
+   任何包含 $s$ 的发射半平面，\\至少包含 $q^+$、$q^-$ 之一；\\
+   所以两点不可能同时无信号。};
+\node[anchor=north west,info,align=left,text width=56mm,font=\footnotesize,text=qonefail] at (16.9,2.65)
+  {反过来，两点都无信号 $\Longrightarrow$ 源在 $t$ 之内，\\
+   阴影部分被排除。};
+\node[black!60,font=\footnotesize] at (11.5,.35)
+  {楔形张角放大绘制；实际 $h/t$ 约为 $0.08$，只需大于 $\tan1^\circ$ 即可跨过楔形};
+\end{scope}
+\end{tikzpicture}
+}}
+
+% ---------- 图：定向源无信号反馈的裁剪 ----------
+\newcommand{\QFourNegativeFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  info/.style={fill=none,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.4);
+\fill[white] (0,0) rectangle (23,7.4);
+\coordinate (xp) at (3.5,2.0);
+\coordinate (xm) at (17.0,6.3);
+\begin{scope}
+\clip (0,0) rectangle (23,7.4);
+% 无信号点的接收范围盖住整个定位区域
+\draw[qonefail,densely dashed] (xm) circle[radius=8.0];
+% 允许的方向 u=120° 对应的条带：两条过 x- 和 x+ 且垂直于 u 的直线之间
+\fill[qoneorange!12] ($(xm)+(30:-9)$)--($(xm)+(30:3)$)--($(xm)+(30:3)+(120:3.02)$)--($(xm)+(30:-9)+(120:3.02)$)--cycle;
+\draw[qoneorange,thick] ($(xm)+(30:-9)$)--($(xm)+(30:3)$);
+\draw[qoneorange,thick] ($(xm)+(30:-9)+(120:3.02)$)--($(xm)+(30:3)+(120:3.02)$);
+% 定位区域：条带外的部分被裁掉
+\fill[qoneregion!35] (10.0,3.2)--(11.6,2.7)--(13.2,3.4)--(13.4,4.7)--(11.8,5.4)--(10.2,4.9)--cycle;
+\begin{scope}
+  \clip (10.0,3.2)--(11.6,2.7)--(13.2,3.4)--(13.4,4.7)--(11.8,5.4)--(10.2,4.9)--cycle;
+  \fill[pattern=north east lines,pattern color=qonefail!70] ($(xm)+(30:-9)$)--($(xm)+(30:2.5)$)--($(xm)+(30:2.5)+(-60:3)$)--($(xm)+(30:-9)+(-60:3)$)--cycle;
+\end{scope}
+\draw[qoneregion,thick] (10.0,3.2)--(11.6,2.7)--(13.2,3.4)--(13.4,4.7)--(11.8,5.4)--(10.2,4.9)--cycle;
+% 允许的发射方向：与 x+ - x- 的夹角小于 90°
+\coordinate (k) at (6.0,5.6);
+\fill[qonefail!15] (k)--($(k)+(107.7:1.0)$) arc[start angle=107.7,end angle=287.7,radius=1.0]--cycle;
+\draw[black!40] (k) circle[radius=1.0];
+\draw[->,qonefail,very thick] (k)--($(k)+(120:1.0)$) node[above,text=qonefail,inner sep=1pt] {$u$};
+\draw[->,qoneink,densely dashed] (k)--($(k)+(197.7:1.0)$);
+\node[anchor=north,info,font=\footnotesize] at ($(k)+(0,-1.15)$) {允许的发射方向 $u$：\\与 $x^+-x^-$ 的夹角小于 $90^\circ$};
+\node[dot,fill=qoneblue] at (xp) {};
+\node[dot,fill=qonefail] at (xm) {};
+\node[below,info,text=qoneblue] at ($(xp)+(0,-.15)$) {有信号点 $x^+$};
+\node[above left,info,text=qonefail] at ($(xm)+(-.25,.3)$) {无信号点 $x^-$};
+\node[text=qoneregion,info] at (11.7,1.6) {定位区域};
+\node[anchor=west,info,align=left,font=\footnotesize] at (14.6,3.2)
+  {对每个允许的 $u$，源都夹在过 $x^-$ 和 $x^+$ 的\\两条垂线之间；把所有允许方向的结果并起来\\再取凸包，得到裁剪后的定位区域};
+\node[anchor=west,info,align=left,font=\footnotesize,text=qonefail] at (2.0,.55)
+  {红色虚线圆：$x^-$ 到区域每一点都不到接收半径下界，\\无信号只能因为 $x^-$ 落在发射范围之外};
+\end{scope}
+\end{tikzpicture}
+}}
+
+% ---------- 图：去下一任务途中的停测 ----------
+\newcommand{\QFourTransitFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth,line cap=round,line join=round,
+  font=\small,text=qoneink,
+  dot/.style={circle,inner sep=1.6pt,fill=qoneink},
+  stop/.style={circle,inner sep=2.0pt,fill=qoneorange,draw=qoneorange!60!black},
+  info/.style={fill=none,inner sep=2pt,align=center}]
+\path[use as bounding box] (0,0) rectangle (23,7.0);
+\fill[white] (0,0) rectangle (23,7.0);
+\coordinate (p) at (1.8,2.0);
+\coordinate (r) at (19.2,4.6);
+\coordinate (q1) at ($(p)!.25!(r)$);
+\coordinate (q2) at ($(p)!.5!(r)$);
+\coordinate (q3) at ($(p)!.75!(r)$);
+% 已发现源的定位区域
+\fill[qoneregion!30] (8.6,5.4)--(9.7,5.0)--(10.9,5.5)--(11.0,6.4)--(9.9,6.7)--(8.8,6.2)--cycle;
+\draw[qoneregion,thick] (8.6,5.4)--(9.7,5.0)--(10.9,5.5)--(11.0,6.4)--(9.9,6.7)--(8.8,6.2)--cycle;
+\fill[qoneregion!30] (12.4,1.1)--(13.6,0.8)--(14.5,1.5)--(14.2,2.4)--(13.0,2.5)--(12.2,1.9)--cycle;
+\draw[qoneregion,thick] (12.4,1.1)--(13.6,0.8)--(14.5,1.5)--(14.2,2.4)--(13.0,2.5)--(12.2,1.9)--cycle;
+\node[anchor=east,text=qoneregion,info,font=\footnotesize] at (8.3,5.5) {已发现源 $f_1$ 的定位区域};
+\node[anchor=west,text=qoneregion,info,font=\footnotesize] at (15.0,1.65) {已发现源 $f_2$ 的定位区域};
+% 路线与三个候选停点
+\draw[qoneink,thick] (p)--(r);
+\draw[qoneorange,densely dashed] (q2)--(9.8,5.8);
+\draw[qoneorange,densely dashed] (q2)--(13.3,1.7);
+\node[stop] at (q1) {};
+\node[stop] at (q2) {};
+\node[stop] at (q3) {};
+\draw[qoneorange,thick] (q2) circle[radius=.28];
+\node[below,info,font=\footnotesize] at ($(q1)+(0,-.2)$) {$1/4$};
+\node[anchor=north east,info,font=\footnotesize] at ($(q2)+(-.3,-.4)$) {$1/2$（选中的停点 $q$）};
+\node[below,info,font=\footnotesize] at ($(q3)+(0,-.2)$) {$3/4$};
+\node[dot] at (p) {};
+\node[dot,fill=qonefail] at (r) {};
+\node[below,info] at ($(p)+(0,-.15)$) {当前位置 $x_t$};
+\node[below,info] at ($(r)+(0,-.6)$) {首任务的入口点 $r$\\（下一站，或下一次检测点）};
+\node[anchor=west,info,align=left,font=\footnotesize] at (14.9,6.3)
+  {在 $q$ 停下：$|x_tq|+|qr|=|x_tr|$，路程不增加；\\每个频道多花 5 s 检测，换频另计 1 s};
+\node[anchor=west,info,align=left,font=\footnotesize] at (1.4,6.3)
+  {先按几何条件筛选候选频道；\\再用回归树比较各停点的耗时收益};
+\end{tikzpicture}
+}}
+
+% ---------- 图：第四问求解流程 ----------
+\newcommand{\QFourFlowFigure}{\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[paper flow]
+\path[use as bounding box] (0,0) rectangle (16,14.0);
+\PaperFlowCard{start}{(8,13.25)}{6.2}{1.4}{Blue}
+  {初始化与扫描}{原点扫描20个频道，建立定位区域}
+\node[diamond,aspect=2.5,draw=flowWarmEdge,fill=flowWarmBody,line width=.65pt,
+  inner sep=1pt,text width=20mm,align=center] (done) at (8,11.45)
+  {任务完成？};
+\PaperFlowCard{finish}{(2.1,11.45)}{3.2}{1.4}{Green}
+  {任务结束}{核对清除记录}
+\PaperFlowCard{plan}{(8,9.65)}{6.4}{1.65}{Warm}
+  {构造任务并选择下一步}
+  {合并未访站与已发现未清除源\\最近邻与2-opt排序，取首任务}
+\node[diamond,aspect=3.0,draw=flowWarmEdge,fill=flowWarmBody,line width=.65pt,
+  inner sep=1pt,text width=36mm,align=center] (transit) at (8,7.45)
+  {已扫满4站，且\\回归树预测收益为正？};
+\PaperFlowCard{stop}{(13.55,7.45)}{3.4}{1.4}{Blue}
+  {途中补测}{停点测向并更新}
+\PaperFlowCard{coverage}{(3.1,4.85)}{4.8}{1.65}{Blue}
+  {覆盖扫描}{到站扫描未知频道\\按需补测已发现源}
+\node[diamond,aspect=2.8,draw=flowWarmEdge,fill=flowWarmBody,line width=.65pt,
+  inner sep=1pt,text width=23mm,align=center] (clearable) at (8.9,4.85)
+  {可直接清除？};
+\PaperFlowCard{probe}{(8.9,2.95)}{4.8}{1.65}{Blue}
+  {蒙特卡洛 rollout}{比较检测动作\\执行选中的动作}
+\PaperFlowCard{clear}{(13.6,2.95)}{3.7}{1.4}{Green}
+  {执行清除}{前往清除，登记结果}
+\PaperFlowCard{update}{(8,1.0)}{6.4}{1.4}{Blue}
+  {状态更新}{按真实反馈更新区域与任务集}
+\draw[flow arrow] (start)--(done);
+\draw[flow arrow] (done.west)--node[flow label,above]{是}(finish.east);
+\draw[flow arrow] (done.south)--node[flow label,right]{否}(plan.north);
+\draw[flow arrow] (plan)--(transit);
+\draw[flow arrow] (transit.east)--node[flow label,above]{是}(stop.west);
+\draw[flowLine,line width=.6pt] (transit.south)--(8,6.05);
+\node[flow label,anchor=west] at (8,6.3) {否};
+\draw[flow arrow] (8,6.05)--(3.1,6.05)--(coverage.north);
+\draw[flow arrow] (8,6.05)--(8.9,6.05)--(clearable.north);
+\node[flow label,above] at (3.1,6.05) {扫描任务};
+\node[flow label,above,anchor=south west] at (8.9,6.05) {源任务};
+\draw[flow arrow] (clearable.south)--node[flow label,right]{否}(probe.north);
+\draw[flow arrow] (clearable.east)--node[flow label,above]{是}(13.6,4.85)--(clear.north);
+\draw[flow arrow] (coverage.south)--(3.1,1.0)--(update.west);
+\draw[flow arrow] (probe.south)--($(update.north)+(.9,0)$);
+\draw[flow arrow] (clear.south)--(13.6,1.0)--(update.east);
+\draw[flow arrow,draw=flowAccent,line width=.7pt] (update.south)--(8,.1)--(15.8,.1)
+  --(15.8,11.45)--(done.east);
+\draw[draw=flowAccent,line width=.7pt] (stop.east)--(15.8,7.45);
+\node[flow label,text=flowAccent,above] at (13.75,11.45) {观测后重新规划};
+\end{tikzpicture}%
+}}
